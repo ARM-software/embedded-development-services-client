@@ -148,6 +148,19 @@ Class | Method | HTTP request | Description
 *VirtualHardwareTargetInstanceApi* | [**StartVhtRunJob**](docs/VirtualHardwareTargetInstanceApi.md#startvhtrunjob) | **Post** /vht-instances/{instanceName} | Starts a VHT Run job.
 *VirtualHardwareTargetInstanceApi* | [**StopVhtInstance**](docs/VirtualHardwareTargetInstanceApi.md#stopvhtinstance) | **Post** /vht-instances/{instanceName}/cancel | Stop this VHT instance.
 *VirtualHardwareTargetInstanceApi* | [**UploadVhtInstanceArtefact**](docs/VirtualHardwareTargetInstanceApi.md#uploadvhtinstanceartefact) | **Put** /vht-instances/{instanceName}/artefacts/{artefactName}/artefact | Upload and replace the named VHT artefact on the given VHT instance.
+*WorkspaceApi* | [**ClearWorkspaceArchiveContent**](docs/WorkspaceApi.md#clearworkspacearchivecontent) | **Delete** /workspaces/{workspaceName}/archive-content | Clear the content of this workspace.
+*WorkspaceApi* | [**ClearWorkspaceRepositoryContentManager**](docs/WorkspaceApi.md#clearworkspacerepositorycontentmanager) | **Delete** /workspaces/{workspaceName}/repository-content | Clear the content of this workspace.
+*WorkspaceApi* | [**CreateWorkspace**](docs/WorkspaceApi.md#createworkspace) | **Post** /workspace-sources/{workspaceSourceName} | Creates a workspace based on the source.
+*WorkspaceApi* | [**DeleteWorkspace**](docs/WorkspaceApi.md#deleteworkspace) | **Delete** /workspaces/{workspaceName} | Delete a Workspace
+*WorkspaceApi* | [**EditWorkspaceRepositoryContentManager**](docs/WorkspaceApi.md#editworkspacerepositorycontentmanager) | **Put** /workspaces/{workspaceName}/repository-content | Edit the source for the content of the workspace.
+*WorkspaceApi* | [**GetWorkspace**](docs/WorkspaceApi.md#getworkspace) | **Get** /workspaces/{workspaceName} | Return the state of a workspace.
+*WorkspaceApi* | [**GetWorkspaceArchiveContent**](docs/WorkspaceApi.md#getworkspacearchivecontent) | **Get** /workspaces/{workspaceName}/archive-content | Get the manager of the archive file containing the workspace content.
+*WorkspaceApi* | [**GetWorkspaceDetails**](docs/WorkspaceApi.md#getworkspacedetails) | **Get** /workspaces/{workspaceName}/details | Details about the workspace.
+*WorkspaceApi* | [**GetWorkspaceRepositoryContentManagerManager**](docs/WorkspaceApi.md#getworkspacerepositorycontentmanagermanager) | **Get** /workspaces/{workspaceName}/repository-content | Get the manager of the workspace content defined in a repository.
+*WorkspaceApi* | [**ListWorkspaces**](docs/WorkspaceApi.md#listworkspaces) | **Get** /workspaces/ | List all workspaces available.
+*WorkspaceApi* | [**UploadWorkspaceArchiveContent**](docs/WorkspaceApi.md#uploadworkspacearchivecontent) | **Put** /workspaces/{workspaceName}/archive-content | Upload and replace the content of the named workspace.
+*WorkspaceSourceApi* | [**GetWorkspaceSource**](docs/WorkspaceSourceApi.md#getworkspacesource) | **Get** /workspace-sources/{workspaceSourceName} | Return details of the specific workspace source.
+*WorkspaceSourceApi* | [**ListWorkspaceSources**](docs/WorkspaceSourceApi.md#listworkspacesources) | **Get** /workspace-sources/ | List available workspace sources.
 
 
 ## Documentation For Models
@@ -178,6 +191,8 @@ Class | Method | HTTP request | Description
  - [EmbeddedVhtInstanceItems](docs/EmbeddedVhtInstanceItems.md)
  - [EmbeddedVhtItems](docs/EmbeddedVhtItems.md)
  - [EmbeddedVhtRunJobItems](docs/EmbeddedVhtRunJobItems.md)
+ - [EmbeddedWorkspaceItems](docs/EmbeddedWorkspaceItems.md)
+ - [EmbeddedWorkspaceSourceItems](docs/EmbeddedWorkspaceSourceItems.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [FieldObject](docs/FieldObject.md)
  - [HalCollectionLinks](docs/HalCollectionLinks.md)
@@ -204,6 +219,16 @@ Class | Method | HTTP request | Description
  - [VhtRunJobItem](docs/VhtRunJobItem.md)
  - [VhtRunJobItemLinks](docs/VhtRunJobItemLinks.md)
  - [VirtualInterface](docs/VirtualInterface.md)
+ - [WorkspaceCollection](docs/WorkspaceCollection.md)
+ - [WorkspaceDetailsItem](docs/WorkspaceDetailsItem.md)
+ - [WorkspaceDetailsItemLinks](docs/WorkspaceDetailsItemLinks.md)
+ - [WorkspaceItem](docs/WorkspaceItem.md)
+ - [WorkspaceItemLinks](docs/WorkspaceItemLinks.md)
+ - [WorkspaceRepositoryContentManager](docs/WorkspaceRepositoryContentManager.md)
+ - [WorkspaceRepositoryContentManagerLinks](docs/WorkspaceRepositoryContentManagerLinks.md)
+ - [WorkspaceSourceCollection](docs/WorkspaceSourceCollection.md)
+ - [WorkspaceSourceItem](docs/WorkspaceSourceItem.md)
+ - [WorkspaceSourceItemLinks](docs/WorkspaceSourceItemLinks.md)
 
 
 ## Documentation For Authorization

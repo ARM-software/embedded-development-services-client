@@ -65,6 +65,10 @@ type APIClient struct {
 	VirtualHardwareTargetApi *VirtualHardwareTargetApiService
 
 	VirtualHardwareTargetInstanceApi *VirtualHardwareTargetInstanceApiService
+
+	WorkspaceApi *WorkspaceApiService
+
+	WorkspaceSourceApi *WorkspaceSourceApiService
 }
 
 type service struct {
@@ -91,6 +95,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.VHTRunJobsApi = (*VHTRunJobsApiService)(&c.common)
 	c.VirtualHardwareTargetApi = (*VirtualHardwareTargetApiService)(&c.common)
 	c.VirtualHardwareTargetInstanceApi = (*VirtualHardwareTargetInstanceApiService)(&c.common)
+	c.WorkspaceApi = (*WorkspaceApiService)(&c.common)
+	c.WorkspaceSourceApi = (*WorkspaceSourceApiService)(&c.common)
 
 	return c
 }

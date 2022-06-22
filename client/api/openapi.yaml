@@ -69,6 +69,10 @@ tags:
   name: Virtual Hardware Target
 - description: Managing a VHT instance
   name: Virtual Hardware Target Instance
+- description: Managing a workspace
+  name: Workspace
+- description: Finding available workspace sources
+  name: Workspace Source
 paths:
   /:
     get:
@@ -4886,6 +4890,1344 @@ paths:
         linkRelation: instance
         resource: VhtInstanceItem
         title: The requested VHT instances for this specific VHT.
+  /workspace-sources/:
+    get:
+      description: This returns a collection resource that lists all of the workspace
+        sources currently supported by the service.
+      operationId: listWorkspaceSources
+      parameters:
+      - description: "Versioning: Optional header to request a specific version of\
+          \ the API. While it is possible to specify a particular major, minor or\
+          \ patch version it is not recommended for production use cases. Only the\
+          \ major version number should be specified as minor and patch versions can\
+          \ be updated without warning."
+        example: 1.0.0
+        explode: false
+        in: header
+        name: Accept-Version
+        required: false
+        schema:
+          $ref: '#/components/schemas/AcceptVersionHeader'
+        style: simple
+      - description: "Embedding: The whether or not to embed resources into the collection\
+          \ (rather than return links)."
+        example: false
+        explode: true
+        in: query
+        name: embed
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - description: "Caching: Optional header to improve performance. The value of\
+          \ this header should be the `ETag` of the resource when last read. If this\
+          \ is provided and there have been no changes to the resource then a 304\
+          \ will be returned without content."
+        explode: false
+        in: header
+        name: if-none-match
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: "Paging: The maximum number of items to return in a resource."
+        example: 20
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          maximum: 1000
+          minimum: 1
+          type: integer
+        style: form
+      - description: "Paging:  The index of the first item to return in the resource."
+        example: 0
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          default: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSourceCollection'
+          description: Resource returned OK.
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/CacheControlHeader'
+            ETag:
+              $ref: '#/components/headers/ETagHeader'
+            Version:
+              $ref: '#/components/headers/VersionHeader'
+          links:
+            getWorkspaceSourceByName:
+              description: Individual workspace source can be accessed by using `item`
+                links. Either the `href` property of the link can be used to make
+                a request (which would be the preferred HATEOS approach) or the URL
+                template can be completing with the `name` property of a link.
+              operationId: getVht
+              parameters:
+                workspaceSourceName: $response.body#/_links/item/*/name
+        "304":
+          description: The client made a conditional request and there is no need
+            to retransmit the resource as the client already has the most recent version
+            of this resource.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request is invalid for syntactic or semantic reasons.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication information has not been provided or is invalid
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "Requested cannot be fulfilled due to content negotiation headers,\
+            \ such as a request for a unsupported media type or specific version."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "To many requests have been received by the user, i.e. rate\
+            \ limits have been reached."
+      summary: List available workspace sources.
+      tags:
+      - Workspace Source
+      x-link:
+        linkRelation: collection
+        resource: WorkspaceSourceItem
+        title: All the supported workspace sources.
+  /workspace-sources/{workspaceSourceName}:
+    get:
+      description: "A workspace source defines what an ephemeral workspace can be\
+        \ created from e.g. zip file, git repository."
+      operationId: getWorkspaceSource
+      parameters:
+      - description: "Versioning: Optional header to request a specific version of\
+          \ the API. While it is possible to specify a particular major, minor or\
+          \ patch version it is not recommended for production use cases. Only the\
+          \ major version number should be specified as minor and patch versions can\
+          \ be updated without warning."
+        example: 1.0.0
+        explode: false
+        in: header
+        name: Accept-Version
+        required: false
+        schema:
+          $ref: '#/components/schemas/AcceptVersionHeader'
+        style: simple
+      - description: The ID of the workspace source.
+        explode: false
+        in: path
+        name: workspaceSourceName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Caching: Optional header to improve performance. The value of\
+          \ this header should be the `ETag` of the resource when last read. If this\
+          \ is provided and there have been no changes to the resource then a 304\
+          \ will be returned without content."
+        explode: false
+        in: header
+        name: if-none-match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSourceItem'
+          description: Resource returned OK.
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/CacheControlHeader'
+            ETag:
+              $ref: '#/components/headers/ETagHeader'
+            Version:
+              $ref: '#/components/headers/VersionHeader'
+          links:
+            createWorkspaceByName:
+              description: The `create` link can be used to request the creation of
+                a workspace. Either the `href` property of the link can be used to
+                make a POST request (which would be the preferred HATEOS approach)
+                or the URL template can be completed with the `name` property of a
+                link.
+              operationId: createWorkspace
+              parameters:
+                workspaceName: $response.body#/_links/create/name
+        "304":
+          description: The client made a conditional request and there is no need
+            to retransmit the resource as the client already has the most recent version
+            of this resource.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request is invalid for syntactic or semantic reasons.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication information has not been provided or is invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested resource cannot be found on the server or the user
+            lacks privileges to see this resource.
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "Requested cannot be fulfilled due to content negotiation headers,\
+            \ such as a request for a unsupported media type or specific version."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "To many requests have been received by the user, i.e. rate\
+            \ limits have been reached."
+      summary: Return details of the specific workspace source.
+      tags:
+      - Workspace Source
+      x-link:
+        linkRelation: self
+        resource: WorkspaceSourceItem
+        title: The details of this workspace source.
+    post:
+      description: Generates a workspace for the type of source specified.
+      operationId: createWorkspace
+      parameters:
+      - description: "Versioning: Optional header to request a specific version of\
+          \ the API. While it is possible to specify a particular major, minor or\
+          \ patch version it is not recommended for production use cases. Only the\
+          \ major version number should be specified as minor and patch versions can\
+          \ be updated without warning."
+        example: 1.0.0
+        explode: false
+        in: header
+        name: Accept-Version
+        required: false
+        schema:
+          $ref: '#/components/schemas/AcceptVersionHeader'
+        style: simple
+      - description: The ID of the workspace source.
+        explode: false
+        in: path
+        name: workspaceSourceName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspaceItem'
+        description: A name of the source type to create the workspace from.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceItem'
+          description: An ephemeral workspace has been successfully created.
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/CacheControlHeader'
+            Content-Location:
+              $ref: '#/components/headers/ContentLocationHeader'
+            ETag:
+              $ref: '#/components/headers/ETagHeader'
+            Location:
+              $ref: '#/components/headers/LocationHeader'
+            Version:
+              $ref: '#/components/headers/VersionHeader'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request is invalid for syntactic or semantic reasons.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication information has not been provided or is invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested resource cannot be found on the server or the user
+            lacks privileges to see this resource.
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: This method is not available on this resource or the user lacks
+            privileges to use this method.
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "Requested cannot be fulfilled due to content negotiation headers,\
+            \ such as a request for a unsupported media type or specific version."
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested media type is not supported by the server.
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "To many requests have been received by the user, i.e. rate\
+            \ limits have been reached."
+      summary: Creates a workspace based on the source.
+      tags:
+      - Workspace
+      x-link:
+        linkRelation: create
+        resource: WorkspaceItem
+        title: Create a workspace.
+  /workspaces/:
+    get:
+      description: This returns a collection resource that lists all available workspaces.
+      operationId: listWorkspaces
+      parameters:
+      - description: "Versioning: Optional header to request a specific version of\
+          \ the API. While it is possible to specify a particular major, minor or\
+          \ patch version it is not recommended for production use cases. Only the\
+          \ major version number should be specified as minor and patch versions can\
+          \ be updated without warning."
+        example: 1.0.0
+        explode: false
+        in: header
+        name: Accept-Version
+        required: false
+        schema:
+          $ref: '#/components/schemas/AcceptVersionHeader'
+        style: simple
+      - description: "Embedding: The whether or not to embed resources into the collection\
+          \ (rather than return links)."
+        example: false
+        explode: true
+        in: query
+        name: embed
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - description: "Caching: Optional header to improve performance. The value of\
+          \ this header should be the `ETag` of the resource when last read. If this\
+          \ is provided and there have been no changes to the resource then a 304\
+          \ will be returned without content."
+        explode: false
+        in: header
+        name: if-none-match
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: "Paging: The maximum number of items to return in a resource."
+        example: 20
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          maximum: 1000
+          minimum: 1
+          type: integer
+        style: form
+      - description: "Paging:  The index of the first item to return in the resource."
+        example: 0
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          default: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceCollection'
+          description: Resource returned OK.
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/CacheControlHeader'
+            ETag:
+              $ref: '#/components/headers/ETagHeader'
+            Version:
+              $ref: '#/components/headers/VersionHeader'
+        "304":
+          description: The client made a conditional request and there is no need
+            to retransmit the resource as the client already has the most recent version
+            of this resource.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request is invalid for syntactic or semantic reasons.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication information has not been provided or is invalid
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "Requested cannot be fulfilled due to content negotiation headers,\
+            \ such as a request for a unsupported media type or specific version."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "To many requests have been received by the user, i.e. rate\
+            \ limits have been reached."
+      summary: List all workspaces available.
+      tags:
+      - Workspace
+      x-link:
+        linkRelation: collection
+        resource: WorkspaceItem
+        title: The requested workspaces.
+  /workspaces/{workspaceName}:
+    delete:
+      description: Deletes a workspace.
+      operationId: deleteWorkspace
+      parameters:
+      - description: Unique ID of the Workspace.
+        explode: false
+        in: path
+        name: workspaceName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Versioning: Optional header to request a specific version of\
+          \ the API. While it is possible to specify a particular major, minor or\
+          \ patch version it is not recommended for production use cases. Only the\
+          \ major version number should be specified as minor and patch versions can\
+          \ be updated without warning."
+        example: 1.0.0
+        explode: false
+        in: header
+        name: Accept-Version
+        required: false
+        schema:
+          $ref: '#/components/schemas/AcceptVersionHeader'
+        style: simple
+      responses:
+        "204":
+          description: The Workspace has been successfully deleted.
+          headers:
+            Version:
+              $ref: '#/components/headers/VersionHeader'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request is invalid for syntactic or semantic reasons.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication information has not been provided or is invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested resource cannot be found on the server or the user
+            lacks privileges to see this resource.
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: This method is not available on this resource or the user lacks
+            privileges to use this method.
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "Requested cannot be fulfilled due to content negotiation headers,\
+            \ such as a request for a unsupported media type or specific version."
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "The requested operation, if completed, would result in an\
+            \ inconsistent state so has been denied."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "To many requests have been received by the user, i.e. rate\
+            \ limits have been reached."
+      summary: Delete a Workspace
+      tags:
+      - Workspace
+      x-link:
+        linkRelation: delete
+        resource: WorkspaceItem
+        title: Delete this Workspace.
+    get:
+      description: The state the workspace is currently in
+      operationId: getWorkspace
+      parameters:
+      - description: Unique ID of the Workspace.
+        explode: false
+        in: path
+        name: workspaceName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Versioning: Optional header to request a specific version of\
+          \ the API. While it is possible to specify a particular major, minor or\
+          \ patch version it is not recommended for production use cases. Only the\
+          \ major version number should be specified as minor and patch versions can\
+          \ be updated without warning."
+        example: 1.0.0
+        explode: false
+        in: header
+        name: Accept-Version
+        required: false
+        schema:
+          $ref: '#/components/schemas/AcceptVersionHeader'
+        style: simple
+      - description: "Caching: Optional header to improve performance. The value of\
+          \ this header should be the `ETag` of the resource when last read. If this\
+          \ is provided and there have been no changes to the resource then a 304\
+          \ will be returned without content."
+        explode: false
+        in: header
+        name: if-none-match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceItem'
+          description: Resource returned OK.
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/CacheControlHeader'
+            ETag:
+              $ref: '#/components/headers/ETagHeader'
+            Version:
+              $ref: '#/components/headers/VersionHeader'
+          links:
+            WorkspaceByName:
+              description: The `delete` link can be used to remove this workspace.
+                Either the `href` property of the link can be used to make a request
+                (which would be the preferred HATEOS approach) or by completing the
+                URL template using the `name` property of a link.
+              operationId: deleteWorkspace
+              parameters:
+                workspaceName: $response.body#/_links/delete/name
+            getDetailsByName:
+              description: "The `details` link can be used to get more details about\
+                \ the workspace e.g. path, etc. Either the `href` property of the\
+                \ link can be used to make a request (which would be the preferred\
+                \ HATEOS approach) or by completing the URL template using the `name`\
+                \ property of a link."
+              operationId: getWorkspaceDetails
+              parameters:
+                workspaceName: $response.body#/_links/details/name
+              x-redact: true
+            getWorkspaceSourceByName:
+              description: The `related` link can be used to find the workspace source
+                used to create this workspace. Either the `href` property of the link
+                can be used to make a request (which would be the preferred HATEOS
+                approach) or by completing the URL template using the `name` property
+                of a link.
+              operationId: getWorkspaceSource
+              parameters:
+                WorkspaceSourceName: $response.body#/_links/related/name
+        "304":
+          description: The client made a conditional request and there is no need
+            to retransmit the resource as the client already has the most recent version
+            of this resource.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request is invalid for syntactic or semantic reasons.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication information has not been provided or is invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested resource cannot be found on the server or the user
+            lacks privileges to see this resource.
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "Requested cannot be fulfilled due to content negotiation headers,\
+            \ such as a request for a unsupported media type or specific version."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "To many requests have been received by the user, i.e. rate\
+            \ limits have been reached."
+      summary: Return the state of a workspace.
+      tags:
+      - Workspace
+      x-link:
+        linkRelation: self
+        resource: WorkspaceItem
+        title: The state of this workspace.
+  /workspaces/{workspaceName}/archive-content:
+    delete:
+      description: |-
+        Clears the content of the workspace.
+        The content of the workspace is removed from the platform and will not be retrievable anymore.
+      operationId: clearWorkspaceArchiveContent
+      parameters:
+      - description: Unique ID of the Workspace.
+        explode: false
+        in: path
+        name: workspaceName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Versioning: Optional header to request a specific version of\
+          \ the API. While it is possible to specify a particular major, minor or\
+          \ patch version it is not recommended for production use cases. Only the\
+          \ major version number should be specified as minor and patch versions can\
+          \ be updated without warning."
+        example: 1.0.0
+        explode: false
+        in: header
+        name: Accept-Version
+        required: false
+        schema:
+          $ref: '#/components/schemas/AcceptVersionHeader'
+        style: simple
+      responses:
+        "204":
+          description: The workspace has been successfully cleared.
+          headers:
+            Version:
+              $ref: '#/components/headers/VersionHeader'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request is invalid for syntactic or semantic reasons.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication information has not been provided or is invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested resource cannot be found on the server or the user
+            lacks privileges to see this resource.
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: This method is not available on this resource or the user lacks
+            privileges to use this method.
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "Requested cannot be fulfilled due to content negotiation headers,\
+            \ such as a request for a unsupported media type or specific version."
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "The requested operation, if completed, would result in an\
+            \ inconsistent state so has been denied."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "To many requests have been received by the user, i.e. rate\
+            \ limits have been reached."
+      summary: Clear the content of this workspace.
+      tags:
+      - Workspace
+      x-link:
+        linkRelation: clear
+        resource: ArtefactManagerItem
+        title: Clear the content of this workspace.
+    get:
+      description: |-
+        The content of the workspace is contained into an archive file.
+         The manager enables upload and deletion of said archive file.
+      operationId: getWorkspaceArchiveContent
+      parameters:
+      - description: Unique ID of the Workspace.
+        explode: false
+        in: path
+        name: workspaceName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Versioning: Optional header to request a specific version of\
+          \ the API. While it is possible to specify a particular major, minor or\
+          \ patch version it is not recommended for production use cases. Only the\
+          \ major version number should be specified as minor and patch versions can\
+          \ be updated without warning."
+        example: 1.0.0
+        explode: false
+        in: header
+        name: Accept-Version
+        required: false
+        schema:
+          $ref: '#/components/schemas/AcceptVersionHeader'
+        style: simple
+      - description: "Caching: Optional header to improve performance. The value of\
+          \ this header should be the `ETag` of the resource when last read. If this\
+          \ is provided and there have been no changes to the resource then a 304\
+          \ will be returned without content."
+        explode: false
+        in: header
+        name: if-none-match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtefactManagerItem'
+          description: Resource returned OK.
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/CacheControlHeader'
+            ETag:
+              $ref: '#/components/headers/ETagHeader'
+            Version:
+              $ref: '#/components/headers/VersionHeader'
+        "304":
+          description: The client made a conditional request and there is no need
+            to retransmit the resource as the client already has the most recent version
+            of this resource.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request is invalid for syntactic or semantic reasons.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication information has not been provided or is invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested resource cannot be found on the server or the user
+            lacks privileges to see this resource.
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "Requested cannot be fulfilled due to content negotiation headers,\
+            \ such as a request for a unsupported media type or specific version."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "To many requests have been received by the user, i.e. rate\
+            \ limits have been reached."
+      summary: Get the manager of the archive file containing the workspace content.
+      tags:
+      - Workspace
+      x-link:
+        linkRelation: self
+        resource: ArtefactManagerItem
+        title: Get the workspace content archive file manager.
+    put:
+      description: "The content of the workspace is contained in an archive file which\
+        \ is uploaded and then, unpacked/expanded."
+      operationId: uploadWorkspaceArchiveContent
+      parameters:
+      - description: Unique ID of the Workspace.
+        explode: false
+        in: path
+        name: workspaceName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Versioning: Optional header to request a specific version of\
+          \ the API. While it is possible to specify a particular major, minor or\
+          \ patch version it is not recommended for production use cases. Only the\
+          \ major version number should be specified as minor and patch versions can\
+          \ be updated without warning."
+        example: 1.0.0
+        explode: false
+        in: header
+        name: Accept-Version
+        required: false
+        schema:
+          $ref: '#/components/schemas/AcceptVersionHeader'
+        style: simple
+      - description: "Conditional Requests: This is required in order to perform an\
+          \ update of a resource. The value of this header should be the `ETag` of\
+          \ the resource when read (before being subsequently modified by the client)."
+        explode: false
+        in: header
+        name: if-match
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ArtefactUpload'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtefactManagerItem'
+          description: Resource updated OK.
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/CacheControlHeader'
+            Content-Location:
+              $ref: '#/components/headers/ContentLocationHeader'
+            ETag:
+              $ref: '#/components/headers/ETagHeader'
+            Version:
+              $ref: '#/components/headers/VersionHeader'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request is invalid for syntactic or semantic reasons.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication information has not been provided or is invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested resource cannot be found on the server or the user
+            lacks privileges to see this resource.
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: This method is not available on this resource or the user lacks
+            privileges to use this method.
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "Requested cannot be fulfilled due to content negotiation headers,\
+            \ such as a request for a unsupported media type or specific version."
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "A condition request was made, but the resource was modified\
+            \ before request was completed."
+        "413":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: the request entity is larger than limits defined by server.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested media type is not supported by the server.
+        "428":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "A conditional request is required to perform this operation,\
+            \ but the request made was unconditional."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "To many requests have been received by the user, i.e. rate\
+            \ limits have been reached."
+      summary: Upload and replace the content of the named workspace.
+      tags:
+      - Workspace
+      x-link:
+        linkRelation: upload
+        resource: ArtefactManagerItem
+        title: Upload the content of the workspace from an archive file.
+  /workspaces/{workspaceName}/details:
+    get:
+      description: Retrieve further details about the given Workspace.
+      operationId: getWorkspaceDetails
+      parameters:
+      - description: Unique ID of the Workspace.
+        explode: false
+        in: path
+        name: workspaceName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Versioning: Optional header to request a specific version of\
+          \ the API. While it is possible to specify a particular major, minor or\
+          \ patch version it is not recommended for production use cases. Only the\
+          \ major version number should be specified as minor and patch versions can\
+          \ be updated without warning."
+        example: 1.0.0
+        explode: false
+        in: header
+        name: Accept-Version
+        required: false
+        schema:
+          $ref: '#/components/schemas/AcceptVersionHeader'
+        style: simple
+      - description: "Caching: Optional header to improve performance. The value of\
+          \ this header should be the `ETag` of the resource when last read. If this\
+          \ is provided and there have been no changes to the resource then a 304\
+          \ will be returned without content."
+        explode: false
+        in: header
+        name: if-none-match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceDetailsItem'
+          description: Resource returned OK.
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/CacheControlHeader'
+            ETag:
+              $ref: '#/components/headers/ETagHeader'
+            Version:
+              $ref: '#/components/headers/VersionHeader'
+      summary: Details about the workspace.
+      tags:
+      - Workspace
+      x-link:
+        linkRelation: details
+        resource: WorkspaceItem
+        title: Details about the workspace.
+      x-redact: true
+  /workspaces/{workspaceName}/repository-content:
+    delete:
+      description: |-
+        Clears the content of the workspace.
+        The content of the workspace is removed from the platform and will not be retrievable anymore.
+      operationId: clearWorkspaceRepositoryContentManager
+      parameters:
+      - description: Unique ID of the Workspace.
+        explode: false
+        in: path
+        name: workspaceName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Versioning: Optional header to request a specific version of\
+          \ the API. While it is possible to specify a particular major, minor or\
+          \ patch version it is not recommended for production use cases. Only the\
+          \ major version number should be specified as minor and patch versions can\
+          \ be updated without warning."
+        example: 1.0.0
+        explode: false
+        in: header
+        name: Accept-Version
+        required: false
+        schema:
+          $ref: '#/components/schemas/AcceptVersionHeader'
+        style: simple
+      responses:
+        "204":
+          description: The workspace has been successfully cleared.
+          headers:
+            Version:
+              $ref: '#/components/headers/VersionHeader'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request is invalid for syntactic or semantic reasons.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication information has not been provided or is invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested resource cannot be found on the server or the user
+            lacks privileges to see this resource.
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: This method is not available on this resource or the user lacks
+            privileges to use this method.
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "Requested cannot be fulfilled due to content negotiation headers,\
+            \ such as a request for a unsupported media type or specific version."
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "The requested operation, if completed, would result in an\
+            \ inconsistent state so has been denied."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "To many requests have been received by the user, i.e. rate\
+            \ limits have been reached."
+      summary: Clear the content of this workspace.
+      tags:
+      - Workspace
+      x-link:
+        linkRelation: clear
+        resource: WorkspaceRepositoryContentManager
+        title: Clear the content of this workspace.
+    get:
+      description: |-
+        The content of the workspace is contained in a repository.
+         The manager enables checkout and deletion of specified content.
+      operationId: getWorkspaceRepositoryContentManagerManager
+      parameters:
+      - description: Unique ID of the Workspace.
+        explode: false
+        in: path
+        name: workspaceName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Versioning: Optional header to request a specific version of\
+          \ the API. While it is possible to specify a particular major, minor or\
+          \ patch version it is not recommended for production use cases. Only the\
+          \ major version number should be specified as minor and patch versions can\
+          \ be updated without warning."
+        example: 1.0.0
+        explode: false
+        in: header
+        name: Accept-Version
+        required: false
+        schema:
+          $ref: '#/components/schemas/AcceptVersionHeader'
+        style: simple
+      - description: "Caching: Optional header to improve performance. The value of\
+          \ this header should be the `ETag` of the resource when last read. If this\
+          \ is provided and there have been no changes to the resource then a 304\
+          \ will be returned without content."
+        explode: false
+        in: header
+        name: if-none-match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceRepositoryContentManager'
+          description: Resource returned OK.
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/CacheControlHeader'
+            ETag:
+              $ref: '#/components/headers/ETagHeader'
+            Version:
+              $ref: '#/components/headers/VersionHeader'
+        "304":
+          description: The client made a conditional request and there is no need
+            to retransmit the resource as the client already has the most recent version
+            of this resource.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request is invalid for syntactic or semantic reasons.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication information has not been provided or is invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested resource cannot be found on the server or the user
+            lacks privileges to see this resource.
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "Requested cannot be fulfilled due to content negotiation headers,\
+            \ such as a request for a unsupported media type or specific version."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "To many requests have been received by the user, i.e. rate\
+            \ limits have been reached."
+      summary: Get the manager of the workspace content defined in a repository.
+      tags:
+      - Workspace
+      x-link:
+        linkRelation: self
+        resource: WorkspaceRepositoryContentManager
+        title: Get the workspace content manager.
+    put:
+      description: The content of the workspace is defined in a repository which is
+        checked out.
+      operationId: editWorkspaceRepositoryContentManager
+      parameters:
+      - description: Unique ID of the Workspace.
+        explode: false
+        in: path
+        name: workspaceName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Versioning: Optional header to request a specific version of\
+          \ the API. While it is possible to specify a particular major, minor or\
+          \ patch version it is not recommended for production use cases. Only the\
+          \ major version number should be specified as minor and patch versions can\
+          \ be updated without warning."
+        example: 1.0.0
+        explode: false
+        in: header
+        name: Accept-Version
+        required: false
+        schema:
+          $ref: '#/components/schemas/AcceptVersionHeader'
+        style: simple
+      - description: "Conditional Requests: This is required in order to perform an\
+          \ update of a resource. The value of this header should be the `ETag` of\
+          \ the resource when read (before being subsequently modified by the client)."
+        explode: false
+        in: header
+        name: if-match
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspaceRepositoryContentManager'
+        description: Definition of the repository where the workspace content should
+          be checked out from
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceRepositoryContentManager'
+          description: Resource updated OK.
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/CacheControlHeader'
+            Content-Location:
+              $ref: '#/components/headers/ContentLocationHeader'
+            ETag:
+              $ref: '#/components/headers/ETagHeader'
+            Version:
+              $ref: '#/components/headers/VersionHeader'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request is invalid for syntactic or semantic reasons.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication information has not been provided or is invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested resource cannot be found on the server or the user
+            lacks privileges to see this resource.
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: This method is not available on this resource or the user lacks
+            privileges to use this method.
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "Requested cannot be fulfilled due to content negotiation headers,\
+            \ such as a request for a unsupported media type or specific version."
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "A condition request was made, but the resource was modified\
+            \ before request was completed."
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested media type is not supported by the server.
+        "428":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "A conditional request is required to perform this operation,\
+            \ but the request made was unconditional."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "To many requests have been received by the user, i.e. rate\
+            \ limits have been reached."
+      summary: Edit the source for the content of the workspace.
+      tags:
+      - Workspace
+      x-link:
+        linkRelation: edit
+        resource: WorkspaceRepositoryContentManager
+        title: edit the content of the workspace.
 components:
   headers:
     CacheControlHeader:
@@ -4940,6 +6282,15 @@ components:
       explode: false
       in: path
       name: instanceName
+      required: true
+      schema:
+        type: string
+      style: simple
+    WorkspaceParam:
+      description: Unique ID of the Workspace.
+      explode: false
+      in: path
+      name: workspaceName
       required: true
       schema:
         type: string
@@ -8234,6 +9585,232 @@ components:
           type: array
       title: Embedded Resources
       type: object
+    EmbeddedWorkspaceItems:
+      description: "Embedded resource use the same link relation as a dictionary key,\
+        \ but rather than returning a link to the resource, the resource is instead\
+        \ embedded into the collection resource."
+      example:
+        item:
+        - _links:
+            related:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            self:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            details:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            collection:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            delete:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            artefacts:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+          name: 332129b3-f14d-49d2-b9be-acd2abd80c6b
+          ephemeral: true
+          _metadata:
+            ctime: 1985-10-25T18:35:00Z
+            mtime: 1955-11-04T23:15:00Z
+          title: My workspace 001
+          TTL: 5
+        - _links:
+            related:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            self:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            details:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            collection:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            delete:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            artefacts:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+          name: 332129b3-f14d-49d2-b9be-acd2abd80c6b
+          ephemeral: true
+          _metadata:
+            ctime: 1985-10-25T18:35:00Z
+            mtime: 1955-11-04T23:15:00Z
+          title: My workspace 001
+          TTL: 5
+      properties:
+        item:
+          items:
+            $ref: '#/components/schemas/WorkspaceItem'
+          type: array
+      title: Embedded Resources
+      type: object
+    EmbeddedWorkspaceSourceItems:
+      description: "Embedded resource use the same link relation as a dictionary key,\
+        \ but rather than returning a link to the resource, the resource is instead\
+        \ embedded into the collection resource."
+      example:
+        item:
+        - _links:
+            create:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            self:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            collection:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+          deprecated: false
+          deprecationInfo:
+            removal: 2021-01-20T09:43:41.783Z
+            comment: Deprecation due to service removal
+            issued: 2021-01-20T09:43:41.783Z
+          name: zip-archive
+          _metadata:
+            ctime: 1985-10-25T18:35:00Z
+            mtime: 1955-11-04T23:15:00Z
+          title: a zip archive containing workspace content
+        - _links:
+            create:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            self:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            collection:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+          deprecated: false
+          deprecationInfo:
+            removal: 2021-01-20T09:43:41.783Z
+            comment: Deprecation due to service removal
+            issued: 2021-01-20T09:43:41.783Z
+          name: zip-archive
+          _metadata:
+            ctime: 1985-10-25T18:35:00Z
+            mtime: 1955-11-04T23:15:00Z
+          title: a zip archive containing workspace content
+      properties:
+        item:
+          items:
+            $ref: '#/components/schemas/WorkspaceSourceItem'
+          type: array
+      title: Embedded Resources
+      type: object
     ErrorResponse:
       nullable: true
       properties:
@@ -11280,6 +12857,1021 @@ components:
       items:
         $ref: '#/components/schemas/VirtualInterface'
       type: array
+    WorkspaceCollection:
+      description: "This collection resource follows the common pattern of linking\
+        \ to contained resources. Optionally, rather than linking to other resources,\
+        \ it can embed then into the collection to reduce the number of round trips\
+        \ to the server (at the expense of caching). In file system terms, it is similar\
+        \ to a directory but only contains links to (or embeds) a single type of resource."
+      example:
+        _embedded:
+          item:
+          - _links:
+              related:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              self:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              details:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              collection:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              delete:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              artefacts:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+            name: 332129b3-f14d-49d2-b9be-acd2abd80c6b
+            ephemeral: true
+            _metadata:
+              ctime: 1985-10-25T18:35:00Z
+              mtime: 1955-11-04T23:15:00Z
+            title: My workspace 001
+            TTL: 5
+          - _links:
+              related:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              self:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              details:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              collection:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              delete:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              artefacts:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+            name: 332129b3-f14d-49d2-b9be-acd2abd80c6b
+            ephemeral: true
+            _metadata:
+              ctime: 1985-10-25T18:35:00Z
+              mtime: 1955-11-04T23:15:00Z
+            title: My workspace 001
+            TTL: 5
+        _links:
+          next:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          item:
+          - hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          - hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          last:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          prev:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          alternate:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          self:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          simple:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          embedded:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          first:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+        name: 5d0be112-6fcc-46c7-8064-a41264a730ae
+        _metadata:
+          total: 1
+          offset: 0
+          etime: 2021-01-26T12:36:38.207757Z
+          count: 2
+          limit: 20
+          ctime: 2021-01-19T12:34:16.17292498Z
+          mtime: 2021-01-19T12:36:38.207757Z
+        title: My Build
+      properties:
+        _embedded:
+          $ref: '#/components/schemas/EmbeddedWorkspaceItems'
+        _links:
+          $ref: '#/components/schemas/HalCollectionLinks'
+        _metadata:
+          $ref: '#/components/schemas/PagingMetadata'
+        name:
+          description: ID of the Collection.
+          example: 5d0be112-6fcc-46c7-8064-a41264a730ae
+          readOnly: true
+          type: string
+        title:
+          description: Human readable title of the collection.
+          example: My Build
+          readOnly: true
+          type: string
+      required:
+      - _links
+      - _metadata
+      - name
+      - title
+      title: Collection Resource (with optional embedded items).
+      type: object
+      x-collection: true
+    WorkspaceDetailsItem:
+      description: This is providing more details about the workspace
+      example:
+        path: foo/bar
+        _links:
+          related:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          self:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+        name: 332129b3-f14d-49d2-b9be-acd2abd80c6b
+        _metadata:
+          ctime: 1985-10-25T18:35:00Z
+          mtime: 1955-11-04T23:15:00Z
+        title: Details about workspace 001
+        sizeInByte: 1000000
+      properties:
+        _links:
+          $ref: '#/components/schemas/WorkspaceDetailsItemLinks'
+        _metadata:
+          $ref: '#/components/schemas/CommonMetadata'
+        name:
+          description: Unique ID of the Workspace details.
+          example: 332129b3-f14d-49d2-b9be-acd2abd80c6b
+          readOnly: true
+          type: string
+        path:
+          description: relative path of the workspace
+          example: foo/bar
+          readOnly: true
+          type: string
+        sizeInByte:
+          description: size on disk (in Byte) used by this workspace
+          example: 1000000
+          readOnly: true
+          type: integer
+        title:
+          description: Optional human readable name of the Workspace details.
+          example: Details about workspace 001
+          nullable: true
+          type: string
+      required:
+      - _links
+      - _metadata
+      - name
+      - path
+      title: details about the workspace item
+      type: object
+      x-redact: true
+    WorkspaceDetailsItemLinks:
+      description: The `related` link indicates the workspace these details refer
+        to.
+      example:
+        related:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        self:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+      nullable: true
+      properties:
+        related:
+          $ref: '#/components/schemas/HalLinkData'
+        self:
+          $ref: '#/components/schemas/HalLinkData'
+      readOnly: true
+      required:
+      - related
+      - self
+      title: Workspace Links
+      type: object
+    WorkspaceItem:
+      description: "When the Workspace is ready, it will links to other available\
+        \ resources"
+      example:
+        _links:
+          related:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          self:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          details:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          collection:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          delete:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          artefacts:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+        name: 332129b3-f14d-49d2-b9be-acd2abd80c6b
+        ephemeral: true
+        _metadata:
+          ctime: 1985-10-25T18:35:00Z
+          mtime: 1955-11-04T23:15:00Z
+        title: My workspace 001
+        TTL: 5
+      properties:
+        TTL:
+          default: 3600
+          description: The TTL (time to live in seconds) describing how long the workspace
+            will be still available for.
+          example: 5
+          maximum: 3600
+          minimum: 0
+          nullable: true
+          type: integer
+        _links:
+          $ref: '#/components/schemas/WorkspaceItemLinks'
+        _metadata:
+          $ref: '#/components/schemas/CommonMetadata'
+        ephemeral:
+          description: True when the workspace has a TTL
+          example: true
+          readOnly: true
+          type: boolean
+        name:
+          description: Unique ID of the Workspace.
+          example: 332129b3-f14d-49d2-b9be-acd2abd80c6b
+          readOnly: true
+          type: string
+        title:
+          description: Optional human readable name of the Workspace.
+          example: My workspace 001
+          nullable: true
+          type: string
+      required:
+      - _links
+      - _metadata
+      - name
+      title: Workspace Item
+      type: object
+    WorkspaceItemLinks:
+      description: The `related` link indicates the source of the workspace content.
+        The `artefacts` links to content manager.
+      example:
+        related:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        self:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        details:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        collection:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        delete:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        artefacts:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+      nullable: true
+      properties:
+        artefacts:
+          $ref: '#/components/schemas/HalLinkData'
+        collection:
+          $ref: '#/components/schemas/HalLinkData'
+        delete:
+          $ref: '#/components/schemas/HalLinkData'
+        details:
+          $ref: '#/components/schemas/HalLinkData'
+        related:
+          $ref: '#/components/schemas/HalLinkData'
+        self:
+          $ref: '#/components/schemas/HalLinkData'
+      readOnly: true
+      required:
+      - related
+      - self
+      title: Workspace Links
+      type: object
+    WorkspaceRepositoryContentManager:
+      description: workspace controller resource when the content of the workspace
+        is defined in a repository
+      example:
+        fetchDepth: 1
+        reference: 23db6982caef9e9152f1a5b2589e6ca3
+        _links:
+          related:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          edit:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          clear:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          self:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+        submodules: true
+        name: example001
+        _metadata:
+          ctime: 1985-10-25T18:35:00Z
+          mtime: 1955-11-04T23:15:00Z
+        scm: git
+        title: example code 001
+        repositoryUrl: ' https://github.com/cli/cli'
+      properties:
+        _links:
+          $ref: '#/components/schemas/WorkspaceRepositoryContentManagerLinks'
+        _metadata:
+          $ref: '#/components/schemas/CommonMetadata'
+        fetchDepth:
+          default: 1
+          description: Number of commits to fetch. 0 indicates all history for all
+            branches and tags
+          example: 1
+          nullable: true
+          type: integer
+        name:
+          description: ID of the repository.
+          example: example001
+          readOnly: true
+          type: string
+        reference:
+          description: "The branch, tag or SHA to checkout"
+          example: 23db6982caef9e9152f1a5b2589e6ca3
+          nullable: true
+          type: string
+        repositoryUrl:
+          description: repository URL to clone it from
+          example: ' https://github.com/cli/cli'
+          type: string
+        scm:
+          description: Source Control Management system to use
+          enum:
+          - git
+          example: git
+          type: string
+        submodules:
+          default: true
+          description: "Whether to checkout submodules: `true` to checkout submodules\
+            \ recursively"
+          example: true
+          type: boolean
+        title:
+          description: Optional human readable name of the repository.
+          example: example code 001
+          nullable: true
+          type: string
+      required:
+      - _links
+      - _metadata
+      - name
+      - reference
+      - repositoryUrl
+      - scm
+      title: manager of workspace content defined in a repository
+      type: object
+    WorkspaceRepositoryContentManagerLinks:
+      description: links to manage the workspace contant
+      example:
+        related:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        edit:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        clear:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        self:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+      nullable: true
+      properties:
+        clear:
+          $ref: '#/components/schemas/HalLinkData'
+        edit:
+          $ref: '#/components/schemas/HalLinkData'
+        related:
+          $ref: '#/components/schemas/HalLinkData'
+        self:
+          $ref: '#/components/schemas/HalLinkData'
+      readOnly: true
+      required:
+      - related
+      - self
+      title: workspace content manager Links
+      type: object
+    WorkspaceSourceCollection:
+      description: "This collection resource follows the common pattern of linking\
+        \ to contained resources. Optionally, rather than linking to other resources,\
+        \ it can embed then into the collection to reduce the number of round trips\
+        \ to the server (at the expense of caching). In file system terms, it is similar\
+        \ to a directory but only contains links to (or embeds) a single type of resource."
+      example:
+        _embedded:
+          item:
+          - _links:
+              create:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              self:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              collection:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+            deprecated: false
+            deprecationInfo:
+              removal: 2021-01-20T09:43:41.783Z
+              comment: Deprecation due to service removal
+              issued: 2021-01-20T09:43:41.783Z
+            name: zip-archive
+            _metadata:
+              ctime: 1985-10-25T18:35:00Z
+              mtime: 1955-11-04T23:15:00Z
+            title: a zip archive containing workspace content
+          - _links:
+              create:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              self:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              collection:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+            deprecated: false
+            deprecationInfo:
+              removal: 2021-01-20T09:43:41.783Z
+              comment: Deprecation due to service removal
+              issued: 2021-01-20T09:43:41.783Z
+            name: zip-archive
+            _metadata:
+              ctime: 1985-10-25T18:35:00Z
+              mtime: 1955-11-04T23:15:00Z
+            title: a zip archive containing workspace content
+        _links:
+          next:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          item:
+          - hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          - hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          last:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          prev:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          alternate:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          self:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          simple:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          embedded:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          first:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+        name: 5d0be112-6fcc-46c7-8064-a41264a730ae
+        _metadata:
+          total: 1
+          offset: 0
+          etime: 2021-01-26T12:36:38.207757Z
+          count: 2
+          limit: 20
+          ctime: 2021-01-19T12:34:16.17292498Z
+          mtime: 2021-01-19T12:36:38.207757Z
+        title: My Build
+      properties:
+        _embedded:
+          $ref: '#/components/schemas/EmbeddedWorkspaceSourceItems'
+        _links:
+          $ref: '#/components/schemas/HalCollectionLinks'
+        _metadata:
+          $ref: '#/components/schemas/PagingMetadata'
+        name:
+          description: ID of the Collection.
+          example: 5d0be112-6fcc-46c7-8064-a41264a730ae
+          readOnly: true
+          type: string
+        title:
+          description: Human readable title of the collection.
+          example: My Build
+          readOnly: true
+          type: string
+      required:
+      - _links
+      - _metadata
+      - name
+      - title
+      title: Collection Resource (with optional embedded items).
+      type: object
+      x-collection: true
+    WorkspaceSourceItem:
+      example:
+        _links:
+          create:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          self:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          collection:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+        deprecated: false
+        deprecationInfo:
+          removal: 2021-01-20T09:43:41.783Z
+          comment: Deprecation due to service removal
+          issued: 2021-01-20T09:43:41.783Z
+        name: zip-archive
+        _metadata:
+          ctime: 1985-10-25T18:35:00Z
+          mtime: 1955-11-04T23:15:00Z
+        title: a zip archive containing workspace content
+      properties:
+        _links:
+          $ref: '#/components/schemas/WorkspaceSourceItemLinks'
+        _metadata:
+          $ref: '#/components/schemas/CommonMetadata'
+        deprecated:
+          description: True if this workspace source is scheduled to be no longer
+            supported by the service.
+          example: false
+          readOnly: true
+          type: boolean
+        deprecationInfo:
+          $ref: '#/components/schemas/DeprecationInfo'
+        name:
+          description: Unique ID of the Workspace Source.
+          example: zip-archive
+          readOnly: true
+          type: string
+        title:
+          description: Human readable name of the Workspace source.
+          example: a zip archive containing workspace content
+          readOnly: true
+          type: string
+      required:
+      - _links
+      - _metadata
+      - deprecated
+      - name
+      - title
+      title: Source for Workspace Content
+      type: object
+    WorkspaceSourceItemLinks:
+      description: The `create` link (if present) provides the URI to request a Workspace.
+      example:
+        create:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        self:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        collection:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+      nullable: true
+      properties:
+        collection:
+          $ref: '#/components/schemas/HalLinkData'
+        create:
+          $ref: '#/components/schemas/HalLinkData'
+        self:
+          $ref: '#/components/schemas/HalLinkData'
+      readOnly: true
+      required:
+      - self
+      title: Workspace Source Links
+      type: object
     retainBuildJob_request:
       properties:
         ttl:
