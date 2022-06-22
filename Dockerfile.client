@@ -1,0 +1,15 @@
+FROM golang:1.18.2 as client
+
+WORKDIR /client
+
+COPY go.mod ./
+COPY go.sum ./
+RUN go mod download
+
+COPY *.go ./
+
+RUN go build -o /client
+
+RUN go build -o /hello_go_http
+
+ENTRYPOINT ["client"]
