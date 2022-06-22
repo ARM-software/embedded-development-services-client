@@ -1,1 +1,1 @@
-# otg-services-client
+# Solar Services Client
