@@ -1,0 +1,86 @@
+#
+# Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
+# SPDX-License-Identifier: Proprietary
+#
+[ProjectConfig]
+# Only path variables can and must contain 'DIR', 'PATH' or 'ROOT' in their name as
+# these tokens are used to identify path variables from other variable types.
+PROJECT_NAME = "WORKSPACE HTTP client"
+PACKAGE_NAME = "workspace-service-client"
+PROJECT_UUID = 'cec17d75-a3e7-4f7a-b0f9-08a2e25c0fa5'
+PROJECT_ROOT = "."
+NEWS_DIR = "changes/"
+SOURCE_DIR = "client"
+RELEASE_BRANCH_PATTERN = "^release.*$"
+MODULE_TO_DOCUMENT = "client"
+DOCUMENTATION_DEFAULT_OUTPUT_PATH = "./docs"
+DOCUMENTATION_PRODUCTION_OUTPUT_PATH = "./docs"
+VERSION_FILE_PATH = "./module.properties"
+CHANGELOG_FILE_PATH = "CHANGELOG.md"
+AWS_BUCKET=""
+PROGRAMMING_LANGUAGE = "Golang"
+MASTER_BRANCH = "main"
+FILE_LICENCE_IDENTIFIER = "Proprietary"
+
+[AutoVersionConfig]
+CONFIG_NAME = "JAVA"
+PRERELEASE_TOKEN = "beta"
+BUILD_TOKEN = "dev"
+TAG_TEMPLATE = "release/{version}"
+targets = [ "./module.properties",]
+
+[AutoVersionConfig.key_aliases]
+Version = "VERSION_KEY"
+MajorVersion = "major"
+MinorVersion = "minor"
+PatchVersion = "patch"
+CommitHash = "COMMIT"
+
+[AutoVersionConfig.trigger_patterns]
+major = "changes/*.major"
+minor = "changes/*.feature"
+patch = "changes/*.bugfix"
+
+[tool.towncrier]
+directory = "changes"
+filename = "CHANGELOG.md"
+package = "workspace-service-client"
+title_format = ""
+start_string = """
+[//]: # (begin_release_notes)
+"""
+
+[[tool.towncrier.type]]
+directory = "major"
+name = "Major changes"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "feature"
+name = "Features"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "bugfix"
+name = "Bugfixes"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "doc"
+name = "Improved Documentation"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "removal"
+name = "Deprecations and Removals"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "misc"
+name = "Misc"
+showcontent = false
+
+[spdx]
+CreatorWebsite = "spdx.org"
+PathToSpdx = "spdx/spdxdocs"
+UUID="cafb9568-de84-4adf-af93-a35960bec127"
