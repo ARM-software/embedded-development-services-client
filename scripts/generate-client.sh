@@ -34,7 +34,7 @@ run() {
     [[ -z "$INPUT" ]] && { echo "Must provide an input file" ; exit 1; }
     [[ -z "$OUTPUT" ]] && { echo "Must provide a output directory" ; exit 1; }
 
-    openapi-generator generate -g go -o "$OUTPUT" --additional-properties packageName=client,isGoSubmodule=true --git-user-id="Arm-Debug" --git-repo-id="otg-services-client" -i "$INPUT"
+    openapi-generator generate -g go -o "$OUTPUT" --additional-properties packageName=client,isGoSubmodule=true --git-user-id="Arm-Debug" --git-repo-id="solar-services-client" -i "$INPUT"
 
     if [[ -z "$DISABLE_FMT"  ]]; then
       ./fmt-go.sh -i "$OUTPUT"
