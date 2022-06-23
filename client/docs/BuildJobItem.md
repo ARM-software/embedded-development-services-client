@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **Status** | **string** | A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead. | [readonly] 
 **Success** | **bool** | True if the build job was successful (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
 **Title** | Pointer to **NullableString** | Optional human readable name of the CMSIS build job. | [optional] 
+**Workspace** | Pointer to **NullableString** | Workspace name where the CMSIS project is present. If not set, the default user&#39;s workspace will be used. | [optional] 
 
 ## Methods
 
@@ -409,6 +410,41 @@ HasTitle returns a boolean if a field has been set.
 `func (o *BuildJobItem) UnsetTitle()`
 
 UnsetTitle ensures that no value is present for Title, not even an explicit nil
+### GetWorkspace
+
+`func (o *BuildJobItem) GetWorkspace() string`
+
+GetWorkspace returns the Workspace field if non-nil, zero value otherwise.
+
+### GetWorkspaceOk
+
+`func (o *BuildJobItem) GetWorkspaceOk() (*string, bool)`
+
+GetWorkspaceOk returns a tuple with the Workspace field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkspace
+
+`func (o *BuildJobItem) SetWorkspace(v string)`
+
+SetWorkspace sets Workspace field to given value.
+
+### HasWorkspace
+
+`func (o *BuildJobItem) HasWorkspace() bool`
+
+HasWorkspace returns a boolean if a field has been set.
+
+### SetWorkspaceNil
+
+`func (o *BuildJobItem) SetWorkspaceNil(b bool)`
+
+ SetWorkspaceNil sets the value for Workspace to be an explicit nil
+
+### UnsetWorkspace
+`func (o *BuildJobItem) UnsetWorkspace()`
+
+UnsetWorkspace ensures that no value is present for Workspace, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

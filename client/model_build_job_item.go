@@ -45,6 +45,8 @@ type BuildJobItem struct {
 	Success bool `json:"success"`
 	// Optional human readable name of the CMSIS build job.
 	Title NullableString `json:"title,omitempty"`
+	// Workspace name where the CMSIS project is present. If not set, the default user's workspace will be used.
+	Workspace NullableString `json:"workspace,omitempty"`
 }
 
 // NewBuildJobItem instantiates a new BuildJobItem object
@@ -493,6 +495,48 @@ func (o *BuildJobItem) UnsetTitle() {
 	o.Title.Unset()
 }
 
+// GetWorkspace returns the Workspace field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BuildJobItem) GetWorkspace() string {
+	if o == nil || o.Workspace.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Workspace.Get()
+}
+
+// GetWorkspaceOk returns a tuple with the Workspace field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BuildJobItem) GetWorkspaceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Workspace.Get(), o.Workspace.IsSet()
+}
+
+// HasWorkspace returns a boolean if a field has been set.
+func (o *BuildJobItem) HasWorkspace() bool {
+	if o != nil && o.Workspace.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkspace gets a reference to the given NullableString and assigns it to the Workspace field.
+func (o *BuildJobItem) SetWorkspace(v string) {
+	o.Workspace.Set(&v)
+}
+// SetWorkspaceNil sets the value for Workspace to be an explicit nil
+func (o *BuildJobItem) SetWorkspaceNil() {
+	o.Workspace.Set(nil)
+}
+
+// UnsetWorkspace ensures that no value is present for Workspace, not even an explicit nil
+func (o *BuildJobItem) UnsetWorkspace() {
+	o.Workspace.Unset()
+}
+
 func (o BuildJobItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -539,6 +583,9 @@ func (o BuildJobItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
+	}
+	if o.Workspace.IsSet() {
+		toSerialize["workspace"] = o.Workspace.Get()
 	}
 	return json.Marshal(toSerialize)
 }

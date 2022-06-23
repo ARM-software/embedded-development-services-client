@@ -15,11 +15,12 @@ import (
 	"encoding/json"
 )
 
-// BuildJobItemLinks The `related` link indicates the builder being used for the build job. The `details` links to a resource that provides details of build progress (build messages). The `artefacts` links to a collection which will contain downloadable build products (if any).
+// BuildJobItemLinks The `related` link indicates the builder being used for the build job. The `details` links to a resource that provides details of build progress (build messages). The `artefacts` links to a collection which will contain downloadable build products (if any). The `describedby` links to a resource that provides information about the project's workspace.
 type BuildJobItemLinks struct {
 	Artefacts *HalLinkData `json:"artefacts,omitempty"`
 	Cancel *HalLinkData `json:"cancel,omitempty"`
 	Delete *HalLinkData `json:"delete,omitempty"`
+	Describedby *HalLinkData `json:"describedby,omitempty"`
 	Details *HalLinkData `json:"details,omitempty"`
 	Related HalLinkData `json:"related"`
 	Retain *HalLinkData `json:"retain,omitempty"`
@@ -139,6 +140,38 @@ func (o *BuildJobItemLinks) HasDelete() bool {
 // SetDelete gets a reference to the given HalLinkData and assigns it to the Delete field.
 func (o *BuildJobItemLinks) SetDelete(v HalLinkData) {
 	o.Delete = &v
+}
+
+// GetDescribedby returns the Describedby field value if set, zero value otherwise.
+func (o *BuildJobItemLinks) GetDescribedby() HalLinkData {
+	if o == nil || o.Describedby == nil {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Describedby
+}
+
+// GetDescribedbyOk returns a tuple with the Describedby field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BuildJobItemLinks) GetDescribedbyOk() (*HalLinkData, bool) {
+	if o == nil || o.Describedby == nil {
+		return nil, false
+	}
+	return o.Describedby, true
+}
+
+// HasDescribedby returns a boolean if a field has been set.
+func (o *BuildJobItemLinks) HasDescribedby() bool {
+	if o != nil && o.Describedby != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescribedby gets a reference to the given HalLinkData and assigns it to the Describedby field.
+func (o *BuildJobItemLinks) SetDescribedby(v HalLinkData) {
+	o.Describedby = &v
 }
 
 // GetDetails returns the Details field value if set, zero value otherwise.
@@ -263,6 +296,9 @@ func (o BuildJobItemLinks) MarshalJSON() ([]byte, error) {
 	}
 	if o.Delete != nil {
 		toSerialize["delete"] = o.Delete
+	}
+	if o.Describedby != nil {
+		toSerialize["describedby"] = o.Describedby
 	}
 	if o.Details != nil {
 		toSerialize["details"] = o.Details

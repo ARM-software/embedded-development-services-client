@@ -7055,7 +7055,8 @@ components:
       example:
         _embedded:
           item:
-          - cleanBuild: false
+          - workspace: workspace0001
+            cleanBuild: false
             _links:
               cancel:
                 hreflang: fr-FR
@@ -7076,6 +7077,15 @@ components:
                 title: The recent build jobs.
                 type: object
               retain:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              describedby:
                 hreflang: fr-FR
                 templated: false
                 profile: http://microformats.org/profile/hcard
@@ -7135,7 +7145,8 @@ components:
             buildStepsCompleted: 50
             buildStepsTotal: 70
             status: INITIALISING
-          - cleanBuild: false
+          - workspace: workspace0001
+            cleanBuild: false
             _links:
               cancel:
                 hreflang: fr-FR
@@ -7156,6 +7167,15 @@ components:
                 title: The recent build jobs.
                 type: object
               retain:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              describedby:
                 hreflang: fr-FR
                 templated: false
                 profile: http://microformats.org/profile/hcard
@@ -7346,6 +7366,7 @@ components:
         \ include the current status of the build and links to other available resources,\
         \ such as build messages and build artefacts."
       example:
+        workspace: workspace0001
         cleanBuild: false
         _links:
           cancel:
@@ -7367,6 +7388,15 @@ components:
             title: The recent build jobs.
             type: object
           retain:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          describedby:
             hreflang: fr-FR
             templated: false
             profile: http://microformats.org/profile/hcard
@@ -7528,6 +7558,12 @@ components:
           example: My Build
           nullable: true
           type: string
+        workspace:
+          description: "Workspace name where the CMSIS project is present.\nIf not\
+            \ set, the default user's workspace will be used."
+          example: workspace0001
+          nullable: true
+          type: string
       required:
       - _links
       - _metadata
@@ -7546,7 +7582,8 @@ components:
       description: The `related` link indicates the builder being used for the build
         job. The `details` links to a resource that provides details of build progress
         (build messages). The `artefacts` links to a collection which will contain
-        downloadable build products (if any).
+        downloadable build products (if any). The `describedby` links to a resource
+        that provides information about the project's workspace.
       example:
         cancel:
           hreflang: fr-FR
@@ -7567,6 +7604,15 @@ components:
           title: The recent build jobs.
           type: object
         retain:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        describedby:
           hreflang: fr-FR
           templated: false
           profile: http://microformats.org/profile/hcard
@@ -7618,6 +7664,8 @@ components:
         cancel:
           $ref: '#/components/schemas/HalLinkData'
         delete:
+          $ref: '#/components/schemas/HalLinkData'
+        describedby:
           $ref: '#/components/schemas/HalLinkData'
         details:
           $ref: '#/components/schemas/HalLinkData'
@@ -8606,7 +8654,8 @@ components:
         \ embedded into the collection resource."
       example:
         item:
-        - cleanBuild: false
+        - workspace: workspace0001
+          cleanBuild: false
           _links:
             cancel:
               hreflang: fr-FR
@@ -8627,6 +8676,15 @@ components:
               title: The recent build jobs.
               type: object
             retain:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            describedby:
               hreflang: fr-FR
               templated: false
               profile: http://microformats.org/profile/hcard
@@ -8686,7 +8744,8 @@ components:
           buildStepsCompleted: 50
           buildStepsTotal: 70
           status: INITIALISING
-        - cleanBuild: false
+        - workspace: workspace0001
+          cleanBuild: false
           _links:
             cancel:
               hreflang: fr-FR
@@ -8707,6 +8766,15 @@ components:
               title: The recent build jobs.
               type: object
             retain:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            describedby:
               hreflang: fr-FR
               templated: false
               profile: http://microformats.org/profile/hcard

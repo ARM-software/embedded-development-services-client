@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Artefacts** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Cancel** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Delete** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
+**Describedby** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Details** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Related** | [**HalLinkData**](HalLinkData.md) |  | 
 **Retain** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
@@ -105,6 +106,31 @@ SetDelete sets Delete field to given value.
 `func (o *BuildJobItemLinks) HasDelete() bool`
 
 HasDelete returns a boolean if a field has been set.
+
+### GetDescribedby
+
+`func (o *BuildJobItemLinks) GetDescribedby() HalLinkData`
+
+GetDescribedby returns the Describedby field if non-nil, zero value otherwise.
+
+### GetDescribedbyOk
+
+`func (o *BuildJobItemLinks) GetDescribedbyOk() (*HalLinkData, bool)`
+
+GetDescribedbyOk returns a tuple with the Describedby field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescribedby
+
+`func (o *BuildJobItemLinks) SetDescribedby(v HalLinkData)`
+
+SetDescribedby sets Describedby field to given value.
+
+### HasDescribedby
+
+`func (o *BuildJobItemLinks) HasDescribedby() bool`
+
+HasDescribedby returns a boolean if a field has been set.
 
 ### GetDetails
 
