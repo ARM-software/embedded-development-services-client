@@ -1,4 +1,4 @@
-module github.com/Arm-Debug/otg-services-client/client
+module github.com/Arm-Debug/solar-services-client/client
 
 go 1.13
 
