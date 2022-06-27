@@ -2,6 +2,19 @@
 Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Proprietary
 -->
+"" "1.6.0" (2022-06-27)
+=======================
+
+Features
+--------
+
+- Add follow links extension for build-service (#202206271059)
+
+
+<!--
+Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Proprietary
+-->
 "" "1.5.0" (2022-06-23)
 =======================
 
