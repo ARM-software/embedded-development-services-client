@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Name** | **string** | Unique ID of the Workspace details. | [readonly] 
 **Path** | **string** | relative path of the workspace | [readonly] 
-**SizeInByte** | Pointer to **int32** | size on disk (in Byte) used by this workspace | [optional] [readonly] 
+**SizeInByte** | Pointer to **int64** | size on disk (in Byte) used by this workspace | [optional] [readonly] 
 **Title** | Pointer to **NullableString** | Optional human readable name of the Workspace details. | [optional] 
 
 ## Methods
@@ -132,20 +132,20 @@ SetPath sets Path field to given value.
 
 ### GetSizeInByte
 
-`func (o *WorkspaceDetailsItem) GetSizeInByte() int32`
+`func (o *WorkspaceDetailsItem) GetSizeInByte() int64`
 
 GetSizeInByte returns the SizeInByte field if non-nil, zero value otherwise.
 
 ### GetSizeInByteOk
 
-`func (o *WorkspaceDetailsItem) GetSizeInByteOk() (*int32, bool)`
+`func (o *WorkspaceDetailsItem) GetSizeInByteOk() (*int64, bool)`
 
 GetSizeInByteOk returns a tuple with the SizeInByte field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSizeInByte
 
-`func (o *WorkspaceDetailsItem) SetSizeInByte(v int32)`
+`func (o *WorkspaceDetailsItem) SetSizeInByte(v int64)`
 
 SetSizeInByte sets SizeInByte field to given value.
 

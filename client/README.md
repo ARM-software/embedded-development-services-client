@@ -156,8 +156,9 @@ Class | Method | HTTP request | Description
 *WorkspaceApi* | [**GetWorkspace**](docs/WorkspaceApi.md#getworkspace) | **Get** /workspaces/{workspaceName} | Return the state of a workspace.
 *WorkspaceApi* | [**GetWorkspaceArchiveContent**](docs/WorkspaceApi.md#getworkspacearchivecontent) | **Get** /workspaces/{workspaceName}/archive-content | Get the manager of the archive file containing the workspace content.
 *WorkspaceApi* | [**GetWorkspaceDetails**](docs/WorkspaceApi.md#getworkspacedetails) | **Get** /workspaces/{workspaceName}/details | Details about the workspace.
-*WorkspaceApi* | [**GetWorkspaceRepositoryContentManagerManager**](docs/WorkspaceApi.md#getworkspacerepositorycontentmanagermanager) | **Get** /workspaces/{workspaceName}/repository-content | Get the manager of the workspace content defined in a repository.
+*WorkspaceApi* | [**GetWorkspaceRepositoryContentManager**](docs/WorkspaceApi.md#getworkspacerepositorycontentmanager) | **Get** /workspaces/{workspaceName}/repository-content | Get the manager of the workspace content defined in a repository.
 *WorkspaceApi* | [**ListWorkspaces**](docs/WorkspaceApi.md#listworkspaces) | **Get** /workspaces/ | List all workspaces available.
+*WorkspaceApi* | [**RetainWorkspace**](docs/WorkspaceApi.md#retainworkspace) | **Post** /workspaces/{workspaceName}/retain | Update how long a workspace will be retained before automatic deletion..
 *WorkspaceApi* | [**UploadWorkspaceArchiveContent**](docs/WorkspaceApi.md#uploadworkspacearchivecontent) | **Put** /workspaces/{workspaceName}/archive-content | Upload and replace the content of the named workspace.
 *WorkspaceSourceApi* | [**GetWorkspaceSource**](docs/WorkspaceSourceApi.md#getworkspacesource) | **Get** /workspace-sources/{workspaceSourceName} | Return details of the specific workspace source.
 *WorkspaceSourceApi* | [**ListWorkspaceSources**](docs/WorkspaceSourceApi.md#listworkspacesources) | **Get** /workspace-sources/ | List available workspace sources.
@@ -207,6 +208,7 @@ Class | Method | HTTP request | Description
  - [NotificationMessageObject](docs/NotificationMessageObject.md)
  - [PagingMetadata](docs/PagingMetadata.md)
  - [RetainBuildJobRequest](docs/RetainBuildJobRequest.md)
+ - [RetainWorkspaceRequest](docs/RetainWorkspaceRequest.md)
  - [SimpleCollection](docs/SimpleCollection.md)
  - [ToolchainTypes](docs/ToolchainTypes.md)
  - [VhtCollection](docs/VhtCollection.md)

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Deprecated** | **bool** | True if this workspace source is scheduled to be no longer supported by the service. | [readonly] 
 **DeprecationInfo** | Pointer to [**DeprecationInfo**](DeprecationInfo.md) |  | [optional] 
+**Description** | Pointer to **string** | More details about this workspace source type. | [optional] [readonly] 
 **Name** | **string** | Unique ID of the Workspace Source. | [readonly] 
 **Title** | **string** | Human readable name of the Workspace source. | [readonly] 
 
@@ -134,6 +135,31 @@ SetDeprecationInfo sets DeprecationInfo field to given value.
 `func (o *WorkspaceSourceItem) HasDeprecationInfo() bool`
 
 HasDeprecationInfo returns a boolean if a field has been set.
+
+### GetDescription
+
+`func (o *WorkspaceSourceItem) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *WorkspaceSourceItem) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *WorkspaceSourceItem) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *WorkspaceSourceItem) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
 
 ### GetName
 

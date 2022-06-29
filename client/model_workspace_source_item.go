@@ -22,6 +22,8 @@ type WorkspaceSourceItem struct {
 	// True if this workspace source is scheduled to be no longer supported by the service.
 	Deprecated bool `json:"deprecated"`
 	DeprecationInfo *DeprecationInfo `json:"deprecationInfo,omitempty"`
+	// More details about this workspace source type.
+	Description *string `json:"description,omitempty"`
 	// Unique ID of the Workspace Source.
 	Name string `json:"name"`
 	// Human readable name of the Workspace source.
@@ -158,6 +160,38 @@ func (o *WorkspaceSourceItem) SetDeprecationInfo(v DeprecationInfo) {
 	o.DeprecationInfo = &v
 }
 
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *WorkspaceSourceItem) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSourceItem) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *WorkspaceSourceItem) HasDescription() bool {
+	if o != nil && o.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *WorkspaceSourceItem) SetDescription(v string) {
+	o.Description = &v
+}
+
 // GetName returns the Name field value
 func (o *WorkspaceSourceItem) GetName() string {
 	if o == nil {
@@ -219,6 +253,9 @@ func (o WorkspaceSourceItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.DeprecationInfo != nil {
 		toSerialize["deprecationInfo"] = o.DeprecationInfo
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
 	}
 	if true {
 		toSerialize["name"] = o.Name

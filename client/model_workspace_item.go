@@ -18,7 +18,7 @@ import (
 // WorkspaceItem When the Workspace is ready, it will links to other available resources
 type WorkspaceItem struct {
 	// The TTL (time to live in seconds) describing how long the workspace will be still available for.
-	TTL NullableInt32 `json:"TTL,omitempty"`
+	TTL NullableInt64 `json:"TTL,omitempty"`
 	Links NullableWorkspaceItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// True when the workspace has a TTL
@@ -35,8 +35,8 @@ type WorkspaceItem struct {
 // will change when the set of required properties is changed
 func NewWorkspaceItem(links NullableWorkspaceItemLinks, metadata NullableCommonMetadata, name string) *WorkspaceItem {
 	this := WorkspaceItem{}
-	var tTL int32 = 3600
-	this.TTL = *NewNullableInt32(&tTL)
+	var tTL int64 = 3600
+	this.TTL = *NewNullableInt64(&tTL)
 	this.Links = links
 	this.Metadata = metadata
 	this.Name = name
@@ -48,15 +48,15 @@ func NewWorkspaceItem(links NullableWorkspaceItemLinks, metadata NullableCommonM
 // but it doesn't guarantee that properties required by API are set
 func NewWorkspaceItemWithDefaults() *WorkspaceItem {
 	this := WorkspaceItem{}
-	var tTL int32 = 3600
-	this.TTL = *NewNullableInt32(&tTL)
+	var tTL int64 = 3600
+	this.TTL = *NewNullableInt64(&tTL)
 	return &this
 }
 
 // GetTTL returns the TTL field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WorkspaceItem) GetTTL() int32 {
+func (o *WorkspaceItem) GetTTL() int64 {
 	if o == nil || o.TTL.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TTL.Get()
@@ -65,7 +65,7 @@ func (o *WorkspaceItem) GetTTL() int32 {
 // GetTTLOk returns a tuple with the TTL field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WorkspaceItem) GetTTLOk() (*int32, bool) {
+func (o *WorkspaceItem) GetTTLOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -81,8 +81,8 @@ func (o *WorkspaceItem) HasTTL() bool {
 	return false
 }
 
-// SetTTL gets a reference to the given NullableInt32 and assigns it to the TTL field.
-func (o *WorkspaceItem) SetTTL(v int32) {
+// SetTTL gets a reference to the given NullableInt64 and assigns it to the TTL field.
+func (o *WorkspaceItem) SetTTL(v int64) {
 	o.TTL.Set(&v)
 }
 // SetTTLNil sets the value for TTL to be an explicit nil

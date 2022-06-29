@@ -5472,7 +5472,7 @@ paths:
             Version:
               $ref: '#/components/headers/VersionHeader'
           links:
-            WorkspaceByName:
+            deleteWorkspaceByName:
               description: The `delete` link can be used to remove this workspace.
                 Either the `href` property of the link can be used to make a request
                 (which would be the preferred HATEOS approach) or by completing the
@@ -5480,7 +5480,7 @@ paths:
               operationId: deleteWorkspace
               parameters:
                 workspaceName: $response.body#/_links/delete/name
-            getDetailsByName:
+            getWorkspaceDetailsByName:
               description: "The `details` link can be used to get more details about\
                 \ the workspace e.g. path, etc. Either the `href` property of the\
                 \ link can be used to make a request (which would be the preferred\
@@ -5499,6 +5499,15 @@ paths:
               operationId: getWorkspaceSource
               parameters:
                 WorkspaceSourceName: $response.body#/_links/related/name
+            retainWorkspaceByName:
+              description: The `retain` link can be used to set the time at which
+                the workspace and all associated resources will be removed from the
+                system. Either the `href` property of the link can be used to make
+                a request (which would be the preferred HATEOS approach) or by completing
+                the URL template using the `name` property of a link.
+              operationId: retainWorkspace
+              parameters:
+                jobName: $response.body#/_links/retain/name
         "304":
           description: The client made a conditional request and there is no need
             to retransmit the resource as the client already has the most recent version
@@ -6009,7 +6018,7 @@ paths:
       description: |-
         The content of the workspace is contained in a repository.
          The manager enables checkout and deletion of specified content.
-      operationId: getWorkspaceRepositoryContentManagerManager
+      operationId: getWorkspaceRepositoryContentManager
       parameters:
       - description: Unique ID of the Workspace.
         explode: false
@@ -6228,6 +6237,110 @@ paths:
         linkRelation: edit
         resource: WorkspaceRepositoryContentManager
         title: edit the content of the workspace.
+  /workspaces/{workspaceName}/retain:
+    post:
+      description: Set the time at which the workspace and all associated resources
+        will be removed from the system.
+      operationId: retainWorkspace
+      parameters:
+      - description: Unique ID of the Workspace.
+        explode: false
+        in: path
+        name: workspaceName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Versioning: Optional header to request a specific version of\
+          \ the API. While it is possible to specify a particular major, minor or\
+          \ patch version it is not recommended for production use cases. Only the\
+          \ major version number should be specified as minor and patch versions can\
+          \ be updated without warning."
+        example: 1.0.0
+        explode: false
+        in: header
+        name: Accept-Version
+        required: false
+        schema:
+          $ref: '#/components/schemas/AcceptVersionHeader'
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/retainWorkspace_request'
+        description: TTL configuration.
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceItem'
+          description: Workspace Time To Live has been successfully updated.
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/CacheControlHeader'
+            Content-Location:
+              $ref: '#/components/headers/ContentLocationHeader'
+            ETag:
+              $ref: '#/components/headers/ETagHeader'
+            Version:
+              $ref: '#/components/headers/VersionHeader'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request is invalid for syntactic or semantic reasons.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication information has not been provided or is invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested resource cannot be found on the server or the user
+            lacks privileges to see this resource.
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: This method is not available on this resource or the user lacks
+            privileges to use this method.
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "Requested cannot be fulfilled due to content negotiation headers,\
+            \ such as a request for a unsupported media type or specific version."
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Requested media type is not supported by the server.
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: "To many requests have been received by the user, i.e. rate\
+            \ limits have been reached."
+      summary: Update how long a workspace will be retained before automatic deletion..
+      tags:
+      - Workspace
+      x-link:
+        linkRelation: retain
+        resource: WorkspaceItem
+        title: Postpone the cleanup of a specific workspace.
+      x-redact: true
 components:
   headers:
     CacheControlHeader:
@@ -9830,10 +9943,11 @@ components:
             comment: Deprecation due to service removal
             issued: 2021-01-20T09:43:41.783Z
           name: zip-archive
+          description: a zip archive containing workspace content
           _metadata:
             ctime: 1985-10-25T18:35:00Z
             mtime: 1955-11-04T23:15:00Z
-          title: a zip archive containing workspace content
+          title: from zip archive
         - _links:
             create:
               hreflang: fr-FR
@@ -9868,10 +9982,11 @@ components:
             comment: Deprecation due to service removal
             issued: 2021-01-20T09:43:41.783Z
           name: zip-archive
+          description: a zip archive containing workspace content
           _metadata:
             ctime: 1985-10-25T18:35:00Z
             mtime: 1955-11-04T23:15:00Z
-          title: a zip archive containing workspace content
+          title: from zip archive
       properties:
         item:
           items:
@@ -13230,6 +13345,7 @@ components:
         sizeInByte:
           description: size on disk (in Byte) used by this workspace
           example: 1000000
+          format: int64
           readOnly: true
           type: integer
         title:
@@ -13351,6 +13467,7 @@ components:
           description: The TTL (time to live in seconds) describing how long the workspace
             will be still available for.
           example: 5
+          format: int64
           maximum: 3600
           minimum: 0
           nullable: true
@@ -13659,10 +13776,11 @@ components:
               comment: Deprecation due to service removal
               issued: 2021-01-20T09:43:41.783Z
             name: zip-archive
+            description: a zip archive containing workspace content
             _metadata:
               ctime: 1985-10-25T18:35:00Z
               mtime: 1955-11-04T23:15:00Z
-            title: a zip archive containing workspace content
+            title: from zip archive
           - _links:
               create:
                 hreflang: fr-FR
@@ -13697,10 +13815,11 @@ components:
               comment: Deprecation due to service removal
               issued: 2021-01-20T09:43:41.783Z
             name: zip-archive
+            description: a zip archive containing workspace content
             _metadata:
               ctime: 1985-10-25T18:35:00Z
               mtime: 1955-11-04T23:15:00Z
-            title: a zip archive containing workspace content
+            title: from zip archive
         _links:
           next:
             hreflang: fr-FR
@@ -13862,10 +13981,11 @@ components:
           comment: Deprecation due to service removal
           issued: 2021-01-20T09:43:41.783Z
         name: zip-archive
+        description: a zip archive containing workspace content
         _metadata:
           ctime: 1985-10-25T18:35:00Z
           mtime: 1955-11-04T23:15:00Z
-        title: a zip archive containing workspace content
+        title: from zip archive
       properties:
         _links:
           $ref: '#/components/schemas/WorkspaceSourceItemLinks'
@@ -13879,6 +13999,11 @@ components:
           type: boolean
         deprecationInfo:
           $ref: '#/components/schemas/DeprecationInfo'
+        description:
+          description: More details about this workspace source type.
+          example: a zip archive containing workspace content
+          readOnly: true
+          type: string
         name:
           description: Unique ID of the Workspace Source.
           example: zip-archive
@@ -13886,7 +14011,7 @@ components:
           type: string
         title:
           description: Human readable name of the Workspace source.
-          example: a zip archive containing workspace content
+          example: from zip archive
           readOnly: true
           type: string
       required:
@@ -13948,6 +14073,18 @@ components:
             \ the job and associated resources."
           format: int64
           maximum: 2678400
+          nullable: true
+          type: integer
+          writeOnly: true
+      type: object
+    retainWorkspace_request:
+      properties:
+        ttl:
+          description: "Time to live (in seconds), i.e. The the number of seconds\
+            \ from the current time (when this request is received) for which to keep\
+            \ the workspace and associated resources."
+          format: int64
+          maximum: 3600
           nullable: true
           type: integer
           writeOnly: true

@@ -12,8 +12,9 @@ Method | HTTP request | Description
 [**GetWorkspace**](WorkspaceApi.md#GetWorkspace) | **Get** /workspaces/{workspaceName} | Return the state of a workspace.
 [**GetWorkspaceArchiveContent**](WorkspaceApi.md#GetWorkspaceArchiveContent) | **Get** /workspaces/{workspaceName}/archive-content | Get the manager of the archive file containing the workspace content.
 [**GetWorkspaceDetails**](WorkspaceApi.md#GetWorkspaceDetails) | **Get** /workspaces/{workspaceName}/details | Details about the workspace.
-[**GetWorkspaceRepositoryContentManagerManager**](WorkspaceApi.md#GetWorkspaceRepositoryContentManagerManager) | **Get** /workspaces/{workspaceName}/repository-content | Get the manager of the workspace content defined in a repository.
+[**GetWorkspaceRepositoryContentManager**](WorkspaceApi.md#GetWorkspaceRepositoryContentManager) | **Get** /workspaces/{workspaceName}/repository-content | Get the manager of the workspace content defined in a repository.
 [**ListWorkspaces**](WorkspaceApi.md#ListWorkspaces) | **Get** /workspaces/ | List all workspaces available.
+[**RetainWorkspace**](WorkspaceApi.md#RetainWorkspace) | **Post** /workspaces/{workspaceName}/retain | Update how long a workspace will be retained before automatic deletion..
 [**UploadWorkspaceArchiveContent**](WorkspaceApi.md#UploadWorkspaceArchiveContent) | **Put** /workspaces/{workspaceName}/archive-content | Upload and replace the content of the named workspace.
 
 
@@ -600,9 +601,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetWorkspaceRepositoryContentManagerManager
+## GetWorkspaceRepositoryContentManager
 
-> WorkspaceRepositoryContentManager GetWorkspaceRepositoryContentManagerManager(ctx, workspaceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+> WorkspaceRepositoryContentManager GetWorkspaceRepositoryContentManager(ctx, workspaceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 
 Get the manager of the workspace content defined in a repository.
 
@@ -627,13 +628,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceApi.GetWorkspaceRepositoryContentManagerManager(context.Background(), workspaceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+    resp, r, err := apiClient.WorkspaceApi.GetWorkspaceRepositoryContentManager(context.Background(), workspaceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.GetWorkspaceRepositoryContentManagerManager``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.GetWorkspaceRepositoryContentManager``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetWorkspaceRepositoryContentManagerManager`: WorkspaceRepositoryContentManager
-    fmt.Fprintf(os.Stdout, "Response from `WorkspaceApi.GetWorkspaceRepositoryContentManagerManager`: %v\n", resp)
+    // response from `GetWorkspaceRepositoryContentManager`: WorkspaceRepositoryContentManager
+    fmt.Fprintf(os.Stdout, "Response from `WorkspaceApi.GetWorkspaceRepositoryContentManager`: %v\n", resp)
 }
 ```
 
@@ -647,7 +648,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetWorkspaceRepositoryContentManagerManagerRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetWorkspaceRepositoryContentManagerRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -741,6 +742,80 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RetainWorkspace
+
+> WorkspaceItem RetainWorkspace(ctx, workspaceName).AcceptVersion(acceptVersion).RetainWorkspaceRequest(retainWorkspaceRequest).Execute()
+
+Update how long a workspace will be retained before automatic deletion..
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    workspaceName := "workspaceName_example" // string | Unique ID of the Workspace.
+    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+    retainWorkspaceRequest := *openapiclient.NewRetainWorkspaceRequest() // RetainWorkspaceRequest | TTL configuration. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorkspaceApi.RetainWorkspace(context.Background(), workspaceName).AcceptVersion(acceptVersion).RetainWorkspaceRequest(retainWorkspaceRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.RetainWorkspace``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RetainWorkspace`: WorkspaceItem
+    fmt.Fprintf(os.Stdout, "Response from `WorkspaceApi.RetainWorkspace`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**workspaceName** | **string** | Unique ID of the Workspace. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRetainWorkspaceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **retainWorkspaceRequest** | [**RetainWorkspaceRequest**](RetainWorkspaceRequest.md) | TTL configuration. | 
+
+### Return type
+
+[**WorkspaceItem**](WorkspaceItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

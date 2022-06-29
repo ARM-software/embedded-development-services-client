@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TTL** | Pointer to **NullableInt32** | The TTL (time to live in seconds) describing how long the workspace will be still available for. | [optional] [default to 3600]
+**TTL** | Pointer to **NullableInt64** | The TTL (time to live in seconds) describing how long the workspace will be still available for. | [optional] [default to 3600]
 **Links** | [**NullableWorkspaceItemLinks**](WorkspaceItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Ephemeral** | Pointer to **bool** | True when the workspace has a TTL | [optional] [readonly] 
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTTL
 
-`func (o *WorkspaceItem) GetTTL() int32`
+`func (o *WorkspaceItem) GetTTL() int64`
 
 GetTTL returns the TTL field if non-nil, zero value otherwise.
 
 ### GetTTLOk
 
-`func (o *WorkspaceItem) GetTTLOk() (*int32, bool)`
+`func (o *WorkspaceItem) GetTTLOk() (*int64, bool)`
 
 GetTTLOk returns a tuple with the TTL field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTTL
 
-`func (o *WorkspaceItem) SetTTL(v int32)`
+`func (o *WorkspaceItem) SetTTL(v int64)`
 
 SetTTL sets TTL field to given value.
 

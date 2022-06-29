@@ -24,7 +24,7 @@ type WorkspaceDetailsItem struct {
 	// relative path of the workspace
 	Path string `json:"path"`
 	// size on disk (in Byte) used by this workspace
-	SizeInByte *int32 `json:"sizeInByte,omitempty"`
+	SizeInByte *int64 `json:"sizeInByte,omitempty"`
 	// Optional human readable name of the Workspace details.
 	Title NullableString `json:"title,omitempty"`
 }
@@ -151,9 +151,9 @@ func (o *WorkspaceDetailsItem) SetPath(v string) {
 }
 
 // GetSizeInByte returns the SizeInByte field value if set, zero value otherwise.
-func (o *WorkspaceDetailsItem) GetSizeInByte() int32 {
+func (o *WorkspaceDetailsItem) GetSizeInByte() int64 {
 	if o == nil || o.SizeInByte == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SizeInByte
@@ -161,7 +161,7 @@ func (o *WorkspaceDetailsItem) GetSizeInByte() int32 {
 
 // GetSizeInByteOk returns a tuple with the SizeInByte field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WorkspaceDetailsItem) GetSizeInByteOk() (*int32, bool) {
+func (o *WorkspaceDetailsItem) GetSizeInByteOk() (*int64, bool) {
 	if o == nil || o.SizeInByte == nil {
 		return nil, false
 	}
@@ -177,8 +177,8 @@ func (o *WorkspaceDetailsItem) HasSizeInByte() bool {
 	return false
 }
 
-// SetSizeInByte gets a reference to the given int32 and assigns it to the SizeInByte field.
-func (o *WorkspaceDetailsItem) SetSizeInByte(v int32) {
+// SetSizeInByte gets a reference to the given int64 and assigns it to the SizeInByte field.
+func (o *WorkspaceDetailsItem) SetSizeInByte(v int64) {
 	o.SizeInByte = &v
 }
 

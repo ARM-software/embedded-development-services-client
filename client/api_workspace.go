@@ -1427,7 +1427,7 @@ func (a *WorkspaceApiService) GetWorkspaceDetailsExecute(r ApiGetWorkspaceDetail
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetWorkspaceRepositoryContentManagerManagerRequest struct {
+type ApiGetWorkspaceRepositoryContentManagerRequest struct {
 	ctx context.Context
 	ApiService *WorkspaceApiService
 	workspaceName string
@@ -1436,33 +1436,33 @@ type ApiGetWorkspaceRepositoryContentManagerManagerRequest struct {
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiGetWorkspaceRepositoryContentManagerManagerRequest) AcceptVersion(acceptVersion string) ApiGetWorkspaceRepositoryContentManagerManagerRequest {
+func (r ApiGetWorkspaceRepositoryContentManagerRequest) AcceptVersion(acceptVersion string) ApiGetWorkspaceRepositoryContentManagerRequest {
 	r.acceptVersion = &acceptVersion
 	return r
 }
 
 // Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
-func (r ApiGetWorkspaceRepositoryContentManagerManagerRequest) IfNoneMatch(ifNoneMatch string) ApiGetWorkspaceRepositoryContentManagerManagerRequest {
+func (r ApiGetWorkspaceRepositoryContentManagerRequest) IfNoneMatch(ifNoneMatch string) ApiGetWorkspaceRepositoryContentManagerRequest {
 	r.ifNoneMatch = &ifNoneMatch
 	return r
 }
 
-func (r ApiGetWorkspaceRepositoryContentManagerManagerRequest) Execute() (*WorkspaceRepositoryContentManager, *http.Response, error) {
-	return r.ApiService.GetWorkspaceRepositoryContentManagerManagerExecute(r)
+func (r ApiGetWorkspaceRepositoryContentManagerRequest) Execute() (*WorkspaceRepositoryContentManager, *http.Response, error) {
+	return r.ApiService.GetWorkspaceRepositoryContentManagerExecute(r)
 }
 
 /*
-GetWorkspaceRepositoryContentManagerManager Get the manager of the workspace content defined in a repository.
+GetWorkspaceRepositoryContentManager Get the manager of the workspace content defined in a repository.
 
 The content of the workspace is contained in a repository.
  The manager enables checkout and deletion of specified content.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param workspaceName Unique ID of the Workspace.
- @return ApiGetWorkspaceRepositoryContentManagerManagerRequest
+ @return ApiGetWorkspaceRepositoryContentManagerRequest
 */
-func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerManager(ctx context.Context, workspaceName string) ApiGetWorkspaceRepositoryContentManagerManagerRequest {
-	return ApiGetWorkspaceRepositoryContentManagerManagerRequest{
+func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManager(ctx context.Context, workspaceName string) ApiGetWorkspaceRepositoryContentManagerRequest {
+	return ApiGetWorkspaceRepositoryContentManagerRequest{
 		ApiService: a,
 		ctx: ctx,
 		workspaceName: workspaceName,
@@ -1471,7 +1471,7 @@ func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerManager(ctx co
 
 // Execute executes the request
 //  @return WorkspaceRepositoryContentManager
-func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerManagerExecute(r ApiGetWorkspaceRepositoryContentManagerManagerRequest) (*WorkspaceRepositoryContentManager, *http.Response, error) {
+func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerExecute(r ApiGetWorkspaceRepositoryContentManagerRequest) (*WorkspaceRepositoryContentManager, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1479,7 +1479,7 @@ func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerManagerExecute
 		localVarReturnValue  *WorkspaceRepositoryContentManager
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.GetWorkspaceRepositoryContentManagerManager")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.GetWorkspaceRepositoryContentManager")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1755,6 +1755,197 @@ func (a *WorkspaceApiService) ListWorkspacesExecute(r ApiListWorkspacesRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiRetainWorkspaceRequest struct {
+	ctx context.Context
+	ApiService *WorkspaceApiService
+	workspaceName string
+	acceptVersion *string
+	retainWorkspaceRequest *RetainWorkspaceRequest
+}
+
+// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
+func (r ApiRetainWorkspaceRequest) AcceptVersion(acceptVersion string) ApiRetainWorkspaceRequest {
+	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// TTL configuration.
+func (r ApiRetainWorkspaceRequest) RetainWorkspaceRequest(retainWorkspaceRequest RetainWorkspaceRequest) ApiRetainWorkspaceRequest {
+	r.retainWorkspaceRequest = &retainWorkspaceRequest
+	return r
+}
+
+func (r ApiRetainWorkspaceRequest) Execute() (*WorkspaceItem, *http.Response, error) {
+	return r.ApiService.RetainWorkspaceExecute(r)
+}
+
+/*
+RetainWorkspace Update how long a workspace will be retained before automatic deletion..
+
+Set the time at which the workspace and all associated resources will be removed from the system.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param workspaceName Unique ID of the Workspace.
+ @return ApiRetainWorkspaceRequest
+*/
+func (a *WorkspaceApiService) RetainWorkspace(ctx context.Context, workspaceName string) ApiRetainWorkspaceRequest {
+	return ApiRetainWorkspaceRequest{
+		ApiService: a,
+		ctx: ctx,
+		workspaceName: workspaceName,
+	}
+}
+
+// Execute executes the request
+//  @return WorkspaceItem
+func (a *WorkspaceApiService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest) (*WorkspaceItem, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *WorkspaceItem
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.RetainWorkspace")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspaces/{workspaceName}/retain"
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", url.PathEscape(parameterToString(r.workspaceName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptVersion != nil {
+		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+	}
+	// body params
+	localVarPostBody = r.retainWorkspaceRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 405 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 415 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
