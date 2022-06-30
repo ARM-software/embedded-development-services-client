@@ -22,6 +22,7 @@ type WorkspaceItemLinks struct {
 	Delete *HalLinkData `json:"delete,omitempty"`
 	Details *HalLinkData `json:"details,omitempty"`
 	Related HalLinkData `json:"related"`
+	Retain *HalLinkData `json:"retain,omitempty"`
 	Self HalLinkData `json:"self"`
 }
 
@@ -196,6 +197,38 @@ func (o *WorkspaceItemLinks) SetRelated(v HalLinkData) {
 	o.Related = v
 }
 
+// GetRetain returns the Retain field value if set, zero value otherwise.
+func (o *WorkspaceItemLinks) GetRetain() HalLinkData {
+	if o == nil || o.Retain == nil {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Retain
+}
+
+// GetRetainOk returns a tuple with the Retain field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceItemLinks) GetRetainOk() (*HalLinkData, bool) {
+	if o == nil || o.Retain == nil {
+		return nil, false
+	}
+	return o.Retain, true
+}
+
+// HasRetain returns a boolean if a field has been set.
+func (o *WorkspaceItemLinks) HasRetain() bool {
+	if o != nil && o.Retain != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRetain gets a reference to the given HalLinkData and assigns it to the Retain field.
+func (o *WorkspaceItemLinks) SetRetain(v HalLinkData) {
+	o.Retain = &v
+}
+
 // GetSelf returns the Self field value
 func (o *WorkspaceItemLinks) GetSelf() HalLinkData {
 	if o == nil {
@@ -236,6 +269,9 @@ func (o WorkspaceItemLinks) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["related"] = o.Related
+	}
+	if o.Retain != nil {
+		toSerialize["retain"] = o.Retain
 	}
 	if true {
 		toSerialize["self"] = o.Self

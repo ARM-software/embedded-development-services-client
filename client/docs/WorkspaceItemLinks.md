@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Delete** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Details** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Related** | [**HalLinkData**](HalLinkData.md) |  | 
+**Retain** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Self** | [**HalLinkData**](HalLinkData.md) |  | 
 
 ## Methods
@@ -149,6 +150,31 @@ and a boolean to check if the value has been set.
 
 SetRelated sets Related field to given value.
 
+
+### GetRetain
+
+`func (o *WorkspaceItemLinks) GetRetain() HalLinkData`
+
+GetRetain returns the Retain field if non-nil, zero value otherwise.
+
+### GetRetainOk
+
+`func (o *WorkspaceItemLinks) GetRetainOk() (*HalLinkData, bool)`
+
+GetRetainOk returns a tuple with the Retain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetain
+
+`func (o *WorkspaceItemLinks) SetRetain(v HalLinkData)`
+
+SetRetain sets Retain field to given value.
+
+### HasRetain
+
+`func (o *WorkspaceItemLinks) HasRetain() bool`
+
+HasRetain returns a boolean if a field has been set.
 
 ### GetSelf
 

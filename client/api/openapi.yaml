@@ -9782,6 +9782,15 @@ components:
               deprecation: /link/deprecation-info
               title: The recent build jobs.
               type: object
+            retain:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
             self:
               hreflang: fr-FR
               templated: false
@@ -9836,6 +9845,15 @@ components:
           TTL: 5
         - _links:
             related:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            retain:
               hreflang: fr-FR
               templated: false
               profile: http://microformats.org/profile/hcard
@@ -13059,6 +13077,15 @@ components:
                 deprecation: /link/deprecation-info
                 title: The recent build jobs.
                 type: object
+              retain:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
               self:
                 hreflang: fr-FR
                 templated: false
@@ -13113,6 +13140,15 @@ components:
             TTL: 5
           - _links:
               related:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              retain:
                 hreflang: fr-FR
                 templated: false
                 profile: http://microformats.org/profile/hcard
@@ -13409,6 +13445,15 @@ components:
             deprecation: /link/deprecation-info
             title: The recent build jobs.
             type: object
+          retain:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
           self:
             hreflang: fr-FR
             templated: false
@@ -13510,6 +13555,15 @@ components:
           deprecation: /link/deprecation-info
           title: The recent build jobs.
           type: object
+        retain:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
         self:
           hreflang: fr-FR
           templated: false
@@ -13566,6 +13620,8 @@ components:
         details:
           $ref: '#/components/schemas/HalLinkData'
         related:
+          $ref: '#/components/schemas/HalLinkData'
+        retain:
           $ref: '#/components/schemas/HalLinkData'
         self:
           $ref: '#/components/schemas/HalLinkData'
