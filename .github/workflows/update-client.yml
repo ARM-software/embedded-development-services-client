@@ -56,6 +56,12 @@ jobs:
         else
           echo "Directory 'extensions' does not exist. Skipping..."
         fi
+# FIXME remove when https://github.com/OpenAPITools/openapi-generator/issues/12810 is fixed
+    - name: Fix Bug
+      run: |
+        cd client
+        sed -e 's/**os.File/*os.File/g' api_build_jobs.go
+        go mod tidy
     - name: Update Go
       run: |
         chmod +x ./scripts/update_go.sh
