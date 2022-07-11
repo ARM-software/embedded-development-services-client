@@ -392,7 +392,7 @@ func (r ApiGetBuildArtefactRequest) AcceptVersion(acceptVersion string) ApiGetBu
 	return r
 }
 
-func (r ApiGetBuildArtefactRequest) Execute() (*os.File, *http.Response, error) {
+func (r ApiGetBuildArtefactRequest) Execute() (**os.File, *http.Response, error) {
 	return r.ApiService.GetBuildArtefactExecute(r)
 }
 
@@ -417,12 +417,12 @@ func (a *BuildJobsApiService) GetBuildArtefact(ctx context.Context, jobName stri
 
 // Execute executes the request
 //  @return *os.File
-func (a *BuildJobsApiService) GetBuildArtefactExecute(r ApiGetBuildArtefactRequest) (*os.File, *http.Response, error) {
+func (a *BuildJobsApiService) GetBuildArtefactExecute(r ApiGetBuildArtefactRequest) (**os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *os.File
+		localVarReturnValue  **os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsApiService.GetBuildArtefact")
