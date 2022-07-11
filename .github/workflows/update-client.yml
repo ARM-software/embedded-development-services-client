@@ -3,7 +3,7 @@ name: Update Client
 on: 
   push:
     branches:
-      - main
+      - "*"
   schedule:
     - cron: '*/30 * * * *'
 
@@ -97,15 +97,17 @@ jobs:
         GO_UPDATE="${{ env.GO_UPDATE }}"
         if [[ $SERVER_UPDATE ]] ; then cd-create-news-file --type feature "Updated client due to schema changes" ; fi
         if [[ $GO_UPDATE ]] ; then cd-create-news-file --type bugfix "Updated Golang version" ; fi
-    - name: Commit changes
+    - name: Set commit message
       run: |
         SERVER_UPDATE="${{ env.SERVER_UPDATE }}"
         GO_UPDATE="${{ env.GO_UPDATE }}"
-        chmod +x ./scripts/commit_changes.sh
-        ./scripts/commit_changes.sh $(git symbolic-ref --short HEAD ) "client/* README.md changes/*" "$SERVER_UPDATE$(if [[ $SERVER_UPDATE ]] && [[ $GO_UPDATE ]]; then echo ' + ' ; fi)$GO_UPDATE  [ci skip]"
-    - name: Push changes
-      uses: ad-m/github-push-action@master
+        MESSAGE="$SERVER_UPDATE$(if [[ $SERVER_UPDATE ]] && [[ $GO_UPDATE ]]; then echo ' + ' ; fi)$GO_UPDATE  [ci skip]"
+        echo "MESSAGE=$MESSAGE" >> $GITHUB_ENV
+    - name: Commit changes
+      uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        github_token: ${{ secrets.GIT_SECRET }}
-        branch: main
+        commit_message: ":sparkles: Automatic changes -> ${{ env.MESSAGE }}"
+        file_pattern: client/* README.md changes/*
+        commit_user_name: monty-bot
+        commit_user_email: monty-bot@arm.com
     

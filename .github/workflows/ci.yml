@@ -69,6 +69,7 @@ jobs:
           - os: windows-latest
             multi-platform: false
     name: Build and test
+    needs: update-client
     runs-on: ${{ matrix.os }}
     env:
       GOPRIVATE: github.com/Arm-Debug
