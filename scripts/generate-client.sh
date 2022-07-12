@@ -36,9 +36,6 @@ run() {
 
     openapi-generator generate -g go -o "$OUTPUT" --additional-properties packageName=client,isGoSubmodule=true --git-user-id="Arm-Debug" --git-repo-id="solar-services-client" -i "$INPUT"
     
-    # FIXME remove when https://github.com/OpenAPITools/openapi-generator/issues/12810 is fixed
-    sed -e 's/**os.File/*os.File/g' "$OUTPUT/api_build_jobs.go"
-
     if [[ -z "$DISABLE_FMT"  ]]; then
       ./fmt-go.sh -i "$OUTPUT"
     fi
