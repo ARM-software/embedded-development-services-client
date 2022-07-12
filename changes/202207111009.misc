@@ -1,1 +1,0 @@
-Move temporary bugfix for **os.File problem into generate-client.sh so changes are not overwritten by ci
