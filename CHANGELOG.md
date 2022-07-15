@@ -2,6 +2,19 @@
 Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Proprietary
 -->
+"" "1.8.0" (2022-07-15)
+=======================
+
+Features
+--------
+
+- Updated client due to schema changes (#202207151055)
+
+
+<!--
+Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Proprietary
+-->
 "" "1.7.0" (2022-07-12)
 =======================
 
