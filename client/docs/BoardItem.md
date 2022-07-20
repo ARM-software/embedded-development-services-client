@@ -1,0 +1,295 @@
+# BoardItem
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Links** | [**BoardItemLinks**](BoardItemLinks.md) |  | 
+**Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
+**DebugInterfaces** | Pointer to [**[]ADebugInterface**](ADebugInterface.md) | Array of debug interfaces for the Board. | [optional] [readonly] 
+**Description** | **string** | Description of the Board. | [readonly] 
+**Features** | Pointer to [**[]BoardItemFeaturesInner**](BoardItemFeaturesInner.md) | Array of features for the Board. | [optional] [readonly] 
+**Id** | **string** | Unique ID of the Board. | [readonly] 
+**MountedDevices** | Pointer to [**[]DeviceItem**](DeviceItem.md) | Array of mounted devices for the Board. | [optional] [readonly] 
+**Name** | **string** | Name of the Board. | [readonly] 
+**Revision** | **string** | Revision of the Board. | [readonly] 
+**Summary** | **string** | Brief summary of the Board. | [readonly] 
+
+## Methods
+
+### NewBoardItem
+
+`func NewBoardItem(links BoardItemLinks, metadata NullableCommonMetadata, description string, id string, name string, revision string, summary string, ) *BoardItem`
+
+NewBoardItem instantiates a new BoardItem object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewBoardItemWithDefaults
+
+`func NewBoardItemWithDefaults() *BoardItem`
+
+NewBoardItemWithDefaults instantiates a new BoardItem object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetLinks
+
+`func (o *BoardItem) GetLinks() BoardItemLinks`
+
+GetLinks returns the Links field if non-nil, zero value otherwise.
+
+### GetLinksOk
+
+`func (o *BoardItem) GetLinksOk() (*BoardItemLinks, bool)`
+
+GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinks
+
+`func (o *BoardItem) SetLinks(v BoardItemLinks)`
+
+SetLinks sets Links field to given value.
+
+
+### GetMetadata
+
+`func (o *BoardItem) GetMetadata() CommonMetadata`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *BoardItem) GetMetadataOk() (*CommonMetadata, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *BoardItem) SetMetadata(v CommonMetadata)`
+
+SetMetadata sets Metadata field to given value.
+
+
+### SetMetadataNil
+
+`func (o *BoardItem) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *BoardItem) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
+### GetDebugInterfaces
+
+`func (o *BoardItem) GetDebugInterfaces() []ADebugInterface`
+
+GetDebugInterfaces returns the DebugInterfaces field if non-nil, zero value otherwise.
+
+### GetDebugInterfacesOk
+
+`func (o *BoardItem) GetDebugInterfacesOk() (*[]ADebugInterface, bool)`
+
+GetDebugInterfacesOk returns a tuple with the DebugInterfaces field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDebugInterfaces
+
+`func (o *BoardItem) SetDebugInterfaces(v []ADebugInterface)`
+
+SetDebugInterfaces sets DebugInterfaces field to given value.
+
+### HasDebugInterfaces
+
+`func (o *BoardItem) HasDebugInterfaces() bool`
+
+HasDebugInterfaces returns a boolean if a field has been set.
+
+### SetDebugInterfacesNil
+
+`func (o *BoardItem) SetDebugInterfacesNil(b bool)`
+
+ SetDebugInterfacesNil sets the value for DebugInterfaces to be an explicit nil
+
+### UnsetDebugInterfaces
+`func (o *BoardItem) UnsetDebugInterfaces()`
+
+UnsetDebugInterfaces ensures that no value is present for DebugInterfaces, not even an explicit nil
+### GetDescription
+
+`func (o *BoardItem) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *BoardItem) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *BoardItem) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+
+### GetFeatures
+
+`func (o *BoardItem) GetFeatures() []BoardItemFeaturesInner`
+
+GetFeatures returns the Features field if non-nil, zero value otherwise.
+
+### GetFeaturesOk
+
+`func (o *BoardItem) GetFeaturesOk() (*[]BoardItemFeaturesInner, bool)`
+
+GetFeaturesOk returns a tuple with the Features field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFeatures
+
+`func (o *BoardItem) SetFeatures(v []BoardItemFeaturesInner)`
+
+SetFeatures sets Features field to given value.
+
+### HasFeatures
+
+`func (o *BoardItem) HasFeatures() bool`
+
+HasFeatures returns a boolean if a field has been set.
+
+### SetFeaturesNil
+
+`func (o *BoardItem) SetFeaturesNil(b bool)`
+
+ SetFeaturesNil sets the value for Features to be an explicit nil
+
+### UnsetFeatures
+`func (o *BoardItem) UnsetFeatures()`
+
+UnsetFeatures ensures that no value is present for Features, not even an explicit nil
+### GetId
+
+`func (o *BoardItem) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *BoardItem) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *BoardItem) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
+### GetMountedDevices
+
+`func (o *BoardItem) GetMountedDevices() []DeviceItem`
+
+GetMountedDevices returns the MountedDevices field if non-nil, zero value otherwise.
+
+### GetMountedDevicesOk
+
+`func (o *BoardItem) GetMountedDevicesOk() (*[]DeviceItem, bool)`
+
+GetMountedDevicesOk returns a tuple with the MountedDevices field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMountedDevices
+
+`func (o *BoardItem) SetMountedDevices(v []DeviceItem)`
+
+SetMountedDevices sets MountedDevices field to given value.
+
+### HasMountedDevices
+
+`func (o *BoardItem) HasMountedDevices() bool`
+
+HasMountedDevices returns a boolean if a field has been set.
+
+### SetMountedDevicesNil
+
+`func (o *BoardItem) SetMountedDevicesNil(b bool)`
+
+ SetMountedDevicesNil sets the value for MountedDevices to be an explicit nil
+
+### UnsetMountedDevices
+`func (o *BoardItem) UnsetMountedDevices()`
+
+UnsetMountedDevices ensures that no value is present for MountedDevices, not even an explicit nil
+### GetName
+
+`func (o *BoardItem) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *BoardItem) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *BoardItem) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetRevision
+
+`func (o *BoardItem) GetRevision() string`
+
+GetRevision returns the Revision field if non-nil, zero value otherwise.
+
+### GetRevisionOk
+
+`func (o *BoardItem) GetRevisionOk() (*string, bool)`
+
+GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevision
+
+`func (o *BoardItem) SetRevision(v string)`
+
+SetRevision sets Revision field to given value.
+
+
+### GetSummary
+
+`func (o *BoardItem) GetSummary() string`
+
+GetSummary returns the Summary field if non-nil, zero value otherwise.
+
+### GetSummaryOk
+
+`func (o *BoardItem) GetSummaryOk() (*string, bool)`
+
+GetSummaryOk returns a tuple with the Summary field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSummary
+
+`func (o *BoardItem) SetSummary(v string)`
+
+SetSummary sets Summary field to given value.
+
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

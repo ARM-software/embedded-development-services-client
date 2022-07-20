@@ -105,6 +105,8 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*BoardsApi* | [**GetBoard**](docs/BoardsApi.md#getboard) | **Get** /boards/{boardId}/ | Get a Board Item
+*BoardsApi* | [**ListBoards**](docs/BoardsApi.md#listboards) | **Get** /boards/ | List all the Boards.
 *BuildJobsApi* | [**CancelBuildJob**](docs/BuildJobsApi.md#cancelbuildjob) | **Post** /build-jobs/{jobName}/cancel | Cancel a Build Job
 *BuildJobsApi* | [**DeleteBuildJob**](docs/BuildJobsApi.md#deletebuildjob) | **Delete** /build-jobs/{jobName} | Delete a Build Job
 *BuildJobsApi* | [**GetBuildArtefact**](docs/BuildJobsApi.md#getbuildartefact) | **Get** /build-jobs/{jobName}/artefacts/{artefactName} | Download the named Build Artefact for the given Build Job.
@@ -166,10 +168,14 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [ADebugInterface](docs/ADebugInterface.md)
  - [AdditionalTool](docs/AdditionalTool.md)
  - [ArtefactManagerCollection](docs/ArtefactManagerCollection.md)
  - [ArtefactManagerItem](docs/ArtefactManagerItem.md)
  - [ArtefactManagerLinks](docs/ArtefactManagerLinks.md)
+ - [BoardItem](docs/BoardItem.md)
+ - [BoardItemFeaturesInner](docs/BoardItemFeaturesInner.md)
+ - [BoardItemLinks](docs/BoardItemLinks.md)
  - [BuildJobCollection](docs/BuildJobCollection.md)
  - [BuildJobItem](docs/BuildJobItem.md)
  - [BuildJobItemLinks](docs/BuildJobItemLinks.md)
@@ -184,7 +190,10 @@ Class | Method | HTTP request | Description
  - [CmsisIntellisenseItemLinks](docs/CmsisIntellisenseItemLinks.md)
  - [CommonMetadata](docs/CommonMetadata.md)
  - [DeprecationInfo](docs/DeprecationInfo.md)
+ - [DeviceItem](docs/DeviceItem.md)
+ - [DeviceItemProcessorsInner](docs/DeviceItemProcessorsInner.md)
  - [EmbeddedArtefactManagerItems](docs/EmbeddedArtefactManagerItems.md)
+ - [EmbeddedBoardItems](docs/EmbeddedBoardItems.md)
  - [EmbeddedBuildJobItems](docs/EmbeddedBuildJobItems.md)
  - [EmbeddedCmsisBuilderItems](docs/EmbeddedCmsisBuilderItems.md)
  - [EmbeddedCmsisIntellisenseItems](docs/EmbeddedCmsisIntellisenseItems.md)
@@ -203,6 +212,7 @@ Class | Method | HTTP request | Description
  - [IntellisenseJobItem](docs/IntellisenseJobItem.md)
  - [IntellisenseJobItemLinks](docs/IntellisenseJobItemLinks.md)
  - [IntellisenseMessageItem](docs/IntellisenseMessageItem.md)
+ - [ListBoardsCollection](docs/ListBoardsCollection.md)
  - [MessageObject](docs/MessageObject.md)
  - [NotificationFeed](docs/NotificationFeed.md)
  - [NotificationMessageObject](docs/NotificationMessageObject.md)
