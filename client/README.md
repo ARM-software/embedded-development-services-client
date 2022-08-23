@@ -135,6 +135,10 @@ Class | Method | HTTP request | Description
 *VHTRunJobsApi* | [**GetVhtRunJob**](docs/VHTRunJobsApi.md#getvhtrunjob) | **Get** /vht-run-jobs/{jobName} | Return status of an VHT run Job.
 *VHTRunJobsApi* | [**GetVhtRunJobMessages**](docs/VHTRunJobsApi.md#getvhtrunjobmessages) | **Get** /vht-run-jobs/{jobName}/messages | VHT Run Job Message Feed.
 *VHTRunJobsApi* | [**ListVhtRunJobs**](docs/VHTRunJobsApi.md#listvhtrunjobs) | **Get** /vht-run-jobs/ | List all run jobs on VHTs.
+*VendorsApi* | [**CreateVendor**](docs/VendorsApi.md#createvendor) | **Post** /vendors | Create a new Vendor
+*VendorsApi* | [**GetVendor**](docs/VendorsApi.md#getvendor) | **Get** /vendors/{vendorSlugOrId} | Get a Vendor Item
+*VendorsApi* | [**GetVendorExternal**](docs/VendorsApi.md#getvendorexternal) | **Get** /vendors/{type}/{externalId} | Get a Vendor Item By Type &amp; ExternalId
+*VendorsApi* | [**ListVendors**](docs/VendorsApi.md#listvendors) | **Get** /vendors | List all the Vendors.
 *VirtualHardwareTargetApi* | [**GetVht**](docs/VirtualHardwareTargetApi.md#getvht) | **Get** /vhts/{vhtName} | Return details of the specific VHT.
 *VirtualHardwareTargetApi* | [**ListFilteredVhtInstances**](docs/VirtualHardwareTargetApi.md#listfilteredvhtinstances) | **Get** /vhts/{vhtName}/vht-instances/ | List all VHT instances related to this specific VHT.
 *VirtualHardwareTargetApi* | [**ListVhts**](docs/VirtualHardwareTargetApi.md#listvhts) | **Get** /vhts/ | List available VHTs.
@@ -198,6 +202,7 @@ Class | Method | HTTP request | Description
  - [EmbeddedCmsisBuilderItems](docs/EmbeddedCmsisBuilderItems.md)
  - [EmbeddedCmsisIntellisenseItems](docs/EmbeddedCmsisIntellisenseItems.md)
  - [EmbeddedIntellisenseJobItems](docs/EmbeddedIntellisenseJobItems.md)
+ - [EmbeddedVendorItems](docs/EmbeddedVendorItems.md)
  - [EmbeddedVhtInstanceItems](docs/EmbeddedVhtInstanceItems.md)
  - [EmbeddedVhtItems](docs/EmbeddedVhtItems.md)
  - [EmbeddedVhtRunJobItems](docs/EmbeddedVhtRunJobItems.md)
@@ -213,6 +218,7 @@ Class | Method | HTTP request | Description
  - [IntellisenseJobItemLinks](docs/IntellisenseJobItemLinks.md)
  - [IntellisenseMessageItem](docs/IntellisenseMessageItem.md)
  - [ListBoardsCollection](docs/ListBoardsCollection.md)
+ - [ListVendorsCollection](docs/ListVendorsCollection.md)
  - [MessageObject](docs/MessageObject.md)
  - [NotificationFeed](docs/NotificationFeed.md)
  - [NotificationMessageObject](docs/NotificationMessageObject.md)
@@ -221,6 +227,8 @@ Class | Method | HTTP request | Description
  - [RetainWorkspaceRequest](docs/RetainWorkspaceRequest.md)
  - [SimpleCollection](docs/SimpleCollection.md)
  - [ToolchainTypes](docs/ToolchainTypes.md)
+ - [VendorItem](docs/VendorItem.md)
+ - [VendorItemLinks](docs/VendorItemLinks.md)
  - [VhtCollection](docs/VhtCollection.md)
  - [VhtInstanceCollection](docs/VhtInstanceCollection.md)
  - [VhtInstanceItem](docs/VhtInstanceItem.md)
