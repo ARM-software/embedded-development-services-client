@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateVendor**](VendorsApi.md#CreateVendor) | **Post** /vendors | Create a new Vendor
 [**GetVendor**](VendorsApi.md#GetVendor) | **Get** /vendors/{vendorSlugOrId} | Get a Vendor Item
-[**GetVendorExternal**](VendorsApi.md#GetVendorExternal) | **Get** /vendors/{type}/{externalId} | Get a Vendor Item By Type &amp; ExternalId
 [**ListVendors**](VendorsApi.md#ListVendors) | **Get** /vendors | List all the Vendors.
 
 
@@ -130,81 +129,6 @@ Other parameters are passed through a pointer to a apiGetVendorRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
-
-### Return type
-
-[**VendorItem**](VendorItem.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetVendorExternal
-
-> VendorItem GetVendorExternal(ctx, externalId, type_).AcceptVersion(acceptVersion).Execute()
-
-Get a Vendor Item By Type & ExternalId
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    externalId := "externalId_example" // string | The external identifier from the original data source for this Vendor
-    type_ := "type__example" // string | The type of the following ExternalId, e.g. `bVendor`, `dVendor`
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VendorsApi.GetVendorExternal(context.Background(), externalId, type_).AcceptVersion(acceptVersion).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VendorsApi.GetVendorExternal``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetVendorExternal`: VendorItem
-    fmt.Fprintf(os.Stdout, "Response from `VendorsApi.GetVendorExternal`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalId** | **string** | The external identifier from the original data source for this Vendor | 
-**type_** | **string** | The type of the following ExternalId, e.g. &#x60;bVendor&#x60;, &#x60;dVendor&#x60; | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetVendorExternalRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
 

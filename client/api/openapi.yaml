@@ -3008,102 +3008,6 @@ paths:
       tags:
       - Vendors
       x-redact: true
-  /vendors/{type}/{externalId}:
-    get:
-      description: "Get a specific Vendor Item using an external identifier, and the\
-        \ source type of this identifier."
-      operationId: getVendorExternal
-      parameters:
-      - description: The external identifier from the original data source for this
-          Vendor
-        explode: false
-        in: path
-        name: externalId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: "The type of the following ExternalId, e.g. `bVendor`, `dVendor`"
-        explode: false
-        in: path
-        name: type
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: "Versioning: Optional header to request a specific version of\
-          \ the API. While it is possible to specify a particular major, minor or\
-          \ patch version it is not recommended for production use cases. Only the\
-          \ major version number should be specified as minor and patch versions can\
-          \ be updated without warning."
-        example: 1.0.0
-        explode: false
-        in: header
-        name: Accept-Version
-        required: false
-        schema:
-          $ref: '#/components/schemas/AcceptVersionHeader'
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VendorItem'
-          description: Resource returned OK.
-          headers:
-            Cache-Control:
-              $ref: '#/components/headers/CacheControlHeader'
-            ETag:
-              $ref: '#/components/headers/ETagHeader'
-            Version:
-              $ref: '#/components/headers/VersionHeader'
-          links:
-            listVendors:
-              description: The link can be used to get the collection holding this
-                Vendor. The `href` property of the link can be used to make a request.
-              operationId: listVendors
-        "304":
-          description: The client made a conditional request and there is no need
-            to retransmit the resource as the client already has the most recent version
-            of this resource.
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: The request is invalid for syntactic or semantic reasons.
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: Authentication information has not been provided or is invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: Requested resource cannot be found on the server or the user
-            lacks privileges to see this resource.
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: "Requested cannot be fulfilled due to content negotiation headers,\
-            \ such as a request for a unsupported media type or specific version."
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: "To many requests have been received by the user, i.e. rate\
-            \ limits have been reached."
-      summary: Get a Vendor Item By Type & ExternalId
-      tags:
-      - Vendors
-    x-redact: true
   /vendors/{vendorSlugOrId}:
     get:
       description: Get a specific Vendor Item
@@ -3115,6 +3019,7 @@ paths:
         name: vendorSlugOrId
         required: true
         schema:
+          pattern: "[a-z-\\d]"
           type: string
         style: simple
       - description: "Versioning: Optional header to request a specific version of\
@@ -6979,6 +6884,7 @@ components:
       name: vendorSlugOrId
       required: true
       schema:
+        pattern: "[a-z-\\d]"
         type: string
       style: simple
     VhtInstanceArtefactParam:

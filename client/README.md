@@ -137,7 +137,6 @@ Class | Method | HTTP request | Description
 *VHTRunJobsApi* | [**ListVhtRunJobs**](docs/VHTRunJobsApi.md#listvhtrunjobs) | **Get** /vht-run-jobs/ | List all run jobs on VHTs.
 *VendorsApi* | [**CreateVendor**](docs/VendorsApi.md#createvendor) | **Post** /vendors | Create a new Vendor
 *VendorsApi* | [**GetVendor**](docs/VendorsApi.md#getvendor) | **Get** /vendors/{vendorSlugOrId} | Get a Vendor Item
-*VendorsApi* | [**GetVendorExternal**](docs/VendorsApi.md#getvendorexternal) | **Get** /vendors/{type}/{externalId} | Get a Vendor Item By Type &amp; ExternalId
 *VendorsApi* | [**ListVendors**](docs/VendorsApi.md#listvendors) | **Get** /vendors | List all the Vendors.
 *VirtualHardwareTargetApi* | [**GetVht**](docs/VirtualHardwareTargetApi.md#getvht) | **Get** /vhts/{vhtName} | Return details of the specific VHT.
 *VirtualHardwareTargetApi* | [**ListFilteredVhtInstances**](docs/VirtualHardwareTargetApi.md#listfilteredvhtinstances) | **Get** /vhts/{vhtName}/vht-instances/ | List all VHT instances related to this specific VHT.
