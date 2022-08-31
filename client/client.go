@@ -58,6 +58,8 @@ type APIClient struct {
 
 	CMSISIntellisenseBuildersApi *CMSISIntellisenseBuildersApiService
 
+	DevicesApi *DevicesApiService
+
 	IntellisenseJobsApi *IntellisenseJobsApiService
 
 	RootResourceApi *RootResourceApiService
@@ -95,6 +97,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.BuildJobsApi = (*BuildJobsApiService)(&c.common)
 	c.CMSISBuildersApi = (*CMSISBuildersApiService)(&c.common)
 	c.CMSISIntellisenseBuildersApi = (*CMSISIntellisenseBuildersApiService)(&c.common)
+	c.DevicesApi = (*DevicesApiService)(&c.common)
 	c.IntellisenseJobsApi = (*IntellisenseJobsApiService)(&c.common)
 	c.RootResourceApi = (*RootResourceApiService)(&c.common)
 	c.VHTRunJobsApi = (*VHTRunJobsApiService)(&c.common)

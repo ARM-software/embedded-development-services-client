@@ -17,24 +17,36 @@ import (
 
 // DeviceItem struct for DeviceItem
 type DeviceItem struct {
-	// Device Family the Device belonds to.
-	Family *string `json:"family,omitempty"`
-	// Name of the Device.
-	Name *string `json:"name,omitempty"`
+	Links DeviceItemLinks `json:"_links"`
+	Metadata NullableCommonMetadata `json:"_metadata"`
+	// Device Family the Device belongs to.
+	Family NullableString `json:"family,omitempty"`
 	// Array of processors within the Device.
-	Processors []DeviceItemProcessorsInner `json:"processors,omitempty"`
-	// Sub-Device Family the Device belonds to.
-	SubFamily *string `json:"sub_family,omitempty"`
+	Processors []ProcessorItem `json:"processors"`
+	// Unique human-readable identifier for the Device
+	Slug string `json:"slug"`
+	SourcePackId DeviceItemSourcePackId `json:"source_pack_id"`
+	// Sub-Device Family the Device belongs to.
+	SubFamily NullableString `json:"sub_family,omitempty"`
+	// Human-readable name of the Device.
+	Title string `json:"title"`
 	// Vendor of the Device.
-	Vendor *string `json:"vendor,omitempty"`
+	Vendor string `json:"vendor"`
 }
 
 // NewDeviceItem instantiates a new DeviceItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeviceItem() *DeviceItem {
+func NewDeviceItem(links DeviceItemLinks, metadata NullableCommonMetadata, processors []ProcessorItem, slug string, sourcePackId DeviceItemSourcePackId, title string, vendor string) *DeviceItem {
 	this := DeviceItem{}
+	this.Links = links
+	this.Metadata = metadata
+	this.Processors = processors
+	this.Slug = slug
+	this.SourcePackId = sourcePackId
+	this.Title = title
+	this.Vendor = vendor
 	return &this
 }
 
@@ -46,181 +58,287 @@ func NewDeviceItemWithDefaults() *DeviceItem {
 	return &this
 }
 
-// GetFamily returns the Family field value if set, zero value otherwise.
+// GetLinks returns the Links field value
+func (o *DeviceItem) GetLinks() DeviceItemLinks {
+	if o == nil {
+		var ret DeviceItemLinks
+		return ret
+	}
+
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value
+// and a boolean to check if the value has been set.
+func (o *DeviceItem) GetLinksOk() (*DeviceItemLinks, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Links, true
+}
+
+// SetLinks sets field value
+func (o *DeviceItem) SetLinks(v DeviceItemLinks) {
+	o.Links = v
+}
+
+// GetMetadata returns the Metadata field value
+// If the value is explicit nil, the zero value for CommonMetadata will be returned
+func (o *DeviceItem) GetMetadata() CommonMetadata {
+	if o == nil || o.Metadata.Get() == nil {
+		var ret CommonMetadata
+		return ret
+	}
+
+	return *o.Metadata.Get()
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeviceItem) GetMetadataOk() (*CommonMetadata, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Metadata.Get(), o.Metadata.IsSet()
+}
+
+// SetMetadata sets field value
+func (o *DeviceItem) SetMetadata(v CommonMetadata) {
+	o.Metadata.Set(&v)
+}
+
+// GetFamily returns the Family field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DeviceItem) GetFamily() string {
-	if o == nil || o.Family == nil {
+	if o == nil || o.Family.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Family
+	return *o.Family.Get()
 }
 
 // GetFamilyOk returns a tuple with the Family field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeviceItem) GetFamilyOk() (*string, bool) {
-	if o == nil || o.Family == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Family, true
+	return o.Family.Get(), o.Family.IsSet()
 }
 
 // HasFamily returns a boolean if a field has been set.
 func (o *DeviceItem) HasFamily() bool {
-	if o != nil && o.Family != nil {
+	if o != nil && o.Family.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetFamily gets a reference to the given string and assigns it to the Family field.
+// SetFamily gets a reference to the given NullableString and assigns it to the Family field.
 func (o *DeviceItem) SetFamily(v string) {
-	o.Family = &v
+	o.Family.Set(&v)
+}
+// SetFamilyNil sets the value for Family to be an explicit nil
+func (o *DeviceItem) SetFamilyNil() {
+	o.Family.Set(nil)
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *DeviceItem) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
+// UnsetFamily ensures that no value is present for Family, not even an explicit nil
+func (o *DeviceItem) UnsetFamily() {
+	o.Family.Unset()
+}
+
+// GetProcessors returns the Processors field value
+func (o *DeviceItem) GetProcessors() []ProcessorItem {
+	if o == nil {
+		var ret []ProcessorItem
 		return ret
 	}
-	return *o.Name
-}
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DeviceItem) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *DeviceItem) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *DeviceItem) SetName(v string) {
-	o.Name = &v
-}
-
-// GetProcessors returns the Processors field value if set, zero value otherwise.
-func (o *DeviceItem) GetProcessors() []DeviceItemProcessorsInner {
-	if o == nil || o.Processors == nil {
-		var ret []DeviceItemProcessorsInner
-		return ret
-	}
 	return o.Processors
 }
 
-// GetProcessorsOk returns a tuple with the Processors field value if set, nil otherwise
+// GetProcessorsOk returns a tuple with the Processors field value
 // and a boolean to check if the value has been set.
-func (o *DeviceItem) GetProcessorsOk() ([]DeviceItemProcessorsInner, bool) {
-	if o == nil || o.Processors == nil {
+func (o *DeviceItem) GetProcessorsOk() ([]ProcessorItem, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.Processors, true
 }
 
-// HasProcessors returns a boolean if a field has been set.
-func (o *DeviceItem) HasProcessors() bool {
-	if o != nil && o.Processors != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetProcessors gets a reference to the given []DeviceItemProcessorsInner and assigns it to the Processors field.
-func (o *DeviceItem) SetProcessors(v []DeviceItemProcessorsInner) {
+// SetProcessors sets field value
+func (o *DeviceItem) SetProcessors(v []ProcessorItem) {
 	o.Processors = v
 }
 
-// GetSubFamily returns the SubFamily field value if set, zero value otherwise.
-func (o *DeviceItem) GetSubFamily() string {
-	if o == nil || o.SubFamily == nil {
+// GetSlug returns the Slug field value
+func (o *DeviceItem) GetSlug() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.SubFamily
+
+	return o.Slug
+}
+
+// GetSlugOk returns a tuple with the Slug field value
+// and a boolean to check if the value has been set.
+func (o *DeviceItem) GetSlugOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Slug, true
+}
+
+// SetSlug sets field value
+func (o *DeviceItem) SetSlug(v string) {
+	o.Slug = v
+}
+
+// GetSourcePackId returns the SourcePackId field value
+func (o *DeviceItem) GetSourcePackId() DeviceItemSourcePackId {
+	if o == nil {
+		var ret DeviceItemSourcePackId
+		return ret
+	}
+
+	return o.SourcePackId
+}
+
+// GetSourcePackIdOk returns a tuple with the SourcePackId field value
+// and a boolean to check if the value has been set.
+func (o *DeviceItem) GetSourcePackIdOk() (*DeviceItemSourcePackId, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SourcePackId, true
+}
+
+// SetSourcePackId sets field value
+func (o *DeviceItem) SetSourcePackId(v DeviceItemSourcePackId) {
+	o.SourcePackId = v
+}
+
+// GetSubFamily returns the SubFamily field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeviceItem) GetSubFamily() string {
+	if o == nil || o.SubFamily.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SubFamily.Get()
 }
 
 // GetSubFamilyOk returns a tuple with the SubFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeviceItem) GetSubFamilyOk() (*string, bool) {
-	if o == nil || o.SubFamily == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.SubFamily, true
+	return o.SubFamily.Get(), o.SubFamily.IsSet()
 }
 
 // HasSubFamily returns a boolean if a field has been set.
 func (o *DeviceItem) HasSubFamily() bool {
-	if o != nil && o.SubFamily != nil {
+	if o != nil && o.SubFamily.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSubFamily gets a reference to the given string and assigns it to the SubFamily field.
+// SetSubFamily gets a reference to the given NullableString and assigns it to the SubFamily field.
 func (o *DeviceItem) SetSubFamily(v string) {
-	o.SubFamily = &v
+	o.SubFamily.Set(&v)
+}
+// SetSubFamilyNil sets the value for SubFamily to be an explicit nil
+func (o *DeviceItem) SetSubFamilyNil() {
+	o.SubFamily.Set(nil)
 }
 
-// GetVendor returns the Vendor field value if set, zero value otherwise.
-func (o *DeviceItem) GetVendor() string {
-	if o == nil || o.Vendor == nil {
+// UnsetSubFamily ensures that no value is present for SubFamily, not even an explicit nil
+func (o *DeviceItem) UnsetSubFamily() {
+	o.SubFamily.Unset()
+}
+
+// GetTitle returns the Title field value
+func (o *DeviceItem) GetTitle() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Vendor
+
+	return o.Title
 }
 
-// GetVendorOk returns a tuple with the Vendor field value if set, nil otherwise
+// GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
-func (o *DeviceItem) GetVendorOk() (*string, bool) {
-	if o == nil || o.Vendor == nil {
+func (o *DeviceItem) GetTitleOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Vendor, true
+	return &o.Title, true
 }
 
-// HasVendor returns a boolean if a field has been set.
-func (o *DeviceItem) HasVendor() bool {
-	if o != nil && o.Vendor != nil {
-		return true
+// SetTitle sets field value
+func (o *DeviceItem) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetVendor returns the Vendor field value
+func (o *DeviceItem) GetVendor() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.Vendor
 }
 
-// SetVendor gets a reference to the given string and assigns it to the Vendor field.
+// GetVendorOk returns a tuple with the Vendor field value
+// and a boolean to check if the value has been set.
+func (o *DeviceItem) GetVendorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Vendor, true
+}
+
+// SetVendor sets field value
 func (o *DeviceItem) SetVendor(v string) {
-	o.Vendor = &v
+	o.Vendor = v
 }
 
 func (o DeviceItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Family != nil {
-		toSerialize["family"] = o.Family
+	if true {
+		toSerialize["_links"] = o.Links
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if true {
+		toSerialize["_metadata"] = o.Metadata.Get()
 	}
-	if o.Processors != nil {
+	if o.Family.IsSet() {
+		toSerialize["family"] = o.Family.Get()
+	}
+	if true {
 		toSerialize["processors"] = o.Processors
 	}
-	if o.SubFamily != nil {
-		toSerialize["sub_family"] = o.SubFamily
+	if true {
+		toSerialize["slug"] = o.Slug
 	}
-	if o.Vendor != nil {
+	if true {
+		toSerialize["source_pack_id"] = o.SourcePackId
+	}
+	if o.SubFamily.IsSet() {
+		toSerialize["sub_family"] = o.SubFamily.Get()
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
 		toSerialize["vendor"] = o.Vendor
 	}
 	return json.Marshal(toSerialize)

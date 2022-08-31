@@ -4,17 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Family** | Pointer to **string** | Device Family the Device belonds to. | [optional] [readonly] 
-**Name** | Pointer to **string** | Name of the Device. | [optional] [readonly] 
-**Processors** | Pointer to [**[]DeviceItemProcessorsInner**](DeviceItemProcessorsInner.md) | Array of processors within the Device. | [optional] [readonly] 
-**SubFamily** | Pointer to **string** | Sub-Device Family the Device belonds to. | [optional] [readonly] 
-**Vendor** | Pointer to **string** | Vendor of the Device. | [optional] [readonly] 
+**Links** | [**DeviceItemLinks**](DeviceItemLinks.md) |  | 
+**Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
+**Family** | Pointer to **NullableString** | Device Family the Device belongs to. | [optional] 
+**Processors** | [**[]ProcessorItem**](ProcessorItem.md) | Array of processors within the Device. | 
+**Slug** | **string** | Unique human-readable identifier for the Device | [readonly] 
+**SourcePackId** | [**DeviceItemSourcePackId**](DeviceItemSourcePackId.md) |  | 
+**SubFamily** | Pointer to **NullableString** | Sub-Device Family the Device belongs to. | [optional] 
+**Title** | **string** | Human-readable name of the Device. | 
+**Vendor** | **string** | Vendor of the Device. | 
 
 ## Methods
 
 ### NewDeviceItem
 
-`func NewDeviceItem() *DeviceItem`
+`func NewDeviceItem(links DeviceItemLinks, metadata NullableCommonMetadata, processors []ProcessorItem, slug string, sourcePackId DeviceItemSourcePackId, title string, vendor string, ) *DeviceItem`
 
 NewDeviceItem instantiates a new DeviceItem object
 This constructor will assign default values to properties that have it defined,
@@ -29,6 +33,56 @@ NewDeviceItemWithDefaults instantiates a new DeviceItem object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetLinks
+
+`func (o *DeviceItem) GetLinks() DeviceItemLinks`
+
+GetLinks returns the Links field if non-nil, zero value otherwise.
+
+### GetLinksOk
+
+`func (o *DeviceItem) GetLinksOk() (*DeviceItemLinks, bool)`
+
+GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinks
+
+`func (o *DeviceItem) SetLinks(v DeviceItemLinks)`
+
+SetLinks sets Links field to given value.
+
+
+### GetMetadata
+
+`func (o *DeviceItem) GetMetadata() CommonMetadata`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *DeviceItem) GetMetadataOk() (*CommonMetadata, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *DeviceItem) SetMetadata(v CommonMetadata)`
+
+SetMetadata sets Metadata field to given value.
+
+
+### SetMetadataNil
+
+`func (o *DeviceItem) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *DeviceItem) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetFamily
 
 `func (o *DeviceItem) GetFamily() string`
@@ -54,55 +108,75 @@ SetFamily sets Family field to given value.
 
 HasFamily returns a boolean if a field has been set.
 
-### GetName
+### SetFamilyNil
 
-`func (o *DeviceItem) GetName() string`
+`func (o *DeviceItem) SetFamilyNil(b bool)`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+ SetFamilyNil sets the value for Family to be an explicit nil
 
-### GetNameOk
+### UnsetFamily
+`func (o *DeviceItem) UnsetFamily()`
 
-`func (o *DeviceItem) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *DeviceItem) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *DeviceItem) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
+UnsetFamily ensures that no value is present for Family, not even an explicit nil
 ### GetProcessors
 
-`func (o *DeviceItem) GetProcessors() []DeviceItemProcessorsInner`
+`func (o *DeviceItem) GetProcessors() []ProcessorItem`
 
 GetProcessors returns the Processors field if non-nil, zero value otherwise.
 
 ### GetProcessorsOk
 
-`func (o *DeviceItem) GetProcessorsOk() (*[]DeviceItemProcessorsInner, bool)`
+`func (o *DeviceItem) GetProcessorsOk() (*[]ProcessorItem, bool)`
 
 GetProcessorsOk returns a tuple with the Processors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProcessors
 
-`func (o *DeviceItem) SetProcessors(v []DeviceItemProcessorsInner)`
+`func (o *DeviceItem) SetProcessors(v []ProcessorItem)`
 
 SetProcessors sets Processors field to given value.
 
-### HasProcessors
 
-`func (o *DeviceItem) HasProcessors() bool`
+### GetSlug
 
-HasProcessors returns a boolean if a field has been set.
+`func (o *DeviceItem) GetSlug() string`
+
+GetSlug returns the Slug field if non-nil, zero value otherwise.
+
+### GetSlugOk
+
+`func (o *DeviceItem) GetSlugOk() (*string, bool)`
+
+GetSlugOk returns a tuple with the Slug field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSlug
+
+`func (o *DeviceItem) SetSlug(v string)`
+
+SetSlug sets Slug field to given value.
+
+
+### GetSourcePackId
+
+`func (o *DeviceItem) GetSourcePackId() DeviceItemSourcePackId`
+
+GetSourcePackId returns the SourcePackId field if non-nil, zero value otherwise.
+
+### GetSourcePackIdOk
+
+`func (o *DeviceItem) GetSourcePackIdOk() (*DeviceItemSourcePackId, bool)`
+
+GetSourcePackIdOk returns a tuple with the SourcePackId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSourcePackId
+
+`func (o *DeviceItem) SetSourcePackId(v DeviceItemSourcePackId)`
+
+SetSourcePackId sets SourcePackId field to given value.
+
 
 ### GetSubFamily
 
@@ -129,6 +203,36 @@ SetSubFamily sets SubFamily field to given value.
 
 HasSubFamily returns a boolean if a field has been set.
 
+### SetSubFamilyNil
+
+`func (o *DeviceItem) SetSubFamilyNil(b bool)`
+
+ SetSubFamilyNil sets the value for SubFamily to be an explicit nil
+
+### UnsetSubFamily
+`func (o *DeviceItem) UnsetSubFamily()`
+
+UnsetSubFamily ensures that no value is present for SubFamily, not even an explicit nil
+### GetTitle
+
+`func (o *DeviceItem) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *DeviceItem) GetTitleOk() (*string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *DeviceItem) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
+
+
 ### GetVendor
 
 `func (o *DeviceItem) GetVendor() string`
@@ -148,11 +252,6 @@ and a boolean to check if the value has been set.
 
 SetVendor sets Vendor field to given value.
 
-### HasVendor
-
-`func (o *DeviceItem) HasVendor() bool`
-
-HasVendor returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

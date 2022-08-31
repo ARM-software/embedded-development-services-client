@@ -23,33 +23,35 @@ type BoardItem struct {
 	DebugInterfaces []ADebugInterface `json:"debug_interfaces,omitempty"`
 	// Description of the Board.
 	Description string `json:"description"`
+	// Mbed detection code for debugging.
+	DetectCode NullableString `json:"detect_code,omitempty"`
 	// Array of features for the Board.
 	Features []BoardItemFeaturesInner `json:"features,omitempty"`
 	// Unique ID of the Board.
 	Id string `json:"id"`
 	// Array of mounted devices for the Board.
 	MountedDevices []DeviceItem `json:"mounted_devices,omitempty"`
-	// Name of the Board.
-	Name string `json:"name"`
 	// Revision of the Board.
 	Revision string `json:"revision"`
 	// Brief summary of the Board.
 	Summary string `json:"summary"`
+	// Human-readable name of the Board.
+	Title string `json:"title"`
 }
 
 // NewBoardItem instantiates a new BoardItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBoardItem(links BoardItemLinks, metadata NullableCommonMetadata, description string, id string, name string, revision string, summary string) *BoardItem {
+func NewBoardItem(links BoardItemLinks, metadata NullableCommonMetadata, description string, id string, revision string, summary string, title string) *BoardItem {
 	this := BoardItem{}
 	this.Links = links
 	this.Metadata = metadata
 	this.Description = description
 	this.Id = id
-	this.Name = name
 	this.Revision = revision
 	this.Summary = summary
+	this.Title = title
 	return &this
 }
 
@@ -168,6 +170,48 @@ func (o *BoardItem) SetDescription(v string) {
 	o.Description = v
 }
 
+// GetDetectCode returns the DetectCode field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BoardItem) GetDetectCode() string {
+	if o == nil || o.DetectCode.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DetectCode.Get()
+}
+
+// GetDetectCodeOk returns a tuple with the DetectCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BoardItem) GetDetectCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DetectCode.Get(), o.DetectCode.IsSet()
+}
+
+// HasDetectCode returns a boolean if a field has been set.
+func (o *BoardItem) HasDetectCode() bool {
+	if o != nil && o.DetectCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDetectCode gets a reference to the given NullableString and assigns it to the DetectCode field.
+func (o *BoardItem) SetDetectCode(v string) {
+	o.DetectCode.Set(&v)
+}
+// SetDetectCodeNil sets the value for DetectCode to be an explicit nil
+func (o *BoardItem) SetDetectCodeNil() {
+	o.DetectCode.Set(nil)
+}
+
+// UnsetDetectCode ensures that no value is present for DetectCode, not even an explicit nil
+func (o *BoardItem) UnsetDetectCode() {
+	o.DetectCode.Unset()
+}
+
 // GetFeatures returns the Features field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BoardItem) GetFeatures() []BoardItemFeaturesInner {
 	if o == nil {
@@ -258,30 +302,6 @@ func (o *BoardItem) SetMountedDevices(v []DeviceItem) {
 	o.MountedDevices = v
 }
 
-// GetName returns the Name field value
-func (o *BoardItem) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *BoardItem) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *BoardItem) SetName(v string) {
-	o.Name = v
-}
-
 // GetRevision returns the Revision field value
 func (o *BoardItem) GetRevision() string {
 	if o == nil {
@@ -330,6 +350,30 @@ func (o *BoardItem) SetSummary(v string) {
 	o.Summary = v
 }
 
+// GetTitle returns the Title field value
+func (o *BoardItem) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *BoardItem) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *BoardItem) SetTitle(v string) {
+	o.Title = v
+}
+
 func (o BoardItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -344,6 +388,9 @@ func (o BoardItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["description"] = o.Description
 	}
+	if o.DetectCode.IsSet() {
+		toSerialize["detect_code"] = o.DetectCode.Get()
+	}
 	if o.Features != nil {
 		toSerialize["features"] = o.Features
 	}
@@ -354,13 +401,13 @@ func (o BoardItem) MarshalJSON() ([]byte, error) {
 		toSerialize["mounted_devices"] = o.MountedDevices
 	}
 	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
 		toSerialize["revision"] = o.Revision
 	}
 	if true {
 		toSerialize["summary"] = o.Summary
+	}
+	if true {
+		toSerialize["title"] = o.Title
 	}
 	return json.Marshal(toSerialize)
 }

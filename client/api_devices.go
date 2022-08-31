@@ -21,60 +21,60 @@ import (
 )
 
 
-// BoardsApiService BoardsApi service
-type BoardsApiService service
+// DevicesApiService DevicesApi service
+type DevicesApiService service
 
-type ApiGetBoardRequest struct {
+type ApiGetDeviceRequest struct {
 	ctx context.Context
-	ApiService *BoardsApiService
-	boardId string
+	ApiService *DevicesApiService
+	deviceSlug string
 	acceptVersion *string
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiGetBoardRequest) AcceptVersion(acceptVersion string) ApiGetBoardRequest {
+func (r ApiGetDeviceRequest) AcceptVersion(acceptVersion string) ApiGetDeviceRequest {
 	r.acceptVersion = &acceptVersion
 	return r
 }
 
-func (r ApiGetBoardRequest) Execute() (*BoardItem, *http.Response, error) {
-	return r.ApiService.GetBoardExecute(r)
+func (r ApiGetDeviceRequest) Execute() (*DeviceItem, *http.Response, error) {
+	return r.ApiService.GetDeviceExecute(r)
 }
 
 /*
-GetBoard Get a Board Item
+GetDevice Get a Device Item
 
-Get a specific Board Item using a Board ID
+Get a specific Device Item using a Device Slug
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param boardId Unique ID of a Board.
- @return ApiGetBoardRequest
+ @param deviceSlug Unique slug of a Device.
+ @return ApiGetDeviceRequest
 */
-func (a *BoardsApiService) GetBoard(ctx context.Context, boardId string) ApiGetBoardRequest {
-	return ApiGetBoardRequest{
+func (a *DevicesApiService) GetDevice(ctx context.Context, deviceSlug string) ApiGetDeviceRequest {
+	return ApiGetDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
-		boardId: boardId,
+		deviceSlug: deviceSlug,
 	}
 }
 
 // Execute executes the request
-//  @return BoardItem
-func (a *BoardsApiService) GetBoardExecute(r ApiGetBoardRequest) (*BoardItem, *http.Response, error) {
+//  @return DeviceItem
+func (a *DevicesApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*DeviceItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BoardItem
+		localVarReturnValue  *DeviceItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardsApiService.GetBoard")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetDevice")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/boards/{boardId}/"
-	localVarPath = strings.Replace(localVarPath, "{"+"boardId"+"}", url.PathEscape(parameterToString(r.boardId, "")), -1)
+	localVarPath := localBasePath + "/devices/{deviceSlug}"
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceSlug"+"}", url.PathEscape(parameterToString(r.deviceSlug, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -186,9 +186,9 @@ func (a *BoardsApiService) GetBoardExecute(r ApiGetBoardRequest) (*BoardItem, *h
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListBoardsRequest struct {
+type ApiListDevicesRequest struct {
 	ctx context.Context
-	ApiService *BoardsApiService
+	ApiService *DevicesApiService
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
@@ -197,70 +197,70 @@ type ApiListBoardsRequest struct {
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiListBoardsRequest) AcceptVersion(acceptVersion string) ApiListBoardsRequest {
+func (r ApiListDevicesRequest) AcceptVersion(acceptVersion string) ApiListDevicesRequest {
 	r.acceptVersion = &acceptVersion
 	return r
 }
 
 // Embedding: The whether or not to embed resources into the collection (rather than return links).
-func (r ApiListBoardsRequest) Embed(embed bool) ApiListBoardsRequest {
+func (r ApiListDevicesRequest) Embed(embed bool) ApiListDevicesRequest {
 	r.embed = &embed
 	return r
 }
 
 // Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
-func (r ApiListBoardsRequest) IfNoneMatch(ifNoneMatch string) ApiListBoardsRequest {
+func (r ApiListDevicesRequest) IfNoneMatch(ifNoneMatch string) ApiListDevicesRequest {
 	r.ifNoneMatch = &ifNoneMatch
 	return r
 }
 
 // Paging: The maximum number of items to return in a resource.
-func (r ApiListBoardsRequest) Limit(limit int32) ApiListBoardsRequest {
+func (r ApiListDevicesRequest) Limit(limit int32) ApiListDevicesRequest {
 	r.limit = &limit
 	return r
 }
 
 // Paging:  The index of the first item to return in the resource.
-func (r ApiListBoardsRequest) Offset(offset int32) ApiListBoardsRequest {
+func (r ApiListDevicesRequest) Offset(offset int32) ApiListDevicesRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiListBoardsRequest) Execute() (*ListBoardsCollection, *http.Response, error) {
-	return r.ApiService.ListBoardsExecute(r)
+func (r ApiListDevicesRequest) Execute() (*ListDevicesCollection, *http.Response, error) {
+	return r.ApiService.ListDevicesExecute(r)
 }
 
 /*
-ListBoards List all the Boards.
+ListDevices List all the Devices
 
-This returns a collection resource that lists all of the Boards available to the service.
+This returns a collection resource that lists all of the Devices available to the service.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListBoardsRequest
+ @return ApiListDevicesRequest
 */
-func (a *BoardsApiService) ListBoards(ctx context.Context) ApiListBoardsRequest {
-	return ApiListBoardsRequest{
+func (a *DevicesApiService) ListDevices(ctx context.Context) ApiListDevicesRequest {
+	return ApiListDevicesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ListBoardsCollection
-func (a *BoardsApiService) ListBoardsExecute(r ApiListBoardsRequest) (*ListBoardsCollection, *http.Response, error) {
+//  @return ListDevicesCollection
+func (a *DevicesApiService) ListDevicesExecute(r ApiListDevicesRequest) (*ListDevicesCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListBoardsCollection
+		localVarReturnValue  *ListDevicesCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardsApiService.ListBoards")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.ListDevices")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/boards/"
+	localVarPath := localBasePath + "/devices/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

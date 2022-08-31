@@ -6,20 +6,21 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Links** | [**BoardItemLinks**](BoardItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**DebugInterfaces** | Pointer to [**[]ADebugInterface**](ADebugInterface.md) | Array of debug interfaces for the Board. | [optional] [readonly] 
-**Description** | **string** | Description of the Board. | [readonly] 
-**Features** | Pointer to [**[]BoardItemFeaturesInner**](BoardItemFeaturesInner.md) | Array of features for the Board. | [optional] [readonly] 
+**DebugInterfaces** | Pointer to [**[]ADebugInterface**](ADebugInterface.md) | Array of debug interfaces for the Board. | [optional] 
+**Description** | **string** | Description of the Board. | 
+**DetectCode** | Pointer to **NullableString** | Mbed detection code for debugging. | [optional] 
+**Features** | Pointer to [**[]BoardItemFeaturesInner**](BoardItemFeaturesInner.md) | Array of features for the Board. | [optional] 
 **Id** | **string** | Unique ID of the Board. | [readonly] 
-**MountedDevices** | Pointer to [**[]DeviceItem**](DeviceItem.md) | Array of mounted devices for the Board. | [optional] [readonly] 
-**Name** | **string** | Name of the Board. | [readonly] 
-**Revision** | **string** | Revision of the Board. | [readonly] 
-**Summary** | **string** | Brief summary of the Board. | [readonly] 
+**MountedDevices** | Pointer to [**[]DeviceItem**](DeviceItem.md) | Array of mounted devices for the Board. | [optional] 
+**Revision** | **string** | Revision of the Board. | 
+**Summary** | **string** | Brief summary of the Board. | 
+**Title** | **string** | Human-readable name of the Board. | 
 
 ## Methods
 
 ### NewBoardItem
 
-`func NewBoardItem(links BoardItemLinks, metadata NullableCommonMetadata, description string, id string, name string, revision string, summary string, ) *BoardItem`
+`func NewBoardItem(links BoardItemLinks, metadata NullableCommonMetadata, description string, id string, revision string, summary string, title string, ) *BoardItem`
 
 NewBoardItem instantiates a new BoardItem object
 This constructor will assign default values to properties that have it defined,
@@ -139,6 +140,41 @@ and a boolean to check if the value has been set.
 SetDescription sets Description field to given value.
 
 
+### GetDetectCode
+
+`func (o *BoardItem) GetDetectCode() string`
+
+GetDetectCode returns the DetectCode field if non-nil, zero value otherwise.
+
+### GetDetectCodeOk
+
+`func (o *BoardItem) GetDetectCodeOk() (*string, bool)`
+
+GetDetectCodeOk returns a tuple with the DetectCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDetectCode
+
+`func (o *BoardItem) SetDetectCode(v string)`
+
+SetDetectCode sets DetectCode field to given value.
+
+### HasDetectCode
+
+`func (o *BoardItem) HasDetectCode() bool`
+
+HasDetectCode returns a boolean if a field has been set.
+
+### SetDetectCodeNil
+
+`func (o *BoardItem) SetDetectCodeNil(b bool)`
+
+ SetDetectCodeNil sets the value for DetectCode to be an explicit nil
+
+### UnsetDetectCode
+`func (o *BoardItem) UnsetDetectCode()`
+
+UnsetDetectCode ensures that no value is present for DetectCode, not even an explicit nil
 ### GetFeatures
 
 `func (o *BoardItem) GetFeatures() []BoardItemFeaturesInner`
@@ -229,26 +265,6 @@ HasMountedDevices returns a boolean if a field has been set.
 `func (o *BoardItem) UnsetMountedDevices()`
 
 UnsetMountedDevices ensures that no value is present for MountedDevices, not even an explicit nil
-### GetName
-
-`func (o *BoardItem) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *BoardItem) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *BoardItem) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 ### GetRevision
 
 `func (o *BoardItem) GetRevision() string`
@@ -287,6 +303,26 @@ and a boolean to check if the value has been set.
 `func (o *BoardItem) SetSummary(v string)`
 
 SetSummary sets Summary field to given value.
+
+
+### GetTitle
+
+`func (o *BoardItem) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *BoardItem) GetTitleOk() (*string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *BoardItem) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
 
 
 

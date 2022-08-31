@@ -121,6 +121,8 @@ Class | Method | HTTP request | Description
 *CMSISIntellisenseBuildersApi* | [**GetCmsisIntellisense**](docs/CMSISIntellisenseBuildersApi.md#getcmsisintellisense) | **Get** /cmsis-intellisense/{builderName} | Return details of specific CMSIS Intellisense Builders.
 *CMSISIntellisenseBuildersApi* | [**ListCmsisIntellisense**](docs/CMSISIntellisenseBuildersApi.md#listcmsisintellisense) | **Get** /cmsis-intellisense/ | List available CMSIS Intellisense Builders.
 *CMSISIntellisenseBuildersApi* | [**StartCmsisIntellisense**](docs/CMSISIntellisenseBuildersApi.md#startcmsisintellisense) | **Post** /cmsis-intellisense/{builderName} | Initiate a compilation database generation using the specified CMSIS Intellisense Builder.
+*DevicesApi* | [**GetDevice**](docs/DevicesApi.md#getdevice) | **Get** /devices/{deviceSlug} | Get a Device Item
+*DevicesApi* | [**ListDevices**](docs/DevicesApi.md#listdevices) | **Get** /devices/ | List all the Devices
 *IntellisenseJobsApi* | [**CancelIntellisenseJob**](docs/IntellisenseJobsApi.md#cancelintellisensejob) | **Post** /intellisense-jobs/{jobName}/cancel | Cancel an Intellisense Job.
 *IntellisenseJobsApi* | [**DeleteIntellisenseJob**](docs/IntellisenseJobsApi.md#deleteintellisensejob) | **Delete** /intellisense-jobs/{jobName} | Delete an Intellisense Job.
 *IntellisenseJobsApi* | [**GetIntellisenseArtefact**](docs/IntellisenseJobsApi.md#getintellisenseartefact) | **Get** /intellisense-jobs/{jobName}/artefacts/{artefactName} | Download the named Intellisense Artefact for the given Intellisense Job.
@@ -194,12 +196,14 @@ Class | Method | HTTP request | Description
  - [CommonMetadata](docs/CommonMetadata.md)
  - [DeprecationInfo](docs/DeprecationInfo.md)
  - [DeviceItem](docs/DeviceItem.md)
- - [DeviceItemProcessorsInner](docs/DeviceItemProcessorsInner.md)
+ - [DeviceItemLinks](docs/DeviceItemLinks.md)
+ - [DeviceItemSourcePackId](docs/DeviceItemSourcePackId.md)
  - [EmbeddedArtefactManagerItems](docs/EmbeddedArtefactManagerItems.md)
  - [EmbeddedBoardItems](docs/EmbeddedBoardItems.md)
  - [EmbeddedBuildJobItems](docs/EmbeddedBuildJobItems.md)
  - [EmbeddedCmsisBuilderItems](docs/EmbeddedCmsisBuilderItems.md)
  - [EmbeddedCmsisIntellisenseItems](docs/EmbeddedCmsisIntellisenseItems.md)
+ - [EmbeddedDeviceItems](docs/EmbeddedDeviceItems.md)
  - [EmbeddedIntellisenseJobItems](docs/EmbeddedIntellisenseJobItems.md)
  - [EmbeddedVendorItems](docs/EmbeddedVendorItems.md)
  - [EmbeddedVhtInstanceItems](docs/EmbeddedVhtInstanceItems.md)
@@ -217,11 +221,13 @@ Class | Method | HTTP request | Description
  - [IntellisenseJobItemLinks](docs/IntellisenseJobItemLinks.md)
  - [IntellisenseMessageItem](docs/IntellisenseMessageItem.md)
  - [ListBoardsCollection](docs/ListBoardsCollection.md)
+ - [ListDevicesCollection](docs/ListDevicesCollection.md)
  - [ListVendorsCollection](docs/ListVendorsCollection.md)
  - [MessageObject](docs/MessageObject.md)
  - [NotificationFeed](docs/NotificationFeed.md)
  - [NotificationMessageObject](docs/NotificationMessageObject.md)
  - [PagingMetadata](docs/PagingMetadata.md)
+ - [ProcessorItem](docs/ProcessorItem.md)
  - [RetainBuildJobRequest](docs/RetainBuildJobRequest.md)
  - [RetainWorkspaceRequest](docs/RetainWorkspaceRequest.md)
  - [SimpleCollection](docs/SimpleCollection.md)
