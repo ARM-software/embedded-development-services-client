@@ -7969,117 +7969,25 @@ components:
             deprecation: /link/deprecation-info
             title: The recent build jobs.
             type: object
+          device:
+          - hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          - hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
         detect_code: "0204"
         description: Holtek ESK32-30615 HT32F61355 Starter Kit
-        mounted_devices:
-        - sub_family: HT32F61355
-          _links:
-            self:
-              hreflang: fr-FR
-              templated: false
-              profile: http://microformats.org/profile/hcard
-              name: cmsis-builders
-              href: /cmsis-builders/?limit=20&offset=0
-              deprecation: /link/deprecation-info
-              title: The recent build jobs.
-              type: object
-            collection:
-              hreflang: fr-FR
-              templated: false
-              profile: http://microformats.org/profile/hcard
-              name: cmsis-builders
-              href: /cmsis-builders/?limit=20&offset=0
-              deprecation: /link/deprecation-info
-              title: The recent build jobs.
-              type: object
-          vendor: Holtek:106
-          source_pack_id:
-            vendor: ABOV
-            name: A31G1xx_Series
-            version: 2.5.0
-          processors:
-          - core: core
-            floating_point_unit: floating_point_unit
-            cortexm_vector_extensions: cortexm_vector_extensions
-            digital_signal_processor: digital_signal_processor
-            memory_protection_unit: memory_protection_unit
-            max_core_clock_frequency: 0
-            core_revision: core_revision
-            units: 6
-            title: title
-            endian: endian
-            trust_zone: trust_zone
-          - core: core
-            floating_point_unit: floating_point_unit
-            cortexm_vector_extensions: cortexm_vector_extensions
-            digital_signal_processor: digital_signal_processor
-            memory_protection_unit: memory_protection_unit
-            max_core_clock_frequency: 0
-            core_revision: core_revision
-            units: 6
-            title: title
-            endian: endian
-            trust_zone: trust_zone
-          _metadata:
-            ctime: 1985-10-25T18:35:00Z
-            mtime: 1955-11-04T23:15:00Z
-          family: HT32F61355 Series
-          title: HT32F61355
-          slug: ht32f61355-holtek
-        - sub_family: HT32F61355
-          _links:
-            self:
-              hreflang: fr-FR
-              templated: false
-              profile: http://microformats.org/profile/hcard
-              name: cmsis-builders
-              href: /cmsis-builders/?limit=20&offset=0
-              deprecation: /link/deprecation-info
-              title: The recent build jobs.
-              type: object
-            collection:
-              hreflang: fr-FR
-              templated: false
-              profile: http://microformats.org/profile/hcard
-              name: cmsis-builders
-              href: /cmsis-builders/?limit=20&offset=0
-              deprecation: /link/deprecation-info
-              title: The recent build jobs.
-              type: object
-          vendor: Holtek:106
-          source_pack_id:
-            vendor: ABOV
-            name: A31G1xx_Series
-            version: 2.5.0
-          processors:
-          - core: core
-            floating_point_unit: floating_point_unit
-            cortexm_vector_extensions: cortexm_vector_extensions
-            digital_signal_processor: digital_signal_processor
-            memory_protection_unit: memory_protection_unit
-            max_core_clock_frequency: 0
-            core_revision: core_revision
-            units: 6
-            title: title
-            endian: endian
-            trust_zone: trust_zone
-          - core: core
-            floating_point_unit: floating_point_unit
-            cortexm_vector_extensions: cortexm_vector_extensions
-            digital_signal_processor: digital_signal_processor
-            memory_protection_unit: memory_protection_unit
-            max_core_clock_frequency: 0
-            core_revision: core_revision
-            units: 6
-            title: title
-            endian: endian
-            trust_zone: trust_zone
-          _metadata:
-            ctime: 1985-10-25T18:35:00Z
-            mtime: 1955-11-04T23:15:00Z
-          family: HT32F61355 Series
-          title: HT32F61355
-          slug: ht32f61355-holtek
         id: holtek-esk32-30615-ht32f61355-ver-10-ef6f6a3
         _metadata:
           ctime: 1985-10-25T18:35:00Z
@@ -8117,12 +8025,6 @@ components:
           example: holtek-esk32-30615-ht32f61355-ver-10-ef6f6a3
           readOnly: true
           type: string
-        mounted_devices:
-          description: Array of mounted devices for the Board.
-          items:
-            $ref: '#/components/schemas/DeviceItem'
-          nullable: true
-          type: array
         revision:
           description: Revision of the Board.
           example: Ver 1.0
@@ -8183,6 +8085,23 @@ components:
           deprecation: /link/deprecation-info
           title: The recent build jobs.
           type: object
+        device:
+        - hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        - hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
       properties:
         collection:
           $ref: '#/components/schemas/HalLinkData'
@@ -8192,6 +8111,11 @@ components:
             $ref: '#/components/schemas/HalLinkData'
           nullable: true
           readOnly: true
+          type: array
+        device:
+          description: Links to Devices mounted on the Board.
+          items:
+            $ref: '#/components/schemas/HalLinkData'
           type: array
         self:
           $ref: '#/components/schemas/HalLinkData'
@@ -9995,117 +9919,25 @@ components:
               deprecation: /link/deprecation-info
               title: The recent build jobs.
               type: object
+            device:
+            - hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            - hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
           detect_code: "0204"
           description: Holtek ESK32-30615 HT32F61355 Starter Kit
-          mounted_devices:
-          - sub_family: HT32F61355
-            _links:
-              self:
-                hreflang: fr-FR
-                templated: false
-                profile: http://microformats.org/profile/hcard
-                name: cmsis-builders
-                href: /cmsis-builders/?limit=20&offset=0
-                deprecation: /link/deprecation-info
-                title: The recent build jobs.
-                type: object
-              collection:
-                hreflang: fr-FR
-                templated: false
-                profile: http://microformats.org/profile/hcard
-                name: cmsis-builders
-                href: /cmsis-builders/?limit=20&offset=0
-                deprecation: /link/deprecation-info
-                title: The recent build jobs.
-                type: object
-            vendor: Holtek:106
-            source_pack_id:
-              vendor: ABOV
-              name: A31G1xx_Series
-              version: 2.5.0
-            processors:
-            - core: core
-              floating_point_unit: floating_point_unit
-              cortexm_vector_extensions: cortexm_vector_extensions
-              digital_signal_processor: digital_signal_processor
-              memory_protection_unit: memory_protection_unit
-              max_core_clock_frequency: 0
-              core_revision: core_revision
-              units: 6
-              title: title
-              endian: endian
-              trust_zone: trust_zone
-            - core: core
-              floating_point_unit: floating_point_unit
-              cortexm_vector_extensions: cortexm_vector_extensions
-              digital_signal_processor: digital_signal_processor
-              memory_protection_unit: memory_protection_unit
-              max_core_clock_frequency: 0
-              core_revision: core_revision
-              units: 6
-              title: title
-              endian: endian
-              trust_zone: trust_zone
-            _metadata:
-              ctime: 1985-10-25T18:35:00Z
-              mtime: 1955-11-04T23:15:00Z
-            family: HT32F61355 Series
-            title: HT32F61355
-            slug: ht32f61355-holtek
-          - sub_family: HT32F61355
-            _links:
-              self:
-                hreflang: fr-FR
-                templated: false
-                profile: http://microformats.org/profile/hcard
-                name: cmsis-builders
-                href: /cmsis-builders/?limit=20&offset=0
-                deprecation: /link/deprecation-info
-                title: The recent build jobs.
-                type: object
-              collection:
-                hreflang: fr-FR
-                templated: false
-                profile: http://microformats.org/profile/hcard
-                name: cmsis-builders
-                href: /cmsis-builders/?limit=20&offset=0
-                deprecation: /link/deprecation-info
-                title: The recent build jobs.
-                type: object
-            vendor: Holtek:106
-            source_pack_id:
-              vendor: ABOV
-              name: A31G1xx_Series
-              version: 2.5.0
-            processors:
-            - core: core
-              floating_point_unit: floating_point_unit
-              cortexm_vector_extensions: cortexm_vector_extensions
-              digital_signal_processor: digital_signal_processor
-              memory_protection_unit: memory_protection_unit
-              max_core_clock_frequency: 0
-              core_revision: core_revision
-              units: 6
-              title: title
-              endian: endian
-              trust_zone: trust_zone
-            - core: core
-              floating_point_unit: floating_point_unit
-              cortexm_vector_extensions: cortexm_vector_extensions
-              digital_signal_processor: digital_signal_processor
-              memory_protection_unit: memory_protection_unit
-              max_core_clock_frequency: 0
-              core_revision: core_revision
-              units: 6
-              title: title
-              endian: endian
-              trust_zone: trust_zone
-            _metadata:
-              ctime: 1985-10-25T18:35:00Z
-              mtime: 1955-11-04T23:15:00Z
-            family: HT32F61355 Series
-            title: HT32F61355
-            slug: ht32f61355-holtek
           id: holtek-esk32-30615-ht32f61355-ver-10-ef6f6a3
           _metadata:
             ctime: 1985-10-25T18:35:00Z
@@ -10165,117 +9997,25 @@ components:
               deprecation: /link/deprecation-info
               title: The recent build jobs.
               type: object
+            device:
+            - hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            - hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
           detect_code: "0204"
           description: Holtek ESK32-30615 HT32F61355 Starter Kit
-          mounted_devices:
-          - sub_family: HT32F61355
-            _links:
-              self:
-                hreflang: fr-FR
-                templated: false
-                profile: http://microformats.org/profile/hcard
-                name: cmsis-builders
-                href: /cmsis-builders/?limit=20&offset=0
-                deprecation: /link/deprecation-info
-                title: The recent build jobs.
-                type: object
-              collection:
-                hreflang: fr-FR
-                templated: false
-                profile: http://microformats.org/profile/hcard
-                name: cmsis-builders
-                href: /cmsis-builders/?limit=20&offset=0
-                deprecation: /link/deprecation-info
-                title: The recent build jobs.
-                type: object
-            vendor: Holtek:106
-            source_pack_id:
-              vendor: ABOV
-              name: A31G1xx_Series
-              version: 2.5.0
-            processors:
-            - core: core
-              floating_point_unit: floating_point_unit
-              cortexm_vector_extensions: cortexm_vector_extensions
-              digital_signal_processor: digital_signal_processor
-              memory_protection_unit: memory_protection_unit
-              max_core_clock_frequency: 0
-              core_revision: core_revision
-              units: 6
-              title: title
-              endian: endian
-              trust_zone: trust_zone
-            - core: core
-              floating_point_unit: floating_point_unit
-              cortexm_vector_extensions: cortexm_vector_extensions
-              digital_signal_processor: digital_signal_processor
-              memory_protection_unit: memory_protection_unit
-              max_core_clock_frequency: 0
-              core_revision: core_revision
-              units: 6
-              title: title
-              endian: endian
-              trust_zone: trust_zone
-            _metadata:
-              ctime: 1985-10-25T18:35:00Z
-              mtime: 1955-11-04T23:15:00Z
-            family: HT32F61355 Series
-            title: HT32F61355
-            slug: ht32f61355-holtek
-          - sub_family: HT32F61355
-            _links:
-              self:
-                hreflang: fr-FR
-                templated: false
-                profile: http://microformats.org/profile/hcard
-                name: cmsis-builders
-                href: /cmsis-builders/?limit=20&offset=0
-                deprecation: /link/deprecation-info
-                title: The recent build jobs.
-                type: object
-              collection:
-                hreflang: fr-FR
-                templated: false
-                profile: http://microformats.org/profile/hcard
-                name: cmsis-builders
-                href: /cmsis-builders/?limit=20&offset=0
-                deprecation: /link/deprecation-info
-                title: The recent build jobs.
-                type: object
-            vendor: Holtek:106
-            source_pack_id:
-              vendor: ABOV
-              name: A31G1xx_Series
-              version: 2.5.0
-            processors:
-            - core: core
-              floating_point_unit: floating_point_unit
-              cortexm_vector_extensions: cortexm_vector_extensions
-              digital_signal_processor: digital_signal_processor
-              memory_protection_unit: memory_protection_unit
-              max_core_clock_frequency: 0
-              core_revision: core_revision
-              units: 6
-              title: title
-              endian: endian
-              trust_zone: trust_zone
-            - core: core
-              floating_point_unit: floating_point_unit
-              cortexm_vector_extensions: cortexm_vector_extensions
-              digital_signal_processor: digital_signal_processor
-              memory_protection_unit: memory_protection_unit
-              max_core_clock_frequency: 0
-              core_revision: core_revision
-              units: 6
-              title: title
-              endian: endian
-              trust_zone: trust_zone
-            _metadata:
-              ctime: 1985-10-25T18:35:00Z
-              mtime: 1955-11-04T23:15:00Z
-            family: HT32F61355 Series
-            title: HT32F61355
-            slug: ht32f61355-holtek
           id: holtek-esk32-30615-ht32f61355-ver-10-ef6f6a3
           _metadata:
             ctime: 1985-10-25T18:35:00Z
@@ -12877,117 +12617,25 @@ components:
                 deprecation: /link/deprecation-info
                 title: The recent build jobs.
                 type: object
+              device:
+              - hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              - hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
             detect_code: "0204"
             description: Holtek ESK32-30615 HT32F61355 Starter Kit
-            mounted_devices:
-            - sub_family: HT32F61355
-              _links:
-                self:
-                  hreflang: fr-FR
-                  templated: false
-                  profile: http://microformats.org/profile/hcard
-                  name: cmsis-builders
-                  href: /cmsis-builders/?limit=20&offset=0
-                  deprecation: /link/deprecation-info
-                  title: The recent build jobs.
-                  type: object
-                collection:
-                  hreflang: fr-FR
-                  templated: false
-                  profile: http://microformats.org/profile/hcard
-                  name: cmsis-builders
-                  href: /cmsis-builders/?limit=20&offset=0
-                  deprecation: /link/deprecation-info
-                  title: The recent build jobs.
-                  type: object
-              vendor: Holtek:106
-              source_pack_id:
-                vendor: ABOV
-                name: A31G1xx_Series
-                version: 2.5.0
-              processors:
-              - core: core
-                floating_point_unit: floating_point_unit
-                cortexm_vector_extensions: cortexm_vector_extensions
-                digital_signal_processor: digital_signal_processor
-                memory_protection_unit: memory_protection_unit
-                max_core_clock_frequency: 0
-                core_revision: core_revision
-                units: 6
-                title: title
-                endian: endian
-                trust_zone: trust_zone
-              - core: core
-                floating_point_unit: floating_point_unit
-                cortexm_vector_extensions: cortexm_vector_extensions
-                digital_signal_processor: digital_signal_processor
-                memory_protection_unit: memory_protection_unit
-                max_core_clock_frequency: 0
-                core_revision: core_revision
-                units: 6
-                title: title
-                endian: endian
-                trust_zone: trust_zone
-              _metadata:
-                ctime: 1985-10-25T18:35:00Z
-                mtime: 1955-11-04T23:15:00Z
-              family: HT32F61355 Series
-              title: HT32F61355
-              slug: ht32f61355-holtek
-            - sub_family: HT32F61355
-              _links:
-                self:
-                  hreflang: fr-FR
-                  templated: false
-                  profile: http://microformats.org/profile/hcard
-                  name: cmsis-builders
-                  href: /cmsis-builders/?limit=20&offset=0
-                  deprecation: /link/deprecation-info
-                  title: The recent build jobs.
-                  type: object
-                collection:
-                  hreflang: fr-FR
-                  templated: false
-                  profile: http://microformats.org/profile/hcard
-                  name: cmsis-builders
-                  href: /cmsis-builders/?limit=20&offset=0
-                  deprecation: /link/deprecation-info
-                  title: The recent build jobs.
-                  type: object
-              vendor: Holtek:106
-              source_pack_id:
-                vendor: ABOV
-                name: A31G1xx_Series
-                version: 2.5.0
-              processors:
-              - core: core
-                floating_point_unit: floating_point_unit
-                cortexm_vector_extensions: cortexm_vector_extensions
-                digital_signal_processor: digital_signal_processor
-                memory_protection_unit: memory_protection_unit
-                max_core_clock_frequency: 0
-                core_revision: core_revision
-                units: 6
-                title: title
-                endian: endian
-                trust_zone: trust_zone
-              - core: core
-                floating_point_unit: floating_point_unit
-                cortexm_vector_extensions: cortexm_vector_extensions
-                digital_signal_processor: digital_signal_processor
-                memory_protection_unit: memory_protection_unit
-                max_core_clock_frequency: 0
-                core_revision: core_revision
-                units: 6
-                title: title
-                endian: endian
-                trust_zone: trust_zone
-              _metadata:
-                ctime: 1985-10-25T18:35:00Z
-                mtime: 1955-11-04T23:15:00Z
-              family: HT32F61355 Series
-              title: HT32F61355
-              slug: ht32f61355-holtek
             id: holtek-esk32-30615-ht32f61355-ver-10-ef6f6a3
             _metadata:
               ctime: 1985-10-25T18:35:00Z
@@ -13047,117 +12695,25 @@ components:
                 deprecation: /link/deprecation-info
                 title: The recent build jobs.
                 type: object
+              device:
+              - hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              - hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
             detect_code: "0204"
             description: Holtek ESK32-30615 HT32F61355 Starter Kit
-            mounted_devices:
-            - sub_family: HT32F61355
-              _links:
-                self:
-                  hreflang: fr-FR
-                  templated: false
-                  profile: http://microformats.org/profile/hcard
-                  name: cmsis-builders
-                  href: /cmsis-builders/?limit=20&offset=0
-                  deprecation: /link/deprecation-info
-                  title: The recent build jobs.
-                  type: object
-                collection:
-                  hreflang: fr-FR
-                  templated: false
-                  profile: http://microformats.org/profile/hcard
-                  name: cmsis-builders
-                  href: /cmsis-builders/?limit=20&offset=0
-                  deprecation: /link/deprecation-info
-                  title: The recent build jobs.
-                  type: object
-              vendor: Holtek:106
-              source_pack_id:
-                vendor: ABOV
-                name: A31G1xx_Series
-                version: 2.5.0
-              processors:
-              - core: core
-                floating_point_unit: floating_point_unit
-                cortexm_vector_extensions: cortexm_vector_extensions
-                digital_signal_processor: digital_signal_processor
-                memory_protection_unit: memory_protection_unit
-                max_core_clock_frequency: 0
-                core_revision: core_revision
-                units: 6
-                title: title
-                endian: endian
-                trust_zone: trust_zone
-              - core: core
-                floating_point_unit: floating_point_unit
-                cortexm_vector_extensions: cortexm_vector_extensions
-                digital_signal_processor: digital_signal_processor
-                memory_protection_unit: memory_protection_unit
-                max_core_clock_frequency: 0
-                core_revision: core_revision
-                units: 6
-                title: title
-                endian: endian
-                trust_zone: trust_zone
-              _metadata:
-                ctime: 1985-10-25T18:35:00Z
-                mtime: 1955-11-04T23:15:00Z
-              family: HT32F61355 Series
-              title: HT32F61355
-              slug: ht32f61355-holtek
-            - sub_family: HT32F61355
-              _links:
-                self:
-                  hreflang: fr-FR
-                  templated: false
-                  profile: http://microformats.org/profile/hcard
-                  name: cmsis-builders
-                  href: /cmsis-builders/?limit=20&offset=0
-                  deprecation: /link/deprecation-info
-                  title: The recent build jobs.
-                  type: object
-                collection:
-                  hreflang: fr-FR
-                  templated: false
-                  profile: http://microformats.org/profile/hcard
-                  name: cmsis-builders
-                  href: /cmsis-builders/?limit=20&offset=0
-                  deprecation: /link/deprecation-info
-                  title: The recent build jobs.
-                  type: object
-              vendor: Holtek:106
-              source_pack_id:
-                vendor: ABOV
-                name: A31G1xx_Series
-                version: 2.5.0
-              processors:
-              - core: core
-                floating_point_unit: floating_point_unit
-                cortexm_vector_extensions: cortexm_vector_extensions
-                digital_signal_processor: digital_signal_processor
-                memory_protection_unit: memory_protection_unit
-                max_core_clock_frequency: 0
-                core_revision: core_revision
-                units: 6
-                title: title
-                endian: endian
-                trust_zone: trust_zone
-              - core: core
-                floating_point_unit: floating_point_unit
-                cortexm_vector_extensions: cortexm_vector_extensions
-                digital_signal_processor: digital_signal_processor
-                memory_protection_unit: memory_protection_unit
-                max_core_clock_frequency: 0
-                core_revision: core_revision
-                units: 6
-                title: title
-                endian: endian
-                trust_zone: trust_zone
-              _metadata:
-                ctime: 1985-10-25T18:35:00Z
-                mtime: 1955-11-04T23:15:00Z
-              family: HT32F61355 Series
-              title: HT32F61355
-              slug: ht32f61355-holtek
             id: holtek-esk32-30615-ht32f61355-ver-10-ef6f6a3
             _metadata:
               ctime: 1985-10-25T18:35:00Z

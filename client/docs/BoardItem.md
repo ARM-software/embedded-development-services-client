@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **DetectCode** | Pointer to **NullableString** | Mbed detection code for debugging. | [optional] 
 **Features** | Pointer to [**[]BoardItemFeaturesInner**](BoardItemFeaturesInner.md) | Array of features for the Board. | [optional] 
 **Id** | **string** | Unique ID of the Board. | [readonly] 
-**MountedDevices** | Pointer to [**[]DeviceItem**](DeviceItem.md) | Array of mounted devices for the Board. | [optional] 
 **Revision** | **string** | Revision of the Board. | 
 **Summary** | **string** | Brief summary of the Board. | 
 **Title** | **string** | Human-readable name of the Board. | 
@@ -230,41 +229,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetMountedDevices
-
-`func (o *BoardItem) GetMountedDevices() []DeviceItem`
-
-GetMountedDevices returns the MountedDevices field if non-nil, zero value otherwise.
-
-### GetMountedDevicesOk
-
-`func (o *BoardItem) GetMountedDevicesOk() (*[]DeviceItem, bool)`
-
-GetMountedDevicesOk returns a tuple with the MountedDevices field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMountedDevices
-
-`func (o *BoardItem) SetMountedDevices(v []DeviceItem)`
-
-SetMountedDevices sets MountedDevices field to given value.
-
-### HasMountedDevices
-
-`func (o *BoardItem) HasMountedDevices() bool`
-
-HasMountedDevices returns a boolean if a field has been set.
-
-### SetMountedDevicesNil
-
-`func (o *BoardItem) SetMountedDevicesNil(b bool)`
-
- SetMountedDevicesNil sets the value for MountedDevices to be an explicit nil
-
-### UnsetMountedDevices
-`func (o *BoardItem) UnsetMountedDevices()`
-
-UnsetMountedDevices ensures that no value is present for MountedDevices, not even an explicit nil
 ### GetRevision
 
 `func (o *BoardItem) GetRevision() string`

@@ -20,6 +20,8 @@ type BoardItemLinks struct {
 	Collection HalLinkData `json:"collection"`
 	// Links to external services.
 	Curies []HalLinkData `json:"curies,omitempty"`
+	// Links to Devices mounted on the Board.
+	Device []HalLinkData `json:"device,omitempty"`
 	Self HalLinkData `json:"self"`
 }
 
@@ -99,6 +101,38 @@ func (o *BoardItemLinks) SetCuries(v []HalLinkData) {
 	o.Curies = v
 }
 
+// GetDevice returns the Device field value if set, zero value otherwise.
+func (o *BoardItemLinks) GetDevice() []HalLinkData {
+	if o == nil || o.Device == nil {
+		var ret []HalLinkData
+		return ret
+	}
+	return o.Device
+}
+
+// GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BoardItemLinks) GetDeviceOk() ([]HalLinkData, bool) {
+	if o == nil || o.Device == nil {
+		return nil, false
+	}
+	return o.Device, true
+}
+
+// HasDevice returns a boolean if a field has been set.
+func (o *BoardItemLinks) HasDevice() bool {
+	if o != nil && o.Device != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDevice gets a reference to the given []HalLinkData and assigns it to the Device field.
+func (o *BoardItemLinks) SetDevice(v []HalLinkData) {
+	o.Device = v
+}
+
 // GetSelf returns the Self field value
 func (o *BoardItemLinks) GetSelf() HalLinkData {
 	if o == nil {
@@ -130,6 +164,9 @@ func (o BoardItemLinks) MarshalJSON() ([]byte, error) {
 	}
 	if o.Curies != nil {
 		toSerialize["curies"] = o.Curies
+	}
+	if o.Device != nil {
+		toSerialize["device"] = o.Device
 	}
 	if true {
 		toSerialize["self"] = o.Self

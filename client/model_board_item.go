@@ -29,8 +29,6 @@ type BoardItem struct {
 	Features []BoardItemFeaturesInner `json:"features,omitempty"`
 	// Unique ID of the Board.
 	Id string `json:"id"`
-	// Array of mounted devices for the Board.
-	MountedDevices []DeviceItem `json:"mounted_devices,omitempty"`
 	// Revision of the Board.
 	Revision string `json:"revision"`
 	// Brief summary of the Board.
@@ -269,39 +267,6 @@ func (o *BoardItem) SetId(v string) {
 	o.Id = v
 }
 
-// GetMountedDevices returns the MountedDevices field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *BoardItem) GetMountedDevices() []DeviceItem {
-	if o == nil {
-		var ret []DeviceItem
-		return ret
-	}
-	return o.MountedDevices
-}
-
-// GetMountedDevicesOk returns a tuple with the MountedDevices field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *BoardItem) GetMountedDevicesOk() ([]DeviceItem, bool) {
-	if o == nil || o.MountedDevices == nil {
-		return nil, false
-	}
-	return o.MountedDevices, true
-}
-
-// HasMountedDevices returns a boolean if a field has been set.
-func (o *BoardItem) HasMountedDevices() bool {
-	if o != nil && o.MountedDevices != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMountedDevices gets a reference to the given []DeviceItem and assigns it to the MountedDevices field.
-func (o *BoardItem) SetMountedDevices(v []DeviceItem) {
-	o.MountedDevices = v
-}
-
 // GetRevision returns the Revision field value
 func (o *BoardItem) GetRevision() string {
 	if o == nil {
@@ -396,9 +361,6 @@ func (o BoardItem) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["id"] = o.Id
-	}
-	if o.MountedDevices != nil {
-		toSerialize["mounted_devices"] = o.MountedDevices
 	}
 	if true {
 		toSerialize["revision"] = o.Revision

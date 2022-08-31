@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Collection** | [**HalLinkData**](HalLinkData.md) |  | 
 **Curies** | Pointer to [**[]HalLinkData**](HalLinkData.md) | Links to external services. | [optional] [readonly] 
+**Device** | Pointer to [**[]HalLinkData**](HalLinkData.md) | Links to Devices mounted on the Board. | [optional] 
 **Self** | [**HalLinkData**](HalLinkData.md) |  | 
 
 ## Methods
@@ -82,6 +83,31 @@ HasCuries returns a boolean if a field has been set.
 `func (o *BoardItemLinks) UnsetCuries()`
 
 UnsetCuries ensures that no value is present for Curies, not even an explicit nil
+### GetDevice
+
+`func (o *BoardItemLinks) GetDevice() []HalLinkData`
+
+GetDevice returns the Device field if non-nil, zero value otherwise.
+
+### GetDeviceOk
+
+`func (o *BoardItemLinks) GetDeviceOk() (*[]HalLinkData, bool)`
+
+GetDeviceOk returns a tuple with the Device field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDevice
+
+`func (o *BoardItemLinks) SetDevice(v []HalLinkData)`
+
+SetDevice sets Device field to given value.
+
+### HasDevice
+
+`func (o *BoardItemLinks) HasDevice() bool`
+
+HasDevice returns a boolean if a field has been set.
+
 ### GetSelf
 
 `func (o *BoardItemLinks) GetSelf() HalLinkData`
