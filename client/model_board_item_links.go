@@ -18,21 +18,26 @@ import (
 // BoardItemLinks The links for a BoardItem.
 type BoardItemLinks struct {
 	Collection HalLinkData `json:"collection"`
-	// Links to external services.
-	Curies []HalLinkData `json:"curies,omitempty"`
 	// Links to Devices mounted on the Board.
 	Device []HalLinkData `json:"device,omitempty"`
+	// Links to any documentation held by the Board.
+	Documentation []HalLinkData `json:"documentation,omitempty"`
+	Download *HalLinkData `json:"download,omitempty"`
+	Guide *HalLinkData `json:"guide,omitempty"`
+	Image *HalLinkData `json:"image,omitempty"`
 	Self HalLinkData `json:"self"`
+	Vendor HalLinkData `json:"vendor"`
 }
 
 // NewBoardItemLinks instantiates a new BoardItemLinks object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBoardItemLinks(collection HalLinkData, self HalLinkData) *BoardItemLinks {
+func NewBoardItemLinks(collection HalLinkData, self HalLinkData, vendor HalLinkData) *BoardItemLinks {
 	this := BoardItemLinks{}
 	this.Collection = collection
 	this.Self = self
+	this.Vendor = vendor
 	return &this
 }
 
@@ -68,39 +73,6 @@ func (o *BoardItemLinks) SetCollection(v HalLinkData) {
 	o.Collection = v
 }
 
-// GetCuries returns the Curies field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *BoardItemLinks) GetCuries() []HalLinkData {
-	if o == nil {
-		var ret []HalLinkData
-		return ret
-	}
-	return o.Curies
-}
-
-// GetCuriesOk returns a tuple with the Curies field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *BoardItemLinks) GetCuriesOk() ([]HalLinkData, bool) {
-	if o == nil || o.Curies == nil {
-		return nil, false
-	}
-	return o.Curies, true
-}
-
-// HasCuries returns a boolean if a field has been set.
-func (o *BoardItemLinks) HasCuries() bool {
-	if o != nil && o.Curies != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCuries gets a reference to the given []HalLinkData and assigns it to the Curies field.
-func (o *BoardItemLinks) SetCuries(v []HalLinkData) {
-	o.Curies = v
-}
-
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *BoardItemLinks) GetDevice() []HalLinkData {
 	if o == nil || o.Device == nil {
@@ -133,6 +105,134 @@ func (o *BoardItemLinks) SetDevice(v []HalLinkData) {
 	o.Device = v
 }
 
+// GetDocumentation returns the Documentation field value if set, zero value otherwise.
+func (o *BoardItemLinks) GetDocumentation() []HalLinkData {
+	if o == nil || o.Documentation == nil {
+		var ret []HalLinkData
+		return ret
+	}
+	return o.Documentation
+}
+
+// GetDocumentationOk returns a tuple with the Documentation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BoardItemLinks) GetDocumentationOk() ([]HalLinkData, bool) {
+	if o == nil || o.Documentation == nil {
+		return nil, false
+	}
+	return o.Documentation, true
+}
+
+// HasDocumentation returns a boolean if a field has been set.
+func (o *BoardItemLinks) HasDocumentation() bool {
+	if o != nil && o.Documentation != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentation gets a reference to the given []HalLinkData and assigns it to the Documentation field.
+func (o *BoardItemLinks) SetDocumentation(v []HalLinkData) {
+	o.Documentation = v
+}
+
+// GetDownload returns the Download field value if set, zero value otherwise.
+func (o *BoardItemLinks) GetDownload() HalLinkData {
+	if o == nil || o.Download == nil {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Download
+}
+
+// GetDownloadOk returns a tuple with the Download field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BoardItemLinks) GetDownloadOk() (*HalLinkData, bool) {
+	if o == nil || o.Download == nil {
+		return nil, false
+	}
+	return o.Download, true
+}
+
+// HasDownload returns a boolean if a field has been set.
+func (o *BoardItemLinks) HasDownload() bool {
+	if o != nil && o.Download != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDownload gets a reference to the given HalLinkData and assigns it to the Download field.
+func (o *BoardItemLinks) SetDownload(v HalLinkData) {
+	o.Download = &v
+}
+
+// GetGuide returns the Guide field value if set, zero value otherwise.
+func (o *BoardItemLinks) GetGuide() HalLinkData {
+	if o == nil || o.Guide == nil {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Guide
+}
+
+// GetGuideOk returns a tuple with the Guide field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BoardItemLinks) GetGuideOk() (*HalLinkData, bool) {
+	if o == nil || o.Guide == nil {
+		return nil, false
+	}
+	return o.Guide, true
+}
+
+// HasGuide returns a boolean if a field has been set.
+func (o *BoardItemLinks) HasGuide() bool {
+	if o != nil && o.Guide != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGuide gets a reference to the given HalLinkData and assigns it to the Guide field.
+func (o *BoardItemLinks) SetGuide(v HalLinkData) {
+	o.Guide = &v
+}
+
+// GetImage returns the Image field value if set, zero value otherwise.
+func (o *BoardItemLinks) GetImage() HalLinkData {
+	if o == nil || o.Image == nil {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Image
+}
+
+// GetImageOk returns a tuple with the Image field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BoardItemLinks) GetImageOk() (*HalLinkData, bool) {
+	if o == nil || o.Image == nil {
+		return nil, false
+	}
+	return o.Image, true
+}
+
+// HasImage returns a boolean if a field has been set.
+func (o *BoardItemLinks) HasImage() bool {
+	if o != nil && o.Image != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetImage gets a reference to the given HalLinkData and assigns it to the Image field.
+func (o *BoardItemLinks) SetImage(v HalLinkData) {
+	o.Image = &v
+}
+
 // GetSelf returns the Self field value
 func (o *BoardItemLinks) GetSelf() HalLinkData {
 	if o == nil {
@@ -157,19 +257,55 @@ func (o *BoardItemLinks) SetSelf(v HalLinkData) {
 	o.Self = v
 }
 
+// GetVendor returns the Vendor field value
+func (o *BoardItemLinks) GetVendor() HalLinkData {
+	if o == nil {
+		var ret HalLinkData
+		return ret
+	}
+
+	return o.Vendor
+}
+
+// GetVendorOk returns a tuple with the Vendor field value
+// and a boolean to check if the value has been set.
+func (o *BoardItemLinks) GetVendorOk() (*HalLinkData, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Vendor, true
+}
+
+// SetVendor sets field value
+func (o *BoardItemLinks) SetVendor(v HalLinkData) {
+	o.Vendor = v
+}
+
 func (o BoardItemLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["collection"] = o.Collection
 	}
-	if o.Curies != nil {
-		toSerialize["curies"] = o.Curies
-	}
 	if o.Device != nil {
 		toSerialize["device"] = o.Device
 	}
+	if o.Documentation != nil {
+		toSerialize["documentation"] = o.Documentation
+	}
+	if o.Download != nil {
+		toSerialize["download"] = o.Download
+	}
+	if o.Guide != nil {
+		toSerialize["guide"] = o.Guide
+	}
+	if o.Image != nil {
+		toSerialize["image"] = o.Image
+	}
 	if true {
 		toSerialize["self"] = o.Self
+	}
+	if true {
+		toSerialize["vendor"] = o.Vendor
 	}
 	return json.Marshal(toSerialize)
 }

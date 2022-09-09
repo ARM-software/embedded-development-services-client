@@ -5,15 +5,19 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Collection** | [**HalLinkData**](HalLinkData.md) |  | 
-**Curies** | Pointer to [**[]HalLinkData**](HalLinkData.md) | Links to external services. | [optional] [readonly] 
 **Device** | Pointer to [**[]HalLinkData**](HalLinkData.md) | Links to Devices mounted on the Board. | [optional] 
+**Documentation** | Pointer to [**[]HalLinkData**](HalLinkData.md) | Links to any documentation held by the Board. | [optional] 
+**Download** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
+**Guide** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
+**Image** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Self** | [**HalLinkData**](HalLinkData.md) |  | 
+**Vendor** | [**HalLinkData**](HalLinkData.md) |  | 
 
 ## Methods
 
 ### NewBoardItemLinks
 
-`func NewBoardItemLinks(collection HalLinkData, self HalLinkData, ) *BoardItemLinks`
+`func NewBoardItemLinks(collection HalLinkData, self HalLinkData, vendor HalLinkData, ) *BoardItemLinks`
 
 NewBoardItemLinks instantiates a new BoardItemLinks object
 This constructor will assign default values to properties that have it defined,
@@ -48,41 +52,6 @@ and a boolean to check if the value has been set.
 SetCollection sets Collection field to given value.
 
 
-### GetCuries
-
-`func (o *BoardItemLinks) GetCuries() []HalLinkData`
-
-GetCuries returns the Curies field if non-nil, zero value otherwise.
-
-### GetCuriesOk
-
-`func (o *BoardItemLinks) GetCuriesOk() (*[]HalLinkData, bool)`
-
-GetCuriesOk returns a tuple with the Curies field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCuries
-
-`func (o *BoardItemLinks) SetCuries(v []HalLinkData)`
-
-SetCuries sets Curies field to given value.
-
-### HasCuries
-
-`func (o *BoardItemLinks) HasCuries() bool`
-
-HasCuries returns a boolean if a field has been set.
-
-### SetCuriesNil
-
-`func (o *BoardItemLinks) SetCuriesNil(b bool)`
-
- SetCuriesNil sets the value for Curies to be an explicit nil
-
-### UnsetCuries
-`func (o *BoardItemLinks) UnsetCuries()`
-
-UnsetCuries ensures that no value is present for Curies, not even an explicit nil
 ### GetDevice
 
 `func (o *BoardItemLinks) GetDevice() []HalLinkData`
@@ -108,6 +77,106 @@ SetDevice sets Device field to given value.
 
 HasDevice returns a boolean if a field has been set.
 
+### GetDocumentation
+
+`func (o *BoardItemLinks) GetDocumentation() []HalLinkData`
+
+GetDocumentation returns the Documentation field if non-nil, zero value otherwise.
+
+### GetDocumentationOk
+
+`func (o *BoardItemLinks) GetDocumentationOk() (*[]HalLinkData, bool)`
+
+GetDocumentationOk returns a tuple with the Documentation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDocumentation
+
+`func (o *BoardItemLinks) SetDocumentation(v []HalLinkData)`
+
+SetDocumentation sets Documentation field to given value.
+
+### HasDocumentation
+
+`func (o *BoardItemLinks) HasDocumentation() bool`
+
+HasDocumentation returns a boolean if a field has been set.
+
+### GetDownload
+
+`func (o *BoardItemLinks) GetDownload() HalLinkData`
+
+GetDownload returns the Download field if non-nil, zero value otherwise.
+
+### GetDownloadOk
+
+`func (o *BoardItemLinks) GetDownloadOk() (*HalLinkData, bool)`
+
+GetDownloadOk returns a tuple with the Download field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDownload
+
+`func (o *BoardItemLinks) SetDownload(v HalLinkData)`
+
+SetDownload sets Download field to given value.
+
+### HasDownload
+
+`func (o *BoardItemLinks) HasDownload() bool`
+
+HasDownload returns a boolean if a field has been set.
+
+### GetGuide
+
+`func (o *BoardItemLinks) GetGuide() HalLinkData`
+
+GetGuide returns the Guide field if non-nil, zero value otherwise.
+
+### GetGuideOk
+
+`func (o *BoardItemLinks) GetGuideOk() (*HalLinkData, bool)`
+
+GetGuideOk returns a tuple with the Guide field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGuide
+
+`func (o *BoardItemLinks) SetGuide(v HalLinkData)`
+
+SetGuide sets Guide field to given value.
+
+### HasGuide
+
+`func (o *BoardItemLinks) HasGuide() bool`
+
+HasGuide returns a boolean if a field has been set.
+
+### GetImage
+
+`func (o *BoardItemLinks) GetImage() HalLinkData`
+
+GetImage returns the Image field if non-nil, zero value otherwise.
+
+### GetImageOk
+
+`func (o *BoardItemLinks) GetImageOk() (*HalLinkData, bool)`
+
+GetImageOk returns a tuple with the Image field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetImage
+
+`func (o *BoardItemLinks) SetImage(v HalLinkData)`
+
+SetImage sets Image field to given value.
+
+### HasImage
+
+`func (o *BoardItemLinks) HasImage() bool`
+
+HasImage returns a boolean if a field has been set.
+
 ### GetSelf
 
 `func (o *BoardItemLinks) GetSelf() HalLinkData`
@@ -126,6 +195,26 @@ and a boolean to check if the value has been set.
 `func (o *BoardItemLinks) SetSelf(v HalLinkData)`
 
 SetSelf sets Self field to given value.
+
+
+### GetVendor
+
+`func (o *BoardItemLinks) GetVendor() HalLinkData`
+
+GetVendor returns the Vendor field if non-nil, zero value otherwise.
+
+### GetVendorOk
+
+`func (o *BoardItemLinks) GetVendorOk() (*HalLinkData, bool)`
+
+GetVendorOk returns a tuple with the Vendor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVendor
+
+`func (o *BoardItemLinks) SetVendor(v HalLinkData)`
+
+SetVendor sets Vendor field to given value.
 
 
 

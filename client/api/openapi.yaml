@@ -7934,7 +7934,34 @@ components:
         - adapter: e-Link32 Pro
           connector: Micro-USB
         _links:
-          curies:
+          image:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          download:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          vendor:
+            hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          documentation:
           - hreflang: fr-FR
             templated: false
             profile: http://microformats.org/profile/hcard
@@ -7979,6 +8006,15 @@ components:
             title: The recent build jobs.
             type: object
           - hreflang: fr-FR
+            templated: false
+            profile: http://microformats.org/profile/hcard
+            name: cmsis-builders
+            href: /cmsis-builders/?limit=20&offset=0
+            deprecation: /link/deprecation-info
+            title: The recent build jobs.
+            type: object
+          guide:
+            hreflang: fr-FR
             templated: false
             profile: http://microformats.org/profile/hcard
             name: cmsis-builders
@@ -8050,7 +8086,34 @@ components:
     BoardItemLinks:
       description: The links for a BoardItem.
       example:
-        curies:
+        image:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        download:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        vendor:
+          hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        documentation:
         - hreflang: fr-FR
           templated: false
           profile: http://microformats.org/profile/hcard
@@ -8095,6 +8158,15 @@ components:
           title: The recent build jobs.
           type: object
         - hreflang: fr-FR
+          templated: false
+          profile: http://microformats.org/profile/hcard
+          name: cmsis-builders
+          href: /cmsis-builders/?limit=20&offset=0
+          deprecation: /link/deprecation-info
+          title: The recent build jobs.
+          type: object
+        guide:
+          hreflang: fr-FR
           templated: false
           profile: http://microformats.org/profile/hcard
           name: cmsis-builders
@@ -8105,24 +8177,31 @@ components:
       properties:
         collection:
           $ref: '#/components/schemas/HalLinkData'
-        curies:
-          description: Links to external services.
-          items:
-            $ref: '#/components/schemas/HalLinkData'
-          nullable: true
-          readOnly: true
-          type: array
         device:
           description: Links to Devices mounted on the Board.
           items:
             $ref: '#/components/schemas/HalLinkData'
           type: array
+        documentation:
+          description: Links to any documentation held by the Board.
+          items:
+            $ref: '#/components/schemas/HalLinkData'
+          type: array
+        download:
+          $ref: '#/components/schemas/HalLinkData'
+        guide:
+          $ref: '#/components/schemas/HalLinkData'
+        image:
+          $ref: '#/components/schemas/HalLinkData'
         self:
+          $ref: '#/components/schemas/HalLinkData'
+        vendor:
           $ref: '#/components/schemas/HalLinkData'
       readOnly: true
       required:
       - collection
       - self
+      - vendor
       title: Board Item Links
       type: object
     BuildJobCollection:
@@ -9884,7 +9963,34 @@ components:
           - adapter: e-Link32 Pro
             connector: Micro-USB
           _links:
-            curies:
+            image:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            download:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            vendor:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            documentation:
             - hreflang: fr-FR
               templated: false
               profile: http://microformats.org/profile/hcard
@@ -9929,6 +10035,15 @@ components:
               title: The recent build jobs.
               type: object
             - hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            guide:
+              hreflang: fr-FR
               templated: false
               profile: http://microformats.org/profile/hcard
               name: cmsis-builders
@@ -9962,7 +10077,34 @@ components:
           - adapter: e-Link32 Pro
             connector: Micro-USB
           _links:
-            curies:
+            image:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            download:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            vendor:
+              hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            documentation:
             - hreflang: fr-FR
               templated: false
               profile: http://microformats.org/profile/hcard
@@ -10007,6 +10149,15 @@ components:
               title: The recent build jobs.
               type: object
             - hreflang: fr-FR
+              templated: false
+              profile: http://microformats.org/profile/hcard
+              name: cmsis-builders
+              href: /cmsis-builders/?limit=20&offset=0
+              deprecation: /link/deprecation-info
+              title: The recent build jobs.
+              type: object
+            guide:
+              hreflang: fr-FR
               templated: false
               profile: http://microformats.org/profile/hcard
               name: cmsis-builders
@@ -11670,13 +11821,6 @@ components:
       - self
       title: HAL Collection Links
       type: object
-    HalCurieLinks:
-      description: Links to external services.
-      items:
-        $ref: '#/components/schemas/HalLinkData'
-      nullable: true
-      readOnly: true
-      type: array
     HalFeedLinks:
       description: "These hypermedia links inside a feed resource allow the contents\
         \ of the resource to be paged. A feed is typically made up of a list of items,\
@@ -12582,7 +12726,34 @@ components:
             - adapter: e-Link32 Pro
               connector: Micro-USB
             _links:
-              curies:
+              image:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              download:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              vendor:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              documentation:
               - hreflang: fr-FR
                 templated: false
                 profile: http://microformats.org/profile/hcard
@@ -12627,6 +12798,15 @@ components:
                 title: The recent build jobs.
                 type: object
               - hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              guide:
+                hreflang: fr-FR
                 templated: false
                 profile: http://microformats.org/profile/hcard
                 name: cmsis-builders
@@ -12660,7 +12840,34 @@ components:
             - adapter: e-Link32 Pro
               connector: Micro-USB
             _links:
-              curies:
+              image:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              download:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              vendor:
+                hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              documentation:
               - hreflang: fr-FR
                 templated: false
                 profile: http://microformats.org/profile/hcard
@@ -12705,6 +12912,15 @@ components:
                 title: The recent build jobs.
                 type: object
               - hreflang: fr-FR
+                templated: false
+                profile: http://microformats.org/profile/hcard
+                name: cmsis-builders
+                href: /cmsis-builders/?limit=20&offset=0
+                deprecation: /link/deprecation-info
+                title: The recent build jobs.
+                type: object
+              guide:
+                hreflang: fr-FR
                 templated: false
                 profile: http://microformats.org/profile/hcard
                 name: cmsis-builders
