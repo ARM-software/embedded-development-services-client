@@ -9681,7 +9681,7 @@ components:
             deprecation: /link/deprecation-info
             title: The recent build jobs.
             type: object
-        vendor: Holtek:106
+        vendor: Holtek
         source_pack_id:
           vendor: ABOV
           name: A31G1xx_Series
@@ -9748,7 +9748,7 @@ components:
           type: string
         vendor:
           description: Vendor of the Device.
-          example: Holtek:106
+          example: Holtek
           type: string
       required:
       - _links
@@ -10557,7 +10557,7 @@ components:
               deprecation: /link/deprecation-info
               title: The recent build jobs.
               type: object
-          vendor: Holtek:106
+          vendor: Holtek
           source_pack_id:
             vendor: ABOV
             name: A31G1xx_Series
@@ -10611,7 +10611,7 @@ components:
               deprecation: /link/deprecation-info
               title: The recent build jobs.
               type: object
-          vendor: Holtek:106
+          vendor: Holtek
           source_pack_id:
             vendor: ABOV
             name: A31G1xx_Series
@@ -13090,7 +13090,7 @@ components:
                 deprecation: /link/deprecation-info
                 title: The recent build jobs.
                 type: object
-            vendor: Holtek:106
+            vendor: Holtek
             source_pack_id:
               vendor: ABOV
               name: A31G1xx_Series
@@ -13144,7 +13144,7 @@ components:
                 deprecation: /link/deprecation-info
                 title: The recent build jobs.
                 type: object
-            vendor: Holtek:106
+            vendor: Holtek
             source_pack_id:
               vendor: ABOV
               name: A31G1xx_Series
