@@ -77,7 +77,7 @@ func (a *VendorsApiService) CreateVendorExecute(r ApiCreateVendorRequest) (*Vend
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/vendors"
+	localVarPath := localBasePath + "/vendors/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -273,7 +273,7 @@ func (a *VendorsApiService) GetVendorExecute(r ApiGetVendorRequest) (*VendorItem
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/vendors/{vendorSlugOrId}"
+	localVarPath := localBasePath + "/vendors/{vendorSlugOrId}/"
 	localVarPath = strings.Replace(localVarPath, "{"+"vendorSlugOrId"+"}", url.PathEscape(parameterToString(r.vendorSlugOrId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -460,7 +460,7 @@ func (a *VendorsApiService) ListVendorsExecute(r ApiListVendorsRequest) (*ListVe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/vendors"
+	localVarPath := localBasePath + "/vendors/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

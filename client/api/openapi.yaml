@@ -3033,7 +3033,7 @@ paths:
         linkRelation: retain
         resource: IntellisenseJobItem
         title: Postpone the cleanup of the an intellisense job.
-  /vendors:
+  /vendors/:
     get:
       description: This returns a collection resource that lists all of the Vendors
         available to the service.
@@ -3248,7 +3248,7 @@ paths:
       tags:
       - Vendors
       x-redact: true
-  /vendors/{vendorSlugOrId}:
+  /vendors/{vendorSlugOrId}/:
     get:
       description: Get a specific Vendor Item
       operationId: getVendor
@@ -7103,25 +7103,6 @@ components:
       explode: false
       in: path
       name: deviceSlug
-      required: true
-      schema:
-        type: string
-      style: simple
-    ExternalIdParam:
-      description: The external identifier from the original data source for this
-        Vendor
-      explode: false
-      in: path
-      name: externalId
-      required: true
-      schema:
-        type: string
-      style: simple
-    TypeParam:
-      description: "The type of the following ExternalId, e.g. `bVendor`, `dVendor`"
-      explode: false
-      in: path
-      name: type
       required: true
       schema:
         type: string

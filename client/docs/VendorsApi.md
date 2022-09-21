@@ -4,9 +4,9 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateVendor**](VendorsApi.md#CreateVendor) | **Post** /vendors | Create a new Vendor
-[**GetVendor**](VendorsApi.md#GetVendor) | **Get** /vendors/{vendorSlugOrId} | Get a Vendor Item
-[**ListVendors**](VendorsApi.md#ListVendors) | **Get** /vendors | List all the Vendors.
+[**CreateVendor**](VendorsApi.md#CreateVendor) | **Post** /vendors/ | Create a new Vendor
+[**GetVendor**](VendorsApi.md#GetVendor) | **Get** /vendors/{vendorSlugOrId}/ | Get a Vendor Item
+[**ListVendors**](VendorsApi.md#ListVendors) | **Get** /vendors/ | List all the Vendors.
 
 
 
