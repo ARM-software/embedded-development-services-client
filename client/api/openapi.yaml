@@ -4,37 +4,33 @@ info:
     email: support@arm.com
     name: API Support
     url: https://www.keil.com/
-  description: "This API provides a RESTful interface to all the Solar services e.g.\
-    \ looking for boards, building projects, etc.\n- This API uses Hypermedia as the\
-    \ Engine of Application State (HATEOAS) to drive the discovery and provide\n \
-    \ affordances.\n- Discovery is possible by following links from the well known\
-    \ root resource. While this specification lists\n  all supported endpoints, it\
-    \ is only recommended that these are hard coded into a client if code generation\
-    \ is\n  being used. Otherwise, it is recommended that the discovery mechanisms\
-    \ present in the resources (affordances)\n  are used exclusively.\n- Affordances\
-    \ are links which indicate whether an action is currently possible, this is significantly\
-    \ different from\n  whether the service supports an action in general. This specification\
-    \ defines what actions could be possible,\n  but only by checking the affordances\
-    \ returned by the API in the returned resources, can a client determine whether\n\
-    \  this action is currently possible or available for the current user. For example:\n\
-    \  - An operation to modify a resource could be defined in this specification,\
-    \ but the user may lack the appropriate\n    privileges. In that situation, the\
-    \ affordance link would not be present in the resource when read. Therefore,\n\
-    \    the client can infer that it is not possible to edit this resource and present\
-    \ appropriate information to the\n    user.\n  - An operation to delete a resource\
-    \ could be defined and be possible in some circumstances. The specification\n\
-    \    describes that the delete is supported and how to use it, but the affordance\
-    \ describes whether it is currently\n    possible. The logic in the API may dictate\
-    \ that if the resource was in use (perhaps it is a running job or used\n    by\
-    \ another resource), then it will not be possible to delete that resource as it\
-    \ would result in a conflicted\n    state.\n- It is strongly encouraged that affordances\
-    \ are used by all clients, even those using code generation. This has the\n  ability\
-    \ to both improve robustness and the user experience by decoupling the client\
-    \ and server. For example, if for\n  some reason the criteria for deleting a resource\
-    \ changes, the logic is only implemented in the server and there is\n  no need\
-    \ to update the logic in the client as it is driven by the affordances.\n- The\
-    \ format used for the resources is the Hypertext Application Language (HAL), which\
-    \ includes the definition\n  of links and embedded resources.\n"
+  description: |
+    This API provides a RESTful interface to all the Solar services e.g. looking for boards, building projects, etc.
+    - This API uses Hypermedia as the Engine of Application State (HATEOAS) to drive the discovery and provide
+      affordances.
+    - Discovery is possible by following links from the well known root resource. While this specification lists
+      all supported endpoints, it is only recommended that these are hard coded into a client if code generation is
+      being used. Otherwise, it is recommended that the discovery mechanisms present in the resources (affordances)
+      are used exclusively.
+    - Affordances are links which indicate whether an action is currently possible, this is significantly different from
+      whether the service supports an action in general. This specification defines what actions could be possible,
+      but only by checking the affordances returned by the API in the returned resources, can a client determine whether
+      this action is currently possible or available for the current user. For example:
+      - An operation to modify a resource could be defined in this specification, but the user may lack the appropriate
+        privileges. In that situation, the affordance link would not be present in the resource when read. Therefore,
+        the client can infer that it is not possible to edit this resource and present appropriate information to the
+        user.
+      - An operation to delete a resource could be defined and be possible in some circumstances. The specification
+        describes that the delete is supported and how to use it, but the affordance describes whether it is currently
+        possible. The logic in the API may dictate that if the resource was in use (perhaps it is a running job or used
+        by another resource), then it will not be possible to delete that resource as it would result in a conflicted
+        state.
+    - It is strongly encouraged that affordances are used by all clients, even those using code generation. This has the
+      ability to both improve robustness and the user experience by decoupling the client and server. For example, if for
+      some reason the criteria for deleting a resource changes, the logic is only implemented in the server and there is
+      no need to update the logic in the client as it is driven by the affordances.
+    - The format used for the resources is the Hypertext Application Language (HAL), which includes the definition
+      of links and embedded resources.
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -3788,9 +3784,9 @@ paths:
         title: Start VHT Run Job.
   /vht-instances/{instanceName}/artefacts/:
     get:
-      description: "An artefact represents the main product under test such as a binary\
-        \ file or test auxiliaries such as input files.\nThe managers enable their\
-        \ upload, download or deletion."
+      description: |-
+        An artefact represents the main product under test such as a binary file or test auxiliaries such as input files.
+        The managers enable their upload, download or deletion.
       operationId: listVhtInstanceArtefactManagers
       parameters:
       - description: Unique ID of the VHT instance.
@@ -3929,9 +3925,9 @@ paths:
         title: The managers of the artefacts (e.g. binary) used on this platform.
   /vht-instances/{instanceName}/artefacts/{artefactName}:
     get:
-      description: "An artefact represents an item used by the VHT instance for a\
-        \ run job (e.g. binary, test fixture).\nThe manager enables upload, download\
-        \ and deletion of said artefact."
+      description: |-
+        An artefact represents an item used by the VHT instance for a run job (e.g. binary, test fixture).
+        The manager enables upload, download and deletion of said artefact.
       operationId: getVhtInstanceArtefactManager
       parameters:
       - description: The URL safe name of the artefact.
@@ -7781,9 +7777,9 @@ components:
       title: manager of an artefact
       type: object
     ArtefactManagerLinks:
-      description: "links to manage artefacts\nNote: the links for actions on artefacts\
-        \ (i.e. upload, download, clear) should have in their title the title specified\
-        \ by the user for the artefact when uploading it."
+      description: |-
+        links to manage artefacts
+        Note: the links for actions on artefacts (i.e. upload, download, clear) should have in their title the title specified by the user for the artefact when uploading it.
       example:
         download:
           hreflang: fr-FR
@@ -7867,9 +7863,9 @@ components:
           format: binary
           type: string
         contentMediaType:
-          description: "Media type of the artefact according to https://www.iana.org/assignments/media-types/media-types.xhtml\n\
-            Technically redundant, but can be used by JSON Schema tools that may not\
-            \ be aware of the OpenAPI context."
+          description: |-
+            Media type of the artefact according to https://www.iana.org/assignments/media-types/media-types.xhtml
+            Technically redundant, but can be used by JSON Schema tools that may not be aware of the OpenAPI context.
           example: application/octet-stream
           nullable: true
           type: string
@@ -7878,9 +7874,9 @@ components:
           example: 23db6982caef9e9152f1a5b2589e6ca3
           type: string
         size:
-          description: "size in bytes of this artefact.\nTechnically redundant, but\
-            \ can be used by JSON Schema tools that may not be aware of the OpenAPI\
-            \ context."
+          description: |-
+            size in bytes of this artefact.
+            Technically redundant, but can be used by JSON Schema tools that may not be aware of the OpenAPI context.
           example: 50000
           format: int64
           type: integer
@@ -8601,21 +8597,21 @@ components:
         _metadata:
           $ref: '#/components/schemas/CommonMetadata'
         buildStepsCompleted:
-          description: "The number of build steps that have been completed so far.\
-            \ Please note:\n- This value also includes additional service orchestration\
-            \ steps, that are outside the core build process,\n  so may differ from\
-            \ the build progress indicated within build messages.\n- This value will\
-            \ only be available after the build has been started."
+          description: |-
+            The number of build steps that have been completed so far. Please note:
+            - This value also includes additional service orchestration steps, that are outside the core build process,
+              so may differ from the build progress indicated within build messages.
+            - This value will only be available after the build has been started.
           example: 50
           nullable: true
           readOnly: true
           type: integer
         buildStepsTotal:
-          description: "The total number of steps that will need to be performed to\
-            \ complete the build. Please note:\n- This value also includes additional\
-            \ service orchestration steps, that are outside the core build process,\n\
-            \  so may differ from the build progress indicated within build messages.\n\
-            - This value will only be available after the build has been started."
+          description: |-
+            The total number of steps that will need to be performed to complete the build. Please note:
+            - This value also includes additional service orchestration steps, that are outside the core build process,
+              so may differ from the build progress indicated within build messages.
+            - This value will only be available after the build has been started.
           example: 70
           nullable: true
           readOnly: true
@@ -8669,10 +8665,10 @@ components:
           readOnly: true
           type: boolean
         status:
-          description: "A summary status of the job.\nNote: this value should not\
-            \ be relied upon to determine whether a job has completed, succeeded or\
-            \ failed as this list may change as state machine evolves.\nUse resource\
-            \ appropriate flags instead."
+          description: |-
+            A summary status of the job.
+            Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves.
+            Use resource appropriate flags instead.
           enum:
           - CANCELLED
           - CANCELLING
@@ -8698,8 +8694,9 @@ components:
           nullable: true
           type: string
         workspace:
-          description: "Workspace name where the CMSIS project is present.\nIf not\
-            \ set, the default user's workspace will be used."
+          description: |-
+            Workspace name where the CMSIS project is present.
+            If not set, the default user's workspace will be used.
           example: workspace0001
           nullable: true
           type: string
@@ -8884,7 +8881,8 @@ components:
           severity: info
           source: CMSIS
         - ctime: 2021-01-19T13:00:33Z
-          message: "(cbuild.sh): Build Invocation 1.0.0 (C) 2020 ARM\n"
+          message: |
+            (cbuild.sh): Build Invocation 1.0.0 (C) 2020 ARM
           severity: info
           source: CMSIS
         _metadata:
@@ -8909,7 +8907,8 @@ components:
             severity: info
             source: CMSIS
           - ctime: 2021-01-19T13:00:33Z
-            message: "(cbuild.sh): Build Invocation 1.0.0 (C) 2020 ARM\n"
+            message: |
+              (cbuild.sh): Build Invocation 1.0.0 (C) 2020 ARM
             severity: info
             source: CMSIS
           items:
@@ -11667,24 +11666,20 @@ components:
       title: Field
       type: object
     HalCollectionLinks:
-      description: "These hypermedia links inside a collection resource allow contained\
-        \ resources to be discovered and for large collections to be paged through.\
-        \ - The `item` link relation contains a list of resources contained in the\
-        \ collection. If there is a `next` or\n  `previous` link present then not\
-        \ all the resources in the collection are currently being shown.\n- The `first`\
-        \ link points to the first page of a feed resource, this will not be be present\
-        \ if the entire\n  resource has been returned in the current page.\n- The\
-        \ `last` link points to the last page of a feed resource, this will not be\
-        \ be present if the entire\n  resource has been returned in the current page.\n\
-        - The `prev` link points to the previous page in the resource, this will not\
-        \ be present if the current page is\n  the first (or only page) page.\n- The\
-        \ `next` link points to the next page in the resource, this will not be present\
-        \ if the current page is the\n  last (or only page) page.\n- The `simple`\
-        \ link relation will be present in embedded representations to retrieve a\
-        \ non embedded\n  representation of the current context.\n- The `alternate`\
-        \ link relation is a simple templated URI to allow page selection by a client.\
-        \ - The `embedded`  link relation is an embedded representation of the current\
-        \ (non-embedded context)."
+      description: |-
+        These hypermedia links inside a collection resource allow contained resources to be discovered and for large collections to be paged through. - The `item` link relation contains a list of resources contained in the collection. If there is a `next` or
+          `previous` link present then not all the resources in the collection are currently being shown.
+        - The `first` link points to the first page of a feed resource, this will not be be present if the entire
+          resource has been returned in the current page.
+        - The `last` link points to the last page of a feed resource, this will not be be present if the entire
+          resource has been returned in the current page.
+        - The `prev` link points to the previous page in the resource, this will not be present if the current page is
+          the first (or only page) page.
+        - The `next` link points to the next page in the resource, this will not be present if the current page is the
+          last (or only page) page.
+        - The `simple` link relation will be present in embedded representations to retrieve a non embedded
+          representation of the current context.
+        - The `alternate` link relation is a simple templated URI to allow page selection by a client. - The `embedded`  link relation is an embedded representation of the current (non-embedded context).
       example:
         next:
           hreflang: fr-FR
@@ -11803,22 +11798,18 @@ components:
       title: HAL Collection Links
       type: object
     HalFeedLinks:
-      description: "These hypermedia links inside a feed resource allow the contents\
-        \ of the resource to be paged. A feed is typically made up of a list of items,\
-        \ that may, as a whole, be a very large object. Feeds can be also be dynamic\
-        \ updating resources, which can have items added to them asynchronously. -\
-        \ The `first` link points to the first page of a feed resource, this will\
-        \ not be be present if the entire\n  resource has been returned in the current\
-        \ page.\n- The `last` link points to the last page of a feed resource, this\
-        \ will not be be present if the entire\n  resource has been returned in the\
-        \ current page.\n- The `prev` link points to the previous page in the resource,\
-        \ this will not be present if the current page is\n  the first (or only page)\
-        \ page.\n- The `next` link points to the next page in the resource, this will\
-        \ not be present if the current page is the\n  last (or only page) page.\n\
-        - The `future` link points to the next possible page of resources, this will\
-        \ only be present if the current\n  page is currently the last page of resources.\
-        \ This allows a client to poll and check for new items being added\n  without\
-        \ having to retrieve the previous items."
+      description: |-
+        These hypermedia links inside a feed resource allow the contents of the resource to be paged. A feed is typically made up of a list of items, that may, as a whole, be a very large object. Feeds can be also be dynamic updating resources, which can have items added to them asynchronously. - The `first` link points to the first page of a feed resource, this will not be be present if the entire
+          resource has been returned in the current page.
+        - The `last` link points to the last page of a feed resource, this will not be be present if the entire
+          resource has been returned in the current page.
+        - The `prev` link points to the previous page in the resource, this will not be present if the current page is
+          the first (or only page) page.
+        - The `next` link points to the next page in the resource, this will not be present if the current page is the
+          last (or only page) page.
+        - The `future` link points to the next possible page of resources, this will only be present if the current
+          page is currently the last page of resources. This allows a client to poll and check for new items being added
+          without having to retrieve the previous items.
       example:
         next:
           hreflang: fr-FR
@@ -12350,21 +12341,23 @@ components:
         _metadata:
           $ref: '#/components/schemas/CommonMetadata'
         buildStepsCompleted:
-          description: "The number of build steps that have been completed so far.\
-            \ Please note:\n- This value also includes additional service orchestration\
-            \ steps, that are outside the core build process,\n  so may differ from\
-            \ the build progress indicated within build messages.\n\n- This value\
-            \ will only be available after the build has been started."
+          description: |-
+            The number of build steps that have been completed so far. Please note:
+            - This value also includes additional service orchestration steps, that are outside the core build process,
+              so may differ from the build progress indicated within build messages.
+
+            - This value will only be available after the build has been started.
           example: 50
           nullable: true
           readOnly: true
           type: integer
         buildStepsTotal:
-          description: "The total number of steps that will need to be performed to\
-            \ complete the build. Please note:\n- This value also includes additional\
-            \ service orchestration steps, that are outside the core build process,\n\
-            \  so may differ from the build progress indicated within build messages.\n\
-            \n- This value will only be available after the build has been started."
+          description: |-
+            The total number of steps that will need to be performed to complete the build. Please note:
+            - This value also includes additional service orchestration steps, that are outside the core build process,
+              so may differ from the build progress indicated within build messages.
+
+            - This value will only be available after the build has been started.
           example: 70
           nullable: true
           readOnly: true
@@ -12417,10 +12410,10 @@ components:
           readOnly: true
           type: boolean
         status:
-          description: "A summary status of the job.\nNote: this value should not\
-            \ be relied upon to determine whether a job has completed, succeeded or\
-            \ failed as this list may change as state machine evolves.\nUse resource\
-            \ appropriate flags instead."
+          description: |-
+            A summary status of the job.
+            Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves.
+            Use resource appropriate flags instead.
           enum:
           - CANCELLED
           - CANCELLING
@@ -12632,7 +12625,8 @@ components:
           severity: info
           source: CMSIS
         - ctime: 2021-01-19T13:00:33Z
-          message: "(cbuild.sh): Build Invocation 1.0.0 (C) 2020 ARM\n"
+          message: |
+            (cbuild.sh): Build Invocation 1.0.0 (C) 2020 ARM
           severity: info
           source: CMSIS
         _metadata:
@@ -12657,7 +12651,8 @@ components:
             severity: info
             source: CMSIS
           - ctime: 2021-01-19T13:00:33Z
-            message: "(cbuild.sh): Build Invocation 1.0.0 (C) 2020 ARM\n"
+            message: |
+              (cbuild.sh): Build Invocation 1.0.0 (C) 2020 ARM
             severity: info
             source: CMSIS
           items:
@@ -13925,19 +13920,15 @@ components:
       type: object
       x-collection: true
     ToolchainTypes:
-      description: "The type of toolchain that will be used to compile and link the\
-        \ project.\n * `GCC` - GNU Tools for Arm Embedded Processors. Refer to <a\
-        \ href=\"https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm\"\
-        >Arm GCC</a>.\n * `G++` - Code Sourcery GCC compiler for C and C++ (is now\
-        \ Mentor Graphics CodeBench).\n * `AC5` - Arm Compiler for C and C++ Major\
-        \ Version 5. Refer to <a href=\"https://developer.arm.com/tools-and-software/embedded/arm-compiler/documentation/version-5\"\
-        >Arm Compiler</a>. Due to incompatible command line syntax version 5 and 6\
-        \ are listed as separate compilers.\n * `AC6` - Arm Compiler for C and C++\
-        \ Major Version 6. Refer to <a href=\"https://developer.arm.com/tools-and-software/embedded/arm-compiler/documentation\"\
-        >Arm Compiler</a>. Due to incompatible command line syntax version 5 and 6\
-        \ are listed as separate compilers.\n * `IAR` - IAR compiler for C and C++.\n\
-        \ * `Tasking` - TASKING compiler for C and C++.\n * `GHS` - Green Hills Software\
-        \ compiler for C, C++, and EC++."
+      description: |-
+        The type of toolchain that will be used to compile and link the project.
+         * `GCC` - GNU Tools for Arm Embedded Processors. Refer to <a href="https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm">Arm GCC</a>.
+         * `G++` - Code Sourcery GCC compiler for C and C++ (is now Mentor Graphics CodeBench).
+         * `AC5` - Arm Compiler for C and C++ Major Version 5. Refer to <a href="https://developer.arm.com/tools-and-software/embedded/arm-compiler/documentation/version-5">Arm Compiler</a>. Due to incompatible command line syntax version 5 and 6 are listed as separate compilers.
+         * `AC6` - Arm Compiler for C and C++ Major Version 6. Refer to <a href="https://developer.arm.com/tools-and-software/embedded/arm-compiler/documentation">Arm Compiler</a>. Due to incompatible command line syntax version 5 and 6 are listed as separate compilers.
+         * `IAR` - IAR compiler for C and C++.
+         * `Tasking` - TASKING compiler for C and C++.
+         * `GHS` - Green Hills Software compiler for C, C++, and EC++.
       enum:
       - AC5
       - AC6
@@ -14770,10 +14761,13 @@ components:
           readOnly: true
           type: boolean
         status:
-          description: "A summary status of the VHT instance.\n\nNote: this value\
-            \ should not be relied upon to determine whether a VHT is\nready as this\
-            \ list may change as state machine evolves.\n\nUse resource appropriate\
-            \ flags instead."
+          description: |-
+            A summary status of the VHT instance.
+
+            Note: this value should not be relied upon to determine whether a VHT is
+            ready as this list may change as state machine evolves.
+
+            Use resource appropriate flags instead.
           enum:
           - CANCELLED
           - CANCELLING
@@ -15473,10 +15467,14 @@ components:
           readOnly: true
           type: boolean
         status:
-          description: "A summary status of the VHT run job.\n\nNote: this value should\
-            \ not be relied upon to determine whether a job\nhas completed, started\
-            \ or errored as this list may change as state\nmachine evolves.\n\nUse\
-            \ resource appropriate flags instead."
+          description: |-
+            A summary status of the VHT run job.
+
+            Note: this value should not be relied upon to determine whether a job
+            has completed, started or errored as this list may change as state
+            machine evolves.
+
+            Use resource appropriate flags instead.
           enum:
           - CANCELLED
           - CANCELLING
