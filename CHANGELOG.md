@@ -2,6 +2,25 @@
 Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Proprietary
 -->
+"" "1.10.0" (2022-09-30)
+========================
+
+Features
+--------
+
+- Updated client due to schema changes (#202208231313, #202208251102, #202208311315, #202208311434, #202209050133, #202209050254, #202209091038, #202209111002, #202209161537, #202209211537, #202209241434)
+
+
+Bugfixes
+--------
+
+- Dependency upgrade: golang-1.19.1 (#202209071328)
+
+
+<!--
+Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Proprietary
+-->
 "" "1.9.0" (2022-08-19)
 =======================
 
