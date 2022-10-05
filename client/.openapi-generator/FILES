@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -32,6 +31,7 @@ docs/BuildJobItem.md
 docs/BuildJobItemLinks.md
 docs/BuildJobsApi.md
 docs/BuildMessageItem.md
+docs/BuildToolTypes.md
 docs/CMSISBuildersApi.md
 docs/CMSISIntellisenseBuildersApi.md
 docs/CmsisBuilderCollection.md
@@ -127,6 +127,7 @@ model_build_job_collection.go
 model_build_job_item.go
 model_build_job_item_links.go
 model_build_message_item.go
+model_build_tool_types.go
 model_cmsis_builder_collection.go
 model_cmsis_builder_item.go
 model_cmsis_builder_item_deprecation_info.go

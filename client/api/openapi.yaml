@@ -8931,6 +8931,30 @@ components:
       - messages
       - name
       type: object
+    BuildToolTypes:
+      description: "The type of build system that will be used to build the project.\n\
+        \ * `CMSIS` - Default CMSIS projects\n * `CMSIS_CSOLUTION` - CMSIS <a href=\"\
+        https://github.com/Open-CMSIS-Pack/devtools\">csolution</a> for <a href=\"\
+        https://github.com/Open-CMSIS-Pack/devtools/blob/main/tools/projmgr/docs/Manual/Overview.md\"\
+        >csolution projects</a>\n * `CMSIS_CBUILD` - CMSIS <a href=\"https://github.com/Open-CMSIS-Pack/cbuild\"\
+        >cbuild</a> for cprj projects\n * `CMAKE` -  Default <a href=\"https://cmake.org/\"\
+        >CMake</a>\n * `CMAKE_NINJA` -  <a href=\"https://cmake.org/\">CMake</a> using\
+        \ the generator for <a href=\"https://cmake.org/cmake/help/latest/generator/Ninja.html\"\
+        >Ninja</a> and building with <a href=\"https://ninja-build.org/\">Ninja</a>\n\
+        \ * `CMAKE_MAKE` -  <a href=\"https://cmake.org/\">CMake</a> using the generator\
+        \ for <a href=\"https://cmake.org/cmake/help/latest/generator/Unix%20Makefiles.html\"\
+        >Unix Make</a> and building with <a href=\"https://www.gnu.org/software/make/\"\
+        >GNU Make</a> "
+      enum:
+      - CMAKE
+      - CMAKE_MAKE
+      - CMAKE_NINJA
+      - CMSIS
+      - CMSIS_CBUILD
+      - CMSIS_CSOLUTION
+      example: CMSIS
+      readOnly: true
+      type: string
     CmsisBuilderCollection:
       description: "This collection resource follows the common pattern of linking\
         \ to contained resources. Optionally, rather than linking to other resources,\
@@ -9172,10 +9196,7 @@ components:
         _metadata:
           $ref: '#/components/schemas/CommonMetadata'
         buildToolsType:
-          description: The build system that will be used to build the project.
-          example: CMSIS
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/BuildToolTypes'
         buildToolsVersion:
           description: "Version of the build tools in use, as specified by the tools\
             \ creators."

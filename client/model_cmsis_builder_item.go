@@ -19,8 +19,7 @@ import (
 type CmsisBuilderItem struct {
 	Links NullableCmsisBuilderItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
-	// The build system that will be used to build the project.
-	BuildToolsType string `json:"buildToolsType"`
+	BuildToolsType BuildToolTypes `json:"buildToolsType"`
 	// Version of the build tools in use, as specified by the tools creators.
 	BuildToolsVersion string `json:"buildToolsVersion"`
 	// True if this CMSIS Builder is scheduled to be removed from the service.
@@ -39,7 +38,7 @@ type CmsisBuilderItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCmsisBuilderItem(links NullableCmsisBuilderItemLinks, metadata NullableCommonMetadata, buildToolsType string, buildToolsVersion string, deprecated bool, name string, title string, toolchainType ToolchainTypes, toolchainVersion string) *CmsisBuilderItem {
+func NewCmsisBuilderItem(links NullableCmsisBuilderItemLinks, metadata NullableCommonMetadata, buildToolsType BuildToolTypes, buildToolsVersion string, deprecated bool, name string, title string, toolchainType ToolchainTypes, toolchainVersion string) *CmsisBuilderItem {
 	this := CmsisBuilderItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -114,9 +113,9 @@ func (o *CmsisBuilderItem) SetMetadata(v CommonMetadata) {
 }
 
 // GetBuildToolsType returns the BuildToolsType field value
-func (o *CmsisBuilderItem) GetBuildToolsType() string {
+func (o *CmsisBuilderItem) GetBuildToolsType() BuildToolTypes {
 	if o == nil {
-		var ret string
+		var ret BuildToolTypes
 		return ret
 	}
 
@@ -125,7 +124,7 @@ func (o *CmsisBuilderItem) GetBuildToolsType() string {
 
 // GetBuildToolsTypeOk returns a tuple with the BuildToolsType field value
 // and a boolean to check if the value has been set.
-func (o *CmsisBuilderItem) GetBuildToolsTypeOk() (*string, bool) {
+func (o *CmsisBuilderItem) GetBuildToolsTypeOk() (*BuildToolTypes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -133,7 +132,7 @@ func (o *CmsisBuilderItem) GetBuildToolsTypeOk() (*string, bool) {
 }
 
 // SetBuildToolsType sets field value
-func (o *CmsisBuilderItem) SetBuildToolsType(v string) {
+func (o *CmsisBuilderItem) SetBuildToolsType(v BuildToolTypes) {
 	o.BuildToolsType = v
 }
 

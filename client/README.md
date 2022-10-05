@@ -185,6 +185,7 @@ Class | Method | HTTP request | Description
  - [BuildJobItem](docs/BuildJobItem.md)
  - [BuildJobItemLinks](docs/BuildJobItemLinks.md)
  - [BuildMessageItem](docs/BuildMessageItem.md)
+ - [BuildToolTypes](docs/BuildToolTypes.md)
  - [CmsisBuilderCollection](docs/CmsisBuilderCollection.md)
  - [CmsisBuilderItem](docs/CmsisBuilderItem.md)
  - [CmsisBuilderItemDeprecationInfo](docs/CmsisBuilderItemDeprecationInfo.md)

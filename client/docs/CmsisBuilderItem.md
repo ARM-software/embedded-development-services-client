@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Links** | [**NullableCmsisBuilderItemLinks**](CmsisBuilderItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**BuildToolsType** | **string** | The build system that will be used to build the project. | [readonly] 
+**BuildToolsType** | [**BuildToolTypes**](BuildToolTypes.md) |  | 
 **BuildToolsVersion** | **string** | Version of the build tools in use, as specified by the tools creators. | [readonly] 
 **Deprecated** | **bool** | True if this CMSIS Builder is scheduled to be removed from the service. | [readonly] 
 **DeprecationInfo** | Pointer to [**NullableCmsisBuilderItemDeprecationInfo**](CmsisBuilderItemDeprecationInfo.md) |  | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewCmsisBuilderItem
 
-`func NewCmsisBuilderItem(links NullableCmsisBuilderItemLinks, metadata NullableCommonMetadata, buildToolsType string, buildToolsVersion string, deprecated bool, name string, title string, toolchainType ToolchainTypes, toolchainVersion string, ) *CmsisBuilderItem`
+`func NewCmsisBuilderItem(links NullableCmsisBuilderItemLinks, metadata NullableCommonMetadata, buildToolsType BuildToolTypes, buildToolsVersion string, deprecated bool, name string, title string, toolchainType ToolchainTypes, toolchainVersion string, ) *CmsisBuilderItem`
 
 NewCmsisBuilderItem instantiates a new CmsisBuilderItem object
 This constructor will assign default values to properties that have it defined,
@@ -96,20 +96,20 @@ SetMetadata sets Metadata field to given value.
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetBuildToolsType
 
-`func (o *CmsisBuilderItem) GetBuildToolsType() string`
+`func (o *CmsisBuilderItem) GetBuildToolsType() BuildToolTypes`
 
 GetBuildToolsType returns the BuildToolsType field if non-nil, zero value otherwise.
 
 ### GetBuildToolsTypeOk
 
-`func (o *CmsisBuilderItem) GetBuildToolsTypeOk() (*string, bool)`
+`func (o *CmsisBuilderItem) GetBuildToolsTypeOk() (*BuildToolTypes, bool)`
 
 GetBuildToolsTypeOk returns a tuple with the BuildToolsType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBuildToolsType
 
-`func (o *CmsisBuilderItem) SetBuildToolsType(v string)`
+`func (o *CmsisBuilderItem) SetBuildToolsType(v BuildToolTypes)`
 
 SetBuildToolsType sets BuildToolsType field to given value.
 
