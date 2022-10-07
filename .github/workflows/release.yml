@@ -24,6 +24,7 @@ jobs:
         run: |
             CHANGES=$(git show main:changes/ 2>/dev/null | grep -e .feature -e .bugfix -e .major -e .doc -e .misc)
             echo "::set-output name=changes::$CHANGES"
+        continue-on-error: true # in case '2>/dev/null' doesn't work
 
   release:
     name: Carry out a release
