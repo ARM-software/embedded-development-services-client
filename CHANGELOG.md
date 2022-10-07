@@ -2,6 +2,19 @@
 Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Proprietary
 -->
+"" "1.11.1" (2022-10-07)
+========================
+
+Bugfixes
+--------
+
+- continue on error in case '2>/dev/null' doesn't work (#202210071547)
+
+
+<!--
+Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Proprietary
+-->
 "" "1.11.0" (2022-10-07)
 ========================
 
