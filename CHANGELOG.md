@@ -2,6 +2,27 @@
 Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Proprietary
 -->
+"" "1.11.0" (2022-10-07)
+========================
+
+Features
+--------
+
+- Updated client due to schema changes (#202210051645)
+- improve release action so it checks for changes and is triggered by update-client (#202210071034)
+
+
+Bugfixes
+--------
+
+- manually trigger update-client before build-and-test (#202210071035)
+- Update secrets baseline and checkout repo in update-client (#202210071147)
+
+
+<!--
+Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Proprietary
+-->
 "" "1.10.0" (2022-09-30)
 ========================
 
