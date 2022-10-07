@@ -38,6 +38,7 @@ jobs:
 
   update-client:
     uses: Arm-Debug/solar-services-client/.github/workflows/update-client.yml@main
+    secrets: inherit
 
   detect-secrets:
     name: Check for secrets
