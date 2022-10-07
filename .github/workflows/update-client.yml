@@ -1,11 +1,9 @@
 name: Update Client
 
-on: 
-  push:
-    branches:
-      - "*"
+on:
   schedule:
     - cron: '*/30 * * * *'
+  workflow_call:
 
 jobs:
   get-all-service-definition:
@@ -18,7 +16,7 @@ jobs:
         token: ${{ secrets.GIT_SECRET }}
         repository: Arm-Debug/API-Uniform-Contract
         path: API-Uniform-Contract
-        ref: main
+        ref: production
     - uses: actions/upload-artifact@master
       with:
         name: all-service-flat
@@ -115,4 +113,12 @@ jobs:
         file_pattern: client/* README.md changes/*
         commit_user_name: monty-bot
         commit_user_email: monty-bot@arm.com
-    
+
+  release:
+    name: Release if necessary
+    runs-on: ubuntu-latest
+    needs: commit-changes
+    steps:
+    - run: gh workflow run release.yml -f release_type=release
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
