@@ -2,6 +2,26 @@
 Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Proprietary
 -->
+"" "1.12.0" (2022-10-13)
+========================
+
+Features
+--------
+
+- use new update-go-action (#202210111523)
+- Updated client due to schema changes (#202210131414)
+
+
+Bugfixes
+--------
+
+- Updated Golang version (#202210111434)
+
+
+<!--
+Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Proprietary
+-->
 "" "1.11.1" (2022-10-07)
 ========================
 
