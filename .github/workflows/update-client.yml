@@ -51,7 +51,7 @@ jobs:
         token: ${{ secrets.GIT_SECRET }}
         ref: ${{ inputs.branch || github.head_ref || github.ref }}
     - name: Update Go
-      uses: Arm-Debug/update-go-action@v1.4.1
+      uses: Arm-Debug/update-go-action@main # use main so we only have to update in one place
       with:
         dockerfile: Dockerfile.client
         branch: ${{ inputs.branch || github.head_ref || github.ref }}
