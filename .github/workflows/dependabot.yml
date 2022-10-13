@@ -1,14 +1,20 @@
 name: Dependabot
-on: pull_request_target
+on:
+  pull_request_target:
+    branches: dependabot/**
 permissions:
   pull-requests: write
   issues: write
   repository-projects: write
   contents: write
 jobs:
+  update-client:
+    uses: ./.github/workflows/update-client.yml
+    secrets: inherit
   dependabot:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' }}
+    needs: update-client
     steps:
       # Checkout with full history for to allow compare with base branch
       - uses: actions/checkout@v2
@@ -27,7 +33,7 @@ jobs:
         run: gh pr edit "$PR_URL" --add-label "bot"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}          
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Approve the PR
         run: gh pr review --approve "$PR_URL"
         env:

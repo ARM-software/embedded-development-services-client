@@ -5,7 +5,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	_ioutil "io/ioutil"
+	"io"
 	"mime/multipart"
 	"net/http"
 	_neturl "net/url"
@@ -246,9 +246,9 @@ func (a *BuildJobsApiService) FollowMessageLink(r ApiGetBuildMessagesRequest, li
 		return &localVarReturnValue, localVarHTTPResponse, executionError
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		executionError.error = err.Error()
 		return &localVarReturnValue, localVarHTTPResponse, executionError
@@ -378,9 +378,9 @@ func (a *VHTRunJobsApiService) FollowMessageLink(r ApiGetVhtRunJobMessagesReques
 		return localVarReturnValue, localVarHTTPResponse, executionError
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		executionError.error = err.Error()
 		return localVarReturnValue, localVarHTTPResponse, executionError

@@ -8,9 +8,14 @@ on:
   pull_request:
     branches: [ main ]
 
+# Cancel in-progress jobs or runs for the current workflow
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 # Set environment variables available in all jobs and steps
 env:
-  go_version: "1.18"
+  go_version: "1.19.1"
   python_version: "3.9"
 
 jobs:
@@ -24,21 +29,16 @@ jobs:
         with:
           fetch-depth: 0
       - uses: actions/setup-python@v2
-      - uses: FranzDiebold/github-env-vars-action@v2
       - name: Install CI/CD tools
         run: pip install continuous-delivery-scripts && pip list
       - name: Assert news
-        run: bash ./scripts/setup_github.sh && cd-assert-news -b ${CI_ACTION_REF_NAME}
+        run: bash ./scripts/setup_github.sh && cd-assert-news -b ${{ github.head_ref || github.ref }}
         env:
           GIT_TOKEN: ${{ secrets.GIT_SECRET }}
       - name: Report failure if needed
         if: ${{ failure() }}
         run: |
           echo "::error:: News file missing (See CONTRIBUTING.md guide for details)."
-
-  update-client:
-    uses: Arm-Debug/solar-services-client/.github/workflows/update-client.yml@main
-    secrets: inherit
 
   detect-secrets:
     name: Check for secrets
@@ -60,77 +60,7 @@ jobs:
       working-directory: .
 
   build-and-test:
-    strategy:
-      matrix:
-#FIXME        os: [ubuntu-latest, macOS-latest, windows-latest]
-        os: [ubuntu-latest]
-        go-module: [client]
-        multi-platform:
-          - ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch' }}
-        exclude:
-          - os: macOS-latest
-            multi-platform: false
-          - os: windows-latest
-            multi-platform: false
-    name: Build and test
-    needs: update-client
-    runs-on: ${{ matrix.os }}
-    env:
-      GOPRIVATE: github.com/Arm-Debug
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: ${{ env.go_version }}
-
-      - if: ${{ startsWith(matrix.os, 'macOS') }}
-        run: echo "CACHE_PATH=${{ env.go_cache_macOS_path }}" >> $GITHUB_ENV
-      - if: ${{ startsWith(matrix.os, 'windows') }}
-        run: echo "CACHE_PATH=${{ env.go_cache_windows_path }}" >> $GITHUB_ENV
-      - if: ${{ startsWith(matrix.os, 'ubuntu') }}
-        run: echo "CACHE_PATH=${{ env.go_cache_ubuntu_path }}" >> $GITHUB_ENV
-      - name: Load Go Dependency Cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            ${{ env.CACHE_PATH }}
-            ~/go/pkg/mod
-          key: ${{ matrix.os }}-${{ matrix.go-module }}-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ matrix.os }}-${{ matrix.go-module }}-
-      - name: Set access to private repositories
-        run: bash ./scripts/setup_github.sh
-        env:
-          GIT_TOKEN: ${{ secrets.GIT_SECRET }}
-      - if: ${{ startsWith(matrix.os, 'ubuntu') }}
-        name: Linting
-        uses: golangci/golangci-lint-action@v2
-        with:
-          # Required: the version of golangci-lint is required and must be specified without patch version.
-          version: latest
-          working-directory: ${{ matrix.go-module }}
-          args: "--verbose --print-issued-lines --print-linter-name --out-${NO_FUTURE}format colored-line-number"
-      - name: Build ${{ matrix.go-module }} on ${{ matrix.os }}
-        run: go build -v ./...
-        working-directory: ${{ matrix.go-module }}
-# FIXME ADD Test
-#
-#      - if: ${{ startsWith(matrix.os, 'ubuntu') }}
-#        name: Test [${{ matrix.go-module }} on ${{ matrix.os }}] & Publish Code Coverage
-#        uses: paambaati/codeclimate-action@v2.7.5
-#        env:
-#          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-#        with:
-#          debug: true
-#          workingDirectory: ${{ matrix.go-module }}
-#          coverageCommand: go test -race -cover -v -coverprofile ${{ matrix.go-module }}_coverage.out ./...
-#          prefix: github.com/Arm-Debug/${{ github.event.repository.name }}/${{ matrix.go-module }}
-#          coverageLocations:
-#            "${{github.workspace}}/${{ matrix.go-module }}/${{ matrix.go-module }}_coverage.out:gocov"
-#
-#
-# FIXME: Run tests on Mac and Windows
-#      - if: ${{ startsWith(matrix.os, 'windows') || startsWith(matrix.os, 'macOS') }}
-#        run: go test -race -cover -v ./...
-#        working-directory: ${{ matrix.go-module }}
+    uses: ./.github/workflows/build-and-test.yml
+    secrets: inherit
+    with:
+      branch: ${{ github.head_ref || github.ref }}
