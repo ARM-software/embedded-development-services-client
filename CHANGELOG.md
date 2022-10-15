@@ -2,6 +2,19 @@
 Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Proprietary
 -->
+"" "1.13.0" (2022-10-15)
+========================
+
+Features
+--------
+
+- use main branch of update-go action so we don't have to change the version every time there is a change (#202210131526)
+
+
+<!--
+Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Proprietary
+-->
 "" "1.12.0" (2022-10-13)
 ========================
 
