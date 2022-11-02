@@ -62,7 +62,7 @@ func (o *SimpleCollection) GetLinks() HalCollectionLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SimpleCollection) GetLinksOk() (*HalCollectionLinks, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -88,7 +88,7 @@ func (o *SimpleCollection) GetMetadata() PagingMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SimpleCollection) GetMetadataOk() (*PagingMetadata, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -112,7 +112,7 @@ func (o *SimpleCollection) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *SimpleCollection) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -136,7 +136,7 @@ func (o *SimpleCollection) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *SimpleCollection) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Title, true
 }

@@ -41,7 +41,7 @@ func NewCmsisIntellisenseItemLinksWithDefaults() *CmsisIntellisenseItemLinks {
 
 // GetCreate returns the Create field value if set, zero value otherwise.
 func (o *CmsisIntellisenseItemLinks) GetCreate() HalLinkData {
-	if o == nil || o.Create == nil {
+	if o == nil || isNil(o.Create) {
 		var ret HalLinkData
 		return ret
 	}
@@ -51,15 +51,15 @@ func (o *CmsisIntellisenseItemLinks) GetCreate() HalLinkData {
 // GetCreateOk returns a tuple with the Create field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CmsisIntellisenseItemLinks) GetCreateOk() (*HalLinkData, bool) {
-	if o == nil || o.Create == nil {
-		return nil, false
+	if o == nil || isNil(o.Create) {
+    return nil, false
 	}
 	return o.Create, true
 }
 
 // HasCreate returns a boolean if a field has been set.
 func (o *CmsisIntellisenseItemLinks) HasCreate() bool {
-	if o != nil && o.Create != nil {
+	if o != nil && !isNil(o.Create) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o *CmsisIntellisenseItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *CmsisIntellisenseItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Self, true
 }
@@ -97,7 +97,7 @@ func (o *CmsisIntellisenseItemLinks) SetSelf(v HalLinkData) {
 
 func (o CmsisIntellisenseItemLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Create != nil {
+	if !isNil(o.Create) {
 		toSerialize["create"] = o.Create
 	}
 	if true {

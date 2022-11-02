@@ -39,7 +39,7 @@ func NewEmbeddedDeviceItemsWithDefaults() *EmbeddedDeviceItems {
 
 // GetItem returns the Item field value if set, zero value otherwise.
 func (o *EmbeddedDeviceItems) GetItem() []DeviceItem {
-	if o == nil || o.Item == nil {
+	if o == nil || isNil(o.Item) {
 		var ret []DeviceItem
 		return ret
 	}
@@ -49,15 +49,15 @@ func (o *EmbeddedDeviceItems) GetItem() []DeviceItem {
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmbeddedDeviceItems) GetItemOk() ([]DeviceItem, bool) {
-	if o == nil || o.Item == nil {
-		return nil, false
+	if o == nil || isNil(o.Item) {
+    return nil, false
 	}
 	return o.Item, true
 }
 
 // HasItem returns a boolean if a field has been set.
 func (o *EmbeddedDeviceItems) HasItem() bool {
-	if o != nil && o.Item != nil {
+	if o != nil && !isNil(o.Item) {
 		return true
 	}
 
@@ -71,7 +71,7 @@ func (o *EmbeddedDeviceItems) SetItem(v []DeviceItem) {
 
 func (o EmbeddedDeviceItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Item != nil {
+	if !isNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
 	return json.Marshal(toSerialize)

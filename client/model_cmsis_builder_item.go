@@ -76,7 +76,7 @@ func (o *CmsisBuilderItem) GetLinks() CmsisBuilderItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CmsisBuilderItem) GetLinksOk() (*CmsisBuilderItemLinks, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -102,7 +102,7 @@ func (o *CmsisBuilderItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CmsisBuilderItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -126,7 +126,7 @@ func (o *CmsisBuilderItem) GetBuildToolsType() BuildToolTypes {
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderItem) GetBuildToolsTypeOk() (*BuildToolTypes, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.BuildToolsType, true
 }
@@ -150,7 +150,7 @@ func (o *CmsisBuilderItem) GetBuildToolsVersion() string {
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderItem) GetBuildToolsVersionOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.BuildToolsVersion, true
 }
@@ -174,7 +174,7 @@ func (o *CmsisBuilderItem) GetDeprecated() bool {
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderItem) GetDeprecatedOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Deprecated, true
 }
@@ -186,7 +186,7 @@ func (o *CmsisBuilderItem) SetDeprecated(v bool) {
 
 // GetDeprecationInfo returns the DeprecationInfo field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CmsisBuilderItem) GetDeprecationInfo() CmsisBuilderItemDeprecationInfo {
-	if o == nil || o.DeprecationInfo.Get() == nil {
+	if o == nil || isNil(o.DeprecationInfo.Get()) {
 		var ret CmsisBuilderItemDeprecationInfo
 		return ret
 	}
@@ -198,7 +198,7 @@ func (o *CmsisBuilderItem) GetDeprecationInfo() CmsisBuilderItemDeprecationInfo 
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CmsisBuilderItem) GetDeprecationInfoOk() (*CmsisBuilderItemDeprecationInfo, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.DeprecationInfo.Get(), o.DeprecationInfo.IsSet()
 }
@@ -240,7 +240,7 @@ func (o *CmsisBuilderItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderItem) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -264,7 +264,7 @@ func (o *CmsisBuilderItem) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Title, true
 }
@@ -288,7 +288,7 @@ func (o *CmsisBuilderItem) GetToolchainType() ToolchainTypes {
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderItem) GetToolchainTypeOk() (*ToolchainTypes, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ToolchainType, true
 }
@@ -312,7 +312,7 @@ func (o *CmsisBuilderItem) GetToolchainVersion() string {
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderItem) GetToolchainVersionOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ToolchainVersion, true
 }

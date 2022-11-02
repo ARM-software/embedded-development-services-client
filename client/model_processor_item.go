@@ -73,7 +73,7 @@ func (o *ProcessorItem) GetCore() string {
 // and a boolean to check if the value has been set.
 func (o *ProcessorItem) GetCoreOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Core, true
 }
@@ -85,7 +85,7 @@ func (o *ProcessorItem) SetCore(v string) {
 
 // GetCoreRevision returns the CoreRevision field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProcessorItem) GetCoreRevision() string {
-	if o == nil || o.CoreRevision.Get() == nil {
+	if o == nil || isNil(o.CoreRevision.Get()) {
 		var ret string
 		return ret
 	}
@@ -97,7 +97,7 @@ func (o *ProcessorItem) GetCoreRevision() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetCoreRevisionOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.CoreRevision.Get(), o.CoreRevision.IsSet()
 }
@@ -127,7 +127,7 @@ func (o *ProcessorItem) UnsetCoreRevision() {
 
 // GetCortexmVectorExtensions returns the CortexmVectorExtensions field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProcessorItem) GetCortexmVectorExtensions() string {
-	if o == nil || o.CortexmVectorExtensions.Get() == nil {
+	if o == nil || isNil(o.CortexmVectorExtensions.Get()) {
 		var ret string
 		return ret
 	}
@@ -139,7 +139,7 @@ func (o *ProcessorItem) GetCortexmVectorExtensions() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetCortexmVectorExtensionsOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.CortexmVectorExtensions.Get(), o.CortexmVectorExtensions.IsSet()
 }
@@ -169,7 +169,7 @@ func (o *ProcessorItem) UnsetCortexmVectorExtensions() {
 
 // GetDigitalSignalProcessor returns the DigitalSignalProcessor field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProcessorItem) GetDigitalSignalProcessor() string {
-	if o == nil || o.DigitalSignalProcessor.Get() == nil {
+	if o == nil || isNil(o.DigitalSignalProcessor.Get()) {
 		var ret string
 		return ret
 	}
@@ -181,7 +181,7 @@ func (o *ProcessorItem) GetDigitalSignalProcessor() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetDigitalSignalProcessorOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.DigitalSignalProcessor.Get(), o.DigitalSignalProcessor.IsSet()
 }
@@ -211,7 +211,7 @@ func (o *ProcessorItem) UnsetDigitalSignalProcessor() {
 
 // GetEndian returns the Endian field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProcessorItem) GetEndian() string {
-	if o == nil || o.Endian.Get() == nil {
+	if o == nil || isNil(o.Endian.Get()) {
 		var ret string
 		return ret
 	}
@@ -223,7 +223,7 @@ func (o *ProcessorItem) GetEndian() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetEndianOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Endian.Get(), o.Endian.IsSet()
 }
@@ -253,7 +253,7 @@ func (o *ProcessorItem) UnsetEndian() {
 
 // GetFloatingPointUnit returns the FloatingPointUnit field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProcessorItem) GetFloatingPointUnit() string {
-	if o == nil || o.FloatingPointUnit.Get() == nil {
+	if o == nil || isNil(o.FloatingPointUnit.Get()) {
 		var ret string
 		return ret
 	}
@@ -265,7 +265,7 @@ func (o *ProcessorItem) GetFloatingPointUnit() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetFloatingPointUnitOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.FloatingPointUnit.Get(), o.FloatingPointUnit.IsSet()
 }
@@ -295,7 +295,7 @@ func (o *ProcessorItem) UnsetFloatingPointUnit() {
 
 // GetMaxCoreClockFrequency returns the MaxCoreClockFrequency field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProcessorItem) GetMaxCoreClockFrequency() int32 {
-	if o == nil || o.MaxCoreClockFrequency.Get() == nil {
+	if o == nil || isNil(o.MaxCoreClockFrequency.Get()) {
 		var ret int32
 		return ret
 	}
@@ -307,7 +307,7 @@ func (o *ProcessorItem) GetMaxCoreClockFrequency() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetMaxCoreClockFrequencyOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.MaxCoreClockFrequency.Get(), o.MaxCoreClockFrequency.IsSet()
 }
@@ -337,7 +337,7 @@ func (o *ProcessorItem) UnsetMaxCoreClockFrequency() {
 
 // GetMemoryProtectionUnit returns the MemoryProtectionUnit field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProcessorItem) GetMemoryProtectionUnit() string {
-	if o == nil || o.MemoryProtectionUnit.Get() == nil {
+	if o == nil || isNil(o.MemoryProtectionUnit.Get()) {
 		var ret string
 		return ret
 	}
@@ -349,7 +349,7 @@ func (o *ProcessorItem) GetMemoryProtectionUnit() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetMemoryProtectionUnitOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.MemoryProtectionUnit.Get(), o.MemoryProtectionUnit.IsSet()
 }
@@ -379,7 +379,7 @@ func (o *ProcessorItem) UnsetMemoryProtectionUnit() {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProcessorItem) GetTitle() string {
-	if o == nil || o.Title.Get() == nil {
+	if o == nil || isNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -391,7 +391,7 @@ func (o *ProcessorItem) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -421,7 +421,7 @@ func (o *ProcessorItem) UnsetTitle() {
 
 // GetTrustZone returns the TrustZone field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProcessorItem) GetTrustZone() string {
-	if o == nil || o.TrustZone.Get() == nil {
+	if o == nil || isNil(o.TrustZone.Get()) {
 		var ret string
 		return ret
 	}
@@ -433,7 +433,7 @@ func (o *ProcessorItem) GetTrustZone() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetTrustZoneOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.TrustZone.Get(), o.TrustZone.IsSet()
 }
@@ -463,7 +463,7 @@ func (o *ProcessorItem) UnsetTrustZone() {
 
 // GetUnits returns the Units field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProcessorItem) GetUnits() int32 {
-	if o == nil || o.Units.Get() == nil {
+	if o == nil || isNil(o.Units.Get()) {
 		var ret int32
 		return ret
 	}
@@ -475,7 +475,7 @@ func (o *ProcessorItem) GetUnits() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetUnitsOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Units.Get(), o.Units.IsSet()
 }

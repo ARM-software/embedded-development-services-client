@@ -60,15 +60,15 @@ func (o *ErrorResponse) GetFields() []FieldObject {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ErrorResponse) GetFieldsOk() ([]FieldObject, bool) {
-	if o == nil || o.Fields == nil {
-		return nil, false
+	if o == nil || isNil(o.Fields) {
+    return nil, false
 	}
 	return o.Fields, true
 }
 
 // HasFields returns a boolean if a field has been set.
 func (o *ErrorResponse) HasFields() bool {
-	if o != nil && o.Fields != nil {
+	if o != nil && isNil(o.Fields) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *ErrorResponse) GetHttpStatusCode() int32 {
 // and a boolean to check if the value has been set.
 func (o *ErrorResponse) GetHttpStatusCodeOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.HttpStatusCode, true
 }
@@ -118,7 +118,7 @@ func (o *ErrorResponse) GetMessage() string {
 // and a boolean to check if the value has been set.
 func (o *ErrorResponse) GetMessageOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Message, true
 }
@@ -142,7 +142,7 @@ func (o *ErrorResponse) GetRequestId() string {
 // and a boolean to check if the value has been set.
 func (o *ErrorResponse) GetRequestIdOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.RequestId, true
 }

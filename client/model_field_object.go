@@ -58,7 +58,7 @@ func (o *FieldObject) GetFieldName() string {
 // and a boolean to check if the value has been set.
 func (o *FieldObject) GetFieldNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.FieldName, true
 }
@@ -70,7 +70,7 @@ func (o *FieldObject) SetFieldName(v string) {
 
 // GetFieldPath returns the FieldPath field value if set, zero value otherwise.
 func (o *FieldObject) GetFieldPath() string {
-	if o == nil || o.FieldPath == nil {
+	if o == nil || isNil(o.FieldPath) {
 		var ret string
 		return ret
 	}
@@ -80,15 +80,15 @@ func (o *FieldObject) GetFieldPath() string {
 // GetFieldPathOk returns a tuple with the FieldPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FieldObject) GetFieldPathOk() (*string, bool) {
-	if o == nil || o.FieldPath == nil {
-		return nil, false
+	if o == nil || isNil(o.FieldPath) {
+    return nil, false
 	}
 	return o.FieldPath, true
 }
 
 // HasFieldPath returns a boolean if a field has been set.
 func (o *FieldObject) HasFieldPath() bool {
-	if o != nil && o.FieldPath != nil {
+	if o != nil && !isNil(o.FieldPath) {
 		return true
 	}
 
@@ -114,7 +114,7 @@ func (o *FieldObject) GetMessage() string {
 // and a boolean to check if the value has been set.
 func (o *FieldObject) GetMessageOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Message, true
 }
@@ -129,7 +129,7 @@ func (o FieldObject) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["fieldName"] = o.FieldName
 	}
-	if o.FieldPath != nil {
+	if !isNil(o.FieldPath) {
 		toSerialize["fieldPath"] = o.FieldPath
 	}
 	if true {

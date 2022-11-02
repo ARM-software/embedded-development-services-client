@@ -40,7 +40,7 @@ func NewRetainWorkspaceRequestWithDefaults() *RetainWorkspaceRequest {
 
 // GetTtl returns the Ttl field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *RetainWorkspaceRequest) GetTtl() int64 {
-	if o == nil || o.Ttl.Get() == nil {
+	if o == nil || isNil(o.Ttl.Get()) {
 		var ret int64
 		return ret
 	}
@@ -52,7 +52,7 @@ func (o *RetainWorkspaceRequest) GetTtl() int64 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *RetainWorkspaceRequest) GetTtlOk() (*int64, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Ttl.Get(), o.Ttl.IsSet()
 }

@@ -42,7 +42,7 @@ func NewADebugInterfaceWithDefaults() *ADebugInterface {
 
 // GetAdapter returns the Adapter field value if set, zero value otherwise.
 func (o *ADebugInterface) GetAdapter() string {
-	if o == nil || o.Adapter == nil {
+	if o == nil || isNil(o.Adapter) {
 		var ret string
 		return ret
 	}
@@ -52,15 +52,15 @@ func (o *ADebugInterface) GetAdapter() string {
 // GetAdapterOk returns a tuple with the Adapter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ADebugInterface) GetAdapterOk() (*string, bool) {
-	if o == nil || o.Adapter == nil {
-		return nil, false
+	if o == nil || isNil(o.Adapter) {
+    return nil, false
 	}
 	return o.Adapter, true
 }
 
 // HasAdapter returns a boolean if a field has been set.
 func (o *ADebugInterface) HasAdapter() bool {
-	if o != nil && o.Adapter != nil {
+	if o != nil && !isNil(o.Adapter) {
 		return true
 	}
 
@@ -74,7 +74,7 @@ func (o *ADebugInterface) SetAdapter(v string) {
 
 // GetConnector returns the Connector field value if set, zero value otherwise.
 func (o *ADebugInterface) GetConnector() string {
-	if o == nil || o.Connector == nil {
+	if o == nil || isNil(o.Connector) {
 		var ret string
 		return ret
 	}
@@ -84,15 +84,15 @@ func (o *ADebugInterface) GetConnector() string {
 // GetConnectorOk returns a tuple with the Connector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ADebugInterface) GetConnectorOk() (*string, bool) {
-	if o == nil || o.Connector == nil {
-		return nil, false
+	if o == nil || isNil(o.Connector) {
+    return nil, false
 	}
 	return o.Connector, true
 }
 
 // HasConnector returns a boolean if a field has been set.
 func (o *ADebugInterface) HasConnector() bool {
-	if o != nil && o.Connector != nil {
+	if o != nil && !isNil(o.Connector) {
 		return true
 	}
 
@@ -106,10 +106,10 @@ func (o *ADebugInterface) SetConnector(v string) {
 
 func (o ADebugInterface) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Adapter != nil {
+	if !isNil(o.Adapter) {
 		toSerialize["adapter"] = o.Adapter
 	}
-	if o.Connector != nil {
+	if !isNil(o.Connector) {
 		toSerialize["connector"] = o.Connector
 	}
 	return json.Marshal(toSerialize)

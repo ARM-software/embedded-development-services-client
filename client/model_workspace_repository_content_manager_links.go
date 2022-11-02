@@ -44,7 +44,7 @@ func NewWorkspaceRepositoryContentManagerLinksWithDefaults() *WorkspaceRepositor
 
 // GetClear returns the Clear field value if set, zero value otherwise.
 func (o *WorkspaceRepositoryContentManagerLinks) GetClear() HalLinkData {
-	if o == nil || o.Clear == nil {
+	if o == nil || isNil(o.Clear) {
 		var ret HalLinkData
 		return ret
 	}
@@ -54,15 +54,15 @@ func (o *WorkspaceRepositoryContentManagerLinks) GetClear() HalLinkData {
 // GetClearOk returns a tuple with the Clear field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManagerLinks) GetClearOk() (*HalLinkData, bool) {
-	if o == nil || o.Clear == nil {
-		return nil, false
+	if o == nil || isNil(o.Clear) {
+    return nil, false
 	}
 	return o.Clear, true
 }
 
 // HasClear returns a boolean if a field has been set.
 func (o *WorkspaceRepositoryContentManagerLinks) HasClear() bool {
-	if o != nil && o.Clear != nil {
+	if o != nil && !isNil(o.Clear) {
 		return true
 	}
 
@@ -76,7 +76,7 @@ func (o *WorkspaceRepositoryContentManagerLinks) SetClear(v HalLinkData) {
 
 // GetEdit returns the Edit field value if set, zero value otherwise.
 func (o *WorkspaceRepositoryContentManagerLinks) GetEdit() HalLinkData {
-	if o == nil || o.Edit == nil {
+	if o == nil || isNil(o.Edit) {
 		var ret HalLinkData
 		return ret
 	}
@@ -86,15 +86,15 @@ func (o *WorkspaceRepositoryContentManagerLinks) GetEdit() HalLinkData {
 // GetEditOk returns a tuple with the Edit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManagerLinks) GetEditOk() (*HalLinkData, bool) {
-	if o == nil || o.Edit == nil {
-		return nil, false
+	if o == nil || isNil(o.Edit) {
+    return nil, false
 	}
 	return o.Edit, true
 }
 
 // HasEdit returns a boolean if a field has been set.
 func (o *WorkspaceRepositoryContentManagerLinks) HasEdit() bool {
-	if o != nil && o.Edit != nil {
+	if o != nil && !isNil(o.Edit) {
 		return true
 	}
 
@@ -120,7 +120,7 @@ func (o *WorkspaceRepositoryContentManagerLinks) GetRelated() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManagerLinks) GetRelatedOk() (*HalLinkData, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Related, true
 }
@@ -144,7 +144,7 @@ func (o *WorkspaceRepositoryContentManagerLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManagerLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Self, true
 }
@@ -156,10 +156,10 @@ func (o *WorkspaceRepositoryContentManagerLinks) SetSelf(v HalLinkData) {
 
 func (o WorkspaceRepositoryContentManagerLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Clear != nil {
+	if !isNil(o.Clear) {
 		toSerialize["clear"] = o.Clear
 	}
-	if o.Edit != nil {
+	if !isNil(o.Edit) {
 		toSerialize["edit"] = o.Edit
 	}
 	if true {

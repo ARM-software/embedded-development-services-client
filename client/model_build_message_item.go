@@ -64,7 +64,7 @@ func (o *BuildMessageItem) GetLinks() HalFeedLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildMessageItem) GetLinksOk() (*HalFeedLinks, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -90,7 +90,7 @@ func (o *BuildMessageItem) GetMetadata() PagingMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildMessageItem) GetMetadataOk() (*PagingMetadata, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -115,8 +115,8 @@ func (o *BuildMessageItem) GetMessages() []MessageObject {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildMessageItem) GetMessagesOk() ([]MessageObject, bool) {
-	if o == nil || o.Messages == nil {
-		return nil, false
+	if o == nil || isNil(o.Messages) {
+    return nil, false
 	}
 	return o.Messages, true
 }
@@ -140,7 +140,7 @@ func (o *BuildMessageItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *BuildMessageItem) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -152,7 +152,7 @@ func (o *BuildMessageItem) SetName(v string) {
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *BuildMessageItem) GetTitle() string {
-	if o == nil || o.Title == nil {
+	if o == nil || isNil(o.Title) {
 		var ret string
 		return ret
 	}
@@ -162,15 +162,15 @@ func (o *BuildMessageItem) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BuildMessageItem) GetTitleOk() (*string, bool) {
-	if o == nil || o.Title == nil {
-		return nil, false
+	if o == nil || isNil(o.Title) {
+    return nil, false
 	}
 	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
 func (o *BuildMessageItem) HasTitle() bool {
-	if o != nil && o.Title != nil {
+	if o != nil && !isNil(o.Title) {
 		return true
 	}
 
@@ -196,7 +196,7 @@ func (o BuildMessageItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Title != nil {
+	if !isNil(o.Title) {
 		toSerialize["title"] = o.Title
 	}
 	return json.Marshal(toSerialize)

@@ -54,7 +54,7 @@ func (o *WorkspaceDetailsItemLinks) GetRelated() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceDetailsItemLinks) GetRelatedOk() (*HalLinkData, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Related, true
 }
@@ -78,7 +78,7 @@ func (o *WorkspaceDetailsItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceDetailsItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Self, true
 }

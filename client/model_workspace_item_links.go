@@ -47,7 +47,7 @@ func NewWorkspaceItemLinksWithDefaults() *WorkspaceItemLinks {
 
 // GetArtefacts returns the Artefacts field value if set, zero value otherwise.
 func (o *WorkspaceItemLinks) GetArtefacts() HalLinkData {
-	if o == nil || o.Artefacts == nil {
+	if o == nil || isNil(o.Artefacts) {
 		var ret HalLinkData
 		return ret
 	}
@@ -57,15 +57,15 @@ func (o *WorkspaceItemLinks) GetArtefacts() HalLinkData {
 // GetArtefactsOk returns a tuple with the Artefacts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItemLinks) GetArtefactsOk() (*HalLinkData, bool) {
-	if o == nil || o.Artefacts == nil {
-		return nil, false
+	if o == nil || isNil(o.Artefacts) {
+    return nil, false
 	}
 	return o.Artefacts, true
 }
 
 // HasArtefacts returns a boolean if a field has been set.
 func (o *WorkspaceItemLinks) HasArtefacts() bool {
-	if o != nil && o.Artefacts != nil {
+	if o != nil && !isNil(o.Artefacts) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *WorkspaceItemLinks) SetArtefacts(v HalLinkData) {
 
 // GetCollection returns the Collection field value if set, zero value otherwise.
 func (o *WorkspaceItemLinks) GetCollection() HalLinkData {
-	if o == nil || o.Collection == nil {
+	if o == nil || isNil(o.Collection) {
 		var ret HalLinkData
 		return ret
 	}
@@ -89,15 +89,15 @@ func (o *WorkspaceItemLinks) GetCollection() HalLinkData {
 // GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItemLinks) GetCollectionOk() (*HalLinkData, bool) {
-	if o == nil || o.Collection == nil {
-		return nil, false
+	if o == nil || isNil(o.Collection) {
+    return nil, false
 	}
 	return o.Collection, true
 }
 
 // HasCollection returns a boolean if a field has been set.
 func (o *WorkspaceItemLinks) HasCollection() bool {
-	if o != nil && o.Collection != nil {
+	if o != nil && !isNil(o.Collection) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *WorkspaceItemLinks) SetCollection(v HalLinkData) {
 
 // GetDelete returns the Delete field value if set, zero value otherwise.
 func (o *WorkspaceItemLinks) GetDelete() HalLinkData {
-	if o == nil || o.Delete == nil {
+	if o == nil || isNil(o.Delete) {
 		var ret HalLinkData
 		return ret
 	}
@@ -121,15 +121,15 @@ func (o *WorkspaceItemLinks) GetDelete() HalLinkData {
 // GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItemLinks) GetDeleteOk() (*HalLinkData, bool) {
-	if o == nil || o.Delete == nil {
-		return nil, false
+	if o == nil || isNil(o.Delete) {
+    return nil, false
 	}
 	return o.Delete, true
 }
 
 // HasDelete returns a boolean if a field has been set.
 func (o *WorkspaceItemLinks) HasDelete() bool {
-	if o != nil && o.Delete != nil {
+	if o != nil && !isNil(o.Delete) {
 		return true
 	}
 
@@ -143,7 +143,7 @@ func (o *WorkspaceItemLinks) SetDelete(v HalLinkData) {
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *WorkspaceItemLinks) GetDetails() HalLinkData {
-	if o == nil || o.Details == nil {
+	if o == nil || isNil(o.Details) {
 		var ret HalLinkData
 		return ret
 	}
@@ -153,15 +153,15 @@ func (o *WorkspaceItemLinks) GetDetails() HalLinkData {
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItemLinks) GetDetailsOk() (*HalLinkData, bool) {
-	if o == nil || o.Details == nil {
-		return nil, false
+	if o == nil || isNil(o.Details) {
+    return nil, false
 	}
 	return o.Details, true
 }
 
 // HasDetails returns a boolean if a field has been set.
 func (o *WorkspaceItemLinks) HasDetails() bool {
-	if o != nil && o.Details != nil {
+	if o != nil && !isNil(o.Details) {
 		return true
 	}
 
@@ -187,7 +187,7 @@ func (o *WorkspaceItemLinks) GetRelated() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItemLinks) GetRelatedOk() (*HalLinkData, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Related, true
 }
@@ -199,7 +199,7 @@ func (o *WorkspaceItemLinks) SetRelated(v HalLinkData) {
 
 // GetRetain returns the Retain field value if set, zero value otherwise.
 func (o *WorkspaceItemLinks) GetRetain() HalLinkData {
-	if o == nil || o.Retain == nil {
+	if o == nil || isNil(o.Retain) {
 		var ret HalLinkData
 		return ret
 	}
@@ -209,15 +209,15 @@ func (o *WorkspaceItemLinks) GetRetain() HalLinkData {
 // GetRetainOk returns a tuple with the Retain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItemLinks) GetRetainOk() (*HalLinkData, bool) {
-	if o == nil || o.Retain == nil {
-		return nil, false
+	if o == nil || isNil(o.Retain) {
+    return nil, false
 	}
 	return o.Retain, true
 }
 
 // HasRetain returns a boolean if a field has been set.
 func (o *WorkspaceItemLinks) HasRetain() bool {
-	if o != nil && o.Retain != nil {
+	if o != nil && !isNil(o.Retain) {
 		return true
 	}
 
@@ -243,7 +243,7 @@ func (o *WorkspaceItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Self, true
 }
@@ -255,22 +255,22 @@ func (o *WorkspaceItemLinks) SetSelf(v HalLinkData) {
 
 func (o WorkspaceItemLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Artefacts != nil {
+	if !isNil(o.Artefacts) {
 		toSerialize["artefacts"] = o.Artefacts
 	}
-	if o.Collection != nil {
+	if !isNil(o.Collection) {
 		toSerialize["collection"] = o.Collection
 	}
-	if o.Delete != nil {
+	if !isNil(o.Delete) {
 		toSerialize["delete"] = o.Delete
 	}
-	if o.Details != nil {
+	if !isNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
 	if true {
 		toSerialize["related"] = o.Related
 	}
-	if o.Retain != nil {
+	if !isNil(o.Retain) {
 		toSerialize["retain"] = o.Retain
 	}
 	if true {

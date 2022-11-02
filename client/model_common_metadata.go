@@ -59,7 +59,7 @@ func (o *CommonMetadata) GetCtime() time.Time {
 // and a boolean to check if the value has been set.
 func (o *CommonMetadata) GetCtimeOk() (*time.Time, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Ctime, true
 }
@@ -71,7 +71,7 @@ func (o *CommonMetadata) SetCtime(v time.Time) {
 
 // GetEtime returns the Etime field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CommonMetadata) GetEtime() time.Time {
-	if o == nil || o.Etime.Get() == nil {
+	if o == nil || isNil(o.Etime.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -83,7 +83,7 @@ func (o *CommonMetadata) GetEtime() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CommonMetadata) GetEtimeOk() (*time.Time, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Etime.Get(), o.Etime.IsSet()
 }
@@ -125,7 +125,7 @@ func (o *CommonMetadata) GetMtime() time.Time {
 // and a boolean to check if the value has been set.
 func (o *CommonMetadata) GetMtimeOk() (*time.Time, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Mtime, true
 }

@@ -59,7 +59,7 @@ func (o *VirtualInterface) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *VirtualInterface) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Description, true
 }
@@ -83,7 +83,7 @@ func (o *VirtualInterface) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *VirtualInterface) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -107,7 +107,7 @@ func (o *VirtualInterface) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *VirtualInterface) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Title, true
 }

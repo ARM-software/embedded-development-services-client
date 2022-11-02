@@ -80,7 +80,7 @@ func (o *ArtefactManagerItem) GetLinks() ArtefactManagerLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ArtefactManagerItem) GetLinksOk() (*ArtefactManagerLinks, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -106,7 +106,7 @@ func (o *ArtefactManagerItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ArtefactManagerItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -132,7 +132,7 @@ func (o *ArtefactManagerItem) GetCategory() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ArtefactManagerItem) GetCategoryOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Category.Get(), o.Category.IsSet()
 }
@@ -156,7 +156,7 @@ func (o *ArtefactManagerItem) GetContentMediaType() string {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerItem) GetContentMediaTypeOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ContentMediaType, true
 }
@@ -180,7 +180,7 @@ func (o *ArtefactManagerItem) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerItem) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Description, true
 }
@@ -206,7 +206,7 @@ func (o *ArtefactManagerItem) GetHash() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ArtefactManagerItem) GetHashOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Hash.Get(), o.Hash.IsSet()
 }
@@ -218,7 +218,7 @@ func (o *ArtefactManagerItem) SetHash(v string) {
 
 // GetMandatory returns the Mandatory field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ArtefactManagerItem) GetMandatory() bool {
-	if o == nil || o.Mandatory.Get() == nil {
+	if o == nil || isNil(o.Mandatory.Get()) {
 		var ret bool
 		return ret
 	}
@@ -230,7 +230,7 @@ func (o *ArtefactManagerItem) GetMandatory() bool {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ArtefactManagerItem) GetMandatoryOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Mandatory.Get(), o.Mandatory.IsSet()
 }
@@ -272,7 +272,7 @@ func (o *ArtefactManagerItem) GetMaxSize() int64 {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerItem) GetMaxSizeOk() (*int64, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.MaxSize, true
 }
@@ -296,7 +296,7 @@ func (o *ArtefactManagerItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerItem) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -308,7 +308,7 @@ func (o *ArtefactManagerItem) SetName(v string) {
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *ArtefactManagerItem) GetSize() int64 {
-	if o == nil || o.Size == nil {
+	if o == nil || isNil(o.Size) {
 		var ret int64
 		return ret
 	}
@@ -318,15 +318,15 @@ func (o *ArtefactManagerItem) GetSize() int64 {
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerItem) GetSizeOk() (*int64, bool) {
-	if o == nil || o.Size == nil {
-		return nil, false
+	if o == nil || isNil(o.Size) {
+    return nil, false
 	}
 	return o.Size, true
 }
 
 // HasSize returns a boolean if a field has been set.
 func (o *ArtefactManagerItem) HasSize() bool {
-	if o != nil && o.Size != nil {
+	if o != nil && !isNil(o.Size) {
 		return true
 	}
 
@@ -340,7 +340,7 @@ func (o *ArtefactManagerItem) SetSize(v int64) {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ArtefactManagerItem) GetTitle() string {
-	if o == nil || o.Title.Get() == nil {
+	if o == nil || isNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -352,7 +352,7 @@ func (o *ArtefactManagerItem) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ArtefactManagerItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -409,7 +409,7 @@ func (o ArtefactManagerItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Size != nil {
+	if !isNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
 	if o.Title.IsSet() {

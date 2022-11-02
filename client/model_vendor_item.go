@@ -73,7 +73,7 @@ func (o *VendorItem) GetLinks() VendorItemLinks {
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetLinksOk() (*VendorItemLinks, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Links, true
 }
@@ -99,7 +99,7 @@ func (o *VendorItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VendorItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -111,7 +111,7 @@ func (o *VendorItem) SetMetadata(v CommonMetadata) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *VendorItem) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -121,15 +121,15 @@ func (o *VendorItem) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
-		return nil, false
+	if o == nil || isNil(o.Description) {
+    return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *VendorItem) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !isNil(o.Description) {
 		return true
 	}
 
@@ -143,7 +143,7 @@ func (o *VendorItem) SetDescription(v string) {
 
 // GetExternalId returns the ExternalId field value if set, zero value otherwise.
 func (o *VendorItem) GetExternalId() string {
-	if o == nil || o.ExternalId == nil {
+	if o == nil || isNil(o.ExternalId) {
 		var ret string
 		return ret
 	}
@@ -153,15 +153,15 @@ func (o *VendorItem) GetExternalId() string {
 // GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetExternalIdOk() (*string, bool) {
-	if o == nil || o.ExternalId == nil {
-		return nil, false
+	if o == nil || isNil(o.ExternalId) {
+    return nil, false
 	}
 	return o.ExternalId, true
 }
 
 // HasExternalId returns a boolean if a field has been set.
 func (o *VendorItem) HasExternalId() bool {
-	if o != nil && o.ExternalId != nil {
+	if o != nil && !isNil(o.ExternalId) {
 		return true
 	}
 
@@ -187,7 +187,7 @@ func (o *VendorItem) GetId() string {
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetIdOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Id, true
 }
@@ -199,7 +199,7 @@ func (o *VendorItem) SetId(v string) {
 
 // GetLogo returns the Logo field value if set, zero value otherwise.
 func (o *VendorItem) GetLogo() string {
-	if o == nil || o.Logo == nil {
+	if o == nil || isNil(o.Logo) {
 		var ret string
 		return ret
 	}
@@ -209,15 +209,15 @@ func (o *VendorItem) GetLogo() string {
 // GetLogoOk returns a tuple with the Logo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetLogoOk() (*string, bool) {
-	if o == nil || o.Logo == nil {
-		return nil, false
+	if o == nil || isNil(o.Logo) {
+    return nil, false
 	}
 	return o.Logo, true
 }
 
 // HasLogo returns a boolean if a field has been set.
 func (o *VendorItem) HasLogo() bool {
-	if o != nil && o.Logo != nil {
+	if o != nil && !isNil(o.Logo) {
 		return true
 	}
 
@@ -243,7 +243,7 @@ func (o *VendorItem) GetSlug() string {
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetSlugOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Slug, true
 }
@@ -267,7 +267,7 @@ func (o *VendorItem) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Title, true
 }
@@ -279,7 +279,7 @@ func (o *VendorItem) SetTitle(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *VendorItem) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || isNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -289,15 +289,15 @@ func (o *VendorItem) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
+	if o == nil || isNil(o.Type) {
+    return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *VendorItem) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !isNil(o.Type) {
 		return true
 	}
 
@@ -311,7 +311,7 @@ func (o *VendorItem) SetType(v string) {
 
 // GetWebsite returns the Website field value if set, zero value otherwise.
 func (o *VendorItem) GetWebsite() string {
-	if o == nil || o.Website == nil {
+	if o == nil || isNil(o.Website) {
 		var ret string
 		return ret
 	}
@@ -321,15 +321,15 @@ func (o *VendorItem) GetWebsite() string {
 // GetWebsiteOk returns a tuple with the Website field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetWebsiteOk() (*string, bool) {
-	if o == nil || o.Website == nil {
-		return nil, false
+	if o == nil || isNil(o.Website) {
+    return nil, false
 	}
 	return o.Website, true
 }
 
 // HasWebsite returns a boolean if a field has been set.
 func (o *VendorItem) HasWebsite() bool {
-	if o != nil && o.Website != nil {
+	if o != nil && !isNil(o.Website) {
 		return true
 	}
 
@@ -349,16 +349,16 @@ func (o VendorItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["_metadata"] = o.Metadata.Get()
 	}
-	if o.Description != nil {
+	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if o.ExternalId != nil {
+	if !isNil(o.ExternalId) {
 		toSerialize["external_id"] = o.ExternalId
 	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
-	if o.Logo != nil {
+	if !isNil(o.Logo) {
 		toSerialize["logo"] = o.Logo
 	}
 	if true {
@@ -367,10 +367,10 @@ func (o VendorItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["title"] = o.Title
 	}
-	if o.Type != nil {
+	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if o.Website != nil {
+	if !isNil(o.Website) {
 		toSerialize["website"] = o.Website
 	}
 	return json.Marshal(toSerialize)

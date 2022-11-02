@@ -101,7 +101,7 @@ func (o *BuildJobItem) GetLinks() BuildJobItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildJobItem) GetLinksOk() (*BuildJobItemLinks, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -127,7 +127,7 @@ func (o *BuildJobItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildJobItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -153,7 +153,7 @@ func (o *BuildJobItem) GetBuildStepsCompleted() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildJobItem) GetBuildStepsCompletedOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.BuildStepsCompleted.Get(), o.BuildStepsCompleted.IsSet()
 }
@@ -179,7 +179,7 @@ func (o *BuildJobItem) GetBuildStepsTotal() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildJobItem) GetBuildStepsTotalOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.BuildStepsTotal.Get(), o.BuildStepsTotal.IsSet()
 }
@@ -191,7 +191,7 @@ func (o *BuildJobItem) SetBuildStepsTotal(v int32) {
 
 // GetBuildTimeout returns the BuildTimeout field value if set, zero value otherwise.
 func (o *BuildJobItem) GetBuildTimeout() int32 {
-	if o == nil || o.BuildTimeout == nil {
+	if o == nil || isNil(o.BuildTimeout) {
 		var ret int32
 		return ret
 	}
@@ -201,15 +201,15 @@ func (o *BuildJobItem) GetBuildTimeout() int32 {
 // GetBuildTimeoutOk returns a tuple with the BuildTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetBuildTimeoutOk() (*int32, bool) {
-	if o == nil || o.BuildTimeout == nil {
-		return nil, false
+	if o == nil || isNil(o.BuildTimeout) {
+    return nil, false
 	}
 	return o.BuildTimeout, true
 }
 
 // HasBuildTimeout returns a boolean if a field has been set.
 func (o *BuildJobItem) HasBuildTimeout() bool {
-	if o != nil && o.BuildTimeout != nil {
+	if o != nil && !isNil(o.BuildTimeout) {
 		return true
 	}
 
@@ -223,7 +223,7 @@ func (o *BuildJobItem) SetBuildTimeout(v int32) {
 
 // GetCleanBuild returns the CleanBuild field value if set, zero value otherwise.
 func (o *BuildJobItem) GetCleanBuild() bool {
-	if o == nil || o.CleanBuild == nil {
+	if o == nil || isNil(o.CleanBuild) {
 		var ret bool
 		return ret
 	}
@@ -233,15 +233,15 @@ func (o *BuildJobItem) GetCleanBuild() bool {
 // GetCleanBuildOk returns a tuple with the CleanBuild field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetCleanBuildOk() (*bool, bool) {
-	if o == nil || o.CleanBuild == nil {
-		return nil, false
+	if o == nil || isNil(o.CleanBuild) {
+    return nil, false
 	}
 	return o.CleanBuild, true
 }
 
 // HasCleanBuild returns a boolean if a field has been set.
 func (o *BuildJobItem) HasCleanBuild() bool {
-	if o != nil && o.CleanBuild != nil {
+	if o != nil && !isNil(o.CleanBuild) {
 		return true
 	}
 
@@ -267,7 +267,7 @@ func (o *BuildJobItem) GetDone() bool {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetDoneOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Done, true
 }
@@ -291,7 +291,7 @@ func (o *BuildJobItem) GetError() bool {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetErrorOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Error, true
 }
@@ -315,7 +315,7 @@ func (o *BuildJobItem) GetFailure() bool {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetFailureOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Failure, true
 }
@@ -339,7 +339,7 @@ func (o *BuildJobItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -363,7 +363,7 @@ func (o *BuildJobItem) GetProject() string {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetProjectOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Project, true
 }
@@ -375,7 +375,7 @@ func (o *BuildJobItem) SetProject(v string) {
 
 // GetQueued returns the Queued field value if set, zero value otherwise.
 func (o *BuildJobItem) GetQueued() bool {
-	if o == nil || o.Queued == nil {
+	if o == nil || isNil(o.Queued) {
 		var ret bool
 		return ret
 	}
@@ -385,15 +385,15 @@ func (o *BuildJobItem) GetQueued() bool {
 // GetQueuedOk returns a tuple with the Queued field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetQueuedOk() (*bool, bool) {
-	if o == nil || o.Queued == nil {
-		return nil, false
+	if o == nil || isNil(o.Queued) {
+    return nil, false
 	}
 	return o.Queued, true
 }
 
 // HasQueued returns a boolean if a field has been set.
 func (o *BuildJobItem) HasQueued() bool {
-	if o != nil && o.Queued != nil {
+	if o != nil && !isNil(o.Queued) {
 		return true
 	}
 
@@ -419,7 +419,7 @@ func (o *BuildJobItem) GetStatus() string {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetStatusOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Status, true
 }
@@ -443,7 +443,7 @@ func (o *BuildJobItem) GetSuccess() bool {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetSuccessOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Success, true
 }
@@ -455,7 +455,7 @@ func (o *BuildJobItem) SetSuccess(v bool) {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BuildJobItem) GetTitle() string {
-	if o == nil || o.Title.Get() == nil {
+	if o == nil || isNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -467,7 +467,7 @@ func (o *BuildJobItem) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildJobItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -497,7 +497,7 @@ func (o *BuildJobItem) UnsetTitle() {
 
 // GetWorkspace returns the Workspace field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BuildJobItem) GetWorkspace() string {
-	if o == nil || o.Workspace.Get() == nil {
+	if o == nil || isNil(o.Workspace.Get()) {
 		var ret string
 		return ret
 	}
@@ -509,7 +509,7 @@ func (o *BuildJobItem) GetWorkspace() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildJobItem) GetWorkspaceOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Workspace.Get(), o.Workspace.IsSet()
 }
@@ -551,10 +551,10 @@ func (o BuildJobItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["buildStepsTotal"] = o.BuildStepsTotal.Get()
 	}
-	if o.BuildTimeout != nil {
+	if !isNil(o.BuildTimeout) {
 		toSerialize["buildTimeout"] = o.BuildTimeout
 	}
-	if o.CleanBuild != nil {
+	if !isNil(o.CleanBuild) {
 		toSerialize["cleanBuild"] = o.CleanBuild
 	}
 	if true {
@@ -572,7 +572,7 @@ func (o BuildJobItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["project"] = o.Project
 	}
-	if o.Queued != nil {
+	if !isNil(o.Queued) {
 		toSerialize["queued"] = o.Queued
 	}
 	if true {

@@ -85,7 +85,7 @@ func (o *VhtRunJobItem) GetLinks() VhtRunJobItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtRunJobItem) GetLinksOk() (*VhtRunJobItemLinks, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -111,7 +111,7 @@ func (o *VhtRunJobItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtRunJobItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -135,7 +135,7 @@ func (o *VhtRunJobItem) GetDone() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetDoneOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Done, true
 }
@@ -159,7 +159,7 @@ func (o *VhtRunJobItem) GetError() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetErrorOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Error, true
 }
@@ -171,7 +171,7 @@ func (o *VhtRunJobItem) SetError(v bool) {
 
 // GetJobTimeout returns the JobTimeout field value if set, zero value otherwise.
 func (o *VhtRunJobItem) GetJobTimeout() int32 {
-	if o == nil || o.JobTimeout == nil {
+	if o == nil || isNil(o.JobTimeout) {
 		var ret int32
 		return ret
 	}
@@ -181,15 +181,15 @@ func (o *VhtRunJobItem) GetJobTimeout() int32 {
 // GetJobTimeoutOk returns a tuple with the JobTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetJobTimeoutOk() (*int32, bool) {
-	if o == nil || o.JobTimeout == nil {
-		return nil, false
+	if o == nil || isNil(o.JobTimeout) {
+    return nil, false
 	}
 	return o.JobTimeout, true
 }
 
 // HasJobTimeout returns a boolean if a field has been set.
 func (o *VhtRunJobItem) HasJobTimeout() bool {
-	if o != nil && o.JobTimeout != nil {
+	if o != nil && !isNil(o.JobTimeout) {
 		return true
 	}
 
@@ -215,7 +215,7 @@ func (o *VhtRunJobItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -239,7 +239,7 @@ func (o *VhtRunJobItem) GetQueued() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetQueuedOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Queued, true
 }
@@ -263,7 +263,7 @@ func (o *VhtRunJobItem) GetStatus() string {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetStatusOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Status, true
 }
@@ -287,7 +287,7 @@ func (o *VhtRunJobItem) GetSystemError() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetSystemErrorOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.SystemError, true
 }
@@ -311,7 +311,7 @@ func (o *VhtRunJobItem) GetTimedOut() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetTimedOutOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TimedOut, true
 }
@@ -323,7 +323,7 @@ func (o *VhtRunJobItem) SetTimedOut(v bool) {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *VhtRunJobItem) GetTitle() string {
-	if o == nil || o.Title.Get() == nil {
+	if o == nil || isNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -335,7 +335,7 @@ func (o *VhtRunJobItem) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtRunJobItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -377,7 +377,7 @@ func (o VhtRunJobItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["error"] = o.Error
 	}
-	if o.JobTimeout != nil {
+	if !isNil(o.JobTimeout) {
 		toSerialize["jobTimeout"] = o.JobTimeout
 	}
 	if true {

@@ -72,7 +72,7 @@ func (o *DeviceItem) GetLinks() DeviceItemLinks {
 // and a boolean to check if the value has been set.
 func (o *DeviceItem) GetLinksOk() (*DeviceItemLinks, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Links, true
 }
@@ -98,7 +98,7 @@ func (o *DeviceItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeviceItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -110,7 +110,7 @@ func (o *DeviceItem) SetMetadata(v CommonMetadata) {
 
 // GetFamily returns the Family field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DeviceItem) GetFamily() string {
-	if o == nil || o.Family.Get() == nil {
+	if o == nil || isNil(o.Family.Get()) {
 		var ret string
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *DeviceItem) GetFamily() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeviceItem) GetFamilyOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Family.Get(), o.Family.IsSet()
 }
@@ -164,7 +164,7 @@ func (o *DeviceItem) GetProcessors() []ProcessorItem {
 // and a boolean to check if the value has been set.
 func (o *DeviceItem) GetProcessorsOk() ([]ProcessorItem, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Processors, true
 }
@@ -188,7 +188,7 @@ func (o *DeviceItem) GetSlug() string {
 // and a boolean to check if the value has been set.
 func (o *DeviceItem) GetSlugOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Slug, true
 }
@@ -212,7 +212,7 @@ func (o *DeviceItem) GetSourcePackId() DeviceItemSourcePackId {
 // and a boolean to check if the value has been set.
 func (o *DeviceItem) GetSourcePackIdOk() (*DeviceItemSourcePackId, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.SourcePackId, true
 }
@@ -224,7 +224,7 @@ func (o *DeviceItem) SetSourcePackId(v DeviceItemSourcePackId) {
 
 // GetSubFamily returns the SubFamily field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DeviceItem) GetSubFamily() string {
-	if o == nil || o.SubFamily.Get() == nil {
+	if o == nil || isNil(o.SubFamily.Get()) {
 		var ret string
 		return ret
 	}
@@ -236,7 +236,7 @@ func (o *DeviceItem) GetSubFamily() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeviceItem) GetSubFamilyOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.SubFamily.Get(), o.SubFamily.IsSet()
 }
@@ -278,7 +278,7 @@ func (o *DeviceItem) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *DeviceItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Title, true
 }
@@ -302,7 +302,7 @@ func (o *DeviceItem) GetVendor() string {
 // and a boolean to check if the value has been set.
 func (o *DeviceItem) GetVendorOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Vendor, true
 }

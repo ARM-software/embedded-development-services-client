@@ -43,7 +43,7 @@ func NewVhtItemLinksWithDefaults() *VhtItemLinks {
 
 // GetCollection returns the Collection field value if set, zero value otherwise.
 func (o *VhtItemLinks) GetCollection() HalLinkData {
-	if o == nil || o.Collection == nil {
+	if o == nil || isNil(o.Collection) {
 		var ret HalLinkData
 		return ret
 	}
@@ -53,15 +53,15 @@ func (o *VhtItemLinks) GetCollection() HalLinkData {
 // GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtItemLinks) GetCollectionOk() (*HalLinkData, bool) {
-	if o == nil || o.Collection == nil {
-		return nil, false
+	if o == nil || isNil(o.Collection) {
+    return nil, false
 	}
 	return o.Collection, true
 }
 
 // HasCollection returns a boolean if a field has been set.
 func (o *VhtItemLinks) HasCollection() bool {
-	if o != nil && o.Collection != nil {
+	if o != nil && !isNil(o.Collection) {
 		return true
 	}
 
@@ -75,7 +75,7 @@ func (o *VhtItemLinks) SetCollection(v HalLinkData) {
 
 // GetCreate returns the Create field value if set, zero value otherwise.
 func (o *VhtItemLinks) GetCreate() HalLinkData {
-	if o == nil || o.Create == nil {
+	if o == nil || isNil(o.Create) {
 		var ret HalLinkData
 		return ret
 	}
@@ -85,15 +85,15 @@ func (o *VhtItemLinks) GetCreate() HalLinkData {
 // GetCreateOk returns a tuple with the Create field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtItemLinks) GetCreateOk() (*HalLinkData, bool) {
-	if o == nil || o.Create == nil {
-		return nil, false
+	if o == nil || isNil(o.Create) {
+    return nil, false
 	}
 	return o.Create, true
 }
 
 // HasCreate returns a boolean if a field has been set.
 func (o *VhtItemLinks) HasCreate() bool {
-	if o != nil && o.Create != nil {
+	if o != nil && !isNil(o.Create) {
 		return true
 	}
 
@@ -107,7 +107,7 @@ func (o *VhtItemLinks) SetCreate(v HalLinkData) {
 
 // GetInstance returns the Instance field value if set, zero value otherwise.
 func (o *VhtItemLinks) GetInstance() HalLinkData {
-	if o == nil || o.Instance == nil {
+	if o == nil || isNil(o.Instance) {
 		var ret HalLinkData
 		return ret
 	}
@@ -117,15 +117,15 @@ func (o *VhtItemLinks) GetInstance() HalLinkData {
 // GetInstanceOk returns a tuple with the Instance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtItemLinks) GetInstanceOk() (*HalLinkData, bool) {
-	if o == nil || o.Instance == nil {
-		return nil, false
+	if o == nil || isNil(o.Instance) {
+    return nil, false
 	}
 	return o.Instance, true
 }
 
 // HasInstance returns a boolean if a field has been set.
 func (o *VhtItemLinks) HasInstance() bool {
-	if o != nil && o.Instance != nil {
+	if o != nil && !isNil(o.Instance) {
 		return true
 	}
 
@@ -151,7 +151,7 @@ func (o *VhtItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Self, true
 }
@@ -163,13 +163,13 @@ func (o *VhtItemLinks) SetSelf(v HalLinkData) {
 
 func (o VhtItemLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Collection != nil {
+	if !isNil(o.Collection) {
 		toSerialize["collection"] = o.Collection
 	}
-	if o.Create != nil {
+	if !isNil(o.Create) {
 		toSerialize["create"] = o.Create
 	}
-	if o.Instance != nil {
+	if !isNil(o.Instance) {
 		toSerialize["instance"] = o.Instance
 	}
 	if true {

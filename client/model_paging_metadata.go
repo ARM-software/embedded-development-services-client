@@ -71,7 +71,7 @@ func (o *PagingMetadata) GetCount() int32 {
 // and a boolean to check if the value has been set.
 func (o *PagingMetadata) GetCountOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Count, true
 }
@@ -95,7 +95,7 @@ func (o *PagingMetadata) GetCtime() time.Time {
 // and a boolean to check if the value has been set.
 func (o *PagingMetadata) GetCtimeOk() (*time.Time, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Ctime, true
 }
@@ -107,7 +107,7 @@ func (o *PagingMetadata) SetCtime(v time.Time) {
 
 // GetEtime returns the Etime field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PagingMetadata) GetEtime() time.Time {
-	if o == nil || o.Etime.Get() == nil {
+	if o == nil || isNil(o.Etime.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -119,7 +119,7 @@ func (o *PagingMetadata) GetEtime() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PagingMetadata) GetEtimeOk() (*time.Time, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Etime.Get(), o.Etime.IsSet()
 }
@@ -161,7 +161,7 @@ func (o *PagingMetadata) GetLimit() int32 {
 // and a boolean to check if the value has been set.
 func (o *PagingMetadata) GetLimitOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Limit, true
 }
@@ -185,7 +185,7 @@ func (o *PagingMetadata) GetMtime() time.Time {
 // and a boolean to check if the value has been set.
 func (o *PagingMetadata) GetMtimeOk() (*time.Time, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Mtime, true
 }
@@ -209,7 +209,7 @@ func (o *PagingMetadata) GetOffset() int32 {
 // and a boolean to check if the value has been set.
 func (o *PagingMetadata) GetOffsetOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Offset, true
 }
@@ -233,7 +233,7 @@ func (o *PagingMetadata) GetTotal() int32 {
 // and a boolean to check if the value has been set.
 func (o *PagingMetadata) GetTotalOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Total, true
 }

@@ -198,4 +198,17 @@ model_workspace_source_collection.go
 model_workspace_source_item.go
 model_workspace_source_item_links.go
 response.go
+test/api_boards_test.go
+test/api_build_jobs_test.go
+test/api_cmsis_builders_test.go
+test/api_cmsis_intellisense_builders_test.go
+test/api_devices_test.go
+test/api_intellisense_jobs_test.go
+test/api_root_resource_test.go
+test/api_vendors_test.go
+test/api_vht_run_jobs_test.go
+test/api_virtual_hardware_target_instance_test.go
+test/api_virtual_hardware_target_test.go
+test/api_workspace_source_test.go
+test/api_workspace_test.go
 utils.go

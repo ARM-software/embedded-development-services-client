@@ -55,7 +55,7 @@ func NewWorkspaceItemWithDefaults() *WorkspaceItem {
 
 // GetTTL returns the TTL field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WorkspaceItem) GetTTL() int64 {
-	if o == nil || o.TTL.Get() == nil {
+	if o == nil || isNil(o.TTL.Get()) {
 		var ret int64
 		return ret
 	}
@@ -67,7 +67,7 @@ func (o *WorkspaceItem) GetTTL() int64 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceItem) GetTTLOk() (*int64, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.TTL.Get(), o.TTL.IsSet()
 }
@@ -111,7 +111,7 @@ func (o *WorkspaceItem) GetLinks() WorkspaceItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceItem) GetLinksOk() (*WorkspaceItemLinks, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -137,7 +137,7 @@ func (o *WorkspaceItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -149,7 +149,7 @@ func (o *WorkspaceItem) SetMetadata(v CommonMetadata) {
 
 // GetEphemeral returns the Ephemeral field value if set, zero value otherwise.
 func (o *WorkspaceItem) GetEphemeral() bool {
-	if o == nil || o.Ephemeral == nil {
+	if o == nil || isNil(o.Ephemeral) {
 		var ret bool
 		return ret
 	}
@@ -159,15 +159,15 @@ func (o *WorkspaceItem) GetEphemeral() bool {
 // GetEphemeralOk returns a tuple with the Ephemeral field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItem) GetEphemeralOk() (*bool, bool) {
-	if o == nil || o.Ephemeral == nil {
-		return nil, false
+	if o == nil || isNil(o.Ephemeral) {
+    return nil, false
 	}
 	return o.Ephemeral, true
 }
 
 // HasEphemeral returns a boolean if a field has been set.
 func (o *WorkspaceItem) HasEphemeral() bool {
-	if o != nil && o.Ephemeral != nil {
+	if o != nil && !isNil(o.Ephemeral) {
 		return true
 	}
 
@@ -193,7 +193,7 @@ func (o *WorkspaceItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItem) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -205,7 +205,7 @@ func (o *WorkspaceItem) SetName(v string) {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WorkspaceItem) GetTitle() string {
-	if o == nil || o.Title.Get() == nil {
+	if o == nil || isNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -217,7 +217,7 @@ func (o *WorkspaceItem) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -256,7 +256,7 @@ func (o WorkspaceItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["_metadata"] = o.Metadata.Get()
 	}
-	if o.Ephemeral != nil {
+	if !isNil(o.Ephemeral) {
 		toSerialize["ephemeral"] = o.Ephemeral
 	}
 	if true {

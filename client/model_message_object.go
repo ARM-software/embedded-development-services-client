@@ -48,7 +48,7 @@ func NewMessageObjectWithDefaults() *MessageObject {
 
 // GetCtime returns the Ctime field value if set, zero value otherwise.
 func (o *MessageObject) GetCtime() time.Time {
-	if o == nil || o.Ctime == nil {
+	if o == nil || isNil(o.Ctime) {
 		var ret time.Time
 		return ret
 	}
@@ -58,15 +58,15 @@ func (o *MessageObject) GetCtime() time.Time {
 // GetCtimeOk returns a tuple with the Ctime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageObject) GetCtimeOk() (*time.Time, bool) {
-	if o == nil || o.Ctime == nil {
-		return nil, false
+	if o == nil || isNil(o.Ctime) {
+    return nil, false
 	}
 	return o.Ctime, true
 }
 
 // HasCtime returns a boolean if a field has been set.
 func (o *MessageObject) HasCtime() bool {
-	if o != nil && o.Ctime != nil {
+	if o != nil && !isNil(o.Ctime) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *MessageObject) GetMessage() string {
 // and a boolean to check if the value has been set.
 func (o *MessageObject) GetMessageOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Message, true
 }
@@ -104,7 +104,7 @@ func (o *MessageObject) SetMessage(v string) {
 
 // GetSeverity returns the Severity field value if set, zero value otherwise.
 func (o *MessageObject) GetSeverity() string {
-	if o == nil || o.Severity == nil {
+	if o == nil || isNil(o.Severity) {
 		var ret string
 		return ret
 	}
@@ -114,15 +114,15 @@ func (o *MessageObject) GetSeverity() string {
 // GetSeverityOk returns a tuple with the Severity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageObject) GetSeverityOk() (*string, bool) {
-	if o == nil || o.Severity == nil {
-		return nil, false
+	if o == nil || isNil(o.Severity) {
+    return nil, false
 	}
 	return o.Severity, true
 }
 
 // HasSeverity returns a boolean if a field has been set.
 func (o *MessageObject) HasSeverity() bool {
-	if o != nil && o.Severity != nil {
+	if o != nil && !isNil(o.Severity) {
 		return true
 	}
 
@@ -136,7 +136,7 @@ func (o *MessageObject) SetSeverity(v string) {
 
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *MessageObject) GetSource() string {
-	if o == nil || o.Source == nil {
+	if o == nil || isNil(o.Source) {
 		var ret string
 		return ret
 	}
@@ -146,15 +146,15 @@ func (o *MessageObject) GetSource() string {
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageObject) GetSourceOk() (*string, bool) {
-	if o == nil || o.Source == nil {
-		return nil, false
+	if o == nil || isNil(o.Source) {
+    return nil, false
 	}
 	return o.Source, true
 }
 
 // HasSource returns a boolean if a field has been set.
 func (o *MessageObject) HasSource() bool {
-	if o != nil && o.Source != nil {
+	if o != nil && !isNil(o.Source) {
 		return true
 	}
 
@@ -168,16 +168,16 @@ func (o *MessageObject) SetSource(v string) {
 
 func (o MessageObject) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Ctime != nil {
+	if !isNil(o.Ctime) {
 		toSerialize["ctime"] = o.Ctime
 	}
 	if true {
 		toSerialize["message"] = o.Message
 	}
-	if o.Severity != nil {
+	if !isNil(o.Severity) {
 		toSerialize["severity"] = o.Severity
 	}
-	if o.Source != nil {
+	if !isNil(o.Source) {
 		toSerialize["source"] = o.Source
 	}
 	return json.Marshal(toSerialize)

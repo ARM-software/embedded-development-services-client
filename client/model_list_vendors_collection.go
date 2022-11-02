@@ -49,7 +49,7 @@ func NewListVendorsCollectionWithDefaults() *ListVendorsCollection {
 
 // GetEmbedded returns the Embedded field value if set, zero value otherwise.
 func (o *ListVendorsCollection) GetEmbedded() EmbeddedVendorItems {
-	if o == nil || o.Embedded == nil {
+	if o == nil || isNil(o.Embedded) {
 		var ret EmbeddedVendorItems
 		return ret
 	}
@@ -59,15 +59,15 @@ func (o *ListVendorsCollection) GetEmbedded() EmbeddedVendorItems {
 // GetEmbeddedOk returns a tuple with the Embedded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListVendorsCollection) GetEmbeddedOk() (*EmbeddedVendorItems, bool) {
-	if o == nil || o.Embedded == nil {
-		return nil, false
+	if o == nil || isNil(o.Embedded) {
+    return nil, false
 	}
 	return o.Embedded, true
 }
 
 // HasEmbedded returns a boolean if a field has been set.
 func (o *ListVendorsCollection) HasEmbedded() bool {
-	if o != nil && o.Embedded != nil {
+	if o != nil && !isNil(o.Embedded) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *ListVendorsCollection) GetLinks() HalCollectionLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ListVendorsCollection) GetLinksOk() (*HalCollectionLinks, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -121,7 +121,7 @@ func (o *ListVendorsCollection) GetMetadata() PagingMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ListVendorsCollection) GetMetadataOk() (*PagingMetadata, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -145,7 +145,7 @@ func (o *ListVendorsCollection) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ListVendorsCollection) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -169,7 +169,7 @@ func (o *ListVendorsCollection) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *ListVendorsCollection) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Title, true
 }
@@ -181,7 +181,7 @@ func (o *ListVendorsCollection) SetTitle(v string) {
 
 func (o ListVendorsCollection) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Embedded != nil {
+	if !isNil(o.Embedded) {
 		toSerialize["_embedded"] = o.Embedded
 	}
 	if true {

@@ -75,7 +75,7 @@ func (o *BoardItem) GetLinks() BoardItemLinks {
 // and a boolean to check if the value has been set.
 func (o *BoardItem) GetLinksOk() (*BoardItemLinks, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Links, true
 }
@@ -101,7 +101,7 @@ func (o *BoardItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoardItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -124,15 +124,15 @@ func (o *BoardItem) GetDebugInterfaces() []ADebugInterface {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoardItem) GetDebugInterfacesOk() ([]ADebugInterface, bool) {
-	if o == nil || o.DebugInterfaces == nil {
-		return nil, false
+	if o == nil || isNil(o.DebugInterfaces) {
+    return nil, false
 	}
 	return o.DebugInterfaces, true
 }
 
 // HasDebugInterfaces returns a boolean if a field has been set.
 func (o *BoardItem) HasDebugInterfaces() bool {
-	if o != nil && o.DebugInterfaces != nil {
+	if o != nil && isNil(o.DebugInterfaces) {
 		return true
 	}
 
@@ -158,7 +158,7 @@ func (o *BoardItem) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItem) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Description, true
 }
@@ -170,7 +170,7 @@ func (o *BoardItem) SetDescription(v string) {
 
 // GetDetectCode returns the DetectCode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BoardItem) GetDetectCode() string {
-	if o == nil || o.DetectCode.Get() == nil {
+	if o == nil || isNil(o.DetectCode.Get()) {
 		var ret string
 		return ret
 	}
@@ -182,7 +182,7 @@ func (o *BoardItem) GetDetectCode() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoardItem) GetDetectCodeOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.DetectCode.Get(), o.DetectCode.IsSet()
 }
@@ -223,15 +223,15 @@ func (o *BoardItem) GetFeatures() []BoardItemFeaturesInner {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoardItem) GetFeaturesOk() ([]BoardItemFeaturesInner, bool) {
-	if o == nil || o.Features == nil {
-		return nil, false
+	if o == nil || isNil(o.Features) {
+    return nil, false
 	}
 	return o.Features, true
 }
 
 // HasFeatures returns a boolean if a field has been set.
 func (o *BoardItem) HasFeatures() bool {
-	if o != nil && o.Features != nil {
+	if o != nil && isNil(o.Features) {
 		return true
 	}
 
@@ -257,7 +257,7 @@ func (o *BoardItem) GetId() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItem) GetIdOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Id, true
 }
@@ -281,7 +281,7 @@ func (o *BoardItem) GetRevision() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItem) GetRevisionOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Revision, true
 }
@@ -305,7 +305,7 @@ func (o *BoardItem) GetSummary() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItem) GetSummaryOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Summary, true
 }
@@ -329,7 +329,7 @@ func (o *BoardItem) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Title, true
 }

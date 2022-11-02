@@ -48,7 +48,7 @@ func NewVhtInstanceItemLinksWithDefaults() *VhtInstanceItemLinks {
 
 // GetArtefacts returns the Artefacts field value if set, zero value otherwise.
 func (o *VhtInstanceItemLinks) GetArtefacts() HalLinkData {
-	if o == nil || o.Artefacts == nil {
+	if o == nil || isNil(o.Artefacts) {
 		var ret HalLinkData
 		return ret
 	}
@@ -58,15 +58,15 @@ func (o *VhtInstanceItemLinks) GetArtefacts() HalLinkData {
 // GetArtefactsOk returns a tuple with the Artefacts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetArtefactsOk() (*HalLinkData, bool) {
-	if o == nil || o.Artefacts == nil {
-		return nil, false
+	if o == nil || isNil(o.Artefacts) {
+    return nil, false
 	}
 	return o.Artefacts, true
 }
 
 // HasArtefacts returns a boolean if a field has been set.
 func (o *VhtInstanceItemLinks) HasArtefacts() bool {
-	if o != nil && o.Artefacts != nil {
+	if o != nil && !isNil(o.Artefacts) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *VhtInstanceItemLinks) SetArtefacts(v HalLinkData) {
 
 // GetCancel returns the Cancel field value if set, zero value otherwise.
 func (o *VhtInstanceItemLinks) GetCancel() HalLinkData {
-	if o == nil || o.Cancel == nil {
+	if o == nil || isNil(o.Cancel) {
 		var ret HalLinkData
 		return ret
 	}
@@ -90,15 +90,15 @@ func (o *VhtInstanceItemLinks) GetCancel() HalLinkData {
 // GetCancelOk returns a tuple with the Cancel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetCancelOk() (*HalLinkData, bool) {
-	if o == nil || o.Cancel == nil {
-		return nil, false
+	if o == nil || isNil(o.Cancel) {
+    return nil, false
 	}
 	return o.Cancel, true
 }
 
 // HasCancel returns a boolean if a field has been set.
 func (o *VhtInstanceItemLinks) HasCancel() bool {
-	if o != nil && o.Cancel != nil {
+	if o != nil && !isNil(o.Cancel) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *VhtInstanceItemLinks) SetCancel(v HalLinkData) {
 
 // GetCollection returns the Collection field value if set, zero value otherwise.
 func (o *VhtInstanceItemLinks) GetCollection() HalLinkData {
-	if o == nil || o.Collection == nil {
+	if o == nil || isNil(o.Collection) {
 		var ret HalLinkData
 		return ret
 	}
@@ -122,15 +122,15 @@ func (o *VhtInstanceItemLinks) GetCollection() HalLinkData {
 // GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetCollectionOk() (*HalLinkData, bool) {
-	if o == nil || o.Collection == nil {
-		return nil, false
+	if o == nil || isNil(o.Collection) {
+    return nil, false
 	}
 	return o.Collection, true
 }
 
 // HasCollection returns a boolean if a field has been set.
 func (o *VhtInstanceItemLinks) HasCollection() bool {
-	if o != nil && o.Collection != nil {
+	if o != nil && !isNil(o.Collection) {
 		return true
 	}
 
@@ -144,7 +144,7 @@ func (o *VhtInstanceItemLinks) SetCollection(v HalLinkData) {
 
 // GetCreate returns the Create field value if set, zero value otherwise.
 func (o *VhtInstanceItemLinks) GetCreate() HalLinkData {
-	if o == nil || o.Create == nil {
+	if o == nil || isNil(o.Create) {
 		var ret HalLinkData
 		return ret
 	}
@@ -154,15 +154,15 @@ func (o *VhtInstanceItemLinks) GetCreate() HalLinkData {
 // GetCreateOk returns a tuple with the Create field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetCreateOk() (*HalLinkData, bool) {
-	if o == nil || o.Create == nil {
-		return nil, false
+	if o == nil || isNil(o.Create) {
+    return nil, false
 	}
 	return o.Create, true
 }
 
 // HasCreate returns a boolean if a field has been set.
 func (o *VhtInstanceItemLinks) HasCreate() bool {
-	if o != nil && o.Create != nil {
+	if o != nil && !isNil(o.Create) {
 		return true
 	}
 
@@ -176,7 +176,7 @@ func (o *VhtInstanceItemLinks) SetCreate(v HalLinkData) {
 
 // GetDelete returns the Delete field value if set, zero value otherwise.
 func (o *VhtInstanceItemLinks) GetDelete() HalLinkData {
-	if o == nil || o.Delete == nil {
+	if o == nil || isNil(o.Delete) {
 		var ret HalLinkData
 		return ret
 	}
@@ -186,15 +186,15 @@ func (o *VhtInstanceItemLinks) GetDelete() HalLinkData {
 // GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetDeleteOk() (*HalLinkData, bool) {
-	if o == nil || o.Delete == nil {
-		return nil, false
+	if o == nil || isNil(o.Delete) {
+    return nil, false
 	}
 	return o.Delete, true
 }
 
 // HasDelete returns a boolean if a field has been set.
 func (o *VhtInstanceItemLinks) HasDelete() bool {
-	if o != nil && o.Delete != nil {
+	if o != nil && !isNil(o.Delete) {
 		return true
 	}
 
@@ -208,7 +208,7 @@ func (o *VhtInstanceItemLinks) SetDelete(v HalLinkData) {
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *VhtInstanceItemLinks) GetDetails() HalLinkData {
-	if o == nil || o.Details == nil {
+	if o == nil || isNil(o.Details) {
 		var ret HalLinkData
 		return ret
 	}
@@ -218,15 +218,15 @@ func (o *VhtInstanceItemLinks) GetDetails() HalLinkData {
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetDetailsOk() (*HalLinkData, bool) {
-	if o == nil || o.Details == nil {
-		return nil, false
+	if o == nil || isNil(o.Details) {
+    return nil, false
 	}
 	return o.Details, true
 }
 
 // HasDetails returns a boolean if a field has been set.
 func (o *VhtInstanceItemLinks) HasDetails() bool {
-	if o != nil && o.Details != nil {
+	if o != nil && !isNil(o.Details) {
 		return true
 	}
 
@@ -252,7 +252,7 @@ func (o *VhtInstanceItemLinks) GetRelated() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetRelatedOk() (*HalLinkData, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Related, true
 }
@@ -276,7 +276,7 @@ func (o *VhtInstanceItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Self, true
 }
@@ -288,22 +288,22 @@ func (o *VhtInstanceItemLinks) SetSelf(v HalLinkData) {
 
 func (o VhtInstanceItemLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Artefacts != nil {
+	if !isNil(o.Artefacts) {
 		toSerialize["artefacts"] = o.Artefacts
 	}
-	if o.Cancel != nil {
+	if !isNil(o.Cancel) {
 		toSerialize["cancel"] = o.Cancel
 	}
-	if o.Collection != nil {
+	if !isNil(o.Collection) {
 		toSerialize["collection"] = o.Collection
 	}
-	if o.Create != nil {
+	if !isNil(o.Create) {
 		toSerialize["create"] = o.Create
 	}
-	if o.Delete != nil {
+	if !isNil(o.Delete) {
 		toSerialize["delete"] = o.Delete
 	}
-	if o.Details != nil {
+	if !isNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
 	if true {

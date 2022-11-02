@@ -82,7 +82,7 @@ func (o *VhtInstanceItem) GetLinks() VhtInstanceItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtInstanceItem) GetLinksOk() (*VhtInstanceItemLinks, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -108,7 +108,7 @@ func (o *VhtInstanceItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtInstanceItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -132,7 +132,7 @@ func (o *VhtInstanceItem) GetError() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetErrorOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Error, true
 }
@@ -144,7 +144,7 @@ func (o *VhtInstanceItem) SetError(v bool) {
 
 // GetInstanceTimeout returns the InstanceTimeout field value if set, zero value otherwise.
 func (o *VhtInstanceItem) GetInstanceTimeout() int32 {
-	if o == nil || o.InstanceTimeout == nil {
+	if o == nil || isNil(o.InstanceTimeout) {
 		var ret int32
 		return ret
 	}
@@ -154,15 +154,15 @@ func (o *VhtInstanceItem) GetInstanceTimeout() int32 {
 // GetInstanceTimeoutOk returns a tuple with the InstanceTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetInstanceTimeoutOk() (*int32, bool) {
-	if o == nil || o.InstanceTimeout == nil {
-		return nil, false
+	if o == nil || isNil(o.InstanceTimeout) {
+    return nil, false
 	}
 	return o.InstanceTimeout, true
 }
 
 // HasInstanceTimeout returns a boolean if a field has been set.
 func (o *VhtInstanceItem) HasInstanceTimeout() bool {
-	if o != nil && o.InstanceTimeout != nil {
+	if o != nil && !isNil(o.InstanceTimeout) {
 		return true
 	}
 
@@ -188,7 +188,7 @@ func (o *VhtInstanceItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -212,7 +212,7 @@ func (o *VhtInstanceItem) GetReady() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetReadyOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Ready, true
 }
@@ -236,7 +236,7 @@ func (o *VhtInstanceItem) GetRequested() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetRequestedOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Requested, true
 }
@@ -260,7 +260,7 @@ func (o *VhtInstanceItem) GetStatus() string {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetStatusOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Status, true
 }
@@ -284,7 +284,7 @@ func (o *VhtInstanceItem) GetTerminated() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetTerminatedOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Terminated, true
 }
@@ -296,7 +296,7 @@ func (o *VhtInstanceItem) SetTerminated(v bool) {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *VhtInstanceItem) GetTitle() string {
-	if o == nil || o.Title.Get() == nil {
+	if o == nil || isNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -308,7 +308,7 @@ func (o *VhtInstanceItem) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtInstanceItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -347,7 +347,7 @@ func (o VhtInstanceItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["error"] = o.Error
 	}
-	if o.InstanceTimeout != nil {
+	if !isNil(o.InstanceTimeout) {
 		toSerialize["instanceTimeout"] = o.InstanceTimeout
 	}
 	if true {

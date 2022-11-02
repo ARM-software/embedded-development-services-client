@@ -54,7 +54,7 @@ func (o *DeviceItemLinks) GetCollection() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *DeviceItemLinks) GetCollectionOk() (*HalLinkData, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Collection, true
 }
@@ -78,7 +78,7 @@ func (o *DeviceItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *DeviceItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Self, true
 }

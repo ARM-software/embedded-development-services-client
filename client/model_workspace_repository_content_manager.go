@@ -82,7 +82,7 @@ func (o *WorkspaceRepositoryContentManager) GetLinks() WorkspaceRepositoryConten
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceRepositoryContentManager) GetLinksOk() (*WorkspaceRepositoryContentManagerLinks, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -108,7 +108,7 @@ func (o *WorkspaceRepositoryContentManager) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceRepositoryContentManager) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -120,7 +120,7 @@ func (o *WorkspaceRepositoryContentManager) SetMetadata(v CommonMetadata) {
 
 // GetFetchDepth returns the FetchDepth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WorkspaceRepositoryContentManager) GetFetchDepth() int32 {
-	if o == nil || o.FetchDepth.Get() == nil {
+	if o == nil || isNil(o.FetchDepth.Get()) {
 		var ret int32
 		return ret
 	}
@@ -132,7 +132,7 @@ func (o *WorkspaceRepositoryContentManager) GetFetchDepth() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceRepositoryContentManager) GetFetchDepthOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.FetchDepth.Get(), o.FetchDepth.IsSet()
 }
@@ -174,7 +174,7 @@ func (o *WorkspaceRepositoryContentManager) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManager) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -200,7 +200,7 @@ func (o *WorkspaceRepositoryContentManager) GetReference() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceRepositoryContentManager) GetReferenceOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Reference.Get(), o.Reference.IsSet()
 }
@@ -224,7 +224,7 @@ func (o *WorkspaceRepositoryContentManager) GetRepositoryUrl() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManager) GetRepositoryUrlOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.RepositoryUrl, true
 }
@@ -248,7 +248,7 @@ func (o *WorkspaceRepositoryContentManager) GetScm() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManager) GetScmOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Scm, true
 }
@@ -260,7 +260,7 @@ func (o *WorkspaceRepositoryContentManager) SetScm(v string) {
 
 // GetSubmodules returns the Submodules field value if set, zero value otherwise.
 func (o *WorkspaceRepositoryContentManager) GetSubmodules() bool {
-	if o == nil || o.Submodules == nil {
+	if o == nil || isNil(o.Submodules) {
 		var ret bool
 		return ret
 	}
@@ -270,15 +270,15 @@ func (o *WorkspaceRepositoryContentManager) GetSubmodules() bool {
 // GetSubmodulesOk returns a tuple with the Submodules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManager) GetSubmodulesOk() (*bool, bool) {
-	if o == nil || o.Submodules == nil {
-		return nil, false
+	if o == nil || isNil(o.Submodules) {
+    return nil, false
 	}
 	return o.Submodules, true
 }
 
 // HasSubmodules returns a boolean if a field has been set.
 func (o *WorkspaceRepositoryContentManager) HasSubmodules() bool {
-	if o != nil && o.Submodules != nil {
+	if o != nil && !isNil(o.Submodules) {
 		return true
 	}
 
@@ -292,7 +292,7 @@ func (o *WorkspaceRepositoryContentManager) SetSubmodules(v bool) {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WorkspaceRepositoryContentManager) GetTitle() string {
-	if o == nil || o.Title.Get() == nil {
+	if o == nil || isNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -304,7 +304,7 @@ func (o *WorkspaceRepositoryContentManager) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceRepositoryContentManager) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -355,7 +355,7 @@ func (o WorkspaceRepositoryContentManager) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["scm"] = o.Scm
 	}
-	if o.Submodules != nil {
+	if !isNil(o.Submodules) {
 		toSerialize["submodules"] = o.Submodules
 	}
 	if o.Title.IsSet() {

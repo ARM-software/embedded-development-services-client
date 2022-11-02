@@ -68,7 +68,7 @@ func (o *WorkspaceSourceItem) GetLinks() WorkspaceSourceItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceSourceItem) GetLinksOk() (*WorkspaceSourceItemLinks, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -94,7 +94,7 @@ func (o *WorkspaceSourceItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceSourceItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -118,7 +118,7 @@ func (o *WorkspaceSourceItem) GetDeprecated() bool {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItem) GetDeprecatedOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Deprecated, true
 }
@@ -130,7 +130,7 @@ func (o *WorkspaceSourceItem) SetDeprecated(v bool) {
 
 // GetDeprecationInfo returns the DeprecationInfo field value if set, zero value otherwise.
 func (o *WorkspaceSourceItem) GetDeprecationInfo() DeprecationInfo {
-	if o == nil || o.DeprecationInfo == nil {
+	if o == nil || isNil(o.DeprecationInfo) {
 		var ret DeprecationInfo
 		return ret
 	}
@@ -140,15 +140,15 @@ func (o *WorkspaceSourceItem) GetDeprecationInfo() DeprecationInfo {
 // GetDeprecationInfoOk returns a tuple with the DeprecationInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItem) GetDeprecationInfoOk() (*DeprecationInfo, bool) {
-	if o == nil || o.DeprecationInfo == nil {
-		return nil, false
+	if o == nil || isNil(o.DeprecationInfo) {
+    return nil, false
 	}
 	return o.DeprecationInfo, true
 }
 
 // HasDeprecationInfo returns a boolean if a field has been set.
 func (o *WorkspaceSourceItem) HasDeprecationInfo() bool {
-	if o != nil && o.DeprecationInfo != nil {
+	if o != nil && !isNil(o.DeprecationInfo) {
 		return true
 	}
 
@@ -162,7 +162,7 @@ func (o *WorkspaceSourceItem) SetDeprecationInfo(v DeprecationInfo) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *WorkspaceSourceItem) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -172,15 +172,15 @@ func (o *WorkspaceSourceItem) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItem) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
-		return nil, false
+	if o == nil || isNil(o.Description) {
+    return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *WorkspaceSourceItem) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !isNil(o.Description) {
 		return true
 	}
 
@@ -206,7 +206,7 @@ func (o *WorkspaceSourceItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItem) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -230,7 +230,7 @@ func (o *WorkspaceSourceItem) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Title, true
 }
@@ -251,10 +251,10 @@ func (o WorkspaceSourceItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["deprecated"] = o.Deprecated
 	}
-	if o.DeprecationInfo != nil {
+	if !isNil(o.DeprecationInfo) {
 		toSerialize["deprecationInfo"] = o.DeprecationInfo
 	}
-	if o.Description != nil {
+	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
 	if true {

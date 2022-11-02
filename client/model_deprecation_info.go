@@ -60,7 +60,7 @@ func (o *DeprecationInfo) GetComment() string {
 // and a boolean to check if the value has been set.
 func (o *DeprecationInfo) GetCommentOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Comment, true
 }
@@ -84,7 +84,7 @@ func (o *DeprecationInfo) GetIssued() time.Time {
 // and a boolean to check if the value has been set.
 func (o *DeprecationInfo) GetIssuedOk() (*time.Time, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Issued, true
 }
@@ -108,7 +108,7 @@ func (o *DeprecationInfo) GetRemoval() time.Time {
 // and a boolean to check if the value has been set.
 func (o *DeprecationInfo) GetRemovalOk() (*time.Time, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Removal, true
 }

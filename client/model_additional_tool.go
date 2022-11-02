@@ -62,7 +62,7 @@ func (o *AdditionalTool) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *AdditionalTool) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Description, true
 }
@@ -86,7 +86,7 @@ func (o *AdditionalTool) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *AdditionalTool) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -110,7 +110,7 @@ func (o *AdditionalTool) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *AdditionalTool) GetTitleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Title, true
 }
@@ -136,7 +136,7 @@ func (o *AdditionalTool) GetVersion() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AdditionalTool) GetVersionOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Version.Get(), o.Version.IsSet()
 }

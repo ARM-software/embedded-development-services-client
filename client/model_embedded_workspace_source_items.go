@@ -39,7 +39,7 @@ func NewEmbeddedWorkspaceSourceItemsWithDefaults() *EmbeddedWorkspaceSourceItems
 
 // GetItem returns the Item field value if set, zero value otherwise.
 func (o *EmbeddedWorkspaceSourceItems) GetItem() []WorkspaceSourceItem {
-	if o == nil || o.Item == nil {
+	if o == nil || isNil(o.Item) {
 		var ret []WorkspaceSourceItem
 		return ret
 	}
@@ -49,15 +49,15 @@ func (o *EmbeddedWorkspaceSourceItems) GetItem() []WorkspaceSourceItem {
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmbeddedWorkspaceSourceItems) GetItemOk() ([]WorkspaceSourceItem, bool) {
-	if o == nil || o.Item == nil {
-		return nil, false
+	if o == nil || isNil(o.Item) {
+    return nil, false
 	}
 	return o.Item, true
 }
 
 // HasItem returns a boolean if a field has been set.
 func (o *EmbeddedWorkspaceSourceItems) HasItem() bool {
-	if o != nil && o.Item != nil {
+	if o != nil && !isNil(o.Item) {
 		return true
 	}
 
@@ -71,7 +71,7 @@ func (o *EmbeddedWorkspaceSourceItems) SetItem(v []WorkspaceSourceItem) {
 
 func (o EmbeddedWorkspaceSourceItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Item != nil {
+	if !isNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
 	return json.Marshal(toSerialize)

@@ -59,7 +59,7 @@ func NewHalLinkDataWithDefaults() *HalLinkData {
 
 // GetDeprecation returns the Deprecation field value if set, zero value otherwise.
 func (o *HalLinkData) GetDeprecation() string {
-	if o == nil || o.Deprecation == nil {
+	if o == nil || isNil(o.Deprecation) {
 		var ret string
 		return ret
 	}
@@ -69,15 +69,15 @@ func (o *HalLinkData) GetDeprecation() string {
 // GetDeprecationOk returns a tuple with the Deprecation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetDeprecationOk() (*string, bool) {
-	if o == nil || o.Deprecation == nil {
-		return nil, false
+	if o == nil || isNil(o.Deprecation) {
+    return nil, false
 	}
 	return o.Deprecation, true
 }
 
 // HasDeprecation returns a boolean if a field has been set.
 func (o *HalLinkData) HasDeprecation() bool {
-	if o != nil && o.Deprecation != nil {
+	if o != nil && !isNil(o.Deprecation) {
 		return true
 	}
 
@@ -103,7 +103,7 @@ func (o *HalLinkData) GetHref() string {
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetHrefOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Href, true
 }
@@ -115,7 +115,7 @@ func (o *HalLinkData) SetHref(v string) {
 
 // GetHreflang returns the Hreflang field value if set, zero value otherwise.
 func (o *HalLinkData) GetHreflang() string {
-	if o == nil || o.Hreflang == nil {
+	if o == nil || isNil(o.Hreflang) {
 		var ret string
 		return ret
 	}
@@ -125,15 +125,15 @@ func (o *HalLinkData) GetHreflang() string {
 // GetHreflangOk returns a tuple with the Hreflang field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetHreflangOk() (*string, bool) {
-	if o == nil || o.Hreflang == nil {
-		return nil, false
+	if o == nil || isNil(o.Hreflang) {
+    return nil, false
 	}
 	return o.Hreflang, true
 }
 
 // HasHreflang returns a boolean if a field has been set.
 func (o *HalLinkData) HasHreflang() bool {
-	if o != nil && o.Hreflang != nil {
+	if o != nil && !isNil(o.Hreflang) {
 		return true
 	}
 
@@ -147,7 +147,7 @@ func (o *HalLinkData) SetHreflang(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *HalLinkData) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -157,15 +157,15 @@ func (o *HalLinkData) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
+	if o == nil || isNil(o.Name) {
+    return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *HalLinkData) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
@@ -179,7 +179,7 @@ func (o *HalLinkData) SetName(v string) {
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
 func (o *HalLinkData) GetProfile() string {
-	if o == nil || o.Profile == nil {
+	if o == nil || isNil(o.Profile) {
 		var ret string
 		return ret
 	}
@@ -189,15 +189,15 @@ func (o *HalLinkData) GetProfile() string {
 // GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetProfileOk() (*string, bool) {
-	if o == nil || o.Profile == nil {
-		return nil, false
+	if o == nil || isNil(o.Profile) {
+    return nil, false
 	}
 	return o.Profile, true
 }
 
 // HasProfile returns a boolean if a field has been set.
 func (o *HalLinkData) HasProfile() bool {
-	if o != nil && o.Profile != nil {
+	if o != nil && !isNil(o.Profile) {
 		return true
 	}
 
@@ -211,7 +211,7 @@ func (o *HalLinkData) SetProfile(v string) {
 
 // GetTemplated returns the Templated field value if set, zero value otherwise.
 func (o *HalLinkData) GetTemplated() bool {
-	if o == nil || o.Templated == nil {
+	if o == nil || isNil(o.Templated) {
 		var ret bool
 		return ret
 	}
@@ -221,15 +221,15 @@ func (o *HalLinkData) GetTemplated() bool {
 // GetTemplatedOk returns a tuple with the Templated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetTemplatedOk() (*bool, bool) {
-	if o == nil || o.Templated == nil {
-		return nil, false
+	if o == nil || isNil(o.Templated) {
+    return nil, false
 	}
 	return o.Templated, true
 }
 
 // HasTemplated returns a boolean if a field has been set.
 func (o *HalLinkData) HasTemplated() bool {
-	if o != nil && o.Templated != nil {
+	if o != nil && !isNil(o.Templated) {
 		return true
 	}
 
@@ -243,7 +243,7 @@ func (o *HalLinkData) SetTemplated(v bool) {
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *HalLinkData) GetTitle() string {
-	if o == nil || o.Title == nil {
+	if o == nil || isNil(o.Title) {
 		var ret string
 		return ret
 	}
@@ -253,15 +253,15 @@ func (o *HalLinkData) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetTitleOk() (*string, bool) {
-	if o == nil || o.Title == nil {
-		return nil, false
+	if o == nil || isNil(o.Title) {
+    return nil, false
 	}
 	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
 func (o *HalLinkData) HasTitle() bool {
-	if o != nil && o.Title != nil {
+	if o != nil && !isNil(o.Title) {
 		return true
 	}
 
@@ -275,7 +275,7 @@ func (o *HalLinkData) SetTitle(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *HalLinkData) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || isNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -285,15 +285,15 @@ func (o *HalLinkData) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
+	if o == nil || isNil(o.Type) {
+    return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *HalLinkData) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !isNil(o.Type) {
 		return true
 	}
 
@@ -307,28 +307,28 @@ func (o *HalLinkData) SetType(v string) {
 
 func (o HalLinkData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Deprecation != nil {
+	if !isNil(o.Deprecation) {
 		toSerialize["deprecation"] = o.Deprecation
 	}
 	if true {
 		toSerialize["href"] = o.Href
 	}
-	if o.Hreflang != nil {
+	if !isNil(o.Hreflang) {
 		toSerialize["hreflang"] = o.Hreflang
 	}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.Profile != nil {
+	if !isNil(o.Profile) {
 		toSerialize["profile"] = o.Profile
 	}
-	if o.Templated != nil {
+	if !isNil(o.Templated) {
 		toSerialize["templated"] = o.Templated
 	}
-	if o.Title != nil {
+	if !isNil(o.Title) {
 		toSerialize["title"] = o.Title
 	}
-	if o.Type != nil {
+	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
