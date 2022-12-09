@@ -65,6 +65,7 @@ jobs:
 
   build-and-test:
     uses: ./.github/workflows/update-client.yml
+    needs: [assert-news, detect-secrets]
     secrets: inherit
     with:
       branch: ${{ github.head_ref || github.ref }}
