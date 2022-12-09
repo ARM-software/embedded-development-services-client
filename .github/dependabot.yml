@@ -24,10 +24,11 @@ updates:
   rebase-strategy: disabled
   registries:
     - github
-- package-ecosystem: docker
-  directory: "/"
-  schedule:
-    interval: daily
-    timezone: Europe/London
-  open-pull-requests-limit: 10
-  rebase-strategy: disabled
+# Disable go dependabot update to keep it fixed
+#- package-ecosystem: docker
+#  directory: "/"
+#  schedule:
+#    interval: daily
+#    timezone: Europe/London
+#  open-pull-requests-limit: 10
+#  rebase-strategy: disabled
