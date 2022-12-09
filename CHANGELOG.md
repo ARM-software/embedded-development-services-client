@@ -2,6 +2,25 @@
 Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"" "1.15.0" (2022-12-09)
+========================
+
+Features
+--------
+
+- :sparkles: Public release (#20221209160640)
+
+
+Improved Documentation
+----------------------
+
+- :book: Added security guide (#20221209160717)
+
+
+<!--
+Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "" "1.14.1" (2022-12-09)
 ========================
 
