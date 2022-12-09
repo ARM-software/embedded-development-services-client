@@ -41,8 +41,16 @@ jobs:
         # So that we have correct GIT_TOKEN to push back to branch as we need workflow permissions
         token: ${{ secrets.GIT_SECRET }}
         ref: ${{ inputs.branch || github.head_ref || github.ref }}
+    - name: Checkout Update Go action
+      uses: actions/checkout@v3
+      with:
+        repository: Arm-Debug/update-go-action
+        ref: refs/tags/latest
+        token: ${{ secrets.GIT_SECRET }}
+        persist-credentials: false
+        path: ./.github/actions/update-go-action
     - name: Update Go
-      uses: Arm-Debug/update-go-action@main # use main so we only have to update in one place
+      uses: ./.github/actions/update-go-action
       with:
         dockerfile: Dockerfile.client
         branch: ${{ inputs.branch || github.head_ref || github.ref }}
