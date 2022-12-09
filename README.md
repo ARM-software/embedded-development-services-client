@@ -1,6 +1,6 @@
 # Embedded development services HTTP client
 
-[![Go Badge](https://img.shields.io/badge/go-v1.19.3-blue)](https://golang.org/)
+[![Go Badge](https://img.shields.io/badge/go-v1.19.4-blue)](https://golang.org/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Overview
