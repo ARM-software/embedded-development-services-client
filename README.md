@@ -17,7 +17,7 @@ It is actually generated from our Web APIs contract which follows [OpenAPI 3](ht
 To use this library, add the following line to your `go.mod`:
 ```
 require (
-    github.com/ARM-software/embedded-development-services-client/utils latest
+    github.com/ARM-software/embedded-development-services-client/client latest
     ...
 )
 ```
