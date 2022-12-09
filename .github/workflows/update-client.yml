@@ -48,9 +48,9 @@ jobs:
         ref: refs/tags/latest
         token: ${{ secrets.GIT_SECRET }}
         persist-credentials: false
-        path: ./.github/actions/update-go-action
+        path: ./.github/workflows/update-go-action
     - name: Update Go
-      uses: ./.github/actions/update-go-action
+      uses: ./.github/workflows/update-go-action
       with:
         dockerfile: Dockerfile.client
         branch: ${{ inputs.branch || github.head_ref || github.ref }}
