@@ -40,6 +40,7 @@ run() {
     sed -i -e 's/**os.File/*os.File/g' ./client/api_intellisense_jobs.go
     # FIXME remove the following line when the import in tests has been fixed in the generator
     rm -rf "$OUTPUT"/test
+    rm -rf "$OUTPUT"/api
 
     if [[ -z "$DISABLE_FMT"  ]]; then
       ./fmt-go.sh -i "$OUTPUT"
