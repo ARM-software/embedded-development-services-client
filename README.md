@@ -8,7 +8,7 @@
 This repository contains an HTTP client written in Golang for communicating with Arm Embedded development services.
 It is actually generated from our Web APIs contract which follows [OpenAPI 3](https://swagger.io/specification/) using the [GO generator](https://github.com/OpenAPITools/openapi-generator)
 
-*Maintainers:* @ARM-software/embedded-development-services-client-admin 
+*Maintainers:* @ARM-software/golang-utils-admin
  
 ## Using this library
 
@@ -32,7 +32,7 @@ For release notes and a history of changes of all **production** releases, pleas
 The follow described the major aspects of the project structure:
 
 - `docs/` - Code reference documentation.
-- `utils/` - Go project source files.
+- `client/` - Go project source files.
 - `changes/` - Collection of news files for unreleased changes.
 
 
