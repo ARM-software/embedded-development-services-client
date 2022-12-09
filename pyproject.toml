@@ -5,8 +5,8 @@
 [ProjectConfig]
 # Only path variables can and must contain 'DIR', 'PATH' or 'ROOT' in their name as
 # these tokens are used to identify path variables from other variable types.
-PROJECT_NAME = "Solar Services HTTP client"
-PACKAGE_NAME = "solar-services-client"
+PROJECT_NAME = "Arm embedded development services HTTP client"
+PACKAGE_NAME = "embedded-development-services-client"
 PROJECT_UUID = 'cec17d75-a3e7-4f7a-b0f9-08a2e25c0fa5'
 PROJECT_ROOT = "."
 NEWS_DIR = "changes/"
@@ -20,7 +20,6 @@ CHANGELOG_FILE_PATH = "CHANGELOG.md"
 AWS_BUCKET=""
 PROGRAMMING_LANGUAGE = "Golang"
 MASTER_BRANCH = "main"
-FILE_LICENCE_IDENTIFIER = "Proprietary"
 
 [AutoVersionConfig]
 CONFIG_NAME = "JAVA"
@@ -44,7 +43,7 @@ patch = "changes/*.bugfix"
 [tool.towncrier]
 directory = "changes"
 filename = "CHANGELOG.md"
-package = "solar-services-client"
+package = "embedded-development-services-client"
 title_format = ""
 start_string = """
 [//]: # (begin_release_notes)

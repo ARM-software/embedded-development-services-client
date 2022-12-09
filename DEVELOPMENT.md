@@ -86,7 +86,7 @@ The CI supports three release flows:
 
 ### Release workflow
 
-1. Navigate to the [GitHub Actions](https://github.com/Arm-Debug/solar-services-client/actions/workflows/release.yml) page.
+1. Navigate to the [GitHub Actions](https://github.com/ARM-software/embedded-development-services-client/actions/workflows/release.yml) page.
 2. Select the **Run Workflow** button and type which kind of release you would like to make (i.e. release, beta or development).
 
 ### Version Numbers
@@ -105,6 +105,6 @@ For the latter, False positive keys are stored in the [baseline](./.secrets.base
 
 To flag individual false positives add comment `# pragma: allowlist secret` to line with secret
 
-To add all suspected secrets in the repository (excluding ones with an allow secret comment), run `detect-secrets scan --all-files --exclude-files '.*go\.sum$' --exclude-files '.*\.html$' --exclude-files '.*\.properties$' --exclude-files 'ci.yml' --exclude-files '\.git' > .secrets.baseline`
+To add all suspected secrets in the repository (excluding ones with an allow secret comment), run `detect-secrets scan --all-files --exclude-files '.*go\.sum$' --exclude-files '.*\.html$' --exclude-files '.*\.properties$' --exclude-files '\.git' > .secrets.baseline`
 
 If on Windows: then change the encoding of the .secrets.baseline file to UTF-8 then convert all `\` to `/` in the .secrets.baseline file

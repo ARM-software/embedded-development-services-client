@@ -2,7 +2,7 @@ name: Build and Test
 
 # Set environment variables available in all jobs and steps
 env:
-  go_version: "1.19.1"
+  go_version: "1.19.3"
   python_version: "3.9"
 
 on:
@@ -28,11 +28,10 @@ jobs:
             multi-platform: false
     name: Build and test
     runs-on: ${{ matrix.os }}
-    env:
-      GOPRIVATE: github.com/Arm-Debug
     steps:
       # we want the head of the branch that triggered this, not the reference of the commit, this is so we get updated go versions etc.
-      - uses: actions/checkout@v3
+      - name: Check out [${{ inputs.branch || github.ref }}]
+        uses: actions/checkout@v3
         with:
           ref: ${{ inputs.branch || github.ref }}
       - name: Update Go env version
@@ -64,18 +63,21 @@ jobs:
         run: bash ./scripts/setup_github.sh
         env:
           GIT_TOKEN: ${{ secrets.GIT_SECRET }}
+      - name: Build ${{ matrix.go-module }} on ${{ matrix.os }}
+        run: |
+          cat go.mod
+          go mod download
+          go build -v ./...
+        working-directory: ${{ matrix.go-module }}
       - if: ${{ startsWith(matrix.os, 'ubuntu') }}
         name: Linting
-        uses: golangci/golangci-lint-action@v2
+        uses: golangci/golangci-lint-action@v3
         with:
           # Required: the version of golangci-lint is required and must be specified without patch version.
           version: latest
           working-directory: ${{ matrix.go-module }}
-          args: "--verbose --print-issued-lines --print-linter-name --out-${NO_FUTURE}format colored-line-number"
-      - name: Build ${{ matrix.go-module }} on ${{ matrix.os }}
-        run: go build -v ./...
-        working-directory: ${{ matrix.go-module }}
-# FIXME ADD Test
+          args: "--verbose --print-issued-lines --print-linter-name --out-${NO_FUTURE}format colored-line-number --timeout 300s --max-issues-per-linter 0 --max-same-issues 0"
+# FIXME Send coverage to code climate
 #
 #      - if: ${{ startsWith(matrix.os, 'ubuntu') }}
 #        name: Test [${{ matrix.go-module }} on ${{ matrix.os }}] & Publish Code Coverage
@@ -86,12 +88,10 @@ jobs:
 #          debug: true
 #          workingDirectory: ${{ matrix.go-module }}
 #          coverageCommand: go test -race -cover -v -coverprofile ${{ matrix.go-module }}_coverage.out ./...
-#          prefix: github.com/Arm-Debug/${{ github.event.repository.name }}/${{ matrix.go-module }}
+#          prefix: github.com/ARM-software/${{ github.event.repository.name }}/${{ matrix.go-module }}
 #          coverageLocations:
 #            "${{github.workspace}}/${{ matrix.go-module }}/${{ matrix.go-module }}_coverage.out:gocov"
-#
-#
-# FIXME: Run tests on Mac and Windows
 #      - if: ${{ startsWith(matrix.os, 'windows') || startsWith(matrix.os, 'macOS') }}
-#        run: go test -race -cover -v ./...
-#        working-directory: ${{ matrix.go-module }}
+      - name: Test ${{ matrix.go-module }} on ${{ matrix.os }}
+        run: go test -race -cover -v ./...
+        working-directory: ${{ matrix.go-module }}

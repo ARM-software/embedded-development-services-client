@@ -1,4 +1,9 @@
 #!/bin/sh
+##
+## Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
+## SPDX-License-Identifier: Apache-2.0
+##
+
 # ref: https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
 #
 # Usage example: /bin/sh ./git_push.sh wing328 openapi-petstore-perl "minor update" "gitlab.com"
@@ -14,12 +19,12 @@ if [ "$git_host" = "" ]; then
 fi
 
 if [ "$git_user_id" = "" ]; then
-    git_user_id="Arm-Debug"
+    git_user_id="ARM-software"
     echo "[INFO] No command line input provided. Set \$git_user_id to $git_user_id"
 fi
 
 if [ "$git_repo_id" = "" ]; then
-    git_repo_id="solar-services-client"
+    git_repo_id="embedded-development-services-client"
     echo "[INFO] No command line input provided. Set \$git_repo_id to $git_repo_id"
 fi
 

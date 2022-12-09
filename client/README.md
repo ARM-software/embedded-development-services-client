@@ -1,3 +1,7 @@
+<!--
+Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 # Go API client for client
 
 This API provides a RESTful interface to all the Solar services e.g. looking for boards, building projects, etc.
@@ -49,7 +53,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import client "github.com/Arm-Debug/solar-services-client/client"
+import client "github.com/ARM-software/embedded-development-services-client/client"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:

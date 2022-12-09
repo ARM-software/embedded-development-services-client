@@ -11,8 +11,8 @@ fostering a welcoming community, please see our Code of Conduct, which can be fo
 
 There are several ways to contribute:
 
-- Raise an issue found via [GitHub Issues](https://github.com/Arm-Debug/solar-services-client/issues).
-- Open an [pull request](https://github.com/Arm-Debug/solar-services-client/pulls) to:
+- Raise an issue found via [GitHub Issues](https://github.com/ARM-software/embedded-development-services-client/issues).
+- Open an [pull request](https://github.com/ARM-software/embedded-development-services-client/pulls) to:
   - Provide a fix.
   - Add an enhancement feature.
   - Correct, update or add documentation.

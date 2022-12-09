@@ -34,8 +34,13 @@ run() {
     [[ -z "$INPUT" ]] && { echo "Must provide an input file" ; exit 1; }
     [[ -z "$OUTPUT" ]] && { echo "Must provide a output directory" ; exit 1; }
 
-    openapi-generator generate -g go -o "$OUTPUT" --additional-properties packageName=client,isGoSubmodule=true --git-user-id="Arm-Debug" --git-repo-id="solar-services-client" -i "$INPUT"
-    
+    openapi-generator generate -g go -o "$OUTPUT" --additional-properties packageName=client,isGoSubmodule=true --git-user-id="ARM-software" --git-repo-id="embedded-development-services-client" -i "$INPUT"
+    # FIXME the following is a stop gap to overcome a bug in the generator https://github.com/OpenAPITools/openapi-generator/issues/12810
+    sed -i -e 's/**os.File/*os.File/g' ./client/api_build_jobs.go
+    sed -i -e 's/**os.File/*os.File/g' ./client/api_intellisense_jobs.go
+    # FIXME remove the following line when the import in tests has been fixed in the generator
+    rm -rf "$OUTPUT"/test
+
     if [[ -z "$DISABLE_FMT"  ]]; then
       ./fmt-go.sh -i "$OUTPUT"
     fi

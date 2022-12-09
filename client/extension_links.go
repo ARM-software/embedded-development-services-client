@@ -1,3 +1,10 @@
+/*
+ * Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+// Package client defines an HTTP client for communicating with the web services.
+// It includes the definition of request/response types as well as provides helpers for calling specific helpers.
 package client
 
 import (

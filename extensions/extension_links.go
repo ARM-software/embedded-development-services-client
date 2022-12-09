@@ -1,3 +1,5 @@
+// Package client defines an HTTP client for communicating with the web services.
+// It includes the definition of request/response types as well as provides helpers for calling specific helpers.
 package client
 
 import (
