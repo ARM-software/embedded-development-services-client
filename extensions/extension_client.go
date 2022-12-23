@@ -1,3 +1,5 @@
+// Package client defines an HTTP client for communicating with the web services.
+// It includes the definition of request/response types as well as provides helpers for calling specific helpers.
 package client
 
 import (
@@ -6,10 +8,10 @@ import (
 	"net/url"
 )
 
-//*************************************************************************************
+// *************************************************************************************
 // NOTE: this file is not generated.
 // It makes some of the low level methods accessible
-//*************************************************************************************
+// *************************************************************************************
 
 // PrepareRequest exposes the client `prepareRequest`
 func (c *APIClient) PrepareRequest(
