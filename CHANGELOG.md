@@ -2,6 +2,20 @@
 Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"" "1.16.0" (2022-12-23)
+========================
+
+Features
+--------
+
+- :sparkles: extend build models so that they defined generically (#20221223122337)
+- Updated client due to schema changes (#20221223143645)
+
+
+<!--
+Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "" "1.15.0" (2022-12-09)
 ========================
 
