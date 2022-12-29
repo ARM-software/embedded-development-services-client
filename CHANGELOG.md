@@ -2,6 +2,20 @@
 Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"" "1.17.0" (2022-12-29)
+========================
+
+Features
+--------
+
+- :sparkles: extended streams and collections (#20221229131625)
+- Updated client due to schema changes (#20221229132116)
+
+
+<!--
+Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "" "1.16.0" (2022-12-23)
 ========================
 
