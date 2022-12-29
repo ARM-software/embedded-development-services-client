@@ -9,6 +9,7 @@ package client
 
 import (
 	"errors"
+	"fmt"
 )
 
 // *************************************************************************************
@@ -17,12 +18,12 @@ import (
 // *************************************************************************************
 
 // FetchType returns the resource type
-func (o *CmsisBuilderItem) FetchType() string {
-	return "Builder"
+func (o *NotificationFeed) FetchType() string {
+	return "Notification messages"
 }
 
 // FetchLinks returns the resource links if present
-func (o *CmsisBuilderItem) FetchLinks() (links any, err error) {
+func (o *NotificationFeed) FetchLinks() (links any, err error) {
 	if !o.Links.IsSet() {
 		err = errors.New("missing links")
 		return
@@ -32,48 +33,44 @@ func (o *CmsisBuilderItem) FetchLinks() (links any, err error) {
 }
 
 // FetchName returns the resource name if present, or else an error
-func (o *CmsisBuilderItem) FetchName() (string, error) {
+func (o *NotificationFeed) FetchName() (string, error) {
 	return o.GetName(), nil
 }
 
 // FetchTitle returns the resource title if present, or else an error
-func (o *CmsisBuilderItem) FetchTitle() (string, error) {
+func (o *NotificationFeed) FetchTitle() (string, error) {
 	return o.GetTitle(), nil
 }
 
-// NewBuilderModel returns a model.
-func NewBuilderModel() IModel {
-	return NewCmsisBuilderItemWithDefaults()
+func (o *NotificationFeed) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
 }
 
-// BuilderIterator defines an iterator over a message collection.
-type BuilderIterator struct {
-	elements     []CmsisBuilderItem
-	currentIndex int
+func (o *NotificationFeed) HasFuture() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasFuture()
+	}
+	return false
 }
 
-func (m *BuilderIterator) HasNext() bool {
-	return m.currentIndex < len(m.elements)
+func (o *NotificationFeed) GetItemIterator() (IIterator, error) {
+	return NewNotificationMessagesIterator(o.GetMessages())
 }
 
-func (m *BuilderIterator) GetNext() (item *interface{}, err error) {
-	if m.currentIndex < 0 {
-		err = errors.New("incorrect element index")
+func (o *NotificationFeed) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
 		return
 	}
-	if !m.HasNext() {
-		err = errors.New("no more items")
-		return
-	}
-	element := interface{}(m.elements[m.currentIndex])
-	item = &element
-	m.currentIndex++
+	count = int64(m.GetCount())
 	return
 }
 
-func NewBuildersIterator(elements []CmsisBuilderItem) (IIterator, error) {
-	return &BuilderIterator{
-		elements:     elements,
-		currentIndex: 0,
-	}, nil
+// NewNotificationMessageFeed returns a message stream.
+func NewNotificationMessageFeed() IMessageStream {
+	return NewNotificationFeedWithDefaults()
 }
