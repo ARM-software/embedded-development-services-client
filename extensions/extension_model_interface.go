@@ -17,3 +17,29 @@ type IModel interface {
 	// FetchTitle returns the resource title if present, or else an error
 	FetchTitle() (string, error)
 }
+
+// The following definitions match what is in golang-utils for [pagination](https://github.com/ARM-software/golang-utils/blob/master/utils/collection/pagination/interfaces.go)
+
+type IIterator interface {
+	// HasNext returns whether there are more items available or not.
+	HasNext() bool
+	// GetNext returns the next item.
+	GetNext() (*interface{}, error)
+}
+
+// IStaticPage defines a generic page for a collection.
+type IStaticPage interface {
+	// HasNext states whether more pages are accessible.
+	HasNext() bool
+	// GetItemIterator returns a new iterator over the page's items.
+	GetItemIterator() (IIterator, error)
+	// GetItemCount returns the number of items in this page
+	GetItemCount() (int64, error)
+}
+
+// IMessageStream defines a page for a collection which does not have any known ending.
+type IMessageStream interface {
+	IStaticPage
+	// HasFuture states whether there may be future items.
+	HasFuture() bool
+}
