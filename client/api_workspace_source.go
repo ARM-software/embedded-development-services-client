@@ -86,7 +86,7 @@ func (a *WorkspaceSourceApiService) GetWorkspaceSourceExecute(r ApiGetWorkspaceS
 	}
 
 	localVarPath := localBasePath + "/workspace-sources/{workspaceSourceName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceSourceName"+"}", url.PathEscape(parameterToString(r.workspaceSourceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceSourceName"+"}", parameterToString(r.workspaceSourceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

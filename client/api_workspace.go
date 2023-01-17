@@ -79,7 +79,7 @@ func (a *WorkspaceApiService) ClearWorkspaceArchiveContentExecute(r ApiClearWork
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/archive-content"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", url.PathEscape(parameterToString(r.workspaceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -258,7 +258,7 @@ func (a *WorkspaceApiService) ClearWorkspaceRepositoryContentManagerExecute(r Ap
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/repository-content"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", url.PathEscape(parameterToString(r.workspaceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -445,7 +445,7 @@ func (a *WorkspaceApiService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest
 	}
 
 	localVarPath := localBasePath + "/workspace-sources/{workspaceSourceName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceSourceName"+"}", url.PathEscape(parameterToString(r.workspaceSourceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceSourceName"+"}", parameterToString(r.workspaceSourceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -637,7 +637,7 @@ func (a *WorkspaceApiService) DeleteWorkspaceExecute(r ApiDeleteWorkspaceRequest
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", url.PathEscape(parameterToString(r.workspaceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -831,7 +831,7 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r Api
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/repository-content"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", url.PathEscape(parameterToString(r.workspaceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1058,7 +1058,7 @@ func (a *WorkspaceApiService) GetWorkspaceExecute(r ApiGetWorkspaceRequest) (*Wo
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", url.PathEscape(parameterToString(r.workspaceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1236,7 +1236,7 @@ func (a *WorkspaceApiService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspac
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/archive-content"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", url.PathEscape(parameterToString(r.workspaceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1413,7 +1413,7 @@ func (a *WorkspaceApiService) GetWorkspaceDetailsExecute(r ApiGetWorkspaceDetail
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/details"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", url.PathEscape(parameterToString(r.workspaceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1537,7 +1537,7 @@ func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerExecute(r ApiG
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/repository-content"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", url.PathEscape(parameterToString(r.workspaceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1906,7 +1906,7 @@ func (a *WorkspaceApiService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/retain"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", url.PathEscape(parameterToString(r.workspaceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2139,7 +2139,7 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/archive-content"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", url.PathEscape(parameterToString(r.workspaceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

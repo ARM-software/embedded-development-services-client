@@ -1,0 +1,1 @@
+Make sure that artefact urls aren't escaped during download by the client

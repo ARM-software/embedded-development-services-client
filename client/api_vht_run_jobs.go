@@ -79,7 +79,7 @@ func (a *VHTRunJobsApiService) CancelVhtRunJobExecute(r ApiCancelVhtRunJobReques
 	}
 
 	localVarPath := localBasePath + "/vht-run-jobs/{jobName}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -266,7 +266,7 @@ func (a *VHTRunJobsApiService) DeleteVhtRunJobExecute(r ApiDeleteVhtRunJobReques
 	}
 
 	localVarPath := localBasePath + "/vht-run-jobs/{jobName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -453,7 +453,7 @@ func (a *VHTRunJobsApiService) GetVhtRunJobExecute(r ApiGetVhtRunJobRequest) (*V
 	}
 
 	localVarPath := localBasePath + "/vht-run-jobs/{jobName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -644,7 +644,7 @@ func (a *VHTRunJobsApiService) GetVhtRunJobMessagesExecute(r ApiGetVhtRunJobMess
 	}
 
 	localVarPath := localBasePath + "/vht-run-jobs/{jobName}/messages"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

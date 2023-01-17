@@ -79,7 +79,7 @@ func (a *DevicesApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*DeviceItem
 	}
 
 	localVarPath := localBasePath + "/devices/{deviceSlug}"
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceSlug"+"}", url.PathEscape(parameterToString(r.deviceSlug, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceSlug"+"}", parameterToString(r.deviceSlug, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -80,7 +80,7 @@ func (a *IntellisenseJobsApiService) CancelIntellisenseJobExecute(r ApiCancelInt
 	}
 
 	localVarPath := localBasePath + "/intellisense-jobs/{jobName}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -267,7 +267,7 @@ func (a *IntellisenseJobsApiService) DeleteIntellisenseJobExecute(r ApiDeleteInt
 	}
 
 	localVarPath := localBasePath + "/intellisense-jobs/{jobName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -450,8 +450,8 @@ func (a *IntellisenseJobsApiService) GetIntellisenseArtefactExecute(r ApiGetInte
 	}
 
 	localVarPath := localBasePath + "/intellisense-jobs/{jobName}/artefacts/{artefactName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", url.PathEscape(parameterToString(r.artefactName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterToString(r.artefactName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -625,7 +625,7 @@ func (a *IntellisenseJobsApiService) GetIntellisenseJobExecute(r ApiGetIntellise
 	}
 
 	localVarPath := localBasePath + "/intellisense-jobs/{jobName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -816,7 +816,7 @@ func (a *IntellisenseJobsApiService) GetIntellisenseMessagesExecute(r ApiGetInte
 	}
 
 	localVarPath := localBasePath + "/intellisense-jobs/{jobName}/messages"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1013,7 +1013,7 @@ func (a *IntellisenseJobsApiService) ListIntellisenseArtefactsExecute(r ApiListI
 	}
 
 	localVarPath := localBasePath + "/intellisense-jobs/{jobName}/artefacts/"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1388,7 +1388,7 @@ func (a *IntellisenseJobsApiService) RetainIntellisenseJobExecute(r ApiRetainInt
 	}
 
 	localVarPath := localBasePath + "/intellisense-jobs/{jobName}/retain"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

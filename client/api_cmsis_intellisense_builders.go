@@ -86,7 +86,7 @@ func (a *CMSISIntellisenseBuildersApiService) GetCmsisIntellisenseExecute(r ApiG
 	}
 
 	localVarPath := localBasePath + "/cmsis-intellisense/{builderName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"builderName"+"}", url.PathEscape(parameterToString(r.builderName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"builderName"+"}", parameterToString(r.builderName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -458,7 +458,7 @@ func (a *CMSISIntellisenseBuildersApiService) StartCmsisIntellisenseExecute(r Ap
 	}
 
 	localVarPath := localBasePath + "/cmsis-intellisense/{builderName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"builderName"+"}", url.PathEscape(parameterToString(r.builderName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"builderName"+"}", parameterToString(r.builderName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

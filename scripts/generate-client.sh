@@ -41,6 +41,8 @@ run() {
     # FIXME remove the following line when the import in tests has been fixed in the generator
     rm -rf "$OUTPUT"/test
     rm -rf "$OUTPUT"/api
+    # FIXME the following is a stop gap to overcome the fact urls are already escaped in the services so we don't the client to escape them again as go believes that the resulting string is an f-string and complains because the argument is missing. remove if an option to not escape URLs is added
+    find ./client -type f -name "api_*.go" -print0 | xargs -0 sed -i -e 's@url.PathEscape(\([^)]*\))@\1@g'
 
     if [[ -z "$DISABLE_FMT"  ]]; then
       ./fmt-go.sh -i "$OUTPUT"
