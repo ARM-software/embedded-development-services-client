@@ -2,6 +2,25 @@
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"" "1.19.0" (2023-01-17)
+========================
+
+Features
+--------
+
+- Updated client due to schema changes (#20230117111846)
+
+
+Bugfixes
+--------
+
+- Make sure that artefact urls aren't escaped during download by the client (#202301171111)
+
+
+<!--
+Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "" "1.18.0" (2023-01-01)
 ========================
 
