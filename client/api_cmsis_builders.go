@@ -86,7 +86,7 @@ func (a *CMSISBuildersApiService) GetCmsisBuilderExecute(r ApiGetCmsisBuilderReq
 	}
 
 	localVarPath := localBasePath + "/cmsis-builders/{builderName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"builderName"+"}", url.PathEscape(parameterToString(r.builderName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"builderName"+"}", parameterToString(r.builderName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -458,7 +458,7 @@ func (a *CMSISBuildersApiService) StartCmsisBuildExecute(r ApiStartCmsisBuildReq
 	}
 
 	localVarPath := localBasePath + "/cmsis-builders/{builderName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"builderName"+"}", url.PathEscape(parameterToString(r.builderName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"builderName"+"}", parameterToString(r.builderName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

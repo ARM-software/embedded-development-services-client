@@ -79,7 +79,7 @@ func (a *BoardsApiService) GetBoardExecute(r ApiGetBoardRequest) (*BoardItem, *h
 	}
 
 	localVarPath := localBasePath + "/boards/{boardId}/"
-	localVarPath = strings.Replace(localVarPath, "{"+"boardId"+"}", url.PathEscape(parameterToString(r.boardId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"boardId"+"}", parameterToString(r.boardId, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

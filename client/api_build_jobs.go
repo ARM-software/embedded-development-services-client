@@ -80,7 +80,7 @@ func (a *BuildJobsApiService) CancelBuildJobExecute(r ApiCancelBuildJobRequest) 
 	}
 
 	localVarPath := localBasePath + "/build-jobs/{jobName}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -267,7 +267,7 @@ func (a *BuildJobsApiService) DeleteBuildJobExecute(r ApiDeleteBuildJobRequest) 
 	}
 
 	localVarPath := localBasePath + "/build-jobs/{jobName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -450,8 +450,8 @@ func (a *BuildJobsApiService) GetBuildArtefactExecute(r ApiGetBuildArtefactReque
 	}
 
 	localVarPath := localBasePath + "/build-jobs/{jobName}/artefacts/{artefactName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", url.PathEscape(parameterToString(r.artefactName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterToString(r.artefactName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -625,7 +625,7 @@ func (a *BuildJobsApiService) GetBuildJobExecute(r ApiGetBuildJobRequest) (*Buil
 	}
 
 	localVarPath := localBasePath + "/build-jobs/{jobName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -816,7 +816,7 @@ func (a *BuildJobsApiService) GetBuildMessagesExecute(r ApiGetBuildMessagesReque
 	}
 
 	localVarPath := localBasePath + "/build-jobs/{jobName}/messages"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1013,7 +1013,7 @@ func (a *BuildJobsApiService) ListBuildArtefactsExecute(r ApiListBuildArtefactsR
 	}
 
 	localVarPath := localBasePath + "/build-jobs/{jobName}/artefacts/"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1388,7 +1388,7 @@ func (a *BuildJobsApiService) RetainBuildJobExecute(r ApiRetainBuildJobRequest) 
 	}
 
 	localVarPath := localBasePath + "/build-jobs/{jobName}/retain"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", url.PathEscape(parameterToString(r.jobName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

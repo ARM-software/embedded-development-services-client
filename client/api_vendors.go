@@ -287,7 +287,7 @@ func (a *VendorsApiService) GetVendorExecute(r ApiGetVendorRequest) (*VendorItem
 	}
 
 	localVarPath := localBasePath + "/vendors/{vendorSlugOrId}/"
-	localVarPath = strings.Replace(localVarPath, "{"+"vendorSlugOrId"+"}", url.PathEscape(parameterToString(r.vendorSlugOrId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vendorSlugOrId"+"}", parameterToString(r.vendorSlugOrId, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -82,8 +82,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ClearVhtInstanceArtefactExecut
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}/artefacts/{artefactName}/artefact"
-	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", url.PathEscape(parameterToString(r.artefactName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", url.PathEscape(parameterToString(r.instanceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterToString(r.artefactName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -261,7 +261,7 @@ func (a *VirtualHardwareTargetInstanceApiService) DeleteVhtInstanceExecute(r Api
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", url.PathEscape(parameterToString(r.instanceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -451,8 +451,8 @@ func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefactExe
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}/artefacts/{artefactName}/artefact"
-	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", url.PathEscape(parameterToString(r.artefactName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", url.PathEscape(parameterToString(r.instanceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterToString(r.artefactName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -629,7 +629,7 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceExecute(r ApiGet
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", url.PathEscape(parameterToString(r.instanceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -810,8 +810,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceArtefactManagerE
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}/artefacts/{artefactName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", url.PathEscape(parameterToString(r.artefactName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", url.PathEscape(parameterToString(r.instanceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterToString(r.artefactName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1002,7 +1002,7 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceMessagesExecute(
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}/messages"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", url.PathEscape(parameterToString(r.instanceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1207,7 +1207,7 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstanceArtefactManager
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}/artefacts/"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", url.PathEscape(parameterToString(r.instanceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1585,7 +1585,7 @@ func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJobExecute(r ApiSta
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", url.PathEscape(parameterToString(r.instanceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1790,7 +1790,7 @@ func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstanceExecute(r ApiSt
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", url.PathEscape(parameterToString(r.instanceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2024,8 +2024,8 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecu
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}/artefacts/{artefactName}/artefact"
-	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", url.PathEscape(parameterToString(r.artefactName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", url.PathEscape(parameterToString(r.instanceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterToString(r.artefactName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

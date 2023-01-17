@@ -86,7 +86,7 @@ func (a *VirtualHardwareTargetApiService) GetVhtExecute(r ApiGetVhtRequest) (*Vh
 	}
 
 	localVarPath := localBasePath + "/vhts/{vhtName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"vhtName"+"}", url.PathEscape(parameterToString(r.vhtName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vhtName"+"}", parameterToString(r.vhtName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -284,7 +284,7 @@ func (a *VirtualHardwareTargetApiService) ListFilteredVhtInstancesExecute(r ApiL
 	}
 
 	localVarPath := localBasePath + "/vhts/{vhtName}/vht-instances/"
-	localVarPath = strings.Replace(localVarPath, "{"+"vhtName"+"}", url.PathEscape(parameterToString(r.vhtName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vhtName"+"}", parameterToString(r.vhtName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -654,7 +654,7 @@ func (a *VirtualHardwareTargetApiService) StartVhtInstanceExecute(r ApiStartVhtI
 	}
 
 	localVarPath := localBasePath + "/vhts/{vhtName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"vhtName"+"}", url.PathEscape(parameterToString(r.vhtName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vhtName"+"}", parameterToString(r.vhtName, ""), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
