@@ -2,6 +2,20 @@
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"" "1.20.0" (2023-01-18)
+========================
+
+Features
+--------
+
+- :recycle: Changed the iterator interface to align with `golang-utils` (#202301181717)
+- Updated client due to schema changes (#20230118172436)
+
+
+<!--
+Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "" "1.19.0" (2023-01-17)
 ========================
 
