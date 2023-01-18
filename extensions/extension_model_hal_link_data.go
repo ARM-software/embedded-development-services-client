@@ -26,7 +26,7 @@ func (m *HalLinkDataIterator) HasNext() bool {
 	return m.currentIndex < len(m.elements)
 }
 
-func (m *HalLinkDataIterator) GetNext() (item *interface{}, err error) {
+func (m *HalLinkDataIterator) GetNext() (item interface{}, err error) {
 	if m.currentIndex < 0 {
 		err = errors.New("incorrect element index")
 		return
@@ -35,7 +35,7 @@ func (m *HalLinkDataIterator) GetNext() (item *interface{}, err error) {
 		err = errors.New("no more items")
 		return
 	}
-	element := interface{}(m.elements[m.currentIndex])
+	element := m.elements[m.currentIndex]
 	item = &element
 	m.currentIndex++
 	return
