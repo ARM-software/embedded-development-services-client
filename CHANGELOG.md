@@ -2,6 +2,20 @@
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"" "1.21.0" (2023-01-25)
+========================
+
+Features
+--------
+
+- :sparkles: extended collection resources (virtual hardware targets, builders, workspaces, build jobs, etc.) so that they can be browsed via paginators (#20230125104138)
+- Updated client due to schema changes (#20230125104445, #20230125124539)
+
+
+<!--
+Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "" "1.20.0" (2023-01-18)
 ========================
 
