@@ -12,12 +12,12 @@ import (
 // *************************************************************************************
 
 // FetchType returns the resource type
-func (o *BuildJobItem) FetchType() string {
-	return "Build Job"
+func (o *WorkspaceItem) FetchType() string {
+	return "Workspace"
 }
 
 // FetchLinks returns the resource links if present
-func (o *BuildJobItem) FetchLinks() (links any, err error) {
+func (o *WorkspaceItem) FetchLinks() (links any, err error) {
 	if !o.Links.IsSet() {
 		err = errors.New("missing links")
 		return
@@ -27,31 +27,31 @@ func (o *BuildJobItem) FetchLinks() (links any, err error) {
 }
 
 // FetchName returns the resource name if present, or else an error
-func (o *BuildJobItem) FetchName() (string, error) {
+func (o *WorkspaceItem) FetchName() (string, error) {
 	return o.GetName(), nil
 }
 
 // FetchTitle returns the resource title if present, or else an error
-func (o *BuildJobItem) FetchTitle() (string, error) {
+func (o *WorkspaceItem) FetchTitle() (string, error) {
 	return o.GetTitle(), nil
 }
 
-// NewBuildJobModel returns a model.
-func NewBuildJobModel() IModel {
-	return NewBuildJobItemWithDefaults()
+// NewWorkspaceModel returns a model.
+func NewWorkspaceModel() IModel {
+	return NewWorkspaceItemWithDefaults()
 }
 
-// BuildJobIterator defines an iterator over a build job collection.
-type BuildJobIterator struct {
-	elements     []BuildJobItem
+// WorkspaceIterator defines an iterator over a workspace collection.
+type WorkspaceIterator struct {
+	elements     []WorkspaceItem
 	currentIndex int
 }
 
-func (m *BuildJobIterator) HasNext() bool {
+func (m *WorkspaceIterator) HasNext() bool {
 	return m.currentIndex < len(m.elements)
 }
 
-func (m *BuildJobIterator) GetNext() (item interface{}, err error) {
+func (m *WorkspaceIterator) GetNext() (item interface{}, err error) {
 	if m.currentIndex < 0 {
 		err = errors.New("incorrect element index")
 		return
@@ -66,8 +66,8 @@ func (m *BuildJobIterator) GetNext() (item interface{}, err error) {
 	return
 }
 
-func NewBuildJobIterator(elements []BuildJobItem) (IIterator, error) {
-	return &BuildJobIterator{
+func NewWorkspaceIterator(elements []WorkspaceItem) (IIterator, error) {
+	return &WorkspaceIterator{
 		elements:     elements,
 		currentIndex: 0,
 	}, nil

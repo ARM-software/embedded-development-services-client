@@ -18,7 +18,11 @@ import (
 	"net/url"
 )
 
-func (a *BuildJobsApiService) FollowMessageLink(r ApiGetBuildMessagesRequest, link string) (*BuildMessageItem, *http.Response, error) {
+func (r *ApiGetBuildMessagesRequest) FollowMessageLink(link string) (*BuildMessageItem, *http.Response, error) {
+	return r.ApiService.FollowMessageLink(r, link)
+}
+
+func (a *BuildJobsApiService) FollowMessageLink(r *ApiGetBuildMessagesRequest, link string) (*BuildMessageItem, *http.Response, error) {
 
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -162,7 +166,11 @@ func (a *BuildJobsApiService) FollowMessageLink(r ApiGetBuildMessagesRequest, li
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-func (a *VHTRunJobsApiService) FollowMessageLink(r ApiGetVhtRunJobMessagesRequest, link string) (*NotificationFeed, *http.Response, error) {
+func (r *ApiGetVhtRunJobMessagesRequest) FollowMessageLink(link string) (*NotificationFeed, *http.Response, error) {
+	return r.ApiService.FollowMessageLink(r, link)
+}
+
+func (a *VHTRunJobsApiService) FollowMessageLink(r *ApiGetVhtRunJobMessagesRequest, link string) (*NotificationFeed, *http.Response, error) {
 
 	var (
 		localVarHTTPMethod  = http.MethodGet
