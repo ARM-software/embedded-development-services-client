@@ -46,7 +46,7 @@ func NewBuilderModel() IModel {
 	return NewCmsisBuilderItemWithDefaults()
 }
 
-// BuilderIterator defines an iterator over a message collection.
+// BuilderIterator defines an iterator over a builder collection.
 type BuilderIterator struct {
 	elements     []CmsisBuilderItem
 	currentIndex int
