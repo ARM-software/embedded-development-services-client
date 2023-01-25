@@ -40,3 +40,35 @@ func (o *BuildJobItem) FetchTitle() (string, error) {
 func NewBuildJobModel() IModel {
 	return NewBuildJobItemWithDefaults()
 }
+
+// BuildJobIterator defines an iterator over a build job collection.
+type BuildJobIterator struct {
+	elements     []BuildJobItem
+	currentIndex int
+}
+
+func (m *BuildJobIterator) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *BuildJobIterator) GetNext() (item interface{}, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func NewBuildJobIterator(elements []BuildJobItem) (IIterator, error) {
+	return &BuildJobIterator{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
