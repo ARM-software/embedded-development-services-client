@@ -2,6 +2,19 @@
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"" "1.21.1" (2023-01-27)
+========================
+
+Bugfixes
+--------
+
+- Dependency upgrade: fetch-metadata-1.3.6 (#20230124091526)
+
+
+<!--
+Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "" "1.21.0" (2023-01-25)
 ========================
 
