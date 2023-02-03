@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ADebugInterface type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ADebugInterface{}
+
 // ADebugInterface struct for ADebugInterface
 type ADebugInterface struct {
 	// Adapter for the interface
@@ -58,7 +61,7 @@ func (o *ADebugInterface) GetAdapter() string {
 // and a boolean to check if the value has been set.
 func (o *ADebugInterface) GetAdapterOk() (*string, bool) {
 	if o == nil || isNil(o.Adapter) {
-    return nil, false
+		return nil, false
 	}
 	return o.Adapter, true
 }
@@ -90,7 +93,7 @@ func (o *ADebugInterface) GetConnector() string {
 // and a boolean to check if the value has been set.
 func (o *ADebugInterface) GetConnectorOk() (*string, bool) {
 	if o == nil || isNil(o.Connector) {
-    return nil, false
+		return nil, false
 	}
 	return o.Connector, true
 }
@@ -110,6 +113,14 @@ func (o *ADebugInterface) SetConnector(v string) {
 }
 
 func (o ADebugInterface) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ADebugInterface) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Adapter) {
 		toSerialize["adapter"] = o.Adapter
@@ -117,7 +128,7 @@ func (o ADebugInterface) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Connector) {
 		toSerialize["connector"] = o.Connector
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableADebugInterface struct {

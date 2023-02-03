@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VhtInstanceItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VhtInstanceItemLinks{}
+
 // VhtInstanceItemLinks The `related` link indicates the VHT defining the instance. The `details` links to a resource that provides output messages of a VHT instance. The `artefacts` links to a collection of artefact managers which are needed for a run job to happen. The `create` link (if present) provides the URI to start a VHT run job.
 type VhtInstanceItemLinks struct {
 	Artefacts *HalLinkData `json:"artefacts,omitempty"`
@@ -64,7 +67,7 @@ func (o *VhtInstanceItemLinks) GetArtefacts() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetArtefactsOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Artefacts) {
-    return nil, false
+		return nil, false
 	}
 	return o.Artefacts, true
 }
@@ -96,7 +99,7 @@ func (o *VhtInstanceItemLinks) GetCancel() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetCancelOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Cancel) {
-    return nil, false
+		return nil, false
 	}
 	return o.Cancel, true
 }
@@ -128,7 +131,7 @@ func (o *VhtInstanceItemLinks) GetCollection() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetCollectionOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Collection) {
-    return nil, false
+		return nil, false
 	}
 	return o.Collection, true
 }
@@ -160,7 +163,7 @@ func (o *VhtInstanceItemLinks) GetCreate() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetCreateOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Create) {
-    return nil, false
+		return nil, false
 	}
 	return o.Create, true
 }
@@ -192,7 +195,7 @@ func (o *VhtInstanceItemLinks) GetDelete() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetDeleteOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Delete) {
-    return nil, false
+		return nil, false
 	}
 	return o.Delete, true
 }
@@ -224,7 +227,7 @@ func (o *VhtInstanceItemLinks) GetDetails() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetDetailsOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Details) {
-    return nil, false
+		return nil, false
 	}
 	return o.Details, true
 }
@@ -257,7 +260,7 @@ func (o *VhtInstanceItemLinks) GetRelated() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetRelatedOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Related, true
 }
@@ -281,7 +284,7 @@ func (o *VhtInstanceItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Self, true
 }
@@ -292,6 +295,14 @@ func (o *VhtInstanceItemLinks) SetSelf(v HalLinkData) {
 }
 
 func (o VhtInstanceItemLinks) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VhtInstanceItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Artefacts) {
 		toSerialize["artefacts"] = o.Artefacts
@@ -311,13 +322,9 @@ func (o VhtInstanceItemLinks) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
-	if true {
-		toSerialize["related"] = o.Related
-	}
-	if true {
-		toSerialize["self"] = o.Self
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["related"] = o.Related
+	toSerialize["self"] = o.Self
+	return toSerialize, nil
 }
 
 type NullableVhtInstanceItemLinks struct {

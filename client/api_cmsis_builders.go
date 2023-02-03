@@ -86,7 +86,7 @@ func (a *CMSISBuildersApiService) GetCmsisBuilderExecute(r ApiGetCmsisBuilderReq
 	}
 
 	localVarPath := localBasePath + "/cmsis-builders/{builderName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"builderName"+"}", parameterToString(r.builderName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"builderName"+"}", parameterValueToString(r.builderName, "builderName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -110,10 +110,10 @@ func (a *CMSISBuildersApiService) GetCmsisBuilderExecute(r ApiGetCmsisBuilderReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -144,8 +144,8 @@ func (a *CMSISBuildersApiService) GetCmsisBuilderExecute(r ApiGetCmsisBuilderReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -155,8 +155,8 @@ func (a *CMSISBuildersApiService) GetCmsisBuilderExecute(r ApiGetCmsisBuilderReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -166,8 +166,8 @@ func (a *CMSISBuildersApiService) GetCmsisBuilderExecute(r ApiGetCmsisBuilderReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -177,8 +177,8 @@ func (a *CMSISBuildersApiService) GetCmsisBuilderExecute(r ApiGetCmsisBuilderReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -188,8 +188,8 @@ func (a *CMSISBuildersApiService) GetCmsisBuilderExecute(r ApiGetCmsisBuilderReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -290,13 +290,13 @@ func (a *CMSISBuildersApiService) ListCmsisBuildersExecute(r ApiListCmsisBuilder
 	localVarFormParams := url.Values{}
 
 	if r.embed != nil {
-		localVarQueryParams.Add("embed", parameterToString(*r.embed, ""))
+		parameterAddToQuery(localVarQueryParams, "embed", r.embed, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -316,10 +316,10 @@ func (a *CMSISBuildersApiService) ListCmsisBuildersExecute(r ApiListCmsisBuilder
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -350,8 +350,8 @@ func (a *CMSISBuildersApiService) ListCmsisBuildersExecute(r ApiListCmsisBuilder
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -361,8 +361,8 @@ func (a *CMSISBuildersApiService) ListCmsisBuildersExecute(r ApiListCmsisBuilder
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -372,8 +372,8 @@ func (a *CMSISBuildersApiService) ListCmsisBuildersExecute(r ApiListCmsisBuilder
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -383,8 +383,8 @@ func (a *CMSISBuildersApiService) ListCmsisBuildersExecute(r ApiListCmsisBuilder
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -458,7 +458,7 @@ func (a *CMSISBuildersApiService) StartCmsisBuildExecute(r ApiStartCmsisBuildReq
 	}
 
 	localVarPath := localBasePath + "/cmsis-builders/{builderName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"builderName"+"}", parameterToString(r.builderName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"builderName"+"}", parameterValueToString(r.builderName, "builderName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -485,7 +485,7 @@ func (a *CMSISBuildersApiService) StartCmsisBuildExecute(r ApiStartCmsisBuildReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	// body params
 	localVarPostBody = r.buildJobItem
@@ -518,8 +518,8 @@ func (a *CMSISBuildersApiService) StartCmsisBuildExecute(r ApiStartCmsisBuildReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -529,8 +529,8 @@ func (a *CMSISBuildersApiService) StartCmsisBuildExecute(r ApiStartCmsisBuildReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -540,8 +540,8 @@ func (a *CMSISBuildersApiService) StartCmsisBuildExecute(r ApiStartCmsisBuildReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -551,8 +551,8 @@ func (a *CMSISBuildersApiService) StartCmsisBuildExecute(r ApiStartCmsisBuildReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -562,8 +562,8 @@ func (a *CMSISBuildersApiService) StartCmsisBuildExecute(r ApiStartCmsisBuildReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 415 {
@@ -573,8 +573,8 @@ func (a *CMSISBuildersApiService) StartCmsisBuildExecute(r ApiStartCmsisBuildReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -584,8 +584,8 @@ func (a *CMSISBuildersApiService) StartCmsisBuildExecute(r ApiStartCmsisBuildReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

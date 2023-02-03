@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VendorItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VendorItemLinks{}
+
 // VendorItemLinks The links for a VendorItem.
 type VendorItemLinks struct {
 	Collection HalLinkData `json:"collection"`
@@ -59,7 +62,7 @@ func (o *VendorItemLinks) GetCollection() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VendorItemLinks) GetCollectionOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Collection, true
 }
@@ -83,7 +86,7 @@ func (o *VendorItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VendorItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Self, true
 }
@@ -94,14 +97,18 @@ func (o *VendorItemLinks) SetSelf(v HalLinkData) {
 }
 
 func (o VendorItemLinks) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["collection"] = o.Collection
-	}
-	if true {
-		toSerialize["self"] = o.Self
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o VendorItemLinks) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["collection"] = o.Collection
+	toSerialize["self"] = o.Self
+	return toSerialize, nil
 }
 
 type NullableVendorItemLinks struct {

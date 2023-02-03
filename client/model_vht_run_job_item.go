@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VhtRunJobItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VhtRunJobItem{}
+
 // VhtRunJobItem When the job is ready, it will include the current status of the job and links to other available resources, such as messages.
 type VhtRunJobItem struct {
 	Links NullableVhtRunJobItemLinks `json:"_links"`
@@ -90,7 +93,7 @@ func (o *VhtRunJobItem) GetLinks() VhtRunJobItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtRunJobItem) GetLinksOk() (*VhtRunJobItemLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -116,7 +119,7 @@ func (o *VhtRunJobItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtRunJobItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -140,7 +143,7 @@ func (o *VhtRunJobItem) GetDone() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetDoneOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Done, true
 }
@@ -164,7 +167,7 @@ func (o *VhtRunJobItem) GetError() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetErrorOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Error, true
 }
@@ -187,7 +190,7 @@ func (o *VhtRunJobItem) GetJobTimeout() int32 {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetJobTimeoutOk() (*int32, bool) {
 	if o == nil || isNil(o.JobTimeout) {
-    return nil, false
+		return nil, false
 	}
 	return o.JobTimeout, true
 }
@@ -220,7 +223,7 @@ func (o *VhtRunJobItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -244,7 +247,7 @@ func (o *VhtRunJobItem) GetQueued() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetQueuedOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Queued, true
 }
@@ -268,7 +271,7 @@ func (o *VhtRunJobItem) GetStatus() string {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetStatusOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Status, true
 }
@@ -292,7 +295,7 @@ func (o *VhtRunJobItem) GetSystemError() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetSystemErrorOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.SystemError, true
 }
@@ -316,7 +319,7 @@ func (o *VhtRunJobItem) GetTimedOut() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItem) GetTimedOutOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.TimedOut, true
 }
@@ -340,7 +343,7 @@ func (o *VhtRunJobItem) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtRunJobItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -369,41 +372,31 @@ func (o *VhtRunJobItem) UnsetTitle() {
 }
 
 func (o VhtRunJobItem) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VhtRunJobItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links.Get()
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
-	if true {
-		toSerialize["done"] = o.Done
-	}
-	if true {
-		toSerialize["error"] = o.Error
-	}
+	toSerialize["_links"] = o.Links.Get()
+	toSerialize["_metadata"] = o.Metadata.Get()
+	// skip: done is readOnly
+	// skip: error is readOnly
 	if !isNil(o.JobTimeout) {
 		toSerialize["jobTimeout"] = o.JobTimeout
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["queued"] = o.Queued
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["systemError"] = o.SystemError
-	}
-	if true {
-		toSerialize["timedOut"] = o.TimedOut
-	}
+	// skip: name is readOnly
+	// skip: queued is readOnly
+	// skip: status is readOnly
+	// skip: systemError is readOnly
+	// skip: timedOut is readOnly
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVhtRunJobItem struct {

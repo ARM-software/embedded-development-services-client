@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the HalCollectionLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HalCollectionLinks{}
+
 // HalCollectionLinks These hypermedia links inside a collection resource allow contained resources to be discovered and for large collections to be paged through. - The `item` link relation contains a list of resources contained in the collection. If there is a `next` or   `previous` link present then not all the resources in the collection are currently being shown. - The `first` link points to the first page of a feed resource, this will not be be present if the entire   resource has been returned in the current page. - The `last` link points to the last page of a feed resource, this will not be be present if the entire   resource has been returned in the current page. - The `prev` link points to the previous page in the resource, this will not be present if the current page is   the first (or only page) page. - The `next` link points to the next page in the resource, this will not be present if the current page is the   last (or only page) page. - The `simple` link relation will be present in embedded representations to retrieve a non embedded   representation of the current context. - The `alternate` link relation is a simple templated URI to allow page selection by a client. - The `embedded`  link relation is an embedded representation of the current (non-embedded context).
 type HalCollectionLinks struct {
 	Alternate *HalLinkData `json:"alternate,omitempty"`
@@ -64,7 +67,7 @@ func (o *HalCollectionLinks) GetAlternate() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetAlternateOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Alternate) {
-    return nil, false
+		return nil, false
 	}
 	return o.Alternate, true
 }
@@ -96,7 +99,7 @@ func (o *HalCollectionLinks) GetEmbedded() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetEmbeddedOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Embedded) {
-    return nil, false
+		return nil, false
 	}
 	return o.Embedded, true
 }
@@ -128,7 +131,7 @@ func (o *HalCollectionLinks) GetFirst() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetFirstOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.First) {
-    return nil, false
+		return nil, false
 	}
 	return o.First, true
 }
@@ -160,7 +163,7 @@ func (o *HalCollectionLinks) GetItem() []HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetItemOk() ([]HalLinkData, bool) {
 	if o == nil || isNil(o.Item) {
-    return nil, false
+		return nil, false
 	}
 	return o.Item, true
 }
@@ -192,7 +195,7 @@ func (o *HalCollectionLinks) GetLast() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetLastOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Last) {
-    return nil, false
+		return nil, false
 	}
 	return o.Last, true
 }
@@ -224,7 +227,7 @@ func (o *HalCollectionLinks) GetNext() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetNextOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Next) {
-    return nil, false
+		return nil, false
 	}
 	return o.Next, true
 }
@@ -256,7 +259,7 @@ func (o *HalCollectionLinks) GetPrev() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetPrevOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Prev) {
-    return nil, false
+		return nil, false
 	}
 	return o.Prev, true
 }
@@ -289,7 +292,7 @@ func (o *HalCollectionLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Self, true
 }
@@ -312,7 +315,7 @@ func (o *HalCollectionLinks) GetSimple() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetSimpleOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Simple) {
-    return nil, false
+		return nil, false
 	}
 	return o.Simple, true
 }
@@ -332,6 +335,14 @@ func (o *HalCollectionLinks) SetSimple(v HalLinkData) {
 }
 
 func (o HalCollectionLinks) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o HalCollectionLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Alternate) {
 		toSerialize["alternate"] = o.Alternate
@@ -354,13 +365,11 @@ func (o HalCollectionLinks) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Prev) {
 		toSerialize["prev"] = o.Prev
 	}
-	if true {
-		toSerialize["self"] = o.Self
-	}
+	toSerialize["self"] = o.Self
 	if !isNil(o.Simple) {
 		toSerialize["simple"] = o.Simple
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableHalCollectionLinks struct {

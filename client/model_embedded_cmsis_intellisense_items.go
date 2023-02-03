@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmbeddedCmsisIntellisenseItems type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmbeddedCmsisIntellisenseItems{}
+
 // EmbeddedCmsisIntellisenseItems Embedded resource use the same link relation as a dictionary key, but rather than returning a link to the resource, the resource is instead embedded into the collection resource.
 type EmbeddedCmsisIntellisenseItems struct {
 	Item []CmsisIntellisenseItem `json:"item,omitempty"`
@@ -55,7 +58,7 @@ func (o *EmbeddedCmsisIntellisenseItems) GetItem() []CmsisIntellisenseItem {
 // and a boolean to check if the value has been set.
 func (o *EmbeddedCmsisIntellisenseItems) GetItemOk() ([]CmsisIntellisenseItem, bool) {
 	if o == nil || isNil(o.Item) {
-    return nil, false
+		return nil, false
 	}
 	return o.Item, true
 }
@@ -75,11 +78,19 @@ func (o *EmbeddedCmsisIntellisenseItems) SetItem(v []CmsisIntellisenseItem) {
 }
 
 func (o EmbeddedCmsisIntellisenseItems) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmbeddedCmsisIntellisenseItems) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEmbeddedCmsisIntellisenseItems struct {

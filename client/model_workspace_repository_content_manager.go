@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the WorkspaceRepositoryContentManager type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WorkspaceRepositoryContentManager{}
+
 // WorkspaceRepositoryContentManager workspace controller resource when the content of the workspace is defined in a repository
 type WorkspaceRepositoryContentManager struct {
 	Links NullableWorkspaceRepositoryContentManagerLinks `json:"_links"`
@@ -87,7 +90,7 @@ func (o *WorkspaceRepositoryContentManager) GetLinks() WorkspaceRepositoryConten
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceRepositoryContentManager) GetLinksOk() (*WorkspaceRepositoryContentManagerLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -113,7 +116,7 @@ func (o *WorkspaceRepositoryContentManager) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceRepositoryContentManager) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -137,7 +140,7 @@ func (o *WorkspaceRepositoryContentManager) GetFetchDepth() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceRepositoryContentManager) GetFetchDepthOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.FetchDepth.Get(), o.FetchDepth.IsSet()
 }
@@ -179,7 +182,7 @@ func (o *WorkspaceRepositoryContentManager) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManager) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -205,7 +208,7 @@ func (o *WorkspaceRepositoryContentManager) GetReference() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceRepositoryContentManager) GetReferenceOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Reference.Get(), o.Reference.IsSet()
 }
@@ -229,7 +232,7 @@ func (o *WorkspaceRepositoryContentManager) GetRepositoryUrl() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManager) GetRepositoryUrlOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.RepositoryUrl, true
 }
@@ -253,7 +256,7 @@ func (o *WorkspaceRepositoryContentManager) GetScm() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManager) GetScmOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Scm, true
 }
@@ -276,7 +279,7 @@ func (o *WorkspaceRepositoryContentManager) GetSubmodules() bool {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManager) GetSubmodulesOk() (*bool, bool) {
 	if o == nil || isNil(o.Submodules) {
-    return nil, false
+		return nil, false
 	}
 	return o.Submodules, true
 }
@@ -309,7 +312,7 @@ func (o *WorkspaceRepositoryContentManager) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceRepositoryContentManager) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -338,35 +341,31 @@ func (o *WorkspaceRepositoryContentManager) UnsetTitle() {
 }
 
 func (o WorkspaceRepositoryContentManager) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o WorkspaceRepositoryContentManager) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links.Get()
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
+	toSerialize["_links"] = o.Links.Get()
+	toSerialize["_metadata"] = o.Metadata.Get()
 	if o.FetchDepth.IsSet() {
 		toSerialize["fetchDepth"] = o.FetchDepth.Get()
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["reference"] = o.Reference.Get()
-	}
-	if true {
-		toSerialize["repositoryUrl"] = o.RepositoryUrl
-	}
-	if true {
-		toSerialize["scm"] = o.Scm
-	}
+	// skip: name is readOnly
+	toSerialize["reference"] = o.Reference.Get()
+	toSerialize["repositoryUrl"] = o.RepositoryUrl
+	toSerialize["scm"] = o.Scm
 	if !isNil(o.Submodules) {
 		toSerialize["submodules"] = o.Submodules
 	}
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableWorkspaceRepositoryContentManager struct {

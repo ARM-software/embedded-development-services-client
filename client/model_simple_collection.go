@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SimpleCollection type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SimpleCollection{}
+
 // SimpleCollection This collection resource follows the common pattern of linking to contained resources. In file system terms, it is similar to a directory but only contains links to a single type of resource. It is not possible to embed resources into this collection.
 type SimpleCollection struct {
 	Links NullableHalCollectionLinks `json:"_links"`
@@ -67,7 +70,7 @@ func (o *SimpleCollection) GetLinks() HalCollectionLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SimpleCollection) GetLinksOk() (*HalCollectionLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -93,7 +96,7 @@ func (o *SimpleCollection) GetMetadata() PagingMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SimpleCollection) GetMetadataOk() (*PagingMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -117,7 +120,7 @@ func (o *SimpleCollection) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *SimpleCollection) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -141,7 +144,7 @@ func (o *SimpleCollection) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *SimpleCollection) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Title, true
 }
@@ -152,20 +155,20 @@ func (o *SimpleCollection) SetTitle(v string) {
 }
 
 func (o SimpleCollection) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links.Get()
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["title"] = o.Title
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SimpleCollection) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["_links"] = o.Links.Get()
+	toSerialize["_metadata"] = o.Metadata.Get()
+	// skip: name is readOnly
+	// skip: title is readOnly
+	return toSerialize, nil
 }
 
 type NullableSimpleCollection struct {

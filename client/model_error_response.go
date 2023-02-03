@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ErrorResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ErrorResponse{}
+
 // ErrorResponse struct for ErrorResponse
 type ErrorResponse struct {
 	// Fields in the request that failed validation [Optional].
@@ -66,7 +69,7 @@ func (o *ErrorResponse) GetFields() []FieldObject {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ErrorResponse) GetFieldsOk() ([]FieldObject, bool) {
 	if o == nil || isNil(o.Fields) {
-    return nil, false
+		return nil, false
 	}
 	return o.Fields, true
 }
@@ -99,7 +102,7 @@ func (o *ErrorResponse) GetHttpStatusCode() int32 {
 // and a boolean to check if the value has been set.
 func (o *ErrorResponse) GetHttpStatusCodeOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.HttpStatusCode, true
 }
@@ -123,7 +126,7 @@ func (o *ErrorResponse) GetMessage() string {
 // and a boolean to check if the value has been set.
 func (o *ErrorResponse) GetMessageOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Message, true
 }
@@ -147,7 +150,7 @@ func (o *ErrorResponse) GetRequestId() string {
 // and a boolean to check if the value has been set.
 func (o *ErrorResponse) GetRequestIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.RequestId, true
 }
@@ -158,20 +161,22 @@ func (o *ErrorResponse) SetRequestId(v string) {
 }
 
 func (o ErrorResponse) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Fields != nil {
 		toSerialize["fields"] = o.Fields
 	}
-	if true {
-		toSerialize["httpStatusCode"] = o.HttpStatusCode
-	}
-	if true {
-		toSerialize["message"] = o.Message
-	}
-	if true {
-		toSerialize["requestId"] = o.RequestId
-	}
-	return json.Marshal(toSerialize)
+	// skip: httpStatusCode is readOnly
+	// skip: message is readOnly
+	// skip: requestId is readOnly
+	return toSerialize, nil
 }
 
 type NullableErrorResponse struct {

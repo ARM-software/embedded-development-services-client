@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ArtefactManagerLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ArtefactManagerLinks{}
+
 // ArtefactManagerLinks links to manage artefacts Note: the links for actions on artefacts (i.e. upload, download, clear) should have in their title the title specified by the user for the artefact when uploading it.
 type ArtefactManagerLinks struct {
 	Clear *HalLinkData `json:"clear,omitempty"`
@@ -62,7 +65,7 @@ func (o *ArtefactManagerLinks) GetClear() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerLinks) GetClearOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Clear) {
-    return nil, false
+		return nil, false
 	}
 	return o.Clear, true
 }
@@ -94,7 +97,7 @@ func (o *ArtefactManagerLinks) GetCollection() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerLinks) GetCollectionOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Collection) {
-    return nil, false
+		return nil, false
 	}
 	return o.Collection, true
 }
@@ -126,7 +129,7 @@ func (o *ArtefactManagerLinks) GetDownload() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerLinks) GetDownloadOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Download) {
-    return nil, false
+		return nil, false
 	}
 	return o.Download, true
 }
@@ -159,7 +162,7 @@ func (o *ArtefactManagerLinks) GetRelated() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerLinks) GetRelatedOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Related, true
 }
@@ -183,7 +186,7 @@ func (o *ArtefactManagerLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Self, true
 }
@@ -206,7 +209,7 @@ func (o *ArtefactManagerLinks) GetUpload() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerLinks) GetUploadOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Upload) {
-    return nil, false
+		return nil, false
 	}
 	return o.Upload, true
 }
@@ -226,6 +229,14 @@ func (o *ArtefactManagerLinks) SetUpload(v HalLinkData) {
 }
 
 func (o ArtefactManagerLinks) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ArtefactManagerLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Clear) {
 		toSerialize["clear"] = o.Clear
@@ -236,16 +247,12 @@ func (o ArtefactManagerLinks) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Download) {
 		toSerialize["download"] = o.Download
 	}
-	if true {
-		toSerialize["related"] = o.Related
-	}
-	if true {
-		toSerialize["self"] = o.Self
-	}
+	toSerialize["related"] = o.Related
+	toSerialize["self"] = o.Self
 	if !isNil(o.Upload) {
 		toSerialize["upload"] = o.Upload
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableArtefactManagerLinks struct {

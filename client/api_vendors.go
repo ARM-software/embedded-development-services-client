@@ -109,7 +109,7 @@ func (a *VendorsApiService) CreateVendorExecute(r ApiCreateVendorRequest) (*Vend
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	// body params
 	localVarPostBody = r.vendorItem
@@ -142,8 +142,8 @@ func (a *VendorsApiService) CreateVendorExecute(r ApiCreateVendorRequest) (*Vend
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -153,8 +153,8 @@ func (a *VendorsApiService) CreateVendorExecute(r ApiCreateVendorRequest) (*Vend
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -164,8 +164,8 @@ func (a *VendorsApiService) CreateVendorExecute(r ApiCreateVendorRequest) (*Vend
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -175,8 +175,8 @@ func (a *VendorsApiService) CreateVendorExecute(r ApiCreateVendorRequest) (*Vend
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -186,8 +186,8 @@ func (a *VendorsApiService) CreateVendorExecute(r ApiCreateVendorRequest) (*Vend
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -197,8 +197,8 @@ func (a *VendorsApiService) CreateVendorExecute(r ApiCreateVendorRequest) (*Vend
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 415 {
@@ -208,8 +208,8 @@ func (a *VendorsApiService) CreateVendorExecute(r ApiCreateVendorRequest) (*Vend
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -219,8 +219,8 @@ func (a *VendorsApiService) CreateVendorExecute(r ApiCreateVendorRequest) (*Vend
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -287,7 +287,7 @@ func (a *VendorsApiService) GetVendorExecute(r ApiGetVendorRequest) (*VendorItem
 	}
 
 	localVarPath := localBasePath + "/vendors/{vendorSlugOrId}/"
-	localVarPath = strings.Replace(localVarPath, "{"+"vendorSlugOrId"+"}", parameterToString(r.vendorSlugOrId, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vendorSlugOrId"+"}", parameterValueToString(r.vendorSlugOrId, "vendorSlugOrId"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -311,7 +311,7 @@ func (a *VendorsApiService) GetVendorExecute(r ApiGetVendorRequest) (*VendorItem
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -342,8 +342,8 @@ func (a *VendorsApiService) GetVendorExecute(r ApiGetVendorRequest) (*VendorItem
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -353,8 +353,8 @@ func (a *VendorsApiService) GetVendorExecute(r ApiGetVendorRequest) (*VendorItem
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -364,8 +364,8 @@ func (a *VendorsApiService) GetVendorExecute(r ApiGetVendorRequest) (*VendorItem
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -375,8 +375,8 @@ func (a *VendorsApiService) GetVendorExecute(r ApiGetVendorRequest) (*VendorItem
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -386,8 +386,8 @@ func (a *VendorsApiService) GetVendorExecute(r ApiGetVendorRequest) (*VendorItem
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -485,13 +485,13 @@ func (a *VendorsApiService) ListVendorsExecute(r ApiListVendorsRequest) (*ListVe
 	localVarFormParams := url.Values{}
 
 	if r.embed != nil {
-		localVarQueryParams.Add("embed", parameterToString(*r.embed, ""))
+		parameterAddToQuery(localVarQueryParams, "embed", r.embed, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -511,10 +511,10 @@ func (a *VendorsApiService) ListVendorsExecute(r ApiListVendorsRequest) (*ListVe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -545,8 +545,8 @@ func (a *VendorsApiService) ListVendorsExecute(r ApiListVendorsRequest) (*ListVe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -556,8 +556,8 @@ func (a *VendorsApiService) ListVendorsExecute(r ApiListVendorsRequest) (*ListVe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -567,8 +567,8 @@ func (a *VendorsApiService) ListVendorsExecute(r ApiListVendorsRequest) (*ListVe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -578,8 +578,8 @@ func (a *VendorsApiService) ListVendorsExecute(r ApiListVendorsRequest) (*ListVe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

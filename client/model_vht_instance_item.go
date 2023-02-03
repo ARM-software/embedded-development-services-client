@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VhtInstanceItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VhtInstanceItem{}
+
 // VhtInstanceItem When the VHT instance is ready, it will include the current status of the instance and links to other available resources, such as instance messages and instance artefacts.
 type VhtInstanceItem struct {
 	Links NullableVhtInstanceItemLinks `json:"_links"`
@@ -87,7 +90,7 @@ func (o *VhtInstanceItem) GetLinks() VhtInstanceItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtInstanceItem) GetLinksOk() (*VhtInstanceItemLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -113,7 +116,7 @@ func (o *VhtInstanceItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtInstanceItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -137,7 +140,7 @@ func (o *VhtInstanceItem) GetError() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetErrorOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Error, true
 }
@@ -160,7 +163,7 @@ func (o *VhtInstanceItem) GetInstanceTimeout() int32 {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetInstanceTimeoutOk() (*int32, bool) {
 	if o == nil || isNil(o.InstanceTimeout) {
-    return nil, false
+		return nil, false
 	}
 	return o.InstanceTimeout, true
 }
@@ -193,7 +196,7 @@ func (o *VhtInstanceItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -217,7 +220,7 @@ func (o *VhtInstanceItem) GetReady() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetReadyOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Ready, true
 }
@@ -241,7 +244,7 @@ func (o *VhtInstanceItem) GetRequested() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetRequestedOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Requested, true
 }
@@ -265,7 +268,7 @@ func (o *VhtInstanceItem) GetStatus() string {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetStatusOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Status, true
 }
@@ -289,7 +292,7 @@ func (o *VhtInstanceItem) GetTerminated() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetTerminatedOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Terminated, true
 }
@@ -313,7 +316,7 @@ func (o *VhtInstanceItem) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtInstanceItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -342,38 +345,30 @@ func (o *VhtInstanceItem) UnsetTitle() {
 }
 
 func (o VhtInstanceItem) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VhtInstanceItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links.Get()
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
-	if true {
-		toSerialize["error"] = o.Error
-	}
+	toSerialize["_links"] = o.Links.Get()
+	toSerialize["_metadata"] = o.Metadata.Get()
+	// skip: error is readOnly
 	if !isNil(o.InstanceTimeout) {
 		toSerialize["instanceTimeout"] = o.InstanceTimeout
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["ready"] = o.Ready
-	}
-	if true {
-		toSerialize["requested"] = o.Requested
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["terminated"] = o.Terminated
-	}
+	// skip: name is readOnly
+	// skip: ready is readOnly
+	// skip: requested is readOnly
+	// skip: status is readOnly
+	// skip: terminated is readOnly
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVhtInstanceItem struct {

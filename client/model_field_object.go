@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FieldObject type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FieldObject{}
+
 // FieldObject struct for FieldObject
 type FieldObject struct {
 	// Name of the field name in the request which has failed validation.
@@ -63,7 +66,7 @@ func (o *FieldObject) GetFieldName() string {
 // and a boolean to check if the value has been set.
 func (o *FieldObject) GetFieldNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.FieldName, true
 }
@@ -86,7 +89,7 @@ func (o *FieldObject) GetFieldPath() string {
 // and a boolean to check if the value has been set.
 func (o *FieldObject) GetFieldPathOk() (*string, bool) {
 	if o == nil || isNil(o.FieldPath) {
-    return nil, false
+		return nil, false
 	}
 	return o.FieldPath, true
 }
@@ -119,7 +122,7 @@ func (o *FieldObject) GetMessage() string {
 // and a boolean to check if the value has been set.
 func (o *FieldObject) GetMessageOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Message, true
 }
@@ -130,17 +133,19 @@ func (o *FieldObject) SetMessage(v string) {
 }
 
 func (o FieldObject) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["fieldName"] = o.FieldName
-	}
-	if !isNil(o.FieldPath) {
-		toSerialize["fieldPath"] = o.FieldPath
-	}
-	if true {
-		toSerialize["message"] = o.Message
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o FieldObject) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: fieldName is readOnly
+	// skip: fieldPath is readOnly
+	// skip: message is readOnly
+	return toSerialize, nil
 }
 
 type NullableFieldObject struct {

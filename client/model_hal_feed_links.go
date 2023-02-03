@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the HalFeedLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HalFeedLinks{}
+
 // HalFeedLinks These hypermedia links inside a feed resource allow the contents of the resource to be paged. A feed is typically made up of a list of items, that may, as a whole, be a very large object. Feeds can be also be dynamic updating resources, which can have items added to them asynchronously. - The `first` link points to the first page of a feed resource, this will not be be present if the entire   resource has been returned in the current page. - The `last` link points to the last page of a feed resource, this will not be be present if the entire   resource has been returned in the current page. - The `prev` link points to the previous page in the resource, this will not be present if the current page is   the first (or only page) page. - The `next` link points to the next page in the resource, this will not be present if the current page is the   last (or only page) page. - The `future` link points to the next possible page of resources, this will only be present if the current   page is currently the last page of resources. This allows a client to poll and check for new items being added   without having to retrieve the previous items.
 type HalFeedLinks struct {
 	First *HalLinkData `json:"first,omitempty"`
@@ -61,7 +64,7 @@ func (o *HalFeedLinks) GetFirst() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalFeedLinks) GetFirstOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.First) {
-    return nil, false
+		return nil, false
 	}
 	return o.First, true
 }
@@ -93,7 +96,7 @@ func (o *HalFeedLinks) GetFuture() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalFeedLinks) GetFutureOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Future) {
-    return nil, false
+		return nil, false
 	}
 	return o.Future, true
 }
@@ -125,7 +128,7 @@ func (o *HalFeedLinks) GetLast() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalFeedLinks) GetLastOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Last) {
-    return nil, false
+		return nil, false
 	}
 	return o.Last, true
 }
@@ -157,7 +160,7 @@ func (o *HalFeedLinks) GetNext() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalFeedLinks) GetNextOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Next) {
-    return nil, false
+		return nil, false
 	}
 	return o.Next, true
 }
@@ -189,7 +192,7 @@ func (o *HalFeedLinks) GetPrev() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalFeedLinks) GetPrevOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Prev) {
-    return nil, false
+		return nil, false
 	}
 	return o.Prev, true
 }
@@ -222,7 +225,7 @@ func (o *HalFeedLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *HalFeedLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Self, true
 }
@@ -233,6 +236,14 @@ func (o *HalFeedLinks) SetSelf(v HalLinkData) {
 }
 
 func (o HalFeedLinks) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o HalFeedLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.First) {
 		toSerialize["first"] = o.First
@@ -249,10 +260,8 @@ func (o HalFeedLinks) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Prev) {
 		toSerialize["prev"] = o.Prev
 	}
-	if true {
-		toSerialize["self"] = o.Self
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["self"] = o.Self
+	return toSerialize, nil
 }
 
 type NullableHalFeedLinks struct {

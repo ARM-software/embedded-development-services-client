@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BoardItemFeaturesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BoardItemFeaturesInner{}
+
 // BoardItemFeaturesInner A board feature
 type BoardItemFeaturesInner struct {
 	// Category of the feature.
@@ -64,7 +67,7 @@ func (o *BoardItemFeaturesInner) GetCategory() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItemFeaturesInner) GetCategoryOk() (*string, bool) {
 	if o == nil || isNil(o.Category) {
-    return nil, false
+		return nil, false
 	}
 	return o.Category, true
 }
@@ -96,7 +99,7 @@ func (o *BoardItemFeaturesInner) GetDefaultName() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItemFeaturesInner) GetDefaultNameOk() (*string, bool) {
 	if o == nil || isNil(o.DefaultName) {
-    return nil, false
+		return nil, false
 	}
 	return o.DefaultName, true
 }
@@ -128,7 +131,7 @@ func (o *BoardItemFeaturesInner) GetDetail() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItemFeaturesInner) GetDetailOk() (*string, bool) {
 	if o == nil || isNil(o.Detail) {
-    return nil, false
+		return nil, false
 	}
 	return o.Detail, true
 }
@@ -160,7 +163,7 @@ func (o *BoardItemFeaturesInner) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItemFeaturesInner) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
-    return nil, false
+		return nil, false
 	}
 	return o.Name, true
 }
@@ -192,7 +195,7 @@ func (o *BoardItemFeaturesInner) GetType() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItemFeaturesInner) GetTypeOk() (*string, bool) {
 	if o == nil || isNil(o.Type) {
-    return nil, false
+		return nil, false
 	}
 	return o.Type, true
 }
@@ -212,6 +215,14 @@ func (o *BoardItemFeaturesInner) SetType(v string) {
 }
 
 func (o BoardItemFeaturesInner) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BoardItemFeaturesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Category) {
 		toSerialize["category"] = o.Category
@@ -228,7 +239,7 @@ func (o BoardItemFeaturesInner) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableBoardItemFeaturesInner struct {

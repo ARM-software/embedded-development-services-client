@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmbeddedIntellisenseJobItems type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmbeddedIntellisenseJobItems{}
+
 // EmbeddedIntellisenseJobItems Embedded resource use the same link relation as a dictionary key, but rather than returning a link to the resource, the resource is instead embedded into the collection resource.
 type EmbeddedIntellisenseJobItems struct {
 	Item []IntellisenseJobItem `json:"item,omitempty"`
@@ -55,7 +58,7 @@ func (o *EmbeddedIntellisenseJobItems) GetItem() []IntellisenseJobItem {
 // and a boolean to check if the value has been set.
 func (o *EmbeddedIntellisenseJobItems) GetItemOk() ([]IntellisenseJobItem, bool) {
 	if o == nil || isNil(o.Item) {
-    return nil, false
+		return nil, false
 	}
 	return o.Item, true
 }
@@ -75,11 +78,19 @@ func (o *EmbeddedIntellisenseJobItems) SetItem(v []IntellisenseJobItem) {
 }
 
 func (o EmbeddedIntellisenseJobItems) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmbeddedIntellisenseJobItems) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEmbeddedIntellisenseJobItems struct {

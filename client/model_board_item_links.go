@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BoardItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BoardItemLinks{}
+
 // BoardItemLinks The links for a BoardItem.
 type BoardItemLinks struct {
 	Collection HalLinkData `json:"collection"`
@@ -68,7 +71,7 @@ func (o *BoardItemLinks) GetCollection() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BoardItemLinks) GetCollectionOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Collection, true
 }
@@ -91,7 +94,7 @@ func (o *BoardItemLinks) GetDevice() []HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BoardItemLinks) GetDeviceOk() ([]HalLinkData, bool) {
 	if o == nil || isNil(o.Device) {
-    return nil, false
+		return nil, false
 	}
 	return o.Device, true
 }
@@ -123,7 +126,7 @@ func (o *BoardItemLinks) GetDocumentation() []HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BoardItemLinks) GetDocumentationOk() ([]HalLinkData, bool) {
 	if o == nil || isNil(o.Documentation) {
-    return nil, false
+		return nil, false
 	}
 	return o.Documentation, true
 }
@@ -155,7 +158,7 @@ func (o *BoardItemLinks) GetDownload() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BoardItemLinks) GetDownloadOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Download) {
-    return nil, false
+		return nil, false
 	}
 	return o.Download, true
 }
@@ -187,7 +190,7 @@ func (o *BoardItemLinks) GetGuide() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BoardItemLinks) GetGuideOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Guide) {
-    return nil, false
+		return nil, false
 	}
 	return o.Guide, true
 }
@@ -219,7 +222,7 @@ func (o *BoardItemLinks) GetImage() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BoardItemLinks) GetImageOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Image) {
-    return nil, false
+		return nil, false
 	}
 	return o.Image, true
 }
@@ -252,7 +255,7 @@ func (o *BoardItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BoardItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Self, true
 }
@@ -276,7 +279,7 @@ func (o *BoardItemLinks) GetVendor() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BoardItemLinks) GetVendorOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Vendor, true
 }
@@ -287,10 +290,16 @@ func (o *BoardItemLinks) SetVendor(v HalLinkData) {
 }
 
 func (o BoardItemLinks) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["collection"] = o.Collection
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BoardItemLinks) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["collection"] = o.Collection
 	if !isNil(o.Device) {
 		toSerialize["device"] = o.Device
 	}
@@ -306,13 +315,9 @@ func (o BoardItemLinks) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Image) {
 		toSerialize["image"] = o.Image
 	}
-	if true {
-		toSerialize["self"] = o.Self
-	}
-	if true {
-		toSerialize["vendor"] = o.Vendor
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["self"] = o.Self
+	toSerialize["vendor"] = o.Vendor
+	return toSerialize, nil
 }
 
 type NullableBoardItemLinks struct {

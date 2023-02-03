@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ProcessorItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProcessorItem{}
+
 // ProcessorItem struct for ProcessorItem
 type ProcessorItem struct {
 	// Name of the processor core
@@ -78,7 +81,7 @@ func (o *ProcessorItem) GetCore() string {
 // and a boolean to check if the value has been set.
 func (o *ProcessorItem) GetCoreOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Core, true
 }
@@ -102,7 +105,7 @@ func (o *ProcessorItem) GetCoreRevision() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetCoreRevisionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.CoreRevision.Get(), o.CoreRevision.IsSet()
 }
@@ -144,7 +147,7 @@ func (o *ProcessorItem) GetCortexmVectorExtensions() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetCortexmVectorExtensionsOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.CortexmVectorExtensions.Get(), o.CortexmVectorExtensions.IsSet()
 }
@@ -186,7 +189,7 @@ func (o *ProcessorItem) GetDigitalSignalProcessor() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetDigitalSignalProcessorOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.DigitalSignalProcessor.Get(), o.DigitalSignalProcessor.IsSet()
 }
@@ -228,7 +231,7 @@ func (o *ProcessorItem) GetEndian() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetEndianOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Endian.Get(), o.Endian.IsSet()
 }
@@ -270,7 +273,7 @@ func (o *ProcessorItem) GetFloatingPointUnit() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetFloatingPointUnitOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.FloatingPointUnit.Get(), o.FloatingPointUnit.IsSet()
 }
@@ -312,7 +315,7 @@ func (o *ProcessorItem) GetMaxCoreClockFrequency() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetMaxCoreClockFrequencyOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.MaxCoreClockFrequency.Get(), o.MaxCoreClockFrequency.IsSet()
 }
@@ -354,7 +357,7 @@ func (o *ProcessorItem) GetMemoryProtectionUnit() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetMemoryProtectionUnitOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.MemoryProtectionUnit.Get(), o.MemoryProtectionUnit.IsSet()
 }
@@ -396,7 +399,7 @@ func (o *ProcessorItem) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -438,7 +441,7 @@ func (o *ProcessorItem) GetTrustZone() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetTrustZoneOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.TrustZone.Get(), o.TrustZone.IsSet()
 }
@@ -480,7 +483,7 @@ func (o *ProcessorItem) GetUnits() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProcessorItem) GetUnitsOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Units.Get(), o.Units.IsSet()
 }
@@ -509,10 +512,16 @@ func (o *ProcessorItem) UnsetUnits() {
 }
 
 func (o ProcessorItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["core"] = o.Core
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProcessorItem) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["core"] = o.Core
 	if o.CoreRevision.IsSet() {
 		toSerialize["core_revision"] = o.CoreRevision.Get()
 	}
@@ -543,7 +552,7 @@ func (o ProcessorItem) MarshalJSON() ([]byte, error) {
 	if o.Units.IsSet() {
 		toSerialize["units"] = o.Units.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableProcessorItem struct {

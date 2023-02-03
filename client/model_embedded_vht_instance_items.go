@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmbeddedVhtInstanceItems type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmbeddedVhtInstanceItems{}
+
 // EmbeddedVhtInstanceItems Embedded resource use the same link relation as a dictionary key, but rather than returning a link to the resource, the resource is instead embedded into the collection resource.
 type EmbeddedVhtInstanceItems struct {
 	Item []VhtInstanceItem `json:"item,omitempty"`
@@ -55,7 +58,7 @@ func (o *EmbeddedVhtInstanceItems) GetItem() []VhtInstanceItem {
 // and a boolean to check if the value has been set.
 func (o *EmbeddedVhtInstanceItems) GetItemOk() ([]VhtInstanceItem, bool) {
 	if o == nil || isNil(o.Item) {
-    return nil, false
+		return nil, false
 	}
 	return o.Item, true
 }
@@ -75,11 +78,19 @@ func (o *EmbeddedVhtInstanceItems) SetItem(v []VhtInstanceItem) {
 }
 
 func (o EmbeddedVhtInstanceItems) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmbeddedVhtInstanceItems) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEmbeddedVhtInstanceItems struct {

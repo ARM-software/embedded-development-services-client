@@ -79,7 +79,7 @@ func (a *VHTRunJobsApiService) CancelVhtRunJobExecute(r ApiCancelVhtRunJobReques
 	}
 
 	localVarPath := localBasePath + "/vht-run-jobs/{jobName}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -103,7 +103,7 @@ func (a *VHTRunJobsApiService) CancelVhtRunJobExecute(r ApiCancelVhtRunJobReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -134,8 +134,8 @@ func (a *VHTRunJobsApiService) CancelVhtRunJobExecute(r ApiCancelVhtRunJobReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -145,8 +145,8 @@ func (a *VHTRunJobsApiService) CancelVhtRunJobExecute(r ApiCancelVhtRunJobReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -156,8 +156,8 @@ func (a *VHTRunJobsApiService) CancelVhtRunJobExecute(r ApiCancelVhtRunJobReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -167,8 +167,8 @@ func (a *VHTRunJobsApiService) CancelVhtRunJobExecute(r ApiCancelVhtRunJobReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -178,8 +178,8 @@ func (a *VHTRunJobsApiService) CancelVhtRunJobExecute(r ApiCancelVhtRunJobReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -189,8 +189,8 @@ func (a *VHTRunJobsApiService) CancelVhtRunJobExecute(r ApiCancelVhtRunJobReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -200,8 +200,8 @@ func (a *VHTRunJobsApiService) CancelVhtRunJobExecute(r ApiCancelVhtRunJobReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -266,7 +266,7 @@ func (a *VHTRunJobsApiService) DeleteVhtRunJobExecute(r ApiDeleteVhtRunJobReques
 	}
 
 	localVarPath := localBasePath + "/vht-run-jobs/{jobName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -290,7 +290,7 @@ func (a *VHTRunJobsApiService) DeleteVhtRunJobExecute(r ApiDeleteVhtRunJobReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -321,8 +321,8 @@ func (a *VHTRunJobsApiService) DeleteVhtRunJobExecute(r ApiDeleteVhtRunJobReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -332,8 +332,8 @@ func (a *VHTRunJobsApiService) DeleteVhtRunJobExecute(r ApiDeleteVhtRunJobReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -343,8 +343,8 @@ func (a *VHTRunJobsApiService) DeleteVhtRunJobExecute(r ApiDeleteVhtRunJobReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -354,8 +354,8 @@ func (a *VHTRunJobsApiService) DeleteVhtRunJobExecute(r ApiDeleteVhtRunJobReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -365,8 +365,8 @@ func (a *VHTRunJobsApiService) DeleteVhtRunJobExecute(r ApiDeleteVhtRunJobReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -376,8 +376,8 @@ func (a *VHTRunJobsApiService) DeleteVhtRunJobExecute(r ApiDeleteVhtRunJobReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -387,8 +387,8 @@ func (a *VHTRunJobsApiService) DeleteVhtRunJobExecute(r ApiDeleteVhtRunJobReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -453,7 +453,7 @@ func (a *VHTRunJobsApiService) GetVhtRunJobExecute(r ApiGetVhtRunJobRequest) (*V
 	}
 
 	localVarPath := localBasePath + "/vht-run-jobs/{jobName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -477,10 +477,10 @@ func (a *VHTRunJobsApiService) GetVhtRunJobExecute(r ApiGetVhtRunJobRequest) (*V
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -511,8 +511,8 @@ func (a *VHTRunJobsApiService) GetVhtRunJobExecute(r ApiGetVhtRunJobRequest) (*V
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -522,8 +522,8 @@ func (a *VHTRunJobsApiService) GetVhtRunJobExecute(r ApiGetVhtRunJobRequest) (*V
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -533,8 +533,8 @@ func (a *VHTRunJobsApiService) GetVhtRunJobExecute(r ApiGetVhtRunJobRequest) (*V
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -544,8 +544,8 @@ func (a *VHTRunJobsApiService) GetVhtRunJobExecute(r ApiGetVhtRunJobRequest) (*V
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -555,8 +555,8 @@ func (a *VHTRunJobsApiService) GetVhtRunJobExecute(r ApiGetVhtRunJobRequest) (*V
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -644,17 +644,17 @@ func (a *VHTRunJobsApiService) GetVhtRunJobMessagesExecute(r ApiGetVhtRunJobMess
 	}
 
 	localVarPath := localBasePath + "/vht-run-jobs/{jobName}/messages"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterToString(r.jobName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -674,10 +674,10 @@ func (a *VHTRunJobsApiService) GetVhtRunJobMessagesExecute(r ApiGetVhtRunJobMess
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -708,8 +708,8 @@ func (a *VHTRunJobsApiService) GetVhtRunJobMessagesExecute(r ApiGetVhtRunJobMess
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -719,8 +719,8 @@ func (a *VHTRunJobsApiService) GetVhtRunJobMessagesExecute(r ApiGetVhtRunJobMess
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -730,8 +730,8 @@ func (a *VHTRunJobsApiService) GetVhtRunJobMessagesExecute(r ApiGetVhtRunJobMess
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -741,8 +741,8 @@ func (a *VHTRunJobsApiService) GetVhtRunJobMessagesExecute(r ApiGetVhtRunJobMess
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -752,8 +752,8 @@ func (a *VHTRunJobsApiService) GetVhtRunJobMessagesExecute(r ApiGetVhtRunJobMess
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -851,13 +851,13 @@ func (a *VHTRunJobsApiService) ListVhtRunJobsExecute(r ApiListVhtRunJobsRequest)
 	localVarFormParams := url.Values{}
 
 	if r.embed != nil {
-		localVarQueryParams.Add("embed", parameterToString(*r.embed, ""))
+		parameterAddToQuery(localVarQueryParams, "embed", r.embed, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -877,10 +877,10 @@ func (a *VHTRunJobsApiService) ListVhtRunJobsExecute(r ApiListVhtRunJobsRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -911,8 +911,8 @@ func (a *VHTRunJobsApiService) ListVhtRunJobsExecute(r ApiListVhtRunJobsRequest)
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -922,8 +922,8 @@ func (a *VHTRunJobsApiService) ListVhtRunJobsExecute(r ApiListVhtRunJobsRequest)
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -933,8 +933,8 @@ func (a *VHTRunJobsApiService) ListVhtRunJobsExecute(r ApiListVhtRunJobsRequest)
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -944,8 +944,8 @@ func (a *VHTRunJobsApiService) ListVhtRunJobsExecute(r ApiListVhtRunJobsRequest)
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

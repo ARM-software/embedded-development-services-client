@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IntellisenseJobItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IntellisenseJobItem{}
+
 // IntellisenseJobItem This resource allows an Intellisense Job to be configured when it is created, such as defining the project to handle. When the job is read, it will include the current status of the job and links to other available resources, such as messages and artefacts.
 type IntellisenseJobItem struct {
 	Links NullableIntellisenseJobItemLinks `json:"_links"`
@@ -110,7 +113,7 @@ func (o *IntellisenseJobItem) GetLinks() IntellisenseJobItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IntellisenseJobItem) GetLinksOk() (*IntellisenseJobItemLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -136,7 +139,7 @@ func (o *IntellisenseJobItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IntellisenseJobItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -162,7 +165,7 @@ func (o *IntellisenseJobItem) GetBuildStepsCompleted() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IntellisenseJobItem) GetBuildStepsCompletedOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.BuildStepsCompleted.Get(), o.BuildStepsCompleted.IsSet()
 }
@@ -188,7 +191,7 @@ func (o *IntellisenseJobItem) GetBuildStepsTotal() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IntellisenseJobItem) GetBuildStepsTotalOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.BuildStepsTotal.Get(), o.BuildStepsTotal.IsSet()
 }
@@ -212,7 +215,7 @@ func (o *IntellisenseJobItem) GetDone() bool {
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetDoneOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Done, true
 }
@@ -236,7 +239,7 @@ func (o *IntellisenseJobItem) GetError() bool {
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetErrorOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Error, true
 }
@@ -260,7 +263,7 @@ func (o *IntellisenseJobItem) GetFailure() bool {
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetFailureOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Failure, true
 }
@@ -283,7 +286,7 @@ func (o *IntellisenseJobItem) GetJobTimeout() int32 {
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetJobTimeoutOk() (*int32, bool) {
 	if o == nil || isNil(o.JobTimeout) {
-    return nil, false
+		return nil, false
 	}
 	return o.JobTimeout, true
 }
@@ -316,7 +319,7 @@ func (o *IntellisenseJobItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -340,7 +343,7 @@ func (o *IntellisenseJobItem) GetPacks() string {
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetPacksOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Packs, true
 }
@@ -364,7 +367,7 @@ func (o *IntellisenseJobItem) GetProject() string {
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetProjectOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Project, true
 }
@@ -387,7 +390,7 @@ func (o *IntellisenseJobItem) GetQueued() bool {
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetQueuedOk() (*bool, bool) {
 	if o == nil || isNil(o.Queued) {
-    return nil, false
+		return nil, false
 	}
 	return o.Queued, true
 }
@@ -420,7 +423,7 @@ func (o *IntellisenseJobItem) GetStatus() string {
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetStatusOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Status, true
 }
@@ -444,7 +447,7 @@ func (o *IntellisenseJobItem) GetSuccess() bool {
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetSuccessOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Success, true
 }
@@ -468,7 +471,7 @@ func (o *IntellisenseJobItem) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IntellisenseJobItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -510,7 +513,7 @@ func (o *IntellisenseJobItem) GetToolchain() string {
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetToolchainOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Toolchain, true
 }
@@ -534,7 +537,7 @@ func (o *IntellisenseJobItem) GetToolchainHeaders() string {
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetToolchainHeadersOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ToolchainHeaders, true
 }
@@ -558,7 +561,7 @@ func (o *IntellisenseJobItem) GetWorkspace() string {
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetWorkspaceOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Workspace, true
 }
@@ -569,62 +572,38 @@ func (o *IntellisenseJobItem) SetWorkspace(v string) {
 }
 
 func (o IntellisenseJobItem) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IntellisenseJobItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links.Get()
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
-	if true {
-		toSerialize["buildStepsCompleted"] = o.BuildStepsCompleted.Get()
-	}
-	if true {
-		toSerialize["buildStepsTotal"] = o.BuildStepsTotal.Get()
-	}
-	if true {
-		toSerialize["done"] = o.Done
-	}
-	if true {
-		toSerialize["error"] = o.Error
-	}
-	if true {
-		toSerialize["failure"] = o.Failure
-	}
+	toSerialize["_links"] = o.Links.Get()
+	toSerialize["_metadata"] = o.Metadata.Get()
+	toSerialize["buildStepsCompleted"] = o.BuildStepsCompleted.Get()
+	toSerialize["buildStepsTotal"] = o.BuildStepsTotal.Get()
+	// skip: done is readOnly
+	// skip: error is readOnly
+	// skip: failure is readOnly
 	if !isNil(o.JobTimeout) {
 		toSerialize["jobTimeout"] = o.JobTimeout
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["packs"] = o.Packs
-	}
-	if true {
-		toSerialize["project"] = o.Project
-	}
-	if !isNil(o.Queued) {
-		toSerialize["queued"] = o.Queued
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["success"] = o.Success
-	}
+	// skip: name is readOnly
+	toSerialize["packs"] = o.Packs
+	toSerialize["project"] = o.Project
+	// skip: queued is readOnly
+	// skip: status is readOnly
+	// skip: success is readOnly
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
-	if true {
-		toSerialize["toolchain"] = o.Toolchain
-	}
-	if true {
-		toSerialize["toolchainHeaders"] = o.ToolchainHeaders
-	}
-	if true {
-		toSerialize["workspace"] = o.Workspace
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["toolchain"] = o.Toolchain
+	toSerialize["toolchainHeaders"] = o.ToolchainHeaders
+	toSerialize["workspace"] = o.Workspace
+	return toSerialize, nil
 }
 
 type NullableIntellisenseJobItem struct {

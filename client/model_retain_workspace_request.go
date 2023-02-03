@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RetainWorkspaceRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RetainWorkspaceRequest{}
+
 // RetainWorkspaceRequest struct for RetainWorkspaceRequest
 type RetainWorkspaceRequest struct {
 	// Time to live (in seconds), i.e. The the number of seconds from the current time (when this request is received) for which to keep the workspace and associated resources.
@@ -57,7 +60,7 @@ func (o *RetainWorkspaceRequest) GetTtl() int64 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *RetainWorkspaceRequest) GetTtlOk() (*int64, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Ttl.Get(), o.Ttl.IsSet()
 }
@@ -86,11 +89,19 @@ func (o *RetainWorkspaceRequest) UnsetTtl() {
 }
 
 func (o RetainWorkspaceRequest) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o RetainWorkspaceRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Ttl.IsSet() {
 		toSerialize["ttl"] = o.Ttl.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableRetainWorkspaceRequest struct {

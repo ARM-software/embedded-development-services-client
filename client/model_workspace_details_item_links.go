@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the WorkspaceDetailsItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WorkspaceDetailsItemLinks{}
+
 // WorkspaceDetailsItemLinks The `related` link indicates the workspace these details refer to.
 type WorkspaceDetailsItemLinks struct {
 	Related HalLinkData `json:"related"`
@@ -59,7 +62,7 @@ func (o *WorkspaceDetailsItemLinks) GetRelated() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceDetailsItemLinks) GetRelatedOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Related, true
 }
@@ -83,7 +86,7 @@ func (o *WorkspaceDetailsItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceDetailsItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Self, true
 }
@@ -94,14 +97,18 @@ func (o *WorkspaceDetailsItemLinks) SetSelf(v HalLinkData) {
 }
 
 func (o WorkspaceDetailsItemLinks) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["related"] = o.Related
-	}
-	if true {
-		toSerialize["self"] = o.Self
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o WorkspaceDetailsItemLinks) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["related"] = o.Related
+	toSerialize["self"] = o.Self
+	return toSerialize, nil
 }
 
 type NullableWorkspaceDetailsItemLinks struct {

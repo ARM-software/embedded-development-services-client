@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ArtefactManagerItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ArtefactManagerItem{}
+
 // ArtefactManagerItem artefact controller resource
 type ArtefactManagerItem struct {
 	Links NullableArtefactManagerLinks `json:"_links"`
@@ -85,7 +88,7 @@ func (o *ArtefactManagerItem) GetLinks() ArtefactManagerLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ArtefactManagerItem) GetLinksOk() (*ArtefactManagerLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -111,7 +114,7 @@ func (o *ArtefactManagerItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ArtefactManagerItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -137,7 +140,7 @@ func (o *ArtefactManagerItem) GetCategory() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ArtefactManagerItem) GetCategoryOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Category.Get(), o.Category.IsSet()
 }
@@ -161,7 +164,7 @@ func (o *ArtefactManagerItem) GetContentMediaType() string {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerItem) GetContentMediaTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ContentMediaType, true
 }
@@ -185,7 +188,7 @@ func (o *ArtefactManagerItem) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerItem) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Description, true
 }
@@ -211,7 +214,7 @@ func (o *ArtefactManagerItem) GetHash() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ArtefactManagerItem) GetHashOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Hash.Get(), o.Hash.IsSet()
 }
@@ -235,7 +238,7 @@ func (o *ArtefactManagerItem) GetMandatory() bool {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ArtefactManagerItem) GetMandatoryOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Mandatory.Get(), o.Mandatory.IsSet()
 }
@@ -277,7 +280,7 @@ func (o *ArtefactManagerItem) GetMaxSize() int64 {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerItem) GetMaxSizeOk() (*int64, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.MaxSize, true
 }
@@ -301,7 +304,7 @@ func (o *ArtefactManagerItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerItem) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -324,7 +327,7 @@ func (o *ArtefactManagerItem) GetSize() int64 {
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerItem) GetSizeOk() (*int64, bool) {
 	if o == nil || isNil(o.Size) {
-    return nil, false
+		return nil, false
 	}
 	return o.Size, true
 }
@@ -357,7 +360,7 @@ func (o *ArtefactManagerItem) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ArtefactManagerItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -386,41 +389,33 @@ func (o *ArtefactManagerItem) UnsetTitle() {
 }
 
 func (o ArtefactManagerItem) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ArtefactManagerItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links.Get()
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
-	if true {
-		toSerialize["category"] = o.Category.Get()
-	}
-	if true {
-		toSerialize["contentMediaType"] = o.ContentMediaType
-	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["hash"] = o.Hash.Get()
-	}
+	toSerialize["_links"] = o.Links.Get()
+	toSerialize["_metadata"] = o.Metadata.Get()
+	toSerialize["category"] = o.Category.Get()
+	toSerialize["contentMediaType"] = o.ContentMediaType
+	toSerialize["description"] = o.Description
+	toSerialize["hash"] = o.Hash.Get()
 	if o.Mandatory.IsSet() {
 		toSerialize["mandatory"] = o.Mandatory.Get()
 	}
-	if true {
-		toSerialize["maxSize"] = o.MaxSize
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["maxSize"] = o.MaxSize
+	toSerialize["name"] = o.Name
 	if !isNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableArtefactManagerItem struct {

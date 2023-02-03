@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeviceItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeviceItem{}
+
 // DeviceItem struct for DeviceItem
 type DeviceItem struct {
 	Links DeviceItemLinks `json:"_links"`
@@ -77,7 +80,7 @@ func (o *DeviceItem) GetLinks() DeviceItemLinks {
 // and a boolean to check if the value has been set.
 func (o *DeviceItem) GetLinksOk() (*DeviceItemLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Links, true
 }
@@ -103,7 +106,7 @@ func (o *DeviceItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeviceItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -127,7 +130,7 @@ func (o *DeviceItem) GetFamily() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeviceItem) GetFamilyOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Family.Get(), o.Family.IsSet()
 }
@@ -169,7 +172,7 @@ func (o *DeviceItem) GetProcessors() []ProcessorItem {
 // and a boolean to check if the value has been set.
 func (o *DeviceItem) GetProcessorsOk() ([]ProcessorItem, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Processors, true
 }
@@ -193,7 +196,7 @@ func (o *DeviceItem) GetSlug() string {
 // and a boolean to check if the value has been set.
 func (o *DeviceItem) GetSlugOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Slug, true
 }
@@ -217,7 +220,7 @@ func (o *DeviceItem) GetSourcePackId() DeviceItemSourcePackId {
 // and a boolean to check if the value has been set.
 func (o *DeviceItem) GetSourcePackIdOk() (*DeviceItemSourcePackId, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.SourcePackId, true
 }
@@ -241,7 +244,7 @@ func (o *DeviceItem) GetSubFamily() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeviceItem) GetSubFamilyOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.SubFamily.Get(), o.SubFamily.IsSet()
 }
@@ -283,7 +286,7 @@ func (o *DeviceItem) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *DeviceItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Title, true
 }
@@ -307,7 +310,7 @@ func (o *DeviceItem) GetVendor() string {
 // and a boolean to check if the value has been set.
 func (o *DeviceItem) GetVendorOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Vendor, true
 }
@@ -318,35 +321,29 @@ func (o *DeviceItem) SetVendor(v string) {
 }
 
 func (o DeviceItem) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o DeviceItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
+	toSerialize["_links"] = o.Links
+	toSerialize["_metadata"] = o.Metadata.Get()
 	if o.Family.IsSet() {
 		toSerialize["family"] = o.Family.Get()
 	}
-	if true {
-		toSerialize["processors"] = o.Processors
-	}
-	if true {
-		toSerialize["slug"] = o.Slug
-	}
-	if true {
-		toSerialize["source_pack_id"] = o.SourcePackId
-	}
+	toSerialize["processors"] = o.Processors
+	// skip: slug is readOnly
+	toSerialize["source_pack_id"] = o.SourcePackId
 	if o.SubFamily.IsSet() {
 		toSerialize["sub_family"] = o.SubFamily.Get()
 	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	if true {
-		toSerialize["vendor"] = o.Vendor
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["title"] = o.Title
+	toSerialize["vendor"] = o.Vendor
+	return toSerialize, nil
 }
 
 type NullableDeviceItem struct {

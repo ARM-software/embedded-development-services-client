@@ -79,7 +79,7 @@ func (a *BoardsApiService) GetBoardExecute(r ApiGetBoardRequest) (*BoardItem, *h
 	}
 
 	localVarPath := localBasePath + "/boards/{boardId}/"
-	localVarPath = strings.Replace(localVarPath, "{"+"boardId"+"}", parameterToString(r.boardId, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"boardId"+"}", parameterValueToString(r.boardId, "boardId"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -103,7 +103,7 @@ func (a *BoardsApiService) GetBoardExecute(r ApiGetBoardRequest) (*BoardItem, *h
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -134,8 +134,8 @@ func (a *BoardsApiService) GetBoardExecute(r ApiGetBoardRequest) (*BoardItem, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -145,8 +145,8 @@ func (a *BoardsApiService) GetBoardExecute(r ApiGetBoardRequest) (*BoardItem, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -156,8 +156,8 @@ func (a *BoardsApiService) GetBoardExecute(r ApiGetBoardRequest) (*BoardItem, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -167,8 +167,8 @@ func (a *BoardsApiService) GetBoardExecute(r ApiGetBoardRequest) (*BoardItem, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -178,8 +178,8 @@ func (a *BoardsApiService) GetBoardExecute(r ApiGetBoardRequest) (*BoardItem, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -277,13 +277,13 @@ func (a *BoardsApiService) ListBoardsExecute(r ApiListBoardsRequest) (*ListBoard
 	localVarFormParams := url.Values{}
 
 	if r.embed != nil {
-		localVarQueryParams.Add("embed", parameterToString(*r.embed, ""))
+		parameterAddToQuery(localVarQueryParams, "embed", r.embed, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -303,10 +303,10 @@ func (a *BoardsApiService) ListBoardsExecute(r ApiListBoardsRequest) (*ListBoard
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -337,8 +337,8 @@ func (a *BoardsApiService) ListBoardsExecute(r ApiListBoardsRequest) (*ListBoard
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -348,8 +348,8 @@ func (a *BoardsApiService) ListBoardsExecute(r ApiListBoardsRequest) (*ListBoard
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -359,8 +359,8 @@ func (a *BoardsApiService) ListBoardsExecute(r ApiListBoardsRequest) (*ListBoard
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -370,8 +370,8 @@ func (a *BoardsApiService) ListBoardsExecute(r ApiListBoardsRequest) (*ListBoard
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

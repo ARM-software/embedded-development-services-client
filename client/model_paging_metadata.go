@@ -21,6 +21,9 @@ import (
 	"time"
 )
 
+// checks if the PagingMetadata type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PagingMetadata{}
+
 // PagingMetadata Information present in each resource that supports paging. This information provides paging status and other information about the resource itself.
 type PagingMetadata struct {
 	// Paging metadata: The number of items returned in this message.
@@ -76,7 +79,7 @@ func (o *PagingMetadata) GetCount() int32 {
 // and a boolean to check if the value has been set.
 func (o *PagingMetadata) GetCountOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Count, true
 }
@@ -100,7 +103,7 @@ func (o *PagingMetadata) GetCtime() time.Time {
 // and a boolean to check if the value has been set.
 func (o *PagingMetadata) GetCtimeOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Ctime, true
 }
@@ -124,7 +127,7 @@ func (o *PagingMetadata) GetEtime() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PagingMetadata) GetEtimeOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Etime.Get(), o.Etime.IsSet()
 }
@@ -166,7 +169,7 @@ func (o *PagingMetadata) GetLimit() int32 {
 // and a boolean to check if the value has been set.
 func (o *PagingMetadata) GetLimitOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Limit, true
 }
@@ -190,7 +193,7 @@ func (o *PagingMetadata) GetMtime() time.Time {
 // and a boolean to check if the value has been set.
 func (o *PagingMetadata) GetMtimeOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Mtime, true
 }
@@ -214,7 +217,7 @@ func (o *PagingMetadata) GetOffset() int32 {
 // and a boolean to check if the value has been set.
 func (o *PagingMetadata) GetOffsetOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Offset, true
 }
@@ -238,7 +241,7 @@ func (o *PagingMetadata) GetTotal() int32 {
 // and a boolean to check if the value has been set.
 func (o *PagingMetadata) GetTotalOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Total, true
 }
@@ -249,29 +252,25 @@ func (o *PagingMetadata) SetTotal(v int32) {
 }
 
 func (o PagingMetadata) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PagingMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["count"] = o.Count
-	}
-	if true {
-		toSerialize["ctime"] = o.Ctime
-	}
+	// skip: count is readOnly
+	// skip: ctime is readOnly
 	if o.Etime.IsSet() {
 		toSerialize["etime"] = o.Etime.Get()
 	}
-	if true {
-		toSerialize["limit"] = o.Limit
-	}
-	if true {
-		toSerialize["mtime"] = o.Mtime
-	}
-	if true {
-		toSerialize["offset"] = o.Offset
-	}
-	if true {
-		toSerialize["total"] = o.Total
-	}
-	return json.Marshal(toSerialize)
+	// skip: limit is readOnly
+	// skip: mtime is readOnly
+	// skip: offset is readOnly
+	// skip: total is readOnly
+	return toSerialize, nil
 }
 
 type NullablePagingMetadata struct {

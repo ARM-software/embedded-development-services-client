@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the HalLinkData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HalLinkData{}
+
 // HalLinkData The base HAL hyperlink object.
 type HalLinkData struct {
 	// Indicates that the link is to be deprecated (i.e. removed) at a future date. Its value is a URL
@@ -75,7 +78,7 @@ func (o *HalLinkData) GetDeprecation() string {
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetDeprecationOk() (*string, bool) {
 	if o == nil || isNil(o.Deprecation) {
-    return nil, false
+		return nil, false
 	}
 	return o.Deprecation, true
 }
@@ -108,7 +111,7 @@ func (o *HalLinkData) GetHref() string {
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetHrefOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Href, true
 }
@@ -131,7 +134,7 @@ func (o *HalLinkData) GetHreflang() string {
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetHreflangOk() (*string, bool) {
 	if o == nil || isNil(o.Hreflang) {
-    return nil, false
+		return nil, false
 	}
 	return o.Hreflang, true
 }
@@ -163,7 +166,7 @@ func (o *HalLinkData) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
-    return nil, false
+		return nil, false
 	}
 	return o.Name, true
 }
@@ -195,7 +198,7 @@ func (o *HalLinkData) GetProfile() string {
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetProfileOk() (*string, bool) {
 	if o == nil || isNil(o.Profile) {
-    return nil, false
+		return nil, false
 	}
 	return o.Profile, true
 }
@@ -227,7 +230,7 @@ func (o *HalLinkData) GetTemplated() bool {
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetTemplatedOk() (*bool, bool) {
 	if o == nil || isNil(o.Templated) {
-    return nil, false
+		return nil, false
 	}
 	return o.Templated, true
 }
@@ -259,7 +262,7 @@ func (o *HalLinkData) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetTitleOk() (*string, bool) {
 	if o == nil || isNil(o.Title) {
-    return nil, false
+		return nil, false
 	}
 	return o.Title, true
 }
@@ -291,7 +294,7 @@ func (o *HalLinkData) GetType() string {
 // and a boolean to check if the value has been set.
 func (o *HalLinkData) GetTypeOk() (*string, bool) {
 	if o == nil || isNil(o.Type) {
-    return nil, false
+		return nil, false
 	}
 	return o.Type, true
 }
@@ -311,13 +314,19 @@ func (o *HalLinkData) SetType(v string) {
 }
 
 func (o HalLinkData) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o HalLinkData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Deprecation) {
 		toSerialize["deprecation"] = o.Deprecation
 	}
-	if true {
-		toSerialize["href"] = o.Href
-	}
+	toSerialize["href"] = o.Href
 	if !isNil(o.Hreflang) {
 		toSerialize["hreflang"] = o.Hreflang
 	}
@@ -336,7 +345,7 @@ func (o HalLinkData) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableHalLinkData struct {

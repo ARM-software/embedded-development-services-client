@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CmsisBuilderCollection type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CmsisBuilderCollection{}
+
 // CmsisBuilderCollection This collection resource follows the common pattern of linking to contained resources. Optionally, rather than linking to other resources, it can embed then into the collection to reduce the number of round trips to the server (at the expense of caching). In file system terms, it is similar to a directory but only contains links to (or embeds) a single type of resource.
 type CmsisBuilderCollection struct {
 	Embedded *EmbeddedCmsisBuilderItems `json:"_embedded,omitempty"`
@@ -65,7 +68,7 @@ func (o *CmsisBuilderCollection) GetEmbedded() EmbeddedCmsisBuilderItems {
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderCollection) GetEmbeddedOk() (*EmbeddedCmsisBuilderItems, bool) {
 	if o == nil || isNil(o.Embedded) {
-    return nil, false
+		return nil, false
 	}
 	return o.Embedded, true
 }
@@ -100,7 +103,7 @@ func (o *CmsisBuilderCollection) GetLinks() HalCollectionLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CmsisBuilderCollection) GetLinksOk() (*HalCollectionLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -126,7 +129,7 @@ func (o *CmsisBuilderCollection) GetMetadata() PagingMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CmsisBuilderCollection) GetMetadataOk() (*PagingMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -150,7 +153,7 @@ func (o *CmsisBuilderCollection) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderCollection) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -174,7 +177,7 @@ func (o *CmsisBuilderCollection) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderCollection) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Title, true
 }
@@ -185,23 +188,23 @@ func (o *CmsisBuilderCollection) SetTitle(v string) {
 }
 
 func (o CmsisBuilderCollection) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CmsisBuilderCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Embedded) {
 		toSerialize["_embedded"] = o.Embedded
 	}
-	if true {
-		toSerialize["_links"] = o.Links.Get()
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["_links"] = o.Links.Get()
+	toSerialize["_metadata"] = o.Metadata.Get()
+	// skip: name is readOnly
+	// skip: title is readOnly
+	return toSerialize, nil
 }
 
 type NullableCmsisBuilderCollection struct {

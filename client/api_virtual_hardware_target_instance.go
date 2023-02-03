@@ -82,8 +82,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ClearVhtInstanceArtefactExecut
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}/artefacts/{artefactName}/artefact"
-	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterToString(r.artefactName, ""), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterValueToString(r.artefactName, "artefactName"), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterValueToString(r.instanceName, "instanceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -107,7 +107,7 @@ func (a *VirtualHardwareTargetInstanceApiService) ClearVhtInstanceArtefactExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -138,8 +138,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ClearVhtInstanceArtefactExecut
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -149,8 +149,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ClearVhtInstanceArtefactExecut
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -160,8 +160,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ClearVhtInstanceArtefactExecut
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -171,8 +171,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ClearVhtInstanceArtefactExecut
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -182,8 +182,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ClearVhtInstanceArtefactExecut
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -193,8 +193,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ClearVhtInstanceArtefactExecut
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -204,8 +204,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ClearVhtInstanceArtefactExecut
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -261,7 +261,7 @@ func (a *VirtualHardwareTargetInstanceApiService) DeleteVhtInstanceExecute(r Api
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterValueToString(r.instanceName, "instanceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -285,7 +285,7 @@ func (a *VirtualHardwareTargetInstanceApiService) DeleteVhtInstanceExecute(r Api
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -316,8 +316,8 @@ func (a *VirtualHardwareTargetInstanceApiService) DeleteVhtInstanceExecute(r Api
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -327,8 +327,8 @@ func (a *VirtualHardwareTargetInstanceApiService) DeleteVhtInstanceExecute(r Api
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -338,8 +338,8 @@ func (a *VirtualHardwareTargetInstanceApiService) DeleteVhtInstanceExecute(r Api
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -349,8 +349,8 @@ func (a *VirtualHardwareTargetInstanceApiService) DeleteVhtInstanceExecute(r Api
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -360,8 +360,8 @@ func (a *VirtualHardwareTargetInstanceApiService) DeleteVhtInstanceExecute(r Api
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -371,8 +371,8 @@ func (a *VirtualHardwareTargetInstanceApiService) DeleteVhtInstanceExecute(r Api
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -382,8 +382,8 @@ func (a *VirtualHardwareTargetInstanceApiService) DeleteVhtInstanceExecute(r Api
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -412,7 +412,7 @@ func (r ApiDownloadVhtInstanceArtefactRequest) IfNoneMatch(ifNoneMatch string) A
 	return r
 }
 
-func (r ApiDownloadVhtInstanceArtefactRequest) Execute() (**os.File, *http.Response, error) {
+func (r ApiDownloadVhtInstanceArtefactRequest) Execute() (*os.File, *http.Response, error) {
 	return r.ApiService.DownloadVhtInstanceArtefactExecute(r)
 }
 
@@ -437,12 +437,12 @@ func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefact(ct
 
 // Execute executes the request
 //  @return *os.File
-func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefactExecute(r ApiDownloadVhtInstanceArtefactRequest) (**os.File, *http.Response, error) {
+func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefactExecute(r ApiDownloadVhtInstanceArtefactRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  **os.File
+		localVarReturnValue  *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceApiService.DownloadVhtInstanceArtefact")
@@ -451,8 +451,8 @@ func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefactExe
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}/artefacts/{artefactName}/artefact"
-	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterToString(r.artefactName, ""), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterValueToString(r.artefactName, "artefactName"), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterValueToString(r.instanceName, "instanceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -476,10 +476,10 @@ func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefactExe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -510,8 +510,8 @@ func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefactExe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -521,8 +521,8 @@ func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefactExe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -532,8 +532,8 @@ func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefactExe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -543,8 +543,8 @@ func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefactExe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -554,8 +554,8 @@ func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefactExe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -629,7 +629,7 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceExecute(r ApiGet
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterValueToString(r.instanceName, "instanceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -653,10 +653,10 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceExecute(r ApiGet
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -687,8 +687,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceExecute(r ApiGet
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -698,8 +698,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceExecute(r ApiGet
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -709,8 +709,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceExecute(r ApiGet
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -720,8 +720,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceExecute(r ApiGet
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -731,8 +731,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceExecute(r ApiGet
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -810,8 +810,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceArtefactManagerE
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}/artefacts/{artefactName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterToString(r.artefactName, ""), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterValueToString(r.artefactName, "artefactName"), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterValueToString(r.instanceName, "instanceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -835,10 +835,10 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceArtefactManagerE
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -869,8 +869,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceArtefactManagerE
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -880,8 +880,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceArtefactManagerE
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -891,8 +891,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceArtefactManagerE
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -902,8 +902,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceArtefactManagerE
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -913,8 +913,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceArtefactManagerE
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1002,17 +1002,17 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceMessagesExecute(
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}/messages"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterValueToString(r.instanceName, "instanceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1032,10 +1032,10 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceMessagesExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1066,8 +1066,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceMessagesExecute(
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1077,8 +1077,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceMessagesExecute(
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1088,8 +1088,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceMessagesExecute(
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -1099,8 +1099,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceMessagesExecute(
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -1110,8 +1110,8 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceMessagesExecute(
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1207,20 +1207,20 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstanceArtefactManager
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}/artefacts/"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterValueToString(r.instanceName, "instanceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.embed != nil {
-		localVarQueryParams.Add("embed", parameterToString(*r.embed, ""))
+		parameterAddToQuery(localVarQueryParams, "embed", r.embed, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1240,10 +1240,10 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstanceArtefactManager
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1274,8 +1274,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstanceArtefactManager
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1285,8 +1285,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstanceArtefactManager
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1296,8 +1296,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstanceArtefactManager
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -1307,8 +1307,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstanceArtefactManager
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -1318,8 +1318,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstanceArtefactManager
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1417,13 +1417,13 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstancesExecute(r ApiL
 	localVarFormParams := url.Values{}
 
 	if r.embed != nil {
-		localVarQueryParams.Add("embed", parameterToString(*r.embed, ""))
+		parameterAddToQuery(localVarQueryParams, "embed", r.embed, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1443,10 +1443,10 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstancesExecute(r ApiL
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1477,8 +1477,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstancesExecute(r ApiL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1488,8 +1488,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstancesExecute(r ApiL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -1499,8 +1499,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstancesExecute(r ApiL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -1510,8 +1510,8 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstancesExecute(r ApiL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1585,7 +1585,7 @@ func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJobExecute(r ApiSta
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterValueToString(r.instanceName, "instanceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1612,7 +1612,7 @@ func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJobExecute(r ApiSta
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	// body params
 	localVarPostBody = r.vhtRunJobItem
@@ -1645,8 +1645,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJobExecute(r ApiSta
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1656,8 +1656,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJobExecute(r ApiSta
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1667,8 +1667,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJobExecute(r ApiSta
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -1678,8 +1678,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJobExecute(r ApiSta
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -1689,8 +1689,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJobExecute(r ApiSta
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -1700,8 +1700,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJobExecute(r ApiSta
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 415 {
@@ -1711,8 +1711,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJobExecute(r ApiSta
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -1722,8 +1722,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJobExecute(r ApiSta
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1790,7 +1790,7 @@ func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstanceExecute(r ApiSt
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterValueToString(r.instanceName, "instanceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1814,7 +1814,7 @@ func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstanceExecute(r ApiSt
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1845,8 +1845,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstanceExecute(r ApiSt
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1856,8 +1856,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstanceExecute(r ApiSt
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1867,8 +1867,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstanceExecute(r ApiSt
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -1878,8 +1878,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstanceExecute(r ApiSt
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -1889,8 +1889,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstanceExecute(r ApiSt
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -1900,8 +1900,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstanceExecute(r ApiSt
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -1911,8 +1911,8 @@ func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstanceExecute(r ApiSt
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1935,7 +1935,7 @@ type ApiUploadVhtInstanceArtefactRequest struct {
 	artefactName string
 	instanceName string
 	ifMatch *string
-	content **os.File
+	content *os.File
 	hash *string
 	acceptVersion *string
 	contentMediaType *string
@@ -1951,7 +1951,7 @@ func (r ApiUploadVhtInstanceArtefactRequest) IfMatch(ifMatch string) ApiUploadVh
 
 // artefact content
 func (r ApiUploadVhtInstanceArtefactRequest) Content(content *os.File) ApiUploadVhtInstanceArtefactRequest {
-	r.content = &content
+	r.content = content
 	return r
 }
 
@@ -2024,8 +2024,8 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecu
 	}
 
 	localVarPath := localBasePath + "/vht-instances/{instanceName}/artefacts/{artefactName}/artefact"
-	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterToString(r.artefactName, ""), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterToString(r.instanceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterValueToString(r.artefactName, "artefactName"), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterValueToString(r.instanceName, "instanceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2058,32 +2058,35 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
-	localVarHeaderParams["if-match"] = parameterToString(*r.ifMatch, "")
+	parameterAddToQuery(localVarQueryParams, "if-match", r.ifMatch, "")
 	var contentLocalVarFormFileName string
 	var contentLocalVarFileName     string
 	var contentLocalVarFileBytes    []byte
 
 	contentLocalVarFormFileName = "content"
 
-	contentLocalVarFile := *r.content
+
+	contentLocalVarFile := r.content
+
 	if contentLocalVarFile != nil {
 		fbs, _ := ioutil.ReadAll(contentLocalVarFile)
+
 		contentLocalVarFileBytes = fbs
 		contentLocalVarFileName = contentLocalVarFile.Name()
 		contentLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: contentLocalVarFileBytes, fileName: contentLocalVarFileName, formFileName: contentLocalVarFormFileName})
 	}
-	formFiles = append(formFiles, formFile{fileBytes: contentLocalVarFileBytes, fileName: contentLocalVarFileName, formFileName: contentLocalVarFormFileName})
 	if r.contentMediaType != nil {
-		localVarFormParams.Add("contentMediaType", parameterToString(*r.contentMediaType, ""))
+		parameterAddToQuery(localVarFormParams, "contentMediaType", r.contentMediaType, "")
 	}
-	localVarFormParams.Add("hash", parameterToString(*r.hash, ""))
+	parameterAddToQuery(localVarFormParams, "hash", r.hash, "")
 	if r.size != nil {
-		localVarFormParams.Add("size", parameterToString(*r.size, ""))
+		parameterAddToQuery(localVarFormParams, "size", r.size, "")
 	}
 	if r.title != nil {
-		localVarFormParams.Add("title", parameterToString(*r.title, ""))
+		parameterAddToQuery(localVarFormParams, "title", r.title, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2114,8 +2117,8 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -2125,8 +2128,8 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2136,8 +2139,8 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -2147,8 +2150,8 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -2158,8 +2161,8 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
@@ -2169,8 +2172,8 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 413 {
@@ -2180,8 +2183,8 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 415 {
@@ -2191,8 +2194,8 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 428 {
@@ -2202,8 +2205,8 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -2213,8 +2216,8 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

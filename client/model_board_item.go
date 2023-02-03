@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BoardItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BoardItem{}
+
 // BoardItem struct for BoardItem
 type BoardItem struct {
 	Links BoardItemLinks `json:"_links"`
@@ -80,7 +83,7 @@ func (o *BoardItem) GetLinks() BoardItemLinks {
 // and a boolean to check if the value has been set.
 func (o *BoardItem) GetLinksOk() (*BoardItemLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Links, true
 }
@@ -106,7 +109,7 @@ func (o *BoardItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoardItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -130,7 +133,7 @@ func (o *BoardItem) GetDebugInterfaces() []ADebugInterface {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoardItem) GetDebugInterfacesOk() ([]ADebugInterface, bool) {
 	if o == nil || isNil(o.DebugInterfaces) {
-    return nil, false
+		return nil, false
 	}
 	return o.DebugInterfaces, true
 }
@@ -163,7 +166,7 @@ func (o *BoardItem) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItem) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Description, true
 }
@@ -187,7 +190,7 @@ func (o *BoardItem) GetDetectCode() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoardItem) GetDetectCodeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.DetectCode.Get(), o.DetectCode.IsSet()
 }
@@ -229,7 +232,7 @@ func (o *BoardItem) GetFeatures() []BoardItemFeaturesInner {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoardItem) GetFeaturesOk() ([]BoardItemFeaturesInner, bool) {
 	if o == nil || isNil(o.Features) {
-    return nil, false
+		return nil, false
 	}
 	return o.Features, true
 }
@@ -262,7 +265,7 @@ func (o *BoardItem) GetId() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItem) GetIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Id, true
 }
@@ -286,7 +289,7 @@ func (o *BoardItem) GetRevision() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItem) GetRevisionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Revision, true
 }
@@ -310,7 +313,7 @@ func (o *BoardItem) GetSummary() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItem) GetSummaryOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Summary, true
 }
@@ -334,7 +337,7 @@ func (o *BoardItem) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *BoardItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Title, true
 }
@@ -345,38 +348,32 @@ func (o *BoardItem) SetTitle(v string) {
 }
 
 func (o BoardItem) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BoardItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
+	toSerialize["_links"] = o.Links
+	toSerialize["_metadata"] = o.Metadata.Get()
 	if o.DebugInterfaces != nil {
 		toSerialize["debug_interfaces"] = o.DebugInterfaces
 	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
+	toSerialize["description"] = o.Description
 	if o.DetectCode.IsSet() {
 		toSerialize["detect_code"] = o.DetectCode.Get()
 	}
 	if o.Features != nil {
 		toSerialize["features"] = o.Features
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["revision"] = o.Revision
-	}
-	if true {
-		toSerialize["summary"] = o.Summary
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	return json.Marshal(toSerialize)
+	// skip: id is readOnly
+	toSerialize["revision"] = o.Revision
+	toSerialize["summary"] = o.Summary
+	toSerialize["title"] = o.Title
+	return toSerialize, nil
 }
 
 type NullableBoardItem struct {

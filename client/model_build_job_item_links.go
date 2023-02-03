@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BuildJobItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BuildJobItemLinks{}
+
 // BuildJobItemLinks The `related` link indicates the builder being used for the build job. The `details` links to a resource that provides details of build progress (build messages). The `artefacts` links to a collection which will contain downloadable build products (if any). The `describedby` links to a resource that provides information about the project's workspace.
 type BuildJobItemLinks struct {
 	Artefacts *HalLinkData `json:"artefacts,omitempty"`
@@ -64,7 +67,7 @@ func (o *BuildJobItemLinks) GetArtefacts() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItemLinks) GetArtefactsOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Artefacts) {
-    return nil, false
+		return nil, false
 	}
 	return o.Artefacts, true
 }
@@ -96,7 +99,7 @@ func (o *BuildJobItemLinks) GetCancel() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItemLinks) GetCancelOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Cancel) {
-    return nil, false
+		return nil, false
 	}
 	return o.Cancel, true
 }
@@ -128,7 +131,7 @@ func (o *BuildJobItemLinks) GetDelete() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItemLinks) GetDeleteOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Delete) {
-    return nil, false
+		return nil, false
 	}
 	return o.Delete, true
 }
@@ -160,7 +163,7 @@ func (o *BuildJobItemLinks) GetDescribedby() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItemLinks) GetDescribedbyOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Describedby) {
-    return nil, false
+		return nil, false
 	}
 	return o.Describedby, true
 }
@@ -192,7 +195,7 @@ func (o *BuildJobItemLinks) GetDetails() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItemLinks) GetDetailsOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Details) {
-    return nil, false
+		return nil, false
 	}
 	return o.Details, true
 }
@@ -225,7 +228,7 @@ func (o *BuildJobItemLinks) GetRelated() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItemLinks) GetRelatedOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Related, true
 }
@@ -248,7 +251,7 @@ func (o *BuildJobItemLinks) GetRetain() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItemLinks) GetRetainOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Retain) {
-    return nil, false
+		return nil, false
 	}
 	return o.Retain, true
 }
@@ -281,7 +284,7 @@ func (o *BuildJobItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Self, true
 }
@@ -292,6 +295,14 @@ func (o *BuildJobItemLinks) SetSelf(v HalLinkData) {
 }
 
 func (o BuildJobItemLinks) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BuildJobItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Artefacts) {
 		toSerialize["artefacts"] = o.Artefacts
@@ -308,16 +319,12 @@ func (o BuildJobItemLinks) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
-	if true {
-		toSerialize["related"] = o.Related
-	}
+	toSerialize["related"] = o.Related
 	if !isNil(o.Retain) {
 		toSerialize["retain"] = o.Retain
 	}
-	if true {
-		toSerialize["self"] = o.Self
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["self"] = o.Self
+	return toSerialize, nil
 }
 
 type NullableBuildJobItemLinks struct {

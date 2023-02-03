@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the WorkspaceDetailsItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WorkspaceDetailsItem{}
+
 // WorkspaceDetailsItem This is providing more details about the workspace
 type WorkspaceDetailsItem struct {
 	Links NullableWorkspaceDetailsItemLinks `json:"_links"`
@@ -71,7 +74,7 @@ func (o *WorkspaceDetailsItem) GetLinks() WorkspaceDetailsItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceDetailsItem) GetLinksOk() (*WorkspaceDetailsItemLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -97,7 +100,7 @@ func (o *WorkspaceDetailsItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceDetailsItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -121,7 +124,7 @@ func (o *WorkspaceDetailsItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceDetailsItem) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -145,7 +148,7 @@ func (o *WorkspaceDetailsItem) GetPath() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceDetailsItem) GetPathOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Path, true
 }
@@ -168,7 +171,7 @@ func (o *WorkspaceDetailsItem) GetSizeInByte() int64 {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceDetailsItem) GetSizeInByteOk() (*int64, bool) {
 	if o == nil || isNil(o.SizeInByte) {
-    return nil, false
+		return nil, false
 	}
 	return o.SizeInByte, true
 }
@@ -201,7 +204,7 @@ func (o *WorkspaceDetailsItem) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceDetailsItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -230,26 +233,24 @@ func (o *WorkspaceDetailsItem) UnsetTitle() {
 }
 
 func (o WorkspaceDetailsItem) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o WorkspaceDetailsItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links.Get()
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["path"] = o.Path
-	}
-	if !isNil(o.SizeInByte) {
-		toSerialize["sizeInByte"] = o.SizeInByte
-	}
+	toSerialize["_links"] = o.Links.Get()
+	toSerialize["_metadata"] = o.Metadata.Get()
+	// skip: name is readOnly
+	// skip: path is readOnly
+	// skip: sizeInByte is readOnly
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableWorkspaceDetailsItem struct {

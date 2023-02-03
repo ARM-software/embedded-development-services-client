@@ -21,6 +21,9 @@ import (
 	"time"
 )
 
+// checks if the CommonMetadata type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CommonMetadata{}
+
 // CommonMetadata Common information present in every resource, which provides information about the resource.
 type CommonMetadata struct {
 	// Creation Time: UTC date and time (in RFC3339 format) when the resource was created. If this is a system created resource, this will be a fixed time unaffected by user actions.
@@ -64,7 +67,7 @@ func (o *CommonMetadata) GetCtime() time.Time {
 // and a boolean to check if the value has been set.
 func (o *CommonMetadata) GetCtimeOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Ctime, true
 }
@@ -88,7 +91,7 @@ func (o *CommonMetadata) GetEtime() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CommonMetadata) GetEtimeOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Etime.Get(), o.Etime.IsSet()
 }
@@ -130,7 +133,7 @@ func (o *CommonMetadata) GetMtime() time.Time {
 // and a boolean to check if the value has been set.
 func (o *CommonMetadata) GetMtimeOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Mtime, true
 }
@@ -141,17 +144,21 @@ func (o *CommonMetadata) SetMtime(v time.Time) {
 }
 
 func (o CommonMetadata) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ctime"] = o.Ctime
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CommonMetadata) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: ctime is readOnly
 	if o.Etime.IsSet() {
 		toSerialize["etime"] = o.Etime.Get()
 	}
-	if true {
-		toSerialize["mtime"] = o.Mtime
-	}
-	return json.Marshal(toSerialize)
+	// skip: mtime is readOnly
+	return toSerialize, nil
 }
 
 type NullableCommonMetadata struct {

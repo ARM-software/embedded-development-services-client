@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the WorkspaceSourceItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WorkspaceSourceItemLinks{}
+
 // WorkspaceSourceItemLinks The `create` link (if present) provides the URI to request a Workspace.
 type WorkspaceSourceItemLinks struct {
 	Collection *HalLinkData `json:"collection,omitempty"`
@@ -58,7 +61,7 @@ func (o *WorkspaceSourceItemLinks) GetCollection() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItemLinks) GetCollectionOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Collection) {
-    return nil, false
+		return nil, false
 	}
 	return o.Collection, true
 }
@@ -90,7 +93,7 @@ func (o *WorkspaceSourceItemLinks) GetCreate() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItemLinks) GetCreateOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Create) {
-    return nil, false
+		return nil, false
 	}
 	return o.Create, true
 }
@@ -123,7 +126,7 @@ func (o *WorkspaceSourceItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Self, true
 }
@@ -134,6 +137,14 @@ func (o *WorkspaceSourceItemLinks) SetSelf(v HalLinkData) {
 }
 
 func (o WorkspaceSourceItemLinks) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o WorkspaceSourceItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Collection) {
 		toSerialize["collection"] = o.Collection
@@ -141,10 +152,8 @@ func (o WorkspaceSourceItemLinks) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Create) {
 		toSerialize["create"] = o.Create
 	}
-	if true {
-		toSerialize["self"] = o.Self
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["self"] = o.Self
+	return toSerialize, nil
 }
 
 type NullableWorkspaceSourceItemLinks struct {

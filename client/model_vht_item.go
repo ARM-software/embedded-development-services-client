@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VhtItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VhtItem{}
+
 // VhtItem struct for VhtItem
 type VhtItem struct {
 	Links NullableVhtItemLinks `json:"_links"`
@@ -83,7 +86,7 @@ func (o *VhtItem) GetLinks() VhtItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtItem) GetLinksOk() (*VhtItemLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -109,7 +112,7 @@ func (o *VhtItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -132,7 +135,7 @@ func (o *VhtItem) GetAdditionalTools() []AdditionalTool {
 // and a boolean to check if the value has been set.
 func (o *VhtItem) GetAdditionalToolsOk() ([]AdditionalTool, bool) {
 	if o == nil || isNil(o.AdditionalTools) {
-    return nil, false
+		return nil, false
 	}
 	return o.AdditionalTools, true
 }
@@ -165,7 +168,7 @@ func (o *VhtItem) GetBoard() string {
 // and a boolean to check if the value has been set.
 func (o *VhtItem) GetBoardOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Board, true
 }
@@ -188,7 +191,7 @@ func (o *VhtItem) GetBoardRevision() string {
 // and a boolean to check if the value has been set.
 func (o *VhtItem) GetBoardRevisionOk() (*string, bool) {
 	if o == nil || isNil(o.BoardRevision) {
-    return nil, false
+		return nil, false
 	}
 	return o.BoardRevision, true
 }
@@ -221,7 +224,7 @@ func (o *VhtItem) GetDeprecated() bool {
 // and a boolean to check if the value has been set.
 func (o *VhtItem) GetDeprecatedOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Deprecated, true
 }
@@ -244,7 +247,7 @@ func (o *VhtItem) GetDeprecationInfo() DeprecationInfo {
 // and a boolean to check if the value has been set.
 func (o *VhtItem) GetDeprecationInfoOk() (*DeprecationInfo, bool) {
 	if o == nil || isNil(o.DeprecationInfo) {
-    return nil, false
+		return nil, false
 	}
 	return o.DeprecationInfo, true
 }
@@ -277,7 +280,7 @@ func (o *VhtItem) GetModel() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VhtItem) GetModelOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Model.Get(), o.Model.IsSet()
 }
@@ -319,7 +322,7 @@ func (o *VhtItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *VhtItem) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -343,7 +346,7 @@ func (o *VhtItem) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *VhtItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Title, true
 }
@@ -367,7 +370,7 @@ func (o *VhtItem) GetVendor() string {
 // and a boolean to check if the value has been set.
 func (o *VhtItem) GetVendorOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Vendor, true
 }
@@ -390,7 +393,7 @@ func (o *VhtItem) GetVirtualInterfaces() []VirtualInterface {
 // and a boolean to check if the value has been set.
 func (o *VhtItem) GetVirtualInterfacesOk() ([]VirtualInterface, bool) {
 	if o == nil || isNil(o.VirtualInterfaces) {
-    return nil, false
+		return nil, false
 	}
 	return o.VirtualInterfaces, true
 }
@@ -410,44 +413,36 @@ func (o *VhtItem) SetVirtualInterfaces(v []VirtualInterface) {
 }
 
 func (o VhtItem) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VhtItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links.Get()
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
+	toSerialize["_links"] = o.Links.Get()
+	toSerialize["_metadata"] = o.Metadata.Get()
 	if !isNil(o.AdditionalTools) {
 		toSerialize["additionalTools"] = o.AdditionalTools
 	}
-	if true {
-		toSerialize["board"] = o.Board
-	}
-	if !isNil(o.BoardRevision) {
-		toSerialize["boardRevision"] = o.BoardRevision
-	}
-	if true {
-		toSerialize["deprecated"] = o.Deprecated
-	}
+	// skip: board is readOnly
+	// skip: boardRevision is readOnly
+	// skip: deprecated is readOnly
 	if !isNil(o.DeprecationInfo) {
 		toSerialize["deprecationInfo"] = o.DeprecationInfo
 	}
 	if o.Model.IsSet() {
 		toSerialize["model"] = o.Model.Get()
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	if true {
-		toSerialize["vendor"] = o.Vendor
-	}
+	// skip: name is readOnly
+	// skip: title is readOnly
+	// skip: vendor is readOnly
 	if !isNil(o.VirtualInterfaces) {
 		toSerialize["virtualInterfaces"] = o.VirtualInterfaces
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVhtItem struct {

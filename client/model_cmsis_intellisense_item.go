@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CmsisIntellisenseItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CmsisIntellisenseItem{}
+
 // CmsisIntellisenseItem struct for CmsisIntellisenseItem
 type CmsisIntellisenseItem struct {
 	Links NullableCmsisIntellisenseItemLinks `json:"_links"`
@@ -82,7 +85,7 @@ func (o *CmsisIntellisenseItem) GetLinks() CmsisIntellisenseItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CmsisIntellisenseItem) GetLinksOk() (*CmsisIntellisenseItemLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -108,7 +111,7 @@ func (o *CmsisIntellisenseItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CmsisIntellisenseItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -132,7 +135,7 @@ func (o *CmsisIntellisenseItem) GetBuildToolsType() string {
 // and a boolean to check if the value has been set.
 func (o *CmsisIntellisenseItem) GetBuildToolsTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.BuildToolsType, true
 }
@@ -156,7 +159,7 @@ func (o *CmsisIntellisenseItem) GetBuildToolsVersion() string {
 // and a boolean to check if the value has been set.
 func (o *CmsisIntellisenseItem) GetBuildToolsVersionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.BuildToolsVersion, true
 }
@@ -180,7 +183,7 @@ func (o *CmsisIntellisenseItem) GetDeprecated() bool {
 // and a boolean to check if the value has been set.
 func (o *CmsisIntellisenseItem) GetDeprecatedOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Deprecated, true
 }
@@ -204,7 +207,7 @@ func (o *CmsisIntellisenseItem) GetDeprecationInfo() CmsisIntellisenseItemDeprec
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CmsisIntellisenseItem) GetDeprecationInfoOk() (*CmsisIntellisenseItemDeprecationInfo, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.DeprecationInfo.Get(), o.DeprecationInfo.IsSet()
 }
@@ -246,7 +249,7 @@ func (o *CmsisIntellisenseItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CmsisIntellisenseItem) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -270,7 +273,7 @@ func (o *CmsisIntellisenseItem) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *CmsisIntellisenseItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Title, true
 }
@@ -294,7 +297,7 @@ func (o *CmsisIntellisenseItem) GetToolchainType() ToolchainTypes {
 // and a boolean to check if the value has been set.
 func (o *CmsisIntellisenseItem) GetToolchainTypeOk() (*ToolchainTypes, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ToolchainType, true
 }
@@ -318,7 +321,7 @@ func (o *CmsisIntellisenseItem) GetToolchainVersion() string {
 // and a boolean to check if the value has been set.
 func (o *CmsisIntellisenseItem) GetToolchainVersionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ToolchainVersion, true
 }
@@ -329,38 +332,28 @@ func (o *CmsisIntellisenseItem) SetToolchainVersion(v string) {
 }
 
 func (o CmsisIntellisenseItem) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CmsisIntellisenseItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links.Get()
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
-	if true {
-		toSerialize["buildToolsType"] = o.BuildToolsType
-	}
-	if true {
-		toSerialize["buildToolsVersion"] = o.BuildToolsVersion
-	}
-	if true {
-		toSerialize["deprecated"] = o.Deprecated
-	}
+	toSerialize["_links"] = o.Links.Get()
+	toSerialize["_metadata"] = o.Metadata.Get()
+	// skip: buildToolsType is readOnly
+	// skip: buildToolsVersion is readOnly
+	// skip: deprecated is readOnly
 	if o.DeprecationInfo.IsSet() {
 		toSerialize["deprecationInfo"] = o.DeprecationInfo.Get()
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	if true {
-		toSerialize["toolchainType"] = o.ToolchainType
-	}
-	if true {
-		toSerialize["toolchainVersion"] = o.ToolchainVersion
-	}
-	return json.Marshal(toSerialize)
+	// skip: name is readOnly
+	// skip: title is readOnly
+	toSerialize["toolchainType"] = o.ToolchainType
+	// skip: toolchainVersion is readOnly
+	return toSerialize, nil
 }
 
 type NullableCmsisIntellisenseItem struct {

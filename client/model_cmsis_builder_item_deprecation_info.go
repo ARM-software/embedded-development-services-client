@@ -21,6 +21,9 @@ import (
 	"time"
 )
 
+// checks if the CmsisBuilderItemDeprecationInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CmsisBuilderItemDeprecationInfo{}
+
 // CmsisBuilderItemDeprecationInfo Further information on the deprecation status.
 type CmsisBuilderItemDeprecationInfo struct {
 	Comment *string `json:"comment,omitempty"`
@@ -58,7 +61,7 @@ func (o *CmsisBuilderItemDeprecationInfo) GetComment() string {
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderItemDeprecationInfo) GetCommentOk() (*string, bool) {
 	if o == nil || isNil(o.Comment) {
-    return nil, false
+		return nil, false
 	}
 	return o.Comment, true
 }
@@ -90,7 +93,7 @@ func (o *CmsisBuilderItemDeprecationInfo) GetIssued() time.Time {
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderItemDeprecationInfo) GetIssuedOk() (*time.Time, bool) {
 	if o == nil || isNil(o.Issued) {
-    return nil, false
+		return nil, false
 	}
 	return o.Issued, true
 }
@@ -122,7 +125,7 @@ func (o *CmsisBuilderItemDeprecationInfo) GetRemoval() time.Time {
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderItemDeprecationInfo) GetRemovalOk() (*time.Time, bool) {
 	if o == nil || isNil(o.Removal) {
-    return nil, false
+		return nil, false
 	}
 	return o.Removal, true
 }
@@ -142,17 +145,19 @@ func (o *CmsisBuilderItemDeprecationInfo) SetRemoval(v time.Time) {
 }
 
 func (o CmsisBuilderItemDeprecationInfo) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
-	}
-	if !isNil(o.Issued) {
-		toSerialize["issued"] = o.Issued
-	}
-	if !isNil(o.Removal) {
-		toSerialize["removal"] = o.Removal
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CmsisBuilderItemDeprecationInfo) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: comment is readOnly
+	// skip: issued is readOnly
+	// skip: removal is readOnly
+	return toSerialize, nil
 }
 
 type NullableCmsisBuilderItemDeprecationInfo struct {

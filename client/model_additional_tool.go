@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AdditionalTool type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AdditionalTool{}
+
 // AdditionalTool a tool available on the VHT platform e.g. python
 type AdditionalTool struct {
 	// Description of the tool.
@@ -67,7 +70,7 @@ func (o *AdditionalTool) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *AdditionalTool) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Description, true
 }
@@ -91,7 +94,7 @@ func (o *AdditionalTool) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *AdditionalTool) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -115,7 +118,7 @@ func (o *AdditionalTool) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *AdditionalTool) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Title, true
 }
@@ -141,7 +144,7 @@ func (o *AdditionalTool) GetVersion() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AdditionalTool) GetVersionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Version.Get(), o.Version.IsSet()
 }
@@ -152,20 +155,20 @@ func (o *AdditionalTool) SetVersion(v string) {
 }
 
 func (o AdditionalTool) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	if true {
-		toSerialize["version"] = o.Version.Get()
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AdditionalTool) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["description"] = o.Description
+	toSerialize["name"] = o.Name
+	toSerialize["title"] = o.Title
+	toSerialize["version"] = o.Version.Get()
+	return toSerialize, nil
 }
 
 type NullableAdditionalTool struct {

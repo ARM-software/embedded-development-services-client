@@ -21,6 +21,9 @@ import (
 	"time"
 )
 
+// checks if the NotificationMessageObject type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NotificationMessageObject{}
+
 // NotificationMessageObject struct for NotificationMessageObject
 type NotificationMessageObject struct {
 	// The time and date at which the message was created.
@@ -64,7 +67,7 @@ func (o *NotificationMessageObject) GetCtime() time.Time {
 // and a boolean to check if the value has been set.
 func (o *NotificationMessageObject) GetCtimeOk() (*time.Time, bool) {
 	if o == nil || isNil(o.Ctime) {
-    return nil, false
+		return nil, false
 	}
 	return o.Ctime, true
 }
@@ -97,7 +100,7 @@ func (o *NotificationMessageObject) GetMessage() string {
 // and a boolean to check if the value has been set.
 func (o *NotificationMessageObject) GetMessageOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Message, true
 }
@@ -120,7 +123,7 @@ func (o *NotificationMessageObject) GetSeverity() string {
 // and a boolean to check if the value has been set.
 func (o *NotificationMessageObject) GetSeverityOk() (*string, bool) {
 	if o == nil || isNil(o.Severity) {
-    return nil, false
+		return nil, false
 	}
 	return o.Severity, true
 }
@@ -152,7 +155,7 @@ func (o *NotificationMessageObject) GetSource() string {
 // and a boolean to check if the value has been set.
 func (o *NotificationMessageObject) GetSourceOk() (*string, bool) {
 	if o == nil || isNil(o.Source) {
-    return nil, false
+		return nil, false
 	}
 	return o.Source, true
 }
@@ -172,20 +175,20 @@ func (o *NotificationMessageObject) SetSource(v string) {
 }
 
 func (o NotificationMessageObject) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Ctime) {
-		toSerialize["ctime"] = o.Ctime
-	}
-	if true {
-		toSerialize["message"] = o.Message
-	}
-	if !isNil(o.Severity) {
-		toSerialize["severity"] = o.Severity
-	}
-	if !isNil(o.Source) {
-		toSerialize["source"] = o.Source
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o NotificationMessageObject) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: ctime is readOnly
+	// skip: message is readOnly
+	// skip: severity is readOnly
+	// skip: source is readOnly
+	return toSerialize, nil
 }
 
 type NullableNotificationMessageObject struct {

@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the WorkspaceRepositoryContentManagerLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WorkspaceRepositoryContentManagerLinks{}
+
 // WorkspaceRepositoryContentManagerLinks links to manage the workspace contant
 type WorkspaceRepositoryContentManagerLinks struct {
 	Clear *HalLinkData `json:"clear,omitempty"`
@@ -60,7 +63,7 @@ func (o *WorkspaceRepositoryContentManagerLinks) GetClear() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManagerLinks) GetClearOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Clear) {
-    return nil, false
+		return nil, false
 	}
 	return o.Clear, true
 }
@@ -92,7 +95,7 @@ func (o *WorkspaceRepositoryContentManagerLinks) GetEdit() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManagerLinks) GetEditOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Edit) {
-    return nil, false
+		return nil, false
 	}
 	return o.Edit, true
 }
@@ -125,7 +128,7 @@ func (o *WorkspaceRepositoryContentManagerLinks) GetRelated() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManagerLinks) GetRelatedOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Related, true
 }
@@ -149,7 +152,7 @@ func (o *WorkspaceRepositoryContentManagerLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManagerLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Self, true
 }
@@ -160,6 +163,14 @@ func (o *WorkspaceRepositoryContentManagerLinks) SetSelf(v HalLinkData) {
 }
 
 func (o WorkspaceRepositoryContentManagerLinks) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o WorkspaceRepositoryContentManagerLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Clear) {
 		toSerialize["clear"] = o.Clear
@@ -167,13 +178,9 @@ func (o WorkspaceRepositoryContentManagerLinks) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Edit) {
 		toSerialize["edit"] = o.Edit
 	}
-	if true {
-		toSerialize["related"] = o.Related
-	}
-	if true {
-		toSerialize["self"] = o.Self
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["related"] = o.Related
+	toSerialize["self"] = o.Self
+	return toSerialize, nil
 }
 
 type NullableWorkspaceRepositoryContentManagerLinks struct {

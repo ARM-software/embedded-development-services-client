@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VirtualInterface type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VirtualInterface{}
+
 // VirtualInterface a virtual interface available on the target and which can be used to simulate hardware (e.g. microphone).
 type VirtualInterface struct {
 	// Description of the interface.
@@ -64,7 +67,7 @@ func (o *VirtualInterface) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *VirtualInterface) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Description, true
 }
@@ -88,7 +91,7 @@ func (o *VirtualInterface) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *VirtualInterface) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -112,7 +115,7 @@ func (o *VirtualInterface) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *VirtualInterface) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Title, true
 }
@@ -123,17 +126,19 @@ func (o *VirtualInterface) SetTitle(v string) {
 }
 
 func (o VirtualInterface) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["title"] = o.Title
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o VirtualInterface) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["description"] = o.Description
+	toSerialize["name"] = o.Name
+	toSerialize["title"] = o.Title
+	return toSerialize, nil
 }
 
 type NullableVirtualInterface struct {

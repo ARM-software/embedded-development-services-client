@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the WorkspaceItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WorkspaceItem{}
+
 // WorkspaceItem When the Workspace is ready, it will links to other available resources
 type WorkspaceItem struct {
 	// The TTL (time to live in seconds) describing how long the workspace will be still available for.
@@ -72,7 +75,7 @@ func (o *WorkspaceItem) GetTTL() int64 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceItem) GetTTLOk() (*int64, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.TTL.Get(), o.TTL.IsSet()
 }
@@ -116,7 +119,7 @@ func (o *WorkspaceItem) GetLinks() WorkspaceItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceItem) GetLinksOk() (*WorkspaceItemLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -142,7 +145,7 @@ func (o *WorkspaceItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -165,7 +168,7 @@ func (o *WorkspaceItem) GetEphemeral() bool {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItem) GetEphemeralOk() (*bool, bool) {
 	if o == nil || isNil(o.Ephemeral) {
-    return nil, false
+		return nil, false
 	}
 	return o.Ephemeral, true
 }
@@ -198,7 +201,7 @@ func (o *WorkspaceItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItem) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -222,7 +225,7 @@ func (o *WorkspaceItem) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -251,26 +254,26 @@ func (o *WorkspaceItem) UnsetTitle() {
 }
 
 func (o WorkspaceItem) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o WorkspaceItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.TTL.IsSet() {
 		toSerialize["TTL"] = o.TTL.Get()
 	}
-	if true {
-		toSerialize["_links"] = o.Links.Get()
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
-	if !isNil(o.Ephemeral) {
-		toSerialize["ephemeral"] = o.Ephemeral
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["_links"] = o.Links.Get()
+	toSerialize["_metadata"] = o.Metadata.Get()
+	// skip: ephemeral is readOnly
+	// skip: name is readOnly
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableWorkspaceItem struct {

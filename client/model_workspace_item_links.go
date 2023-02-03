@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the WorkspaceItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WorkspaceItemLinks{}
+
 // WorkspaceItemLinks The `related` link indicates the source of the workspace content. The `artefacts` links to content manager.
 type WorkspaceItemLinks struct {
 	Artefacts *HalLinkData `json:"artefacts,omitempty"`
@@ -63,7 +66,7 @@ func (o *WorkspaceItemLinks) GetArtefacts() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItemLinks) GetArtefactsOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Artefacts) {
-    return nil, false
+		return nil, false
 	}
 	return o.Artefacts, true
 }
@@ -95,7 +98,7 @@ func (o *WorkspaceItemLinks) GetCollection() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItemLinks) GetCollectionOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Collection) {
-    return nil, false
+		return nil, false
 	}
 	return o.Collection, true
 }
@@ -127,7 +130,7 @@ func (o *WorkspaceItemLinks) GetDelete() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItemLinks) GetDeleteOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Delete) {
-    return nil, false
+		return nil, false
 	}
 	return o.Delete, true
 }
@@ -159,7 +162,7 @@ func (o *WorkspaceItemLinks) GetDetails() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItemLinks) GetDetailsOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Details) {
-    return nil, false
+		return nil, false
 	}
 	return o.Details, true
 }
@@ -192,7 +195,7 @@ func (o *WorkspaceItemLinks) GetRelated() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItemLinks) GetRelatedOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Related, true
 }
@@ -215,7 +218,7 @@ func (o *WorkspaceItemLinks) GetRetain() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItemLinks) GetRetainOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Retain) {
-    return nil, false
+		return nil, false
 	}
 	return o.Retain, true
 }
@@ -248,7 +251,7 @@ func (o *WorkspaceItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Self, true
 }
@@ -259,6 +262,14 @@ func (o *WorkspaceItemLinks) SetSelf(v HalLinkData) {
 }
 
 func (o WorkspaceItemLinks) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o WorkspaceItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Artefacts) {
 		toSerialize["artefacts"] = o.Artefacts
@@ -272,16 +283,12 @@ func (o WorkspaceItemLinks) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
-	if true {
-		toSerialize["related"] = o.Related
-	}
+	toSerialize["related"] = o.Related
 	if !isNil(o.Retain) {
 		toSerialize["retain"] = o.Retain
 	}
-	if true {
-		toSerialize["self"] = o.Self
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["self"] = o.Self
+	return toSerialize, nil
 }
 
 type NullableWorkspaceItemLinks struct {

@@ -79,7 +79,7 @@ func (a *WorkspaceApiService) ClearWorkspaceArchiveContentExecute(r ApiClearWork
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/archive-content"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -103,7 +103,7 @@ func (a *WorkspaceApiService) ClearWorkspaceArchiveContentExecute(r ApiClearWork
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -134,8 +134,8 @@ func (a *WorkspaceApiService) ClearWorkspaceArchiveContentExecute(r ApiClearWork
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -145,8 +145,8 @@ func (a *WorkspaceApiService) ClearWorkspaceArchiveContentExecute(r ApiClearWork
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -156,8 +156,8 @@ func (a *WorkspaceApiService) ClearWorkspaceArchiveContentExecute(r ApiClearWork
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -167,8 +167,8 @@ func (a *WorkspaceApiService) ClearWorkspaceArchiveContentExecute(r ApiClearWork
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -178,8 +178,8 @@ func (a *WorkspaceApiService) ClearWorkspaceArchiveContentExecute(r ApiClearWork
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -189,8 +189,8 @@ func (a *WorkspaceApiService) ClearWorkspaceArchiveContentExecute(r ApiClearWork
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -200,8 +200,8 @@ func (a *WorkspaceApiService) ClearWorkspaceArchiveContentExecute(r ApiClearWork
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -258,7 +258,7 @@ func (a *WorkspaceApiService) ClearWorkspaceRepositoryContentManagerExecute(r Ap
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/repository-content"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -282,7 +282,7 @@ func (a *WorkspaceApiService) ClearWorkspaceRepositoryContentManagerExecute(r Ap
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -313,8 +313,8 @@ func (a *WorkspaceApiService) ClearWorkspaceRepositoryContentManagerExecute(r Ap
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -324,8 +324,8 @@ func (a *WorkspaceApiService) ClearWorkspaceRepositoryContentManagerExecute(r Ap
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -335,8 +335,8 @@ func (a *WorkspaceApiService) ClearWorkspaceRepositoryContentManagerExecute(r Ap
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -346,8 +346,8 @@ func (a *WorkspaceApiService) ClearWorkspaceRepositoryContentManagerExecute(r Ap
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -357,8 +357,8 @@ func (a *WorkspaceApiService) ClearWorkspaceRepositoryContentManagerExecute(r Ap
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -368,8 +368,8 @@ func (a *WorkspaceApiService) ClearWorkspaceRepositoryContentManagerExecute(r Ap
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -379,8 +379,8 @@ func (a *WorkspaceApiService) ClearWorkspaceRepositoryContentManagerExecute(r Ap
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -445,7 +445,7 @@ func (a *WorkspaceApiService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest
 	}
 
 	localVarPath := localBasePath + "/workspace-sources/{workspaceSourceName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceSourceName"+"}", parameterToString(r.workspaceSourceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceSourceName"+"}", parameterValueToString(r.workspaceSourceName, "workspaceSourceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -472,7 +472,7 @@ func (a *WorkspaceApiService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	// body params
 	localVarPostBody = r.workspaceItem
@@ -505,8 +505,8 @@ func (a *WorkspaceApiService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -516,8 +516,8 @@ func (a *WorkspaceApiService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -527,8 +527,8 @@ func (a *WorkspaceApiService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -538,8 +538,8 @@ func (a *WorkspaceApiService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -549,8 +549,8 @@ func (a *WorkspaceApiService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 415 {
@@ -560,8 +560,8 @@ func (a *WorkspaceApiService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -571,8 +571,8 @@ func (a *WorkspaceApiService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -637,7 +637,7 @@ func (a *WorkspaceApiService) DeleteWorkspaceExecute(r ApiDeleteWorkspaceRequest
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -661,7 +661,7 @@ func (a *WorkspaceApiService) DeleteWorkspaceExecute(r ApiDeleteWorkspaceRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -692,8 +692,8 @@ func (a *WorkspaceApiService) DeleteWorkspaceExecute(r ApiDeleteWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -703,8 +703,8 @@ func (a *WorkspaceApiService) DeleteWorkspaceExecute(r ApiDeleteWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -714,8 +714,8 @@ func (a *WorkspaceApiService) DeleteWorkspaceExecute(r ApiDeleteWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -725,8 +725,8 @@ func (a *WorkspaceApiService) DeleteWorkspaceExecute(r ApiDeleteWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -736,8 +736,8 @@ func (a *WorkspaceApiService) DeleteWorkspaceExecute(r ApiDeleteWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -747,8 +747,8 @@ func (a *WorkspaceApiService) DeleteWorkspaceExecute(r ApiDeleteWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -758,8 +758,8 @@ func (a *WorkspaceApiService) DeleteWorkspaceExecute(r ApiDeleteWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -831,7 +831,7 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r Api
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/repository-content"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -861,9 +861,9 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r Api
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
-	localVarHeaderParams["if-match"] = parameterToString(*r.ifMatch, "")
+	parameterAddToQuery(localVarQueryParams, "if-match", r.ifMatch, "")
 	// body params
 	localVarPostBody = r.workspaceRepositoryContentManager
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -895,8 +895,8 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -906,8 +906,8 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -917,8 +917,8 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -928,8 +928,8 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -939,8 +939,8 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
@@ -950,8 +950,8 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 415 {
@@ -961,8 +961,8 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 428 {
@@ -972,8 +972,8 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -983,8 +983,8 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1058,7 +1058,7 @@ func (a *WorkspaceApiService) GetWorkspaceExecute(r ApiGetWorkspaceRequest) (*Wo
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1082,10 +1082,10 @@ func (a *WorkspaceApiService) GetWorkspaceExecute(r ApiGetWorkspaceRequest) (*Wo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1116,8 +1116,8 @@ func (a *WorkspaceApiService) GetWorkspaceExecute(r ApiGetWorkspaceRequest) (*Wo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1127,8 +1127,8 @@ func (a *WorkspaceApiService) GetWorkspaceExecute(r ApiGetWorkspaceRequest) (*Wo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1138,8 +1138,8 @@ func (a *WorkspaceApiService) GetWorkspaceExecute(r ApiGetWorkspaceRequest) (*Wo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -1149,8 +1149,8 @@ func (a *WorkspaceApiService) GetWorkspaceExecute(r ApiGetWorkspaceRequest) (*Wo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -1160,8 +1160,8 @@ func (a *WorkspaceApiService) GetWorkspaceExecute(r ApiGetWorkspaceRequest) (*Wo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1236,7 +1236,7 @@ func (a *WorkspaceApiService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspac
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/archive-content"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1260,10 +1260,10 @@ func (a *WorkspaceApiService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspac
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1294,8 +1294,8 @@ func (a *WorkspaceApiService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspac
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1305,8 +1305,8 @@ func (a *WorkspaceApiService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspac
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1316,8 +1316,8 @@ func (a *WorkspaceApiService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspac
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -1327,8 +1327,8 @@ func (a *WorkspaceApiService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspac
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -1338,8 +1338,8 @@ func (a *WorkspaceApiService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspac
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1413,7 +1413,7 @@ func (a *WorkspaceApiService) GetWorkspaceDetailsExecute(r ApiGetWorkspaceDetail
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/details"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1437,10 +1437,10 @@ func (a *WorkspaceApiService) GetWorkspaceDetailsExecute(r ApiGetWorkspaceDetail
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1537,7 +1537,7 @@ func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerExecute(r ApiG
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/repository-content"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1561,10 +1561,10 @@ func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerExecute(r ApiG
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1595,8 +1595,8 @@ func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerExecute(r ApiG
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1606,8 +1606,8 @@ func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerExecute(r ApiG
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1617,8 +1617,8 @@ func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerExecute(r ApiG
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -1628,8 +1628,8 @@ func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerExecute(r ApiG
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -1639,8 +1639,8 @@ func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerExecute(r ApiG
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1738,13 +1738,13 @@ func (a *WorkspaceApiService) ListWorkspacesExecute(r ApiListWorkspacesRequest) 
 	localVarFormParams := url.Values{}
 
 	if r.embed != nil {
-		localVarQueryParams.Add("embed", parameterToString(*r.embed, ""))
+		parameterAddToQuery(localVarQueryParams, "embed", r.embed, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1764,10 +1764,10 @@ func (a *WorkspaceApiService) ListWorkspacesExecute(r ApiListWorkspacesRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToQuery(localVarQueryParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1798,8 +1798,8 @@ func (a *WorkspaceApiService) ListWorkspacesExecute(r ApiListWorkspacesRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1809,8 +1809,8 @@ func (a *WorkspaceApiService) ListWorkspacesExecute(r ApiListWorkspacesRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -1820,8 +1820,8 @@ func (a *WorkspaceApiService) ListWorkspacesExecute(r ApiListWorkspacesRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -1831,8 +1831,8 @@ func (a *WorkspaceApiService) ListWorkspacesExecute(r ApiListWorkspacesRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1906,7 +1906,7 @@ func (a *WorkspaceApiService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/retain"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1930,7 +1930,7 @@ func (a *WorkspaceApiService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
 	// body params
 	localVarPostBody = r.retainWorkspaceRequest
@@ -1963,8 +1963,8 @@ func (a *WorkspaceApiService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1974,8 +1974,8 @@ func (a *WorkspaceApiService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1985,8 +1985,8 @@ func (a *WorkspaceApiService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -1996,8 +1996,8 @@ func (a *WorkspaceApiService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -2007,8 +2007,8 @@ func (a *WorkspaceApiService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 415 {
@@ -2018,8 +2018,8 @@ func (a *WorkspaceApiService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -2029,8 +2029,8 @@ func (a *WorkspaceApiService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2052,7 +2052,7 @@ type ApiUploadWorkspaceArchiveContentRequest struct {
 	ApiService *WorkspaceApiService
 	workspaceName string
 	ifMatch *string
-	content **os.File
+	content *os.File
 	hash *string
 	acceptVersion *string
 	contentMediaType *string
@@ -2068,7 +2068,7 @@ func (r ApiUploadWorkspaceArchiveContentRequest) IfMatch(ifMatch string) ApiUplo
 
 // artefact content
 func (r ApiUploadWorkspaceArchiveContentRequest) Content(content *os.File) ApiUploadWorkspaceArchiveContentRequest {
-	r.content = &content
+	r.content = content
 	return r
 }
 
@@ -2139,7 +2139,7 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 	}
 
 	localVarPath := localBasePath + "/workspaces/{workspaceName}/archive-content"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterToString(r.workspaceName, ""), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2172,32 +2172,35 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToQuery(localVarQueryParams, "Accept-Version", r.acceptVersion, "")
 	}
-	localVarHeaderParams["if-match"] = parameterToString(*r.ifMatch, "")
+	parameterAddToQuery(localVarQueryParams, "if-match", r.ifMatch, "")
 	var contentLocalVarFormFileName string
 	var contentLocalVarFileName     string
 	var contentLocalVarFileBytes    []byte
 
 	contentLocalVarFormFileName = "content"
 
-	contentLocalVarFile := *r.content
+
+	contentLocalVarFile := r.content
+
 	if contentLocalVarFile != nil {
 		fbs, _ := ioutil.ReadAll(contentLocalVarFile)
+
 		contentLocalVarFileBytes = fbs
 		contentLocalVarFileName = contentLocalVarFile.Name()
 		contentLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: contentLocalVarFileBytes, fileName: contentLocalVarFileName, formFileName: contentLocalVarFormFileName})
 	}
-	formFiles = append(formFiles, formFile{fileBytes: contentLocalVarFileBytes, fileName: contentLocalVarFileName, formFileName: contentLocalVarFormFileName})
 	if r.contentMediaType != nil {
-		localVarFormParams.Add("contentMediaType", parameterToString(*r.contentMediaType, ""))
+		parameterAddToQuery(localVarFormParams, "contentMediaType", r.contentMediaType, "")
 	}
-	localVarFormParams.Add("hash", parameterToString(*r.hash, ""))
+	parameterAddToQuery(localVarFormParams, "hash", r.hash, "")
 	if r.size != nil {
-		localVarFormParams.Add("size", parameterToString(*r.size, ""))
+		parameterAddToQuery(localVarFormParams, "size", r.size, "")
 	}
 	if r.title != nil {
-		localVarFormParams.Add("title", parameterToString(*r.title, ""))
+		parameterAddToQuery(localVarFormParams, "title", r.title, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2228,8 +2231,8 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -2239,8 +2242,8 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2250,8 +2253,8 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -2261,8 +2264,8 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -2272,8 +2275,8 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
@@ -2283,8 +2286,8 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 413 {
@@ -2294,8 +2297,8 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 415 {
@@ -2305,8 +2308,8 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 428 {
@@ -2316,8 +2319,8 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -2327,8 +2330,8 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

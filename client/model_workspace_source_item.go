@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the WorkspaceSourceItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WorkspaceSourceItem{}
+
 // WorkspaceSourceItem struct for WorkspaceSourceItem
 type WorkspaceSourceItem struct {
 	Links NullableWorkspaceSourceItemLinks `json:"_links"`
@@ -73,7 +76,7 @@ func (o *WorkspaceSourceItem) GetLinks() WorkspaceSourceItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceSourceItem) GetLinksOk() (*WorkspaceSourceItemLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -99,7 +102,7 @@ func (o *WorkspaceSourceItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceSourceItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -123,7 +126,7 @@ func (o *WorkspaceSourceItem) GetDeprecated() bool {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItem) GetDeprecatedOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Deprecated, true
 }
@@ -146,7 +149,7 @@ func (o *WorkspaceSourceItem) GetDeprecationInfo() DeprecationInfo {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItem) GetDeprecationInfoOk() (*DeprecationInfo, bool) {
 	if o == nil || isNil(o.DeprecationInfo) {
-    return nil, false
+		return nil, false
 	}
 	return o.DeprecationInfo, true
 }
@@ -178,7 +181,7 @@ func (o *WorkspaceSourceItem) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItem) GetDescriptionOk() (*string, bool) {
 	if o == nil || isNil(o.Description) {
-    return nil, false
+		return nil, false
 	}
 	return o.Description, true
 }
@@ -211,7 +214,7 @@ func (o *WorkspaceSourceItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItem) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -235,7 +238,7 @@ func (o *WorkspaceSourceItem) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Title, true
 }
@@ -246,29 +249,25 @@ func (o *WorkspaceSourceItem) SetTitle(v string) {
 }
 
 func (o WorkspaceSourceItem) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o WorkspaceSourceItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links.Get()
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
-	if true {
-		toSerialize["deprecated"] = o.Deprecated
-	}
+	toSerialize["_links"] = o.Links.Get()
+	toSerialize["_metadata"] = o.Metadata.Get()
+	// skip: deprecated is readOnly
 	if !isNil(o.DeprecationInfo) {
 		toSerialize["deprecationInfo"] = o.DeprecationInfo
 	}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	return json.Marshal(toSerialize)
+	// skip: description is readOnly
+	// skip: name is readOnly
+	// skip: title is readOnly
+	return toSerialize, nil
 }
 
 type NullableWorkspaceSourceItem struct {

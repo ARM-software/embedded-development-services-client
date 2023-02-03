@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VhtItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VhtItemLinks{}
+
 // VhtItemLinks The `create` link (if present) provides the URI to request a VHT instance.
 type VhtItemLinks struct {
 	Collection *HalLinkData `json:"collection,omitempty"`
@@ -59,7 +62,7 @@ func (o *VhtItemLinks) GetCollection() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtItemLinks) GetCollectionOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Collection) {
-    return nil, false
+		return nil, false
 	}
 	return o.Collection, true
 }
@@ -91,7 +94,7 @@ func (o *VhtItemLinks) GetCreate() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtItemLinks) GetCreateOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Create) {
-    return nil, false
+		return nil, false
 	}
 	return o.Create, true
 }
@@ -123,7 +126,7 @@ func (o *VhtItemLinks) GetInstance() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtItemLinks) GetInstanceOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Instance) {
-    return nil, false
+		return nil, false
 	}
 	return o.Instance, true
 }
@@ -156,7 +159,7 @@ func (o *VhtItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Self, true
 }
@@ -167,6 +170,14 @@ func (o *VhtItemLinks) SetSelf(v HalLinkData) {
 }
 
 func (o VhtItemLinks) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VhtItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Collection) {
 		toSerialize["collection"] = o.Collection
@@ -177,10 +188,8 @@ func (o VhtItemLinks) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Instance) {
 		toSerialize["instance"] = o.Instance
 	}
-	if true {
-		toSerialize["self"] = o.Self
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["self"] = o.Self
+	return toSerialize, nil
 }
 
 type NullableVhtItemLinks struct {

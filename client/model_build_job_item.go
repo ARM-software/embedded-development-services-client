@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BuildJobItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BuildJobItem{}
+
 // BuildJobItem This resource allows a Build Job to be configured when it is created, such as defining the project to build. When the build job is read, it will include the current status of the build and links to other available resources, such as build messages and build artefacts.
 type BuildJobItem struct {
 	Links NullableBuildJobItemLinks `json:"_links"`
@@ -106,7 +109,7 @@ func (o *BuildJobItem) GetLinks() BuildJobItemLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildJobItem) GetLinksOk() (*BuildJobItemLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -132,7 +135,7 @@ func (o *BuildJobItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildJobItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -158,7 +161,7 @@ func (o *BuildJobItem) GetBuildStepsCompleted() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildJobItem) GetBuildStepsCompletedOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.BuildStepsCompleted.Get(), o.BuildStepsCompleted.IsSet()
 }
@@ -184,7 +187,7 @@ func (o *BuildJobItem) GetBuildStepsTotal() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildJobItem) GetBuildStepsTotalOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.BuildStepsTotal.Get(), o.BuildStepsTotal.IsSet()
 }
@@ -207,7 +210,7 @@ func (o *BuildJobItem) GetBuildTimeout() int32 {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetBuildTimeoutOk() (*int32, bool) {
 	if o == nil || isNil(o.BuildTimeout) {
-    return nil, false
+		return nil, false
 	}
 	return o.BuildTimeout, true
 }
@@ -239,7 +242,7 @@ func (o *BuildJobItem) GetCleanBuild() bool {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetCleanBuildOk() (*bool, bool) {
 	if o == nil || isNil(o.CleanBuild) {
-    return nil, false
+		return nil, false
 	}
 	return o.CleanBuild, true
 }
@@ -272,7 +275,7 @@ func (o *BuildJobItem) GetDone() bool {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetDoneOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Done, true
 }
@@ -296,7 +299,7 @@ func (o *BuildJobItem) GetError() bool {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetErrorOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Error, true
 }
@@ -320,7 +323,7 @@ func (o *BuildJobItem) GetFailure() bool {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetFailureOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Failure, true
 }
@@ -344,7 +347,7 @@ func (o *BuildJobItem) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -368,7 +371,7 @@ func (o *BuildJobItem) GetProject() string {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetProjectOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Project, true
 }
@@ -391,7 +394,7 @@ func (o *BuildJobItem) GetQueued() bool {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetQueuedOk() (*bool, bool) {
 	if o == nil || isNil(o.Queued) {
-    return nil, false
+		return nil, false
 	}
 	return o.Queued, true
 }
@@ -424,7 +427,7 @@ func (o *BuildJobItem) GetStatus() string {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetStatusOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Status, true
 }
@@ -448,7 +451,7 @@ func (o *BuildJobItem) GetSuccess() bool {
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetSuccessOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Success, true
 }
@@ -472,7 +475,7 @@ func (o *BuildJobItem) GetTitle() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildJobItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
 }
@@ -514,7 +517,7 @@ func (o *BuildJobItem) GetWorkspace() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BuildJobItem) GetWorkspaceOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Workspace.Get(), o.Workspace.IsSet()
 }
@@ -543,56 +546,40 @@ func (o *BuildJobItem) UnsetWorkspace() {
 }
 
 func (o BuildJobItem) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BuildJobItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links.Get()
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
-	if true {
-		toSerialize["buildStepsCompleted"] = o.BuildStepsCompleted.Get()
-	}
-	if true {
-		toSerialize["buildStepsTotal"] = o.BuildStepsTotal.Get()
-	}
+	toSerialize["_links"] = o.Links.Get()
+	toSerialize["_metadata"] = o.Metadata.Get()
+	toSerialize["buildStepsCompleted"] = o.BuildStepsCompleted.Get()
+	toSerialize["buildStepsTotal"] = o.BuildStepsTotal.Get()
 	if !isNil(o.BuildTimeout) {
 		toSerialize["buildTimeout"] = o.BuildTimeout
 	}
 	if !isNil(o.CleanBuild) {
 		toSerialize["cleanBuild"] = o.CleanBuild
 	}
-	if true {
-		toSerialize["done"] = o.Done
-	}
-	if true {
-		toSerialize["error"] = o.Error
-	}
-	if true {
-		toSerialize["failure"] = o.Failure
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["project"] = o.Project
-	}
-	if !isNil(o.Queued) {
-		toSerialize["queued"] = o.Queued
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["success"] = o.Success
-	}
+	// skip: done is readOnly
+	// skip: error is readOnly
+	// skip: failure is readOnly
+	// skip: name is readOnly
+	toSerialize["project"] = o.Project
+	// skip: queued is readOnly
+	// skip: status is readOnly
+	// skip: success is readOnly
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
 	if o.Workspace.IsSet() {
 		toSerialize["workspace"] = o.Workspace.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableBuildJobItem struct {

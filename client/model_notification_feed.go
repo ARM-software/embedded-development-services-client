@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the NotificationFeed type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NotificationFeed{}
+
 // NotificationFeed struct for NotificationFeed
 type NotificationFeed struct {
 	Links NullableHalFeedLinks `json:"_links"`
@@ -69,7 +72,7 @@ func (o *NotificationFeed) GetLinks() HalFeedLinks {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NotificationFeed) GetLinksOk() (*HalFeedLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Links.Get(), o.Links.IsSet()
 }
@@ -95,7 +98,7 @@ func (o *NotificationFeed) GetMetadata() PagingMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NotificationFeed) GetMetadataOk() (*PagingMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -121,7 +124,7 @@ func (o *NotificationFeed) GetMessages() []NotificationMessageObject {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NotificationFeed) GetMessagesOk() ([]NotificationMessageObject, bool) {
 	if o == nil || isNil(o.Messages) {
-    return nil, false
+		return nil, false
 	}
 	return o.Messages, true
 }
@@ -145,7 +148,7 @@ func (o *NotificationFeed) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *NotificationFeed) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -168,7 +171,7 @@ func (o *NotificationFeed) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *NotificationFeed) GetTitleOk() (*string, bool) {
 	if o == nil || isNil(o.Title) {
-    return nil, false
+		return nil, false
 	}
 	return o.Title, true
 }
@@ -188,23 +191,25 @@ func (o *NotificationFeed) SetTitle(v string) {
 }
 
 func (o NotificationFeed) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o NotificationFeed) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links.Get()
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
+	toSerialize["_links"] = o.Links.Get()
+	toSerialize["_metadata"] = o.Metadata.Get()
 	if o.Messages != nil {
 		toSerialize["messages"] = o.Messages
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	// skip: name is readOnly
 	if !isNil(o.Title) {
 		toSerialize["title"] = o.Title
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableNotificationFeed struct {

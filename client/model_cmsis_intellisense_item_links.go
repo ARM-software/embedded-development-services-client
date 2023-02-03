@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CmsisIntellisenseItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CmsisIntellisenseItemLinks{}
+
 // CmsisIntellisenseItemLinks The `create` link (if present) provides the URI where this build can be used to generate a CMSIS compilation database.
 type CmsisIntellisenseItemLinks struct {
 	Create *HalLinkData `json:"create,omitempty"`
@@ -57,7 +60,7 @@ func (o *CmsisIntellisenseItemLinks) GetCreate() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *CmsisIntellisenseItemLinks) GetCreateOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Create) {
-    return nil, false
+		return nil, false
 	}
 	return o.Create, true
 }
@@ -90,7 +93,7 @@ func (o *CmsisIntellisenseItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *CmsisIntellisenseItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Self, true
 }
@@ -101,14 +104,20 @@ func (o *CmsisIntellisenseItemLinks) SetSelf(v HalLinkData) {
 }
 
 func (o CmsisIntellisenseItemLinks) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CmsisIntellisenseItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Create) {
 		toSerialize["create"] = o.Create
 	}
-	if true {
-		toSerialize["self"] = o.Self
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["self"] = o.Self
+	return toSerialize, nil
 }
 
 type NullableCmsisIntellisenseItemLinks struct {

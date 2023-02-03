@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VhtRunJobItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VhtRunJobItemLinks{}
+
 // VhtRunJobItemLinks The `related` link indicates the VHT instance on which the job is run. The `details` links to a resource that provides details of progress (messages).
 type VhtRunJobItemLinks struct {
 	Cancel *HalLinkData `json:"cancel,omitempty"`
@@ -62,7 +65,7 @@ func (o *VhtRunJobItemLinks) GetCancel() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItemLinks) GetCancelOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Cancel) {
-    return nil, false
+		return nil, false
 	}
 	return o.Cancel, true
 }
@@ -94,7 +97,7 @@ func (o *VhtRunJobItemLinks) GetCollection() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItemLinks) GetCollectionOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Collection) {
-    return nil, false
+		return nil, false
 	}
 	return o.Collection, true
 }
@@ -126,7 +129,7 @@ func (o *VhtRunJobItemLinks) GetDelete() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItemLinks) GetDeleteOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Delete) {
-    return nil, false
+		return nil, false
 	}
 	return o.Delete, true
 }
@@ -158,7 +161,7 @@ func (o *VhtRunJobItemLinks) GetDetails() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItemLinks) GetDetailsOk() (*HalLinkData, bool) {
 	if o == nil || isNil(o.Details) {
-    return nil, false
+		return nil, false
 	}
 	return o.Details, true
 }
@@ -191,7 +194,7 @@ func (o *VhtRunJobItemLinks) GetRelated() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItemLinks) GetRelatedOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Related, true
 }
@@ -215,7 +218,7 @@ func (o *VhtRunJobItemLinks) GetSelf() HalLinkData {
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Self, true
 }
@@ -226,6 +229,14 @@ func (o *VhtRunJobItemLinks) SetSelf(v HalLinkData) {
 }
 
 func (o VhtRunJobItemLinks) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VhtRunJobItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Cancel) {
 		toSerialize["cancel"] = o.Cancel
@@ -239,13 +250,9 @@ func (o VhtRunJobItemLinks) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
-	if true {
-		toSerialize["related"] = o.Related
-	}
-	if true {
-		toSerialize["self"] = o.Self
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["related"] = o.Related
+	toSerialize["self"] = o.Self
+	return toSerialize, nil
 }
 
 type NullableVhtRunJobItemLinks struct {

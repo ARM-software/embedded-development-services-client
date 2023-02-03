@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeviceItemSourcePackId type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeviceItemSourcePackId{}
+
 // DeviceItemSourcePackId An identifier for the source pack
 type DeviceItemSourcePackId struct {
 	// Name of the source pack
@@ -60,7 +63,7 @@ func (o *DeviceItemSourcePackId) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *DeviceItemSourcePackId) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
-    return nil, false
+		return nil, false
 	}
 	return o.Name, true
 }
@@ -92,7 +95,7 @@ func (o *DeviceItemSourcePackId) GetVendor() string {
 // and a boolean to check if the value has been set.
 func (o *DeviceItemSourcePackId) GetVendorOk() (*string, bool) {
 	if o == nil || isNil(o.Vendor) {
-    return nil, false
+		return nil, false
 	}
 	return o.Vendor, true
 }
@@ -124,7 +127,7 @@ func (o *DeviceItemSourcePackId) GetVersion() string {
 // and a boolean to check if the value has been set.
 func (o *DeviceItemSourcePackId) GetVersionOk() (*string, bool) {
 	if o == nil || isNil(o.Version) {
-    return nil, false
+		return nil, false
 	}
 	return o.Version, true
 }
@@ -144,6 +147,14 @@ func (o *DeviceItemSourcePackId) SetVersion(v string) {
 }
 
 func (o DeviceItemSourcePackId) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o DeviceItemSourcePackId) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
@@ -154,7 +165,7 @@ func (o DeviceItemSourcePackId) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableDeviceItemSourcePackId struct {

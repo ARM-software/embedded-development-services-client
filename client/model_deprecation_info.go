@@ -21,6 +21,9 @@ import (
 	"time"
 )
 
+// checks if the DeprecationInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeprecationInfo{}
+
 // DeprecationInfo Additional information about the deprecation status.
 type DeprecationInfo struct {
 	// further explanation of the rationale behind the deprecation
@@ -65,7 +68,7 @@ func (o *DeprecationInfo) GetComment() string {
 // and a boolean to check if the value has been set.
 func (o *DeprecationInfo) GetCommentOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Comment, true
 }
@@ -89,7 +92,7 @@ func (o *DeprecationInfo) GetIssued() time.Time {
 // and a boolean to check if the value has been set.
 func (o *DeprecationInfo) GetIssuedOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Issued, true
 }
@@ -113,7 +116,7 @@ func (o *DeprecationInfo) GetRemoval() time.Time {
 // and a boolean to check if the value has been set.
 func (o *DeprecationInfo) GetRemovalOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Removal, true
 }
@@ -124,17 +127,19 @@ func (o *DeprecationInfo) SetRemoval(v time.Time) {
 }
 
 func (o DeprecationInfo) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["comment"] = o.Comment
-	}
-	if true {
-		toSerialize["issued"] = o.Issued
-	}
-	if true {
-		toSerialize["removal"] = o.Removal
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DeprecationInfo) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["comment"] = o.Comment
+	toSerialize["issued"] = o.Issued
+	toSerialize["removal"] = o.Removal
+	return toSerialize, nil
 }
 
 type NullableDeprecationInfo struct {

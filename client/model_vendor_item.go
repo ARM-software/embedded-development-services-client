@@ -20,6 +20,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VendorItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VendorItem{}
+
 // VendorItem A Vendor Item.
 type VendorItem struct {
 	Links VendorItemLinks `json:"_links"`
@@ -78,7 +81,7 @@ func (o *VendorItem) GetLinks() VendorItemLinks {
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetLinksOk() (*VendorItemLinks, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Links, true
 }
@@ -104,7 +107,7 @@ func (o *VendorItem) GetMetadata() CommonMetadata {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VendorItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata.Get(), o.Metadata.IsSet()
 }
@@ -127,7 +130,7 @@ func (o *VendorItem) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetDescriptionOk() (*string, bool) {
 	if o == nil || isNil(o.Description) {
-    return nil, false
+		return nil, false
 	}
 	return o.Description, true
 }
@@ -159,7 +162,7 @@ func (o *VendorItem) GetExternalId() string {
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetExternalIdOk() (*string, bool) {
 	if o == nil || isNil(o.ExternalId) {
-    return nil, false
+		return nil, false
 	}
 	return o.ExternalId, true
 }
@@ -192,7 +195,7 @@ func (o *VendorItem) GetId() string {
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Id, true
 }
@@ -215,7 +218,7 @@ func (o *VendorItem) GetLogo() string {
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetLogoOk() (*string, bool) {
 	if o == nil || isNil(o.Logo) {
-    return nil, false
+		return nil, false
 	}
 	return o.Logo, true
 }
@@ -248,7 +251,7 @@ func (o *VendorItem) GetSlug() string {
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetSlugOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Slug, true
 }
@@ -272,7 +275,7 @@ func (o *VendorItem) GetTitle() string {
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetTitleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Title, true
 }
@@ -295,7 +298,7 @@ func (o *VendorItem) GetType() string {
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetTypeOk() (*string, bool) {
 	if o == nil || isNil(o.Type) {
-    return nil, false
+		return nil, false
 	}
 	return o.Type, true
 }
@@ -327,7 +330,7 @@ func (o *VendorItem) GetWebsite() string {
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetWebsiteOk() (*string, bool) {
 	if o == nil || isNil(o.Website) {
-    return nil, false
+		return nil, false
 	}
 	return o.Website, true
 }
@@ -347,38 +350,36 @@ func (o *VendorItem) SetWebsite(v string) {
 }
 
 func (o VendorItem) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VendorItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_links"] = o.Links
-	}
-	if true {
-		toSerialize["_metadata"] = o.Metadata.Get()
-	}
+	toSerialize["_links"] = o.Links
+	toSerialize["_metadata"] = o.Metadata.Get()
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
 	if !isNil(o.ExternalId) {
 		toSerialize["external_id"] = o.ExternalId
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
+	// skip: id is readOnly
 	if !isNil(o.Logo) {
 		toSerialize["logo"] = o.Logo
 	}
-	if true {
-		toSerialize["slug"] = o.Slug
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
+	// skip: slug is readOnly
+	toSerialize["title"] = o.Title
 	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
 	if !isNil(o.Website) {
 		toSerialize["website"] = o.Website
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVendorItem struct {
