@@ -53,7 +53,7 @@ func NewHalFeedLinksWithDefaults() *HalFeedLinks {
 
 // GetFirst returns the First field value if set, zero value otherwise.
 func (o *HalFeedLinks) GetFirst() HalLinkData {
-	if o == nil || isNil(o.First) {
+	if o == nil || IsNil(o.First) {
 		var ret HalLinkData
 		return ret
 	}
@@ -63,7 +63,7 @@ func (o *HalFeedLinks) GetFirst() HalLinkData {
 // GetFirstOk returns a tuple with the First field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalFeedLinks) GetFirstOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.First) {
+	if o == nil || IsNil(o.First) {
 		return nil, false
 	}
 	return o.First, true
@@ -71,7 +71,7 @@ func (o *HalFeedLinks) GetFirstOk() (*HalLinkData, bool) {
 
 // HasFirst returns a boolean if a field has been set.
 func (o *HalFeedLinks) HasFirst() bool {
-	if o != nil && !isNil(o.First) {
+	if o != nil && !IsNil(o.First) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o *HalFeedLinks) SetFirst(v HalLinkData) {
 
 // GetFuture returns the Future field value if set, zero value otherwise.
 func (o *HalFeedLinks) GetFuture() HalLinkData {
-	if o == nil || isNil(o.Future) {
+	if o == nil || IsNil(o.Future) {
 		var ret HalLinkData
 		return ret
 	}
@@ -95,7 +95,7 @@ func (o *HalFeedLinks) GetFuture() HalLinkData {
 // GetFutureOk returns a tuple with the Future field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalFeedLinks) GetFutureOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Future) {
+	if o == nil || IsNil(o.Future) {
 		return nil, false
 	}
 	return o.Future, true
@@ -103,7 +103,7 @@ func (o *HalFeedLinks) GetFutureOk() (*HalLinkData, bool) {
 
 // HasFuture returns a boolean if a field has been set.
 func (o *HalFeedLinks) HasFuture() bool {
-	if o != nil && !isNil(o.Future) {
+	if o != nil && !IsNil(o.Future) {
 		return true
 	}
 
@@ -117,7 +117,7 @@ func (o *HalFeedLinks) SetFuture(v HalLinkData) {
 
 // GetLast returns the Last field value if set, zero value otherwise.
 func (o *HalFeedLinks) GetLast() HalLinkData {
-	if o == nil || isNil(o.Last) {
+	if o == nil || IsNil(o.Last) {
 		var ret HalLinkData
 		return ret
 	}
@@ -127,7 +127,7 @@ func (o *HalFeedLinks) GetLast() HalLinkData {
 // GetLastOk returns a tuple with the Last field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalFeedLinks) GetLastOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Last) {
+	if o == nil || IsNil(o.Last) {
 		return nil, false
 	}
 	return o.Last, true
@@ -135,7 +135,7 @@ func (o *HalFeedLinks) GetLastOk() (*HalLinkData, bool) {
 
 // HasLast returns a boolean if a field has been set.
 func (o *HalFeedLinks) HasLast() bool {
-	if o != nil && !isNil(o.Last) {
+	if o != nil && !IsNil(o.Last) {
 		return true
 	}
 
@@ -149,7 +149,7 @@ func (o *HalFeedLinks) SetLast(v HalLinkData) {
 
 // GetNext returns the Next field value if set, zero value otherwise.
 func (o *HalFeedLinks) GetNext() HalLinkData {
-	if o == nil || isNil(o.Next) {
+	if o == nil || IsNil(o.Next) {
 		var ret HalLinkData
 		return ret
 	}
@@ -159,7 +159,7 @@ func (o *HalFeedLinks) GetNext() HalLinkData {
 // GetNextOk returns a tuple with the Next field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalFeedLinks) GetNextOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Next) {
+	if o == nil || IsNil(o.Next) {
 		return nil, false
 	}
 	return o.Next, true
@@ -167,7 +167,7 @@ func (o *HalFeedLinks) GetNextOk() (*HalLinkData, bool) {
 
 // HasNext returns a boolean if a field has been set.
 func (o *HalFeedLinks) HasNext() bool {
-	if o != nil && !isNil(o.Next) {
+	if o != nil && !IsNil(o.Next) {
 		return true
 	}
 
@@ -181,7 +181,7 @@ func (o *HalFeedLinks) SetNext(v HalLinkData) {
 
 // GetPrev returns the Prev field value if set, zero value otherwise.
 func (o *HalFeedLinks) GetPrev() HalLinkData {
-	if o == nil || isNil(o.Prev) {
+	if o == nil || IsNil(o.Prev) {
 		var ret HalLinkData
 		return ret
 	}
@@ -191,7 +191,7 @@ func (o *HalFeedLinks) GetPrev() HalLinkData {
 // GetPrevOk returns a tuple with the Prev field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalFeedLinks) GetPrevOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Prev) {
+	if o == nil || IsNil(o.Prev) {
 		return nil, false
 	}
 	return o.Prev, true
@@ -199,7 +199,7 @@ func (o *HalFeedLinks) GetPrevOk() (*HalLinkData, bool) {
 
 // HasPrev returns a boolean if a field has been set.
 func (o *HalFeedLinks) HasPrev() bool {
-	if o != nil && !isNil(o.Prev) {
+	if o != nil && !IsNil(o.Prev) {
 		return true
 	}
 
@@ -245,19 +245,19 @@ func (o HalFeedLinks) MarshalJSON() ([]byte, error) {
 
 func (o HalFeedLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.First) {
+	if !IsNil(o.First) {
 		toSerialize["first"] = o.First
 	}
-	if !isNil(o.Future) {
+	if !IsNil(o.Future) {
 		toSerialize["future"] = o.Future
 	}
-	if !isNil(o.Last) {
+	if !IsNil(o.Last) {
 		toSerialize["last"] = o.Last
 	}
-	if !isNil(o.Next) {
+	if !IsNil(o.Next) {
 		toSerialize["next"] = o.Next
 	}
-	if !isNil(o.Prev) {
+	if !IsNil(o.Prev) {
 		toSerialize["prev"] = o.Prev
 	}
 	toSerialize["self"] = o.Self

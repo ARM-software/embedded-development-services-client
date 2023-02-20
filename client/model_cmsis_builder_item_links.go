@@ -49,7 +49,7 @@ func NewCmsisBuilderItemLinksWithDefaults() *CmsisBuilderItemLinks {
 
 // GetCreate returns the Create field value if set, zero value otherwise.
 func (o *CmsisBuilderItemLinks) GetCreate() HalLinkData {
-	if o == nil || isNil(o.Create) {
+	if o == nil || IsNil(o.Create) {
 		var ret HalLinkData
 		return ret
 	}
@@ -59,7 +59,7 @@ func (o *CmsisBuilderItemLinks) GetCreate() HalLinkData {
 // GetCreateOk returns a tuple with the Create field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderItemLinks) GetCreateOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Create) {
+	if o == nil || IsNil(o.Create) {
 		return nil, false
 	}
 	return o.Create, true
@@ -67,7 +67,7 @@ func (o *CmsisBuilderItemLinks) GetCreateOk() (*HalLinkData, bool) {
 
 // HasCreate returns a boolean if a field has been set.
 func (o *CmsisBuilderItemLinks) HasCreate() bool {
-	if o != nil && !isNil(o.Create) {
+	if o != nil && !IsNil(o.Create) {
 		return true
 	}
 
@@ -113,7 +113,7 @@ func (o CmsisBuilderItemLinks) MarshalJSON() ([]byte, error) {
 
 func (o CmsisBuilderItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Create) {
+	if !IsNil(o.Create) {
 		toSerialize["create"] = o.Create
 	}
 	toSerialize["self"] = o.Self

@@ -56,7 +56,7 @@ func NewBoardItemFeaturesInnerWithDefaults() *BoardItemFeaturesInner {
 
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *BoardItemFeaturesInner) GetCategory() string {
-	if o == nil || isNil(o.Category) {
+	if o == nil || IsNil(o.Category) {
 		var ret string
 		return ret
 	}
@@ -66,7 +66,7 @@ func (o *BoardItemFeaturesInner) GetCategory() string {
 // GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BoardItemFeaturesInner) GetCategoryOk() (*string, bool) {
-	if o == nil || isNil(o.Category) {
+	if o == nil || IsNil(o.Category) {
 		return nil, false
 	}
 	return o.Category, true
@@ -74,7 +74,7 @@ func (o *BoardItemFeaturesInner) GetCategoryOk() (*string, bool) {
 
 // HasCategory returns a boolean if a field has been set.
 func (o *BoardItemFeaturesInner) HasCategory() bool {
-	if o != nil && !isNil(o.Category) {
+	if o != nil && !IsNil(o.Category) {
 		return true
 	}
 
@@ -88,7 +88,7 @@ func (o *BoardItemFeaturesInner) SetCategory(v string) {
 
 // GetDefaultName returns the DefaultName field value if set, zero value otherwise.
 func (o *BoardItemFeaturesInner) GetDefaultName() string {
-	if o == nil || isNil(o.DefaultName) {
+	if o == nil || IsNil(o.DefaultName) {
 		var ret string
 		return ret
 	}
@@ -98,7 +98,7 @@ func (o *BoardItemFeaturesInner) GetDefaultName() string {
 // GetDefaultNameOk returns a tuple with the DefaultName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BoardItemFeaturesInner) GetDefaultNameOk() (*string, bool) {
-	if o == nil || isNil(o.DefaultName) {
+	if o == nil || IsNil(o.DefaultName) {
 		return nil, false
 	}
 	return o.DefaultName, true
@@ -106,7 +106,7 @@ func (o *BoardItemFeaturesInner) GetDefaultNameOk() (*string, bool) {
 
 // HasDefaultName returns a boolean if a field has been set.
 func (o *BoardItemFeaturesInner) HasDefaultName() bool {
-	if o != nil && !isNil(o.DefaultName) {
+	if o != nil && !IsNil(o.DefaultName) {
 		return true
 	}
 
@@ -120,7 +120,7 @@ func (o *BoardItemFeaturesInner) SetDefaultName(v string) {
 
 // GetDetail returns the Detail field value if set, zero value otherwise.
 func (o *BoardItemFeaturesInner) GetDetail() string {
-	if o == nil || isNil(o.Detail) {
+	if o == nil || IsNil(o.Detail) {
 		var ret string
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *BoardItemFeaturesInner) GetDetail() string {
 // GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BoardItemFeaturesInner) GetDetailOk() (*string, bool) {
-	if o == nil || isNil(o.Detail) {
+	if o == nil || IsNil(o.Detail) {
 		return nil, false
 	}
 	return o.Detail, true
@@ -138,7 +138,7 @@ func (o *BoardItemFeaturesInner) GetDetailOk() (*string, bool) {
 
 // HasDetail returns a boolean if a field has been set.
 func (o *BoardItemFeaturesInner) HasDetail() bool {
-	if o != nil && !isNil(o.Detail) {
+	if o != nil && !IsNil(o.Detail) {
 		return true
 	}
 
@@ -152,7 +152,7 @@ func (o *BoardItemFeaturesInner) SetDetail(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *BoardItemFeaturesInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -162,7 +162,7 @@ func (o *BoardItemFeaturesInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BoardItemFeaturesInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -170,7 +170,7 @@ func (o *BoardItemFeaturesInner) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *BoardItemFeaturesInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -184,7 +184,7 @@ func (o *BoardItemFeaturesInner) SetName(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *BoardItemFeaturesInner) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -194,7 +194,7 @@ func (o *BoardItemFeaturesInner) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BoardItemFeaturesInner) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -202,7 +202,7 @@ func (o *BoardItemFeaturesInner) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *BoardItemFeaturesInner) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -224,19 +224,19 @@ func (o BoardItemFeaturesInner) MarshalJSON() ([]byte, error) {
 
 func (o BoardItemFeaturesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Category) {
+	if !IsNil(o.Category) {
 		toSerialize["category"] = o.Category
 	}
-	if !isNil(o.DefaultName) {
+	if !IsNil(o.DefaultName) {
 		toSerialize["default_name"] = o.DefaultName
 	}
-	if !isNil(o.Detail) {
+	if !IsNil(o.Detail) {
 		toSerialize["detail"] = o.Detail
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Type) {
+	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
 	return toSerialize, nil

@@ -50,7 +50,7 @@ func NewWorkspaceSourceItemLinksWithDefaults() *WorkspaceSourceItemLinks {
 
 // GetCollection returns the Collection field value if set, zero value otherwise.
 func (o *WorkspaceSourceItemLinks) GetCollection() HalLinkData {
-	if o == nil || isNil(o.Collection) {
+	if o == nil || IsNil(o.Collection) {
 		var ret HalLinkData
 		return ret
 	}
@@ -60,7 +60,7 @@ func (o *WorkspaceSourceItemLinks) GetCollection() HalLinkData {
 // GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItemLinks) GetCollectionOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Collection) {
+	if o == nil || IsNil(o.Collection) {
 		return nil, false
 	}
 	return o.Collection, true
@@ -68,7 +68,7 @@ func (o *WorkspaceSourceItemLinks) GetCollectionOk() (*HalLinkData, bool) {
 
 // HasCollection returns a boolean if a field has been set.
 func (o *WorkspaceSourceItemLinks) HasCollection() bool {
-	if o != nil && !isNil(o.Collection) {
+	if o != nil && !IsNil(o.Collection) {
 		return true
 	}
 
@@ -82,7 +82,7 @@ func (o *WorkspaceSourceItemLinks) SetCollection(v HalLinkData) {
 
 // GetCreate returns the Create field value if set, zero value otherwise.
 func (o *WorkspaceSourceItemLinks) GetCreate() HalLinkData {
-	if o == nil || isNil(o.Create) {
+	if o == nil || IsNil(o.Create) {
 		var ret HalLinkData
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *WorkspaceSourceItemLinks) GetCreate() HalLinkData {
 // GetCreateOk returns a tuple with the Create field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItemLinks) GetCreateOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Create) {
+	if o == nil || IsNil(o.Create) {
 		return nil, false
 	}
 	return o.Create, true
@@ -100,7 +100,7 @@ func (o *WorkspaceSourceItemLinks) GetCreateOk() (*HalLinkData, bool) {
 
 // HasCreate returns a boolean if a field has been set.
 func (o *WorkspaceSourceItemLinks) HasCreate() bool {
-	if o != nil && !isNil(o.Create) {
+	if o != nil && !IsNil(o.Create) {
 		return true
 	}
 
@@ -146,10 +146,10 @@ func (o WorkspaceSourceItemLinks) MarshalJSON() ([]byte, error) {
 
 func (o WorkspaceSourceItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Collection) {
+	if !IsNil(o.Collection) {
 		toSerialize["collection"] = o.Collection
 	}
-	if !isNil(o.Create) {
+	if !IsNil(o.Create) {
 		toSerialize["create"] = o.Create
 	}
 	toSerialize["self"] = o.Self

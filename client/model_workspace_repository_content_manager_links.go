@@ -52,7 +52,7 @@ func NewWorkspaceRepositoryContentManagerLinksWithDefaults() *WorkspaceRepositor
 
 // GetClear returns the Clear field value if set, zero value otherwise.
 func (o *WorkspaceRepositoryContentManagerLinks) GetClear() HalLinkData {
-	if o == nil || isNil(o.Clear) {
+	if o == nil || IsNil(o.Clear) {
 		var ret HalLinkData
 		return ret
 	}
@@ -62,7 +62,7 @@ func (o *WorkspaceRepositoryContentManagerLinks) GetClear() HalLinkData {
 // GetClearOk returns a tuple with the Clear field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManagerLinks) GetClearOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Clear) {
+	if o == nil || IsNil(o.Clear) {
 		return nil, false
 	}
 	return o.Clear, true
@@ -70,7 +70,7 @@ func (o *WorkspaceRepositoryContentManagerLinks) GetClearOk() (*HalLinkData, boo
 
 // HasClear returns a boolean if a field has been set.
 func (o *WorkspaceRepositoryContentManagerLinks) HasClear() bool {
-	if o != nil && !isNil(o.Clear) {
+	if o != nil && !IsNil(o.Clear) {
 		return true
 	}
 
@@ -84,7 +84,7 @@ func (o *WorkspaceRepositoryContentManagerLinks) SetClear(v HalLinkData) {
 
 // GetEdit returns the Edit field value if set, zero value otherwise.
 func (o *WorkspaceRepositoryContentManagerLinks) GetEdit() HalLinkData {
-	if o == nil || isNil(o.Edit) {
+	if o == nil || IsNil(o.Edit) {
 		var ret HalLinkData
 		return ret
 	}
@@ -94,7 +94,7 @@ func (o *WorkspaceRepositoryContentManagerLinks) GetEdit() HalLinkData {
 // GetEditOk returns a tuple with the Edit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManagerLinks) GetEditOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Edit) {
+	if o == nil || IsNil(o.Edit) {
 		return nil, false
 	}
 	return o.Edit, true
@@ -102,7 +102,7 @@ func (o *WorkspaceRepositoryContentManagerLinks) GetEditOk() (*HalLinkData, bool
 
 // HasEdit returns a boolean if a field has been set.
 func (o *WorkspaceRepositoryContentManagerLinks) HasEdit() bool {
-	if o != nil && !isNil(o.Edit) {
+	if o != nil && !IsNil(o.Edit) {
 		return true
 	}
 
@@ -172,10 +172,10 @@ func (o WorkspaceRepositoryContentManagerLinks) MarshalJSON() ([]byte, error) {
 
 func (o WorkspaceRepositoryContentManagerLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Clear) {
+	if !IsNil(o.Clear) {
 		toSerialize["clear"] = o.Clear
 	}
-	if !isNil(o.Edit) {
+	if !IsNil(o.Edit) {
 		toSerialize["edit"] = o.Edit
 	}
 	toSerialize["related"] = o.Related

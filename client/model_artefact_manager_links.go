@@ -54,7 +54,7 @@ func NewArtefactManagerLinksWithDefaults() *ArtefactManagerLinks {
 
 // GetClear returns the Clear field value if set, zero value otherwise.
 func (o *ArtefactManagerLinks) GetClear() HalLinkData {
-	if o == nil || isNil(o.Clear) {
+	if o == nil || IsNil(o.Clear) {
 		var ret HalLinkData
 		return ret
 	}
@@ -64,7 +64,7 @@ func (o *ArtefactManagerLinks) GetClear() HalLinkData {
 // GetClearOk returns a tuple with the Clear field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerLinks) GetClearOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Clear) {
+	if o == nil || IsNil(o.Clear) {
 		return nil, false
 	}
 	return o.Clear, true
@@ -72,7 +72,7 @@ func (o *ArtefactManagerLinks) GetClearOk() (*HalLinkData, bool) {
 
 // HasClear returns a boolean if a field has been set.
 func (o *ArtefactManagerLinks) HasClear() bool {
-	if o != nil && !isNil(o.Clear) {
+	if o != nil && !IsNil(o.Clear) {
 		return true
 	}
 
@@ -86,7 +86,7 @@ func (o *ArtefactManagerLinks) SetClear(v HalLinkData) {
 
 // GetCollection returns the Collection field value if set, zero value otherwise.
 func (o *ArtefactManagerLinks) GetCollection() HalLinkData {
-	if o == nil || isNil(o.Collection) {
+	if o == nil || IsNil(o.Collection) {
 		var ret HalLinkData
 		return ret
 	}
@@ -96,7 +96,7 @@ func (o *ArtefactManagerLinks) GetCollection() HalLinkData {
 // GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerLinks) GetCollectionOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Collection) {
+	if o == nil || IsNil(o.Collection) {
 		return nil, false
 	}
 	return o.Collection, true
@@ -104,7 +104,7 @@ func (o *ArtefactManagerLinks) GetCollectionOk() (*HalLinkData, bool) {
 
 // HasCollection returns a boolean if a field has been set.
 func (o *ArtefactManagerLinks) HasCollection() bool {
-	if o != nil && !isNil(o.Collection) {
+	if o != nil && !IsNil(o.Collection) {
 		return true
 	}
 
@@ -118,7 +118,7 @@ func (o *ArtefactManagerLinks) SetCollection(v HalLinkData) {
 
 // GetDownload returns the Download field value if set, zero value otherwise.
 func (o *ArtefactManagerLinks) GetDownload() HalLinkData {
-	if o == nil || isNil(o.Download) {
+	if o == nil || IsNil(o.Download) {
 		var ret HalLinkData
 		return ret
 	}
@@ -128,7 +128,7 @@ func (o *ArtefactManagerLinks) GetDownload() HalLinkData {
 // GetDownloadOk returns a tuple with the Download field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerLinks) GetDownloadOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Download) {
+	if o == nil || IsNil(o.Download) {
 		return nil, false
 	}
 	return o.Download, true
@@ -136,7 +136,7 @@ func (o *ArtefactManagerLinks) GetDownloadOk() (*HalLinkData, bool) {
 
 // HasDownload returns a boolean if a field has been set.
 func (o *ArtefactManagerLinks) HasDownload() bool {
-	if o != nil && !isNil(o.Download) {
+	if o != nil && !IsNil(o.Download) {
 		return true
 	}
 
@@ -198,7 +198,7 @@ func (o *ArtefactManagerLinks) SetSelf(v HalLinkData) {
 
 // GetUpload returns the Upload field value if set, zero value otherwise.
 func (o *ArtefactManagerLinks) GetUpload() HalLinkData {
-	if o == nil || isNil(o.Upload) {
+	if o == nil || IsNil(o.Upload) {
 		var ret HalLinkData
 		return ret
 	}
@@ -208,7 +208,7 @@ func (o *ArtefactManagerLinks) GetUpload() HalLinkData {
 // GetUploadOk returns a tuple with the Upload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ArtefactManagerLinks) GetUploadOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Upload) {
+	if o == nil || IsNil(o.Upload) {
 		return nil, false
 	}
 	return o.Upload, true
@@ -216,7 +216,7 @@ func (o *ArtefactManagerLinks) GetUploadOk() (*HalLinkData, bool) {
 
 // HasUpload returns a boolean if a field has been set.
 func (o *ArtefactManagerLinks) HasUpload() bool {
-	if o != nil && !isNil(o.Upload) {
+	if o != nil && !IsNil(o.Upload) {
 		return true
 	}
 
@@ -238,18 +238,18 @@ func (o ArtefactManagerLinks) MarshalJSON() ([]byte, error) {
 
 func (o ArtefactManagerLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Clear) {
+	if !IsNil(o.Clear) {
 		toSerialize["clear"] = o.Clear
 	}
-	if !isNil(o.Collection) {
+	if !IsNil(o.Collection) {
 		toSerialize["collection"] = o.Collection
 	}
-	if !isNil(o.Download) {
+	if !IsNil(o.Download) {
 		toSerialize["download"] = o.Download
 	}
 	toSerialize["related"] = o.Related
 	toSerialize["self"] = o.Self
-	if !isNil(o.Upload) {
+	if !IsNil(o.Upload) {
 		toSerialize["upload"] = o.Upload
 	}
 	return toSerialize, nil

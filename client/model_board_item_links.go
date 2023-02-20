@@ -83,7 +83,7 @@ func (o *BoardItemLinks) SetCollection(v HalLinkData) {
 
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *BoardItemLinks) GetDevice() []HalLinkData {
-	if o == nil || isNil(o.Device) {
+	if o == nil || IsNil(o.Device) {
 		var ret []HalLinkData
 		return ret
 	}
@@ -93,7 +93,7 @@ func (o *BoardItemLinks) GetDevice() []HalLinkData {
 // GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BoardItemLinks) GetDeviceOk() ([]HalLinkData, bool) {
-	if o == nil || isNil(o.Device) {
+	if o == nil || IsNil(o.Device) {
 		return nil, false
 	}
 	return o.Device, true
@@ -101,7 +101,7 @@ func (o *BoardItemLinks) GetDeviceOk() ([]HalLinkData, bool) {
 
 // HasDevice returns a boolean if a field has been set.
 func (o *BoardItemLinks) HasDevice() bool {
-	if o != nil && !isNil(o.Device) {
+	if o != nil && !IsNil(o.Device) {
 		return true
 	}
 
@@ -115,7 +115,7 @@ func (o *BoardItemLinks) SetDevice(v []HalLinkData) {
 
 // GetDocumentation returns the Documentation field value if set, zero value otherwise.
 func (o *BoardItemLinks) GetDocumentation() []HalLinkData {
-	if o == nil || isNil(o.Documentation) {
+	if o == nil || IsNil(o.Documentation) {
 		var ret []HalLinkData
 		return ret
 	}
@@ -125,7 +125,7 @@ func (o *BoardItemLinks) GetDocumentation() []HalLinkData {
 // GetDocumentationOk returns a tuple with the Documentation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BoardItemLinks) GetDocumentationOk() ([]HalLinkData, bool) {
-	if o == nil || isNil(o.Documentation) {
+	if o == nil || IsNil(o.Documentation) {
 		return nil, false
 	}
 	return o.Documentation, true
@@ -133,7 +133,7 @@ func (o *BoardItemLinks) GetDocumentationOk() ([]HalLinkData, bool) {
 
 // HasDocumentation returns a boolean if a field has been set.
 func (o *BoardItemLinks) HasDocumentation() bool {
-	if o != nil && !isNil(o.Documentation) {
+	if o != nil && !IsNil(o.Documentation) {
 		return true
 	}
 
@@ -147,7 +147,7 @@ func (o *BoardItemLinks) SetDocumentation(v []HalLinkData) {
 
 // GetDownload returns the Download field value if set, zero value otherwise.
 func (o *BoardItemLinks) GetDownload() HalLinkData {
-	if o == nil || isNil(o.Download) {
+	if o == nil || IsNil(o.Download) {
 		var ret HalLinkData
 		return ret
 	}
@@ -157,7 +157,7 @@ func (o *BoardItemLinks) GetDownload() HalLinkData {
 // GetDownloadOk returns a tuple with the Download field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BoardItemLinks) GetDownloadOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Download) {
+	if o == nil || IsNil(o.Download) {
 		return nil, false
 	}
 	return o.Download, true
@@ -165,7 +165,7 @@ func (o *BoardItemLinks) GetDownloadOk() (*HalLinkData, bool) {
 
 // HasDownload returns a boolean if a field has been set.
 func (o *BoardItemLinks) HasDownload() bool {
-	if o != nil && !isNil(o.Download) {
+	if o != nil && !IsNil(o.Download) {
 		return true
 	}
 
@@ -179,7 +179,7 @@ func (o *BoardItemLinks) SetDownload(v HalLinkData) {
 
 // GetGuide returns the Guide field value if set, zero value otherwise.
 func (o *BoardItemLinks) GetGuide() HalLinkData {
-	if o == nil || isNil(o.Guide) {
+	if o == nil || IsNil(o.Guide) {
 		var ret HalLinkData
 		return ret
 	}
@@ -189,7 +189,7 @@ func (o *BoardItemLinks) GetGuide() HalLinkData {
 // GetGuideOk returns a tuple with the Guide field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BoardItemLinks) GetGuideOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Guide) {
+	if o == nil || IsNil(o.Guide) {
 		return nil, false
 	}
 	return o.Guide, true
@@ -197,7 +197,7 @@ func (o *BoardItemLinks) GetGuideOk() (*HalLinkData, bool) {
 
 // HasGuide returns a boolean if a field has been set.
 func (o *BoardItemLinks) HasGuide() bool {
-	if o != nil && !isNil(o.Guide) {
+	if o != nil && !IsNil(o.Guide) {
 		return true
 	}
 
@@ -211,7 +211,7 @@ func (o *BoardItemLinks) SetGuide(v HalLinkData) {
 
 // GetImage returns the Image field value if set, zero value otherwise.
 func (o *BoardItemLinks) GetImage() HalLinkData {
-	if o == nil || isNil(o.Image) {
+	if o == nil || IsNil(o.Image) {
 		var ret HalLinkData
 		return ret
 	}
@@ -221,7 +221,7 @@ func (o *BoardItemLinks) GetImage() HalLinkData {
 // GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BoardItemLinks) GetImageOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Image) {
+	if o == nil || IsNil(o.Image) {
 		return nil, false
 	}
 	return o.Image, true
@@ -229,7 +229,7 @@ func (o *BoardItemLinks) GetImageOk() (*HalLinkData, bool) {
 
 // HasImage returns a boolean if a field has been set.
 func (o *BoardItemLinks) HasImage() bool {
-	if o != nil && !isNil(o.Image) {
+	if o != nil && !IsNil(o.Image) {
 		return true
 	}
 
@@ -300,19 +300,19 @@ func (o BoardItemLinks) MarshalJSON() ([]byte, error) {
 func (o BoardItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["collection"] = o.Collection
-	if !isNil(o.Device) {
+	if !IsNil(o.Device) {
 		toSerialize["device"] = o.Device
 	}
-	if !isNil(o.Documentation) {
+	if !IsNil(o.Documentation) {
 		toSerialize["documentation"] = o.Documentation
 	}
-	if !isNil(o.Download) {
+	if !IsNil(o.Download) {
 		toSerialize["download"] = o.Download
 	}
-	if !isNil(o.Guide) {
+	if !IsNil(o.Guide) {
 		toSerialize["guide"] = o.Guide
 	}
-	if !isNil(o.Image) {
+	if !IsNil(o.Image) {
 		toSerialize["image"] = o.Image
 	}
 	toSerialize["self"] = o.Self

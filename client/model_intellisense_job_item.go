@@ -275,7 +275,7 @@ func (o *IntellisenseJobItem) SetFailure(v bool) {
 
 // GetJobTimeout returns the JobTimeout field value if set, zero value otherwise.
 func (o *IntellisenseJobItem) GetJobTimeout() int32 {
-	if o == nil || isNil(o.JobTimeout) {
+	if o == nil || IsNil(o.JobTimeout) {
 		var ret int32
 		return ret
 	}
@@ -285,7 +285,7 @@ func (o *IntellisenseJobItem) GetJobTimeout() int32 {
 // GetJobTimeoutOk returns a tuple with the JobTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetJobTimeoutOk() (*int32, bool) {
-	if o == nil || isNil(o.JobTimeout) {
+	if o == nil || IsNil(o.JobTimeout) {
 		return nil, false
 	}
 	return o.JobTimeout, true
@@ -293,7 +293,7 @@ func (o *IntellisenseJobItem) GetJobTimeoutOk() (*int32, bool) {
 
 // HasJobTimeout returns a boolean if a field has been set.
 func (o *IntellisenseJobItem) HasJobTimeout() bool {
-	if o != nil && !isNil(o.JobTimeout) {
+	if o != nil && !IsNil(o.JobTimeout) {
 		return true
 	}
 
@@ -379,7 +379,7 @@ func (o *IntellisenseJobItem) SetProject(v string) {
 
 // GetQueued returns the Queued field value if set, zero value otherwise.
 func (o *IntellisenseJobItem) GetQueued() bool {
-	if o == nil || isNil(o.Queued) {
+	if o == nil || IsNil(o.Queued) {
 		var ret bool
 		return ret
 	}
@@ -389,7 +389,7 @@ func (o *IntellisenseJobItem) GetQueued() bool {
 // GetQueuedOk returns a tuple with the Queued field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntellisenseJobItem) GetQueuedOk() (*bool, bool) {
-	if o == nil || isNil(o.Queued) {
+	if o == nil || IsNil(o.Queued) {
 		return nil, false
 	}
 	return o.Queued, true
@@ -397,7 +397,7 @@ func (o *IntellisenseJobItem) GetQueuedOk() (*bool, bool) {
 
 // HasQueued returns a boolean if a field has been set.
 func (o *IntellisenseJobItem) HasQueued() bool {
-	if o != nil && !isNil(o.Queued) {
+	if o != nil && !IsNil(o.Queued) {
 		return true
 	}
 
@@ -459,7 +459,7 @@ func (o *IntellisenseJobItem) SetSuccess(v bool) {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IntellisenseJobItem) GetTitle() string {
-	if o == nil || isNil(o.Title.Get()) {
+	if o == nil || IsNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -588,7 +588,7 @@ func (o IntellisenseJobItem) ToMap() (map[string]interface{}, error) {
 	// skip: done is readOnly
 	// skip: error is readOnly
 	// skip: failure is readOnly
-	if !isNil(o.JobTimeout) {
+	if !IsNil(o.JobTimeout) {
 		toSerialize["jobTimeout"] = o.JobTimeout
 	}
 	// skip: name is readOnly

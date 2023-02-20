@@ -152,7 +152,7 @@ func (o *VhtInstanceItem) SetError(v bool) {
 
 // GetInstanceTimeout returns the InstanceTimeout field value if set, zero value otherwise.
 func (o *VhtInstanceItem) GetInstanceTimeout() int32 {
-	if o == nil || isNil(o.InstanceTimeout) {
+	if o == nil || IsNil(o.InstanceTimeout) {
 		var ret int32
 		return ret
 	}
@@ -162,7 +162,7 @@ func (o *VhtInstanceItem) GetInstanceTimeout() int32 {
 // GetInstanceTimeoutOk returns a tuple with the InstanceTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceItem) GetInstanceTimeoutOk() (*int32, bool) {
-	if o == nil || isNil(o.InstanceTimeout) {
+	if o == nil || IsNil(o.InstanceTimeout) {
 		return nil, false
 	}
 	return o.InstanceTimeout, true
@@ -170,7 +170,7 @@ func (o *VhtInstanceItem) GetInstanceTimeoutOk() (*int32, bool) {
 
 // HasInstanceTimeout returns a boolean if a field has been set.
 func (o *VhtInstanceItem) HasInstanceTimeout() bool {
-	if o != nil && !isNil(o.InstanceTimeout) {
+	if o != nil && !IsNil(o.InstanceTimeout) {
 		return true
 	}
 
@@ -304,7 +304,7 @@ func (o *VhtInstanceItem) SetTerminated(v bool) {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *VhtInstanceItem) GetTitle() string {
-	if o == nil || isNil(o.Title.Get()) {
+	if o == nil || IsNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -357,7 +357,7 @@ func (o VhtInstanceItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
 	// skip: error is readOnly
-	if !isNil(o.InstanceTimeout) {
+	if !IsNil(o.InstanceTimeout) {
 		toSerialize["instanceTimeout"] = o.InstanceTimeout
 	}
 	// skip: name is readOnly

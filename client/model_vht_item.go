@@ -124,7 +124,7 @@ func (o *VhtItem) SetMetadata(v CommonMetadata) {
 
 // GetAdditionalTools returns the AdditionalTools field value if set, zero value otherwise.
 func (o *VhtItem) GetAdditionalTools() []AdditionalTool {
-	if o == nil || isNil(o.AdditionalTools) {
+	if o == nil || IsNil(o.AdditionalTools) {
 		var ret []AdditionalTool
 		return ret
 	}
@@ -134,7 +134,7 @@ func (o *VhtItem) GetAdditionalTools() []AdditionalTool {
 // GetAdditionalToolsOk returns a tuple with the AdditionalTools field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtItem) GetAdditionalToolsOk() ([]AdditionalTool, bool) {
-	if o == nil || isNil(o.AdditionalTools) {
+	if o == nil || IsNil(o.AdditionalTools) {
 		return nil, false
 	}
 	return o.AdditionalTools, true
@@ -142,7 +142,7 @@ func (o *VhtItem) GetAdditionalToolsOk() ([]AdditionalTool, bool) {
 
 // HasAdditionalTools returns a boolean if a field has been set.
 func (o *VhtItem) HasAdditionalTools() bool {
-	if o != nil && !isNil(o.AdditionalTools) {
+	if o != nil && !IsNil(o.AdditionalTools) {
 		return true
 	}
 
@@ -180,7 +180,7 @@ func (o *VhtItem) SetBoard(v string) {
 
 // GetBoardRevision returns the BoardRevision field value if set, zero value otherwise.
 func (o *VhtItem) GetBoardRevision() string {
-	if o == nil || isNil(o.BoardRevision) {
+	if o == nil || IsNil(o.BoardRevision) {
 		var ret string
 		return ret
 	}
@@ -190,7 +190,7 @@ func (o *VhtItem) GetBoardRevision() string {
 // GetBoardRevisionOk returns a tuple with the BoardRevision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtItem) GetBoardRevisionOk() (*string, bool) {
-	if o == nil || isNil(o.BoardRevision) {
+	if o == nil || IsNil(o.BoardRevision) {
 		return nil, false
 	}
 	return o.BoardRevision, true
@@ -198,7 +198,7 @@ func (o *VhtItem) GetBoardRevisionOk() (*string, bool) {
 
 // HasBoardRevision returns a boolean if a field has been set.
 func (o *VhtItem) HasBoardRevision() bool {
-	if o != nil && !isNil(o.BoardRevision) {
+	if o != nil && !IsNil(o.BoardRevision) {
 		return true
 	}
 
@@ -236,7 +236,7 @@ func (o *VhtItem) SetDeprecated(v bool) {
 
 // GetDeprecationInfo returns the DeprecationInfo field value if set, zero value otherwise.
 func (o *VhtItem) GetDeprecationInfo() DeprecationInfo {
-	if o == nil || isNil(o.DeprecationInfo) {
+	if o == nil || IsNil(o.DeprecationInfo) {
 		var ret DeprecationInfo
 		return ret
 	}
@@ -246,7 +246,7 @@ func (o *VhtItem) GetDeprecationInfo() DeprecationInfo {
 // GetDeprecationInfoOk returns a tuple with the DeprecationInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtItem) GetDeprecationInfoOk() (*DeprecationInfo, bool) {
-	if o == nil || isNil(o.DeprecationInfo) {
+	if o == nil || IsNil(o.DeprecationInfo) {
 		return nil, false
 	}
 	return o.DeprecationInfo, true
@@ -254,7 +254,7 @@ func (o *VhtItem) GetDeprecationInfoOk() (*DeprecationInfo, bool) {
 
 // HasDeprecationInfo returns a boolean if a field has been set.
 func (o *VhtItem) HasDeprecationInfo() bool {
-	if o != nil && !isNil(o.DeprecationInfo) {
+	if o != nil && !IsNil(o.DeprecationInfo) {
 		return true
 	}
 
@@ -268,7 +268,7 @@ func (o *VhtItem) SetDeprecationInfo(v DeprecationInfo) {
 
 // GetModel returns the Model field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *VhtItem) GetModel() string {
-	if o == nil || isNil(o.Model.Get()) {
+	if o == nil || IsNil(o.Model.Get()) {
 		var ret string
 		return ret
 	}
@@ -382,7 +382,7 @@ func (o *VhtItem) SetVendor(v string) {
 
 // GetVirtualInterfaces returns the VirtualInterfaces field value if set, zero value otherwise.
 func (o *VhtItem) GetVirtualInterfaces() []VirtualInterface {
-	if o == nil || isNil(o.VirtualInterfaces) {
+	if o == nil || IsNil(o.VirtualInterfaces) {
 		var ret []VirtualInterface
 		return ret
 	}
@@ -392,7 +392,7 @@ func (o *VhtItem) GetVirtualInterfaces() []VirtualInterface {
 // GetVirtualInterfacesOk returns a tuple with the VirtualInterfaces field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtItem) GetVirtualInterfacesOk() ([]VirtualInterface, bool) {
-	if o == nil || isNil(o.VirtualInterfaces) {
+	if o == nil || IsNil(o.VirtualInterfaces) {
 		return nil, false
 	}
 	return o.VirtualInterfaces, true
@@ -400,7 +400,7 @@ func (o *VhtItem) GetVirtualInterfacesOk() ([]VirtualInterface, bool) {
 
 // HasVirtualInterfaces returns a boolean if a field has been set.
 func (o *VhtItem) HasVirtualInterfaces() bool {
-	if o != nil && !isNil(o.VirtualInterfaces) {
+	if o != nil && !IsNil(o.VirtualInterfaces) {
 		return true
 	}
 
@@ -424,13 +424,13 @@ func (o VhtItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	if !isNil(o.AdditionalTools) {
+	if !IsNil(o.AdditionalTools) {
 		toSerialize["additionalTools"] = o.AdditionalTools
 	}
 	// skip: board is readOnly
 	// skip: boardRevision is readOnly
 	// skip: deprecated is readOnly
-	if !isNil(o.DeprecationInfo) {
+	if !IsNil(o.DeprecationInfo) {
 		toSerialize["deprecationInfo"] = o.DeprecationInfo
 	}
 	if o.Model.IsSet() {
@@ -439,7 +439,7 @@ func (o VhtItem) ToMap() (map[string]interface{}, error) {
 	// skip: name is readOnly
 	// skip: title is readOnly
 	// skip: vendor is readOnly
-	if !isNil(o.VirtualInterfaces) {
+	if !IsNil(o.VirtualInterfaces) {
 		toSerialize["virtualInterfaces"] = o.VirtualInterfaces
 	}
 	return toSerialize, nil

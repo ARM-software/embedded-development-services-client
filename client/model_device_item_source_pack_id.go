@@ -52,7 +52,7 @@ func NewDeviceItemSourcePackIdWithDefaults() *DeviceItemSourcePackId {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DeviceItemSourcePackId) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -62,7 +62,7 @@ func (o *DeviceItemSourcePackId) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceItemSourcePackId) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -70,7 +70,7 @@ func (o *DeviceItemSourcePackId) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *DeviceItemSourcePackId) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -84,7 +84,7 @@ func (o *DeviceItemSourcePackId) SetName(v string) {
 
 // GetVendor returns the Vendor field value if set, zero value otherwise.
 func (o *DeviceItemSourcePackId) GetVendor() string {
-	if o == nil || isNil(o.Vendor) {
+	if o == nil || IsNil(o.Vendor) {
 		var ret string
 		return ret
 	}
@@ -94,7 +94,7 @@ func (o *DeviceItemSourcePackId) GetVendor() string {
 // GetVendorOk returns a tuple with the Vendor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceItemSourcePackId) GetVendorOk() (*string, bool) {
-	if o == nil || isNil(o.Vendor) {
+	if o == nil || IsNil(o.Vendor) {
 		return nil, false
 	}
 	return o.Vendor, true
@@ -102,7 +102,7 @@ func (o *DeviceItemSourcePackId) GetVendorOk() (*string, bool) {
 
 // HasVendor returns a boolean if a field has been set.
 func (o *DeviceItemSourcePackId) HasVendor() bool {
-	if o != nil && !isNil(o.Vendor) {
+	if o != nil && !IsNil(o.Vendor) {
 		return true
 	}
 
@@ -116,7 +116,7 @@ func (o *DeviceItemSourcePackId) SetVendor(v string) {
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *DeviceItemSourcePackId) GetVersion() string {
-	if o == nil || isNil(o.Version) {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
@@ -126,7 +126,7 @@ func (o *DeviceItemSourcePackId) GetVersion() string {
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceItemSourcePackId) GetVersionOk() (*string, bool) {
-	if o == nil || isNil(o.Version) {
+	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
 	return o.Version, true
@@ -134,7 +134,7 @@ func (o *DeviceItemSourcePackId) GetVersionOk() (*string, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *DeviceItemSourcePackId) HasVersion() bool {
-	if o != nil && !isNil(o.Version) {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
@@ -156,13 +156,13 @@ func (o DeviceItemSourcePackId) MarshalJSON() ([]byte, error) {
 
 func (o DeviceItemSourcePackId) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Vendor) {
+	if !IsNil(o.Vendor) {
 		toSerialize["vendor"] = o.Vendor
 	}
-	if !isNil(o.Version) {
+	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
 	return toSerialize, nil

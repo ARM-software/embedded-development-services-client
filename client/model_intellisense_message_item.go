@@ -123,7 +123,7 @@ func (o *IntellisenseMessageItem) GetMessages() []MessageObject {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IntellisenseMessageItem) GetMessagesOk() ([]MessageObject, bool) {
-	if o == nil || isNil(o.Messages) {
+	if o == nil || IsNil(o.Messages) {
 		return nil, false
 	}
 	return o.Messages, true
@@ -160,7 +160,7 @@ func (o *IntellisenseMessageItem) SetName(v string) {
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *IntellisenseMessageItem) GetTitle() string {
-	if o == nil || isNil(o.Title) {
+	if o == nil || IsNil(o.Title) {
 		var ret string
 		return ret
 	}
@@ -170,7 +170,7 @@ func (o *IntellisenseMessageItem) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntellisenseMessageItem) GetTitleOk() (*string, bool) {
-	if o == nil || isNil(o.Title) {
+	if o == nil || IsNil(o.Title) {
 		return nil, false
 	}
 	return o.Title, true
@@ -178,7 +178,7 @@ func (o *IntellisenseMessageItem) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *IntellisenseMessageItem) HasTitle() bool {
-	if o != nil && !isNil(o.Title) {
+	if o != nil && !IsNil(o.Title) {
 		return true
 	}
 
@@ -206,7 +206,7 @@ func (o IntellisenseMessageItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["messages"] = o.Messages
 	}
 	// skip: name is readOnly
-	if !isNil(o.Title) {
+	if !IsNil(o.Title) {
 		toSerialize["title"] = o.Title
 	}
 	return toSerialize, nil

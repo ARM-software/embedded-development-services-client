@@ -56,7 +56,7 @@ func NewNotificationMessageObjectWithDefaults() *NotificationMessageObject {
 
 // GetCtime returns the Ctime field value if set, zero value otherwise.
 func (o *NotificationMessageObject) GetCtime() time.Time {
-	if o == nil || isNil(o.Ctime) {
+	if o == nil || IsNil(o.Ctime) {
 		var ret time.Time
 		return ret
 	}
@@ -66,7 +66,7 @@ func (o *NotificationMessageObject) GetCtime() time.Time {
 // GetCtimeOk returns a tuple with the Ctime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationMessageObject) GetCtimeOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Ctime) {
+	if o == nil || IsNil(o.Ctime) {
 		return nil, false
 	}
 	return o.Ctime, true
@@ -74,7 +74,7 @@ func (o *NotificationMessageObject) GetCtimeOk() (*time.Time, bool) {
 
 // HasCtime returns a boolean if a field has been set.
 func (o *NotificationMessageObject) HasCtime() bool {
-	if o != nil && !isNil(o.Ctime) {
+	if o != nil && !IsNil(o.Ctime) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *NotificationMessageObject) SetMessage(v string) {
 
 // GetSeverity returns the Severity field value if set, zero value otherwise.
 func (o *NotificationMessageObject) GetSeverity() string {
-	if o == nil || isNil(o.Severity) {
+	if o == nil || IsNil(o.Severity) {
 		var ret string
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *NotificationMessageObject) GetSeverity() string {
 // GetSeverityOk returns a tuple with the Severity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationMessageObject) GetSeverityOk() (*string, bool) {
-	if o == nil || isNil(o.Severity) {
+	if o == nil || IsNil(o.Severity) {
 		return nil, false
 	}
 	return o.Severity, true
@@ -130,7 +130,7 @@ func (o *NotificationMessageObject) GetSeverityOk() (*string, bool) {
 
 // HasSeverity returns a boolean if a field has been set.
 func (o *NotificationMessageObject) HasSeverity() bool {
-	if o != nil && !isNil(o.Severity) {
+	if o != nil && !IsNil(o.Severity) {
 		return true
 	}
 
@@ -144,7 +144,7 @@ func (o *NotificationMessageObject) SetSeverity(v string) {
 
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *NotificationMessageObject) GetSource() string {
-	if o == nil || isNil(o.Source) {
+	if o == nil || IsNil(o.Source) {
 		var ret string
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *NotificationMessageObject) GetSource() string {
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationMessageObject) GetSourceOk() (*string, bool) {
-	if o == nil || isNil(o.Source) {
+	if o == nil || IsNil(o.Source) {
 		return nil, false
 	}
 	return o.Source, true
@@ -162,7 +162,7 @@ func (o *NotificationMessageObject) GetSourceOk() (*string, bool) {
 
 // HasSource returns a boolean if a field has been set.
 func (o *NotificationMessageObject) HasSource() bool {
-	if o != nil && !isNil(o.Source) {
+	if o != nil && !IsNil(o.Source) {
 		return true
 	}
 

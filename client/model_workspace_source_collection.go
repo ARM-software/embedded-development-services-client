@@ -57,7 +57,7 @@ func NewWorkspaceSourceCollectionWithDefaults() *WorkspaceSourceCollection {
 
 // GetEmbedded returns the Embedded field value if set, zero value otherwise.
 func (o *WorkspaceSourceCollection) GetEmbedded() EmbeddedWorkspaceSourceItems {
-	if o == nil || isNil(o.Embedded) {
+	if o == nil || IsNil(o.Embedded) {
 		var ret EmbeddedWorkspaceSourceItems
 		return ret
 	}
@@ -67,7 +67,7 @@ func (o *WorkspaceSourceCollection) GetEmbedded() EmbeddedWorkspaceSourceItems {
 // GetEmbeddedOk returns a tuple with the Embedded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceCollection) GetEmbeddedOk() (*EmbeddedWorkspaceSourceItems, bool) {
-	if o == nil || isNil(o.Embedded) {
+	if o == nil || IsNil(o.Embedded) {
 		return nil, false
 	}
 	return o.Embedded, true
@@ -75,7 +75,7 @@ func (o *WorkspaceSourceCollection) GetEmbeddedOk() (*EmbeddedWorkspaceSourceIte
 
 // HasEmbedded returns a boolean if a field has been set.
 func (o *WorkspaceSourceCollection) HasEmbedded() bool {
-	if o != nil && !isNil(o.Embedded) {
+	if o != nil && !IsNil(o.Embedded) {
 		return true
 	}
 
@@ -197,7 +197,7 @@ func (o WorkspaceSourceCollection) MarshalJSON() ([]byte, error) {
 
 func (o WorkspaceSourceCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Embedded) {
+	if !IsNil(o.Embedded) {
 		toSerialize["_embedded"] = o.Embedded
 	}
 	toSerialize["_links"] = o.Links.Get()

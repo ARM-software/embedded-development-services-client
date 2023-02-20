@@ -39,7 +39,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -49,7 +49,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetInstanceApi.ClearVhtInstanceArtefact(context.Background(), artefactName, instanceName).AcceptVersion(acceptVersion).Execute()
+    r, err := apiClient.VirtualHardwareTargetInstanceApi.ClearVhtInstanceArtefact(context.Background(), artefactName, instanceName).AcceptVersion(acceptVersion).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceApi.ClearVhtInstanceArtefact``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -112,7 +112,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -121,7 +121,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetInstanceApi.DeleteVhtInstance(context.Background(), instanceName).AcceptVersion(acceptVersion).Execute()
+    r, err := apiClient.VirtualHardwareTargetInstanceApi.DeleteVhtInstance(context.Background(), instanceName).AcceptVersion(acceptVersion).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceApi.DeleteVhtInstance``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -182,7 +182,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -259,7 +259,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -333,7 +333,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -410,7 +410,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -488,7 +488,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -568,7 +568,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -642,7 +642,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -716,7 +716,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -788,7 +788,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {

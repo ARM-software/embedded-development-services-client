@@ -63,7 +63,7 @@ func NewWorkspaceItemWithDefaults() *WorkspaceItem {
 
 // GetTTL returns the TTL field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WorkspaceItem) GetTTL() int64 {
-	if o == nil || isNil(o.TTL.Get()) {
+	if o == nil || IsNil(o.TTL.Get()) {
 		var ret int64
 		return ret
 	}
@@ -157,7 +157,7 @@ func (o *WorkspaceItem) SetMetadata(v CommonMetadata) {
 
 // GetEphemeral returns the Ephemeral field value if set, zero value otherwise.
 func (o *WorkspaceItem) GetEphemeral() bool {
-	if o == nil || isNil(o.Ephemeral) {
+	if o == nil || IsNil(o.Ephemeral) {
 		var ret bool
 		return ret
 	}
@@ -167,7 +167,7 @@ func (o *WorkspaceItem) GetEphemeral() bool {
 // GetEphemeralOk returns a tuple with the Ephemeral field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceItem) GetEphemeralOk() (*bool, bool) {
-	if o == nil || isNil(o.Ephemeral) {
+	if o == nil || IsNil(o.Ephemeral) {
 		return nil, false
 	}
 	return o.Ephemeral, true
@@ -175,7 +175,7 @@ func (o *WorkspaceItem) GetEphemeralOk() (*bool, bool) {
 
 // HasEphemeral returns a boolean if a field has been set.
 func (o *WorkspaceItem) HasEphemeral() bool {
-	if o != nil && !isNil(o.Ephemeral) {
+	if o != nil && !IsNil(o.Ephemeral) {
 		return true
 	}
 
@@ -213,7 +213,7 @@ func (o *WorkspaceItem) SetName(v string) {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WorkspaceItem) GetTitle() string {
-	if o == nil || isNil(o.Title.Get()) {
+	if o == nil || IsNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}

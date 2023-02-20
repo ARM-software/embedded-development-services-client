@@ -47,7 +47,7 @@ func NewEmbeddedArtefactManagerItemsWithDefaults() *EmbeddedArtefactManagerItems
 
 // GetItem returns the Item field value if set, zero value otherwise.
 func (o *EmbeddedArtefactManagerItems) GetItem() []ArtefactManagerItem {
-	if o == nil || isNil(o.Item) {
+	if o == nil || IsNil(o.Item) {
 		var ret []ArtefactManagerItem
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *EmbeddedArtefactManagerItems) GetItem() []ArtefactManagerItem {
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmbeddedArtefactManagerItems) GetItemOk() ([]ArtefactManagerItem, bool) {
-	if o == nil || isNil(o.Item) {
+	if o == nil || IsNil(o.Item) {
 		return nil, false
 	}
 	return o.Item, true
@@ -65,7 +65,7 @@ func (o *EmbeddedArtefactManagerItems) GetItemOk() ([]ArtefactManagerItem, bool)
 
 // HasItem returns a boolean if a field has been set.
 func (o *EmbeddedArtefactManagerItems) HasItem() bool {
-	if o != nil && !isNil(o.Item) {
+	if o != nil && !IsNil(o.Item) {
 		return true
 	}
 
@@ -87,7 +87,7 @@ func (o EmbeddedArtefactManagerItems) MarshalJSON() ([]byte, error) {
 
 func (o EmbeddedArtefactManagerItems) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Item) {
+	if !IsNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
 	return toSerialize, nil

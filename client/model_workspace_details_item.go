@@ -160,7 +160,7 @@ func (o *WorkspaceDetailsItem) SetPath(v string) {
 
 // GetSizeInByte returns the SizeInByte field value if set, zero value otherwise.
 func (o *WorkspaceDetailsItem) GetSizeInByte() int64 {
-	if o == nil || isNil(o.SizeInByte) {
+	if o == nil || IsNil(o.SizeInByte) {
 		var ret int64
 		return ret
 	}
@@ -170,7 +170,7 @@ func (o *WorkspaceDetailsItem) GetSizeInByte() int64 {
 // GetSizeInByteOk returns a tuple with the SizeInByte field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceDetailsItem) GetSizeInByteOk() (*int64, bool) {
-	if o == nil || isNil(o.SizeInByte) {
+	if o == nil || IsNil(o.SizeInByte) {
 		return nil, false
 	}
 	return o.SizeInByte, true
@@ -178,7 +178,7 @@ func (o *WorkspaceDetailsItem) GetSizeInByteOk() (*int64, bool) {
 
 // HasSizeInByte returns a boolean if a field has been set.
 func (o *WorkspaceDetailsItem) HasSizeInByte() bool {
-	if o != nil && !isNil(o.SizeInByte) {
+	if o != nil && !IsNil(o.SizeInByte) {
 		return true
 	}
 
@@ -192,7 +192,7 @@ func (o *WorkspaceDetailsItem) SetSizeInByte(v int64) {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WorkspaceDetailsItem) GetTitle() string {
-	if o == nil || isNil(o.Title.Get()) {
+	if o == nil || IsNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}

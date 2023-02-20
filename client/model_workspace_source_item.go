@@ -138,7 +138,7 @@ func (o *WorkspaceSourceItem) SetDeprecated(v bool) {
 
 // GetDeprecationInfo returns the DeprecationInfo field value if set, zero value otherwise.
 func (o *WorkspaceSourceItem) GetDeprecationInfo() DeprecationInfo {
-	if o == nil || isNil(o.DeprecationInfo) {
+	if o == nil || IsNil(o.DeprecationInfo) {
 		var ret DeprecationInfo
 		return ret
 	}
@@ -148,7 +148,7 @@ func (o *WorkspaceSourceItem) GetDeprecationInfo() DeprecationInfo {
 // GetDeprecationInfoOk returns a tuple with the DeprecationInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItem) GetDeprecationInfoOk() (*DeprecationInfo, bool) {
-	if o == nil || isNil(o.DeprecationInfo) {
+	if o == nil || IsNil(o.DeprecationInfo) {
 		return nil, false
 	}
 	return o.DeprecationInfo, true
@@ -156,7 +156,7 @@ func (o *WorkspaceSourceItem) GetDeprecationInfoOk() (*DeprecationInfo, bool) {
 
 // HasDeprecationInfo returns a boolean if a field has been set.
 func (o *WorkspaceSourceItem) HasDeprecationInfo() bool {
-	if o != nil && !isNil(o.DeprecationInfo) {
+	if o != nil && !IsNil(o.DeprecationInfo) {
 		return true
 	}
 
@@ -170,7 +170,7 @@ func (o *WorkspaceSourceItem) SetDeprecationInfo(v DeprecationInfo) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *WorkspaceSourceItem) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -180,7 +180,7 @@ func (o *WorkspaceSourceItem) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSourceItem) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -188,7 +188,7 @@ func (o *WorkspaceSourceItem) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *WorkspaceSourceItem) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -261,7 +261,7 @@ func (o WorkspaceSourceItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
 	// skip: deprecated is readOnly
-	if !isNil(o.DeprecationInfo) {
+	if !IsNil(o.DeprecationInfo) {
 		toSerialize["deprecationInfo"] = o.DeprecationInfo
 	}
 	// skip: description is readOnly

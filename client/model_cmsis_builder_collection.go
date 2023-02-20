@@ -57,7 +57,7 @@ func NewCmsisBuilderCollectionWithDefaults() *CmsisBuilderCollection {
 
 // GetEmbedded returns the Embedded field value if set, zero value otherwise.
 func (o *CmsisBuilderCollection) GetEmbedded() EmbeddedCmsisBuilderItems {
-	if o == nil || isNil(o.Embedded) {
+	if o == nil || IsNil(o.Embedded) {
 		var ret EmbeddedCmsisBuilderItems
 		return ret
 	}
@@ -67,7 +67,7 @@ func (o *CmsisBuilderCollection) GetEmbedded() EmbeddedCmsisBuilderItems {
 // GetEmbeddedOk returns a tuple with the Embedded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderCollection) GetEmbeddedOk() (*EmbeddedCmsisBuilderItems, bool) {
-	if o == nil || isNil(o.Embedded) {
+	if o == nil || IsNil(o.Embedded) {
 		return nil, false
 	}
 	return o.Embedded, true
@@ -75,7 +75,7 @@ func (o *CmsisBuilderCollection) GetEmbeddedOk() (*EmbeddedCmsisBuilderItems, bo
 
 // HasEmbedded returns a boolean if a field has been set.
 func (o *CmsisBuilderCollection) HasEmbedded() bool {
-	if o != nil && !isNil(o.Embedded) {
+	if o != nil && !IsNil(o.Embedded) {
 		return true
 	}
 
@@ -197,7 +197,7 @@ func (o CmsisBuilderCollection) MarshalJSON() ([]byte, error) {
 
 func (o CmsisBuilderCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Embedded) {
+	if !IsNil(o.Embedded) {
 		toSerialize["_embedded"] = o.Embedded
 	}
 	toSerialize["_links"] = o.Links.Get()

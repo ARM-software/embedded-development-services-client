@@ -115,7 +115,7 @@ func (o *PagingMetadata) SetCtime(v time.Time) {
 
 // GetEtime returns the Etime field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PagingMetadata) GetEtime() time.Time {
-	if o == nil || isNil(o.Etime.Get()) {
+	if o == nil || IsNil(o.Etime.Get()) {
 		var ret time.Time
 		return ret
 	}

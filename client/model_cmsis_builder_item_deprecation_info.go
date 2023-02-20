@@ -50,7 +50,7 @@ func NewCmsisBuilderItemDeprecationInfoWithDefaults() *CmsisBuilderItemDeprecati
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *CmsisBuilderItemDeprecationInfo) GetComment() string {
-	if o == nil || isNil(o.Comment) {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -60,7 +60,7 @@ func (o *CmsisBuilderItemDeprecationInfo) GetComment() string {
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderItemDeprecationInfo) GetCommentOk() (*string, bool) {
-	if o == nil || isNil(o.Comment) {
+	if o == nil || IsNil(o.Comment) {
 		return nil, false
 	}
 	return o.Comment, true
@@ -68,7 +68,7 @@ func (o *CmsisBuilderItemDeprecationInfo) GetCommentOk() (*string, bool) {
 
 // HasComment returns a boolean if a field has been set.
 func (o *CmsisBuilderItemDeprecationInfo) HasComment() bool {
-	if o != nil && !isNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -82,7 +82,7 @@ func (o *CmsisBuilderItemDeprecationInfo) SetComment(v string) {
 
 // GetIssued returns the Issued field value if set, zero value otherwise.
 func (o *CmsisBuilderItemDeprecationInfo) GetIssued() time.Time {
-	if o == nil || isNil(o.Issued) {
+	if o == nil || IsNil(o.Issued) {
 		var ret time.Time
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *CmsisBuilderItemDeprecationInfo) GetIssued() time.Time {
 // GetIssuedOk returns a tuple with the Issued field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderItemDeprecationInfo) GetIssuedOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Issued) {
+	if o == nil || IsNil(o.Issued) {
 		return nil, false
 	}
 	return o.Issued, true
@@ -100,7 +100,7 @@ func (o *CmsisBuilderItemDeprecationInfo) GetIssuedOk() (*time.Time, bool) {
 
 // HasIssued returns a boolean if a field has been set.
 func (o *CmsisBuilderItemDeprecationInfo) HasIssued() bool {
-	if o != nil && !isNil(o.Issued) {
+	if o != nil && !IsNil(o.Issued) {
 		return true
 	}
 
@@ -114,7 +114,7 @@ func (o *CmsisBuilderItemDeprecationInfo) SetIssued(v time.Time) {
 
 // GetRemoval returns the Removal field value if set, zero value otherwise.
 func (o *CmsisBuilderItemDeprecationInfo) GetRemoval() time.Time {
-	if o == nil || isNil(o.Removal) {
+	if o == nil || IsNil(o.Removal) {
 		var ret time.Time
 		return ret
 	}
@@ -124,7 +124,7 @@ func (o *CmsisBuilderItemDeprecationInfo) GetRemoval() time.Time {
 // GetRemovalOk returns a tuple with the Removal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CmsisBuilderItemDeprecationInfo) GetRemovalOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Removal) {
+	if o == nil || IsNil(o.Removal) {
 		return nil, false
 	}
 	return o.Removal, true
@@ -132,7 +132,7 @@ func (o *CmsisBuilderItemDeprecationInfo) GetRemovalOk() (*time.Time, bool) {
 
 // HasRemoval returns a boolean if a field has been set.
 func (o *CmsisBuilderItemDeprecationInfo) HasRemoval() bool {
-	if o != nil && !isNil(o.Removal) {
+	if o != nil && !IsNil(o.Removal) {
 		return true
 	}
 

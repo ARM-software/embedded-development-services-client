@@ -78,7 +78,7 @@ func (o *FieldObject) SetFieldName(v string) {
 
 // GetFieldPath returns the FieldPath field value if set, zero value otherwise.
 func (o *FieldObject) GetFieldPath() string {
-	if o == nil || isNil(o.FieldPath) {
+	if o == nil || IsNil(o.FieldPath) {
 		var ret string
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *FieldObject) GetFieldPath() string {
 // GetFieldPathOk returns a tuple with the FieldPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FieldObject) GetFieldPathOk() (*string, bool) {
-	if o == nil || isNil(o.FieldPath) {
+	if o == nil || IsNil(o.FieldPath) {
 		return nil, false
 	}
 	return o.FieldPath, true
@@ -96,7 +96,7 @@ func (o *FieldObject) GetFieldPathOk() (*string, bool) {
 
 // HasFieldPath returns a boolean if a field has been set.
 func (o *FieldObject) HasFieldPath() bool {
-	if o != nil && !isNil(o.FieldPath) {
+	if o != nil && !IsNil(o.FieldPath) {
 		return true
 	}
 

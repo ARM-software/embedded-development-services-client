@@ -54,7 +54,7 @@ func NewVhtRunJobItemLinksWithDefaults() *VhtRunJobItemLinks {
 
 // GetCancel returns the Cancel field value if set, zero value otherwise.
 func (o *VhtRunJobItemLinks) GetCancel() HalLinkData {
-	if o == nil || isNil(o.Cancel) {
+	if o == nil || IsNil(o.Cancel) {
 		var ret HalLinkData
 		return ret
 	}
@@ -64,7 +64,7 @@ func (o *VhtRunJobItemLinks) GetCancel() HalLinkData {
 // GetCancelOk returns a tuple with the Cancel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItemLinks) GetCancelOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Cancel) {
+	if o == nil || IsNil(o.Cancel) {
 		return nil, false
 	}
 	return o.Cancel, true
@@ -72,7 +72,7 @@ func (o *VhtRunJobItemLinks) GetCancelOk() (*HalLinkData, bool) {
 
 // HasCancel returns a boolean if a field has been set.
 func (o *VhtRunJobItemLinks) HasCancel() bool {
-	if o != nil && !isNil(o.Cancel) {
+	if o != nil && !IsNil(o.Cancel) {
 		return true
 	}
 
@@ -86,7 +86,7 @@ func (o *VhtRunJobItemLinks) SetCancel(v HalLinkData) {
 
 // GetCollection returns the Collection field value if set, zero value otherwise.
 func (o *VhtRunJobItemLinks) GetCollection() HalLinkData {
-	if o == nil || isNil(o.Collection) {
+	if o == nil || IsNil(o.Collection) {
 		var ret HalLinkData
 		return ret
 	}
@@ -96,7 +96,7 @@ func (o *VhtRunJobItemLinks) GetCollection() HalLinkData {
 // GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItemLinks) GetCollectionOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Collection) {
+	if o == nil || IsNil(o.Collection) {
 		return nil, false
 	}
 	return o.Collection, true
@@ -104,7 +104,7 @@ func (o *VhtRunJobItemLinks) GetCollectionOk() (*HalLinkData, bool) {
 
 // HasCollection returns a boolean if a field has been set.
 func (o *VhtRunJobItemLinks) HasCollection() bool {
-	if o != nil && !isNil(o.Collection) {
+	if o != nil && !IsNil(o.Collection) {
 		return true
 	}
 
@@ -118,7 +118,7 @@ func (o *VhtRunJobItemLinks) SetCollection(v HalLinkData) {
 
 // GetDelete returns the Delete field value if set, zero value otherwise.
 func (o *VhtRunJobItemLinks) GetDelete() HalLinkData {
-	if o == nil || isNil(o.Delete) {
+	if o == nil || IsNil(o.Delete) {
 		var ret HalLinkData
 		return ret
 	}
@@ -128,7 +128,7 @@ func (o *VhtRunJobItemLinks) GetDelete() HalLinkData {
 // GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItemLinks) GetDeleteOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Delete) {
+	if o == nil || IsNil(o.Delete) {
 		return nil, false
 	}
 	return o.Delete, true
@@ -136,7 +136,7 @@ func (o *VhtRunJobItemLinks) GetDeleteOk() (*HalLinkData, bool) {
 
 // HasDelete returns a boolean if a field has been set.
 func (o *VhtRunJobItemLinks) HasDelete() bool {
-	if o != nil && !isNil(o.Delete) {
+	if o != nil && !IsNil(o.Delete) {
 		return true
 	}
 
@@ -150,7 +150,7 @@ func (o *VhtRunJobItemLinks) SetDelete(v HalLinkData) {
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *VhtRunJobItemLinks) GetDetails() HalLinkData {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		var ret HalLinkData
 		return ret
 	}
@@ -160,7 +160,7 @@ func (o *VhtRunJobItemLinks) GetDetails() HalLinkData {
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobItemLinks) GetDetailsOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		return nil, false
 	}
 	return o.Details, true
@@ -168,7 +168,7 @@ func (o *VhtRunJobItemLinks) GetDetailsOk() (*HalLinkData, bool) {
 
 // HasDetails returns a boolean if a field has been set.
 func (o *VhtRunJobItemLinks) HasDetails() bool {
-	if o != nil && !isNil(o.Details) {
+	if o != nil && !IsNil(o.Details) {
 		return true
 	}
 
@@ -238,16 +238,16 @@ func (o VhtRunJobItemLinks) MarshalJSON() ([]byte, error) {
 
 func (o VhtRunJobItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Cancel) {
+	if !IsNil(o.Cancel) {
 		toSerialize["cancel"] = o.Cancel
 	}
-	if !isNil(o.Collection) {
+	if !IsNil(o.Collection) {
 		toSerialize["collection"] = o.Collection
 	}
-	if !isNil(o.Delete) {
+	if !IsNil(o.Delete) {
 		toSerialize["delete"] = o.Delete
 	}
-	if !isNil(o.Details) {
+	if !IsNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
 	toSerialize["related"] = o.Related

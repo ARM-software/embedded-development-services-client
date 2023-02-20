@@ -57,7 +57,7 @@ func NewVhtInstanceCollectionWithDefaults() *VhtInstanceCollection {
 
 // GetEmbedded returns the Embedded field value if set, zero value otherwise.
 func (o *VhtInstanceCollection) GetEmbedded() EmbeddedVhtInstanceItems {
-	if o == nil || isNil(o.Embedded) {
+	if o == nil || IsNil(o.Embedded) {
 		var ret EmbeddedVhtInstanceItems
 		return ret
 	}
@@ -67,7 +67,7 @@ func (o *VhtInstanceCollection) GetEmbedded() EmbeddedVhtInstanceItems {
 // GetEmbeddedOk returns a tuple with the Embedded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtInstanceCollection) GetEmbeddedOk() (*EmbeddedVhtInstanceItems, bool) {
-	if o == nil || isNil(o.Embedded) {
+	if o == nil || IsNil(o.Embedded) {
 		return nil, false
 	}
 	return o.Embedded, true
@@ -75,7 +75,7 @@ func (o *VhtInstanceCollection) GetEmbeddedOk() (*EmbeddedVhtInstanceItems, bool
 
 // HasEmbedded returns a boolean if a field has been set.
 func (o *VhtInstanceCollection) HasEmbedded() bool {
-	if o != nil && !isNil(o.Embedded) {
+	if o != nil && !IsNil(o.Embedded) {
 		return true
 	}
 
@@ -197,7 +197,7 @@ func (o VhtInstanceCollection) MarshalJSON() ([]byte, error) {
 
 func (o VhtInstanceCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Embedded) {
+	if !IsNil(o.Embedded) {
 		toSerialize["_embedded"] = o.Embedded
 	}
 	toSerialize["_links"] = o.Links.Get()

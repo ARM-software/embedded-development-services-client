@@ -195,7 +195,7 @@ func (o *CmsisIntellisenseItem) SetDeprecated(v bool) {
 
 // GetDeprecationInfo returns the DeprecationInfo field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CmsisIntellisenseItem) GetDeprecationInfo() CmsisIntellisenseItemDeprecationInfo {
-	if o == nil || isNil(o.DeprecationInfo.Get()) {
+	if o == nil || IsNil(o.DeprecationInfo.Get()) {
 		var ret CmsisIntellisenseItemDeprecationInfo
 		return ret
 	}

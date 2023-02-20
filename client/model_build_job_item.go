@@ -199,7 +199,7 @@ func (o *BuildJobItem) SetBuildStepsTotal(v int32) {
 
 // GetBuildTimeout returns the BuildTimeout field value if set, zero value otherwise.
 func (o *BuildJobItem) GetBuildTimeout() int32 {
-	if o == nil || isNil(o.BuildTimeout) {
+	if o == nil || IsNil(o.BuildTimeout) {
 		var ret int32
 		return ret
 	}
@@ -209,7 +209,7 @@ func (o *BuildJobItem) GetBuildTimeout() int32 {
 // GetBuildTimeoutOk returns a tuple with the BuildTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetBuildTimeoutOk() (*int32, bool) {
-	if o == nil || isNil(o.BuildTimeout) {
+	if o == nil || IsNil(o.BuildTimeout) {
 		return nil, false
 	}
 	return o.BuildTimeout, true
@@ -217,7 +217,7 @@ func (o *BuildJobItem) GetBuildTimeoutOk() (*int32, bool) {
 
 // HasBuildTimeout returns a boolean if a field has been set.
 func (o *BuildJobItem) HasBuildTimeout() bool {
-	if o != nil && !isNil(o.BuildTimeout) {
+	if o != nil && !IsNil(o.BuildTimeout) {
 		return true
 	}
 
@@ -231,7 +231,7 @@ func (o *BuildJobItem) SetBuildTimeout(v int32) {
 
 // GetCleanBuild returns the CleanBuild field value if set, zero value otherwise.
 func (o *BuildJobItem) GetCleanBuild() bool {
-	if o == nil || isNil(o.CleanBuild) {
+	if o == nil || IsNil(o.CleanBuild) {
 		var ret bool
 		return ret
 	}
@@ -241,7 +241,7 @@ func (o *BuildJobItem) GetCleanBuild() bool {
 // GetCleanBuildOk returns a tuple with the CleanBuild field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetCleanBuildOk() (*bool, bool) {
-	if o == nil || isNil(o.CleanBuild) {
+	if o == nil || IsNil(o.CleanBuild) {
 		return nil, false
 	}
 	return o.CleanBuild, true
@@ -249,7 +249,7 @@ func (o *BuildJobItem) GetCleanBuildOk() (*bool, bool) {
 
 // HasCleanBuild returns a boolean if a field has been set.
 func (o *BuildJobItem) HasCleanBuild() bool {
-	if o != nil && !isNil(o.CleanBuild) {
+	if o != nil && !IsNil(o.CleanBuild) {
 		return true
 	}
 
@@ -383,7 +383,7 @@ func (o *BuildJobItem) SetProject(v string) {
 
 // GetQueued returns the Queued field value if set, zero value otherwise.
 func (o *BuildJobItem) GetQueued() bool {
-	if o == nil || isNil(o.Queued) {
+	if o == nil || IsNil(o.Queued) {
 		var ret bool
 		return ret
 	}
@@ -393,7 +393,7 @@ func (o *BuildJobItem) GetQueued() bool {
 // GetQueuedOk returns a tuple with the Queued field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetQueuedOk() (*bool, bool) {
-	if o == nil || isNil(o.Queued) {
+	if o == nil || IsNil(o.Queued) {
 		return nil, false
 	}
 	return o.Queued, true
@@ -401,7 +401,7 @@ func (o *BuildJobItem) GetQueuedOk() (*bool, bool) {
 
 // HasQueued returns a boolean if a field has been set.
 func (o *BuildJobItem) HasQueued() bool {
-	if o != nil && !isNil(o.Queued) {
+	if o != nil && !IsNil(o.Queued) {
 		return true
 	}
 
@@ -463,7 +463,7 @@ func (o *BuildJobItem) SetSuccess(v bool) {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BuildJobItem) GetTitle() string {
-	if o == nil || isNil(o.Title.Get()) {
+	if o == nil || IsNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -505,7 +505,7 @@ func (o *BuildJobItem) UnsetTitle() {
 
 // GetWorkspace returns the Workspace field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BuildJobItem) GetWorkspace() string {
-	if o == nil || isNil(o.Workspace.Get()) {
+	if o == nil || IsNil(o.Workspace.Get()) {
 		var ret string
 		return ret
 	}
@@ -559,10 +559,10 @@ func (o BuildJobItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["buildStepsCompleted"] = o.BuildStepsCompleted.Get()
 	toSerialize["buildStepsTotal"] = o.BuildStepsTotal.Get()
-	if !isNil(o.BuildTimeout) {
+	if !IsNil(o.BuildTimeout) {
 		toSerialize["buildTimeout"] = o.BuildTimeout
 	}
-	if !isNil(o.CleanBuild) {
+	if !IsNil(o.CleanBuild) {
 		toSerialize["cleanBuild"] = o.CleanBuild
 	}
 	// skip: done is readOnly

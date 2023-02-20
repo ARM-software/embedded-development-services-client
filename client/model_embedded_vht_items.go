@@ -47,7 +47,7 @@ func NewEmbeddedVhtItemsWithDefaults() *EmbeddedVhtItems {
 
 // GetItem returns the Item field value if set, zero value otherwise.
 func (o *EmbeddedVhtItems) GetItem() []VhtItem {
-	if o == nil || isNil(o.Item) {
+	if o == nil || IsNil(o.Item) {
 		var ret []VhtItem
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *EmbeddedVhtItems) GetItem() []VhtItem {
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmbeddedVhtItems) GetItemOk() ([]VhtItem, bool) {
-	if o == nil || isNil(o.Item) {
+	if o == nil || IsNil(o.Item) {
 		return nil, false
 	}
 	return o.Item, true
@@ -65,7 +65,7 @@ func (o *EmbeddedVhtItems) GetItemOk() ([]VhtItem, bool) {
 
 // HasItem returns a boolean if a field has been set.
 func (o *EmbeddedVhtItems) HasItem() bool {
-	if o != nil && !isNil(o.Item) {
+	if o != nil && !IsNil(o.Item) {
 		return true
 	}
 
@@ -87,7 +87,7 @@ func (o EmbeddedVhtItems) MarshalJSON() ([]byte, error) {
 
 func (o EmbeddedVhtItems) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Item) {
+	if !IsNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
 	return toSerialize, nil

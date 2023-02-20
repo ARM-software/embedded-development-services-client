@@ -119,7 +119,7 @@ func (o *VendorItem) SetMetadata(v CommonMetadata) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *VendorItem) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -129,7 +129,7 @@ func (o *VendorItem) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -137,7 +137,7 @@ func (o *VendorItem) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *VendorItem) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -151,7 +151,7 @@ func (o *VendorItem) SetDescription(v string) {
 
 // GetExternalId returns the ExternalId field value if set, zero value otherwise.
 func (o *VendorItem) GetExternalId() string {
-	if o == nil || isNil(o.ExternalId) {
+	if o == nil || IsNil(o.ExternalId) {
 		var ret string
 		return ret
 	}
@@ -161,7 +161,7 @@ func (o *VendorItem) GetExternalId() string {
 // GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetExternalIdOk() (*string, bool) {
-	if o == nil || isNil(o.ExternalId) {
+	if o == nil || IsNil(o.ExternalId) {
 		return nil, false
 	}
 	return o.ExternalId, true
@@ -169,7 +169,7 @@ func (o *VendorItem) GetExternalIdOk() (*string, bool) {
 
 // HasExternalId returns a boolean if a field has been set.
 func (o *VendorItem) HasExternalId() bool {
-	if o != nil && !isNil(o.ExternalId) {
+	if o != nil && !IsNil(o.ExternalId) {
 		return true
 	}
 
@@ -207,7 +207,7 @@ func (o *VendorItem) SetId(v string) {
 
 // GetLogo returns the Logo field value if set, zero value otherwise.
 func (o *VendorItem) GetLogo() string {
-	if o == nil || isNil(o.Logo) {
+	if o == nil || IsNil(o.Logo) {
 		var ret string
 		return ret
 	}
@@ -217,7 +217,7 @@ func (o *VendorItem) GetLogo() string {
 // GetLogoOk returns a tuple with the Logo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetLogoOk() (*string, bool) {
-	if o == nil || isNil(o.Logo) {
+	if o == nil || IsNil(o.Logo) {
 		return nil, false
 	}
 	return o.Logo, true
@@ -225,7 +225,7 @@ func (o *VendorItem) GetLogoOk() (*string, bool) {
 
 // HasLogo returns a boolean if a field has been set.
 func (o *VendorItem) HasLogo() bool {
-	if o != nil && !isNil(o.Logo) {
+	if o != nil && !IsNil(o.Logo) {
 		return true
 	}
 
@@ -287,7 +287,7 @@ func (o *VendorItem) SetTitle(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *VendorItem) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -297,7 +297,7 @@ func (o *VendorItem) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -305,7 +305,7 @@ func (o *VendorItem) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *VendorItem) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -319,7 +319,7 @@ func (o *VendorItem) SetType(v string) {
 
 // GetWebsite returns the Website field value if set, zero value otherwise.
 func (o *VendorItem) GetWebsite() string {
-	if o == nil || isNil(o.Website) {
+	if o == nil || IsNil(o.Website) {
 		var ret string
 		return ret
 	}
@@ -329,7 +329,7 @@ func (o *VendorItem) GetWebsite() string {
 // GetWebsiteOk returns a tuple with the Website field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VendorItem) GetWebsiteOk() (*string, bool) {
-	if o == nil || isNil(o.Website) {
+	if o == nil || IsNil(o.Website) {
 		return nil, false
 	}
 	return o.Website, true
@@ -337,7 +337,7 @@ func (o *VendorItem) GetWebsiteOk() (*string, bool) {
 
 // HasWebsite returns a boolean if a field has been set.
 func (o *VendorItem) HasWebsite() bool {
-	if o != nil && !isNil(o.Website) {
+	if o != nil && !IsNil(o.Website) {
 		return true
 	}
 
@@ -361,22 +361,22 @@ func (o VendorItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links
 	toSerialize["_metadata"] = o.Metadata.Get()
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !isNil(o.ExternalId) {
+	if !IsNil(o.ExternalId) {
 		toSerialize["external_id"] = o.ExternalId
 	}
 	// skip: id is readOnly
-	if !isNil(o.Logo) {
+	if !IsNil(o.Logo) {
 		toSerialize["logo"] = o.Logo
 	}
 	// skip: slug is readOnly
 	toSerialize["title"] = o.Title
-	if !isNil(o.Type) {
+	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if !isNil(o.Website) {
+	if !IsNil(o.Website) {
 		toSerialize["website"] = o.Website
 	}
 	return toSerialize, nil

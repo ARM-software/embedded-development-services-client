@@ -118,7 +118,7 @@ func (o *DeviceItem) SetMetadata(v CommonMetadata) {
 
 // GetFamily returns the Family field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DeviceItem) GetFamily() string {
-	if o == nil || isNil(o.Family.Get()) {
+	if o == nil || IsNil(o.Family.Get()) {
 		var ret string
 		return ret
 	}
@@ -232,7 +232,7 @@ func (o *DeviceItem) SetSourcePackId(v DeviceItemSourcePackId) {
 
 // GetSubFamily returns the SubFamily field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DeviceItem) GetSubFamily() string {
-	if o == nil || isNil(o.SubFamily.Get()) {
+	if o == nil || IsNil(o.SubFamily.Get()) {
 		var ret string
 		return ret
 	}

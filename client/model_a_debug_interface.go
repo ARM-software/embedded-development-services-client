@@ -50,7 +50,7 @@ func NewADebugInterfaceWithDefaults() *ADebugInterface {
 
 // GetAdapter returns the Adapter field value if set, zero value otherwise.
 func (o *ADebugInterface) GetAdapter() string {
-	if o == nil || isNil(o.Adapter) {
+	if o == nil || IsNil(o.Adapter) {
 		var ret string
 		return ret
 	}
@@ -60,7 +60,7 @@ func (o *ADebugInterface) GetAdapter() string {
 // GetAdapterOk returns a tuple with the Adapter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ADebugInterface) GetAdapterOk() (*string, bool) {
-	if o == nil || isNil(o.Adapter) {
+	if o == nil || IsNil(o.Adapter) {
 		return nil, false
 	}
 	return o.Adapter, true
@@ -68,7 +68,7 @@ func (o *ADebugInterface) GetAdapterOk() (*string, bool) {
 
 // HasAdapter returns a boolean if a field has been set.
 func (o *ADebugInterface) HasAdapter() bool {
-	if o != nil && !isNil(o.Adapter) {
+	if o != nil && !IsNil(o.Adapter) {
 		return true
 	}
 
@@ -82,7 +82,7 @@ func (o *ADebugInterface) SetAdapter(v string) {
 
 // GetConnector returns the Connector field value if set, zero value otherwise.
 func (o *ADebugInterface) GetConnector() string {
-	if o == nil || isNil(o.Connector) {
+	if o == nil || IsNil(o.Connector) {
 		var ret string
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *ADebugInterface) GetConnector() string {
 // GetConnectorOk returns a tuple with the Connector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ADebugInterface) GetConnectorOk() (*string, bool) {
-	if o == nil || isNil(o.Connector) {
+	if o == nil || IsNil(o.Connector) {
 		return nil, false
 	}
 	return o.Connector, true
@@ -100,7 +100,7 @@ func (o *ADebugInterface) GetConnectorOk() (*string, bool) {
 
 // HasConnector returns a boolean if a field has been set.
 func (o *ADebugInterface) HasConnector() bool {
-	if o != nil && !isNil(o.Connector) {
+	if o != nil && !IsNil(o.Connector) {
 		return true
 	}
 
@@ -122,10 +122,10 @@ func (o ADebugInterface) MarshalJSON() ([]byte, error) {
 
 func (o ADebugInterface) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Adapter) {
+	if !IsNil(o.Adapter) {
 		toSerialize["adapter"] = o.Adapter
 	}
-	if !isNil(o.Connector) {
+	if !IsNil(o.Connector) {
 		toSerialize["connector"] = o.Connector
 	}
 	return toSerialize, nil

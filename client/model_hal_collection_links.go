@@ -56,7 +56,7 @@ func NewHalCollectionLinksWithDefaults() *HalCollectionLinks {
 
 // GetAlternate returns the Alternate field value if set, zero value otherwise.
 func (o *HalCollectionLinks) GetAlternate() HalLinkData {
-	if o == nil || isNil(o.Alternate) {
+	if o == nil || IsNil(o.Alternate) {
 		var ret HalLinkData
 		return ret
 	}
@@ -66,7 +66,7 @@ func (o *HalCollectionLinks) GetAlternate() HalLinkData {
 // GetAlternateOk returns a tuple with the Alternate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetAlternateOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Alternate) {
+	if o == nil || IsNil(o.Alternate) {
 		return nil, false
 	}
 	return o.Alternate, true
@@ -74,7 +74,7 @@ func (o *HalCollectionLinks) GetAlternateOk() (*HalLinkData, bool) {
 
 // HasAlternate returns a boolean if a field has been set.
 func (o *HalCollectionLinks) HasAlternate() bool {
-	if o != nil && !isNil(o.Alternate) {
+	if o != nil && !IsNil(o.Alternate) {
 		return true
 	}
 
@@ -88,7 +88,7 @@ func (o *HalCollectionLinks) SetAlternate(v HalLinkData) {
 
 // GetEmbedded returns the Embedded field value if set, zero value otherwise.
 func (o *HalCollectionLinks) GetEmbedded() HalLinkData {
-	if o == nil || isNil(o.Embedded) {
+	if o == nil || IsNil(o.Embedded) {
 		var ret HalLinkData
 		return ret
 	}
@@ -98,7 +98,7 @@ func (o *HalCollectionLinks) GetEmbedded() HalLinkData {
 // GetEmbeddedOk returns a tuple with the Embedded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetEmbeddedOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Embedded) {
+	if o == nil || IsNil(o.Embedded) {
 		return nil, false
 	}
 	return o.Embedded, true
@@ -106,7 +106,7 @@ func (o *HalCollectionLinks) GetEmbeddedOk() (*HalLinkData, bool) {
 
 // HasEmbedded returns a boolean if a field has been set.
 func (o *HalCollectionLinks) HasEmbedded() bool {
-	if o != nil && !isNil(o.Embedded) {
+	if o != nil && !IsNil(o.Embedded) {
 		return true
 	}
 
@@ -120,7 +120,7 @@ func (o *HalCollectionLinks) SetEmbedded(v HalLinkData) {
 
 // GetFirst returns the First field value if set, zero value otherwise.
 func (o *HalCollectionLinks) GetFirst() HalLinkData {
-	if o == nil || isNil(o.First) {
+	if o == nil || IsNil(o.First) {
 		var ret HalLinkData
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *HalCollectionLinks) GetFirst() HalLinkData {
 // GetFirstOk returns a tuple with the First field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetFirstOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.First) {
+	if o == nil || IsNil(o.First) {
 		return nil, false
 	}
 	return o.First, true
@@ -138,7 +138,7 @@ func (o *HalCollectionLinks) GetFirstOk() (*HalLinkData, bool) {
 
 // HasFirst returns a boolean if a field has been set.
 func (o *HalCollectionLinks) HasFirst() bool {
-	if o != nil && !isNil(o.First) {
+	if o != nil && !IsNil(o.First) {
 		return true
 	}
 
@@ -152,7 +152,7 @@ func (o *HalCollectionLinks) SetFirst(v HalLinkData) {
 
 // GetItem returns the Item field value if set, zero value otherwise.
 func (o *HalCollectionLinks) GetItem() []HalLinkData {
-	if o == nil || isNil(o.Item) {
+	if o == nil || IsNil(o.Item) {
 		var ret []HalLinkData
 		return ret
 	}
@@ -162,7 +162,7 @@ func (o *HalCollectionLinks) GetItem() []HalLinkData {
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetItemOk() ([]HalLinkData, bool) {
-	if o == nil || isNil(o.Item) {
+	if o == nil || IsNil(o.Item) {
 		return nil, false
 	}
 	return o.Item, true
@@ -170,7 +170,7 @@ func (o *HalCollectionLinks) GetItemOk() ([]HalLinkData, bool) {
 
 // HasItem returns a boolean if a field has been set.
 func (o *HalCollectionLinks) HasItem() bool {
-	if o != nil && !isNil(o.Item) {
+	if o != nil && !IsNil(o.Item) {
 		return true
 	}
 
@@ -184,7 +184,7 @@ func (o *HalCollectionLinks) SetItem(v []HalLinkData) {
 
 // GetLast returns the Last field value if set, zero value otherwise.
 func (o *HalCollectionLinks) GetLast() HalLinkData {
-	if o == nil || isNil(o.Last) {
+	if o == nil || IsNil(o.Last) {
 		var ret HalLinkData
 		return ret
 	}
@@ -194,7 +194,7 @@ func (o *HalCollectionLinks) GetLast() HalLinkData {
 // GetLastOk returns a tuple with the Last field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetLastOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Last) {
+	if o == nil || IsNil(o.Last) {
 		return nil, false
 	}
 	return o.Last, true
@@ -202,7 +202,7 @@ func (o *HalCollectionLinks) GetLastOk() (*HalLinkData, bool) {
 
 // HasLast returns a boolean if a field has been set.
 func (o *HalCollectionLinks) HasLast() bool {
-	if o != nil && !isNil(o.Last) {
+	if o != nil && !IsNil(o.Last) {
 		return true
 	}
 
@@ -216,7 +216,7 @@ func (o *HalCollectionLinks) SetLast(v HalLinkData) {
 
 // GetNext returns the Next field value if set, zero value otherwise.
 func (o *HalCollectionLinks) GetNext() HalLinkData {
-	if o == nil || isNil(o.Next) {
+	if o == nil || IsNil(o.Next) {
 		var ret HalLinkData
 		return ret
 	}
@@ -226,7 +226,7 @@ func (o *HalCollectionLinks) GetNext() HalLinkData {
 // GetNextOk returns a tuple with the Next field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetNextOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Next) {
+	if o == nil || IsNil(o.Next) {
 		return nil, false
 	}
 	return o.Next, true
@@ -234,7 +234,7 @@ func (o *HalCollectionLinks) GetNextOk() (*HalLinkData, bool) {
 
 // HasNext returns a boolean if a field has been set.
 func (o *HalCollectionLinks) HasNext() bool {
-	if o != nil && !isNil(o.Next) {
+	if o != nil && !IsNil(o.Next) {
 		return true
 	}
 
@@ -248,7 +248,7 @@ func (o *HalCollectionLinks) SetNext(v HalLinkData) {
 
 // GetPrev returns the Prev field value if set, zero value otherwise.
 func (o *HalCollectionLinks) GetPrev() HalLinkData {
-	if o == nil || isNil(o.Prev) {
+	if o == nil || IsNil(o.Prev) {
 		var ret HalLinkData
 		return ret
 	}
@@ -258,7 +258,7 @@ func (o *HalCollectionLinks) GetPrev() HalLinkData {
 // GetPrevOk returns a tuple with the Prev field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetPrevOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Prev) {
+	if o == nil || IsNil(o.Prev) {
 		return nil, false
 	}
 	return o.Prev, true
@@ -266,7 +266,7 @@ func (o *HalCollectionLinks) GetPrevOk() (*HalLinkData, bool) {
 
 // HasPrev returns a boolean if a field has been set.
 func (o *HalCollectionLinks) HasPrev() bool {
-	if o != nil && !isNil(o.Prev) {
+	if o != nil && !IsNil(o.Prev) {
 		return true
 	}
 
@@ -304,7 +304,7 @@ func (o *HalCollectionLinks) SetSelf(v HalLinkData) {
 
 // GetSimple returns the Simple field value if set, zero value otherwise.
 func (o *HalCollectionLinks) GetSimple() HalLinkData {
-	if o == nil || isNil(o.Simple) {
+	if o == nil || IsNil(o.Simple) {
 		var ret HalLinkData
 		return ret
 	}
@@ -314,7 +314,7 @@ func (o *HalCollectionLinks) GetSimple() HalLinkData {
 // GetSimpleOk returns a tuple with the Simple field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HalCollectionLinks) GetSimpleOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Simple) {
+	if o == nil || IsNil(o.Simple) {
 		return nil, false
 	}
 	return o.Simple, true
@@ -322,7 +322,7 @@ func (o *HalCollectionLinks) GetSimpleOk() (*HalLinkData, bool) {
 
 // HasSimple returns a boolean if a field has been set.
 func (o *HalCollectionLinks) HasSimple() bool {
-	if o != nil && !isNil(o.Simple) {
+	if o != nil && !IsNil(o.Simple) {
 		return true
 	}
 
@@ -344,29 +344,29 @@ func (o HalCollectionLinks) MarshalJSON() ([]byte, error) {
 
 func (o HalCollectionLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Alternate) {
+	if !IsNil(o.Alternate) {
 		toSerialize["alternate"] = o.Alternate
 	}
-	if !isNil(o.Embedded) {
+	if !IsNil(o.Embedded) {
 		toSerialize["embedded"] = o.Embedded
 	}
-	if !isNil(o.First) {
+	if !IsNil(o.First) {
 		toSerialize["first"] = o.First
 	}
-	if !isNil(o.Item) {
+	if !IsNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
-	if !isNil(o.Last) {
+	if !IsNil(o.Last) {
 		toSerialize["last"] = o.Last
 	}
-	if !isNil(o.Next) {
+	if !IsNil(o.Next) {
 		toSerialize["next"] = o.Next
 	}
-	if !isNil(o.Prev) {
+	if !IsNil(o.Prev) {
 		toSerialize["prev"] = o.Prev
 	}
 	toSerialize["self"] = o.Self
-	if !isNil(o.Simple) {
+	if !IsNil(o.Simple) {
 		toSerialize["simple"] = o.Simple
 	}
 	return toSerialize, nil

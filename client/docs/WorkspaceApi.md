@@ -40,7 +40,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -49,7 +49,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceApi.ClearWorkspaceArchiveContent(context.Background(), workspaceName).AcceptVersion(acceptVersion).Execute()
+    r, err := apiClient.WorkspaceApi.ClearWorkspaceArchiveContent(context.Background(), workspaceName).AcceptVersion(acceptVersion).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.ClearWorkspaceArchiveContent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -110,7 +110,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -119,7 +119,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceApi.ClearWorkspaceRepositoryContentManager(context.Background(), workspaceName).AcceptVersion(acceptVersion).Execute()
+    r, err := apiClient.WorkspaceApi.ClearWorkspaceRepositoryContentManager(context.Background(), workspaceName).AcceptVersion(acceptVersion).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.ClearWorkspaceRepositoryContentManager``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -180,7 +180,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -254,7 +254,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -263,7 +263,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceApi.DeleteWorkspace(context.Background(), workspaceName).AcceptVersion(acceptVersion).Execute()
+    r, err := apiClient.WorkspaceApi.DeleteWorkspace(context.Background(), workspaceName).AcceptVersion(acceptVersion).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.DeleteWorkspace``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -324,7 +324,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -400,7 +400,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -474,7 +474,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -548,7 +548,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -622,7 +622,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -696,7 +696,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -770,7 +770,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
@@ -844,7 +844,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {

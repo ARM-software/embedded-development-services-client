@@ -57,7 +57,7 @@ func NewVhtRunJobCollectionWithDefaults() *VhtRunJobCollection {
 
 // GetEmbedded returns the Embedded field value if set, zero value otherwise.
 func (o *VhtRunJobCollection) GetEmbedded() EmbeddedVhtRunJobItems {
-	if o == nil || isNil(o.Embedded) {
+	if o == nil || IsNil(o.Embedded) {
 		var ret EmbeddedVhtRunJobItems
 		return ret
 	}
@@ -67,7 +67,7 @@ func (o *VhtRunJobCollection) GetEmbedded() EmbeddedVhtRunJobItems {
 // GetEmbeddedOk returns a tuple with the Embedded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VhtRunJobCollection) GetEmbeddedOk() (*EmbeddedVhtRunJobItems, bool) {
-	if o == nil || isNil(o.Embedded) {
+	if o == nil || IsNil(o.Embedded) {
 		return nil, false
 	}
 	return o.Embedded, true
@@ -75,7 +75,7 @@ func (o *VhtRunJobCollection) GetEmbeddedOk() (*EmbeddedVhtRunJobItems, bool) {
 
 // HasEmbedded returns a boolean if a field has been set.
 func (o *VhtRunJobCollection) HasEmbedded() bool {
-	if o != nil && !isNil(o.Embedded) {
+	if o != nil && !IsNil(o.Embedded) {
 		return true
 	}
 
@@ -197,7 +197,7 @@ func (o VhtRunJobCollection) MarshalJSON() ([]byte, error) {
 
 func (o VhtRunJobCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Embedded) {
+	if !IsNil(o.Embedded) {
 		toSerialize["_embedded"] = o.Embedded
 	}
 	toSerialize["_links"] = o.Links.Get()

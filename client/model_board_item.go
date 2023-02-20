@@ -132,7 +132,7 @@ func (o *BoardItem) GetDebugInterfaces() []ADebugInterface {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoardItem) GetDebugInterfacesOk() ([]ADebugInterface, bool) {
-	if o == nil || isNil(o.DebugInterfaces) {
+	if o == nil || IsNil(o.DebugInterfaces) {
 		return nil, false
 	}
 	return o.DebugInterfaces, true
@@ -140,7 +140,7 @@ func (o *BoardItem) GetDebugInterfacesOk() ([]ADebugInterface, bool) {
 
 // HasDebugInterfaces returns a boolean if a field has been set.
 func (o *BoardItem) HasDebugInterfaces() bool {
-	if o != nil && isNil(o.DebugInterfaces) {
+	if o != nil && IsNil(o.DebugInterfaces) {
 		return true
 	}
 
@@ -178,7 +178,7 @@ func (o *BoardItem) SetDescription(v string) {
 
 // GetDetectCode returns the DetectCode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BoardItem) GetDetectCode() string {
-	if o == nil || isNil(o.DetectCode.Get()) {
+	if o == nil || IsNil(o.DetectCode.Get()) {
 		var ret string
 		return ret
 	}
@@ -231,7 +231,7 @@ func (o *BoardItem) GetFeatures() []BoardItemFeaturesInner {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoardItem) GetFeaturesOk() ([]BoardItemFeaturesInner, bool) {
-	if o == nil || isNil(o.Features) {
+	if o == nil || IsNil(o.Features) {
 		return nil, false
 	}
 	return o.Features, true
@@ -239,7 +239,7 @@ func (o *BoardItem) GetFeaturesOk() ([]BoardItemFeaturesInner, bool) {
 
 // HasFeatures returns a boolean if a field has been set.
 func (o *BoardItem) HasFeatures() bool {
-	if o != nil && isNil(o.Features) {
+	if o != nil && IsNil(o.Features) {
 		return true
 	}
 

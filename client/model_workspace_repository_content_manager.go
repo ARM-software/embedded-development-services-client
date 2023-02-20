@@ -128,7 +128,7 @@ func (o *WorkspaceRepositoryContentManager) SetMetadata(v CommonMetadata) {
 
 // GetFetchDepth returns the FetchDepth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WorkspaceRepositoryContentManager) GetFetchDepth() int32 {
-	if o == nil || isNil(o.FetchDepth.Get()) {
+	if o == nil || IsNil(o.FetchDepth.Get()) {
 		var ret int32
 		return ret
 	}
@@ -268,7 +268,7 @@ func (o *WorkspaceRepositoryContentManager) SetScm(v string) {
 
 // GetSubmodules returns the Submodules field value if set, zero value otherwise.
 func (o *WorkspaceRepositoryContentManager) GetSubmodules() bool {
-	if o == nil || isNil(o.Submodules) {
+	if o == nil || IsNil(o.Submodules) {
 		var ret bool
 		return ret
 	}
@@ -278,7 +278,7 @@ func (o *WorkspaceRepositoryContentManager) GetSubmodules() bool {
 // GetSubmodulesOk returns a tuple with the Submodules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkspaceRepositoryContentManager) GetSubmodulesOk() (*bool, bool) {
-	if o == nil || isNil(o.Submodules) {
+	if o == nil || IsNil(o.Submodules) {
 		return nil, false
 	}
 	return o.Submodules, true
@@ -286,7 +286,7 @@ func (o *WorkspaceRepositoryContentManager) GetSubmodulesOk() (*bool, bool) {
 
 // HasSubmodules returns a boolean if a field has been set.
 func (o *WorkspaceRepositoryContentManager) HasSubmodules() bool {
-	if o != nil && !isNil(o.Submodules) {
+	if o != nil && !IsNil(o.Submodules) {
 		return true
 	}
 
@@ -300,7 +300,7 @@ func (o *WorkspaceRepositoryContentManager) SetSubmodules(v bool) {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WorkspaceRepositoryContentManager) GetTitle() string {
-	if o == nil || isNil(o.Title.Get()) {
+	if o == nil || IsNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -359,7 +359,7 @@ func (o WorkspaceRepositoryContentManager) ToMap() (map[string]interface{}, erro
 	toSerialize["reference"] = o.Reference.Get()
 	toSerialize["repositoryUrl"] = o.RepositoryUrl
 	toSerialize["scm"] = o.Scm
-	if !isNil(o.Submodules) {
+	if !IsNil(o.Submodules) {
 		toSerialize["submodules"] = o.Submodules
 	}
 	if o.Title.IsSet() {

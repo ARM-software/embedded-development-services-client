@@ -56,7 +56,7 @@ func NewBuildJobItemLinksWithDefaults() *BuildJobItemLinks {
 
 // GetArtefacts returns the Artefacts field value if set, zero value otherwise.
 func (o *BuildJobItemLinks) GetArtefacts() HalLinkData {
-	if o == nil || isNil(o.Artefacts) {
+	if o == nil || IsNil(o.Artefacts) {
 		var ret HalLinkData
 		return ret
 	}
@@ -66,7 +66,7 @@ func (o *BuildJobItemLinks) GetArtefacts() HalLinkData {
 // GetArtefactsOk returns a tuple with the Artefacts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BuildJobItemLinks) GetArtefactsOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Artefacts) {
+	if o == nil || IsNil(o.Artefacts) {
 		return nil, false
 	}
 	return o.Artefacts, true
@@ -74,7 +74,7 @@ func (o *BuildJobItemLinks) GetArtefactsOk() (*HalLinkData, bool) {
 
 // HasArtefacts returns a boolean if a field has been set.
 func (o *BuildJobItemLinks) HasArtefacts() bool {
-	if o != nil && !isNil(o.Artefacts) {
+	if o != nil && !IsNil(o.Artefacts) {
 		return true
 	}
 
@@ -88,7 +88,7 @@ func (o *BuildJobItemLinks) SetArtefacts(v HalLinkData) {
 
 // GetCancel returns the Cancel field value if set, zero value otherwise.
 func (o *BuildJobItemLinks) GetCancel() HalLinkData {
-	if o == nil || isNil(o.Cancel) {
+	if o == nil || IsNil(o.Cancel) {
 		var ret HalLinkData
 		return ret
 	}
@@ -98,7 +98,7 @@ func (o *BuildJobItemLinks) GetCancel() HalLinkData {
 // GetCancelOk returns a tuple with the Cancel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BuildJobItemLinks) GetCancelOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Cancel) {
+	if o == nil || IsNil(o.Cancel) {
 		return nil, false
 	}
 	return o.Cancel, true
@@ -106,7 +106,7 @@ func (o *BuildJobItemLinks) GetCancelOk() (*HalLinkData, bool) {
 
 // HasCancel returns a boolean if a field has been set.
 func (o *BuildJobItemLinks) HasCancel() bool {
-	if o != nil && !isNil(o.Cancel) {
+	if o != nil && !IsNil(o.Cancel) {
 		return true
 	}
 
@@ -120,7 +120,7 @@ func (o *BuildJobItemLinks) SetCancel(v HalLinkData) {
 
 // GetDelete returns the Delete field value if set, zero value otherwise.
 func (o *BuildJobItemLinks) GetDelete() HalLinkData {
-	if o == nil || isNil(o.Delete) {
+	if o == nil || IsNil(o.Delete) {
 		var ret HalLinkData
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *BuildJobItemLinks) GetDelete() HalLinkData {
 // GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BuildJobItemLinks) GetDeleteOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Delete) {
+	if o == nil || IsNil(o.Delete) {
 		return nil, false
 	}
 	return o.Delete, true
@@ -138,7 +138,7 @@ func (o *BuildJobItemLinks) GetDeleteOk() (*HalLinkData, bool) {
 
 // HasDelete returns a boolean if a field has been set.
 func (o *BuildJobItemLinks) HasDelete() bool {
-	if o != nil && !isNil(o.Delete) {
+	if o != nil && !IsNil(o.Delete) {
 		return true
 	}
 
@@ -152,7 +152,7 @@ func (o *BuildJobItemLinks) SetDelete(v HalLinkData) {
 
 // GetDescribedby returns the Describedby field value if set, zero value otherwise.
 func (o *BuildJobItemLinks) GetDescribedby() HalLinkData {
-	if o == nil || isNil(o.Describedby) {
+	if o == nil || IsNil(o.Describedby) {
 		var ret HalLinkData
 		return ret
 	}
@@ -162,7 +162,7 @@ func (o *BuildJobItemLinks) GetDescribedby() HalLinkData {
 // GetDescribedbyOk returns a tuple with the Describedby field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BuildJobItemLinks) GetDescribedbyOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Describedby) {
+	if o == nil || IsNil(o.Describedby) {
 		return nil, false
 	}
 	return o.Describedby, true
@@ -170,7 +170,7 @@ func (o *BuildJobItemLinks) GetDescribedbyOk() (*HalLinkData, bool) {
 
 // HasDescribedby returns a boolean if a field has been set.
 func (o *BuildJobItemLinks) HasDescribedby() bool {
-	if o != nil && !isNil(o.Describedby) {
+	if o != nil && !IsNil(o.Describedby) {
 		return true
 	}
 
@@ -184,7 +184,7 @@ func (o *BuildJobItemLinks) SetDescribedby(v HalLinkData) {
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *BuildJobItemLinks) GetDetails() HalLinkData {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		var ret HalLinkData
 		return ret
 	}
@@ -194,7 +194,7 @@ func (o *BuildJobItemLinks) GetDetails() HalLinkData {
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BuildJobItemLinks) GetDetailsOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		return nil, false
 	}
 	return o.Details, true
@@ -202,7 +202,7 @@ func (o *BuildJobItemLinks) GetDetailsOk() (*HalLinkData, bool) {
 
 // HasDetails returns a boolean if a field has been set.
 func (o *BuildJobItemLinks) HasDetails() bool {
-	if o != nil && !isNil(o.Details) {
+	if o != nil && !IsNil(o.Details) {
 		return true
 	}
 
@@ -240,7 +240,7 @@ func (o *BuildJobItemLinks) SetRelated(v HalLinkData) {
 
 // GetRetain returns the Retain field value if set, zero value otherwise.
 func (o *BuildJobItemLinks) GetRetain() HalLinkData {
-	if o == nil || isNil(o.Retain) {
+	if o == nil || IsNil(o.Retain) {
 		var ret HalLinkData
 		return ret
 	}
@@ -250,7 +250,7 @@ func (o *BuildJobItemLinks) GetRetain() HalLinkData {
 // GetRetainOk returns a tuple with the Retain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BuildJobItemLinks) GetRetainOk() (*HalLinkData, bool) {
-	if o == nil || isNil(o.Retain) {
+	if o == nil || IsNil(o.Retain) {
 		return nil, false
 	}
 	return o.Retain, true
@@ -258,7 +258,7 @@ func (o *BuildJobItemLinks) GetRetainOk() (*HalLinkData, bool) {
 
 // HasRetain returns a boolean if a field has been set.
 func (o *BuildJobItemLinks) HasRetain() bool {
-	if o != nil && !isNil(o.Retain) {
+	if o != nil && !IsNil(o.Retain) {
 		return true
 	}
 
@@ -304,23 +304,23 @@ func (o BuildJobItemLinks) MarshalJSON() ([]byte, error) {
 
 func (o BuildJobItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Artefacts) {
+	if !IsNil(o.Artefacts) {
 		toSerialize["artefacts"] = o.Artefacts
 	}
-	if !isNil(o.Cancel) {
+	if !IsNil(o.Cancel) {
 		toSerialize["cancel"] = o.Cancel
 	}
-	if !isNil(o.Delete) {
+	if !IsNil(o.Delete) {
 		toSerialize["delete"] = o.Delete
 	}
-	if !isNil(o.Describedby) {
+	if !IsNil(o.Describedby) {
 		toSerialize["describedby"] = o.Describedby
 	}
-	if !isNil(o.Details) {
+	if !IsNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
 	toSerialize["related"] = o.Related
-	if !isNil(o.Retain) {
+	if !IsNil(o.Retain) {
 		toSerialize["retain"] = o.Retain
 	}
 	toSerialize["self"] = o.Self
