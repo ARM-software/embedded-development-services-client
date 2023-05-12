@@ -263,7 +263,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Authorization
 
 
-
+Authentication schemes defined for the API:
 ### JWTAuth
 
 - **Type**: HTTP Bearer token authentication
@@ -274,7 +274,6 @@ Example
 auth := context.WithValue(context.Background(), sw.ContextAccessToken, "BEARER_TOKEN_STRING")
 r, err := client.Service.Operation(auth, args)
 ```
-
 
 ### TokenAuth
 
