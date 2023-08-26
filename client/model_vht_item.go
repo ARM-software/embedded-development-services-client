@@ -427,18 +427,20 @@ func (o VhtItem) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AdditionalTools) {
 		toSerialize["additionalTools"] = o.AdditionalTools
 	}
-	// skip: board is readOnly
-	// skip: boardRevision is readOnly
-	// skip: deprecated is readOnly
+	toSerialize["board"] = o.Board
+	if !IsNil(o.BoardRevision) {
+		toSerialize["boardRevision"] = o.BoardRevision
+	}
+	toSerialize["deprecated"] = o.Deprecated
 	if !IsNil(o.DeprecationInfo) {
 		toSerialize["deprecationInfo"] = o.DeprecationInfo
 	}
 	if o.Model.IsSet() {
 		toSerialize["model"] = o.Model.Get()
 	}
-	// skip: name is readOnly
-	// skip: title is readOnly
-	// skip: vendor is readOnly
+	toSerialize["name"] = o.Name
+	toSerialize["title"] = o.Title
+	toSerialize["vendor"] = o.Vendor
 	if !IsNil(o.VirtualInterfaces) {
 		toSerialize["virtualInterfaces"] = o.VirtualInterfaces
 	}

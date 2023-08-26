@@ -27,12 +27,12 @@ import (
 )
 
 
-// BuildJobsApiService BuildJobsApi service
-type BuildJobsApiService service
+// BuildJobsAPIService BuildJobsAPI service
+type BuildJobsAPIService service
 
 type ApiCancelBuildJobRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsApiService
+	ApiService *BuildJobsAPIService
 	jobName string
 	acceptVersion *string
 }
@@ -56,7 +56,7 @@ This will cancel a build job that is in progress. All messages associated with t
  @param jobName Unique ID of the Build Job.
  @return ApiCancelBuildJobRequest
 */
-func (a *BuildJobsApiService) CancelBuildJob(ctx context.Context, jobName string) ApiCancelBuildJobRequest {
+func (a *BuildJobsAPIService) CancelBuildJob(ctx context.Context, jobName string) ApiCancelBuildJobRequest {
 	return ApiCancelBuildJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -66,7 +66,7 @@ func (a *BuildJobsApiService) CancelBuildJob(ctx context.Context, jobName string
 
 // Execute executes the request
 //  @return BuildJobItem
-func (a *BuildJobsApiService) CancelBuildJobExecute(r ApiCancelBuildJobRequest) (*BuildJobItem, *http.Response, error) {
+func (a *BuildJobsAPIService) CancelBuildJobExecute(r ApiCancelBuildJobRequest) (*BuildJobItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -74,7 +74,7 @@ func (a *BuildJobsApiService) CancelBuildJobExecute(r ApiCancelBuildJobRequest) 
 		localVarReturnValue  *BuildJobItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsApiService.CancelBuildJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.CancelBuildJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -221,7 +221,7 @@ func (a *BuildJobsApiService) CancelBuildJobExecute(r ApiCancelBuildJobRequest) 
 
 type ApiDeleteBuildJobRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsApiService
+	ApiService *BuildJobsAPIService
 	jobName string
 	acceptVersion *string
 }
@@ -245,7 +245,7 @@ Deletes a build job along with all artefacts and messages associated with it. De
  @param jobName Unique ID of the Build Job.
  @return ApiDeleteBuildJobRequest
 */
-func (a *BuildJobsApiService) DeleteBuildJob(ctx context.Context, jobName string) ApiDeleteBuildJobRequest {
+func (a *BuildJobsAPIService) DeleteBuildJob(ctx context.Context, jobName string) ApiDeleteBuildJobRequest {
 	return ApiDeleteBuildJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -254,14 +254,14 @@ func (a *BuildJobsApiService) DeleteBuildJob(ctx context.Context, jobName string
 }
 
 // Execute executes the request
-func (a *BuildJobsApiService) DeleteBuildJobExecute(r ApiDeleteBuildJobRequest) (*http.Response, error) {
+func (a *BuildJobsAPIService) DeleteBuildJobExecute(r ApiDeleteBuildJobRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsApiService.DeleteBuildJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.DeleteBuildJob")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -399,7 +399,7 @@ func (a *BuildJobsApiService) DeleteBuildJobExecute(r ApiDeleteBuildJobRequest) 
 
 type ApiGetBuildArtefactRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsApiService
+	ApiService *BuildJobsAPIService
 	jobName string
 	artefactName string
 	acceptVersion *string
@@ -425,7 +425,7 @@ An artefact represents a product of the build process such as a binary file.
  @param artefactName The URL safe name of the Build Artefact.
  @return ApiGetBuildArtefactRequest
 */
-func (a *BuildJobsApiService) GetBuildArtefact(ctx context.Context, jobName string, artefactName string) ApiGetBuildArtefactRequest {
+func (a *BuildJobsAPIService) GetBuildArtefact(ctx context.Context, jobName string, artefactName string) ApiGetBuildArtefactRequest {
 	return ApiGetBuildArtefactRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -436,7 +436,7 @@ func (a *BuildJobsApiService) GetBuildArtefact(ctx context.Context, jobName stri
 
 // Execute executes the request
 //  @return *os.File
-func (a *BuildJobsApiService) GetBuildArtefactExecute(r ApiGetBuildArtefactRequest) (*os.File, *http.Response, error) {
+func (a *BuildJobsAPIService) GetBuildArtefactExecute(r ApiGetBuildArtefactRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -444,7 +444,7 @@ func (a *BuildJobsApiService) GetBuildArtefactExecute(r ApiGetBuildArtefactReque
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsApiService.GetBuildArtefact")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.GetBuildArtefact")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -570,7 +570,7 @@ func (a *BuildJobsApiService) GetBuildArtefactExecute(r ApiGetBuildArtefactReque
 
 type ApiGetBuildJobRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsApiService
+	ApiService *BuildJobsAPIService
 	jobName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -601,7 +601,7 @@ A build job represents the status of a build process (compilation and linking) b
  @param jobName Unique ID of the Build Job.
  @return ApiGetBuildJobRequest
 */
-func (a *BuildJobsApiService) GetBuildJob(ctx context.Context, jobName string) ApiGetBuildJobRequest {
+func (a *BuildJobsAPIService) GetBuildJob(ctx context.Context, jobName string) ApiGetBuildJobRequest {
 	return ApiGetBuildJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -611,7 +611,7 @@ func (a *BuildJobsApiService) GetBuildJob(ctx context.Context, jobName string) A
 
 // Execute executes the request
 //  @return BuildJobItem
-func (a *BuildJobsApiService) GetBuildJobExecute(r ApiGetBuildJobRequest) (*BuildJobItem, *http.Response, error) {
+func (a *BuildJobsAPIService) GetBuildJobExecute(r ApiGetBuildJobRequest) (*BuildJobItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -619,7 +619,7 @@ func (a *BuildJobsApiService) GetBuildJobExecute(r ApiGetBuildJobRequest) (*Buil
 		localVarReturnValue  *BuildJobItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsApiService.GetBuildJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.GetBuildJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -747,7 +747,7 @@ func (a *BuildJobsApiService) GetBuildJobExecute(r ApiGetBuildJobRequest) (*Buil
 
 type ApiGetBuildMessagesRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsApiService
+	ApiService *BuildJobsAPIService
 	jobName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -792,7 +792,7 @@ Retrieve and page through the build messages for a given build.
  @param jobName Unique ID of the Build Job.
  @return ApiGetBuildMessagesRequest
 */
-func (a *BuildJobsApiService) GetBuildMessages(ctx context.Context, jobName string) ApiGetBuildMessagesRequest {
+func (a *BuildJobsAPIService) GetBuildMessages(ctx context.Context, jobName string) ApiGetBuildMessagesRequest {
 	return ApiGetBuildMessagesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -802,7 +802,7 @@ func (a *BuildJobsApiService) GetBuildMessages(ctx context.Context, jobName stri
 
 // Execute executes the request
 //  @return BuildMessageItem
-func (a *BuildJobsApiService) GetBuildMessagesExecute(r ApiGetBuildMessagesRequest) (*BuildMessageItem, *http.Response, error) {
+func (a *BuildJobsAPIService) GetBuildMessagesExecute(r ApiGetBuildMessagesRequest) (*BuildMessageItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -810,7 +810,7 @@ func (a *BuildJobsApiService) GetBuildMessagesExecute(r ApiGetBuildMessagesReque
 		localVarReturnValue  *BuildMessageItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsApiService.GetBuildMessages")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.GetBuildMessages")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -944,7 +944,7 @@ func (a *BuildJobsApiService) GetBuildMessagesExecute(r ApiGetBuildMessagesReque
 
 type ApiListBuildArtefactsRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsApiService
+	ApiService *BuildJobsAPIService
 	jobName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -989,7 +989,7 @@ An artefact represents a product of the build process such as a binary file.
  @param jobName Unique ID of the Build Job.
  @return ApiListBuildArtefactsRequest
 */
-func (a *BuildJobsApiService) ListBuildArtefacts(ctx context.Context, jobName string) ApiListBuildArtefactsRequest {
+func (a *BuildJobsAPIService) ListBuildArtefacts(ctx context.Context, jobName string) ApiListBuildArtefactsRequest {
 	return ApiListBuildArtefactsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -999,7 +999,7 @@ func (a *BuildJobsApiService) ListBuildArtefacts(ctx context.Context, jobName st
 
 // Execute executes the request
 //  @return SimpleCollection
-func (a *BuildJobsApiService) ListBuildArtefactsExecute(r ApiListBuildArtefactsRequest) (*SimpleCollection, *http.Response, error) {
+func (a *BuildJobsAPIService) ListBuildArtefactsExecute(r ApiListBuildArtefactsRequest) (*SimpleCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1007,7 +1007,7 @@ func (a *BuildJobsApiService) ListBuildArtefactsExecute(r ApiListBuildArtefactsR
 		localVarReturnValue  *SimpleCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsApiService.ListBuildArtefacts")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.ListBuildArtefacts")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1141,7 +1141,7 @@ func (a *BuildJobsApiService) ListBuildArtefactsExecute(r ApiListBuildArtefactsR
 
 type ApiListBuildJobRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsApiService
+	ApiService *BuildJobsAPIService
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
@@ -1191,7 +1191,7 @@ This returns a collection resource that lists all in progress or recently comple
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListBuildJobRequest
 */
-func (a *BuildJobsApiService) ListBuildJob(ctx context.Context) ApiListBuildJobRequest {
+func (a *BuildJobsAPIService) ListBuildJob(ctx context.Context) ApiListBuildJobRequest {
 	return ApiListBuildJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1200,7 +1200,7 @@ func (a *BuildJobsApiService) ListBuildJob(ctx context.Context) ApiListBuildJobR
 
 // Execute executes the request
 //  @return BuildJobCollection
-func (a *BuildJobsApiService) ListBuildJobExecute(r ApiListBuildJobRequest) (*BuildJobCollection, *http.Response, error) {
+func (a *BuildJobsAPIService) ListBuildJobExecute(r ApiListBuildJobRequest) (*BuildJobCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1208,7 +1208,7 @@ func (a *BuildJobsApiService) ListBuildJobExecute(r ApiListBuildJobRequest) (*Bu
 		localVarReturnValue  *BuildJobCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsApiService.ListBuildJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.ListBuildJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1333,7 +1333,7 @@ func (a *BuildJobsApiService) ListBuildJobExecute(r ApiListBuildJobRequest) (*Bu
 
 type ApiRetainBuildJobRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsApiService
+	ApiService *BuildJobsAPIService
 	jobName string
 	acceptVersion *string
 	retainBuildJobRequest *RetainBuildJobRequest
@@ -1364,7 +1364,7 @@ Set the time at which the job and all associated resources such as generated art
  @param jobName Unique ID of the Build Job.
  @return ApiRetainBuildJobRequest
 */
-func (a *BuildJobsApiService) RetainBuildJob(ctx context.Context, jobName string) ApiRetainBuildJobRequest {
+func (a *BuildJobsAPIService) RetainBuildJob(ctx context.Context, jobName string) ApiRetainBuildJobRequest {
 	return ApiRetainBuildJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1374,7 +1374,7 @@ func (a *BuildJobsApiService) RetainBuildJob(ctx context.Context, jobName string
 
 // Execute executes the request
 //  @return BuildJobItem
-func (a *BuildJobsApiService) RetainBuildJobExecute(r ApiRetainBuildJobRequest) (*BuildJobItem, *http.Response, error) {
+func (a *BuildJobsAPIService) RetainBuildJobExecute(r ApiRetainBuildJobRequest) (*BuildJobItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1382,7 +1382,7 @@ func (a *BuildJobsApiService) RetainBuildJobExecute(r ApiRetainBuildJobRequest) 
 		localVarReturnValue  *BuildJobItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsApiService.RetainBuildJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.RetainBuildJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

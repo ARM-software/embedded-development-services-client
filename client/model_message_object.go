@@ -184,10 +184,16 @@ func (o MessageObject) MarshalJSON() ([]byte, error) {
 
 func (o MessageObject) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: ctime is readOnly
-	// skip: message is readOnly
-	// skip: severity is readOnly
-	// skip: source is readOnly
+	if !IsNil(o.Ctime) {
+		toSerialize["ctime"] = o.Ctime
+	}
+	toSerialize["message"] = o.Message
+	if !IsNil(o.Severity) {
+		toSerialize["severity"] = o.Severity
+	}
+	if !IsNil(o.Source) {
+		toSerialize["source"] = o.Source
+	}
 	return toSerialize, nil
 }
 

@@ -565,14 +565,16 @@ func (o BuildJobItem) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CleanBuild) {
 		toSerialize["cleanBuild"] = o.CleanBuild
 	}
-	// skip: done is readOnly
-	// skip: error is readOnly
-	// skip: failure is readOnly
-	// skip: name is readOnly
+	toSerialize["done"] = o.Done
+	toSerialize["error"] = o.Error
+	toSerialize["failure"] = o.Failure
+	toSerialize["name"] = o.Name
 	toSerialize["project"] = o.Project
-	// skip: queued is readOnly
-	// skip: status is readOnly
-	// skip: success is readOnly
+	if !IsNil(o.Queued) {
+		toSerialize["queued"] = o.Queued
+	}
+	toSerialize["status"] = o.Status
+	toSerialize["success"] = o.Success
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}

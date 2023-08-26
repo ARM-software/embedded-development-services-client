@@ -55,31 +55,31 @@ type APIClient struct {
 
 	// API Services
 
-	BoardsApi *BoardsApiService
+	BoardsAPI *BoardsAPIService
 
-	BuildJobsApi *BuildJobsApiService
+	BuildJobsAPI *BuildJobsAPIService
 
-	CMSISBuildersApi *CMSISBuildersApiService
+	CMSISBuildersAPI *CMSISBuildersAPIService
 
-	CMSISIntellisenseBuildersApi *CMSISIntellisenseBuildersApiService
+	CMSISIntellisenseBuildersAPI *CMSISIntellisenseBuildersAPIService
 
-	DevicesApi *DevicesApiService
+	DevicesAPI *DevicesAPIService
 
-	IntellisenseJobsApi *IntellisenseJobsApiService
+	IntellisenseJobsAPI *IntellisenseJobsAPIService
 
-	RootResourceApi *RootResourceApiService
+	RootResourceAPI *RootResourceAPIService
 
-	VHTRunJobsApi *VHTRunJobsApiService
+	VHTRunJobsAPI *VHTRunJobsAPIService
 
-	VendorsApi *VendorsApiService
+	VendorsAPI *VendorsAPIService
 
-	VirtualHardwareTargetApi *VirtualHardwareTargetApiService
+	VirtualHardwareTargetAPI *VirtualHardwareTargetAPIService
 
-	VirtualHardwareTargetInstanceApi *VirtualHardwareTargetInstanceApiService
+	VirtualHardwareTargetInstanceAPI *VirtualHardwareTargetInstanceAPIService
 
-	WorkspaceApi *WorkspaceApiService
+	WorkspaceAPI *WorkspaceAPIService
 
-	WorkspaceSourceApi *WorkspaceSourceApiService
+	WorkspaceSourceAPI *WorkspaceSourceAPIService
 }
 
 type service struct {
@@ -98,19 +98,19 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.BoardsApi = (*BoardsApiService)(&c.common)
-	c.BuildJobsApi = (*BuildJobsApiService)(&c.common)
-	c.CMSISBuildersApi = (*CMSISBuildersApiService)(&c.common)
-	c.CMSISIntellisenseBuildersApi = (*CMSISIntellisenseBuildersApiService)(&c.common)
-	c.DevicesApi = (*DevicesApiService)(&c.common)
-	c.IntellisenseJobsApi = (*IntellisenseJobsApiService)(&c.common)
-	c.RootResourceApi = (*RootResourceApiService)(&c.common)
-	c.VHTRunJobsApi = (*VHTRunJobsApiService)(&c.common)
-	c.VendorsApi = (*VendorsApiService)(&c.common)
-	c.VirtualHardwareTargetApi = (*VirtualHardwareTargetApiService)(&c.common)
-	c.VirtualHardwareTargetInstanceApi = (*VirtualHardwareTargetInstanceApiService)(&c.common)
-	c.WorkspaceApi = (*WorkspaceApiService)(&c.common)
-	c.WorkspaceSourceApi = (*WorkspaceSourceApiService)(&c.common)
+	c.BoardsAPI = (*BoardsAPIService)(&c.common)
+	c.BuildJobsAPI = (*BuildJobsAPIService)(&c.common)
+	c.CMSISBuildersAPI = (*CMSISBuildersAPIService)(&c.common)
+	c.CMSISIntellisenseBuildersAPI = (*CMSISIntellisenseBuildersAPIService)(&c.common)
+	c.DevicesAPI = (*DevicesAPIService)(&c.common)
+	c.IntellisenseJobsAPI = (*IntellisenseJobsAPIService)(&c.common)
+	c.RootResourceAPI = (*RootResourceAPIService)(&c.common)
+	c.VHTRunJobsAPI = (*VHTRunJobsAPIService)(&c.common)
+	c.VendorsAPI = (*VendorsAPIService)(&c.common)
+	c.VirtualHardwareTargetAPI = (*VirtualHardwareTargetAPIService)(&c.common)
+	c.VirtualHardwareTargetInstanceAPI = (*VirtualHardwareTargetInstanceAPIService)(&c.common)
+	c.WorkspaceAPI = (*WorkspaceAPIService)(&c.common)
+	c.WorkspaceSourceAPI = (*WorkspaceSourceAPIService)(&c.common)
 
 	return c
 }
@@ -483,6 +483,7 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 			return
 		}
 		_, err = f.Seek(0, io.SeekStart)
+		err = os.Remove(f.Name())
 		return
 	}
 	if f, ok := v.(**os.File); ok {
@@ -495,6 +496,7 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 			return
 		}
 		_, err = (*f).Seek(0, io.SeekStart)
+		err = os.Remove((*f).Name())
 		return
 	}
 	if xmlCheck.MatchString(contentType) {
@@ -571,7 +573,11 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 	} else if jsonCheck.MatchString(contentType) {
 		err = json.NewEncoder(bodyBuf).Encode(body)
 	} else if xmlCheck.MatchString(contentType) {
-		err = xml.NewEncoder(bodyBuf).Encode(body)
+		var bs []byte
+		bs, err = xml.Marshal(body)
+		if err == nil {
+			bodyBuf.Write(bs)
+		}
 	}
 
 	if err != nil {

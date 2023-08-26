@@ -166,8 +166,8 @@ func (o SimpleCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	// skip: name is readOnly
-	// skip: title is readOnly
+	toSerialize["name"] = o.Name
+	toSerialize["title"] = o.Title
 	return toSerialize, nil
 }
 

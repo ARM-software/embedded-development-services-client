@@ -2,23 +2,22 @@
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
-# \CMSISBuildersApi
+# \WorkspaceSourceAPI
 
 All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetCmsisBuilder**](CMSISBuildersApi.md#GetCmsisBuilder) | **Get** /cmsis-builders/{builderName} | Return details of specific CMSIS Builders.
-[**ListCmsisBuilders**](CMSISBuildersApi.md#ListCmsisBuilders) | **Get** /cmsis-builders/ | List available CMSIS Builders.
-[**StartCmsisBuild**](CMSISBuildersApi.md#StartCmsisBuild) | **Post** /cmsis-builders/{builderName} | Initiate a build using the specified CMSIS Builder.
+[**GetWorkspaceSource**](WorkspaceSourceAPI.md#GetWorkspaceSource) | **Get** /workspace-sources/{workspaceSourceName} | Return details of the specific workspace source.
+[**ListWorkspaceSources**](WorkspaceSourceAPI.md#ListWorkspaceSources) | **Get** /workspace-sources/ | List available workspace sources.
 
 
 
-## GetCmsisBuilder
+## GetWorkspaceSource
 
-> CmsisBuilderItem GetCmsisBuilder(ctx, builderName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+> WorkspaceSourceItem GetWorkspaceSource(ctx, workspaceSourceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 
-Return details of specific CMSIS Builders.
+Return details of the specific workspace source.
 
 
 
@@ -35,19 +34,19 @@ import (
 )
 
 func main() {
-    builderName := "builderName_example" // string | The ID of the CMSIS Builder.
+    workspaceSourceName := "workspaceSourceName_example" // string | The ID of the workspace source.
     acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
     ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CMSISBuildersApi.GetCmsisBuilder(context.Background(), builderName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+    resp, r, err := apiClient.WorkspaceSourceAPI.GetWorkspaceSource(context.Background(), workspaceSourceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CMSISBuildersApi.GetCmsisBuilder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceSourceAPI.GetWorkspaceSource``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetCmsisBuilder`: CmsisBuilderItem
-    fmt.Fprintf(os.Stdout, "Response from `CMSISBuildersApi.GetCmsisBuilder`: %v\n", resp)
+    // response from `GetWorkspaceSource`: WorkspaceSourceItem
+    fmt.Fprintf(os.Stdout, "Response from `WorkspaceSourceAPI.GetWorkspaceSource`: %v\n", resp)
 }
 ```
 
@@ -57,11 +56,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**builderName** | **string** | The ID of the CMSIS Builder. | 
+**workspaceSourceName** | **string** | The ID of the workspace source. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetCmsisBuilderRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetWorkspaceSourceRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -72,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CmsisBuilderItem**](CmsisBuilderItem.md)
+[**WorkspaceSourceItem**](WorkspaceSourceItem.md)
 
 ### Authorization
 
@@ -88,11 +87,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListCmsisBuilders
+## ListWorkspaceSources
 
-> CmsisBuilderCollection ListCmsisBuilders(ctx).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+> WorkspaceSourceCollection ListWorkspaceSources(ctx).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
 
-List available CMSIS Builders.
+List available workspace sources.
 
 
 
@@ -117,13 +116,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CMSISBuildersApi.ListCmsisBuilders(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.WorkspaceSourceAPI.ListWorkspaceSources(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CMSISBuildersApi.ListCmsisBuilders``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceSourceAPI.ListWorkspaceSources``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListCmsisBuilders`: CmsisBuilderCollection
-    fmt.Fprintf(os.Stdout, "Response from `CMSISBuildersApi.ListCmsisBuilders`: %v\n", resp)
+    // response from `ListWorkspaceSources`: WorkspaceSourceCollection
+    fmt.Fprintf(os.Stdout, "Response from `WorkspaceSourceAPI.ListWorkspaceSources`: %v\n", resp)
 }
 ```
 
@@ -133,7 +132,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListCmsisBuildersRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListWorkspaceSourcesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -146,7 +145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CmsisBuilderCollection**](CmsisBuilderCollection.md)
+[**WorkspaceSourceCollection**](WorkspaceSourceCollection.md)
 
 ### Authorization
 
@@ -155,80 +154,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## StartCmsisBuild
-
-> BuildJobItem StartCmsisBuild(ctx, builderName).BuildJobItem(buildJobItem).AcceptVersion(acceptVersion).Execute()
-
-Initiate a build using the specified CMSIS Builder.
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
-)
-
-func main() {
-    builderName := "builderName_example" // string | The ID of the CMSIS Builder.
-    buildJobItem := *openapiclient.NewBuildJobItem("TODO", "TODO", NullableInt32(50), NullableInt32(70), true, false, true, "332129b3-f14d-49d2-b9be-acd2abd80c6b", "workspace/debug-build.cprj", "INITIALISING", false) // BuildJobItem | A name of the CMSIS project to build.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CMSISBuildersApi.StartCmsisBuild(context.Background(), builderName).BuildJobItem(buildJobItem).AcceptVersion(acceptVersion).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CMSISBuildersApi.StartCmsisBuild``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `StartCmsisBuild`: BuildJobItem
-    fmt.Fprintf(os.Stdout, "Response from `CMSISBuildersApi.StartCmsisBuild`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**builderName** | **string** | The ID of the CMSIS Builder. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiStartCmsisBuildRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **buildJobItem** | [**BuildJobItem**](BuildJobItem.md) | A name of the CMSIS project to build. | 
- **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
-
-### Return type
-
-[**BuildJobItem**](BuildJobItem.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

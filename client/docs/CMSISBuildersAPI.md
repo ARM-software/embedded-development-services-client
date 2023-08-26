@@ -2,23 +2,23 @@
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
-# \CMSISIntellisenseBuildersApi
+# \CMSISBuildersAPI
 
 All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetCmsisIntellisense**](CMSISIntellisenseBuildersApi.md#GetCmsisIntellisense) | **Get** /cmsis-intellisense/{builderName} | Return details of specific CMSIS Intellisense Builders.
-[**ListCmsisIntellisense**](CMSISIntellisenseBuildersApi.md#ListCmsisIntellisense) | **Get** /cmsis-intellisense/ | List available CMSIS Intellisense Builders.
-[**StartCmsisIntellisense**](CMSISIntellisenseBuildersApi.md#StartCmsisIntellisense) | **Post** /cmsis-intellisense/{builderName} | Initiate a compilation database generation using the specified CMSIS Intellisense Builder.
+[**GetCmsisBuilder**](CMSISBuildersAPI.md#GetCmsisBuilder) | **Get** /cmsis-builders/{builderName} | Return details of specific CMSIS Builders.
+[**ListCmsisBuilders**](CMSISBuildersAPI.md#ListCmsisBuilders) | **Get** /cmsis-builders/ | List available CMSIS Builders.
+[**StartCmsisBuild**](CMSISBuildersAPI.md#StartCmsisBuild) | **Post** /cmsis-builders/{builderName} | Initiate a build using the specified CMSIS Builder.
 
 
 
-## GetCmsisIntellisense
+## GetCmsisBuilder
 
-> CmsisBuilderItem GetCmsisIntellisense(ctx, builderName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+> CmsisBuilderItem GetCmsisBuilder(ctx, builderName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 
-Return details of specific CMSIS Intellisense Builders.
+Return details of specific CMSIS Builders.
 
 
 
@@ -35,19 +35,19 @@ import (
 )
 
 func main() {
-    builderName := "builderName_example" // string | The ID of the CMSIS Intellisense Builder.
+    builderName := "builderName_example" // string | The ID of the CMSIS Builder.
     acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
     ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CMSISIntellisenseBuildersApi.GetCmsisIntellisense(context.Background(), builderName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+    resp, r, err := apiClient.CMSISBuildersAPI.GetCmsisBuilder(context.Background(), builderName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CMSISIntellisenseBuildersApi.GetCmsisIntellisense``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CMSISBuildersAPI.GetCmsisBuilder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetCmsisIntellisense`: CmsisBuilderItem
-    fmt.Fprintf(os.Stdout, "Response from `CMSISIntellisenseBuildersApi.GetCmsisIntellisense`: %v\n", resp)
+    // response from `GetCmsisBuilder`: CmsisBuilderItem
+    fmt.Fprintf(os.Stdout, "Response from `CMSISBuildersAPI.GetCmsisBuilder`: %v\n", resp)
 }
 ```
 
@@ -57,11 +57,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**builderName** | **string** | The ID of the CMSIS Intellisense Builder. | 
+**builderName** | **string** | The ID of the CMSIS Builder. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetCmsisIntellisenseRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetCmsisBuilderRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -88,11 +88,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListCmsisIntellisense
+## ListCmsisBuilders
 
-> CmsisIntellisenseCollection ListCmsisIntellisense(ctx).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+> CmsisBuilderCollection ListCmsisBuilders(ctx).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
 
-List available CMSIS Intellisense Builders.
+List available CMSIS Builders.
 
 
 
@@ -117,13 +117,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CMSISIntellisenseBuildersApi.ListCmsisIntellisense(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.CMSISBuildersAPI.ListCmsisBuilders(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CMSISIntellisenseBuildersApi.ListCmsisIntellisense``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CMSISBuildersAPI.ListCmsisBuilders``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListCmsisIntellisense`: CmsisIntellisenseCollection
-    fmt.Fprintf(os.Stdout, "Response from `CMSISIntellisenseBuildersApi.ListCmsisIntellisense`: %v\n", resp)
+    // response from `ListCmsisBuilders`: CmsisBuilderCollection
+    fmt.Fprintf(os.Stdout, "Response from `CMSISBuildersAPI.ListCmsisBuilders`: %v\n", resp)
 }
 ```
 
@@ -133,7 +133,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListCmsisIntellisenseRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListCmsisBuildersRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CmsisIntellisenseCollection**](CmsisIntellisenseCollection.md)
+[**CmsisBuilderCollection**](CmsisBuilderCollection.md)
 
 ### Authorization
 
@@ -162,11 +162,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## StartCmsisIntellisense
+## StartCmsisBuild
 
-> IntellisenseJobItem StartCmsisIntellisense(ctx, builderName).IntellisenseJobItem(intellisenseJobItem).AcceptVersion(acceptVersion).Execute()
+> BuildJobItem StartCmsisBuild(ctx, builderName).BuildJobItem(buildJobItem).AcceptVersion(acceptVersion).Execute()
 
-Initiate a compilation database generation using the specified CMSIS Intellisense Builder.
+Initiate a build using the specified CMSIS Builder.
 
 
 
@@ -183,19 +183,19 @@ import (
 )
 
 func main() {
-    builderName := "builderName_example" // string | The ID of the CMSIS Intellisense Builder.
-    intellisenseJobItem := *openapiclient.NewIntellisenseJobItem("TODO", "TODO", NullableInt32(50), NullableInt32(70), true, false, true, "332129b3-f14d-49d2-b9be-acd2abd80c6b", "/root/packs", "workspace/debug-build.cprj", "INITIALISING", false, "/root/toolchain/bin", "/root/toolchain/headers", "/root/workspace") // IntellisenseJobItem | A name of the CMSIS project to generate compilation database.
+    builderName := "builderName_example" // string | The ID of the CMSIS Builder.
+    buildJobItem := *openapiclient.NewBuildJobItem("TODO", "TODO", NullableInt32(50), NullableInt32(70), true, false, true, "332129b3-f14d-49d2-b9be-acd2abd80c6b", "workspace/debug-build.cprj", "INITIALISING", false) // BuildJobItem | A name of the CMSIS project to build.
     acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CMSISIntellisenseBuildersApi.StartCmsisIntellisense(context.Background(), builderName).IntellisenseJobItem(intellisenseJobItem).AcceptVersion(acceptVersion).Execute()
+    resp, r, err := apiClient.CMSISBuildersAPI.StartCmsisBuild(context.Background(), builderName).BuildJobItem(buildJobItem).AcceptVersion(acceptVersion).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CMSISIntellisenseBuildersApi.StartCmsisIntellisense``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CMSISBuildersAPI.StartCmsisBuild``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StartCmsisIntellisense`: IntellisenseJobItem
-    fmt.Fprintf(os.Stdout, "Response from `CMSISIntellisenseBuildersApi.StartCmsisIntellisense`: %v\n", resp)
+    // response from `StartCmsisBuild`: BuildJobItem
+    fmt.Fprintf(os.Stdout, "Response from `CMSISBuildersAPI.StartCmsisBuild`: %v\n", resp)
 }
 ```
 
@@ -205,22 +205,22 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**builderName** | **string** | The ID of the CMSIS Intellisense Builder. | 
+**builderName** | **string** | The ID of the CMSIS Builder. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStartCmsisIntellisenseRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStartCmsisBuildRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **intellisenseJobItem** | [**IntellisenseJobItem**](IntellisenseJobItem.md) | A name of the CMSIS project to generate compilation database. | 
+ **buildJobItem** | [**BuildJobItem**](BuildJobItem.md) | A name of the CMSIS project to build. | 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
 
 ### Return type
 
-[**IntellisenseJobItem**](IntellisenseJobItem.md)
+[**BuildJobItem**](BuildJobItem.md)
 
 ### Authorization
 

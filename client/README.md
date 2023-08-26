@@ -108,70 +108,70 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BoardsApi* | [**GetBoard**](docs/BoardsApi.md#getboard) | **Get** /boards/{boardId}/ | Get a Board Item
-*BoardsApi* | [**ListBoards**](docs/BoardsApi.md#listboards) | **Get** /boards/ | List all the Boards.
-*BuildJobsApi* | [**CancelBuildJob**](docs/BuildJobsApi.md#cancelbuildjob) | **Post** /build-jobs/{jobName}/cancel | Cancel a Build Job
-*BuildJobsApi* | [**DeleteBuildJob**](docs/BuildJobsApi.md#deletebuildjob) | **Delete** /build-jobs/{jobName} | Delete a Build Job
-*BuildJobsApi* | [**GetBuildArtefact**](docs/BuildJobsApi.md#getbuildartefact) | **Get** /build-jobs/{jobName}/artefacts/{artefactName} | Download the named Build Artefact for the given Build Job.
-*BuildJobsApi* | [**GetBuildJob**](docs/BuildJobsApi.md#getbuildjob) | **Get** /build-jobs/{jobName} | Return status of a Build Job.
-*BuildJobsApi* | [**GetBuildMessages**](docs/BuildJobsApi.md#getbuildmessages) | **Get** /build-jobs/{jobName}/messages | Build Message Feed.
-*BuildJobsApi* | [**ListBuildArtefacts**](docs/BuildJobsApi.md#listbuildartefacts) | **Get** /build-jobs/{jobName}/artefacts/ | List all the available Build Artefacts for the given Build Job.
-*BuildJobsApi* | [**ListBuildJob**](docs/BuildJobsApi.md#listbuildjob) | **Get** /build-jobs/ | List all Build Jobs.
-*BuildJobsApi* | [**RetainBuildJob**](docs/BuildJobsApi.md#retainbuildjob) | **Post** /build-jobs/{jobName}/retain | Update how long a build job will be retained before automatic deletion.
-*CMSISBuildersApi* | [**GetCmsisBuilder**](docs/CMSISBuildersApi.md#getcmsisbuilder) | **Get** /cmsis-builders/{builderName} | Return details of specific CMSIS Builders.
-*CMSISBuildersApi* | [**ListCmsisBuilders**](docs/CMSISBuildersApi.md#listcmsisbuilders) | **Get** /cmsis-builders/ | List available CMSIS Builders.
-*CMSISBuildersApi* | [**StartCmsisBuild**](docs/CMSISBuildersApi.md#startcmsisbuild) | **Post** /cmsis-builders/{builderName} | Initiate a build using the specified CMSIS Builder.
-*CMSISIntellisenseBuildersApi* | [**GetCmsisIntellisense**](docs/CMSISIntellisenseBuildersApi.md#getcmsisintellisense) | **Get** /cmsis-intellisense/{builderName} | Return details of specific CMSIS Intellisense Builders.
-*CMSISIntellisenseBuildersApi* | [**ListCmsisIntellisense**](docs/CMSISIntellisenseBuildersApi.md#listcmsisintellisense) | **Get** /cmsis-intellisense/ | List available CMSIS Intellisense Builders.
-*CMSISIntellisenseBuildersApi* | [**StartCmsisIntellisense**](docs/CMSISIntellisenseBuildersApi.md#startcmsisintellisense) | **Post** /cmsis-intellisense/{builderName} | Initiate a compilation database generation using the specified CMSIS Intellisense Builder.
-*DevicesApi* | [**GetDevice**](docs/DevicesApi.md#getdevice) | **Get** /devices/{deviceSlug} | Get a Device Item
-*DevicesApi* | [**ListDevices**](docs/DevicesApi.md#listdevices) | **Get** /devices/ | List all the Devices
-*IntellisenseJobsApi* | [**CancelIntellisenseJob**](docs/IntellisenseJobsApi.md#cancelintellisensejob) | **Post** /intellisense-jobs/{jobName}/cancel | Cancel an Intellisense Job.
-*IntellisenseJobsApi* | [**DeleteIntellisenseJob**](docs/IntellisenseJobsApi.md#deleteintellisensejob) | **Delete** /intellisense-jobs/{jobName} | Delete an Intellisense Job.
-*IntellisenseJobsApi* | [**GetIntellisenseArtefact**](docs/IntellisenseJobsApi.md#getintellisenseartefact) | **Get** /intellisense-jobs/{jobName}/artefacts/{artefactName} | Download the named Intellisense Artefact for the given Intellisense Job.
-*IntellisenseJobsApi* | [**GetIntellisenseJob**](docs/IntellisenseJobsApi.md#getintellisensejob) | **Get** /intellisense-jobs/{jobName} | Return status of an Intellisense Job.
-*IntellisenseJobsApi* | [**GetIntellisenseMessages**](docs/IntellisenseJobsApi.md#getintellisensemessages) | **Get** /intellisense-jobs/{jobName}/messages | Intellisense Message Feed.
-*IntellisenseJobsApi* | [**ListIntellisenseArtefacts**](docs/IntellisenseJobsApi.md#listintellisenseartefacts) | **Get** /intellisense-jobs/{jobName}/artefacts/ | List all the available Intellisense Artefacts for the given Intellisense Job.
-*IntellisenseJobsApi* | [**ListIntellisenseJob**](docs/IntellisenseJobsApi.md#listintellisensejob) | **Get** /intellisense-jobs/ | List all Intellisense Jobs.
-*IntellisenseJobsApi* | [**RetainIntellisenseJob**](docs/IntellisenseJobsApi.md#retainintellisensejob) | **Post** /intellisense-jobs/{jobName}/retain | Update how long an intellisense job will be retained before automatic deletion.
-*RootResourceApi* | [**GetRoot**](docs/RootResourceApi.md#getroot) | **Get** / | Get the Root resource.
-*VHTRunJobsApi* | [**CancelVhtRunJob**](docs/VHTRunJobsApi.md#cancelvhtrunjob) | **Post** /vht-run-jobs/{jobName}/cancel | Cancel a VHT run job.
-*VHTRunJobsApi* | [**DeleteVhtRunJob**](docs/VHTRunJobsApi.md#deletevhtrunjob) | **Delete** /vht-run-jobs/{jobName} | Delete an VHT run Job.
-*VHTRunJobsApi* | [**GetVhtRunJob**](docs/VHTRunJobsApi.md#getvhtrunjob) | **Get** /vht-run-jobs/{jobName} | Return status of an VHT run Job.
-*VHTRunJobsApi* | [**GetVhtRunJobMessages**](docs/VHTRunJobsApi.md#getvhtrunjobmessages) | **Get** /vht-run-jobs/{jobName}/messages | VHT Run Job Message Feed.
-*VHTRunJobsApi* | [**ListVhtRunJobs**](docs/VHTRunJobsApi.md#listvhtrunjobs) | **Get** /vht-run-jobs/ | List all run jobs on VHTs.
-*VendorsApi* | [**CreateVendor**](docs/VendorsApi.md#createvendor) | **Post** /vendors/ | Create a new Vendor
-*VendorsApi* | [**GetVendor**](docs/VendorsApi.md#getvendor) | **Get** /vendors/{vendorSlugOrId}/ | Get a Vendor Item
-*VendorsApi* | [**ListVendors**](docs/VendorsApi.md#listvendors) | **Get** /vendors/ | List all the Vendors.
-*VirtualHardwareTargetApi* | [**GetVht**](docs/VirtualHardwareTargetApi.md#getvht) | **Get** /vhts/{vhtName} | Return details of the specific VHT.
-*VirtualHardwareTargetApi* | [**ListFilteredVhtInstances**](docs/VirtualHardwareTargetApi.md#listfilteredvhtinstances) | **Get** /vhts/{vhtName}/vht-instances/ | List all VHT instances related to this specific VHT.
-*VirtualHardwareTargetApi* | [**ListVhts**](docs/VirtualHardwareTargetApi.md#listvhts) | **Get** /vhts/ | List available VHTs.
-*VirtualHardwareTargetApi* | [**StartVhtInstance**](docs/VirtualHardwareTargetApi.md#startvhtinstance) | **Post** /vhts/{vhtName} | Spawns a VHT instance matching this VHT specification.
-*VirtualHardwareTargetInstanceApi* | [**ClearVhtInstanceArtefact**](docs/VirtualHardwareTargetInstanceApi.md#clearvhtinstanceartefact) | **Delete** /vht-instances/{instanceName}/artefacts/{artefactName}/artefact | Clear the VHT artefact from the VHT instance.
-*VirtualHardwareTargetInstanceApi* | [**DeleteVhtInstance**](docs/VirtualHardwareTargetInstanceApi.md#deletevhtinstance) | **Delete** /vht-instances/{instanceName} | Delete a VHT instance
-*VirtualHardwareTargetInstanceApi* | [**DownloadVhtInstanceArtefact**](docs/VirtualHardwareTargetInstanceApi.md#downloadvhtinstanceartefact) | **Get** /vht-instances/{instanceName}/artefacts/{artefactName}/artefact | Download the artefact named &#x60;artefactName&#x60; present on this VHT instance.
-*VirtualHardwareTargetInstanceApi* | [**GetVhtInstance**](docs/VirtualHardwareTargetInstanceApi.md#getvhtinstance) | **Get** /vht-instances/{instanceName} | Return status of a VHT instance.
-*VirtualHardwareTargetInstanceApi* | [**GetVhtInstanceArtefactManager**](docs/VirtualHardwareTargetInstanceApi.md#getvhtinstanceartefactmanager) | **Get** /vht-instances/{instanceName}/artefacts/{artefactName} | Get the VHT artefact manager for the artefact named &#x60;artefactName&#x60; present of this VHT instance.
-*VirtualHardwareTargetInstanceApi* | [**GetVhtInstanceMessages**](docs/VirtualHardwareTargetInstanceApi.md#getvhtinstancemessages) | **Get** /vht-instances/{instanceName}/messages | Instance Message Feed.
-*VirtualHardwareTargetInstanceApi* | [**ListVhtInstanceArtefactManagers**](docs/VirtualHardwareTargetInstanceApi.md#listvhtinstanceartefactmanagers) | **Get** /vht-instances/{instanceName}/artefacts/ | List all the managers of the artefacts (e.g. binary, test input) available on a specific VHT instance.
-*VirtualHardwareTargetInstanceApi* | [**ListVhtInstances**](docs/VirtualHardwareTargetInstanceApi.md#listvhtinstances) | **Get** /vht-instances/ | List all VHT instances requested.
-*VirtualHardwareTargetInstanceApi* | [**StartVhtRunJob**](docs/VirtualHardwareTargetInstanceApi.md#startvhtrunjob) | **Post** /vht-instances/{instanceName} | Starts a VHT Run job.
-*VirtualHardwareTargetInstanceApi* | [**StopVhtInstance**](docs/VirtualHardwareTargetInstanceApi.md#stopvhtinstance) | **Post** /vht-instances/{instanceName}/cancel | Stop this VHT instance.
-*VirtualHardwareTargetInstanceApi* | [**UploadVhtInstanceArtefact**](docs/VirtualHardwareTargetInstanceApi.md#uploadvhtinstanceartefact) | **Put** /vht-instances/{instanceName}/artefacts/{artefactName}/artefact | Upload and replace the named VHT artefact on the given VHT instance.
-*WorkspaceApi* | [**ClearWorkspaceArchiveContent**](docs/WorkspaceApi.md#clearworkspacearchivecontent) | **Delete** /workspaces/{workspaceName}/archive-content | Clear the content of this workspace.
-*WorkspaceApi* | [**ClearWorkspaceRepositoryContentManager**](docs/WorkspaceApi.md#clearworkspacerepositorycontentmanager) | **Delete** /workspaces/{workspaceName}/repository-content | Clear the content of this workspace.
-*WorkspaceApi* | [**CreateWorkspace**](docs/WorkspaceApi.md#createworkspace) | **Post** /workspace-sources/{workspaceSourceName} | Creates a workspace based on the source.
-*WorkspaceApi* | [**DeleteWorkspace**](docs/WorkspaceApi.md#deleteworkspace) | **Delete** /workspaces/{workspaceName} | Delete a Workspace
-*WorkspaceApi* | [**EditWorkspaceRepositoryContentManager**](docs/WorkspaceApi.md#editworkspacerepositorycontentmanager) | **Put** /workspaces/{workspaceName}/repository-content | Edit the source for the content of the workspace.
-*WorkspaceApi* | [**GetWorkspace**](docs/WorkspaceApi.md#getworkspace) | **Get** /workspaces/{workspaceName} | Return the state of a workspace.
-*WorkspaceApi* | [**GetWorkspaceArchiveContent**](docs/WorkspaceApi.md#getworkspacearchivecontent) | **Get** /workspaces/{workspaceName}/archive-content | Get the manager of the archive file containing the workspace content.
-*WorkspaceApi* | [**GetWorkspaceDetails**](docs/WorkspaceApi.md#getworkspacedetails) | **Get** /workspaces/{workspaceName}/details | Details about the workspace.
-*WorkspaceApi* | [**GetWorkspaceRepositoryContentManager**](docs/WorkspaceApi.md#getworkspacerepositorycontentmanager) | **Get** /workspaces/{workspaceName}/repository-content | Get the manager of the workspace content defined in a repository.
-*WorkspaceApi* | [**ListWorkspaces**](docs/WorkspaceApi.md#listworkspaces) | **Get** /workspaces/ | List all workspaces available.
-*WorkspaceApi* | [**RetainWorkspace**](docs/WorkspaceApi.md#retainworkspace) | **Post** /workspaces/{workspaceName}/retain | Update how long a workspace will be retained before automatic deletion..
-*WorkspaceApi* | [**UploadWorkspaceArchiveContent**](docs/WorkspaceApi.md#uploadworkspacearchivecontent) | **Put** /workspaces/{workspaceName}/archive-content | Upload and replace the content of the named workspace.
-*WorkspaceSourceApi* | [**GetWorkspaceSource**](docs/WorkspaceSourceApi.md#getworkspacesource) | **Get** /workspace-sources/{workspaceSourceName} | Return details of the specific workspace source.
-*WorkspaceSourceApi* | [**ListWorkspaceSources**](docs/WorkspaceSourceApi.md#listworkspacesources) | **Get** /workspace-sources/ | List available workspace sources.
+*BoardsAPI* | [**GetBoard**](docs/BoardsAPI.md#getboard) | **Get** /boards/{boardId}/ | Get a Board Item
+*BoardsAPI* | [**ListBoards**](docs/BoardsAPI.md#listboards) | **Get** /boards/ | List all the Boards.
+*BuildJobsAPI* | [**CancelBuildJob**](docs/BuildJobsAPI.md#cancelbuildjob) | **Post** /build-jobs/{jobName}/cancel | Cancel a Build Job
+*BuildJobsAPI* | [**DeleteBuildJob**](docs/BuildJobsAPI.md#deletebuildjob) | **Delete** /build-jobs/{jobName} | Delete a Build Job
+*BuildJobsAPI* | [**GetBuildArtefact**](docs/BuildJobsAPI.md#getbuildartefact) | **Get** /build-jobs/{jobName}/artefacts/{artefactName} | Download the named Build Artefact for the given Build Job.
+*BuildJobsAPI* | [**GetBuildJob**](docs/BuildJobsAPI.md#getbuildjob) | **Get** /build-jobs/{jobName} | Return status of a Build Job.
+*BuildJobsAPI* | [**GetBuildMessages**](docs/BuildJobsAPI.md#getbuildmessages) | **Get** /build-jobs/{jobName}/messages | Build Message Feed.
+*BuildJobsAPI* | [**ListBuildArtefacts**](docs/BuildJobsAPI.md#listbuildartefacts) | **Get** /build-jobs/{jobName}/artefacts/ | List all the available Build Artefacts for the given Build Job.
+*BuildJobsAPI* | [**ListBuildJob**](docs/BuildJobsAPI.md#listbuildjob) | **Get** /build-jobs/ | List all Build Jobs.
+*BuildJobsAPI* | [**RetainBuildJob**](docs/BuildJobsAPI.md#retainbuildjob) | **Post** /build-jobs/{jobName}/retain | Update how long a build job will be retained before automatic deletion.
+*CMSISBuildersAPI* | [**GetCmsisBuilder**](docs/CMSISBuildersAPI.md#getcmsisbuilder) | **Get** /cmsis-builders/{builderName} | Return details of specific CMSIS Builders.
+*CMSISBuildersAPI* | [**ListCmsisBuilders**](docs/CMSISBuildersAPI.md#listcmsisbuilders) | **Get** /cmsis-builders/ | List available CMSIS Builders.
+*CMSISBuildersAPI* | [**StartCmsisBuild**](docs/CMSISBuildersAPI.md#startcmsisbuild) | **Post** /cmsis-builders/{builderName} | Initiate a build using the specified CMSIS Builder.
+*CMSISIntellisenseBuildersAPI* | [**GetCmsisIntellisense**](docs/CMSISIntellisenseBuildersAPI.md#getcmsisintellisense) | **Get** /cmsis-intellisense/{builderName} | Return details of specific CMSIS Intellisense Builders.
+*CMSISIntellisenseBuildersAPI* | [**ListCmsisIntellisense**](docs/CMSISIntellisenseBuildersAPI.md#listcmsisintellisense) | **Get** /cmsis-intellisense/ | List available CMSIS Intellisense Builders.
+*CMSISIntellisenseBuildersAPI* | [**StartCmsisIntellisense**](docs/CMSISIntellisenseBuildersAPI.md#startcmsisintellisense) | **Post** /cmsis-intellisense/{builderName} | Initiate a compilation database generation using the specified CMSIS Intellisense Builder.
+*DevicesAPI* | [**GetDevice**](docs/DevicesAPI.md#getdevice) | **Get** /devices/{deviceSlug} | Get a Device Item
+*DevicesAPI* | [**ListDevices**](docs/DevicesAPI.md#listdevices) | **Get** /devices/ | List all the Devices
+*IntellisenseJobsAPI* | [**CancelIntellisenseJob**](docs/IntellisenseJobsAPI.md#cancelintellisensejob) | **Post** /intellisense-jobs/{jobName}/cancel | Cancel an Intellisense Job.
+*IntellisenseJobsAPI* | [**DeleteIntellisenseJob**](docs/IntellisenseJobsAPI.md#deleteintellisensejob) | **Delete** /intellisense-jobs/{jobName} | Delete an Intellisense Job.
+*IntellisenseJobsAPI* | [**GetIntellisenseArtefact**](docs/IntellisenseJobsAPI.md#getintellisenseartefact) | **Get** /intellisense-jobs/{jobName}/artefacts/{artefactName} | Download the named Intellisense Artefact for the given Intellisense Job.
+*IntellisenseJobsAPI* | [**GetIntellisenseJob**](docs/IntellisenseJobsAPI.md#getintellisensejob) | **Get** /intellisense-jobs/{jobName} | Return status of an Intellisense Job.
+*IntellisenseJobsAPI* | [**GetIntellisenseMessages**](docs/IntellisenseJobsAPI.md#getintellisensemessages) | **Get** /intellisense-jobs/{jobName}/messages | Intellisense Message Feed.
+*IntellisenseJobsAPI* | [**ListIntellisenseArtefacts**](docs/IntellisenseJobsAPI.md#listintellisenseartefacts) | **Get** /intellisense-jobs/{jobName}/artefacts/ | List all the available Intellisense Artefacts for the given Intellisense Job.
+*IntellisenseJobsAPI* | [**ListIntellisenseJob**](docs/IntellisenseJobsAPI.md#listintellisensejob) | **Get** /intellisense-jobs/ | List all Intellisense Jobs.
+*IntellisenseJobsAPI* | [**RetainIntellisenseJob**](docs/IntellisenseJobsAPI.md#retainintellisensejob) | **Post** /intellisense-jobs/{jobName}/retain | Update how long an intellisense job will be retained before automatic deletion.
+*RootResourceAPI* | [**GetRoot**](docs/RootResourceAPI.md#getroot) | **Get** / | Get the Root resource.
+*VHTRunJobsAPI* | [**CancelVhtRunJob**](docs/VHTRunJobsAPI.md#cancelvhtrunjob) | **Post** /vht-run-jobs/{jobName}/cancel | Cancel a VHT run job.
+*VHTRunJobsAPI* | [**DeleteVhtRunJob**](docs/VHTRunJobsAPI.md#deletevhtrunjob) | **Delete** /vht-run-jobs/{jobName} | Delete an VHT run Job.
+*VHTRunJobsAPI* | [**GetVhtRunJob**](docs/VHTRunJobsAPI.md#getvhtrunjob) | **Get** /vht-run-jobs/{jobName} | Return status of an VHT run Job.
+*VHTRunJobsAPI* | [**GetVhtRunJobMessages**](docs/VHTRunJobsAPI.md#getvhtrunjobmessages) | **Get** /vht-run-jobs/{jobName}/messages | VHT Run Job Message Feed.
+*VHTRunJobsAPI* | [**ListVhtRunJobs**](docs/VHTRunJobsAPI.md#listvhtrunjobs) | **Get** /vht-run-jobs/ | List all run jobs on VHTs.
+*VendorsAPI* | [**CreateVendor**](docs/VendorsAPI.md#createvendor) | **Post** /vendors/ | Create a new Vendor
+*VendorsAPI* | [**GetVendor**](docs/VendorsAPI.md#getvendor) | **Get** /vendors/{vendorSlugOrId}/ | Get a Vendor Item
+*VendorsAPI* | [**ListVendors**](docs/VendorsAPI.md#listvendors) | **Get** /vendors/ | List all the Vendors.
+*VirtualHardwareTargetAPI* | [**GetVht**](docs/VirtualHardwareTargetAPI.md#getvht) | **Get** /vhts/{vhtName} | Return details of the specific VHT.
+*VirtualHardwareTargetAPI* | [**ListFilteredVhtInstances**](docs/VirtualHardwareTargetAPI.md#listfilteredvhtinstances) | **Get** /vhts/{vhtName}/vht-instances/ | List all VHT instances related to this specific VHT.
+*VirtualHardwareTargetAPI* | [**ListVhts**](docs/VirtualHardwareTargetAPI.md#listvhts) | **Get** /vhts/ | List available VHTs.
+*VirtualHardwareTargetAPI* | [**StartVhtInstance**](docs/VirtualHardwareTargetAPI.md#startvhtinstance) | **Post** /vhts/{vhtName} | Spawns a VHT instance matching this VHT specification.
+*VirtualHardwareTargetInstanceAPI* | [**ClearVhtInstanceArtefact**](docs/VirtualHardwareTargetInstanceAPI.md#clearvhtinstanceartefact) | **Delete** /vht-instances/{instanceName}/artefacts/{artefactName}/artefact | Clear the VHT artefact from the VHT instance.
+*VirtualHardwareTargetInstanceAPI* | [**DeleteVhtInstance**](docs/VirtualHardwareTargetInstanceAPI.md#deletevhtinstance) | **Delete** /vht-instances/{instanceName} | Delete a VHT instance
+*VirtualHardwareTargetInstanceAPI* | [**DownloadVhtInstanceArtefact**](docs/VirtualHardwareTargetInstanceAPI.md#downloadvhtinstanceartefact) | **Get** /vht-instances/{instanceName}/artefacts/{artefactName}/artefact | Download the artefact named &#x60;artefactName&#x60; present on this VHT instance.
+*VirtualHardwareTargetInstanceAPI* | [**GetVhtInstance**](docs/VirtualHardwareTargetInstanceAPI.md#getvhtinstance) | **Get** /vht-instances/{instanceName} | Return status of a VHT instance.
+*VirtualHardwareTargetInstanceAPI* | [**GetVhtInstanceArtefactManager**](docs/VirtualHardwareTargetInstanceAPI.md#getvhtinstanceartefactmanager) | **Get** /vht-instances/{instanceName}/artefacts/{artefactName} | Get the VHT artefact manager for the artefact named &#x60;artefactName&#x60; present of this VHT instance.
+*VirtualHardwareTargetInstanceAPI* | [**GetVhtInstanceMessages**](docs/VirtualHardwareTargetInstanceAPI.md#getvhtinstancemessages) | **Get** /vht-instances/{instanceName}/messages | Instance Message Feed.
+*VirtualHardwareTargetInstanceAPI* | [**ListVhtInstanceArtefactManagers**](docs/VirtualHardwareTargetInstanceAPI.md#listvhtinstanceartefactmanagers) | **Get** /vht-instances/{instanceName}/artefacts/ | List all the managers of the artefacts (e.g. binary, test input) available on a specific VHT instance.
+*VirtualHardwareTargetInstanceAPI* | [**ListVhtInstances**](docs/VirtualHardwareTargetInstanceAPI.md#listvhtinstances) | **Get** /vht-instances/ | List all VHT instances requested.
+*VirtualHardwareTargetInstanceAPI* | [**StartVhtRunJob**](docs/VirtualHardwareTargetInstanceAPI.md#startvhtrunjob) | **Post** /vht-instances/{instanceName} | Starts a VHT Run job.
+*VirtualHardwareTargetInstanceAPI* | [**StopVhtInstance**](docs/VirtualHardwareTargetInstanceAPI.md#stopvhtinstance) | **Post** /vht-instances/{instanceName}/cancel | Stop this VHT instance.
+*VirtualHardwareTargetInstanceAPI* | [**UploadVhtInstanceArtefact**](docs/VirtualHardwareTargetInstanceAPI.md#uploadvhtinstanceartefact) | **Put** /vht-instances/{instanceName}/artefacts/{artefactName}/artefact | Upload and replace the named VHT artefact on the given VHT instance.
+*WorkspaceAPI* | [**ClearWorkspaceArchiveContent**](docs/WorkspaceAPI.md#clearworkspacearchivecontent) | **Delete** /workspaces/{workspaceName}/archive-content | Clear the content of this workspace.
+*WorkspaceAPI* | [**ClearWorkspaceRepositoryContentManager**](docs/WorkspaceAPI.md#clearworkspacerepositorycontentmanager) | **Delete** /workspaces/{workspaceName}/repository-content | Clear the content of this workspace.
+*WorkspaceAPI* | [**CreateWorkspace**](docs/WorkspaceAPI.md#createworkspace) | **Post** /workspace-sources/{workspaceSourceName} | Creates a workspace based on the source.
+*WorkspaceAPI* | [**DeleteWorkspace**](docs/WorkspaceAPI.md#deleteworkspace) | **Delete** /workspaces/{workspaceName} | Delete a Workspace
+*WorkspaceAPI* | [**EditWorkspaceRepositoryContentManager**](docs/WorkspaceAPI.md#editworkspacerepositorycontentmanager) | **Put** /workspaces/{workspaceName}/repository-content | Edit the source for the content of the workspace.
+*WorkspaceAPI* | [**GetWorkspace**](docs/WorkspaceAPI.md#getworkspace) | **Get** /workspaces/{workspaceName} | Return the state of a workspace.
+*WorkspaceAPI* | [**GetWorkspaceArchiveContent**](docs/WorkspaceAPI.md#getworkspacearchivecontent) | **Get** /workspaces/{workspaceName}/archive-content | Get the manager of the archive file containing the workspace content.
+*WorkspaceAPI* | [**GetWorkspaceDetails**](docs/WorkspaceAPI.md#getworkspacedetails) | **Get** /workspaces/{workspaceName}/details | Details about the workspace.
+*WorkspaceAPI* | [**GetWorkspaceRepositoryContentManager**](docs/WorkspaceAPI.md#getworkspacerepositorycontentmanager) | **Get** /workspaces/{workspaceName}/repository-content | Get the manager of the workspace content defined in a repository.
+*WorkspaceAPI* | [**ListWorkspaces**](docs/WorkspaceAPI.md#listworkspaces) | **Get** /workspaces/ | List all workspaces available.
+*WorkspaceAPI* | [**RetainWorkspace**](docs/WorkspaceAPI.md#retainworkspace) | **Post** /workspaces/{workspaceName}/retain | Update how long a workspace will be retained before automatic deletion..
+*WorkspaceAPI* | [**UploadWorkspaceArchiveContent**](docs/WorkspaceAPI.md#uploadworkspacearchivecontent) | **Put** /workspaces/{workspaceName}/archive-content | Upload and replace the content of the named workspace.
+*WorkspaceSourceAPI* | [**GetWorkspaceSource**](docs/WorkspaceSourceAPI.md#getworkspacesource) | **Get** /workspace-sources/{workspaceSourceName} | Return details of the specific workspace source.
+*WorkspaceSourceAPI* | [**ListWorkspaceSources**](docs/WorkspaceSourceAPI.md#listworkspacesources) | **Get** /workspace-sources/ | List available workspace sources.
 
 
 ## Documentation For Models

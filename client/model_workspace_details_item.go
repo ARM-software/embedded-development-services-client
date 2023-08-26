@@ -244,9 +244,11 @@ func (o WorkspaceDetailsItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	// skip: name is readOnly
-	// skip: path is readOnly
-	// skip: sizeInByte is readOnly
+	toSerialize["name"] = o.Name
+	toSerialize["path"] = o.Path
+	if !IsNil(o.SizeInByte) {
+		toSerialize["sizeInByte"] = o.SizeInByte
+	}
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
