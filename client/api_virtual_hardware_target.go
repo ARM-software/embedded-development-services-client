@@ -292,12 +292,21 @@ func (a *VirtualHardwareTargetAPIService) ListFilteredVhtInstancesExecute(r ApiL
 
 	if r.embed != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "")
+	} else {
+		var defaultValue bool = false
+		r.embed = &defaultValue
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	} else {
+		var defaultValue int32 = 0
+		r.offset = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -487,12 +496,21 @@ func (a *VirtualHardwareTargetAPIService) ListVhtsExecute(r ApiListVhtsRequest) 
 
 	if r.embed != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "")
+	} else {
+		var defaultValue bool = false
+		r.embed = &defaultValue
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	} else {
+		var defaultValue int32 = 0
+		r.offset = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
