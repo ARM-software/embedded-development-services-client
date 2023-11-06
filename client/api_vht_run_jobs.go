@@ -652,9 +652,15 @@ func (a *VHTRunJobsAPIService) GetVhtRunJobMessagesExecute(r ApiGetVhtRunJobMess
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	} else {
+		var defaultValue int32 = 0
+		r.offset = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -852,12 +858,21 @@ func (a *VHTRunJobsAPIService) ListVhtRunJobsExecute(r ApiListVhtRunJobsRequest)
 
 	if r.embed != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "")
+	} else {
+		var defaultValue bool = false
+		r.embed = &defaultValue
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	} else {
+		var defaultValue int32 = 0
+		r.offset = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
