@@ -154,9 +154,15 @@ func (o CmsisIntellisenseItemDeprecationInfo) MarshalJSON() ([]byte, error) {
 
 func (o CmsisIntellisenseItemDeprecationInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: comment is readOnly
-	// skip: issued is readOnly
-	// skip: removal is readOnly
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	if !IsNil(o.Issued) {
+		toSerialize["issued"] = o.Issued
+	}
+	if !IsNil(o.Removal) {
+		toSerialize["removal"] = o.Removal
+	}
 	return toSerialize, nil
 }
 

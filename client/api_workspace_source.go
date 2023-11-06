@@ -26,12 +26,12 @@ import (
 )
 
 
-// WorkspaceSourceApiService WorkspaceSourceApi service
-type WorkspaceSourceApiService service
+// WorkspaceSourceAPIService WorkspaceSourceAPI service
+type WorkspaceSourceAPIService service
 
 type ApiGetWorkspaceSourceRequest struct {
 	ctx context.Context
-	ApiService *WorkspaceSourceApiService
+	ApiService *WorkspaceSourceAPIService
 	workspaceSourceName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -62,7 +62,7 @@ A workspace source defines what an ephemeral workspace can be created from e.g. 
  @param workspaceSourceName The ID of the workspace source.
  @return ApiGetWorkspaceSourceRequest
 */
-func (a *WorkspaceSourceApiService) GetWorkspaceSource(ctx context.Context, workspaceSourceName string) ApiGetWorkspaceSourceRequest {
+func (a *WorkspaceSourceAPIService) GetWorkspaceSource(ctx context.Context, workspaceSourceName string) ApiGetWorkspaceSourceRequest {
 	return ApiGetWorkspaceSourceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -72,7 +72,7 @@ func (a *WorkspaceSourceApiService) GetWorkspaceSource(ctx context.Context, work
 
 // Execute executes the request
 //  @return WorkspaceSourceItem
-func (a *WorkspaceSourceApiService) GetWorkspaceSourceExecute(r ApiGetWorkspaceSourceRequest) (*WorkspaceSourceItem, *http.Response, error) {
+func (a *WorkspaceSourceAPIService) GetWorkspaceSourceExecute(r ApiGetWorkspaceSourceRequest) (*WorkspaceSourceItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -80,7 +80,7 @@ func (a *WorkspaceSourceApiService) GetWorkspaceSourceExecute(r ApiGetWorkspaceS
 		localVarReturnValue  *WorkspaceSourceItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceSourceApiService.GetWorkspaceSource")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceSourceAPIService.GetWorkspaceSource")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -208,7 +208,7 @@ func (a *WorkspaceSourceApiService) GetWorkspaceSourceExecute(r ApiGetWorkspaceS
 
 type ApiListWorkspaceSourcesRequest struct {
 	ctx context.Context
-	ApiService *WorkspaceSourceApiService
+	ApiService *WorkspaceSourceAPIService
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
@@ -258,7 +258,7 @@ This returns a collection resource that lists all of the workspace sources curre
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListWorkspaceSourcesRequest
 */
-func (a *WorkspaceSourceApiService) ListWorkspaceSources(ctx context.Context) ApiListWorkspaceSourcesRequest {
+func (a *WorkspaceSourceAPIService) ListWorkspaceSources(ctx context.Context) ApiListWorkspaceSourcesRequest {
 	return ApiListWorkspaceSourcesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -267,7 +267,7 @@ func (a *WorkspaceSourceApiService) ListWorkspaceSources(ctx context.Context) Ap
 
 // Execute executes the request
 //  @return WorkspaceSourceCollection
-func (a *WorkspaceSourceApiService) ListWorkspaceSourcesExecute(r ApiListWorkspaceSourcesRequest) (*WorkspaceSourceCollection, *http.Response, error) {
+func (a *WorkspaceSourceAPIService) ListWorkspaceSourcesExecute(r ApiListWorkspaceSourcesRequest) (*WorkspaceSourceCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -275,7 +275,7 @@ func (a *WorkspaceSourceApiService) ListWorkspaceSourcesExecute(r ApiListWorkspa
 		localVarReturnValue  *WorkspaceSourceCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceSourceApiService.ListWorkspaceSources")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceSourceAPIService.ListWorkspaceSources")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

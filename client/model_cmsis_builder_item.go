@@ -343,15 +343,15 @@ func (o CmsisBuilderItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["buildToolsType"] = o.BuildToolsType
-	// skip: buildToolsVersion is readOnly
-	// skip: deprecated is readOnly
+	toSerialize["buildToolsVersion"] = o.BuildToolsVersion
+	toSerialize["deprecated"] = o.Deprecated
 	if o.DeprecationInfo.IsSet() {
 		toSerialize["deprecationInfo"] = o.DeprecationInfo.Get()
 	}
-	// skip: name is readOnly
-	// skip: title is readOnly
+	toSerialize["name"] = o.Name
+	toSerialize["title"] = o.Title
 	toSerialize["toolchainType"] = o.ToolchainType
-	// skip: toolchainVersion is readOnly
+	toSerialize["toolchainVersion"] = o.ToolchainVersion
 	return toSerialize, nil
 }
 

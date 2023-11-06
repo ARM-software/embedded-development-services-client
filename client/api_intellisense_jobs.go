@@ -27,12 +27,12 @@ import (
 )
 
 
-// IntellisenseJobsApiService IntellisenseJobsApi service
-type IntellisenseJobsApiService service
+// IntellisenseJobsAPIService IntellisenseJobsAPI service
+type IntellisenseJobsAPIService service
 
 type ApiCancelIntellisenseJobRequest struct {
 	ctx context.Context
-	ApiService *IntellisenseJobsApiService
+	ApiService *IntellisenseJobsAPIService
 	jobName string
 	acceptVersion *string
 }
@@ -56,7 +56,7 @@ This will cancel a job that is in progress. All messages associated with it will
  @param jobName Unique ID of the Intellisense Job.
  @return ApiCancelIntellisenseJobRequest
 */
-func (a *IntellisenseJobsApiService) CancelIntellisenseJob(ctx context.Context, jobName string) ApiCancelIntellisenseJobRequest {
+func (a *IntellisenseJobsAPIService) CancelIntellisenseJob(ctx context.Context, jobName string) ApiCancelIntellisenseJobRequest {
 	return ApiCancelIntellisenseJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -66,7 +66,7 @@ func (a *IntellisenseJobsApiService) CancelIntellisenseJob(ctx context.Context, 
 
 // Execute executes the request
 //  @return IntellisenseJobItem
-func (a *IntellisenseJobsApiService) CancelIntellisenseJobExecute(r ApiCancelIntellisenseJobRequest) (*IntellisenseJobItem, *http.Response, error) {
+func (a *IntellisenseJobsAPIService) CancelIntellisenseJobExecute(r ApiCancelIntellisenseJobRequest) (*IntellisenseJobItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -74,7 +74,7 @@ func (a *IntellisenseJobsApiService) CancelIntellisenseJobExecute(r ApiCancelInt
 		localVarReturnValue  *IntellisenseJobItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsApiService.CancelIntellisenseJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsAPIService.CancelIntellisenseJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -221,7 +221,7 @@ func (a *IntellisenseJobsApiService) CancelIntellisenseJobExecute(r ApiCancelInt
 
 type ApiDeleteIntellisenseJobRequest struct {
 	ctx context.Context
-	ApiService *IntellisenseJobsApiService
+	ApiService *IntellisenseJobsAPIService
 	jobName string
 	acceptVersion *string
 }
@@ -245,7 +245,7 @@ Deletes a job along with artefacts and messages associated with it. Deleting a j
  @param jobName Unique ID of the Intellisense Job.
  @return ApiDeleteIntellisenseJobRequest
 */
-func (a *IntellisenseJobsApiService) DeleteIntellisenseJob(ctx context.Context, jobName string) ApiDeleteIntellisenseJobRequest {
+func (a *IntellisenseJobsAPIService) DeleteIntellisenseJob(ctx context.Context, jobName string) ApiDeleteIntellisenseJobRequest {
 	return ApiDeleteIntellisenseJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -254,14 +254,14 @@ func (a *IntellisenseJobsApiService) DeleteIntellisenseJob(ctx context.Context, 
 }
 
 // Execute executes the request
-func (a *IntellisenseJobsApiService) DeleteIntellisenseJobExecute(r ApiDeleteIntellisenseJobRequest) (*http.Response, error) {
+func (a *IntellisenseJobsAPIService) DeleteIntellisenseJobExecute(r ApiDeleteIntellisenseJobRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsApiService.DeleteIntellisenseJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsAPIService.DeleteIntellisenseJob")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -399,7 +399,7 @@ func (a *IntellisenseJobsApiService) DeleteIntellisenseJobExecute(r ApiDeleteInt
 
 type ApiGetIntellisenseArtefactRequest struct {
 	ctx context.Context
-	ApiService *IntellisenseJobsApiService
+	ApiService *IntellisenseJobsAPIService
 	jobName string
 	artefactName string
 	acceptVersion *string
@@ -425,7 +425,7 @@ An artefact represents a product of the intellisense job process such as a json 
  @param artefactName The URL safe name of the Intellisense Artefact.
  @return ApiGetIntellisenseArtefactRequest
 */
-func (a *IntellisenseJobsApiService) GetIntellisenseArtefact(ctx context.Context, jobName string, artefactName string) ApiGetIntellisenseArtefactRequest {
+func (a *IntellisenseJobsAPIService) GetIntellisenseArtefact(ctx context.Context, jobName string, artefactName string) ApiGetIntellisenseArtefactRequest {
 	return ApiGetIntellisenseArtefactRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -436,7 +436,7 @@ func (a *IntellisenseJobsApiService) GetIntellisenseArtefact(ctx context.Context
 
 // Execute executes the request
 //  @return *os.File
-func (a *IntellisenseJobsApiService) GetIntellisenseArtefactExecute(r ApiGetIntellisenseArtefactRequest) (*os.File, *http.Response, error) {
+func (a *IntellisenseJobsAPIService) GetIntellisenseArtefactExecute(r ApiGetIntellisenseArtefactRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -444,7 +444,7 @@ func (a *IntellisenseJobsApiService) GetIntellisenseArtefactExecute(r ApiGetInte
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsApiService.GetIntellisenseArtefact")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsAPIService.GetIntellisenseArtefact")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -570,7 +570,7 @@ func (a *IntellisenseJobsApiService) GetIntellisenseArtefactExecute(r ApiGetInte
 
 type ApiGetIntellisenseJobRequest struct {
 	ctx context.Context
-	ApiService *IntellisenseJobsApiService
+	ApiService *IntellisenseJobsAPIService
 	jobName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -601,7 +601,7 @@ An intellisense job represents the status of a intellisense process (generation 
  @param jobName Unique ID of the Intellisense Job.
  @return ApiGetIntellisenseJobRequest
 */
-func (a *IntellisenseJobsApiService) GetIntellisenseJob(ctx context.Context, jobName string) ApiGetIntellisenseJobRequest {
+func (a *IntellisenseJobsAPIService) GetIntellisenseJob(ctx context.Context, jobName string) ApiGetIntellisenseJobRequest {
 	return ApiGetIntellisenseJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -611,7 +611,7 @@ func (a *IntellisenseJobsApiService) GetIntellisenseJob(ctx context.Context, job
 
 // Execute executes the request
 //  @return IntellisenseJobItem
-func (a *IntellisenseJobsApiService) GetIntellisenseJobExecute(r ApiGetIntellisenseJobRequest) (*IntellisenseJobItem, *http.Response, error) {
+func (a *IntellisenseJobsAPIService) GetIntellisenseJobExecute(r ApiGetIntellisenseJobRequest) (*IntellisenseJobItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -619,7 +619,7 @@ func (a *IntellisenseJobsApiService) GetIntellisenseJobExecute(r ApiGetIntellise
 		localVarReturnValue  *IntellisenseJobItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsApiService.GetIntellisenseJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsAPIService.GetIntellisenseJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -747,7 +747,7 @@ func (a *IntellisenseJobsApiService) GetIntellisenseJobExecute(r ApiGetIntellise
 
 type ApiGetIntellisenseMessagesRequest struct {
 	ctx context.Context
-	ApiService *IntellisenseJobsApiService
+	ApiService *IntellisenseJobsAPIService
 	jobName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -792,7 +792,7 @@ Retrieve and page through the messages for a given job.
  @param jobName Unique ID of the Intellisense Job.
  @return ApiGetIntellisenseMessagesRequest
 */
-func (a *IntellisenseJobsApiService) GetIntellisenseMessages(ctx context.Context, jobName string) ApiGetIntellisenseMessagesRequest {
+func (a *IntellisenseJobsAPIService) GetIntellisenseMessages(ctx context.Context, jobName string) ApiGetIntellisenseMessagesRequest {
 	return ApiGetIntellisenseMessagesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -802,7 +802,7 @@ func (a *IntellisenseJobsApiService) GetIntellisenseMessages(ctx context.Context
 
 // Execute executes the request
 //  @return IntellisenseMessageItem
-func (a *IntellisenseJobsApiService) GetIntellisenseMessagesExecute(r ApiGetIntellisenseMessagesRequest) (*IntellisenseMessageItem, *http.Response, error) {
+func (a *IntellisenseJobsAPIService) GetIntellisenseMessagesExecute(r ApiGetIntellisenseMessagesRequest) (*IntellisenseMessageItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -810,7 +810,7 @@ func (a *IntellisenseJobsApiService) GetIntellisenseMessagesExecute(r ApiGetInte
 		localVarReturnValue  *IntellisenseMessageItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsApiService.GetIntellisenseMessages")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsAPIService.GetIntellisenseMessages")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -944,7 +944,7 @@ func (a *IntellisenseJobsApiService) GetIntellisenseMessagesExecute(r ApiGetInte
 
 type ApiListIntellisenseArtefactsRequest struct {
 	ctx context.Context
-	ApiService *IntellisenseJobsApiService
+	ApiService *IntellisenseJobsAPIService
 	jobName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -989,7 +989,7 @@ An artefact represents a product of the intellisense job process such as a json 
  @param jobName Unique ID of the Intellisense Job.
  @return ApiListIntellisenseArtefactsRequest
 */
-func (a *IntellisenseJobsApiService) ListIntellisenseArtefacts(ctx context.Context, jobName string) ApiListIntellisenseArtefactsRequest {
+func (a *IntellisenseJobsAPIService) ListIntellisenseArtefacts(ctx context.Context, jobName string) ApiListIntellisenseArtefactsRequest {
 	return ApiListIntellisenseArtefactsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -999,7 +999,7 @@ func (a *IntellisenseJobsApiService) ListIntellisenseArtefacts(ctx context.Conte
 
 // Execute executes the request
 //  @return SimpleCollection
-func (a *IntellisenseJobsApiService) ListIntellisenseArtefactsExecute(r ApiListIntellisenseArtefactsRequest) (*SimpleCollection, *http.Response, error) {
+func (a *IntellisenseJobsAPIService) ListIntellisenseArtefactsExecute(r ApiListIntellisenseArtefactsRequest) (*SimpleCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1007,7 +1007,7 @@ func (a *IntellisenseJobsApiService) ListIntellisenseArtefactsExecute(r ApiListI
 		localVarReturnValue  *SimpleCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsApiService.ListIntellisenseArtefacts")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsAPIService.ListIntellisenseArtefacts")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1141,7 +1141,7 @@ func (a *IntellisenseJobsApiService) ListIntellisenseArtefactsExecute(r ApiListI
 
 type ApiListIntellisenseJobRequest struct {
 	ctx context.Context
-	ApiService *IntellisenseJobsApiService
+	ApiService *IntellisenseJobsAPIService
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
@@ -1191,7 +1191,7 @@ This returns a collection resource that lists all in progress or recently comple
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListIntellisenseJobRequest
 */
-func (a *IntellisenseJobsApiService) ListIntellisenseJob(ctx context.Context) ApiListIntellisenseJobRequest {
+func (a *IntellisenseJobsAPIService) ListIntellisenseJob(ctx context.Context) ApiListIntellisenseJobRequest {
 	return ApiListIntellisenseJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1200,7 +1200,7 @@ func (a *IntellisenseJobsApiService) ListIntellisenseJob(ctx context.Context) Ap
 
 // Execute executes the request
 //  @return IntellisenseJobCollection
-func (a *IntellisenseJobsApiService) ListIntellisenseJobExecute(r ApiListIntellisenseJobRequest) (*IntellisenseJobCollection, *http.Response, error) {
+func (a *IntellisenseJobsAPIService) ListIntellisenseJobExecute(r ApiListIntellisenseJobRequest) (*IntellisenseJobCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1208,7 +1208,7 @@ func (a *IntellisenseJobsApiService) ListIntellisenseJobExecute(r ApiListIntelli
 		localVarReturnValue  *IntellisenseJobCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsApiService.ListIntellisenseJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsAPIService.ListIntellisenseJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1333,7 +1333,7 @@ func (a *IntellisenseJobsApiService) ListIntellisenseJobExecute(r ApiListIntelli
 
 type ApiRetainIntellisenseJobRequest struct {
 	ctx context.Context
-	ApiService *IntellisenseJobsApiService
+	ApiService *IntellisenseJobsAPIService
 	jobName string
 	acceptVersion *string
 	retainBuildJobRequest *RetainBuildJobRequest
@@ -1364,7 +1364,7 @@ Set the time at which the job and all associated resources such as generated art
  @param jobName Unique ID of the Intellisense Job.
  @return ApiRetainIntellisenseJobRequest
 */
-func (a *IntellisenseJobsApiService) RetainIntellisenseJob(ctx context.Context, jobName string) ApiRetainIntellisenseJobRequest {
+func (a *IntellisenseJobsAPIService) RetainIntellisenseJob(ctx context.Context, jobName string) ApiRetainIntellisenseJobRequest {
 	return ApiRetainIntellisenseJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1374,7 +1374,7 @@ func (a *IntellisenseJobsApiService) RetainIntellisenseJob(ctx context.Context, 
 
 // Execute executes the request
 //  @return IntellisenseJobItem
-func (a *IntellisenseJobsApiService) RetainIntellisenseJobExecute(r ApiRetainIntellisenseJobRequest) (*IntellisenseJobItem, *http.Response, error) {
+func (a *IntellisenseJobsAPIService) RetainIntellisenseJobExecute(r ApiRetainIntellisenseJobRequest) (*IntellisenseJobItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1382,7 +1382,7 @@ func (a *IntellisenseJobsApiService) RetainIntellisenseJobExecute(r ApiRetainInt
 		localVarReturnValue  *IntellisenseJobItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsApiService.RetainIntellisenseJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsAPIService.RetainIntellisenseJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

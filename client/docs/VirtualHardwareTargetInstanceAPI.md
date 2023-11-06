@@ -2,32 +2,31 @@
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
-# \WorkspaceApi
+# \VirtualHardwareTargetInstanceAPI
 
 All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ClearWorkspaceArchiveContent**](WorkspaceApi.md#ClearWorkspaceArchiveContent) | **Delete** /workspaces/{workspaceName}/archive-content | Clear the content of this workspace.
-[**ClearWorkspaceRepositoryContentManager**](WorkspaceApi.md#ClearWorkspaceRepositoryContentManager) | **Delete** /workspaces/{workspaceName}/repository-content | Clear the content of this workspace.
-[**CreateWorkspace**](WorkspaceApi.md#CreateWorkspace) | **Post** /workspace-sources/{workspaceSourceName} | Creates a workspace based on the source.
-[**DeleteWorkspace**](WorkspaceApi.md#DeleteWorkspace) | **Delete** /workspaces/{workspaceName} | Delete a Workspace
-[**EditWorkspaceRepositoryContentManager**](WorkspaceApi.md#EditWorkspaceRepositoryContentManager) | **Put** /workspaces/{workspaceName}/repository-content | Edit the source for the content of the workspace.
-[**GetWorkspace**](WorkspaceApi.md#GetWorkspace) | **Get** /workspaces/{workspaceName} | Return the state of a workspace.
-[**GetWorkspaceArchiveContent**](WorkspaceApi.md#GetWorkspaceArchiveContent) | **Get** /workspaces/{workspaceName}/archive-content | Get the manager of the archive file containing the workspace content.
-[**GetWorkspaceDetails**](WorkspaceApi.md#GetWorkspaceDetails) | **Get** /workspaces/{workspaceName}/details | Details about the workspace.
-[**GetWorkspaceRepositoryContentManager**](WorkspaceApi.md#GetWorkspaceRepositoryContentManager) | **Get** /workspaces/{workspaceName}/repository-content | Get the manager of the workspace content defined in a repository.
-[**ListWorkspaces**](WorkspaceApi.md#ListWorkspaces) | **Get** /workspaces/ | List all workspaces available.
-[**RetainWorkspace**](WorkspaceApi.md#RetainWorkspace) | **Post** /workspaces/{workspaceName}/retain | Update how long a workspace will be retained before automatic deletion..
-[**UploadWorkspaceArchiveContent**](WorkspaceApi.md#UploadWorkspaceArchiveContent) | **Put** /workspaces/{workspaceName}/archive-content | Upload and replace the content of the named workspace.
+[**ClearVhtInstanceArtefact**](VirtualHardwareTargetInstanceAPI.md#ClearVhtInstanceArtefact) | **Delete** /vht-instances/{instanceName}/artefacts/{artefactName}/artefact | Clear the VHT artefact from the VHT instance.
+[**DeleteVhtInstance**](VirtualHardwareTargetInstanceAPI.md#DeleteVhtInstance) | **Delete** /vht-instances/{instanceName} | Delete a VHT instance
+[**DownloadVhtInstanceArtefact**](VirtualHardwareTargetInstanceAPI.md#DownloadVhtInstanceArtefact) | **Get** /vht-instances/{instanceName}/artefacts/{artefactName}/artefact | Download the artefact named &#x60;artefactName&#x60; present on this VHT instance.
+[**GetVhtInstance**](VirtualHardwareTargetInstanceAPI.md#GetVhtInstance) | **Get** /vht-instances/{instanceName} | Return status of a VHT instance.
+[**GetVhtInstanceArtefactManager**](VirtualHardwareTargetInstanceAPI.md#GetVhtInstanceArtefactManager) | **Get** /vht-instances/{instanceName}/artefacts/{artefactName} | Get the VHT artefact manager for the artefact named &#x60;artefactName&#x60; present of this VHT instance.
+[**GetVhtInstanceMessages**](VirtualHardwareTargetInstanceAPI.md#GetVhtInstanceMessages) | **Get** /vht-instances/{instanceName}/messages | Instance Message Feed.
+[**ListVhtInstanceArtefactManagers**](VirtualHardwareTargetInstanceAPI.md#ListVhtInstanceArtefactManagers) | **Get** /vht-instances/{instanceName}/artefacts/ | List all the managers of the artefacts (e.g. binary, test input) available on a specific VHT instance.
+[**ListVhtInstances**](VirtualHardwareTargetInstanceAPI.md#ListVhtInstances) | **Get** /vht-instances/ | List all VHT instances requested.
+[**StartVhtRunJob**](VirtualHardwareTargetInstanceAPI.md#StartVhtRunJob) | **Post** /vht-instances/{instanceName} | Starts a VHT Run job.
+[**StopVhtInstance**](VirtualHardwareTargetInstanceAPI.md#StopVhtInstance) | **Post** /vht-instances/{instanceName}/cancel | Stop this VHT instance.
+[**UploadVhtInstanceArtefact**](VirtualHardwareTargetInstanceAPI.md#UploadVhtInstanceArtefact) | **Put** /vht-instances/{instanceName}/artefacts/{artefactName}/artefact | Upload and replace the named VHT artefact on the given VHT instance.
 
 
 
-## ClearWorkspaceArchiveContent
+## ClearVhtInstanceArtefact
 
-> ClearWorkspaceArchiveContent(ctx, workspaceName).AcceptVersion(acceptVersion).Execute()
+> ClearVhtInstanceArtefact(ctx, artefactName, instanceName).AcceptVersion(acceptVersion).Execute()
 
-Clear the content of this workspace.
+Clear the VHT artefact from the VHT instance.
 
 
 
@@ -44,14 +43,15 @@ import (
 )
 
 func main() {
-    workspaceName := "workspaceName_example" // string | Unique ID of the Workspace.
+    artefactName := "artefactName_example" // string | The URL safe name of the artefact.
+    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
     acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.WorkspaceApi.ClearWorkspaceArchiveContent(context.Background(), workspaceName).AcceptVersion(acceptVersion).Execute()
+    r, err := apiClient.VirtualHardwareTargetInstanceAPI.ClearVhtInstanceArtefact(context.Background(), artefactName, instanceName).AcceptVersion(acceptVersion).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.ClearWorkspaceArchiveContent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.ClearVhtInstanceArtefact``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -63,11 +63,83 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceName** | **string** | Unique ID of the Workspace. | 
+**artefactName** | **string** | The URL safe name of the artefact. | 
+**instanceName** | **string** | Unique ID of the VHT instance. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiClearWorkspaceArchiveContentRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiClearVhtInstanceArtefactRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteVhtInstance
+
+> DeleteVhtInstance(ctx, instanceName).AcceptVersion(acceptVersion).Execute()
+
+Delete a VHT instance
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.VirtualHardwareTargetInstanceAPI.DeleteVhtInstance(context.Background(), instanceName).AcceptVersion(acceptVersion).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.DeleteVhtInstance``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**instanceName** | **string** | Unique ID of the VHT instance. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteVhtInstanceRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -93,81 +165,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ClearWorkspaceRepositoryContentManager
+## DownloadVhtInstanceArtefact
 
-> ClearWorkspaceRepositoryContentManager(ctx, workspaceName).AcceptVersion(acceptVersion).Execute()
+> *os.File DownloadVhtInstanceArtefact(ctx, artefactName, instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 
-Clear the content of this workspace.
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
-)
-
-func main() {
-    workspaceName := "workspaceName_example" // string | Unique ID of the Workspace.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.WorkspaceApi.ClearWorkspaceRepositoryContentManager(context.Background(), workspaceName).AcceptVersion(acceptVersion).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.ClearWorkspaceRepositoryContentManager``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceName** | **string** | Unique ID of the Workspace. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiClearWorkspaceRepositoryContentManagerRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateWorkspace
-
-> WorkspaceItem CreateWorkspace(ctx, workspaceSourceName).WorkspaceItem(workspaceItem).AcceptVersion(acceptVersion).Execute()
-
-Creates a workspace based on the source.
+Download the artefact named `artefactName` present on this VHT instance.
 
 
 
@@ -184,239 +186,20 @@ import (
 )
 
 func main() {
-    workspaceSourceName := "workspaceSourceName_example" // string | The ID of the workspace source.
-    workspaceItem := *openapiclient.NewWorkspaceItem("TODO", "TODO", "332129b3-f14d-49d2-b9be-acd2abd80c6b") // WorkspaceItem | A name of the source type to create the workspace from.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceApi.CreateWorkspace(context.Background(), workspaceSourceName).WorkspaceItem(workspaceItem).AcceptVersion(acceptVersion).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.CreateWorkspace``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateWorkspace`: WorkspaceItem
-    fmt.Fprintf(os.Stdout, "Response from `WorkspaceApi.CreateWorkspace`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceSourceName** | **string** | The ID of the workspace source. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateWorkspaceRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **workspaceItem** | [**WorkspaceItem**](WorkspaceItem.md) | A name of the source type to create the workspace from. | 
- **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
-
-### Return type
-
-[**WorkspaceItem**](WorkspaceItem.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteWorkspace
-
-> DeleteWorkspace(ctx, workspaceName).AcceptVersion(acceptVersion).Execute()
-
-Delete a Workspace
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
-)
-
-func main() {
-    workspaceName := "workspaceName_example" // string | Unique ID of the Workspace.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.WorkspaceApi.DeleteWorkspace(context.Background(), workspaceName).AcceptVersion(acceptVersion).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.DeleteWorkspace``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceName** | **string** | Unique ID of the Workspace. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteWorkspaceRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## EditWorkspaceRepositoryContentManager
-
-> WorkspaceRepositoryContentManager EditWorkspaceRepositoryContentManager(ctx, workspaceName).IfMatch(ifMatch).WorkspaceRepositoryContentManager(workspaceRepositoryContentManager).AcceptVersion(acceptVersion).Execute()
-
-Edit the source for the content of the workspace.
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
-)
-
-func main() {
-    workspaceName := "workspaceName_example" // string | Unique ID of the Workspace.
-    ifMatch := "ifMatch_example" // string | Conditional Requests: This is required in order to perform an update of a resource. The value of this header should be the `ETag` of the resource when read (before being subsequently modified by the client).
-    workspaceRepositoryContentManager := *openapiclient.NewWorkspaceRepositoryContentManager("TODO", "TODO", "example001", "23db6982caef9e9152f1a5b2589e6ca3", " https://github.com/cli/cli", "git") // WorkspaceRepositoryContentManager | Definition of the repository where the workspace content should be checked out from
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceApi.EditWorkspaceRepositoryContentManager(context.Background(), workspaceName).IfMatch(ifMatch).WorkspaceRepositoryContentManager(workspaceRepositoryContentManager).AcceptVersion(acceptVersion).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.EditWorkspaceRepositoryContentManager``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `EditWorkspaceRepositoryContentManager`: WorkspaceRepositoryContentManager
-    fmt.Fprintf(os.Stdout, "Response from `WorkspaceApi.EditWorkspaceRepositoryContentManager`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceName** | **string** | Unique ID of the Workspace. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiEditWorkspaceRepositoryContentManagerRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **ifMatch** | **string** | Conditional Requests: This is required in order to perform an update of a resource. The value of this header should be the &#x60;ETag&#x60; of the resource when read (before being subsequently modified by the client). | 
- **workspaceRepositoryContentManager** | [**WorkspaceRepositoryContentManager**](WorkspaceRepositoryContentManager.md) | Definition of the repository where the workspace content should be checked out from | 
- **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
-
-### Return type
-
-[**WorkspaceRepositoryContentManager**](WorkspaceRepositoryContentManager.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetWorkspace
-
-> WorkspaceItem GetWorkspace(ctx, workspaceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
-
-Return the state of a workspace.
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
-)
-
-func main() {
-    workspaceName := "workspaceName_example" // string | Unique ID of the Workspace.
+    artefactName := "artefactName_example" // string | The URL safe name of the artefact.
+    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
     acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
     ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceApi.GetWorkspace(context.Background(), workspaceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.DownloadVhtInstanceArtefact(context.Background(), artefactName, instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.GetWorkspace``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.DownloadVhtInstanceArtefact``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetWorkspace`: WorkspaceItem
-    fmt.Fprintf(os.Stdout, "Response from `WorkspaceApi.GetWorkspace`: %v\n", resp)
+    // response from `DownloadVhtInstanceArtefact`: *os.File
+    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.DownloadVhtInstanceArtefact`: %v\n", resp)
 }
 ```
 
@@ -426,11 +209,87 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceName** | **string** | Unique ID of the Workspace. | 
+**artefactName** | **string** | The URL safe name of the artefact. | 
+**instanceName** | **string** | Unique ID of the VHT instance. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetWorkspaceRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDownloadVhtInstanceArtefactRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
+
+### Return type
+
+[***os.File**](*os.File.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/octet-stream, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetVhtInstance
+
+> VhtInstanceItem GetVhtInstance(ctx, instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+
+Return status of a VHT instance.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+    ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.GetVhtInstance(context.Background(), instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.GetVhtInstance``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVhtInstance`: VhtInstanceItem
+    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.GetVhtInstance`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**instanceName** | **string** | Unique ID of the VHT instance. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVhtInstanceRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -441,7 +300,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WorkspaceItem**](WorkspaceItem.md)
+[**VhtInstanceItem**](VhtInstanceItem.md)
 
 ### Authorization
 
@@ -457,11 +316,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetWorkspaceArchiveContent
+## GetVhtInstanceArtefactManager
 
-> ArtefactManagerItem GetWorkspaceArchiveContent(ctx, workspaceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+> ArtefactManagerItem GetVhtInstanceArtefactManager(ctx, artefactName, instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 
-Get the manager of the archive file containing the workspace content.
+Get the VHT artefact manager for the artefact named `artefactName` present of this VHT instance.
 
 
 
@@ -478,19 +337,20 @@ import (
 )
 
 func main() {
-    workspaceName := "workspaceName_example" // string | Unique ID of the Workspace.
+    artefactName := "artefactName_example" // string | The URL safe name of the artefact.
+    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
     acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
     ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceApi.GetWorkspaceArchiveContent(context.Background(), workspaceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.GetVhtInstanceArtefactManager(context.Background(), artefactName, instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.GetWorkspaceArchiveContent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.GetVhtInstanceArtefactManager``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetWorkspaceArchiveContent`: ArtefactManagerItem
-    fmt.Fprintf(os.Stdout, "Response from `WorkspaceApi.GetWorkspaceArchiveContent`: %v\n", resp)
+    // response from `GetVhtInstanceArtefactManager`: ArtefactManagerItem
+    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.GetVhtInstanceArtefactManager`: %v\n", resp)
 }
 ```
 
@@ -500,15 +360,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceName** | **string** | Unique ID of the Workspace. | 
+**artefactName** | **string** | The URL safe name of the artefact. | 
+**instanceName** | **string** | Unique ID of the VHT instance. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetWorkspaceArchiveContentRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetVhtInstanceArtefactManagerRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
  **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
@@ -531,85 +393,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetWorkspaceDetails
+## GetVhtInstanceMessages
 
-> WorkspaceDetailsItem GetWorkspaceDetails(ctx, workspaceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+> NotificationFeed GetVhtInstanceMessages(ctx, instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
 
-Details about the workspace.
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
-)
-
-func main() {
-    workspaceName := "workspaceName_example" // string | Unique ID of the Workspace.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-    ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceApi.GetWorkspaceDetails(context.Background(), workspaceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.GetWorkspaceDetails``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetWorkspaceDetails`: WorkspaceDetailsItem
-    fmt.Fprintf(os.Stdout, "Response from `WorkspaceApi.GetWorkspaceDetails`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceName** | **string** | Unique ID of the Workspace. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetWorkspaceDetailsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
- **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
-
-### Return type
-
-[**WorkspaceDetailsItem**](WorkspaceDetailsItem.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetWorkspaceRepositoryContentManager
-
-> WorkspaceRepositoryContentManager GetWorkspaceRepositoryContentManager(ctx, workspaceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
-
-Get the manager of the workspace content defined in a repository.
+Instance Message Feed.
 
 
 
@@ -626,19 +414,21 @@ import (
 )
 
 func main() {
-    workspaceName := "workspaceName_example" // string | Unique ID of the Workspace.
+    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
     acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
     ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+    limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
+    offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceApi.GetWorkspaceRepositoryContentManager(context.Background(), workspaceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.GetVhtInstanceMessages(context.Background(), instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.GetWorkspaceRepositoryContentManager``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.GetVhtInstanceMessages``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetWorkspaceRepositoryContentManager`: WorkspaceRepositoryContentManager
-    fmt.Fprintf(os.Stdout, "Response from `WorkspaceApi.GetWorkspaceRepositoryContentManager`: %v\n", resp)
+    // response from `GetVhtInstanceMessages`: NotificationFeed
+    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.GetVhtInstanceMessages`: %v\n", resp)
 }
 ```
 
@@ -648,11 +438,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceName** | **string** | Unique ID of the Workspace. | 
+**instanceName** | **string** | Unique ID of the VHT instance. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetWorkspaceRepositoryContentManagerRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetVhtInstanceMessagesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -660,10 +450,12 @@ Name | Type | Description  | Notes
 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
  **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
+ **limit** | **int32** | Paging: The maximum number of items to return in a resource. | [default to 20]
+ **offset** | **int32** | Paging:  The index of the first item to return in the resource. | [default to 0]
 
 ### Return type
 
-[**WorkspaceRepositoryContentManager**](WorkspaceRepositoryContentManager.md)
+[**NotificationFeed**](NotificationFeed.md)
 
 ### Authorization
 
@@ -679,11 +471,91 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListWorkspaces
+## ListVhtInstanceArtefactManagers
 
-> WorkspaceCollection ListWorkspaces(ctx).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+> ArtefactManagerCollection ListVhtInstanceArtefactManagers(ctx, instanceName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
 
-List all workspaces available.
+List all the managers of the artefacts (e.g. binary, test input) available on a specific VHT instance.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+    embed := false // bool | Embedding: The whether or not to embed resources into the collection (rather than return links). (optional) (default to false)
+    ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+    limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
+    offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.ListVhtInstanceArtefactManagers(context.Background(), instanceName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.ListVhtInstanceArtefactManagers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVhtInstanceArtefactManagers`: ArtefactManagerCollection
+    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.ListVhtInstanceArtefactManagers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**instanceName** | **string** | Unique ID of the VHT instance. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVhtInstanceArtefactManagersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **embed** | **bool** | Embedding: The whether or not to embed resources into the collection (rather than return links). | [default to false]
+ **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
+ **limit** | **int32** | Paging: The maximum number of items to return in a resource. | [default to 20]
+ **offset** | **int32** | Paging:  The index of the first item to return in the resource. | [default to 0]
+
+### Return type
+
+[**ArtefactManagerCollection**](ArtefactManagerCollection.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListVhtInstances
+
+> VhtInstanceCollection ListVhtInstances(ctx).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+
+List all VHT instances requested.
 
 
 
@@ -708,13 +580,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceApi.ListWorkspaces(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.ListVhtInstances(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.ListWorkspaces``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.ListVhtInstances``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListWorkspaces`: WorkspaceCollection
-    fmt.Fprintf(os.Stdout, "Response from `WorkspaceApi.ListWorkspaces`: %v\n", resp)
+    // response from `ListVhtInstances`: VhtInstanceCollection
+    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.ListVhtInstances`: %v\n", resp)
 }
 ```
 
@@ -724,7 +596,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListWorkspacesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListVhtInstancesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -737,7 +609,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WorkspaceCollection**](WorkspaceCollection.md)
+[**VhtInstanceCollection**](VhtInstanceCollection.md)
 
 ### Authorization
 
@@ -753,11 +625,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## RetainWorkspace
+## StartVhtRunJob
 
-> WorkspaceItem RetainWorkspace(ctx, workspaceName).AcceptVersion(acceptVersion).RetainWorkspaceRequest(retainWorkspaceRequest).Execute()
+> VhtRunJobItem StartVhtRunJob(ctx, instanceName).VhtRunJobItem(vhtRunJobItem).AcceptVersion(acceptVersion).Execute()
 
-Update how long a workspace will be retained before automatic deletion..
+Starts a VHT Run job.
 
 
 
@@ -774,19 +646,19 @@ import (
 )
 
 func main() {
-    workspaceName := "workspaceName_example" // string | Unique ID of the Workspace.
+    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+    vhtRunJobItem := *openapiclient.NewVhtRunJobItem("TODO", "TODO", true, true, "332129b3-f14d-49d2-b9be-acd2abd80c6b", false, "PENDING", false, false) // VhtRunJobItem | A VHT run job.
     acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-    retainWorkspaceRequest := *openapiclient.NewRetainWorkspaceRequest() // RetainWorkspaceRequest | TTL configuration. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceApi.RetainWorkspace(context.Background(), workspaceName).AcceptVersion(acceptVersion).RetainWorkspaceRequest(retainWorkspaceRequest).Execute()
+    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.StartVhtRunJob(context.Background(), instanceName).VhtRunJobItem(vhtRunJobItem).AcceptVersion(acceptVersion).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.RetainWorkspace``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.StartVhtRunJob``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `RetainWorkspace`: WorkspaceItem
-    fmt.Fprintf(os.Stdout, "Response from `WorkspaceApi.RetainWorkspace`: %v\n", resp)
+    // response from `StartVhtRunJob`: VhtRunJobItem
+    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.StartVhtRunJob`: %v\n", resp)
 }
 ```
 
@@ -796,22 +668,22 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceName** | **string** | Unique ID of the Workspace. | 
+**instanceName** | **string** | Unique ID of the VHT instance. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRetainWorkspaceRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStartVhtRunJobRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **vhtRunJobItem** | [**VhtRunJobItem**](VhtRunJobItem.md) | A VHT run job. | 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
- **retainWorkspaceRequest** | [**RetainWorkspaceRequest**](RetainWorkspaceRequest.md) | TTL configuration. | 
 
 ### Return type
 
-[**WorkspaceItem**](WorkspaceItem.md)
+[**VhtRunJobItem**](VhtRunJobItem.md)
 
 ### Authorization
 
@@ -827,11 +699,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UploadWorkspaceArchiveContent
+## StopVhtInstance
 
-> ArtefactManagerItem UploadWorkspaceArchiveContent(ctx, workspaceName).IfMatch(ifMatch).Content(content).Hash(hash).AcceptVersion(acceptVersion).ContentMediaType(contentMediaType).Size(size).Title(title).Execute()
+> VhtInstanceItem StopVhtInstance(ctx, instanceName).AcceptVersion(acceptVersion).Execute()
 
-Upload and replace the content of the named workspace.
+Stop this VHT instance.
 
 
 
@@ -848,7 +720,80 @@ import (
 )
 
 func main() {
-    workspaceName := "workspaceName_example" // string | Unique ID of the Workspace.
+    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.StopVhtInstance(context.Background(), instanceName).AcceptVersion(acceptVersion).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.StopVhtInstance``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StopVhtInstance`: VhtInstanceItem
+    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.StopVhtInstance`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**instanceName** | **string** | Unique ID of the VHT instance. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStopVhtInstanceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+[**VhtInstanceItem**](VhtInstanceItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UploadVhtInstanceArtefact
+
+> ArtefactManagerItem UploadVhtInstanceArtefact(ctx, artefactName, instanceName).IfMatch(ifMatch).Content(content).Hash(hash).AcceptVersion(acceptVersion).ContentMediaType(contentMediaType).Size(size).Title(title).Execute()
+
+Upload and replace the named VHT artefact on the given VHT instance.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+    artefactName := "artefactName_example" // string | The URL safe name of the artefact.
+    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
     ifMatch := "ifMatch_example" // string | Conditional Requests: This is required in order to perform an update of a resource. The value of this header should be the `ETag` of the resource when read (before being subsequently modified by the client).
     content := os.NewFile(1234, "some_file") // *os.File | artefact content
     hash := "hash_example" // string | Hash of the artefact (sha256) for network resilience
@@ -859,13 +804,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceApi.UploadWorkspaceArchiveContent(context.Background(), workspaceName).IfMatch(ifMatch).Content(content).Hash(hash).AcceptVersion(acceptVersion).ContentMediaType(contentMediaType).Size(size).Title(title).Execute()
+    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.UploadVhtInstanceArtefact(context.Background(), artefactName, instanceName).IfMatch(ifMatch).Content(content).Hash(hash).AcceptVersion(acceptVersion).ContentMediaType(contentMediaType).Size(size).Title(title).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceApi.UploadWorkspaceArchiveContent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.UploadVhtInstanceArtefact``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UploadWorkspaceArchiveContent`: ArtefactManagerItem
-    fmt.Fprintf(os.Stdout, "Response from `WorkspaceApi.UploadWorkspaceArchiveContent`: %v\n", resp)
+    // response from `UploadVhtInstanceArtefact`: ArtefactManagerItem
+    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.UploadVhtInstanceArtefact`: %v\n", resp)
 }
 ```
 
@@ -875,15 +820,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceName** | **string** | Unique ID of the Workspace. | 
+**artefactName** | **string** | The URL safe name of the artefact. | 
+**instanceName** | **string** | Unique ID of the VHT instance. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUploadWorkspaceArchiveContentRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUploadVhtInstanceArtefactRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **ifMatch** | **string** | Conditional Requests: This is required in order to perform an update of a resource. The value of this header should be the &#x60;ETag&#x60; of the resource when read (before being subsequently modified by the client). | 
  **content** | ***os.File** | artefact content | 

@@ -2,17 +2,17 @@
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
-# \VHTRunJobsApi
+# \VHTRunJobsAPI
 
 All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CancelVhtRunJob**](VHTRunJobsApi.md#CancelVhtRunJob) | **Post** /vht-run-jobs/{jobName}/cancel | Cancel a VHT run job.
-[**DeleteVhtRunJob**](VHTRunJobsApi.md#DeleteVhtRunJob) | **Delete** /vht-run-jobs/{jobName} | Delete an VHT run Job.
-[**GetVhtRunJob**](VHTRunJobsApi.md#GetVhtRunJob) | **Get** /vht-run-jobs/{jobName} | Return status of an VHT run Job.
-[**GetVhtRunJobMessages**](VHTRunJobsApi.md#GetVhtRunJobMessages) | **Get** /vht-run-jobs/{jobName}/messages | VHT Run Job Message Feed.
-[**ListVhtRunJobs**](VHTRunJobsApi.md#ListVhtRunJobs) | **Get** /vht-run-jobs/ | List all run jobs on VHTs.
+[**CancelVhtRunJob**](VHTRunJobsAPI.md#CancelVhtRunJob) | **Post** /vht-run-jobs/{jobName}/cancel | Cancel a VHT run job.
+[**DeleteVhtRunJob**](VHTRunJobsAPI.md#DeleteVhtRunJob) | **Delete** /vht-run-jobs/{jobName} | Delete an VHT run Job.
+[**GetVhtRunJob**](VHTRunJobsAPI.md#GetVhtRunJob) | **Get** /vht-run-jobs/{jobName} | Return status of an VHT run Job.
+[**GetVhtRunJobMessages**](VHTRunJobsAPI.md#GetVhtRunJobMessages) | **Get** /vht-run-jobs/{jobName}/messages | VHT Run Job Message Feed.
+[**ListVhtRunJobs**](VHTRunJobsAPI.md#ListVhtRunJobs) | **Get** /vht-run-jobs/ | List all run jobs on VHTs.
 
 
 
@@ -42,13 +42,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VHTRunJobsApi.CancelVhtRunJob(context.Background(), jobName).AcceptVersion(acceptVersion).Execute()
+    resp, r, err := apiClient.VHTRunJobsAPI.CancelVhtRunJob(context.Background(), jobName).AcceptVersion(acceptVersion).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VHTRunJobsApi.CancelVhtRunJob``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VHTRunJobsAPI.CancelVhtRunJob``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CancelVhtRunJob`: VhtRunJobItem
-    fmt.Fprintf(os.Stdout, "Response from `VHTRunJobsApi.CancelVhtRunJob`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `VHTRunJobsAPI.CancelVhtRunJob`: %v\n", resp)
 }
 ```
 
@@ -114,9 +114,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.VHTRunJobsApi.DeleteVhtRunJob(context.Background(), jobName).AcceptVersion(acceptVersion).Execute()
+    r, err := apiClient.VHTRunJobsAPI.DeleteVhtRunJob(context.Background(), jobName).AcceptVersion(acceptVersion).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VHTRunJobsApi.DeleteVhtRunJob``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VHTRunJobsAPI.DeleteVhtRunJob``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -185,13 +185,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VHTRunJobsApi.GetVhtRunJob(context.Background(), jobName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+    resp, r, err := apiClient.VHTRunJobsAPI.GetVhtRunJob(context.Background(), jobName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VHTRunJobsApi.GetVhtRunJob``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VHTRunJobsAPI.GetVhtRunJob``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetVhtRunJob`: VhtRunJobItem
-    fmt.Fprintf(os.Stdout, "Response from `VHTRunJobsApi.GetVhtRunJob`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `VHTRunJobsAPI.GetVhtRunJob`: %v\n", resp)
 }
 ```
 
@@ -261,13 +261,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VHTRunJobsApi.GetVhtRunJobMessages(context.Background(), jobName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.VHTRunJobsAPI.GetVhtRunJobMessages(context.Background(), jobName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VHTRunJobsApi.GetVhtRunJobMessages``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VHTRunJobsAPI.GetVhtRunJobMessages``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetVhtRunJobMessages`: NotificationFeed
-    fmt.Fprintf(os.Stdout, "Response from `VHTRunJobsApi.GetVhtRunJobMessages`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `VHTRunJobsAPI.GetVhtRunJobMessages`: %v\n", resp)
 }
 ```
 
@@ -339,13 +339,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VHTRunJobsApi.ListVhtRunJobs(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.VHTRunJobsAPI.ListVhtRunJobs(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VHTRunJobsApi.ListVhtRunJobs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VHTRunJobsAPI.ListVhtRunJobs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListVhtRunJobs`: VhtRunJobCollection
-    fmt.Fprintf(os.Stdout, "Response from `VHTRunJobsApi.ListVhtRunJobs`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `VHTRunJobsAPI.ListVhtRunJobs`: %v\n", resp)
 }
 ```
 

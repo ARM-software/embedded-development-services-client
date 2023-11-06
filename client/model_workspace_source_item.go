@@ -260,13 +260,15 @@ func (o WorkspaceSourceItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	// skip: deprecated is readOnly
+	toSerialize["deprecated"] = o.Deprecated
 	if !IsNil(o.DeprecationInfo) {
 		toSerialize["deprecationInfo"] = o.DeprecationInfo
 	}
-	// skip: description is readOnly
-	// skip: name is readOnly
-	// skip: title is readOnly
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	toSerialize["name"] = o.Name
+	toSerialize["title"] = o.Title
 	return toSerialize, nil
 }
 

@@ -153,11 +153,11 @@ func (o CommonMetadata) MarshalJSON() ([]byte, error) {
 
 func (o CommonMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: ctime is readOnly
+	toSerialize["ctime"] = o.Ctime
 	if o.Etime.IsSet() {
 		toSerialize["etime"] = o.Etime.Get()
 	}
-	// skip: mtime is readOnly
+	toSerialize["mtime"] = o.Mtime
 	return toSerialize, nil
 }
 

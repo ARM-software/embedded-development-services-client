@@ -383,16 +383,16 @@ func (o VhtRunJobItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	// skip: done is readOnly
-	// skip: error is readOnly
+	toSerialize["done"] = o.Done
+	toSerialize["error"] = o.Error
 	if !IsNil(o.JobTimeout) {
 		toSerialize["jobTimeout"] = o.JobTimeout
 	}
-	// skip: name is readOnly
-	// skip: queued is readOnly
-	// skip: status is readOnly
-	// skip: systemError is readOnly
-	// skip: timedOut is readOnly
+	toSerialize["name"] = o.Name
+	toSerialize["queued"] = o.Queued
+	toSerialize["status"] = o.Status
+	toSerialize["systemError"] = o.SystemError
+	toSerialize["timedOut"] = o.TimedOut
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}

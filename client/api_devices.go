@@ -26,12 +26,12 @@ import (
 )
 
 
-// DevicesApiService DevicesApi service
-type DevicesApiService service
+// DevicesAPIService DevicesAPI service
+type DevicesAPIService service
 
 type ApiGetDeviceRequest struct {
 	ctx context.Context
-	ApiService *DevicesApiService
+	ApiService *DevicesAPIService
 	deviceSlug string
 	acceptVersion *string
 }
@@ -55,7 +55,7 @@ Get a specific Device Item using a Device Slug
  @param deviceSlug Unique slug of a Device.
  @return ApiGetDeviceRequest
 */
-func (a *DevicesApiService) GetDevice(ctx context.Context, deviceSlug string) ApiGetDeviceRequest {
+func (a *DevicesAPIService) GetDevice(ctx context.Context, deviceSlug string) ApiGetDeviceRequest {
 	return ApiGetDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -65,7 +65,7 @@ func (a *DevicesApiService) GetDevice(ctx context.Context, deviceSlug string) Ap
 
 // Execute executes the request
 //  @return DeviceItem
-func (a *DevicesApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*DeviceItem, *http.Response, error) {
+func (a *DevicesAPIService) GetDeviceExecute(r ApiGetDeviceRequest) (*DeviceItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -73,7 +73,7 @@ func (a *DevicesApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*DeviceItem
 		localVarReturnValue  *DeviceItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetDevice")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.GetDevice")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -198,7 +198,7 @@ func (a *DevicesApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*DeviceItem
 
 type ApiListDevicesRequest struct {
 	ctx context.Context
-	ApiService *DevicesApiService
+	ApiService *DevicesAPIService
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
@@ -248,7 +248,7 @@ This returns a collection resource that lists all of the Devices available to th
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListDevicesRequest
 */
-func (a *DevicesApiService) ListDevices(ctx context.Context) ApiListDevicesRequest {
+func (a *DevicesAPIService) ListDevices(ctx context.Context) ApiListDevicesRequest {
 	return ApiListDevicesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -257,7 +257,7 @@ func (a *DevicesApiService) ListDevices(ctx context.Context) ApiListDevicesReque
 
 // Execute executes the request
 //  @return ListDevicesCollection
-func (a *DevicesApiService) ListDevicesExecute(r ApiListDevicesRequest) (*ListDevicesCollection, *http.Response, error) {
+func (a *DevicesAPIService) ListDevicesExecute(r ApiListDevicesRequest) (*ListDevicesCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -265,7 +265,7 @@ func (a *DevicesApiService) ListDevicesExecute(r ApiListDevicesRequest) (*ListDe
 		localVarReturnValue  *ListDevicesCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.ListDevices")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.ListDevices")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
