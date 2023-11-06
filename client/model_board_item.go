@@ -369,7 +369,7 @@ func (o BoardItem) ToMap() (map[string]interface{}, error) {
 	if o.Features != nil {
 		toSerialize["features"] = o.Features
 	}
-	// skip: id is readOnly
+	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["summary"] = o.Summary
 	toSerialize["title"] = o.Title

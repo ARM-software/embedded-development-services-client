@@ -356,15 +356,15 @@ func (o VhtInstanceItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	// skip: error is readOnly
+	toSerialize["error"] = o.Error
 	if !IsNil(o.InstanceTimeout) {
 		toSerialize["instanceTimeout"] = o.InstanceTimeout
 	}
-	// skip: name is readOnly
-	// skip: ready is readOnly
-	// skip: requested is readOnly
-	// skip: status is readOnly
-	// skip: terminated is readOnly
+	toSerialize["name"] = o.Name
+	toSerialize["ready"] = o.Ready
+	toSerialize["requested"] = o.Requested
+	toSerialize["status"] = o.Status
+	toSerialize["terminated"] = o.Terminated
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}

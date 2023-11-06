@@ -26,12 +26,12 @@ import (
 )
 
 
-// VendorsApiService VendorsApi service
-type VendorsApiService service
+// VendorsAPIService VendorsAPI service
+type VendorsAPIService service
 
 type ApiCreateVendorRequest struct {
 	ctx context.Context
-	ApiService *VendorsApiService
+	ApiService *VendorsAPIService
 	vendorItem *VendorItem
 	acceptVersion *string
 }
@@ -60,7 +60,7 @@ This creates a new Vendor entry, using external data about the Vendor and a user
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateVendorRequest
 */
-func (a *VendorsApiService) CreateVendor(ctx context.Context) ApiCreateVendorRequest {
+func (a *VendorsAPIService) CreateVendor(ctx context.Context) ApiCreateVendorRequest {
 	return ApiCreateVendorRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -69,7 +69,7 @@ func (a *VendorsApiService) CreateVendor(ctx context.Context) ApiCreateVendorReq
 
 // Execute executes the request
 //  @return VendorItem
-func (a *VendorsApiService) CreateVendorExecute(r ApiCreateVendorRequest) (*VendorItem, *http.Response, error) {
+func (a *VendorsAPIService) CreateVendorExecute(r ApiCreateVendorRequest) (*VendorItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -77,7 +77,7 @@ func (a *VendorsApiService) CreateVendorExecute(r ApiCreateVendorRequest) (*Vend
 		localVarReturnValue  *VendorItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VendorsApiService.CreateVendor")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VendorsAPIService.CreateVendor")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -239,7 +239,7 @@ func (a *VendorsApiService) CreateVendorExecute(r ApiCreateVendorRequest) (*Vend
 
 type ApiGetVendorRequest struct {
 	ctx context.Context
-	ApiService *VendorsApiService
+	ApiService *VendorsAPIService
 	vendorSlugOrId string
 	acceptVersion *string
 }
@@ -263,7 +263,7 @@ Get a specific Vendor Item
  @param vendorSlugOrId Either the Slug or ID of the Vendor
  @return ApiGetVendorRequest
 */
-func (a *VendorsApiService) GetVendor(ctx context.Context, vendorSlugOrId string) ApiGetVendorRequest {
+func (a *VendorsAPIService) GetVendor(ctx context.Context, vendorSlugOrId string) ApiGetVendorRequest {
 	return ApiGetVendorRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -273,7 +273,7 @@ func (a *VendorsApiService) GetVendor(ctx context.Context, vendorSlugOrId string
 
 // Execute executes the request
 //  @return VendorItem
-func (a *VendorsApiService) GetVendorExecute(r ApiGetVendorRequest) (*VendorItem, *http.Response, error) {
+func (a *VendorsAPIService) GetVendorExecute(r ApiGetVendorRequest) (*VendorItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -281,7 +281,7 @@ func (a *VendorsApiService) GetVendorExecute(r ApiGetVendorRequest) (*VendorItem
 		localVarReturnValue  *VendorItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VendorsApiService.GetVendor")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VendorsAPIService.GetVendor")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -406,7 +406,7 @@ func (a *VendorsApiService) GetVendorExecute(r ApiGetVendorRequest) (*VendorItem
 
 type ApiListVendorsRequest struct {
 	ctx context.Context
-	ApiService *VendorsApiService
+	ApiService *VendorsAPIService
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
@@ -456,7 +456,7 @@ This returns a collection resource that lists all of the Vendors available to th
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListVendorsRequest
 */
-func (a *VendorsApiService) ListVendors(ctx context.Context) ApiListVendorsRequest {
+func (a *VendorsAPIService) ListVendors(ctx context.Context) ApiListVendorsRequest {
 	return ApiListVendorsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -465,7 +465,7 @@ func (a *VendorsApiService) ListVendors(ctx context.Context) ApiListVendorsReque
 
 // Execute executes the request
 //  @return ListVendorsCollection
-func (a *VendorsApiService) ListVendorsExecute(r ApiListVendorsRequest) (*ListVendorsCollection, *http.Response, error) {
+func (a *VendorsAPIService) ListVendorsExecute(r ApiListVendorsRequest) (*ListVendorsCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -473,7 +473,7 @@ func (a *VendorsApiService) ListVendorsExecute(r ApiListVendorsRequest) (*ListVe
 		localVarReturnValue  *ListVendorsCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VendorsApiService.ListVendors")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VendorsAPIService.ListVendors")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

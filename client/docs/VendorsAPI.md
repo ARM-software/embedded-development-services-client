@@ -2,22 +2,23 @@
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
-# \BoardsApi
+# \VendorsAPI
 
 All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetBoard**](BoardsApi.md#GetBoard) | **Get** /boards/{boardId}/ | Get a Board Item
-[**ListBoards**](BoardsApi.md#ListBoards) | **Get** /boards/ | List all the Boards.
+[**CreateVendor**](VendorsAPI.md#CreateVendor) | **Post** /vendors/ | Create a new Vendor
+[**GetVendor**](VendorsAPI.md#GetVendor) | **Get** /vendors/{vendorSlugOrId}/ | Get a Vendor Item
+[**ListVendors**](VendorsAPI.md#ListVendors) | **Get** /vendors/ | List all the Vendors.
 
 
 
-## GetBoard
+## CreateVendor
 
-> BoardItem GetBoard(ctx, boardId).AcceptVersion(acceptVersion).Execute()
+> VendorItem CreateVendor(ctx).VendorItem(vendorItem).AcceptVersion(acceptVersion).Execute()
 
-Get a Board Item
+Create a new Vendor
 
 
 
@@ -34,18 +35,86 @@ import (
 )
 
 func main() {
-    boardId := "boardId_example" // string | Unique ID of a Board.
+    vendorItem := *openapiclient.NewVendorItem(*openapiclient.NewVendorItemLinks(*openapiclient.NewHalLinkData("/cmsis-builders/?limit=20&offset=0"), *openapiclient.NewHalLinkData("/cmsis-builders/?limit=20&offset=0")), "TODO", "88a6137e-1d99-4cde-8db8-015312f7d5e6", "stmicroelectronics", "NXP") // VendorItem | Data required to create a new Vendor.
     acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BoardsApi.GetBoard(context.Background(), boardId).AcceptVersion(acceptVersion).Execute()
+    resp, r, err := apiClient.VendorsAPI.CreateVendor(context.Background()).VendorItem(vendorItem).AcceptVersion(acceptVersion).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BoardsApi.GetBoard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VendorsAPI.CreateVendor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetBoard`: BoardItem
-    fmt.Fprintf(os.Stdout, "Response from `BoardsApi.GetBoard`: %v\n", resp)
+    // response from `CreateVendor`: VendorItem
+    fmt.Fprintf(os.Stdout, "Response from `VendorsAPI.CreateVendor`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVendorRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vendorItem** | [**VendorItem**](VendorItem.md) | Data required to create a new Vendor. | 
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+[**VendorItem**](VendorItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetVendor
+
+> VendorItem GetVendor(ctx, vendorSlugOrId).AcceptVersion(acceptVersion).Execute()
+
+Get a Vendor Item
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+    vendorSlugOrId := "vendorSlugOrId_example" // string | Either the Slug or ID of the Vendor
+    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VendorsAPI.GetVendor(context.Background(), vendorSlugOrId).AcceptVersion(acceptVersion).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VendorsAPI.GetVendor``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVendor`: VendorItem
+    fmt.Fprintf(os.Stdout, "Response from `VendorsAPI.GetVendor`: %v\n", resp)
 }
 ```
 
@@ -55,11 +124,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**boardId** | **string** | Unique ID of a Board. | 
+**vendorSlugOrId** | **string** | Either the Slug or ID of the Vendor | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetBoardRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetVendorRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -69,7 +138,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BoardItem**](BoardItem.md)
+[**VendorItem**](VendorItem.md)
 
 ### Authorization
 
@@ -85,11 +154,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListBoards
+## ListVendors
 
-> ListBoardsCollection ListBoards(ctx).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+> ListVendorsCollection ListVendors(ctx).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
 
-List all the Boards.
+List all the Vendors.
 
 
 
@@ -114,13 +183,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BoardsApi.ListBoards(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.VendorsAPI.ListVendors(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BoardsApi.ListBoards``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VendorsAPI.ListVendors``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListBoards`: ListBoardsCollection
-    fmt.Fprintf(os.Stdout, "Response from `BoardsApi.ListBoards`: %v\n", resp)
+    // response from `ListVendors`: ListVendorsCollection
+    fmt.Fprintf(os.Stdout, "Response from `VendorsAPI.ListVendors`: %v\n", resp)
 }
 ```
 
@@ -130,7 +199,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListBoardsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListVendorsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -143,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListBoardsCollection**](ListBoardsCollection.md)
+[**ListVendorsCollection**](ListVendorsCollection.md)
 
 ### Authorization
 

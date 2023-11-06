@@ -26,12 +26,12 @@ import (
 )
 
 
-// BoardsApiService BoardsApi service
-type BoardsApiService service
+// BoardsAPIService BoardsAPI service
+type BoardsAPIService service
 
 type ApiGetBoardRequest struct {
 	ctx context.Context
-	ApiService *BoardsApiService
+	ApiService *BoardsAPIService
 	boardId string
 	acceptVersion *string
 }
@@ -55,7 +55,7 @@ Get a specific Board Item using a Board ID
  @param boardId Unique ID of a Board.
  @return ApiGetBoardRequest
 */
-func (a *BoardsApiService) GetBoard(ctx context.Context, boardId string) ApiGetBoardRequest {
+func (a *BoardsAPIService) GetBoard(ctx context.Context, boardId string) ApiGetBoardRequest {
 	return ApiGetBoardRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -65,7 +65,7 @@ func (a *BoardsApiService) GetBoard(ctx context.Context, boardId string) ApiGetB
 
 // Execute executes the request
 //  @return BoardItem
-func (a *BoardsApiService) GetBoardExecute(r ApiGetBoardRequest) (*BoardItem, *http.Response, error) {
+func (a *BoardsAPIService) GetBoardExecute(r ApiGetBoardRequest) (*BoardItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -73,7 +73,7 @@ func (a *BoardsApiService) GetBoardExecute(r ApiGetBoardRequest) (*BoardItem, *h
 		localVarReturnValue  *BoardItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardsApiService.GetBoard")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardsAPIService.GetBoard")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -198,7 +198,7 @@ func (a *BoardsApiService) GetBoardExecute(r ApiGetBoardRequest) (*BoardItem, *h
 
 type ApiListBoardsRequest struct {
 	ctx context.Context
-	ApiService *BoardsApiService
+	ApiService *BoardsAPIService
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
@@ -248,7 +248,7 @@ This returns a collection resource that lists all of the Boards available to the
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListBoardsRequest
 */
-func (a *BoardsApiService) ListBoards(ctx context.Context) ApiListBoardsRequest {
+func (a *BoardsAPIService) ListBoards(ctx context.Context) ApiListBoardsRequest {
 	return ApiListBoardsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -257,7 +257,7 @@ func (a *BoardsApiService) ListBoards(ctx context.Context) ApiListBoardsRequest 
 
 // Execute executes the request
 //  @return ListBoardsCollection
-func (a *BoardsApiService) ListBoardsExecute(r ApiListBoardsRequest) (*ListBoardsCollection, *http.Response, error) {
+func (a *BoardsAPIService) ListBoardsExecute(r ApiListBoardsRequest) (*ListBoardsCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -265,7 +265,7 @@ func (a *BoardsApiService) ListBoardsExecute(r ApiListBoardsRequest) (*ListBoard
 		localVarReturnValue  *ListBoardsCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardsApiService.ListBoards")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardsAPIService.ListBoards")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

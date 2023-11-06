@@ -205,7 +205,7 @@ func (o IntellisenseMessageItem) ToMap() (map[string]interface{}, error) {
 	if o.Messages != nil {
 		toSerialize["messages"] = o.Messages
 	}
-	// skip: name is readOnly
+	toSerialize["name"] = o.Name
 	if !IsNil(o.Title) {
 		toSerialize["title"] = o.Title
 	}

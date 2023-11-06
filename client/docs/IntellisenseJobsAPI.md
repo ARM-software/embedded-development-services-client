@@ -2,20 +2,20 @@
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
-# \IntellisenseJobsApi
+# \IntellisenseJobsAPI
 
 All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CancelIntellisenseJob**](IntellisenseJobsApi.md#CancelIntellisenseJob) | **Post** /intellisense-jobs/{jobName}/cancel | Cancel an Intellisense Job.
-[**DeleteIntellisenseJob**](IntellisenseJobsApi.md#DeleteIntellisenseJob) | **Delete** /intellisense-jobs/{jobName} | Delete an Intellisense Job.
-[**GetIntellisenseArtefact**](IntellisenseJobsApi.md#GetIntellisenseArtefact) | **Get** /intellisense-jobs/{jobName}/artefacts/{artefactName} | Download the named Intellisense Artefact for the given Intellisense Job.
-[**GetIntellisenseJob**](IntellisenseJobsApi.md#GetIntellisenseJob) | **Get** /intellisense-jobs/{jobName} | Return status of an Intellisense Job.
-[**GetIntellisenseMessages**](IntellisenseJobsApi.md#GetIntellisenseMessages) | **Get** /intellisense-jobs/{jobName}/messages | Intellisense Message Feed.
-[**ListIntellisenseArtefacts**](IntellisenseJobsApi.md#ListIntellisenseArtefacts) | **Get** /intellisense-jobs/{jobName}/artefacts/ | List all the available Intellisense Artefacts for the given Intellisense Job.
-[**ListIntellisenseJob**](IntellisenseJobsApi.md#ListIntellisenseJob) | **Get** /intellisense-jobs/ | List all Intellisense Jobs.
-[**RetainIntellisenseJob**](IntellisenseJobsApi.md#RetainIntellisenseJob) | **Post** /intellisense-jobs/{jobName}/retain | Update how long an intellisense job will be retained before automatic deletion.
+[**CancelIntellisenseJob**](IntellisenseJobsAPI.md#CancelIntellisenseJob) | **Post** /intellisense-jobs/{jobName}/cancel | Cancel an Intellisense Job.
+[**DeleteIntellisenseJob**](IntellisenseJobsAPI.md#DeleteIntellisenseJob) | **Delete** /intellisense-jobs/{jobName} | Delete an Intellisense Job.
+[**GetIntellisenseArtefact**](IntellisenseJobsAPI.md#GetIntellisenseArtefact) | **Get** /intellisense-jobs/{jobName}/artefacts/{artefactName} | Download the named Intellisense Artefact for the given Intellisense Job.
+[**GetIntellisenseJob**](IntellisenseJobsAPI.md#GetIntellisenseJob) | **Get** /intellisense-jobs/{jobName} | Return status of an Intellisense Job.
+[**GetIntellisenseMessages**](IntellisenseJobsAPI.md#GetIntellisenseMessages) | **Get** /intellisense-jobs/{jobName}/messages | Intellisense Message Feed.
+[**ListIntellisenseArtefacts**](IntellisenseJobsAPI.md#ListIntellisenseArtefacts) | **Get** /intellisense-jobs/{jobName}/artefacts/ | List all the available Intellisense Artefacts for the given Intellisense Job.
+[**ListIntellisenseJob**](IntellisenseJobsAPI.md#ListIntellisenseJob) | **Get** /intellisense-jobs/ | List all Intellisense Jobs.
+[**RetainIntellisenseJob**](IntellisenseJobsAPI.md#RetainIntellisenseJob) | **Post** /intellisense-jobs/{jobName}/retain | Update how long an intellisense job will be retained before automatic deletion.
 
 
 
@@ -45,13 +45,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IntellisenseJobsApi.CancelIntellisenseJob(context.Background(), jobName).AcceptVersion(acceptVersion).Execute()
+    resp, r, err := apiClient.IntellisenseJobsAPI.CancelIntellisenseJob(context.Background(), jobName).AcceptVersion(acceptVersion).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsApi.CancelIntellisenseJob``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsAPI.CancelIntellisenseJob``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CancelIntellisenseJob`: IntellisenseJobItem
-    fmt.Fprintf(os.Stdout, "Response from `IntellisenseJobsApi.CancelIntellisenseJob`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IntellisenseJobsAPI.CancelIntellisenseJob`: %v\n", resp)
 }
 ```
 
@@ -117,9 +117,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.IntellisenseJobsApi.DeleteIntellisenseJob(context.Background(), jobName).AcceptVersion(acceptVersion).Execute()
+    r, err := apiClient.IntellisenseJobsAPI.DeleteIntellisenseJob(context.Background(), jobName).AcceptVersion(acceptVersion).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsApi.DeleteIntellisenseJob``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsAPI.DeleteIntellisenseJob``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -188,13 +188,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IntellisenseJobsApi.GetIntellisenseArtefact(context.Background(), jobName, artefactName).AcceptVersion(acceptVersion).Execute()
+    resp, r, err := apiClient.IntellisenseJobsAPI.GetIntellisenseArtefact(context.Background(), jobName, artefactName).AcceptVersion(acceptVersion).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsApi.GetIntellisenseArtefact``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsAPI.GetIntellisenseArtefact``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetIntellisenseArtefact`: *os.File
-    fmt.Fprintf(os.Stdout, "Response from `IntellisenseJobsApi.GetIntellisenseArtefact`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IntellisenseJobsAPI.GetIntellisenseArtefact`: %v\n", resp)
 }
 ```
 
@@ -263,13 +263,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IntellisenseJobsApi.GetIntellisenseJob(context.Background(), jobName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+    resp, r, err := apiClient.IntellisenseJobsAPI.GetIntellisenseJob(context.Background(), jobName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsApi.GetIntellisenseJob``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsAPI.GetIntellisenseJob``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetIntellisenseJob`: IntellisenseJobItem
-    fmt.Fprintf(os.Stdout, "Response from `IntellisenseJobsApi.GetIntellisenseJob`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IntellisenseJobsAPI.GetIntellisenseJob`: %v\n", resp)
 }
 ```
 
@@ -339,13 +339,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IntellisenseJobsApi.GetIntellisenseMessages(context.Background(), jobName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.IntellisenseJobsAPI.GetIntellisenseMessages(context.Background(), jobName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsApi.GetIntellisenseMessages``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsAPI.GetIntellisenseMessages``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetIntellisenseMessages`: IntellisenseMessageItem
-    fmt.Fprintf(os.Stdout, "Response from `IntellisenseJobsApi.GetIntellisenseMessages`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IntellisenseJobsAPI.GetIntellisenseMessages`: %v\n", resp)
 }
 ```
 
@@ -417,13 +417,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IntellisenseJobsApi.ListIntellisenseArtefacts(context.Background(), jobName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.IntellisenseJobsAPI.ListIntellisenseArtefacts(context.Background(), jobName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsApi.ListIntellisenseArtefacts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsAPI.ListIntellisenseArtefacts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListIntellisenseArtefacts`: SimpleCollection
-    fmt.Fprintf(os.Stdout, "Response from `IntellisenseJobsApi.ListIntellisenseArtefacts`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IntellisenseJobsAPI.ListIntellisenseArtefacts`: %v\n", resp)
 }
 ```
 
@@ -495,13 +495,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IntellisenseJobsApi.ListIntellisenseJob(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.IntellisenseJobsAPI.ListIntellisenseJob(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsApi.ListIntellisenseJob``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsAPI.ListIntellisenseJob``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListIntellisenseJob`: IntellisenseJobCollection
-    fmt.Fprintf(os.Stdout, "Response from `IntellisenseJobsApi.ListIntellisenseJob`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IntellisenseJobsAPI.ListIntellisenseJob`: %v\n", resp)
 }
 ```
 
@@ -567,13 +567,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IntellisenseJobsApi.RetainIntellisenseJob(context.Background(), jobName).AcceptVersion(acceptVersion).RetainBuildJobRequest(retainBuildJobRequest).Execute()
+    resp, r, err := apiClient.IntellisenseJobsAPI.RetainIntellisenseJob(context.Background(), jobName).AcceptVersion(acceptVersion).RetainBuildJobRequest(retainBuildJobRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsApi.RetainIntellisenseJob``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IntellisenseJobsAPI.RetainIntellisenseJob``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `RetainIntellisenseJob`: IntellisenseJobItem
-    fmt.Fprintf(os.Stdout, "Response from `IntellisenseJobsApi.RetainIntellisenseJob`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IntellisenseJobsAPI.RetainIntellisenseJob`: %v\n", resp)
 }
 ```
 

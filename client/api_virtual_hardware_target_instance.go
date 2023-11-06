@@ -27,12 +27,12 @@ import (
 )
 
 
-// VirtualHardwareTargetInstanceApiService VirtualHardwareTargetInstanceApi service
-type VirtualHardwareTargetInstanceApiService service
+// VirtualHardwareTargetInstanceAPIService VirtualHardwareTargetInstanceAPI service
+type VirtualHardwareTargetInstanceAPIService service
 
 type ApiClearVhtInstanceArtefactRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetInstanceApiService
+	ApiService *VirtualHardwareTargetInstanceAPIService
 	artefactName string
 	instanceName string
 	acceptVersion *string
@@ -59,7 +59,7 @@ The content of the artefact is removed from the platform and will not be retriev
  @param instanceName Unique ID of the VHT instance.
  @return ApiClearVhtInstanceArtefactRequest
 */
-func (a *VirtualHardwareTargetInstanceApiService) ClearVhtInstanceArtefact(ctx context.Context, artefactName string, instanceName string) ApiClearVhtInstanceArtefactRequest {
+func (a *VirtualHardwareTargetInstanceAPIService) ClearVhtInstanceArtefact(ctx context.Context, artefactName string, instanceName string) ApiClearVhtInstanceArtefactRequest {
 	return ApiClearVhtInstanceArtefactRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -69,14 +69,14 @@ func (a *VirtualHardwareTargetInstanceApiService) ClearVhtInstanceArtefact(ctx c
 }
 
 // Execute executes the request
-func (a *VirtualHardwareTargetInstanceApiService) ClearVhtInstanceArtefactExecute(r ApiClearVhtInstanceArtefactRequest) (*http.Response, error) {
+func (a *VirtualHardwareTargetInstanceAPIService) ClearVhtInstanceArtefactExecute(r ApiClearVhtInstanceArtefactRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceApiService.ClearVhtInstanceArtefact")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceAPIService.ClearVhtInstanceArtefact")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -215,7 +215,7 @@ func (a *VirtualHardwareTargetInstanceApiService) ClearVhtInstanceArtefactExecut
 
 type ApiDeleteVhtInstanceRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetInstanceApiService
+	ApiService *VirtualHardwareTargetInstanceAPIService
 	instanceName string
 	acceptVersion *string
 }
@@ -239,7 +239,7 @@ Deletes a VHT instance along with all artefacts and messages associated with it.
  @param instanceName Unique ID of the VHT instance.
  @return ApiDeleteVhtInstanceRequest
 */
-func (a *VirtualHardwareTargetInstanceApiService) DeleteVhtInstance(ctx context.Context, instanceName string) ApiDeleteVhtInstanceRequest {
+func (a *VirtualHardwareTargetInstanceAPIService) DeleteVhtInstance(ctx context.Context, instanceName string) ApiDeleteVhtInstanceRequest {
 	return ApiDeleteVhtInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -248,14 +248,14 @@ func (a *VirtualHardwareTargetInstanceApiService) DeleteVhtInstance(ctx context.
 }
 
 // Execute executes the request
-func (a *VirtualHardwareTargetInstanceApiService) DeleteVhtInstanceExecute(r ApiDeleteVhtInstanceRequest) (*http.Response, error) {
+func (a *VirtualHardwareTargetInstanceAPIService) DeleteVhtInstanceExecute(r ApiDeleteVhtInstanceRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceApiService.DeleteVhtInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceAPIService.DeleteVhtInstance")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -393,7 +393,7 @@ func (a *VirtualHardwareTargetInstanceApiService) DeleteVhtInstanceExecute(r Api
 
 type ApiDownloadVhtInstanceArtefactRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetInstanceApiService
+	ApiService *VirtualHardwareTargetInstanceAPIService
 	artefactName string
 	instanceName string
 	acceptVersion *string
@@ -426,7 +426,7 @@ An artefact represents an item used by the VHT instance for a run job (e.g. bina
  @param instanceName Unique ID of the VHT instance.
  @return ApiDownloadVhtInstanceArtefactRequest
 */
-func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefact(ctx context.Context, artefactName string, instanceName string) ApiDownloadVhtInstanceArtefactRequest {
+func (a *VirtualHardwareTargetInstanceAPIService) DownloadVhtInstanceArtefact(ctx context.Context, artefactName string, instanceName string) ApiDownloadVhtInstanceArtefactRequest {
 	return ApiDownloadVhtInstanceArtefactRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -437,7 +437,7 @@ func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefact(ct
 
 // Execute executes the request
 //  @return *os.File
-func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefactExecute(r ApiDownloadVhtInstanceArtefactRequest) (*os.File, *http.Response, error) {
+func (a *VirtualHardwareTargetInstanceAPIService) DownloadVhtInstanceArtefactExecute(r ApiDownloadVhtInstanceArtefactRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -445,7 +445,7 @@ func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefactExe
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceApiService.DownloadVhtInstanceArtefact")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceAPIService.DownloadVhtInstanceArtefact")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -574,7 +574,7 @@ func (a *VirtualHardwareTargetInstanceApiService) DownloadVhtInstanceArtefactExe
 
 type ApiGetVhtInstanceRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetInstanceApiService
+	ApiService *VirtualHardwareTargetInstanceAPIService
 	instanceName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -605,7 +605,7 @@ The status of the instance describes in which state the VHT specified is
  @param instanceName Unique ID of the VHT instance.
  @return ApiGetVhtInstanceRequest
 */
-func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstance(ctx context.Context, instanceName string) ApiGetVhtInstanceRequest {
+func (a *VirtualHardwareTargetInstanceAPIService) GetVhtInstance(ctx context.Context, instanceName string) ApiGetVhtInstanceRequest {
 	return ApiGetVhtInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -615,7 +615,7 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstance(ctx context.Con
 
 // Execute executes the request
 //  @return VhtInstanceItem
-func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceExecute(r ApiGetVhtInstanceRequest) (*VhtInstanceItem, *http.Response, error) {
+func (a *VirtualHardwareTargetInstanceAPIService) GetVhtInstanceExecute(r ApiGetVhtInstanceRequest) (*VhtInstanceItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -623,7 +623,7 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceExecute(r ApiGet
 		localVarReturnValue  *VhtInstanceItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceApiService.GetVhtInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceAPIService.GetVhtInstance")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -751,7 +751,7 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceExecute(r ApiGet
 
 type ApiGetVhtInstanceArtefactManagerRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetInstanceApiService
+	ApiService *VirtualHardwareTargetInstanceAPIService
 	artefactName string
 	instanceName string
 	acceptVersion *string
@@ -785,7 +785,7 @@ The manager enables upload, download and deletion of said artefact.
  @param instanceName Unique ID of the VHT instance.
  @return ApiGetVhtInstanceArtefactManagerRequest
 */
-func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceArtefactManager(ctx context.Context, artefactName string, instanceName string) ApiGetVhtInstanceArtefactManagerRequest {
+func (a *VirtualHardwareTargetInstanceAPIService) GetVhtInstanceArtefactManager(ctx context.Context, artefactName string, instanceName string) ApiGetVhtInstanceArtefactManagerRequest {
 	return ApiGetVhtInstanceArtefactManagerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -796,7 +796,7 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceArtefactManager(
 
 // Execute executes the request
 //  @return ArtefactManagerItem
-func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceArtefactManagerExecute(r ApiGetVhtInstanceArtefactManagerRequest) (*ArtefactManagerItem, *http.Response, error) {
+func (a *VirtualHardwareTargetInstanceAPIService) GetVhtInstanceArtefactManagerExecute(r ApiGetVhtInstanceArtefactManagerRequest) (*ArtefactManagerItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -804,7 +804,7 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceArtefactManagerE
 		localVarReturnValue  *ArtefactManagerItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceApiService.GetVhtInstanceArtefactManager")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceAPIService.GetVhtInstanceArtefactManager")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -933,7 +933,7 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceArtefactManagerE
 
 type ApiGetVhtInstanceMessagesRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetInstanceApiService
+	ApiService *VirtualHardwareTargetInstanceAPIService
 	instanceName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -978,7 +978,7 @@ Retrieve and page through the output messages for a given VHT instance.
  @param instanceName Unique ID of the VHT instance.
  @return ApiGetVhtInstanceMessagesRequest
 */
-func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceMessages(ctx context.Context, instanceName string) ApiGetVhtInstanceMessagesRequest {
+func (a *VirtualHardwareTargetInstanceAPIService) GetVhtInstanceMessages(ctx context.Context, instanceName string) ApiGetVhtInstanceMessagesRequest {
 	return ApiGetVhtInstanceMessagesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -988,7 +988,7 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceMessages(ctx con
 
 // Execute executes the request
 //  @return NotificationFeed
-func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceMessagesExecute(r ApiGetVhtInstanceMessagesRequest) (*NotificationFeed, *http.Response, error) {
+func (a *VirtualHardwareTargetInstanceAPIService) GetVhtInstanceMessagesExecute(r ApiGetVhtInstanceMessagesRequest) (*NotificationFeed, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -996,7 +996,7 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceMessagesExecute(
 		localVarReturnValue  *NotificationFeed
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceApiService.GetVhtInstanceMessages")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceAPIService.GetVhtInstanceMessages")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1130,7 +1130,7 @@ func (a *VirtualHardwareTargetInstanceApiService) GetVhtInstanceMessagesExecute(
 
 type ApiListVhtInstanceArtefactManagersRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetInstanceApiService
+	ApiService *VirtualHardwareTargetInstanceAPIService
 	instanceName string
 	acceptVersion *string
 	embed *bool
@@ -1183,7 +1183,7 @@ The managers enable their upload, download or deletion.
  @param instanceName Unique ID of the VHT instance.
  @return ApiListVhtInstanceArtefactManagersRequest
 */
-func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstanceArtefactManagers(ctx context.Context, instanceName string) ApiListVhtInstanceArtefactManagersRequest {
+func (a *VirtualHardwareTargetInstanceAPIService) ListVhtInstanceArtefactManagers(ctx context.Context, instanceName string) ApiListVhtInstanceArtefactManagersRequest {
 	return ApiListVhtInstanceArtefactManagersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1193,7 +1193,7 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstanceArtefactManager
 
 // Execute executes the request
 //  @return ArtefactManagerCollection
-func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstanceArtefactManagersExecute(r ApiListVhtInstanceArtefactManagersRequest) (*ArtefactManagerCollection, *http.Response, error) {
+func (a *VirtualHardwareTargetInstanceAPIService) ListVhtInstanceArtefactManagersExecute(r ApiListVhtInstanceArtefactManagersRequest) (*ArtefactManagerCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1201,7 +1201,7 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstanceArtefactManager
 		localVarReturnValue  *ArtefactManagerCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceApiService.ListVhtInstanceArtefactManagers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceAPIService.ListVhtInstanceArtefactManagers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1338,7 +1338,7 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstanceArtefactManager
 
 type ApiListVhtInstancesRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetInstanceApiService
+	ApiService *VirtualHardwareTargetInstanceAPIService
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
@@ -1388,7 +1388,7 @@ This returns a collection resource that lists all requested, in use or recently 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListVhtInstancesRequest
 */
-func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstances(ctx context.Context) ApiListVhtInstancesRequest {
+func (a *VirtualHardwareTargetInstanceAPIService) ListVhtInstances(ctx context.Context) ApiListVhtInstancesRequest {
 	return ApiListVhtInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1397,7 +1397,7 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstances(ctx context.C
 
 // Execute executes the request
 //  @return VhtInstanceCollection
-func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstancesExecute(r ApiListVhtInstancesRequest) (*VhtInstanceCollection, *http.Response, error) {
+func (a *VirtualHardwareTargetInstanceAPIService) ListVhtInstancesExecute(r ApiListVhtInstancesRequest) (*VhtInstanceCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1405,7 +1405,7 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstancesExecute(r ApiL
 		localVarReturnValue  *VhtInstanceCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceApiService.ListVhtInstances")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceAPIService.ListVhtInstances")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1530,7 +1530,7 @@ func (a *VirtualHardwareTargetInstanceApiService) ListVhtInstancesExecute(r ApiL
 
 type ApiStartVhtRunJobRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetInstanceApiService
+	ApiService *VirtualHardwareTargetInstanceAPIService
 	instanceName string
 	vhtRunJobItem *VhtRunJobItem
 	acceptVersion *string
@@ -1561,7 +1561,7 @@ Starts a VHT Run Job on this instance.
  @param instanceName Unique ID of the VHT instance.
  @return ApiStartVhtRunJobRequest
 */
-func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJob(ctx context.Context, instanceName string) ApiStartVhtRunJobRequest {
+func (a *VirtualHardwareTargetInstanceAPIService) StartVhtRunJob(ctx context.Context, instanceName string) ApiStartVhtRunJobRequest {
 	return ApiStartVhtRunJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1571,7 +1571,7 @@ func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJob(ctx context.Con
 
 // Execute executes the request
 //  @return VhtRunJobItem
-func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJobExecute(r ApiStartVhtRunJobRequest) (*VhtRunJobItem, *http.Response, error) {
+func (a *VirtualHardwareTargetInstanceAPIService) StartVhtRunJobExecute(r ApiStartVhtRunJobRequest) (*VhtRunJobItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1579,7 +1579,7 @@ func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJobExecute(r ApiSta
 		localVarReturnValue  *VhtRunJobItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceApiService.StartVhtRunJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceAPIService.StartVhtRunJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1742,7 +1742,7 @@ func (a *VirtualHardwareTargetInstanceApiService) StartVhtRunJobExecute(r ApiSta
 
 type ApiStopVhtInstanceRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetInstanceApiService
+	ApiService *VirtualHardwareTargetInstanceAPIService
 	instanceName string
 	acceptVersion *string
 }
@@ -1766,7 +1766,7 @@ This will stop and release a VHT instance that is currently in use. All output m
  @param instanceName Unique ID of the VHT instance.
  @return ApiStopVhtInstanceRequest
 */
-func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstance(ctx context.Context, instanceName string) ApiStopVhtInstanceRequest {
+func (a *VirtualHardwareTargetInstanceAPIService) StopVhtInstance(ctx context.Context, instanceName string) ApiStopVhtInstanceRequest {
 	return ApiStopVhtInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1776,7 +1776,7 @@ func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstance(ctx context.Co
 
 // Execute executes the request
 //  @return VhtInstanceItem
-func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstanceExecute(r ApiStopVhtInstanceRequest) (*VhtInstanceItem, *http.Response, error) {
+func (a *VirtualHardwareTargetInstanceAPIService) StopVhtInstanceExecute(r ApiStopVhtInstanceRequest) (*VhtInstanceItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1784,7 +1784,7 @@ func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstanceExecute(r ApiSt
 		localVarReturnValue  *VhtInstanceItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceApiService.StopVhtInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceAPIService.StopVhtInstance")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1931,7 +1931,7 @@ func (a *VirtualHardwareTargetInstanceApiService) StopVhtInstanceExecute(r ApiSt
 
 type ApiUploadVhtInstanceArtefactRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetInstanceApiService
+	ApiService *VirtualHardwareTargetInstanceAPIService
 	artefactName string
 	instanceName string
 	ifMatch *string
@@ -1999,7 +1999,7 @@ An artefact represents an item used by the VHT instance for a run job (e.g. bina
  @param instanceName Unique ID of the VHT instance.
  @return ApiUploadVhtInstanceArtefactRequest
 */
-func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefact(ctx context.Context, artefactName string, instanceName string) ApiUploadVhtInstanceArtefactRequest {
+func (a *VirtualHardwareTargetInstanceAPIService) UploadVhtInstanceArtefact(ctx context.Context, artefactName string, instanceName string) ApiUploadVhtInstanceArtefactRequest {
 	return ApiUploadVhtInstanceArtefactRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2010,7 +2010,7 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefact(ctx 
 
 // Execute executes the request
 //  @return ArtefactManagerItem
-func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecute(r ApiUploadVhtInstanceArtefactRequest) (*ArtefactManagerItem, *http.Response, error) {
+func (a *VirtualHardwareTargetInstanceAPIService) UploadVhtInstanceArtefactExecute(r ApiUploadVhtInstanceArtefactRequest) (*ArtefactManagerItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -2018,7 +2018,7 @@ func (a *VirtualHardwareTargetInstanceApiService) UploadVhtInstanceArtefactExecu
 		localVarReturnValue  *ArtefactManagerItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceApiService.UploadVhtInstanceArtefact")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceAPIService.UploadVhtInstanceArtefact")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
