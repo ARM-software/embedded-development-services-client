@@ -26,12 +26,12 @@ import (
 )
 
 
-// VirtualHardwareTargetApiService VirtualHardwareTargetApi service
-type VirtualHardwareTargetApiService service
+// VirtualHardwareTargetAPIService VirtualHardwareTargetAPI service
+type VirtualHardwareTargetAPIService service
 
 type ApiGetVhtRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetApiService
+	ApiService *VirtualHardwareTargetAPIService
 	vhtName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -62,7 +62,7 @@ A Virtual Hardware Target (VHT) provides functional accurate simulations of Arm-
  @param vhtName The ID of the VHT.
  @return ApiGetVhtRequest
 */
-func (a *VirtualHardwareTargetApiService) GetVht(ctx context.Context, vhtName string) ApiGetVhtRequest {
+func (a *VirtualHardwareTargetAPIService) GetVht(ctx context.Context, vhtName string) ApiGetVhtRequest {
 	return ApiGetVhtRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -72,7 +72,7 @@ func (a *VirtualHardwareTargetApiService) GetVht(ctx context.Context, vhtName st
 
 // Execute executes the request
 //  @return VhtItem
-func (a *VirtualHardwareTargetApiService) GetVhtExecute(r ApiGetVhtRequest) (*VhtItem, *http.Response, error) {
+func (a *VirtualHardwareTargetAPIService) GetVhtExecute(r ApiGetVhtRequest) (*VhtItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -80,7 +80,7 @@ func (a *VirtualHardwareTargetApiService) GetVhtExecute(r ApiGetVhtRequest) (*Vh
 		localVarReturnValue  *VhtItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetApiService.GetVht")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetAPIService.GetVht")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -208,7 +208,7 @@ func (a *VirtualHardwareTargetApiService) GetVhtExecute(r ApiGetVhtRequest) (*Vh
 
 type ApiListFilteredVhtInstancesRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetApiService
+	ApiService *VirtualHardwareTargetAPIService
 	vhtName string
 	acceptVersion *string
 	embed *bool
@@ -260,7 +260,7 @@ This returns a collection resource that lists all requested, in use or recently 
  @param vhtName The ID of the VHT.
  @return ApiListFilteredVhtInstancesRequest
 */
-func (a *VirtualHardwareTargetApiService) ListFilteredVhtInstances(ctx context.Context, vhtName string) ApiListFilteredVhtInstancesRequest {
+func (a *VirtualHardwareTargetAPIService) ListFilteredVhtInstances(ctx context.Context, vhtName string) ApiListFilteredVhtInstancesRequest {
 	return ApiListFilteredVhtInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -270,7 +270,7 @@ func (a *VirtualHardwareTargetApiService) ListFilteredVhtInstances(ctx context.C
 
 // Execute executes the request
 //  @return VhtInstanceCollection
-func (a *VirtualHardwareTargetApiService) ListFilteredVhtInstancesExecute(r ApiListFilteredVhtInstancesRequest) (*VhtInstanceCollection, *http.Response, error) {
+func (a *VirtualHardwareTargetAPIService) ListFilteredVhtInstancesExecute(r ApiListFilteredVhtInstancesRequest) (*VhtInstanceCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -278,7 +278,7 @@ func (a *VirtualHardwareTargetApiService) ListFilteredVhtInstancesExecute(r ApiL
 		localVarReturnValue  *VhtInstanceCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetApiService.ListFilteredVhtInstances")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetAPIService.ListFilteredVhtInstances")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -404,7 +404,7 @@ func (a *VirtualHardwareTargetApiService) ListFilteredVhtInstancesExecute(r ApiL
 
 type ApiListVhtsRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetApiService
+	ApiService *VirtualHardwareTargetAPIService
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
@@ -457,7 +457,7 @@ This returns a collection resource that lists all of the Virtual Hardware Target
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListVhtsRequest
 */
-func (a *VirtualHardwareTargetApiService) ListVhts(ctx context.Context) ApiListVhtsRequest {
+func (a *VirtualHardwareTargetAPIService) ListVhts(ctx context.Context) ApiListVhtsRequest {
 	return ApiListVhtsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -466,7 +466,7 @@ func (a *VirtualHardwareTargetApiService) ListVhts(ctx context.Context) ApiListV
 
 // Execute executes the request
 //  @return VhtCollection
-func (a *VirtualHardwareTargetApiService) ListVhtsExecute(r ApiListVhtsRequest) (*VhtCollection, *http.Response, error) {
+func (a *VirtualHardwareTargetAPIService) ListVhtsExecute(r ApiListVhtsRequest) (*VhtCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -474,7 +474,7 @@ func (a *VirtualHardwareTargetApiService) ListVhtsExecute(r ApiListVhtsRequest) 
 		localVarReturnValue  *VhtCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetApiService.ListVhts")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetAPIService.ListVhts")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -599,7 +599,7 @@ func (a *VirtualHardwareTargetApiService) ListVhtsExecute(r ApiListVhtsRequest) 
 
 type ApiStartVhtInstanceRequest struct {
 	ctx context.Context
-	ApiService *VirtualHardwareTargetApiService
+	ApiService *VirtualHardwareTargetAPIService
 	vhtName string
 	vhtInstanceItem *VhtInstanceItem
 	acceptVersion *string
@@ -630,7 +630,7 @@ Requests an instance of the specified VHT.
  @param vhtName The ID of the VHT.
  @return ApiStartVhtInstanceRequest
 */
-func (a *VirtualHardwareTargetApiService) StartVhtInstance(ctx context.Context, vhtName string) ApiStartVhtInstanceRequest {
+func (a *VirtualHardwareTargetAPIService) StartVhtInstance(ctx context.Context, vhtName string) ApiStartVhtInstanceRequest {
 	return ApiStartVhtInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -640,7 +640,7 @@ func (a *VirtualHardwareTargetApiService) StartVhtInstance(ctx context.Context, 
 
 // Execute executes the request
 //  @return VhtInstanceItem
-func (a *VirtualHardwareTargetApiService) StartVhtInstanceExecute(r ApiStartVhtInstanceRequest) (*VhtInstanceItem, *http.Response, error) {
+func (a *VirtualHardwareTargetAPIService) StartVhtInstanceExecute(r ApiStartVhtInstanceRequest) (*VhtInstanceItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -648,7 +648,7 @@ func (a *VirtualHardwareTargetApiService) StartVhtInstanceExecute(r ApiStartVhtI
 		localVarReturnValue  *VhtInstanceItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetApiService.StartVhtInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetAPIService.StartVhtInstance")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

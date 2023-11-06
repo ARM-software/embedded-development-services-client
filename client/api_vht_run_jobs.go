@@ -26,12 +26,12 @@ import (
 )
 
 
-// VHTRunJobsApiService VHTRunJobsApi service
-type VHTRunJobsApiService service
+// VHTRunJobsAPIService VHTRunJobsAPI service
+type VHTRunJobsAPIService service
 
 type ApiCancelVhtRunJobRequest struct {
 	ctx context.Context
-	ApiService *VHTRunJobsApiService
+	ApiService *VHTRunJobsAPIService
 	jobName string
 	acceptVersion *string
 }
@@ -55,7 +55,7 @@ This will cancel a job that is in progress. All messages associated with it will
  @param jobName Unique ID of the VHT run job.
  @return ApiCancelVhtRunJobRequest
 */
-func (a *VHTRunJobsApiService) CancelVhtRunJob(ctx context.Context, jobName string) ApiCancelVhtRunJobRequest {
+func (a *VHTRunJobsAPIService) CancelVhtRunJob(ctx context.Context, jobName string) ApiCancelVhtRunJobRequest {
 	return ApiCancelVhtRunJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -65,7 +65,7 @@ func (a *VHTRunJobsApiService) CancelVhtRunJob(ctx context.Context, jobName stri
 
 // Execute executes the request
 //  @return VhtRunJobItem
-func (a *VHTRunJobsApiService) CancelVhtRunJobExecute(r ApiCancelVhtRunJobRequest) (*VhtRunJobItem, *http.Response, error) {
+func (a *VHTRunJobsAPIService) CancelVhtRunJobExecute(r ApiCancelVhtRunJobRequest) (*VhtRunJobItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -73,7 +73,7 @@ func (a *VHTRunJobsApiService) CancelVhtRunJobExecute(r ApiCancelVhtRunJobReques
 		localVarReturnValue  *VhtRunJobItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VHTRunJobsApiService.CancelVhtRunJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VHTRunJobsAPIService.CancelVhtRunJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -220,7 +220,7 @@ func (a *VHTRunJobsApiService) CancelVhtRunJobExecute(r ApiCancelVhtRunJobReques
 
 type ApiDeleteVhtRunJobRequest struct {
 	ctx context.Context
-	ApiService *VHTRunJobsApiService
+	ApiService *VHTRunJobsAPIService
 	jobName string
 	acceptVersion *string
 }
@@ -244,7 +244,7 @@ Deletes a job along with messages associated with it. Deleting a job is only pos
  @param jobName Unique ID of the VHT run job.
  @return ApiDeleteVhtRunJobRequest
 */
-func (a *VHTRunJobsApiService) DeleteVhtRunJob(ctx context.Context, jobName string) ApiDeleteVhtRunJobRequest {
+func (a *VHTRunJobsAPIService) DeleteVhtRunJob(ctx context.Context, jobName string) ApiDeleteVhtRunJobRequest {
 	return ApiDeleteVhtRunJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -253,14 +253,14 @@ func (a *VHTRunJobsApiService) DeleteVhtRunJob(ctx context.Context, jobName stri
 }
 
 // Execute executes the request
-func (a *VHTRunJobsApiService) DeleteVhtRunJobExecute(r ApiDeleteVhtRunJobRequest) (*http.Response, error) {
+func (a *VHTRunJobsAPIService) DeleteVhtRunJobExecute(r ApiDeleteVhtRunJobRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VHTRunJobsApiService.DeleteVhtRunJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VHTRunJobsAPIService.DeleteVhtRunJob")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -398,7 +398,7 @@ func (a *VHTRunJobsApiService) DeleteVhtRunJobExecute(r ApiDeleteVhtRunJobReques
 
 type ApiGetVhtRunJobRequest struct {
 	ctx context.Context
-	ApiService *VHTRunJobsApiService
+	ApiService *VHTRunJobsAPIService
 	jobName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -429,7 +429,7 @@ An VHT run job represents the status of a run process being executed by a VHT in
  @param jobName Unique ID of the VHT run job.
  @return ApiGetVhtRunJobRequest
 */
-func (a *VHTRunJobsApiService) GetVhtRunJob(ctx context.Context, jobName string) ApiGetVhtRunJobRequest {
+func (a *VHTRunJobsAPIService) GetVhtRunJob(ctx context.Context, jobName string) ApiGetVhtRunJobRequest {
 	return ApiGetVhtRunJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -439,7 +439,7 @@ func (a *VHTRunJobsApiService) GetVhtRunJob(ctx context.Context, jobName string)
 
 // Execute executes the request
 //  @return VhtRunJobItem
-func (a *VHTRunJobsApiService) GetVhtRunJobExecute(r ApiGetVhtRunJobRequest) (*VhtRunJobItem, *http.Response, error) {
+func (a *VHTRunJobsAPIService) GetVhtRunJobExecute(r ApiGetVhtRunJobRequest) (*VhtRunJobItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -447,7 +447,7 @@ func (a *VHTRunJobsApiService) GetVhtRunJobExecute(r ApiGetVhtRunJobRequest) (*V
 		localVarReturnValue  *VhtRunJobItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VHTRunJobsApiService.GetVhtRunJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VHTRunJobsAPIService.GetVhtRunJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -575,7 +575,7 @@ func (a *VHTRunJobsApiService) GetVhtRunJobExecute(r ApiGetVhtRunJobRequest) (*V
 
 type ApiGetVhtRunJobMessagesRequest struct {
 	ctx context.Context
-	ApiService *VHTRunJobsApiService
+	ApiService *VHTRunJobsAPIService
 	jobName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -620,7 +620,7 @@ Retrieve and page through the messages for a given job.
  @param jobName Unique ID of the VHT run job.
  @return ApiGetVhtRunJobMessagesRequest
 */
-func (a *VHTRunJobsApiService) GetVhtRunJobMessages(ctx context.Context, jobName string) ApiGetVhtRunJobMessagesRequest {
+func (a *VHTRunJobsAPIService) GetVhtRunJobMessages(ctx context.Context, jobName string) ApiGetVhtRunJobMessagesRequest {
 	return ApiGetVhtRunJobMessagesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -630,7 +630,7 @@ func (a *VHTRunJobsApiService) GetVhtRunJobMessages(ctx context.Context, jobName
 
 // Execute executes the request
 //  @return NotificationFeed
-func (a *VHTRunJobsApiService) GetVhtRunJobMessagesExecute(r ApiGetVhtRunJobMessagesRequest) (*NotificationFeed, *http.Response, error) {
+func (a *VHTRunJobsAPIService) GetVhtRunJobMessagesExecute(r ApiGetVhtRunJobMessagesRequest) (*NotificationFeed, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -638,7 +638,7 @@ func (a *VHTRunJobsApiService) GetVhtRunJobMessagesExecute(r ApiGetVhtRunJobMess
 		localVarReturnValue  *NotificationFeed
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VHTRunJobsApiService.GetVhtRunJobMessages")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VHTRunJobsAPIService.GetVhtRunJobMessages")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -772,7 +772,7 @@ func (a *VHTRunJobsApiService) GetVhtRunJobMessagesExecute(r ApiGetVhtRunJobMess
 
 type ApiListVhtRunJobsRequest struct {
 	ctx context.Context
-	ApiService *VHTRunJobsApiService
+	ApiService *VHTRunJobsAPIService
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
@@ -822,7 +822,7 @@ This returns a collection resource that lists all in progress or recently comple
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListVhtRunJobsRequest
 */
-func (a *VHTRunJobsApiService) ListVhtRunJobs(ctx context.Context) ApiListVhtRunJobsRequest {
+func (a *VHTRunJobsAPIService) ListVhtRunJobs(ctx context.Context) ApiListVhtRunJobsRequest {
 	return ApiListVhtRunJobsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -831,7 +831,7 @@ func (a *VHTRunJobsApiService) ListVhtRunJobs(ctx context.Context) ApiListVhtRun
 
 // Execute executes the request
 //  @return VhtRunJobCollection
-func (a *VHTRunJobsApiService) ListVhtRunJobsExecute(r ApiListVhtRunJobsRequest) (*VhtRunJobCollection, *http.Response, error) {
+func (a *VHTRunJobsAPIService) ListVhtRunJobsExecute(r ApiListVhtRunJobsRequest) (*VhtRunJobCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -839,7 +839,7 @@ func (a *VHTRunJobsApiService) ListVhtRunJobsExecute(r ApiListVhtRunJobsRequest)
 		localVarReturnValue  *VhtRunJobCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VHTRunJobsApiService.ListVhtRunJobs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VHTRunJobsAPIService.ListVhtRunJobs")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

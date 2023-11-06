@@ -25,12 +25,12 @@ import (
 )
 
 
-// RootResourceApiService RootResourceApi service
-type RootResourceApiService service
+// RootResourceAPIService RootResourceAPI service
+type RootResourceAPIService service
 
 type ApiGetRootRequest struct {
 	ctx context.Context
-	ApiService *RootResourceApiService
+	ApiService *RootResourceAPIService
 	acceptVersion *string
 	ifNoneMatch *string
 	limit *int32
@@ -73,7 +73,7 @@ Retrieve the Root resource to list top level collections.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetRootRequest
 */
-func (a *RootResourceApiService) GetRoot(ctx context.Context) ApiGetRootRequest {
+func (a *RootResourceAPIService) GetRoot(ctx context.Context) ApiGetRootRequest {
 	return ApiGetRootRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -82,7 +82,7 @@ func (a *RootResourceApiService) GetRoot(ctx context.Context) ApiGetRootRequest 
 
 // Execute executes the request
 //  @return SimpleCollection
-func (a *RootResourceApiService) GetRootExecute(r ApiGetRootRequest) (*SimpleCollection, *http.Response, error) {
+func (a *RootResourceAPIService) GetRootExecute(r ApiGetRootRequest) (*SimpleCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -90,7 +90,7 @@ func (a *RootResourceApiService) GetRootExecute(r ApiGetRootRequest) (*SimpleCol
 		localVarReturnValue  *SimpleCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootResourceApiService.GetRoot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootResourceAPIService.GetRoot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

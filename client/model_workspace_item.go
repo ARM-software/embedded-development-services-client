@@ -268,8 +268,10 @@ func (o WorkspaceItem) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	// skip: ephemeral is readOnly
-	// skip: name is readOnly
+	if !IsNil(o.Ephemeral) {
+		toSerialize["ephemeral"] = o.Ephemeral
+	}
+	toSerialize["name"] = o.Name
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}

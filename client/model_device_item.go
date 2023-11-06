@@ -336,7 +336,7 @@ func (o DeviceItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["family"] = o.Family.Get()
 	}
 	toSerialize["processors"] = o.Processors
-	// skip: slug is readOnly
+	toSerialize["slug"] = o.Slug
 	toSerialize["source_pack_id"] = o.SourcePackId
 	if o.SubFamily.IsSet() {
 		toSerialize["sub_family"] = o.SubFamily.Get()

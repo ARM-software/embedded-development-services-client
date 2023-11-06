@@ -355,7 +355,7 @@ func (o WorkspaceRepositoryContentManager) ToMap() (map[string]interface{}, erro
 	if o.FetchDepth.IsSet() {
 		toSerialize["fetchDepth"] = o.FetchDepth.Get()
 	}
-	// skip: name is readOnly
+	toSerialize["name"] = o.Name
 	toSerialize["reference"] = o.Reference.Get()
 	toSerialize["repositoryUrl"] = o.RepositoryUrl
 	toSerialize["scm"] = o.Scm

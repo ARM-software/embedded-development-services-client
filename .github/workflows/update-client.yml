@@ -61,7 +61,7 @@ jobs:
     needs: get-all-service-definition
     steps:
     - name: Setup python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ env.python_version }}
     - name: Install continuous-delivery-scripts

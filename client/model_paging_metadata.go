@@ -261,15 +261,15 @@ func (o PagingMetadata) MarshalJSON() ([]byte, error) {
 
 func (o PagingMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: count is readOnly
-	// skip: ctime is readOnly
+	toSerialize["count"] = o.Count
+	toSerialize["ctime"] = o.Ctime
 	if o.Etime.IsSet() {
 		toSerialize["etime"] = o.Etime.Get()
 	}
-	// skip: limit is readOnly
-	// skip: mtime is readOnly
-	// skip: offset is readOnly
-	// skip: total is readOnly
+	toSerialize["limit"] = o.Limit
+	toSerialize["mtime"] = o.Mtime
+	toSerialize["offset"] = o.Offset
+	toSerialize["total"] = o.Total
 	return toSerialize, nil
 }
 

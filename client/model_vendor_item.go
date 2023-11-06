@@ -367,11 +367,11 @@ func (o VendorItem) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExternalId) {
 		toSerialize["external_id"] = o.ExternalId
 	}
-	// skip: id is readOnly
+	toSerialize["id"] = o.Id
 	if !IsNil(o.Logo) {
 		toSerialize["logo"] = o.Logo
 	}
-	// skip: slug is readOnly
+	toSerialize["slug"] = o.Slug
 	toSerialize["title"] = o.Title
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type

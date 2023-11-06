@@ -585,18 +585,20 @@ func (o IntellisenseJobItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["buildStepsCompleted"] = o.BuildStepsCompleted.Get()
 	toSerialize["buildStepsTotal"] = o.BuildStepsTotal.Get()
-	// skip: done is readOnly
-	// skip: error is readOnly
-	// skip: failure is readOnly
+	toSerialize["done"] = o.Done
+	toSerialize["error"] = o.Error
+	toSerialize["failure"] = o.Failure
 	if !IsNil(o.JobTimeout) {
 		toSerialize["jobTimeout"] = o.JobTimeout
 	}
-	// skip: name is readOnly
+	toSerialize["name"] = o.Name
 	toSerialize["packs"] = o.Packs
 	toSerialize["project"] = o.Project
-	// skip: queued is readOnly
-	// skip: status is readOnly
-	// skip: success is readOnly
+	if !IsNil(o.Queued) {
+		toSerialize["queued"] = o.Queued
+	}
+	toSerialize["status"] = o.Status
+	toSerialize["success"] = o.Success
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}

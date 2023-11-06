@@ -26,12 +26,12 @@ import (
 )
 
 
-// CMSISBuildersApiService CMSISBuildersApi service
-type CMSISBuildersApiService service
+// CMSISBuildersAPIService CMSISBuildersAPI service
+type CMSISBuildersAPIService service
 
 type ApiGetCmsisBuilderRequest struct {
 	ctx context.Context
-	ApiService *CMSISBuildersApiService
+	ApiService *CMSISBuildersAPIService
 	builderName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -62,7 +62,7 @@ A CMSIS Builder is a combination of a specific set of CMSIS-Build tools and a sp
  @param builderName The ID of the CMSIS Builder.
  @return ApiGetCmsisBuilderRequest
 */
-func (a *CMSISBuildersApiService) GetCmsisBuilder(ctx context.Context, builderName string) ApiGetCmsisBuilderRequest {
+func (a *CMSISBuildersAPIService) GetCmsisBuilder(ctx context.Context, builderName string) ApiGetCmsisBuilderRequest {
 	return ApiGetCmsisBuilderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -72,7 +72,7 @@ func (a *CMSISBuildersApiService) GetCmsisBuilder(ctx context.Context, builderNa
 
 // Execute executes the request
 //  @return CmsisBuilderItem
-func (a *CMSISBuildersApiService) GetCmsisBuilderExecute(r ApiGetCmsisBuilderRequest) (*CmsisBuilderItem, *http.Response, error) {
+func (a *CMSISBuildersAPIService) GetCmsisBuilderExecute(r ApiGetCmsisBuilderRequest) (*CmsisBuilderItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -80,7 +80,7 @@ func (a *CMSISBuildersApiService) GetCmsisBuilderExecute(r ApiGetCmsisBuilderReq
 		localVarReturnValue  *CmsisBuilderItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CMSISBuildersApiService.GetCmsisBuilder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CMSISBuildersAPIService.GetCmsisBuilder")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -208,7 +208,7 @@ func (a *CMSISBuildersApiService) GetCmsisBuilderExecute(r ApiGetCmsisBuilderReq
 
 type ApiListCmsisBuildersRequest struct {
 	ctx context.Context
-	ApiService *CMSISBuildersApiService
+	ApiService *CMSISBuildersAPIService
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
@@ -261,7 +261,7 @@ This returns a collection resource that lists all of the CMSIS-Builders supporte
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListCmsisBuildersRequest
 */
-func (a *CMSISBuildersApiService) ListCmsisBuilders(ctx context.Context) ApiListCmsisBuildersRequest {
+func (a *CMSISBuildersAPIService) ListCmsisBuilders(ctx context.Context) ApiListCmsisBuildersRequest {
 	return ApiListCmsisBuildersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -270,7 +270,7 @@ func (a *CMSISBuildersApiService) ListCmsisBuilders(ctx context.Context) ApiList
 
 // Execute executes the request
 //  @return CmsisBuilderCollection
-func (a *CMSISBuildersApiService) ListCmsisBuildersExecute(r ApiListCmsisBuildersRequest) (*CmsisBuilderCollection, *http.Response, error) {
+func (a *CMSISBuildersAPIService) ListCmsisBuildersExecute(r ApiListCmsisBuildersRequest) (*CmsisBuilderCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -278,7 +278,7 @@ func (a *CMSISBuildersApiService) ListCmsisBuildersExecute(r ApiListCmsisBuilder
 		localVarReturnValue  *CmsisBuilderCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CMSISBuildersApiService.ListCmsisBuilders")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CMSISBuildersAPIService.ListCmsisBuilders")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -403,7 +403,7 @@ func (a *CMSISBuildersApiService) ListCmsisBuildersExecute(r ApiListCmsisBuilder
 
 type ApiStartCmsisBuildRequest struct {
 	ctx context.Context
-	ApiService *CMSISBuildersApiService
+	ApiService *CMSISBuildersAPIService
 	builderName string
 	buildJobItem *BuildJobItem
 	acceptVersion *string
@@ -434,7 +434,7 @@ Initiate a build using the specified CMSIS Builder.
  @param builderName The ID of the CMSIS Builder.
  @return ApiStartCmsisBuildRequest
 */
-func (a *CMSISBuildersApiService) StartCmsisBuild(ctx context.Context, builderName string) ApiStartCmsisBuildRequest {
+func (a *CMSISBuildersAPIService) StartCmsisBuild(ctx context.Context, builderName string) ApiStartCmsisBuildRequest {
 	return ApiStartCmsisBuildRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -444,7 +444,7 @@ func (a *CMSISBuildersApiService) StartCmsisBuild(ctx context.Context, builderNa
 
 // Execute executes the request
 //  @return BuildJobItem
-func (a *CMSISBuildersApiService) StartCmsisBuildExecute(r ApiStartCmsisBuildRequest) (*BuildJobItem, *http.Response, error) {
+func (a *CMSISBuildersAPIService) StartCmsisBuildExecute(r ApiStartCmsisBuildRequest) (*BuildJobItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -452,7 +452,7 @@ func (a *CMSISBuildersApiService) StartCmsisBuildExecute(r ApiStartCmsisBuildReq
 		localVarReturnValue  *BuildJobItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CMSISBuildersApiService.StartCmsisBuild")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CMSISBuildersAPIService.StartCmsisBuild")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

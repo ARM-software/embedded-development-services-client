@@ -202,8 +202,8 @@ func (o VhtInstanceCollection) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	// skip: name is readOnly
-	// skip: title is readOnly
+	toSerialize["name"] = o.Name
+	toSerialize["title"] = o.Title
 	return toSerialize, nil
 }
 

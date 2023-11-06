@@ -27,12 +27,12 @@ import (
 )
 
 
-// WorkspaceApiService WorkspaceApi service
-type WorkspaceApiService service
+// WorkspaceAPIService WorkspaceAPI service
+type WorkspaceAPIService service
 
 type ApiClearWorkspaceArchiveContentRequest struct {
 	ctx context.Context
-	ApiService *WorkspaceApiService
+	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
 }
@@ -57,7 +57,7 @@ The content of the workspace is removed from the platform and will not be retrie
  @param workspaceName Unique ID of the Workspace.
  @return ApiClearWorkspaceArchiveContentRequest
 */
-func (a *WorkspaceApiService) ClearWorkspaceArchiveContent(ctx context.Context, workspaceName string) ApiClearWorkspaceArchiveContentRequest {
+func (a *WorkspaceAPIService) ClearWorkspaceArchiveContent(ctx context.Context, workspaceName string) ApiClearWorkspaceArchiveContentRequest {
 	return ApiClearWorkspaceArchiveContentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -66,14 +66,14 @@ func (a *WorkspaceApiService) ClearWorkspaceArchiveContent(ctx context.Context, 
 }
 
 // Execute executes the request
-func (a *WorkspaceApiService) ClearWorkspaceArchiveContentExecute(r ApiClearWorkspaceArchiveContentRequest) (*http.Response, error) {
+func (a *WorkspaceAPIService) ClearWorkspaceArchiveContentExecute(r ApiClearWorkspaceArchiveContentRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.ClearWorkspaceArchiveContent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.ClearWorkspaceArchiveContent")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -211,7 +211,7 @@ func (a *WorkspaceApiService) ClearWorkspaceArchiveContentExecute(r ApiClearWork
 
 type ApiClearWorkspaceRepositoryContentManagerRequest struct {
 	ctx context.Context
-	ApiService *WorkspaceApiService
+	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
 }
@@ -236,7 +236,7 @@ The content of the workspace is removed from the platform and will not be retrie
  @param workspaceName Unique ID of the Workspace.
  @return ApiClearWorkspaceRepositoryContentManagerRequest
 */
-func (a *WorkspaceApiService) ClearWorkspaceRepositoryContentManager(ctx context.Context, workspaceName string) ApiClearWorkspaceRepositoryContentManagerRequest {
+func (a *WorkspaceAPIService) ClearWorkspaceRepositoryContentManager(ctx context.Context, workspaceName string) ApiClearWorkspaceRepositoryContentManagerRequest {
 	return ApiClearWorkspaceRepositoryContentManagerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -245,14 +245,14 @@ func (a *WorkspaceApiService) ClearWorkspaceRepositoryContentManager(ctx context
 }
 
 // Execute executes the request
-func (a *WorkspaceApiService) ClearWorkspaceRepositoryContentManagerExecute(r ApiClearWorkspaceRepositoryContentManagerRequest) (*http.Response, error) {
+func (a *WorkspaceAPIService) ClearWorkspaceRepositoryContentManagerExecute(r ApiClearWorkspaceRepositoryContentManagerRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.ClearWorkspaceRepositoryContentManager")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.ClearWorkspaceRepositoryContentManager")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -390,7 +390,7 @@ func (a *WorkspaceApiService) ClearWorkspaceRepositoryContentManagerExecute(r Ap
 
 type ApiCreateWorkspaceRequest struct {
 	ctx context.Context
-	ApiService *WorkspaceApiService
+	ApiService *WorkspaceAPIService
 	workspaceSourceName string
 	workspaceItem *WorkspaceItem
 	acceptVersion *string
@@ -421,7 +421,7 @@ Generates a workspace for the type of source specified.
  @param workspaceSourceName The ID of the workspace source.
  @return ApiCreateWorkspaceRequest
 */
-func (a *WorkspaceApiService) CreateWorkspace(ctx context.Context, workspaceSourceName string) ApiCreateWorkspaceRequest {
+func (a *WorkspaceAPIService) CreateWorkspace(ctx context.Context, workspaceSourceName string) ApiCreateWorkspaceRequest {
 	return ApiCreateWorkspaceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -431,7 +431,7 @@ func (a *WorkspaceApiService) CreateWorkspace(ctx context.Context, workspaceSour
 
 // Execute executes the request
 //  @return WorkspaceItem
-func (a *WorkspaceApiService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest) (*WorkspaceItem, *http.Response, error) {
+func (a *WorkspaceAPIService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest) (*WorkspaceItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -439,7 +439,7 @@ func (a *WorkspaceApiService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest
 		localVarReturnValue  *WorkspaceItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.CreateWorkspace")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.CreateWorkspace")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -591,7 +591,7 @@ func (a *WorkspaceApiService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest
 
 type ApiDeleteWorkspaceRequest struct {
 	ctx context.Context
-	ApiService *WorkspaceApiService
+	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
 }
@@ -615,7 +615,7 @@ Deletes a workspace.
  @param workspaceName Unique ID of the Workspace.
  @return ApiDeleteWorkspaceRequest
 */
-func (a *WorkspaceApiService) DeleteWorkspace(ctx context.Context, workspaceName string) ApiDeleteWorkspaceRequest {
+func (a *WorkspaceAPIService) DeleteWorkspace(ctx context.Context, workspaceName string) ApiDeleteWorkspaceRequest {
 	return ApiDeleteWorkspaceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -624,14 +624,14 @@ func (a *WorkspaceApiService) DeleteWorkspace(ctx context.Context, workspaceName
 }
 
 // Execute executes the request
-func (a *WorkspaceApiService) DeleteWorkspaceExecute(r ApiDeleteWorkspaceRequest) (*http.Response, error) {
+func (a *WorkspaceAPIService) DeleteWorkspaceExecute(r ApiDeleteWorkspaceRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.DeleteWorkspace")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.DeleteWorkspace")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -769,7 +769,7 @@ func (a *WorkspaceApiService) DeleteWorkspaceExecute(r ApiDeleteWorkspaceRequest
 
 type ApiEditWorkspaceRepositoryContentManagerRequest struct {
 	ctx context.Context
-	ApiService *WorkspaceApiService
+	ApiService *WorkspaceAPIService
 	workspaceName string
 	ifMatch *string
 	workspaceRepositoryContentManager *WorkspaceRepositoryContentManager
@@ -807,7 +807,7 @@ The content of the workspace is defined in a repository which is checked out.
  @param workspaceName Unique ID of the Workspace.
  @return ApiEditWorkspaceRepositoryContentManagerRequest
 */
-func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManager(ctx context.Context, workspaceName string) ApiEditWorkspaceRepositoryContentManagerRequest {
+func (a *WorkspaceAPIService) EditWorkspaceRepositoryContentManager(ctx context.Context, workspaceName string) ApiEditWorkspaceRepositoryContentManagerRequest {
 	return ApiEditWorkspaceRepositoryContentManagerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -817,7 +817,7 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManager(ctx context.
 
 // Execute executes the request
 //  @return WorkspaceRepositoryContentManager
-func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r ApiEditWorkspaceRepositoryContentManagerRequest) (*WorkspaceRepositoryContentManager, *http.Response, error) {
+func (a *WorkspaceAPIService) EditWorkspaceRepositoryContentManagerExecute(r ApiEditWorkspaceRepositoryContentManagerRequest) (*WorkspaceRepositoryContentManager, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -825,7 +825,7 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r Api
 		localVarReturnValue  *WorkspaceRepositoryContentManager
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.EditWorkspaceRepositoryContentManager")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.EditWorkspaceRepositoryContentManager")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1003,7 +1003,7 @@ func (a *WorkspaceApiService) EditWorkspaceRepositoryContentManagerExecute(r Api
 
 type ApiGetWorkspaceRequest struct {
 	ctx context.Context
-	ApiService *WorkspaceApiService
+	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -1034,7 +1034,7 @@ The state the workspace is currently in
  @param workspaceName Unique ID of the Workspace.
  @return ApiGetWorkspaceRequest
 */
-func (a *WorkspaceApiService) GetWorkspace(ctx context.Context, workspaceName string) ApiGetWorkspaceRequest {
+func (a *WorkspaceAPIService) GetWorkspace(ctx context.Context, workspaceName string) ApiGetWorkspaceRequest {
 	return ApiGetWorkspaceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1044,7 +1044,7 @@ func (a *WorkspaceApiService) GetWorkspace(ctx context.Context, workspaceName st
 
 // Execute executes the request
 //  @return WorkspaceItem
-func (a *WorkspaceApiService) GetWorkspaceExecute(r ApiGetWorkspaceRequest) (*WorkspaceItem, *http.Response, error) {
+func (a *WorkspaceAPIService) GetWorkspaceExecute(r ApiGetWorkspaceRequest) (*WorkspaceItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1052,7 +1052,7 @@ func (a *WorkspaceApiService) GetWorkspaceExecute(r ApiGetWorkspaceRequest) (*Wo
 		localVarReturnValue  *WorkspaceItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.GetWorkspace")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.GetWorkspace")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1180,7 +1180,7 @@ func (a *WorkspaceApiService) GetWorkspaceExecute(r ApiGetWorkspaceRequest) (*Wo
 
 type ApiGetWorkspaceArchiveContentRequest struct {
 	ctx context.Context
-	ApiService *WorkspaceApiService
+	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -1212,7 +1212,7 @@ The content of the workspace is contained into an archive file.
  @param workspaceName Unique ID of the Workspace.
  @return ApiGetWorkspaceArchiveContentRequest
 */
-func (a *WorkspaceApiService) GetWorkspaceArchiveContent(ctx context.Context, workspaceName string) ApiGetWorkspaceArchiveContentRequest {
+func (a *WorkspaceAPIService) GetWorkspaceArchiveContent(ctx context.Context, workspaceName string) ApiGetWorkspaceArchiveContentRequest {
 	return ApiGetWorkspaceArchiveContentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1222,7 +1222,7 @@ func (a *WorkspaceApiService) GetWorkspaceArchiveContent(ctx context.Context, wo
 
 // Execute executes the request
 //  @return ArtefactManagerItem
-func (a *WorkspaceApiService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspaceArchiveContentRequest) (*ArtefactManagerItem, *http.Response, error) {
+func (a *WorkspaceAPIService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspaceArchiveContentRequest) (*ArtefactManagerItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1230,7 +1230,7 @@ func (a *WorkspaceApiService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspac
 		localVarReturnValue  *ArtefactManagerItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.GetWorkspaceArchiveContent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.GetWorkspaceArchiveContent")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1358,7 +1358,7 @@ func (a *WorkspaceApiService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspac
 
 type ApiGetWorkspaceDetailsRequest struct {
 	ctx context.Context
-	ApiService *WorkspaceApiService
+	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -1389,7 +1389,7 @@ Retrieve further details about the given Workspace.
  @param workspaceName Unique ID of the Workspace.
  @return ApiGetWorkspaceDetailsRequest
 */
-func (a *WorkspaceApiService) GetWorkspaceDetails(ctx context.Context, workspaceName string) ApiGetWorkspaceDetailsRequest {
+func (a *WorkspaceAPIService) GetWorkspaceDetails(ctx context.Context, workspaceName string) ApiGetWorkspaceDetailsRequest {
 	return ApiGetWorkspaceDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1399,7 +1399,7 @@ func (a *WorkspaceApiService) GetWorkspaceDetails(ctx context.Context, workspace
 
 // Execute executes the request
 //  @return WorkspaceDetailsItem
-func (a *WorkspaceApiService) GetWorkspaceDetailsExecute(r ApiGetWorkspaceDetailsRequest) (*WorkspaceDetailsItem, *http.Response, error) {
+func (a *WorkspaceAPIService) GetWorkspaceDetailsExecute(r ApiGetWorkspaceDetailsRequest) (*WorkspaceDetailsItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1407,7 +1407,7 @@ func (a *WorkspaceApiService) GetWorkspaceDetailsExecute(r ApiGetWorkspaceDetail
 		localVarReturnValue  *WorkspaceDetailsItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.GetWorkspaceDetails")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.GetWorkspaceDetails")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1481,7 +1481,7 @@ func (a *WorkspaceApiService) GetWorkspaceDetailsExecute(r ApiGetWorkspaceDetail
 
 type ApiGetWorkspaceRepositoryContentManagerRequest struct {
 	ctx context.Context
-	ApiService *WorkspaceApiService
+	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -1513,7 +1513,7 @@ The content of the workspace is contained in a repository.
  @param workspaceName Unique ID of the Workspace.
  @return ApiGetWorkspaceRepositoryContentManagerRequest
 */
-func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManager(ctx context.Context, workspaceName string) ApiGetWorkspaceRepositoryContentManagerRequest {
+func (a *WorkspaceAPIService) GetWorkspaceRepositoryContentManager(ctx context.Context, workspaceName string) ApiGetWorkspaceRepositoryContentManagerRequest {
 	return ApiGetWorkspaceRepositoryContentManagerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1523,7 +1523,7 @@ func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManager(ctx context.C
 
 // Execute executes the request
 //  @return WorkspaceRepositoryContentManager
-func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerExecute(r ApiGetWorkspaceRepositoryContentManagerRequest) (*WorkspaceRepositoryContentManager, *http.Response, error) {
+func (a *WorkspaceAPIService) GetWorkspaceRepositoryContentManagerExecute(r ApiGetWorkspaceRepositoryContentManagerRequest) (*WorkspaceRepositoryContentManager, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1531,7 +1531,7 @@ func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerExecute(r ApiG
 		localVarReturnValue  *WorkspaceRepositoryContentManager
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.GetWorkspaceRepositoryContentManager")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.GetWorkspaceRepositoryContentManager")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1659,7 +1659,7 @@ func (a *WorkspaceApiService) GetWorkspaceRepositoryContentManagerExecute(r ApiG
 
 type ApiListWorkspacesRequest struct {
 	ctx context.Context
-	ApiService *WorkspaceApiService
+	ApiService *WorkspaceAPIService
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
@@ -1709,7 +1709,7 @@ This returns a collection resource that lists all available workspaces.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListWorkspacesRequest
 */
-func (a *WorkspaceApiService) ListWorkspaces(ctx context.Context) ApiListWorkspacesRequest {
+func (a *WorkspaceAPIService) ListWorkspaces(ctx context.Context) ApiListWorkspacesRequest {
 	return ApiListWorkspacesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1718,7 +1718,7 @@ func (a *WorkspaceApiService) ListWorkspaces(ctx context.Context) ApiListWorkspa
 
 // Execute executes the request
 //  @return WorkspaceCollection
-func (a *WorkspaceApiService) ListWorkspacesExecute(r ApiListWorkspacesRequest) (*WorkspaceCollection, *http.Response, error) {
+func (a *WorkspaceAPIService) ListWorkspacesExecute(r ApiListWorkspacesRequest) (*WorkspaceCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1726,7 +1726,7 @@ func (a *WorkspaceApiService) ListWorkspacesExecute(r ApiListWorkspacesRequest) 
 		localVarReturnValue  *WorkspaceCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.ListWorkspaces")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.ListWorkspaces")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1851,7 +1851,7 @@ func (a *WorkspaceApiService) ListWorkspacesExecute(r ApiListWorkspacesRequest) 
 
 type ApiRetainWorkspaceRequest struct {
 	ctx context.Context
-	ApiService *WorkspaceApiService
+	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
 	retainWorkspaceRequest *RetainWorkspaceRequest
@@ -1882,7 +1882,7 @@ Set the time at which the workspace and all associated resources will be removed
  @param workspaceName Unique ID of the Workspace.
  @return ApiRetainWorkspaceRequest
 */
-func (a *WorkspaceApiService) RetainWorkspace(ctx context.Context, workspaceName string) ApiRetainWorkspaceRequest {
+func (a *WorkspaceAPIService) RetainWorkspace(ctx context.Context, workspaceName string) ApiRetainWorkspaceRequest {
 	return ApiRetainWorkspaceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1892,7 +1892,7 @@ func (a *WorkspaceApiService) RetainWorkspace(ctx context.Context, workspaceName
 
 // Execute executes the request
 //  @return WorkspaceItem
-func (a *WorkspaceApiService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest) (*WorkspaceItem, *http.Response, error) {
+func (a *WorkspaceAPIService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest) (*WorkspaceItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1900,7 +1900,7 @@ func (a *WorkspaceApiService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest
 		localVarReturnValue  *WorkspaceItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.RetainWorkspace")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.RetainWorkspace")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2049,7 +2049,7 @@ func (a *WorkspaceApiService) RetainWorkspaceExecute(r ApiRetainWorkspaceRequest
 
 type ApiUploadWorkspaceArchiveContentRequest struct {
 	ctx context.Context
-	ApiService *WorkspaceApiService
+	ApiService *WorkspaceAPIService
 	workspaceName string
 	ifMatch *string
 	content *os.File
@@ -2115,7 +2115,7 @@ The content of the workspace is contained in an archive file which is uploaded a
  @param workspaceName Unique ID of the Workspace.
  @return ApiUploadWorkspaceArchiveContentRequest
 */
-func (a *WorkspaceApiService) UploadWorkspaceArchiveContent(ctx context.Context, workspaceName string) ApiUploadWorkspaceArchiveContentRequest {
+func (a *WorkspaceAPIService) UploadWorkspaceArchiveContent(ctx context.Context, workspaceName string) ApiUploadWorkspaceArchiveContentRequest {
 	return ApiUploadWorkspaceArchiveContentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2125,7 +2125,7 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContent(ctx context.Context,
 
 // Execute executes the request
 //  @return ArtefactManagerItem
-func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWorkspaceArchiveContentRequest) (*ArtefactManagerItem, *http.Response, error) {
+func (a *WorkspaceAPIService) UploadWorkspaceArchiveContentExecute(r ApiUploadWorkspaceArchiveContentRequest) (*ArtefactManagerItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -2133,7 +2133,7 @@ func (a *WorkspaceApiService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 		localVarReturnValue  *ArtefactManagerItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceApiService.UploadWorkspaceArchiveContent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.UploadWorkspaceArchiveContent")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
