@@ -142,9 +142,11 @@ func (o FieldObject) MarshalJSON() ([]byte, error) {
 
 func (o FieldObject) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: fieldName is readOnly
-	// skip: fieldPath is readOnly
-	// skip: message is readOnly
+	toSerialize["fieldName"] = o.FieldName
+	if !IsNil(o.FieldPath) {
+		toSerialize["fieldPath"] = o.FieldPath
+	}
+	toSerialize["message"] = o.Message
 	return toSerialize, nil
 }
 

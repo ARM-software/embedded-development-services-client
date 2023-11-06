@@ -2,16 +2,16 @@
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
-# \VirtualHardwareTargetApi
+# \VirtualHardwareTargetAPI
 
 All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetVht**](VirtualHardwareTargetApi.md#GetVht) | **Get** /vhts/{vhtName} | Return details of the specific VHT.
-[**ListFilteredVhtInstances**](VirtualHardwareTargetApi.md#ListFilteredVhtInstances) | **Get** /vhts/{vhtName}/vht-instances/ | List all VHT instances related to this specific VHT.
-[**ListVhts**](VirtualHardwareTargetApi.md#ListVhts) | **Get** /vhts/ | List available VHTs.
-[**StartVhtInstance**](VirtualHardwareTargetApi.md#StartVhtInstance) | **Post** /vhts/{vhtName} | Spawns a VHT instance matching this VHT specification.
+[**GetVht**](VirtualHardwareTargetAPI.md#GetVht) | **Get** /vhts/{vhtName} | Return details of the specific VHT.
+[**ListFilteredVhtInstances**](VirtualHardwareTargetAPI.md#ListFilteredVhtInstances) | **Get** /vhts/{vhtName}/vht-instances/ | List all VHT instances related to this specific VHT.
+[**ListVhts**](VirtualHardwareTargetAPI.md#ListVhts) | **Get** /vhts/ | List available VHTs.
+[**StartVhtInstance**](VirtualHardwareTargetAPI.md#StartVhtInstance) | **Post** /vhts/{vhtName} | Spawns a VHT instance matching this VHT specification.
 
 
 
@@ -42,13 +42,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetApi.GetVht(context.Background(), vhtName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+    resp, r, err := apiClient.VirtualHardwareTargetAPI.GetVht(context.Background(), vhtName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetApi.GetVht``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetAPI.GetVht``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetVht`: VhtItem
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetApi.GetVht`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetAPI.GetVht`: %v\n", resp)
 }
 ```
 
@@ -119,13 +119,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetApi.ListFilteredVhtInstances(context.Background(), vhtName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.VirtualHardwareTargetAPI.ListFilteredVhtInstances(context.Background(), vhtName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetApi.ListFilteredVhtInstances``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetAPI.ListFilteredVhtInstances``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListFilteredVhtInstances`: VhtInstanceCollection
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetApi.ListFilteredVhtInstances`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetAPI.ListFilteredVhtInstances`: %v\n", resp)
 }
 ```
 
@@ -198,13 +198,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetApi.ListVhts(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.VirtualHardwareTargetAPI.ListVhts(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetApi.ListVhts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetAPI.ListVhts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListVhts`: VhtCollection
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetApi.ListVhts`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetAPI.ListVhts`: %v\n", resp)
 }
 ```
 
@@ -270,13 +270,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetApi.StartVhtInstance(context.Background(), vhtName).VhtInstanceItem(vhtInstanceItem).AcceptVersion(acceptVersion).Execute()
+    resp, r, err := apiClient.VirtualHardwareTargetAPI.StartVhtInstance(context.Background(), vhtName).VhtInstanceItem(vhtInstanceItem).AcceptVersion(acceptVersion).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetApi.StartVhtInstance``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetAPI.StartVhtInstance``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `StartVhtInstance`: VhtInstanceItem
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetApi.StartVhtInstance`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetAPI.StartVhtInstance`: %v\n", resp)
 }
 ```
 

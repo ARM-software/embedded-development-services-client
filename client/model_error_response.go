@@ -173,9 +173,9 @@ func (o ErrorResponse) ToMap() (map[string]interface{}, error) {
 	if o.Fields != nil {
 		toSerialize["fields"] = o.Fields
 	}
-	// skip: httpStatusCode is readOnly
-	// skip: message is readOnly
-	// skip: requestId is readOnly
+	toSerialize["httpStatusCode"] = o.HttpStatusCode
+	toSerialize["message"] = o.Message
+	toSerialize["requestId"] = o.RequestId
 	return toSerialize, nil
 }
 

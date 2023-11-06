@@ -2,22 +2,22 @@
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
-# \WorkspaceSourceApi
+# \DevicesAPI
 
 All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetWorkspaceSource**](WorkspaceSourceApi.md#GetWorkspaceSource) | **Get** /workspace-sources/{workspaceSourceName} | Return details of the specific workspace source.
-[**ListWorkspaceSources**](WorkspaceSourceApi.md#ListWorkspaceSources) | **Get** /workspace-sources/ | List available workspace sources.
+[**GetDevice**](DevicesAPI.md#GetDevice) | **Get** /devices/{deviceSlug} | Get a Device Item
+[**ListDevices**](DevicesAPI.md#ListDevices) | **Get** /devices/ | List all the Devices
 
 
 
-## GetWorkspaceSource
+## GetDevice
 
-> WorkspaceSourceItem GetWorkspaceSource(ctx, workspaceSourceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+> DeviceItem GetDevice(ctx, deviceSlug).AcceptVersion(acceptVersion).Execute()
 
-Return details of the specific workspace source.
+Get a Device Item
 
 
 
@@ -34,19 +34,18 @@ import (
 )
 
 func main() {
-    workspaceSourceName := "workspaceSourceName_example" // string | The ID of the workspace source.
+    deviceSlug := "deviceSlug_example" // string | Unique slug of a Device.
     acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-    ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceSourceApi.GetWorkspaceSource(context.Background(), workspaceSourceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+    resp, r, err := apiClient.DevicesAPI.GetDevice(context.Background(), deviceSlug).AcceptVersion(acceptVersion).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceSourceApi.GetWorkspaceSource``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesAPI.GetDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetWorkspaceSource`: WorkspaceSourceItem
-    fmt.Fprintf(os.Stdout, "Response from `WorkspaceSourceApi.GetWorkspaceSource`: %v\n", resp)
+    // response from `GetDevice`: DeviceItem
+    fmt.Fprintf(os.Stdout, "Response from `DevicesAPI.GetDevice`: %v\n", resp)
 }
 ```
 
@@ -56,22 +55,21 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceSourceName** | **string** | The ID of the workspace source. | 
+**deviceSlug** | **string** | Unique slug of a Device. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetWorkspaceSourceRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetDeviceRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
- **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
 
 ### Return type
 
-[**WorkspaceSourceItem**](WorkspaceSourceItem.md)
+[**DeviceItem**](DeviceItem.md)
 
 ### Authorization
 
@@ -87,11 +85,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListWorkspaceSources
+## ListDevices
 
-> WorkspaceSourceCollection ListWorkspaceSources(ctx).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+> ListDevicesCollection ListDevices(ctx).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
 
-List available workspace sources.
+List all the Devices
 
 
 
@@ -116,13 +114,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorkspaceSourceApi.ListWorkspaceSources(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.DevicesAPI.ListDevices(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceSourceApi.ListWorkspaceSources``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesAPI.ListDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListWorkspaceSources`: WorkspaceSourceCollection
-    fmt.Fprintf(os.Stdout, "Response from `WorkspaceSourceApi.ListWorkspaceSources`: %v\n", resp)
+    // response from `ListDevices`: ListDevicesCollection
+    fmt.Fprintf(os.Stdout, "Response from `DevicesAPI.ListDevices`: %v\n", resp)
 }
 ```
 
@@ -132,7 +130,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListWorkspaceSourcesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListDevicesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -145,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WorkspaceSourceCollection**](WorkspaceSourceCollection.md)
+[**ListDevicesCollection**](ListDevicesCollection.md)
 
 ### Authorization
 

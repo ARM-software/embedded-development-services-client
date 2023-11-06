@@ -2,13 +2,13 @@
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
-# \RootResourceApi
+# \RootResourceAPI
 
 All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetRoot**](RootResourceApi.md#GetRoot) | **Get** / | Get the Root resource.
+[**GetRoot**](RootResourceAPI.md#GetRoot) | **Get** / | Get the Root resource.
 
 
 
@@ -40,13 +40,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootResourceApi.GetRoot(context.Background()).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.RootResourceAPI.GetRoot(context.Background()).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootResourceApi.GetRoot``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootResourceAPI.GetRoot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetRoot`: SimpleCollection
-    fmt.Fprintf(os.Stdout, "Response from `RootResourceApi.GetRoot`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootResourceAPI.GetRoot`: %v\n", resp)
 }
 ```
 

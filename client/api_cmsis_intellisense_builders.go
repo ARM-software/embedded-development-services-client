@@ -26,12 +26,12 @@ import (
 )
 
 
-// CMSISIntellisenseBuildersApiService CMSISIntellisenseBuildersApi service
-type CMSISIntellisenseBuildersApiService service
+// CMSISIntellisenseBuildersAPIService CMSISIntellisenseBuildersAPI service
+type CMSISIntellisenseBuildersAPIService service
 
 type ApiGetCmsisIntellisenseRequest struct {
 	ctx context.Context
-	ApiService *CMSISIntellisenseBuildersApiService
+	ApiService *CMSISIntellisenseBuildersAPIService
 	builderName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -62,7 +62,7 @@ A CMSIS Intellisense Builder is a combination of a specific set of CMSIS-Build t
  @param builderName The ID of the CMSIS Intellisense Builder.
  @return ApiGetCmsisIntellisenseRequest
 */
-func (a *CMSISIntellisenseBuildersApiService) GetCmsisIntellisense(ctx context.Context, builderName string) ApiGetCmsisIntellisenseRequest {
+func (a *CMSISIntellisenseBuildersAPIService) GetCmsisIntellisense(ctx context.Context, builderName string) ApiGetCmsisIntellisenseRequest {
 	return ApiGetCmsisIntellisenseRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -72,7 +72,7 @@ func (a *CMSISIntellisenseBuildersApiService) GetCmsisIntellisense(ctx context.C
 
 // Execute executes the request
 //  @return CmsisBuilderItem
-func (a *CMSISIntellisenseBuildersApiService) GetCmsisIntellisenseExecute(r ApiGetCmsisIntellisenseRequest) (*CmsisBuilderItem, *http.Response, error) {
+func (a *CMSISIntellisenseBuildersAPIService) GetCmsisIntellisenseExecute(r ApiGetCmsisIntellisenseRequest) (*CmsisBuilderItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -80,7 +80,7 @@ func (a *CMSISIntellisenseBuildersApiService) GetCmsisIntellisenseExecute(r ApiG
 		localVarReturnValue  *CmsisBuilderItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CMSISIntellisenseBuildersApiService.GetCmsisIntellisense")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CMSISIntellisenseBuildersAPIService.GetCmsisIntellisense")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -208,7 +208,7 @@ func (a *CMSISIntellisenseBuildersApiService) GetCmsisIntellisenseExecute(r ApiG
 
 type ApiListCmsisIntellisenseRequest struct {
 	ctx context.Context
-	ApiService *CMSISIntellisenseBuildersApiService
+	ApiService *CMSISIntellisenseBuildersAPIService
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
@@ -261,7 +261,7 @@ This returns a collection resource that lists all of the CMSIS Intellisense Buil
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListCmsisIntellisenseRequest
 */
-func (a *CMSISIntellisenseBuildersApiService) ListCmsisIntellisense(ctx context.Context) ApiListCmsisIntellisenseRequest {
+func (a *CMSISIntellisenseBuildersAPIService) ListCmsisIntellisense(ctx context.Context) ApiListCmsisIntellisenseRequest {
 	return ApiListCmsisIntellisenseRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -270,7 +270,7 @@ func (a *CMSISIntellisenseBuildersApiService) ListCmsisIntellisense(ctx context.
 
 // Execute executes the request
 //  @return CmsisIntellisenseCollection
-func (a *CMSISIntellisenseBuildersApiService) ListCmsisIntellisenseExecute(r ApiListCmsisIntellisenseRequest) (*CmsisIntellisenseCollection, *http.Response, error) {
+func (a *CMSISIntellisenseBuildersAPIService) ListCmsisIntellisenseExecute(r ApiListCmsisIntellisenseRequest) (*CmsisIntellisenseCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -278,7 +278,7 @@ func (a *CMSISIntellisenseBuildersApiService) ListCmsisIntellisenseExecute(r Api
 		localVarReturnValue  *CmsisIntellisenseCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CMSISIntellisenseBuildersApiService.ListCmsisIntellisense")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CMSISIntellisenseBuildersAPIService.ListCmsisIntellisense")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -403,7 +403,7 @@ func (a *CMSISIntellisenseBuildersApiService) ListCmsisIntellisenseExecute(r Api
 
 type ApiStartCmsisIntellisenseRequest struct {
 	ctx context.Context
-	ApiService *CMSISIntellisenseBuildersApiService
+	ApiService *CMSISIntellisenseBuildersAPIService
 	builderName string
 	intellisenseJobItem *IntellisenseJobItem
 	acceptVersion *string
@@ -434,7 +434,7 @@ Initiate a compilation database generation using the specified CMSIS Intellisens
  @param builderName The ID of the CMSIS Intellisense Builder.
  @return ApiStartCmsisIntellisenseRequest
 */
-func (a *CMSISIntellisenseBuildersApiService) StartCmsisIntellisense(ctx context.Context, builderName string) ApiStartCmsisIntellisenseRequest {
+func (a *CMSISIntellisenseBuildersAPIService) StartCmsisIntellisense(ctx context.Context, builderName string) ApiStartCmsisIntellisenseRequest {
 	return ApiStartCmsisIntellisenseRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -444,7 +444,7 @@ func (a *CMSISIntellisenseBuildersApiService) StartCmsisIntellisense(ctx context
 
 // Execute executes the request
 //  @return IntellisenseJobItem
-func (a *CMSISIntellisenseBuildersApiService) StartCmsisIntellisenseExecute(r ApiStartCmsisIntellisenseRequest) (*IntellisenseJobItem, *http.Response, error) {
+func (a *CMSISIntellisenseBuildersAPIService) StartCmsisIntellisenseExecute(r ApiStartCmsisIntellisenseRequest) (*IntellisenseJobItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -452,7 +452,7 @@ func (a *CMSISIntellisenseBuildersApiService) StartCmsisIntellisenseExecute(r Ap
 		localVarReturnValue  *IntellisenseJobItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CMSISIntellisenseBuildersApiService.StartCmsisIntellisense")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CMSISIntellisenseBuildersAPIService.StartCmsisIntellisense")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
