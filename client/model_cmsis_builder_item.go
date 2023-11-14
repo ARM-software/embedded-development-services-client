@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CmsisBuilderItem type satisfies the MappedNullable interface at compile time
@@ -41,6 +42,8 @@ type CmsisBuilderItem struct {
 	// The version of the toolchain in use as specified by the toolchain supplier.
 	ToolchainVersion string `json:"toolchainVersion"`
 }
+
+type _CmsisBuilderItem CmsisBuilderItem
 
 // NewCmsisBuilderItem instantiates a new CmsisBuilderItem object
 // This constructor will assign default values to properties that have it defined,
@@ -353,6 +356,49 @@ func (o CmsisBuilderItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["toolchainType"] = o.ToolchainType
 	toSerialize["toolchainVersion"] = o.ToolchainVersion
 	return toSerialize, nil
+}
+
+func (o *CmsisBuilderItem) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"_links",
+		"_metadata",
+		"buildToolsType",
+		"buildToolsVersion",
+		"deprecated",
+		"name",
+		"title",
+		"toolchainType",
+		"toolchainVersion",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCmsisBuilderItem := _CmsisBuilderItem{}
+
+	err = json.Unmarshal(bytes, &varCmsisBuilderItem)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CmsisBuilderItem(varCmsisBuilderItem)
+
+	return err
 }
 
 type NullableCmsisBuilderItem struct {

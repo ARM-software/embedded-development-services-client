@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the IntellisenseJobItem type satisfies the MappedNullable interface at compile time
@@ -60,6 +61,8 @@ type IntellisenseJobItem struct {
 	// Path to workspace to replace value in compilation database.
 	Workspace string `json:"workspace"`
 }
+
+type _IntellisenseJobItem IntellisenseJobItem
 
 // NewIntellisenseJobItem instantiates a new IntellisenseJobItem object
 // This constructor will assign default values to properties that have it defined,
@@ -606,6 +609,55 @@ func (o IntellisenseJobItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["toolchainHeaders"] = o.ToolchainHeaders
 	toSerialize["workspace"] = o.Workspace
 	return toSerialize, nil
+}
+
+func (o *IntellisenseJobItem) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"_links",
+		"_metadata",
+		"buildStepsCompleted",
+		"buildStepsTotal",
+		"done",
+		"error",
+		"failure",
+		"name",
+		"packs",
+		"project",
+		"status",
+		"success",
+		"toolchain",
+		"toolchainHeaders",
+		"workspace",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varIntellisenseJobItem := _IntellisenseJobItem{}
+
+	err = json.Unmarshal(bytes, &varIntellisenseJobItem)
+
+	if err != nil {
+		return err
+	}
+
+	*o = IntellisenseJobItem(varIntellisenseJobItem)
+
+	return err
 }
 
 type NullableIntellisenseJobItem struct {

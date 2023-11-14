@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ArtefactManagerLinks type satisfies the MappedNullable interface at compile time
@@ -32,6 +33,8 @@ type ArtefactManagerLinks struct {
 	Self HalLinkData `json:"self"`
 	Upload *HalLinkData `json:"upload,omitempty"`
 }
+
+type _ArtefactManagerLinks ArtefactManagerLinks
 
 // NewArtefactManagerLinks instantiates a new ArtefactManagerLinks object
 // This constructor will assign default values to properties that have it defined,
@@ -253,6 +256,42 @@ func (o ArtefactManagerLinks) ToMap() (map[string]interface{}, error) {
 		toSerialize["upload"] = o.Upload
 	}
 	return toSerialize, nil
+}
+
+func (o *ArtefactManagerLinks) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"related",
+		"self",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varArtefactManagerLinks := _ArtefactManagerLinks{}
+
+	err = json.Unmarshal(bytes, &varArtefactManagerLinks)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArtefactManagerLinks(varArtefactManagerLinks)
+
+	return err
 }
 
 type NullableArtefactManagerLinks struct {

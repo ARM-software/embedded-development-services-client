@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the BuildMessageItem type satisfies the MappedNullable interface at compile time
@@ -34,6 +35,8 @@ type BuildMessageItem struct {
 	// Human readable name of the Build Notification item.
 	Title *string `json:"title,omitempty"`
 }
+
+type _BuildMessageItem BuildMessageItem
 
 // NewBuildMessageItem instantiates a new BuildMessageItem object
 // This constructor will assign default values to properties that have it defined,
@@ -210,6 +213,44 @@ func (o BuildMessageItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["title"] = o.Title
 	}
 	return toSerialize, nil
+}
+
+func (o *BuildMessageItem) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"_links",
+		"_metadata",
+		"messages",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varBuildMessageItem := _BuildMessageItem{}
+
+	err = json.Unmarshal(bytes, &varBuildMessageItem)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BuildMessageItem(varBuildMessageItem)
+
+	return err
 }
 
 type NullableBuildMessageItem struct {

@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ProcessorItem type satisfies the MappedNullable interface at compile time
@@ -48,6 +49,8 @@ type ProcessorItem struct {
 	// Number of processing units in a symmetric multi-processor core.
 	Units NullableInt32 `json:"units,omitempty"`
 }
+
+type _ProcessorItem ProcessorItem
 
 // NewProcessorItem instantiates a new ProcessorItem object
 // This constructor will assign default values to properties that have it defined,
@@ -553,6 +556,41 @@ func (o ProcessorItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["units"] = o.Units.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *ProcessorItem) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"core",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varProcessorItem := _ProcessorItem{}
+
+	err = json.Unmarshal(bytes, &varProcessorItem)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ProcessorItem(varProcessorItem)
+
+	return err
 }
 
 type NullableProcessorItem struct {

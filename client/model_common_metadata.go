@@ -19,6 +19,7 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the CommonMetadata type satisfies the MappedNullable interface at compile time
@@ -33,6 +34,8 @@ type CommonMetadata struct {
 	// Last Modification Time: UTC date and time (in RFC3339 format) when the resource was last updated. For a resource that cannot be modified this will be the same as `ctime`.
 	Mtime time.Time `json:"mtime"`
 }
+
+type _CommonMetadata CommonMetadata
 
 // NewCommonMetadata instantiates a new CommonMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -159,6 +162,42 @@ func (o CommonMetadata) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["mtime"] = o.Mtime
 	return toSerialize, nil
+}
+
+func (o *CommonMetadata) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"ctime",
+		"mtime",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCommonMetadata := _CommonMetadata{}
+
+	err = json.Unmarshal(bytes, &varCommonMetadata)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CommonMetadata(varCommonMetadata)
+
+	return err
 }
 
 type NullableCommonMetadata struct {

@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the VendorItemLinks type satisfies the MappedNullable interface at compile time
@@ -28,6 +29,8 @@ type VendorItemLinks struct {
 	Collection HalLinkData `json:"collection"`
 	Self HalLinkData `json:"self"`
 }
+
+type _VendorItemLinks VendorItemLinks
 
 // NewVendorItemLinks instantiates a new VendorItemLinks object
 // This constructor will assign default values to properties that have it defined,
@@ -109,6 +112,42 @@ func (o VendorItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize["collection"] = o.Collection
 	toSerialize["self"] = o.Self
 	return toSerialize, nil
+}
+
+func (o *VendorItemLinks) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"collection",
+		"self",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varVendorItemLinks := _VendorItemLinks{}
+
+	err = json.Unmarshal(bytes, &varVendorItemLinks)
+
+	if err != nil {
+		return err
+	}
+
+	*o = VendorItemLinks(varVendorItemLinks)
+
+	return err
 }
 
 type NullableVendorItemLinks struct {

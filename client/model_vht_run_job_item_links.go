@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the VhtRunJobItemLinks type satisfies the MappedNullable interface at compile time
@@ -32,6 +33,8 @@ type VhtRunJobItemLinks struct {
 	Related HalLinkData `json:"related"`
 	Self HalLinkData `json:"self"`
 }
+
+type _VhtRunJobItemLinks VhtRunJobItemLinks
 
 // NewVhtRunJobItemLinks instantiates a new VhtRunJobItemLinks object
 // This constructor will assign default values to properties that have it defined,
@@ -253,6 +256,42 @@ func (o VhtRunJobItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize["related"] = o.Related
 	toSerialize["self"] = o.Self
 	return toSerialize, nil
+}
+
+func (o *VhtRunJobItemLinks) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"related",
+		"self",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varVhtRunJobItemLinks := _VhtRunJobItemLinks{}
+
+	err = json.Unmarshal(bytes, &varVhtRunJobItemLinks)
+
+	if err != nil {
+		return err
+	}
+
+	*o = VhtRunJobItemLinks(varVhtRunJobItemLinks)
+
+	return err
 }
 
 type NullableVhtRunJobItemLinks struct {

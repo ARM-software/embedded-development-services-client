@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the BuildJobItemLinks type satisfies the MappedNullable interface at compile time
@@ -34,6 +35,8 @@ type BuildJobItemLinks struct {
 	Retain *HalLinkData `json:"retain,omitempty"`
 	Self HalLinkData `json:"self"`
 }
+
+type _BuildJobItemLinks BuildJobItemLinks
 
 // NewBuildJobItemLinks instantiates a new BuildJobItemLinks object
 // This constructor will assign default values to properties that have it defined,
@@ -325,6 +328,42 @@ func (o BuildJobItemLinks) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["self"] = o.Self
 	return toSerialize, nil
+}
+
+func (o *BuildJobItemLinks) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"related",
+		"self",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varBuildJobItemLinks := _BuildJobItemLinks{}
+
+	err = json.Unmarshal(bytes, &varBuildJobItemLinks)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BuildJobItemLinks(varBuildJobItemLinks)
+
+	return err
 }
 
 type NullableBuildJobItemLinks struct {

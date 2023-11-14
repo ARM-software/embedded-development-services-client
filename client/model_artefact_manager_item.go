@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ArtefactManagerItem type satisfies the MappedNullable interface at compile time
@@ -46,6 +47,8 @@ type ArtefactManagerItem struct {
 	// Optional human readable name of the artefact.
 	Title NullableString `json:"title,omitempty"`
 }
+
+type _ArtefactManagerItem ArtefactManagerItem
 
 // NewArtefactManagerItem instantiates a new ArtefactManagerItem object
 // This constructor will assign default values to properties that have it defined,
@@ -416,6 +419,48 @@ func (o ArtefactManagerItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["title"] = o.Title.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *ArtefactManagerItem) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"_links",
+		"_metadata",
+		"category",
+		"contentMediaType",
+		"description",
+		"hash",
+		"maxSize",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varArtefactManagerItem := _ArtefactManagerItem{}
+
+	err = json.Unmarshal(bytes, &varArtefactManagerItem)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArtefactManagerItem(varArtefactManagerItem)
+
+	return err
 }
 
 type NullableArtefactManagerItem struct {

@@ -19,6 +19,7 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the NotificationMessageObject type satisfies the MappedNullable interface at compile time
@@ -35,6 +36,8 @@ type NotificationMessageObject struct {
 	// The source of the message, typically this could be the VHT service itself or the VHT.
 	Source *string `json:"source,omitempty"`
 }
+
+type _NotificationMessageObject NotificationMessageObject
 
 // NewNotificationMessageObject instantiates a new NotificationMessageObject object
 // This constructor will assign default values to properties that have it defined,
@@ -195,6 +198,41 @@ func (o NotificationMessageObject) ToMap() (map[string]interface{}, error) {
 		toSerialize["source"] = o.Source
 	}
 	return toSerialize, nil
+}
+
+func (o *NotificationMessageObject) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"message",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varNotificationMessageObject := _NotificationMessageObject{}
+
+	err = json.Unmarshal(bytes, &varNotificationMessageObject)
+
+	if err != nil {
+		return err
+	}
+
+	*o = NotificationMessageObject(varNotificationMessageObject)
+
+	return err
 }
 
 type NullableNotificationMessageObject struct {

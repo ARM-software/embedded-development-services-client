@@ -2189,8 +2189,6 @@ func (a *WorkspaceAPIService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 	var contentLocalVarFileBytes    []byte
 
 	contentLocalVarFormFileName = "content"
-
-
 	contentLocalVarFile := r.content
 
 	if contentLocalVarFile != nil {

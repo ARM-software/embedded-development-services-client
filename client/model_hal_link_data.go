@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the HalLinkData type satisfies the MappedNullable interface at compile time
@@ -42,6 +43,8 @@ type HalLinkData struct {
 	// hint to indicate the media type
 	Type *string `json:"type,omitempty"`
 }
+
+type _HalLinkData HalLinkData
 
 // NewHalLinkData instantiates a new HalLinkData object
 // This constructor will assign default values to properties that have it defined,
@@ -346,6 +349,41 @@ func (o HalLinkData) ToMap() (map[string]interface{}, error) {
 		toSerialize["type"] = o.Type
 	}
 	return toSerialize, nil
+}
+
+func (o *HalLinkData) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"href",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varHalLinkData := _HalLinkData{}
+
+	err = json.Unmarshal(bytes, &varHalLinkData)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HalLinkData(varHalLinkData)
+
+	return err
 }
 
 type NullableHalLinkData struct {

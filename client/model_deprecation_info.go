@@ -19,6 +19,7 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the DeprecationInfo type satisfies the MappedNullable interface at compile time
@@ -33,6 +34,8 @@ type DeprecationInfo struct {
 	// time when the removal will be effective
 	Removal time.Time `json:"removal"`
 }
+
+type _DeprecationInfo DeprecationInfo
 
 // NewDeprecationInfo instantiates a new DeprecationInfo object
 // This constructor will assign default values to properties that have it defined,
@@ -140,6 +143,43 @@ func (o DeprecationInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize["issued"] = o.Issued
 	toSerialize["removal"] = o.Removal
 	return toSerialize, nil
+}
+
+func (o *DeprecationInfo) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"comment",
+		"issued",
+		"removal",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDeprecationInfo := _DeprecationInfo{}
+
+	err = json.Unmarshal(bytes, &varDeprecationInfo)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DeprecationInfo(varDeprecationInfo)
+
+	return err
 }
 
 type NullableDeprecationInfo struct {

@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the NotificationFeed type satisfies the MappedNullable interface at compile time
@@ -34,6 +35,8 @@ type NotificationFeed struct {
 	// Human readable name of the notification item.
 	Title *string `json:"title,omitempty"`
 }
+
+type _NotificationFeed NotificationFeed
 
 // NewNotificationFeed instantiates a new NotificationFeed object
 // This constructor will assign default values to properties that have it defined,
@@ -210,6 +213,44 @@ func (o NotificationFeed) ToMap() (map[string]interface{}, error) {
 		toSerialize["title"] = o.Title
 	}
 	return toSerialize, nil
+}
+
+func (o *NotificationFeed) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"_links",
+		"_metadata",
+		"messages",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varNotificationFeed := _NotificationFeed{}
+
+	err = json.Unmarshal(bytes, &varNotificationFeed)
+
+	if err != nil {
+		return err
+	}
+
+	*o = NotificationFeed(varNotificationFeed)
+
+	return err
 }
 
 type NullableNotificationFeed struct {

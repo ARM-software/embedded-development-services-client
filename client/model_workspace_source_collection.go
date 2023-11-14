@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the WorkspaceSourceCollection type satisfies the MappedNullable interface at compile time
@@ -33,6 +34,8 @@ type WorkspaceSourceCollection struct {
 	// Human readable title of the collection.
 	Title string `json:"title"`
 }
+
+type _WorkspaceSourceCollection WorkspaceSourceCollection
 
 // NewWorkspaceSourceCollection instantiates a new WorkspaceSourceCollection object
 // This constructor will assign default values to properties that have it defined,
@@ -205,6 +208,44 @@ func (o WorkspaceSourceCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["title"] = o.Title
 	return toSerialize, nil
+}
+
+func (o *WorkspaceSourceCollection) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"_links",
+		"_metadata",
+		"name",
+		"title",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varWorkspaceSourceCollection := _WorkspaceSourceCollection{}
+
+	err = json.Unmarshal(bytes, &varWorkspaceSourceCollection)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WorkspaceSourceCollection(varWorkspaceSourceCollection)
+
+	return err
 }
 
 type NullableWorkspaceSourceCollection struct {

@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the AdditionalTool type satisfies the MappedNullable interface at compile time
@@ -34,6 +35,8 @@ type AdditionalTool struct {
 	// Version of the tool.
 	Version NullableString `json:"version"`
 }
+
+type _AdditionalTool AdditionalTool
 
 // NewAdditionalTool instantiates a new AdditionalTool object
 // This constructor will assign default values to properties that have it defined,
@@ -169,6 +172,44 @@ func (o AdditionalTool) ToMap() (map[string]interface{}, error) {
 	toSerialize["title"] = o.Title
 	toSerialize["version"] = o.Version.Get()
 	return toSerialize, nil
+}
+
+func (o *AdditionalTool) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"description",
+		"name",
+		"title",
+		"version",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAdditionalTool := _AdditionalTool{}
+
+	err = json.Unmarshal(bytes, &varAdditionalTool)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AdditionalTool(varAdditionalTool)
+
+	return err
 }
 
 type NullableAdditionalTool struct {

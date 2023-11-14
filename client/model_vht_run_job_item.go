@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the VhtRunJobItem type satisfies the MappedNullable interface at compile time
@@ -46,6 +47,8 @@ type VhtRunJobItem struct {
 	// Optional human readable name of the VHT run job.
 	Title NullableString `json:"title,omitempty"`
 }
+
+type _VhtRunJobItem VhtRunJobItem
 
 // NewVhtRunJobItem instantiates a new VhtRunJobItem object
 // This constructor will assign default values to properties that have it defined,
@@ -397,6 +400,49 @@ func (o VhtRunJobItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["title"] = o.Title.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *VhtRunJobItem) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"_links",
+		"_metadata",
+		"done",
+		"error",
+		"name",
+		"queued",
+		"status",
+		"systemError",
+		"timedOut",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varVhtRunJobItem := _VhtRunJobItem{}
+
+	err = json.Unmarshal(bytes, &varVhtRunJobItem)
+
+	if err != nil {
+		return err
+	}
+
+	*o = VhtRunJobItem(varVhtRunJobItem)
+
+	return err
 }
 
 type NullableVhtRunJobItem struct {

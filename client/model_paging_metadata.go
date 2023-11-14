@@ -19,6 +19,7 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the PagingMetadata type satisfies the MappedNullable interface at compile time
@@ -41,6 +42,8 @@ type PagingMetadata struct {
 	// Paging metadata: Total number of items that can be paged through.
 	Total int32 `json:"total"`
 }
+
+type _PagingMetadata PagingMetadata
 
 // NewPagingMetadata instantiates a new PagingMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -271,6 +274,46 @@ func (o PagingMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize["offset"] = o.Offset
 	toSerialize["total"] = o.Total
 	return toSerialize, nil
+}
+
+func (o *PagingMetadata) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"count",
+		"ctime",
+		"limit",
+		"mtime",
+		"offset",
+		"total",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPagingMetadata := _PagingMetadata{}
+
+	err = json.Unmarshal(bytes, &varPagingMetadata)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PagingMetadata(varPagingMetadata)
+
+	return err
 }
 
 type NullablePagingMetadata struct {

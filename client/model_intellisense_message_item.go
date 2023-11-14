@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the IntellisenseMessageItem type satisfies the MappedNullable interface at compile time
@@ -34,6 +35,8 @@ type IntellisenseMessageItem struct {
 	// Human readable name of the Build Notification item.
 	Title *string `json:"title,omitempty"`
 }
+
+type _IntellisenseMessageItem IntellisenseMessageItem
 
 // NewIntellisenseMessageItem instantiates a new IntellisenseMessageItem object
 // This constructor will assign default values to properties that have it defined,
@@ -210,6 +213,44 @@ func (o IntellisenseMessageItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["title"] = o.Title
 	}
 	return toSerialize, nil
+}
+
+func (o *IntellisenseMessageItem) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"_links",
+		"_metadata",
+		"messages",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varIntellisenseMessageItem := _IntellisenseMessageItem{}
+
+	err = json.Unmarshal(bytes, &varIntellisenseMessageItem)
+
+	if err != nil {
+		return err
+	}
+
+	*o = IntellisenseMessageItem(varIntellisenseMessageItem)
+
+	return err
 }
 
 type NullableIntellisenseMessageItem struct {

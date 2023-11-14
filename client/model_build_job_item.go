@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the BuildJobItem type satisfies the MappedNullable interface at compile time
@@ -56,6 +57,8 @@ type BuildJobItem struct {
 	// Workspace name where the CMSIS project is present. If not set, the default user's workspace will be used.
 	Workspace NullableString `json:"workspace,omitempty"`
 }
+
+type _BuildJobItem BuildJobItem
 
 // NewBuildJobItem instantiates a new BuildJobItem object
 // This constructor will assign default values to properties that have it defined,
@@ -582,6 +585,51 @@ func (o BuildJobItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["workspace"] = o.Workspace.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *BuildJobItem) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"_links",
+		"_metadata",
+		"buildStepsCompleted",
+		"buildStepsTotal",
+		"done",
+		"error",
+		"failure",
+		"name",
+		"project",
+		"status",
+		"success",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varBuildJobItem := _BuildJobItem{}
+
+	err = json.Unmarshal(bytes, &varBuildJobItem)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BuildJobItem(varBuildJobItem)
+
+	return err
 }
 
 type NullableBuildJobItem struct {
