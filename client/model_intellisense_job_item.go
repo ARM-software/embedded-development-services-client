@@ -8,7 +8,7 @@ Solar API
 
 This API provides a RESTful interface to all the Solar services e.g. looking for boards, building projects, etc. - This API uses Hypermedia as the Engine of Application State (HATEOAS) to drive the discovery and provide   affordances. - Discovery is possible by following links from the well known root resource. While this specification lists   all supported endpoints, it is only recommended that these are hard coded into a client if code generation is   being used. Otherwise, it is recommended that the discovery mechanisms present in the resources (affordances)   are used exclusively. - Affordances are links which indicate whether an action is currently possible, this is significantly different from   whether the service supports an action in general. This specification defines what actions could be possible,   but only by checking the affordances returned by the API in the returned resources, can a client determine whether   this action is currently possible or available for the current user. For example:   - An operation to modify a resource could be defined in this specification, but the user may lack the appropriate     privileges. In that situation, the affordance link would not be present in the resource when read. Therefore,     the client can infer that it is not possible to edit this resource and present appropriate information to the     user.   - An operation to delete a resource could be defined and be possible in some circumstances. The specification     describes that the delete is supported and how to use it, but the affordance describes whether it is currently     possible. The logic in the API may dictate that if the resource was in use (perhaps it is a running job or used     by another resource), then it will not be possible to delete that resource as it would result in a conflicted     state. - It is strongly encouraged that affordances are used by all clients, even those using code generation. This has the   ability to both improve robustness and the user experience by decoupling the client and server. For example, if for   some reason the criteria for deleting a resource changes, the logic is only implemented in the server and there is   no need to update the logic in the client as it is driven by the affordances. - The format used for the resources is the Hypertext Application Language (HAL), which includes the definition   of links and embedded resources. 
 
-API version: 1.0.0
+API version: 1.1.0
 Contact: support@arm.com
 */
 
@@ -32,6 +32,8 @@ type IntellisenseJobItem struct {
 	BuildStepsCompleted NullableInt32 `json:"buildStepsCompleted"`
 	// The total number of steps that will need to be performed to complete the build. Please note: - This value also includes additional service orchestration steps, that are outside the core build process,   so may differ from the build progress indicated within build messages.  - This value will only be available after the build has been started.
 	BuildStepsTotal NullableInt32 `json:"buildStepsTotal"`
+	// Build context for jobs that require it.
+	Context NullableString `json:"context,omitempty"`
 	// True when the job has completed (this does necessarily indicate success).
 	Done bool `json:"done"`
 	// True if there was an error in the build service while attempting the job.
@@ -54,11 +56,11 @@ type IntellisenseJobItem struct {
 	Success bool `json:"success"`
 	// Optional human readable name of the CMSIS Intellisense job.
 	Title NullableString `json:"title,omitempty"`
-	// Path to packs toolchain binaries to replace value in compilation database.
+	// Path to toolchain binaries to replace value in compilation database.
 	Toolchain string `json:"toolchain"`
-	// Path to packs toolchain headers to replace value in compilation database.
+	// Path to toolchain headers to replace value in compilation database.
 	ToolchainHeaders string `json:"toolchainHeaders"`
-	// Path to workspace to replace value in compilation database.
+	// Path to user's workspace to replace value in compilation database.
 	Workspace string `json:"workspace"`
 }
 
@@ -202,6 +204,48 @@ func (o *IntellisenseJobItem) GetBuildStepsTotalOk() (*int32, bool) {
 // SetBuildStepsTotal sets field value
 func (o *IntellisenseJobItem) SetBuildStepsTotal(v int32) {
 	o.BuildStepsTotal.Set(&v)
+}
+
+// GetContext returns the Context field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntellisenseJobItem) GetContext() string {
+	if o == nil || IsNil(o.Context.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Context.Get()
+}
+
+// GetContextOk returns a tuple with the Context field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntellisenseJobItem) GetContextOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Context.Get(), o.Context.IsSet()
+}
+
+// HasContext returns a boolean if a field has been set.
+func (o *IntellisenseJobItem) HasContext() bool {
+	if o != nil && o.Context.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContext gets a reference to the given NullableString and assigns it to the Context field.
+func (o *IntellisenseJobItem) SetContext(v string) {
+	o.Context.Set(&v)
+}
+// SetContextNil sets the value for Context to be an explicit nil
+func (o *IntellisenseJobItem) SetContextNil() {
+	o.Context.Set(nil)
+}
+
+// UnsetContext ensures that no value is present for Context, not even an explicit nil
+func (o *IntellisenseJobItem) UnsetContext() {
+	o.Context.Unset()
 }
 
 // GetDone returns the Done field value
@@ -588,6 +632,9 @@ func (o IntellisenseJobItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["buildStepsCompleted"] = o.BuildStepsCompleted.Get()
 	toSerialize["buildStepsTotal"] = o.BuildStepsTotal.Get()
+	if o.Context.IsSet() {
+		toSerialize["context"] = o.Context.Get()
+	}
 	toSerialize["done"] = o.Done
 	toSerialize["error"] = o.Error
 	toSerialize["failure"] = o.Failure

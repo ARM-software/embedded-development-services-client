@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Category** | **NullableString** | Category the artefact belongs to. | 
 **ContentMediaType** | **string** | Media type of the artefact according to https://www.iana.org/assignments/media-types/media-types.xhtml | 
 **Description** | **string** | Description of what the artefact is. | 
+**ExtraMetadata** | Pointer to **map[string]string** | Extra metadata to include for artefacts. | [optional] 
 **Hash** | **NullableString** | Hash of the artefact (sha256) | 
 **Mandatory** | Pointer to **NullableBool** | Whether the artefact is required or not for a workflow. | [optional] 
 **MaxSize** | **int64** | Maximum size in bytes accepted for this artefact. | 
@@ -168,6 +169,31 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
+
+### GetExtraMetadata
+
+`func (o *ArtefactManagerItem) GetExtraMetadata() map[string]string`
+
+GetExtraMetadata returns the ExtraMetadata field if non-nil, zero value otherwise.
+
+### GetExtraMetadataOk
+
+`func (o *ArtefactManagerItem) GetExtraMetadataOk() (*map[string]string, bool)`
+
+GetExtraMetadataOk returns a tuple with the ExtraMetadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtraMetadata
+
+`func (o *ArtefactManagerItem) SetExtraMetadata(v map[string]string)`
+
+SetExtraMetadata sets ExtraMetadata field to given value.
+
+### HasExtraMetadata
+
+`func (o *ArtefactManagerItem) HasExtraMetadata() bool`
+
+HasExtraMetadata returns a boolean if a field has been set.
 
 ### GetHash
 

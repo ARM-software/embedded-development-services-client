@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **BuildStepsCompleted** | **NullableInt32** | The number of build steps that have been completed so far. Please note: - This value also includes additional service orchestration steps, that are outside the core build process,   so may differ from the build progress indicated within build messages.  - This value will only be available after the build has been started. | [readonly] 
 **BuildStepsTotal** | **NullableInt32** | The total number of steps that will need to be performed to complete the build. Please note: - This value also includes additional service orchestration steps, that are outside the core build process,   so may differ from the build progress indicated within build messages.  - This value will only be available after the build has been started. | [readonly] 
+**Context** | Pointer to **NullableString** | Build context for jobs that require it. | [optional] 
 **Done** | **bool** | True when the job has completed (this does necessarily indicate success). | [readonly] 
 **Error** | **bool** | True if there was an error in the build service while attempting the job. | [readonly] 
 **Failure** | **bool** | True if the compilation database generation failed (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
@@ -23,9 +24,9 @@ Name | Type | Description | Notes
 **Status** | **string** | A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead. | [readonly] 
 **Success** | **bool** | True if the job was successful (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
 **Title** | Pointer to **NullableString** | Optional human readable name of the CMSIS Intellisense job. | [optional] 
-**Toolchain** | **string** | Path to packs toolchain binaries to replace value in compilation database. | 
-**ToolchainHeaders** | **string** | Path to packs toolchain headers to replace value in compilation database. | 
-**Workspace** | **string** | Path to workspace to replace value in compilation database. | 
+**Toolchain** | **string** | Path to toolchain binaries to replace value in compilation database. | 
+**ToolchainHeaders** | **string** | Path to toolchain headers to replace value in compilation database. | 
+**Workspace** | **string** | Path to user&#39;s workspace to replace value in compilation database. | 
 
 ## Methods
 
@@ -166,6 +167,41 @@ SetBuildStepsTotal sets BuildStepsTotal field to given value.
 `func (o *IntellisenseJobItem) UnsetBuildStepsTotal()`
 
 UnsetBuildStepsTotal ensures that no value is present for BuildStepsTotal, not even an explicit nil
+### GetContext
+
+`func (o *IntellisenseJobItem) GetContext() string`
+
+GetContext returns the Context field if non-nil, zero value otherwise.
+
+### GetContextOk
+
+`func (o *IntellisenseJobItem) GetContextOk() (*string, bool)`
+
+GetContextOk returns a tuple with the Context field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContext
+
+`func (o *IntellisenseJobItem) SetContext(v string)`
+
+SetContext sets Context field to given value.
+
+### HasContext
+
+`func (o *IntellisenseJobItem) HasContext() bool`
+
+HasContext returns a boolean if a field has been set.
+
+### SetContextNil
+
+`func (o *IntellisenseJobItem) SetContextNil(b bool)`
+
+ SetContextNil sets the value for Context to be an explicit nil
+
+### UnsetContext
+`func (o *IntellisenseJobItem) UnsetContext()`
+
+UnsetContext ensures that no value is present for Context, not even an explicit nil
 ### GetDone
 
 `func (o *IntellisenseJobItem) GetDone() bool`

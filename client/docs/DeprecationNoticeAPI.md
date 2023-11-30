@@ -2,22 +2,22 @@
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
-# \DevicesAPI
+# \DeprecationNoticeAPI
 
 All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetDevice**](DevicesAPI.md#GetDevice) | **Get** /devices/{deviceSlug} | Get a Device Item
-[**ListDevices**](DevicesAPI.md#ListDevices) | **Get** /devices/ | List all the Devices
+[**GetDeprecationNotice**](DeprecationNoticeAPI.md#GetDeprecationNotice) | **Get** /deprecations/{operationName} | Return details of specific endpoint deprecation notice.
+[**ListDeprecatedEndpoints**](DeprecationNoticeAPI.md#ListDeprecatedEndpoints) | **Get** /deprecations/ | Get the endpoints that have been deprecated with some notice.
 
 
 
-## GetDevice
+## GetDeprecationNotice
 
-> DeviceItem GetDevice(ctx, deviceSlug).AcceptVersion(acceptVersion).Execute()
+> EndpointDeprecationNotice GetDeprecationNotice(ctx, operationName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 
-Get a Device Item
+Return details of specific endpoint deprecation notice.
 
 
 
@@ -34,18 +34,19 @@ import (
 )
 
 func main() {
-    deviceSlug := "deviceSlug_example" // string | Unique slug of a Device.
+    operationName := "operationName_example" // string | The name of the operation being deprecated.
     acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+    ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesAPI.GetDevice(context.Background(), deviceSlug).AcceptVersion(acceptVersion).Execute()
+    resp, r, err := apiClient.DeprecationNoticeAPI.GetDeprecationNotice(context.Background(), operationName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DevicesAPI.GetDevice``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecationNoticeAPI.GetDeprecationNotice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDevice`: DeviceItem
-    fmt.Fprintf(os.Stdout, "Response from `DevicesAPI.GetDevice`: %v\n", resp)
+    // response from `GetDeprecationNotice`: EndpointDeprecationNotice
+    fmt.Fprintf(os.Stdout, "Response from `DeprecationNoticeAPI.GetDeprecationNotice`: %v\n", resp)
 }
 ```
 
@@ -55,21 +56,22 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deviceSlug** | **string** | Unique slug of a Device. | 
+**operationName** | **string** | The name of the operation being deprecated. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetDeviceRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetDeprecationNoticeRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
 
 ### Return type
 
-[**DeviceItem**](DeviceItem.md)
+[**EndpointDeprecationNotice**](EndpointDeprecationNotice.md)
 
 ### Authorization
 
@@ -85,11 +87,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListDevices
+## ListDeprecatedEndpoints
 
-> ListDevicesCollection ListDevices(ctx).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+> EndpointDeprecationNoticeCollection ListDeprecatedEndpoints(ctx).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
 
-List all the Devices
+Get the endpoints that have been deprecated with some notice.
 
 
 
@@ -107,20 +109,19 @@ import (
 
 func main() {
     acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-    embed := false // bool | Embedding: The whether or not to embed resources into the collection (rather than return links). (optional) (default to false)
     ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
     limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
     offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesAPI.ListDevices(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.DeprecationNoticeAPI.ListDeprecatedEndpoints(context.Background()).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DevicesAPI.ListDevices``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecationNoticeAPI.ListDeprecatedEndpoints``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListDevices`: ListDevicesCollection
-    fmt.Fprintf(os.Stdout, "Response from `DevicesAPI.ListDevices`: %v\n", resp)
+    // response from `ListDeprecatedEndpoints`: EndpointDeprecationNoticeCollection
+    fmt.Fprintf(os.Stdout, "Response from `DeprecationNoticeAPI.ListDeprecatedEndpoints`: %v\n", resp)
 }
 ```
 
@@ -130,20 +131,19 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListDevicesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListDeprecatedEndpointsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
- **embed** | **bool** | Embedding: The whether or not to embed resources into the collection (rather than return links). | [default to false]
  **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
  **limit** | **int32** | Paging: The maximum number of items to return in a resource. | [default to 20]
  **offset** | **int32** | Paging:  The index of the first item to return in the resource. | [default to 0]
 
 ### Return type
 
-[**ListDevicesCollection**](ListDevicesCollection.md)
+[**EndpointDeprecationNoticeCollection**](EndpointDeprecationNoticeCollection.md)
 
 ### Authorization
 

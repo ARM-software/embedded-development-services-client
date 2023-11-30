@@ -8,7 +8,7 @@ Solar API
 
 This API provides a RESTful interface to all the Solar services e.g. looking for boards, building projects, etc. - This API uses Hypermedia as the Engine of Application State (HATEOAS) to drive the discovery and provide   affordances. - Discovery is possible by following links from the well known root resource. While this specification lists   all supported endpoints, it is only recommended that these are hard coded into a client if code generation is   being used. Otherwise, it is recommended that the discovery mechanisms present in the resources (affordances)   are used exclusively. - Affordances are links which indicate whether an action is currently possible, this is significantly different from   whether the service supports an action in general. This specification defines what actions could be possible,   but only by checking the affordances returned by the API in the returned resources, can a client determine whether   this action is currently possible or available for the current user. For example:   - An operation to modify a resource could be defined in this specification, but the user may lack the appropriate     privileges. In that situation, the affordance link would not be present in the resource when read. Therefore,     the client can infer that it is not possible to edit this resource and present appropriate information to the     user.   - An operation to delete a resource could be defined and be possible in some circumstances. The specification     describes that the delete is supported and how to use it, but the affordance describes whether it is currently     possible. The logic in the API may dictate that if the resource was in use (perhaps it is a running job or used     by another resource), then it will not be possible to delete that resource as it would result in a conflicted     state. - It is strongly encouraged that affordances are used by all clients, even those using code generation. This has the   ability to both improve robustness and the user experience by decoupling the client and server. For example, if for   some reason the criteria for deleting a resource changes, the logic is only implemented in the server and there is   no need to update the logic in the client as it is driven by the affordances. - The format used for the resources is the Hypertext Application Language (HAL), which includes the definition   of links and embedded resources. 
 
-API version: 1.0.0
+API version: 1.1.0
 Contact: support@arm.com
 */
 
@@ -28,8 +28,10 @@ var _ MappedNullable = &IntellisenseJobItemLinks{}
 type IntellisenseJobItemLinks struct {
 	Artefacts *HalLinkData `json:"artefacts,omitempty"`
 	Cancel *HalLinkData `json:"cancel,omitempty"`
+	Collection *HalLinkData `json:"collection,omitempty"`
 	Delete *HalLinkData `json:"delete,omitempty"`
 	Details *HalLinkData `json:"details,omitempty"`
+	Outputs *HalLinkData `json:"outputs,omitempty"`
 	Related HalLinkData `json:"related"`
 	Retain *HalLinkData `json:"retain,omitempty"`
 	Self HalLinkData `json:"self"`
@@ -120,6 +122,38 @@ func (o *IntellisenseJobItemLinks) SetCancel(v HalLinkData) {
 	o.Cancel = &v
 }
 
+// GetCollection returns the Collection field value if set, zero value otherwise.
+func (o *IntellisenseJobItemLinks) GetCollection() HalLinkData {
+	if o == nil || IsNil(o.Collection) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Collection
+}
+
+// GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntellisenseJobItemLinks) GetCollectionOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Collection) {
+		return nil, false
+	}
+	return o.Collection, true
+}
+
+// HasCollection returns a boolean if a field has been set.
+func (o *IntellisenseJobItemLinks) HasCollection() bool {
+	if o != nil && !IsNil(o.Collection) {
+		return true
+	}
+
+	return false
+}
+
+// SetCollection gets a reference to the given HalLinkData and assigns it to the Collection field.
+func (o *IntellisenseJobItemLinks) SetCollection(v HalLinkData) {
+	o.Collection = &v
+}
+
 // GetDelete returns the Delete field value if set, zero value otherwise.
 func (o *IntellisenseJobItemLinks) GetDelete() HalLinkData {
 	if o == nil || IsNil(o.Delete) {
@@ -182,6 +216,38 @@ func (o *IntellisenseJobItemLinks) HasDetails() bool {
 // SetDetails gets a reference to the given HalLinkData and assigns it to the Details field.
 func (o *IntellisenseJobItemLinks) SetDetails(v HalLinkData) {
 	o.Details = &v
+}
+
+// GetOutputs returns the Outputs field value if set, zero value otherwise.
+func (o *IntellisenseJobItemLinks) GetOutputs() HalLinkData {
+	if o == nil || IsNil(o.Outputs) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Outputs
+}
+
+// GetOutputsOk returns a tuple with the Outputs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntellisenseJobItemLinks) GetOutputsOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Outputs) {
+		return nil, false
+	}
+	return o.Outputs, true
+}
+
+// HasOutputs returns a boolean if a field has been set.
+func (o *IntellisenseJobItemLinks) HasOutputs() bool {
+	if o != nil && !IsNil(o.Outputs) {
+		return true
+	}
+
+	return false
+}
+
+// SetOutputs gets a reference to the given HalLinkData and assigns it to the Outputs field.
+func (o *IntellisenseJobItemLinks) SetOutputs(v HalLinkData) {
+	o.Outputs = &v
 }
 
 // GetRelated returns the Related field value
@@ -280,11 +346,17 @@ func (o IntellisenseJobItemLinks) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Cancel) {
 		toSerialize["cancel"] = o.Cancel
 	}
+	if !IsNil(o.Collection) {
+		toSerialize["collection"] = o.Collection
+	}
 	if !IsNil(o.Delete) {
 		toSerialize["delete"] = o.Delete
 	}
 	if !IsNil(o.Details) {
 		toSerialize["details"] = o.Details
+	}
+	if !IsNil(o.Outputs) {
+		toSerialize["outputs"] = o.Outputs
 	}
 	toSerialize["related"] = o.Related
 	if !IsNil(o.Retain) {

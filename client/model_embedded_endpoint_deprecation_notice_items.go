@@ -8,7 +8,7 @@ Solar API
 
 This API provides a RESTful interface to all the Solar services e.g. looking for boards, building projects, etc. - This API uses Hypermedia as the Engine of Application State (HATEOAS) to drive the discovery and provide   affordances. - Discovery is possible by following links from the well known root resource. While this specification lists   all supported endpoints, it is only recommended that these are hard coded into a client if code generation is   being used. Otherwise, it is recommended that the discovery mechanisms present in the resources (affordances)   are used exclusively. - Affordances are links which indicate whether an action is currently possible, this is significantly different from   whether the service supports an action in general. This specification defines what actions could be possible,   but only by checking the affordances returned by the API in the returned resources, can a client determine whether   this action is currently possible or available for the current user. For example:   - An operation to modify a resource could be defined in this specification, but the user may lack the appropriate     privileges. In that situation, the affordance link would not be present in the resource when read. Therefore,     the client can infer that it is not possible to edit this resource and present appropriate information to the     user.   - An operation to delete a resource could be defined and be possible in some circumstances. The specification     describes that the delete is supported and how to use it, but the affordance describes whether it is currently     possible. The logic in the API may dictate that if the resource was in use (perhaps it is a running job or used     by another resource), then it will not be possible to delete that resource as it would result in a conflicted     state. - It is strongly encouraged that affordances are used by all clients, even those using code generation. This has the   ability to both improve robustness and the user experience by decoupling the client and server. For example, if for   some reason the criteria for deleting a resource changes, the logic is only implemented in the server and there is   no need to update the logic in the client as it is driven by the affordances. - The format used for the resources is the Hypertext Application Language (HAL), which includes the definition   of links and embedded resources. 
 
-API version: 1.0.0
+API version: 1.1.0
 Contact: support@arm.com
 */
 
@@ -20,99 +20,64 @@ import (
 	"encoding/json"
 )
 
-// checks if the ADebugInterface type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ADebugInterface{}
+// checks if the EmbeddedEndpointDeprecationNoticeItems type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmbeddedEndpointDeprecationNoticeItems{}
 
-// ADebugInterface struct for ADebugInterface
-type ADebugInterface struct {
-	// Adapter for the interface
-	Adapter *string `json:"adapter,omitempty"`
-	// Connector for the interface
-	Connector *string `json:"connector,omitempty"`
+// EmbeddedEndpointDeprecationNoticeItems Embedded resource use the same link relation as a dictionary key, but rather than returning a link to the resource, the resource is instead embedded into the collection resource.
+type EmbeddedEndpointDeprecationNoticeItems struct {
+	Item []EndpointDeprecationNotice `json:"item,omitempty"`
 }
 
-// NewADebugInterface instantiates a new ADebugInterface object
+// NewEmbeddedEndpointDeprecationNoticeItems instantiates a new EmbeddedEndpointDeprecationNoticeItems object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewADebugInterface() *ADebugInterface {
-	this := ADebugInterface{}
+func NewEmbeddedEndpointDeprecationNoticeItems() *EmbeddedEndpointDeprecationNoticeItems {
+	this := EmbeddedEndpointDeprecationNoticeItems{}
 	return &this
 }
 
-// NewADebugInterfaceWithDefaults instantiates a new ADebugInterface object
+// NewEmbeddedEndpointDeprecationNoticeItemsWithDefaults instantiates a new EmbeddedEndpointDeprecationNoticeItems object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewADebugInterfaceWithDefaults() *ADebugInterface {
-	this := ADebugInterface{}
+func NewEmbeddedEndpointDeprecationNoticeItemsWithDefaults() *EmbeddedEndpointDeprecationNoticeItems {
+	this := EmbeddedEndpointDeprecationNoticeItems{}
 	return &this
 }
 
-// GetAdapter returns the Adapter field value if set, zero value otherwise.
-func (o *ADebugInterface) GetAdapter() string {
-	if o == nil || IsNil(o.Adapter) {
-		var ret string
+// GetItem returns the Item field value if set, zero value otherwise.
+func (o *EmbeddedEndpointDeprecationNoticeItems) GetItem() []EndpointDeprecationNotice {
+	if o == nil || IsNil(o.Item) {
+		var ret []EndpointDeprecationNotice
 		return ret
 	}
-	return *o.Adapter
+	return o.Item
 }
 
-// GetAdapterOk returns a tuple with the Adapter field value if set, nil otherwise
+// GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ADebugInterface) GetAdapterOk() (*string, bool) {
-	if o == nil || IsNil(o.Adapter) {
+func (o *EmbeddedEndpointDeprecationNoticeItems) GetItemOk() ([]EndpointDeprecationNotice, bool) {
+	if o == nil || IsNil(o.Item) {
 		return nil, false
 	}
-	return o.Adapter, true
+	return o.Item, true
 }
 
-// HasAdapter returns a boolean if a field has been set.
-func (o *ADebugInterface) HasAdapter() bool {
-	if o != nil && !IsNil(o.Adapter) {
+// HasItem returns a boolean if a field has been set.
+func (o *EmbeddedEndpointDeprecationNoticeItems) HasItem() bool {
+	if o != nil && !IsNil(o.Item) {
 		return true
 	}
 
 	return false
 }
 
-// SetAdapter gets a reference to the given string and assigns it to the Adapter field.
-func (o *ADebugInterface) SetAdapter(v string) {
-	o.Adapter = &v
+// SetItem gets a reference to the given []EndpointDeprecationNotice and assigns it to the Item field.
+func (o *EmbeddedEndpointDeprecationNoticeItems) SetItem(v []EndpointDeprecationNotice) {
+	o.Item = v
 }
 
-// GetConnector returns the Connector field value if set, zero value otherwise.
-func (o *ADebugInterface) GetConnector() string {
-	if o == nil || IsNil(o.Connector) {
-		var ret string
-		return ret
-	}
-	return *o.Connector
-}
-
-// GetConnectorOk returns a tuple with the Connector field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ADebugInterface) GetConnectorOk() (*string, bool) {
-	if o == nil || IsNil(o.Connector) {
-		return nil, false
-	}
-	return o.Connector, true
-}
-
-// HasConnector returns a boolean if a field has been set.
-func (o *ADebugInterface) HasConnector() bool {
-	if o != nil && !IsNil(o.Connector) {
-		return true
-	}
-
-	return false
-}
-
-// SetConnector gets a reference to the given string and assigns it to the Connector field.
-func (o *ADebugInterface) SetConnector(v string) {
-	o.Connector = &v
-}
-
-func (o ADebugInterface) MarshalJSON() ([]byte, error) {
+func (o EmbeddedEndpointDeprecationNoticeItems) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -120,49 +85,46 @@ func (o ADebugInterface) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ADebugInterface) ToMap() (map[string]interface{}, error) {
+func (o EmbeddedEndpointDeprecationNoticeItems) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Adapter) {
-		toSerialize["adapter"] = o.Adapter
-	}
-	if !IsNil(o.Connector) {
-		toSerialize["connector"] = o.Connector
+	if !IsNil(o.Item) {
+		toSerialize["item"] = o.Item
 	}
 	return toSerialize, nil
 }
 
-type NullableADebugInterface struct {
-	value *ADebugInterface
+type NullableEmbeddedEndpointDeprecationNoticeItems struct {
+	value *EmbeddedEndpointDeprecationNoticeItems
 	isSet bool
 }
 
-func (v NullableADebugInterface) Get() *ADebugInterface {
+func (v NullableEmbeddedEndpointDeprecationNoticeItems) Get() *EmbeddedEndpointDeprecationNoticeItems {
 	return v.value
 }
 
-func (v *NullableADebugInterface) Set(val *ADebugInterface) {
+func (v *NullableEmbeddedEndpointDeprecationNoticeItems) Set(val *EmbeddedEndpointDeprecationNoticeItems) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableADebugInterface) IsSet() bool {
+func (v NullableEmbeddedEndpointDeprecationNoticeItems) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableADebugInterface) Unset() {
+func (v *NullableEmbeddedEndpointDeprecationNoticeItems) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableADebugInterface(val *ADebugInterface) *NullableADebugInterface {
-	return &NullableADebugInterface{value: val, isSet: true}
+func NewNullableEmbeddedEndpointDeprecationNoticeItems(val *EmbeddedEndpointDeprecationNoticeItems) *NullableEmbeddedEndpointDeprecationNoticeItems {
+	return &NullableEmbeddedEndpointDeprecationNoticeItems{value: val, isSet: true}
 }
 
-func (v NullableADebugInterface) MarshalJSON() ([]byte, error) {
+func (v NullableEmbeddedEndpointDeprecationNoticeItems) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableADebugInterface) UnmarshalJSON(src []byte) error {
+func (v *NullableEmbeddedEndpointDeprecationNoticeItems) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

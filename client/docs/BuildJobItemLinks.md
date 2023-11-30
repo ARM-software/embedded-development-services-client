@@ -10,9 +10,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Artefacts** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Cancel** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
+**Collection** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Delete** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Describedby** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Details** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
+**Outputs** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Related** | [**HalLinkData**](HalLinkData.md) |  | 
 **Retain** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Self** | [**HalLinkData**](HalLinkData.md) |  | 
@@ -85,6 +87,31 @@ SetCancel sets Cancel field to given value.
 `func (o *BuildJobItemLinks) HasCancel() bool`
 
 HasCancel returns a boolean if a field has been set.
+
+### GetCollection
+
+`func (o *BuildJobItemLinks) GetCollection() HalLinkData`
+
+GetCollection returns the Collection field if non-nil, zero value otherwise.
+
+### GetCollectionOk
+
+`func (o *BuildJobItemLinks) GetCollectionOk() (*HalLinkData, bool)`
+
+GetCollectionOk returns a tuple with the Collection field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCollection
+
+`func (o *BuildJobItemLinks) SetCollection(v HalLinkData)`
+
+SetCollection sets Collection field to given value.
+
+### HasCollection
+
+`func (o *BuildJobItemLinks) HasCollection() bool`
+
+HasCollection returns a boolean if a field has been set.
 
 ### GetDelete
 
@@ -160,6 +187,31 @@ SetDetails sets Details field to given value.
 `func (o *BuildJobItemLinks) HasDetails() bool`
 
 HasDetails returns a boolean if a field has been set.
+
+### GetOutputs
+
+`func (o *BuildJobItemLinks) GetOutputs() HalLinkData`
+
+GetOutputs returns the Outputs field if non-nil, zero value otherwise.
+
+### GetOutputsOk
+
+`func (o *BuildJobItemLinks) GetOutputsOk() (*HalLinkData, bool)`
+
+GetOutputsOk returns a tuple with the Outputs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOutputs
+
+`func (o *BuildJobItemLinks) SetOutputs(v HalLinkData)`
+
+SetOutputs sets Outputs field to given value.
+
+### HasOutputs
+
+`func (o *BuildJobItemLinks) HasOutputs() bool`
+
+HasOutputs returns a boolean if a field has been set.
 
 ### GetRelated
 

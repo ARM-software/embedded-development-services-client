@@ -8,6 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Collection** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Create** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Self** | [**HalLinkData**](HalLinkData.md) |  | 
 
@@ -29,6 +30,31 @@ will change when the set of required properties is changed
 NewCmsisIntellisenseItemLinksWithDefaults instantiates a new CmsisIntellisenseItemLinks object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCollection
+
+`func (o *CmsisIntellisenseItemLinks) GetCollection() HalLinkData`
+
+GetCollection returns the Collection field if non-nil, zero value otherwise.
+
+### GetCollectionOk
+
+`func (o *CmsisIntellisenseItemLinks) GetCollectionOk() (*HalLinkData, bool)`
+
+GetCollectionOk returns a tuple with the Collection field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCollection
+
+`func (o *CmsisIntellisenseItemLinks) SetCollection(v HalLinkData)`
+
+SetCollection sets Collection field to given value.
+
+### HasCollection
+
+`func (o *CmsisIntellisenseItemLinks) HasCollection() bool`
+
+HasCollection returns a boolean if a field has been set.
 
 ### GetCreate
 

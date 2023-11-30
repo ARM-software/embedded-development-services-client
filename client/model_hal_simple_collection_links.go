@@ -21,41 +21,40 @@ import (
 	"fmt"
 )
 
-// checks if the HalFeedLinks type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &HalFeedLinks{}
+// checks if the HalSimpleCollectionLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HalSimpleCollectionLinks{}
 
-// HalFeedLinks These hypermedia links inside a feed resource allow the contents of the resource to be paged. A feed is typically made up of a list of items, that may, as a whole, be a very large object. Feeds can be also be dynamic updating resources, which can have items added to them asynchronously. - The `first` link points to the first page of a feed resource, this will not be be present if the entire   resource has been returned in the current page. - The `last` link points to the last page of a feed resource, this will not be be present if the entire   resource has been returned in the current page. - The `prev` link points to the previous page in the resource, this will not be present if the current page is   the first (or only page) page. - The `next` link points to the next page in the resource, this will not be present if the current page is the   last (or only page) page. - The `future` link points to the next possible page of resources, this will only be present if the current   page is currently the last page of resources. This allows a client to poll and check for new items being added   without having to retrieve the previous items.
-type HalFeedLinks struct {
+// HalSimpleCollectionLinks These hypermedia links inside a feed resource allow the contents of the resource to be paged. A simple collection only contains the minimum links needed to traverse a collection. - The `first` link points to the first page of a feed resource, this will not be be present if the entire   resource has been returned in the current page. - The `last` link points to the last page of a feed resource, this will not be be present if the entire   resource has been returned in the current page. - The `prev` link points to the previous page in the resource, this will not be present if the current page is   the first (or only page) page. - The `next` link points to the next page in the resource, this will not be present if the current page is the   last (or only page) page.
+type HalSimpleCollectionLinks struct {
 	First *HalLinkData `json:"first,omitempty"`
-	Future *HalLinkData `json:"future,omitempty"`
 	Last *HalLinkData `json:"last,omitempty"`
 	Next *HalLinkData `json:"next,omitempty"`
 	Prev *HalLinkData `json:"prev,omitempty"`
 	Self HalLinkData `json:"self"`
 }
 
-type _HalFeedLinks HalFeedLinks
+type _HalSimpleCollectionLinks HalSimpleCollectionLinks
 
-// NewHalFeedLinks instantiates a new HalFeedLinks object
+// NewHalSimpleCollectionLinks instantiates a new HalSimpleCollectionLinks object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHalFeedLinks(self HalLinkData) *HalFeedLinks {
-	this := HalFeedLinks{}
+func NewHalSimpleCollectionLinks(self HalLinkData) *HalSimpleCollectionLinks {
+	this := HalSimpleCollectionLinks{}
 	this.Self = self
 	return &this
 }
 
-// NewHalFeedLinksWithDefaults instantiates a new HalFeedLinks object
+// NewHalSimpleCollectionLinksWithDefaults instantiates a new HalSimpleCollectionLinks object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewHalFeedLinksWithDefaults() *HalFeedLinks {
-	this := HalFeedLinks{}
+func NewHalSimpleCollectionLinksWithDefaults() *HalSimpleCollectionLinks {
+	this := HalSimpleCollectionLinks{}
 	return &this
 }
 
 // GetFirst returns the First field value if set, zero value otherwise.
-func (o *HalFeedLinks) GetFirst() HalLinkData {
+func (o *HalSimpleCollectionLinks) GetFirst() HalLinkData {
 	if o == nil || IsNil(o.First) {
 		var ret HalLinkData
 		return ret
@@ -65,7 +64,7 @@ func (o *HalFeedLinks) GetFirst() HalLinkData {
 
 // GetFirstOk returns a tuple with the First field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HalFeedLinks) GetFirstOk() (*HalLinkData, bool) {
+func (o *HalSimpleCollectionLinks) GetFirstOk() (*HalLinkData, bool) {
 	if o == nil || IsNil(o.First) {
 		return nil, false
 	}
@@ -73,7 +72,7 @@ func (o *HalFeedLinks) GetFirstOk() (*HalLinkData, bool) {
 }
 
 // HasFirst returns a boolean if a field has been set.
-func (o *HalFeedLinks) HasFirst() bool {
+func (o *HalSimpleCollectionLinks) HasFirst() bool {
 	if o != nil && !IsNil(o.First) {
 		return true
 	}
@@ -82,44 +81,12 @@ func (o *HalFeedLinks) HasFirst() bool {
 }
 
 // SetFirst gets a reference to the given HalLinkData and assigns it to the First field.
-func (o *HalFeedLinks) SetFirst(v HalLinkData) {
+func (o *HalSimpleCollectionLinks) SetFirst(v HalLinkData) {
 	o.First = &v
 }
 
-// GetFuture returns the Future field value if set, zero value otherwise.
-func (o *HalFeedLinks) GetFuture() HalLinkData {
-	if o == nil || IsNil(o.Future) {
-		var ret HalLinkData
-		return ret
-	}
-	return *o.Future
-}
-
-// GetFutureOk returns a tuple with the Future field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HalFeedLinks) GetFutureOk() (*HalLinkData, bool) {
-	if o == nil || IsNil(o.Future) {
-		return nil, false
-	}
-	return o.Future, true
-}
-
-// HasFuture returns a boolean if a field has been set.
-func (o *HalFeedLinks) HasFuture() bool {
-	if o != nil && !IsNil(o.Future) {
-		return true
-	}
-
-	return false
-}
-
-// SetFuture gets a reference to the given HalLinkData and assigns it to the Future field.
-func (o *HalFeedLinks) SetFuture(v HalLinkData) {
-	o.Future = &v
-}
-
 // GetLast returns the Last field value if set, zero value otherwise.
-func (o *HalFeedLinks) GetLast() HalLinkData {
+func (o *HalSimpleCollectionLinks) GetLast() HalLinkData {
 	if o == nil || IsNil(o.Last) {
 		var ret HalLinkData
 		return ret
@@ -129,7 +96,7 @@ func (o *HalFeedLinks) GetLast() HalLinkData {
 
 // GetLastOk returns a tuple with the Last field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HalFeedLinks) GetLastOk() (*HalLinkData, bool) {
+func (o *HalSimpleCollectionLinks) GetLastOk() (*HalLinkData, bool) {
 	if o == nil || IsNil(o.Last) {
 		return nil, false
 	}
@@ -137,7 +104,7 @@ func (o *HalFeedLinks) GetLastOk() (*HalLinkData, bool) {
 }
 
 // HasLast returns a boolean if a field has been set.
-func (o *HalFeedLinks) HasLast() bool {
+func (o *HalSimpleCollectionLinks) HasLast() bool {
 	if o != nil && !IsNil(o.Last) {
 		return true
 	}
@@ -146,12 +113,12 @@ func (o *HalFeedLinks) HasLast() bool {
 }
 
 // SetLast gets a reference to the given HalLinkData and assigns it to the Last field.
-func (o *HalFeedLinks) SetLast(v HalLinkData) {
+func (o *HalSimpleCollectionLinks) SetLast(v HalLinkData) {
 	o.Last = &v
 }
 
 // GetNext returns the Next field value if set, zero value otherwise.
-func (o *HalFeedLinks) GetNext() HalLinkData {
+func (o *HalSimpleCollectionLinks) GetNext() HalLinkData {
 	if o == nil || IsNil(o.Next) {
 		var ret HalLinkData
 		return ret
@@ -161,7 +128,7 @@ func (o *HalFeedLinks) GetNext() HalLinkData {
 
 // GetNextOk returns a tuple with the Next field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HalFeedLinks) GetNextOk() (*HalLinkData, bool) {
+func (o *HalSimpleCollectionLinks) GetNextOk() (*HalLinkData, bool) {
 	if o == nil || IsNil(o.Next) {
 		return nil, false
 	}
@@ -169,7 +136,7 @@ func (o *HalFeedLinks) GetNextOk() (*HalLinkData, bool) {
 }
 
 // HasNext returns a boolean if a field has been set.
-func (o *HalFeedLinks) HasNext() bool {
+func (o *HalSimpleCollectionLinks) HasNext() bool {
 	if o != nil && !IsNil(o.Next) {
 		return true
 	}
@@ -178,12 +145,12 @@ func (o *HalFeedLinks) HasNext() bool {
 }
 
 // SetNext gets a reference to the given HalLinkData and assigns it to the Next field.
-func (o *HalFeedLinks) SetNext(v HalLinkData) {
+func (o *HalSimpleCollectionLinks) SetNext(v HalLinkData) {
 	o.Next = &v
 }
 
 // GetPrev returns the Prev field value if set, zero value otherwise.
-func (o *HalFeedLinks) GetPrev() HalLinkData {
+func (o *HalSimpleCollectionLinks) GetPrev() HalLinkData {
 	if o == nil || IsNil(o.Prev) {
 		var ret HalLinkData
 		return ret
@@ -193,7 +160,7 @@ func (o *HalFeedLinks) GetPrev() HalLinkData {
 
 // GetPrevOk returns a tuple with the Prev field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HalFeedLinks) GetPrevOk() (*HalLinkData, bool) {
+func (o *HalSimpleCollectionLinks) GetPrevOk() (*HalLinkData, bool) {
 	if o == nil || IsNil(o.Prev) {
 		return nil, false
 	}
@@ -201,7 +168,7 @@ func (o *HalFeedLinks) GetPrevOk() (*HalLinkData, bool) {
 }
 
 // HasPrev returns a boolean if a field has been set.
-func (o *HalFeedLinks) HasPrev() bool {
+func (o *HalSimpleCollectionLinks) HasPrev() bool {
 	if o != nil && !IsNil(o.Prev) {
 		return true
 	}
@@ -210,12 +177,12 @@ func (o *HalFeedLinks) HasPrev() bool {
 }
 
 // SetPrev gets a reference to the given HalLinkData and assigns it to the Prev field.
-func (o *HalFeedLinks) SetPrev(v HalLinkData) {
+func (o *HalSimpleCollectionLinks) SetPrev(v HalLinkData) {
 	o.Prev = &v
 }
 
 // GetSelf returns the Self field value
-func (o *HalFeedLinks) GetSelf() HalLinkData {
+func (o *HalSimpleCollectionLinks) GetSelf() HalLinkData {
 	if o == nil {
 		var ret HalLinkData
 		return ret
@@ -226,7 +193,7 @@ func (o *HalFeedLinks) GetSelf() HalLinkData {
 
 // GetSelfOk returns a tuple with the Self field value
 // and a boolean to check if the value has been set.
-func (o *HalFeedLinks) GetSelfOk() (*HalLinkData, bool) {
+func (o *HalSimpleCollectionLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -234,11 +201,11 @@ func (o *HalFeedLinks) GetSelfOk() (*HalLinkData, bool) {
 }
 
 // SetSelf sets field value
-func (o *HalFeedLinks) SetSelf(v HalLinkData) {
+func (o *HalSimpleCollectionLinks) SetSelf(v HalLinkData) {
 	o.Self = v
 }
 
-func (o HalFeedLinks) MarshalJSON() ([]byte, error) {
+func (o HalSimpleCollectionLinks) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -246,13 +213,10 @@ func (o HalFeedLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o HalFeedLinks) ToMap() (map[string]interface{}, error) {
+func (o HalSimpleCollectionLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.First) {
 		toSerialize["first"] = o.First
-	}
-	if !IsNil(o.Future) {
-		toSerialize["future"] = o.Future
 	}
 	if !IsNil(o.Last) {
 		toSerialize["last"] = o.Last
@@ -267,7 +231,7 @@ func (o HalFeedLinks) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *HalFeedLinks) UnmarshalJSON(bytes []byte) (err error) {
+func (o *HalSimpleCollectionLinks) UnmarshalJSON(bytes []byte) (err error) {
     // This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -289,51 +253,51 @@ func (o *HalFeedLinks) UnmarshalJSON(bytes []byte) (err error) {
 		}
 	}
 
-	varHalFeedLinks := _HalFeedLinks{}
+	varHalSimpleCollectionLinks := _HalSimpleCollectionLinks{}
 
-	err = json.Unmarshal(bytes, &varHalFeedLinks)
+	err = json.Unmarshal(bytes, &varHalSimpleCollectionLinks)
 
 	if err != nil {
 		return err
 	}
 
-	*o = HalFeedLinks(varHalFeedLinks)
+	*o = HalSimpleCollectionLinks(varHalSimpleCollectionLinks)
 
 	return err
 }
 
-type NullableHalFeedLinks struct {
-	value *HalFeedLinks
+type NullableHalSimpleCollectionLinks struct {
+	value *HalSimpleCollectionLinks
 	isSet bool
 }
 
-func (v NullableHalFeedLinks) Get() *HalFeedLinks {
+func (v NullableHalSimpleCollectionLinks) Get() *HalSimpleCollectionLinks {
 	return v.value
 }
 
-func (v *NullableHalFeedLinks) Set(val *HalFeedLinks) {
+func (v *NullableHalSimpleCollectionLinks) Set(val *HalSimpleCollectionLinks) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableHalFeedLinks) IsSet() bool {
+func (v NullableHalSimpleCollectionLinks) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableHalFeedLinks) Unset() {
+func (v *NullableHalSimpleCollectionLinks) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableHalFeedLinks(val *HalFeedLinks) *NullableHalFeedLinks {
-	return &NullableHalFeedLinks{value: val, isSet: true}
+func NewNullableHalSimpleCollectionLinks(val *HalSimpleCollectionLinks) *NullableHalSimpleCollectionLinks {
+	return &NullableHalSimpleCollectionLinks{value: val, isSet: true}
 }
 
-func (v NullableHalFeedLinks) MarshalJSON() ([]byte, error) {
+func (v NullableHalSimpleCollectionLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableHalFeedLinks) UnmarshalJSON(src []byte) error {
+func (v *NullableHalSimpleCollectionLinks) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

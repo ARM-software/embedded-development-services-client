@@ -8,7 +8,7 @@ Solar API
 
 This API provides a RESTful interface to all the Solar services e.g. looking for boards, building projects, etc. - This API uses Hypermedia as the Engine of Application State (HATEOAS) to drive the discovery and provide   affordances. - Discovery is possible by following links from the well known root resource. While this specification lists   all supported endpoints, it is only recommended that these are hard coded into a client if code generation is   being used. Otherwise, it is recommended that the discovery mechanisms present in the resources (affordances)   are used exclusively. - Affordances are links which indicate whether an action is currently possible, this is significantly different from   whether the service supports an action in general. This specification defines what actions could be possible,   but only by checking the affordances returned by the API in the returned resources, can a client determine whether   this action is currently possible or available for the current user. For example:   - An operation to modify a resource could be defined in this specification, but the user may lack the appropriate     privileges. In that situation, the affordance link would not be present in the resource when read. Therefore,     the client can infer that it is not possible to edit this resource and present appropriate information to the     user.   - An operation to delete a resource could be defined and be possible in some circumstances. The specification     describes that the delete is supported and how to use it, but the affordance describes whether it is currently     possible. The logic in the API may dictate that if the resource was in use (perhaps it is a running job or used     by another resource), then it will not be possible to delete that resource as it would result in a conflicted     state. - It is strongly encouraged that affordances are used by all clients, even those using code generation. This has the   ability to both improve robustness and the user experience by decoupling the client and server. For example, if for   some reason the criteria for deleting a resource changes, the logic is only implemented in the server and there is   no need to update the logic in the client as it is driven by the affordances. - The format used for the resources is the Hypertext Application Language (HAL), which includes the definition   of links and embedded resources. 
 
-API version: 1.0.0
+API version: 1.1.0
 Contact: support@arm.com
 */
 
@@ -21,80 +21,46 @@ import (
 	"fmt"
 )
 
-// checks if the ListDevicesCollection type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ListDevicesCollection{}
+// checks if the EndpointDeprecationNotice type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EndpointDeprecationNotice{}
 
-// ListDevicesCollection This collection resource follows the common pattern of linking to contained resources. Optionally, rather than linking to other resources, it can embed then into the collection to reduce the number of round trips to the server (at the expense of caching). In file system terms, it is similar to a directory but only contains links to (or embeds) a single type of resource.
-type ListDevicesCollection struct {
-	Embedded *EmbeddedDeviceItems `json:"_embedded,omitempty"`
-	Links NullableHalCollectionLinks `json:"_links"`
-	Metadata NullablePagingMetadata `json:"_metadata"`
-	// ID of the Collection.
-	Name string `json:"name"`
-	// Human readable title of the collection.
-	Title string `json:"title"`
+// EndpointDeprecationNotice A notice of deprecation for an endpoint
+type EndpointDeprecationNotice struct {
+	Links NullableEndpointDeprecationNoticeLinks `json:"_links"`
+	Metadata NullableCommonMetadata `json:"_metadata"`
+	Deprecation DeprecationInfo `json:"deprecation"`
+	Endpoint HalLinkData `json:"endpoint"`
+	Replacement *HalLinkData `json:"replacement,omitempty"`
 }
 
-type _ListDevicesCollection ListDevicesCollection
+type _EndpointDeprecationNotice EndpointDeprecationNotice
 
-// NewListDevicesCollection instantiates a new ListDevicesCollection object
+// NewEndpointDeprecationNotice instantiates a new EndpointDeprecationNotice object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListDevicesCollection(links NullableHalCollectionLinks, metadata NullablePagingMetadata, name string, title string) *ListDevicesCollection {
-	this := ListDevicesCollection{}
+func NewEndpointDeprecationNotice(links NullableEndpointDeprecationNoticeLinks, metadata NullableCommonMetadata, deprecation DeprecationInfo, endpoint HalLinkData) *EndpointDeprecationNotice {
+	this := EndpointDeprecationNotice{}
 	this.Links = links
 	this.Metadata = metadata
-	this.Name = name
-	this.Title = title
+	this.Deprecation = deprecation
+	this.Endpoint = endpoint
 	return &this
 }
 
-// NewListDevicesCollectionWithDefaults instantiates a new ListDevicesCollection object
+// NewEndpointDeprecationNoticeWithDefaults instantiates a new EndpointDeprecationNotice object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListDevicesCollectionWithDefaults() *ListDevicesCollection {
-	this := ListDevicesCollection{}
+func NewEndpointDeprecationNoticeWithDefaults() *EndpointDeprecationNotice {
+	this := EndpointDeprecationNotice{}
 	return &this
-}
-
-// GetEmbedded returns the Embedded field value if set, zero value otherwise.
-func (o *ListDevicesCollection) GetEmbedded() EmbeddedDeviceItems {
-	if o == nil || IsNil(o.Embedded) {
-		var ret EmbeddedDeviceItems
-		return ret
-	}
-	return *o.Embedded
-}
-
-// GetEmbeddedOk returns a tuple with the Embedded field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListDevicesCollection) GetEmbeddedOk() (*EmbeddedDeviceItems, bool) {
-	if o == nil || IsNil(o.Embedded) {
-		return nil, false
-	}
-	return o.Embedded, true
-}
-
-// HasEmbedded returns a boolean if a field has been set.
-func (o *ListDevicesCollection) HasEmbedded() bool {
-	if o != nil && !IsNil(o.Embedded) {
-		return true
-	}
-
-	return false
-}
-
-// SetEmbedded gets a reference to the given EmbeddedDeviceItems and assigns it to the Embedded field.
-func (o *ListDevicesCollection) SetEmbedded(v EmbeddedDeviceItems) {
-	o.Embedded = &v
 }
 
 // GetLinks returns the Links field value
-// If the value is explicit nil, the zero value for HalCollectionLinks will be returned
-func (o *ListDevicesCollection) GetLinks() HalCollectionLinks {
+// If the value is explicit nil, the zero value for EndpointDeprecationNoticeLinks will be returned
+func (o *EndpointDeprecationNotice) GetLinks() EndpointDeprecationNoticeLinks {
 	if o == nil || o.Links.Get() == nil {
-		var ret HalCollectionLinks
+		var ret EndpointDeprecationNoticeLinks
 		return ret
 	}
 
@@ -104,7 +70,7 @@ func (o *ListDevicesCollection) GetLinks() HalCollectionLinks {
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListDevicesCollection) GetLinksOk() (*HalCollectionLinks, bool) {
+func (o *EndpointDeprecationNotice) GetLinksOk() (*EndpointDeprecationNoticeLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -112,15 +78,15 @@ func (o *ListDevicesCollection) GetLinksOk() (*HalCollectionLinks, bool) {
 }
 
 // SetLinks sets field value
-func (o *ListDevicesCollection) SetLinks(v HalCollectionLinks) {
+func (o *EndpointDeprecationNotice) SetLinks(v EndpointDeprecationNoticeLinks) {
 	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
-// If the value is explicit nil, the zero value for PagingMetadata will be returned
-func (o *ListDevicesCollection) GetMetadata() PagingMetadata {
+// If the value is explicit nil, the zero value for CommonMetadata will be returned
+func (o *EndpointDeprecationNotice) GetMetadata() CommonMetadata {
 	if o == nil || o.Metadata.Get() == nil {
-		var ret PagingMetadata
+		var ret CommonMetadata
 		return ret
 	}
 
@@ -130,7 +96,7 @@ func (o *ListDevicesCollection) GetMetadata() PagingMetadata {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListDevicesCollection) GetMetadataOk() (*PagingMetadata, bool) {
+func (o *EndpointDeprecationNotice) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -138,59 +104,91 @@ func (o *ListDevicesCollection) GetMetadataOk() (*PagingMetadata, bool) {
 }
 
 // SetMetadata sets field value
-func (o *ListDevicesCollection) SetMetadata(v PagingMetadata) {
+func (o *EndpointDeprecationNotice) SetMetadata(v CommonMetadata) {
 	o.Metadata.Set(&v)
 }
 
-// GetName returns the Name field value
-func (o *ListDevicesCollection) GetName() string {
+// GetDeprecation returns the Deprecation field value
+func (o *EndpointDeprecationNotice) GetDeprecation() DeprecationInfo {
 	if o == nil {
-		var ret string
+		var ret DeprecationInfo
 		return ret
 	}
 
-	return o.Name
+	return o.Deprecation
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetDeprecationOk returns a tuple with the Deprecation field value
 // and a boolean to check if the value has been set.
-func (o *ListDevicesCollection) GetNameOk() (*string, bool) {
+func (o *EndpointDeprecationNotice) GetDeprecationOk() (*DeprecationInfo, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.Deprecation, true
 }
 
-// SetName sets field value
-func (o *ListDevicesCollection) SetName(v string) {
-	o.Name = v
+// SetDeprecation sets field value
+func (o *EndpointDeprecationNotice) SetDeprecation(v DeprecationInfo) {
+	o.Deprecation = v
 }
 
-// GetTitle returns the Title field value
-func (o *ListDevicesCollection) GetTitle() string {
+// GetEndpoint returns the Endpoint field value
+func (o *EndpointDeprecationNotice) GetEndpoint() HalLinkData {
 	if o == nil {
-		var ret string
+		var ret HalLinkData
 		return ret
 	}
 
-	return o.Title
+	return o.Endpoint
 }
 
-// GetTitleOk returns a tuple with the Title field value
+// GetEndpointOk returns a tuple with the Endpoint field value
 // and a boolean to check if the value has been set.
-func (o *ListDevicesCollection) GetTitleOk() (*string, bool) {
+func (o *EndpointDeprecationNotice) GetEndpointOk() (*HalLinkData, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Title, true
+	return &o.Endpoint, true
 }
 
-// SetTitle sets field value
-func (o *ListDevicesCollection) SetTitle(v string) {
-	o.Title = v
+// SetEndpoint sets field value
+func (o *EndpointDeprecationNotice) SetEndpoint(v HalLinkData) {
+	o.Endpoint = v
 }
 
-func (o ListDevicesCollection) MarshalJSON() ([]byte, error) {
+// GetReplacement returns the Replacement field value if set, zero value otherwise.
+func (o *EndpointDeprecationNotice) GetReplacement() HalLinkData {
+	if o == nil || IsNil(o.Replacement) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Replacement
+}
+
+// GetReplacementOk returns a tuple with the Replacement field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EndpointDeprecationNotice) GetReplacementOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Replacement) {
+		return nil, false
+	}
+	return o.Replacement, true
+}
+
+// HasReplacement returns a boolean if a field has been set.
+func (o *EndpointDeprecationNotice) HasReplacement() bool {
+	if o != nil && !IsNil(o.Replacement) {
+		return true
+	}
+
+	return false
+}
+
+// SetReplacement gets a reference to the given HalLinkData and assigns it to the Replacement field.
+func (o *EndpointDeprecationNotice) SetReplacement(v HalLinkData) {
+	o.Replacement = &v
+}
+
+func (o EndpointDeprecationNotice) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -198,27 +196,27 @@ func (o ListDevicesCollection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ListDevicesCollection) ToMap() (map[string]interface{}, error) {
+func (o EndpointDeprecationNotice) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Embedded) {
-		toSerialize["_embedded"] = o.Embedded
-	}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	toSerialize["name"] = o.Name
-	toSerialize["title"] = o.Title
+	toSerialize["deprecation"] = o.Deprecation
+	toSerialize["endpoint"] = o.Endpoint
+	if !IsNil(o.Replacement) {
+		toSerialize["replacement"] = o.Replacement
+	}
 	return toSerialize, nil
 }
 
-func (o *ListDevicesCollection) UnmarshalJSON(bytes []byte) (err error) {
+func (o *EndpointDeprecationNotice) UnmarshalJSON(bytes []byte) (err error) {
     // This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_links",
 		"_metadata",
-		"name",
-		"title",
+		"deprecation",
+		"endpoint",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -235,51 +233,51 @@ func (o *ListDevicesCollection) UnmarshalJSON(bytes []byte) (err error) {
 		}
 	}
 
-	varListDevicesCollection := _ListDevicesCollection{}
+	varEndpointDeprecationNotice := _EndpointDeprecationNotice{}
 
-	err = json.Unmarshal(bytes, &varListDevicesCollection)
+	err = json.Unmarshal(bytes, &varEndpointDeprecationNotice)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ListDevicesCollection(varListDevicesCollection)
+	*o = EndpointDeprecationNotice(varEndpointDeprecationNotice)
 
 	return err
 }
 
-type NullableListDevicesCollection struct {
-	value *ListDevicesCollection
+type NullableEndpointDeprecationNotice struct {
+	value *EndpointDeprecationNotice
 	isSet bool
 }
 
-func (v NullableListDevicesCollection) Get() *ListDevicesCollection {
+func (v NullableEndpointDeprecationNotice) Get() *EndpointDeprecationNotice {
 	return v.value
 }
 
-func (v *NullableListDevicesCollection) Set(val *ListDevicesCollection) {
+func (v *NullableEndpointDeprecationNotice) Set(val *EndpointDeprecationNotice) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListDevicesCollection) IsSet() bool {
+func (v NullableEndpointDeprecationNotice) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListDevicesCollection) Unset() {
+func (v *NullableEndpointDeprecationNotice) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListDevicesCollection(val *ListDevicesCollection) *NullableListDevicesCollection {
-	return &NullableListDevicesCollection{value: val, isSet: true}
+func NewNullableEndpointDeprecationNotice(val *EndpointDeprecationNotice) *NullableEndpointDeprecationNotice {
+	return &NullableEndpointDeprecationNotice{value: val, isSet: true}
 }
 
-func (v NullableListDevicesCollection) MarshalJSON() ([]byte, error) {
+func (v NullableEndpointDeprecationNotice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListDevicesCollection) UnmarshalJSON(src []byte) error {
+func (v *NullableEndpointDeprecationNotice) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

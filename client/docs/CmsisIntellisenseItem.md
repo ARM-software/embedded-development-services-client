@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **BuildToolsType** | **string** | The build system that will be used to build the project. | [readonly] 
 **BuildToolsVersion** | **string** | Version of the build tools in use, as specified by the tools creators. | [readonly] 
 **Deprecated** | **bool** | True if this CMSIS Builder is scheduled to be removed from the service. | [readonly] 
-**DeprecationInfo** | Pointer to [**NullableCmsisIntellisenseItemDeprecationInfo**](CmsisIntellisenseItemDeprecationInfo.md) |  | [optional] 
+**DeprecationInfo** | Pointer to [**DeprecationInfo**](DeprecationInfo.md) |  | [optional] 
 **Name** | **string** | Unique ID of the CMSIS builder. | [readonly] 
 **Title** | **string** | Human readable name of the CMSIS builder. | [readonly] 
 **ToolchainType** | [**ToolchainTypes**](ToolchainTypes.md) |  | 
@@ -160,20 +160,20 @@ SetDeprecated sets Deprecated field to given value.
 
 ### GetDeprecationInfo
 
-`func (o *CmsisIntellisenseItem) GetDeprecationInfo() CmsisIntellisenseItemDeprecationInfo`
+`func (o *CmsisIntellisenseItem) GetDeprecationInfo() DeprecationInfo`
 
 GetDeprecationInfo returns the DeprecationInfo field if non-nil, zero value otherwise.
 
 ### GetDeprecationInfoOk
 
-`func (o *CmsisIntellisenseItem) GetDeprecationInfoOk() (*CmsisIntellisenseItemDeprecationInfo, bool)`
+`func (o *CmsisIntellisenseItem) GetDeprecationInfoOk() (*DeprecationInfo, bool)`
 
 GetDeprecationInfoOk returns a tuple with the DeprecationInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeprecationInfo
 
-`func (o *CmsisIntellisenseItem) SetDeprecationInfo(v CmsisIntellisenseItemDeprecationInfo)`
+`func (o *CmsisIntellisenseItem) SetDeprecationInfo(v DeprecationInfo)`
 
 SetDeprecationInfo sets DeprecationInfo field to given value.
 
@@ -183,16 +183,6 @@ SetDeprecationInfo sets DeprecationInfo field to given value.
 
 HasDeprecationInfo returns a boolean if a field has been set.
 
-### SetDeprecationInfoNil
-
-`func (o *CmsisIntellisenseItem) SetDeprecationInfoNil(b bool)`
-
- SetDeprecationInfoNil sets the value for DeprecationInfo to be an explicit nil
-
-### UnsetDeprecationInfo
-`func (o *CmsisIntellisenseItem) UnsetDeprecationInfo()`
-
-UnsetDeprecationInfo ensures that no value is present for DeprecationInfo, not even an explicit nil
 ### GetName
 
 `func (o *CmsisIntellisenseItem) GetName() string`

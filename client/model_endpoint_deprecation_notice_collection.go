@@ -8,7 +8,7 @@ Solar API
 
 This API provides a RESTful interface to all the Solar services e.g. looking for boards, building projects, etc. - This API uses Hypermedia as the Engine of Application State (HATEOAS) to drive the discovery and provide   affordances. - Discovery is possible by following links from the well known root resource. While this specification lists   all supported endpoints, it is only recommended that these are hard coded into a client if code generation is   being used. Otherwise, it is recommended that the discovery mechanisms present in the resources (affordances)   are used exclusively. - Affordances are links which indicate whether an action is currently possible, this is significantly different from   whether the service supports an action in general. This specification defines what actions could be possible,   but only by checking the affordances returned by the API in the returned resources, can a client determine whether   this action is currently possible or available for the current user. For example:   - An operation to modify a resource could be defined in this specification, but the user may lack the appropriate     privileges. In that situation, the affordance link would not be present in the resource when read. Therefore,     the client can infer that it is not possible to edit this resource and present appropriate information to the     user.   - An operation to delete a resource could be defined and be possible in some circumstances. The specification     describes that the delete is supported and how to use it, but the affordance describes whether it is currently     possible. The logic in the API may dictate that if the resource was in use (perhaps it is a running job or used     by another resource), then it will not be possible to delete that resource as it would result in a conflicted     state. - It is strongly encouraged that affordances are used by all clients, even those using code generation. This has the   ability to both improve robustness and the user experience by decoupling the client and server. For example, if for   some reason the criteria for deleting a resource changes, the logic is only implemented in the server and there is   no need to update the logic in the client as it is driven by the affordances. - The format used for the resources is the Hypertext Application Language (HAL), which includes the definition   of links and embedded resources. 
 
-API version: 1.0.0
+API version: 1.1.0
 Contact: support@arm.com
 */
 
@@ -21,13 +21,13 @@ import (
 	"fmt"
 )
 
-// checks if the ListBoardsCollection type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ListBoardsCollection{}
+// checks if the EndpointDeprecationNoticeCollection type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EndpointDeprecationNoticeCollection{}
 
-// ListBoardsCollection This collection resource follows the common pattern of linking to contained resources. Optionally, rather than linking to other resources, it can embed then into the collection to reduce the number of round trips to the server (at the expense of caching). In file system terms, it is similar to a directory but only contains links to (or embeds) a single type of resource.
-type ListBoardsCollection struct {
-	Embedded *EmbeddedBoardItems `json:"_embedded,omitempty"`
-	Links NullableHalCollectionLinks `json:"_links"`
+// EndpointDeprecationNoticeCollection This collection resource follows the common pattern of linking to contained resources. Optionally, rather than linking to other resources, it can embed then into the collection to reduce the number of round trips to the server (at the expense of caching). In file system terms, it is similar to a directory but only contains links to (or embeds) a single type of resource.
+type EndpointDeprecationNoticeCollection struct {
+	Embedded *EmbeddedEndpointDeprecationNoticeItems `json:"_embedded,omitempty"`
+	Links NullableHalSimpleCollectionLinks `json:"_links"`
 	Metadata NullablePagingMetadata `json:"_metadata"`
 	// ID of the Collection.
 	Name string `json:"name"`
@@ -35,14 +35,14 @@ type ListBoardsCollection struct {
 	Title string `json:"title"`
 }
 
-type _ListBoardsCollection ListBoardsCollection
+type _EndpointDeprecationNoticeCollection EndpointDeprecationNoticeCollection
 
-// NewListBoardsCollection instantiates a new ListBoardsCollection object
+// NewEndpointDeprecationNoticeCollection instantiates a new EndpointDeprecationNoticeCollection object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBoardsCollection(links NullableHalCollectionLinks, metadata NullablePagingMetadata, name string, title string) *ListBoardsCollection {
-	this := ListBoardsCollection{}
+func NewEndpointDeprecationNoticeCollection(links NullableHalSimpleCollectionLinks, metadata NullablePagingMetadata, name string, title string) *EndpointDeprecationNoticeCollection {
+	this := EndpointDeprecationNoticeCollection{}
 	this.Links = links
 	this.Metadata = metadata
 	this.Name = name
@@ -50,18 +50,18 @@ func NewListBoardsCollection(links NullableHalCollectionLinks, metadata Nullable
 	return &this
 }
 
-// NewListBoardsCollectionWithDefaults instantiates a new ListBoardsCollection object
+// NewEndpointDeprecationNoticeCollectionWithDefaults instantiates a new EndpointDeprecationNoticeCollection object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListBoardsCollectionWithDefaults() *ListBoardsCollection {
-	this := ListBoardsCollection{}
+func NewEndpointDeprecationNoticeCollectionWithDefaults() *EndpointDeprecationNoticeCollection {
+	this := EndpointDeprecationNoticeCollection{}
 	return &this
 }
 
 // GetEmbedded returns the Embedded field value if set, zero value otherwise.
-func (o *ListBoardsCollection) GetEmbedded() EmbeddedBoardItems {
+func (o *EndpointDeprecationNoticeCollection) GetEmbedded() EmbeddedEndpointDeprecationNoticeItems {
 	if o == nil || IsNil(o.Embedded) {
-		var ret EmbeddedBoardItems
+		var ret EmbeddedEndpointDeprecationNoticeItems
 		return ret
 	}
 	return *o.Embedded
@@ -69,7 +69,7 @@ func (o *ListBoardsCollection) GetEmbedded() EmbeddedBoardItems {
 
 // GetEmbeddedOk returns a tuple with the Embedded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListBoardsCollection) GetEmbeddedOk() (*EmbeddedBoardItems, bool) {
+func (o *EndpointDeprecationNoticeCollection) GetEmbeddedOk() (*EmbeddedEndpointDeprecationNoticeItems, bool) {
 	if o == nil || IsNil(o.Embedded) {
 		return nil, false
 	}
@@ -77,7 +77,7 @@ func (o *ListBoardsCollection) GetEmbeddedOk() (*EmbeddedBoardItems, bool) {
 }
 
 // HasEmbedded returns a boolean if a field has been set.
-func (o *ListBoardsCollection) HasEmbedded() bool {
+func (o *EndpointDeprecationNoticeCollection) HasEmbedded() bool {
 	if o != nil && !IsNil(o.Embedded) {
 		return true
 	}
@@ -85,16 +85,16 @@ func (o *ListBoardsCollection) HasEmbedded() bool {
 	return false
 }
 
-// SetEmbedded gets a reference to the given EmbeddedBoardItems and assigns it to the Embedded field.
-func (o *ListBoardsCollection) SetEmbedded(v EmbeddedBoardItems) {
+// SetEmbedded gets a reference to the given EmbeddedEndpointDeprecationNoticeItems and assigns it to the Embedded field.
+func (o *EndpointDeprecationNoticeCollection) SetEmbedded(v EmbeddedEndpointDeprecationNoticeItems) {
 	o.Embedded = &v
 }
 
 // GetLinks returns the Links field value
-// If the value is explicit nil, the zero value for HalCollectionLinks will be returned
-func (o *ListBoardsCollection) GetLinks() HalCollectionLinks {
+// If the value is explicit nil, the zero value for HalSimpleCollectionLinks will be returned
+func (o *EndpointDeprecationNoticeCollection) GetLinks() HalSimpleCollectionLinks {
 	if o == nil || o.Links.Get() == nil {
-		var ret HalCollectionLinks
+		var ret HalSimpleCollectionLinks
 		return ret
 	}
 
@@ -104,7 +104,7 @@ func (o *ListBoardsCollection) GetLinks() HalCollectionLinks {
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBoardsCollection) GetLinksOk() (*HalCollectionLinks, bool) {
+func (o *EndpointDeprecationNoticeCollection) GetLinksOk() (*HalSimpleCollectionLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -112,13 +112,13 @@ func (o *ListBoardsCollection) GetLinksOk() (*HalCollectionLinks, bool) {
 }
 
 // SetLinks sets field value
-func (o *ListBoardsCollection) SetLinks(v HalCollectionLinks) {
+func (o *EndpointDeprecationNoticeCollection) SetLinks(v HalSimpleCollectionLinks) {
 	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
 // If the value is explicit nil, the zero value for PagingMetadata will be returned
-func (o *ListBoardsCollection) GetMetadata() PagingMetadata {
+func (o *EndpointDeprecationNoticeCollection) GetMetadata() PagingMetadata {
 	if o == nil || o.Metadata.Get() == nil {
 		var ret PagingMetadata
 		return ret
@@ -130,7 +130,7 @@ func (o *ListBoardsCollection) GetMetadata() PagingMetadata {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBoardsCollection) GetMetadataOk() (*PagingMetadata, bool) {
+func (o *EndpointDeprecationNoticeCollection) GetMetadataOk() (*PagingMetadata, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -138,12 +138,12 @@ func (o *ListBoardsCollection) GetMetadataOk() (*PagingMetadata, bool) {
 }
 
 // SetMetadata sets field value
-func (o *ListBoardsCollection) SetMetadata(v PagingMetadata) {
+func (o *EndpointDeprecationNoticeCollection) SetMetadata(v PagingMetadata) {
 	o.Metadata.Set(&v)
 }
 
 // GetName returns the Name field value
-func (o *ListBoardsCollection) GetName() string {
+func (o *EndpointDeprecationNoticeCollection) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -154,7 +154,7 @@ func (o *ListBoardsCollection) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ListBoardsCollection) GetNameOk() (*string, bool) {
+func (o *EndpointDeprecationNoticeCollection) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -162,12 +162,12 @@ func (o *ListBoardsCollection) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *ListBoardsCollection) SetName(v string) {
+func (o *EndpointDeprecationNoticeCollection) SetName(v string) {
 	o.Name = v
 }
 
 // GetTitle returns the Title field value
-func (o *ListBoardsCollection) GetTitle() string {
+func (o *EndpointDeprecationNoticeCollection) GetTitle() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -178,7 +178,7 @@ func (o *ListBoardsCollection) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
-func (o *ListBoardsCollection) GetTitleOk() (*string, bool) {
+func (o *EndpointDeprecationNoticeCollection) GetTitleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -186,11 +186,11 @@ func (o *ListBoardsCollection) GetTitleOk() (*string, bool) {
 }
 
 // SetTitle sets field value
-func (o *ListBoardsCollection) SetTitle(v string) {
+func (o *EndpointDeprecationNoticeCollection) SetTitle(v string) {
 	o.Title = v
 }
 
-func (o ListBoardsCollection) MarshalJSON() ([]byte, error) {
+func (o EndpointDeprecationNoticeCollection) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -198,7 +198,7 @@ func (o ListBoardsCollection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ListBoardsCollection) ToMap() (map[string]interface{}, error) {
+func (o EndpointDeprecationNoticeCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Embedded) {
 		toSerialize["_embedded"] = o.Embedded
@@ -210,7 +210,7 @@ func (o ListBoardsCollection) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ListBoardsCollection) UnmarshalJSON(bytes []byte) (err error) {
+func (o *EndpointDeprecationNoticeCollection) UnmarshalJSON(bytes []byte) (err error) {
     // This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -235,51 +235,51 @@ func (o *ListBoardsCollection) UnmarshalJSON(bytes []byte) (err error) {
 		}
 	}
 
-	varListBoardsCollection := _ListBoardsCollection{}
+	varEndpointDeprecationNoticeCollection := _EndpointDeprecationNoticeCollection{}
 
-	err = json.Unmarshal(bytes, &varListBoardsCollection)
+	err = json.Unmarshal(bytes, &varEndpointDeprecationNoticeCollection)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ListBoardsCollection(varListBoardsCollection)
+	*o = EndpointDeprecationNoticeCollection(varEndpointDeprecationNoticeCollection)
 
 	return err
 }
 
-type NullableListBoardsCollection struct {
-	value *ListBoardsCollection
+type NullableEndpointDeprecationNoticeCollection struct {
+	value *EndpointDeprecationNoticeCollection
 	isSet bool
 }
 
-func (v NullableListBoardsCollection) Get() *ListBoardsCollection {
+func (v NullableEndpointDeprecationNoticeCollection) Get() *EndpointDeprecationNoticeCollection {
 	return v.value
 }
 
-func (v *NullableListBoardsCollection) Set(val *ListBoardsCollection) {
+func (v *NullableEndpointDeprecationNoticeCollection) Set(val *EndpointDeprecationNoticeCollection) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListBoardsCollection) IsSet() bool {
+func (v NullableEndpointDeprecationNoticeCollection) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListBoardsCollection) Unset() {
+func (v *NullableEndpointDeprecationNoticeCollection) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListBoardsCollection(val *ListBoardsCollection) *NullableListBoardsCollection {
-	return &NullableListBoardsCollection{value: val, isSet: true}
+func NewNullableEndpointDeprecationNoticeCollection(val *EndpointDeprecationNoticeCollection) *NullableEndpointDeprecationNoticeCollection {
+	return &NullableEndpointDeprecationNoticeCollection{value: val, isSet: true}
 }
 
-func (v NullableListBoardsCollection) MarshalJSON() ([]byte, error) {
+func (v NullableEndpointDeprecationNoticeCollection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListBoardsCollection) UnmarshalJSON(src []byte) error {
+func (v *NullableEndpointDeprecationNoticeCollection) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

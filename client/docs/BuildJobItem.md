@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **BuildStepsTotal** | **NullableInt32** | The total number of steps that will need to be performed to complete the build. Please note: - This value also includes additional service orchestration steps, that are outside the core build process,   so may differ from the build progress indicated within build messages. - This value will only be available after the build has been started. | [readonly] 
 **BuildTimeout** | Pointer to **int32** | The maximum time (in seconds) that the build will be allowed to run. After the timeout has expired the build will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the build to be started. | [optional] [default to 300]
 **CleanBuild** | Pointer to **bool** | Whether to run a clean build. | [optional] [default to false]
+**Context** | Pointer to **NullableString** | Build context for jobs that require it. | [optional] 
 **Done** | **bool** | True when the build job has completed (this does necessarily indicate success). | [readonly] 
 **Error** | **bool** | True if there was an error in the build service while attempting the build. | [readonly] 
 **Failure** | **bool** | True if the compilation or link failed (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
@@ -214,6 +215,41 @@ SetCleanBuild sets CleanBuild field to given value.
 
 HasCleanBuild returns a boolean if a field has been set.
 
+### GetContext
+
+`func (o *BuildJobItem) GetContext() string`
+
+GetContext returns the Context field if non-nil, zero value otherwise.
+
+### GetContextOk
+
+`func (o *BuildJobItem) GetContextOk() (*string, bool)`
+
+GetContextOk returns a tuple with the Context field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContext
+
+`func (o *BuildJobItem) SetContext(v string)`
+
+SetContext sets Context field to given value.
+
+### HasContext
+
+`func (o *BuildJobItem) HasContext() bool`
+
+HasContext returns a boolean if a field has been set.
+
+### SetContextNil
+
+`func (o *BuildJobItem) SetContextNil(b bool)`
+
+ SetContextNil sets the value for Context to be an explicit nil
+
+### UnsetContext
+`func (o *BuildJobItem) UnsetContext()`
+
+UnsetContext ensures that no value is present for Context, not even an explicit nil
 ### GetDone
 
 `func (o *BuildJobItem) GetDone() bool`

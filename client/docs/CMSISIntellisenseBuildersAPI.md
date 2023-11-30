@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## GetCmsisIntellisense
 
-> CmsisBuilderItem GetCmsisIntellisense(ctx, builderName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+> CmsisIntellisenseItem GetCmsisIntellisense(ctx, builderName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 
 Return details of specific CMSIS Intellisense Builders.
 
@@ -46,7 +46,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CMSISIntellisenseBuildersAPI.GetCmsisIntellisense``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetCmsisIntellisense`: CmsisBuilderItem
+    // response from `GetCmsisIntellisense`: CmsisIntellisenseItem
     fmt.Fprintf(os.Stdout, "Response from `CMSISIntellisenseBuildersAPI.GetCmsisIntellisense`: %v\n", resp)
 }
 ```
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CmsisBuilderItem**](CmsisBuilderItem.md)
+[**CmsisIntellisenseItem**](CmsisIntellisenseItem.md)
 
 ### Authorization
 
@@ -184,7 +184,7 @@ import (
 
 func main() {
     builderName := "builderName_example" // string | The ID of the CMSIS Intellisense Builder.
-    intellisenseJobItem := *openapiclient.NewIntellisenseJobItem("TODO", "TODO", NullableInt32(50), NullableInt32(70), true, false, true, "332129b3-f14d-49d2-b9be-acd2abd80c6b", "/root/packs", "workspace/debug-build.cprj", "INITIALISING", false, "/root/toolchain/bin", "/root/toolchain/headers", "/root/workspace") // IntellisenseJobItem | A name of the CMSIS project to generate compilation database.
+    intellisenseJobItem := *openapiclient.NewIntellisenseJobItem("TODO", "TODO", NullableInt32(50), NullableInt32(70), true, false, true, "332129b3-f14d-49d2-b9be-acd2abd80c6b", "/root/packs", "workspace/debug-build.csolution.yaml", "INITIALISING", false, "/root/toolchain/bin", "/root/toolchain/headers", "/root/workspace") // IntellisenseJobItem | A name of the CMSIS project to generate compilation database.
     acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
     configuration := openapiclient.NewConfiguration()
