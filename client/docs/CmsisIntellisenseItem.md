@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Links** | [**NullableCmsisIntellisenseItemLinks**](CmsisIntellisenseItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**BuildToolsType** | **string** | The build system that will be used to build the project. | [readonly] 
+**BuildToolsType** | [**BuildToolTypes**](BuildToolTypes.md) |  | 
 **BuildToolsVersion** | **string** | Version of the build tools in use, as specified by the tools creators. | [readonly] 
 **Deprecated** | **bool** | True if this CMSIS Builder is scheduled to be removed from the service. | [readonly] 
 **DeprecationInfo** | Pointer to [**DeprecationInfo**](DeprecationInfo.md) |  | [optional] 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewCmsisIntellisenseItem
 
-`func NewCmsisIntellisenseItem(links NullableCmsisIntellisenseItemLinks, metadata NullableCommonMetadata, buildToolsType string, buildToolsVersion string, deprecated bool, name string, title string, toolchainType ToolchainTypes, toolchainVersion string, ) *CmsisIntellisenseItem`
+`func NewCmsisIntellisenseItem(links NullableCmsisIntellisenseItemLinks, metadata NullableCommonMetadata, buildToolsType BuildToolTypes, buildToolsVersion string, deprecated bool, name string, title string, toolchainType ToolchainTypes, toolchainVersion string, ) *CmsisIntellisenseItem`
 
 NewCmsisIntellisenseItem instantiates a new CmsisIntellisenseItem object
 This constructor will assign default values to properties that have it defined,
@@ -100,20 +100,20 @@ SetMetadata sets Metadata field to given value.
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetBuildToolsType
 
-`func (o *CmsisIntellisenseItem) GetBuildToolsType() string`
+`func (o *CmsisIntellisenseItem) GetBuildToolsType() BuildToolTypes`
 
 GetBuildToolsType returns the BuildToolsType field if non-nil, zero value otherwise.
 
 ### GetBuildToolsTypeOk
 
-`func (o *CmsisIntellisenseItem) GetBuildToolsTypeOk() (*string, bool)`
+`func (o *CmsisIntellisenseItem) GetBuildToolsTypeOk() (*BuildToolTypes, bool)`
 
 GetBuildToolsTypeOk returns a tuple with the BuildToolsType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBuildToolsType
 
-`func (o *CmsisIntellisenseItem) SetBuildToolsType(v string)`
+`func (o *CmsisIntellisenseItem) SetBuildToolsType(v BuildToolTypes)`
 
 SetBuildToolsType sets BuildToolsType field to given value.
 

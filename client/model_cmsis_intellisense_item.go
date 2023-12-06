@@ -8,7 +8,7 @@ Solar API
 
 This API provides a RESTful interface to all the Solar services e.g. looking for boards, building projects, etc. - This API uses Hypermedia as the Engine of Application State (HATEOAS) to drive the discovery and provide   affordances. - Discovery is possible by following links from the well known root resource. While this specification lists   all supported endpoints, it is only recommended that these are hard coded into a client if code generation is   being used. Otherwise, it is recommended that the discovery mechanisms present in the resources (affordances)   are used exclusively. - Affordances are links which indicate whether an action is currently possible, this is significantly different from   whether the service supports an action in general. This specification defines what actions could be possible,   but only by checking the affordances returned by the API in the returned resources, can a client determine whether   this action is currently possible or available for the current user. For example:   - An operation to modify a resource could be defined in this specification, but the user may lack the appropriate     privileges. In that situation, the affordance link would not be present in the resource when read. Therefore,     the client can infer that it is not possible to edit this resource and present appropriate information to the     user.   - An operation to delete a resource could be defined and be possible in some circumstances. The specification     describes that the delete is supported and how to use it, but the affordance describes whether it is currently     possible. The logic in the API may dictate that if the resource was in use (perhaps it is a running job or used     by another resource), then it will not be possible to delete that resource as it would result in a conflicted     state. - It is strongly encouraged that affordances are used by all clients, even those using code generation. This has the   ability to both improve robustness and the user experience by decoupling the client and server. For example, if for   some reason the criteria for deleting a resource changes, the logic is only implemented in the server and there is   no need to update the logic in the client as it is driven by the affordances. - The format used for the resources is the Hypertext Application Language (HAL), which includes the definition   of links and embedded resources. 
 
-API version: 1.1.0
+API version: 1.1.1
 Contact: support@arm.com
 */
 
@@ -28,8 +28,7 @@ var _ MappedNullable = &CmsisIntellisenseItem{}
 type CmsisIntellisenseItem struct {
 	Links NullableCmsisIntellisenseItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
-	// The build system that will be used to build the project.
-	BuildToolsType string `json:"buildToolsType"`
+	BuildToolsType BuildToolTypes `json:"buildToolsType"`
 	// Version of the build tools in use, as specified by the tools creators.
 	BuildToolsVersion string `json:"buildToolsVersion"`
 	// True if this CMSIS Builder is scheduled to be removed from the service.
@@ -50,7 +49,7 @@ type _CmsisIntellisenseItem CmsisIntellisenseItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCmsisIntellisenseItem(links NullableCmsisIntellisenseItemLinks, metadata NullableCommonMetadata, buildToolsType string, buildToolsVersion string, deprecated bool, name string, title string, toolchainType ToolchainTypes, toolchainVersion string) *CmsisIntellisenseItem {
+func NewCmsisIntellisenseItem(links NullableCmsisIntellisenseItemLinks, metadata NullableCommonMetadata, buildToolsType BuildToolTypes, buildToolsVersion string, deprecated bool, name string, title string, toolchainType ToolchainTypes, toolchainVersion string) *CmsisIntellisenseItem {
 	this := CmsisIntellisenseItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -125,9 +124,9 @@ func (o *CmsisIntellisenseItem) SetMetadata(v CommonMetadata) {
 }
 
 // GetBuildToolsType returns the BuildToolsType field value
-func (o *CmsisIntellisenseItem) GetBuildToolsType() string {
+func (o *CmsisIntellisenseItem) GetBuildToolsType() BuildToolTypes {
 	if o == nil {
-		var ret string
+		var ret BuildToolTypes
 		return ret
 	}
 
@@ -136,7 +135,7 @@ func (o *CmsisIntellisenseItem) GetBuildToolsType() string {
 
 // GetBuildToolsTypeOk returns a tuple with the BuildToolsType field value
 // and a boolean to check if the value has been set.
-func (o *CmsisIntellisenseItem) GetBuildToolsTypeOk() (*string, bool) {
+func (o *CmsisIntellisenseItem) GetBuildToolsTypeOk() (*BuildToolTypes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -144,7 +143,7 @@ func (o *CmsisIntellisenseItem) GetBuildToolsTypeOk() (*string, bool) {
 }
 
 // SetBuildToolsType sets field value
-func (o *CmsisIntellisenseItem) SetBuildToolsType(v string) {
+func (o *CmsisIntellisenseItem) SetBuildToolsType(v BuildToolTypes) {
 	o.BuildToolsType = v
 }
 
