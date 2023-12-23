@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -186,8 +187,8 @@ func (o WorkspaceRepositoryContentManagerLinks) ToMap() (map[string]interface{},
 	return toSerialize, nil
 }
 
-func (o *WorkspaceRepositoryContentManagerLinks) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *WorkspaceRepositoryContentManagerLinks) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -197,7 +198,7 @@ func (o *WorkspaceRepositoryContentManagerLinks) UnmarshalJSON(bytes []byte) (er
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -211,7 +212,9 @@ func (o *WorkspaceRepositoryContentManagerLinks) UnmarshalJSON(bytes []byte) (er
 
 	varWorkspaceRepositoryContentManagerLinks := _WorkspaceRepositoryContentManagerLinks{}
 
-	err = json.Unmarshal(bytes, &varWorkspaceRepositoryContentManagerLinks)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varWorkspaceRepositoryContentManagerLinks)
 
 	if err != nil {
 		return err

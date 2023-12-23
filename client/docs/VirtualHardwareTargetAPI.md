@@ -29,26 +29,26 @@ Return details of the specific VHT.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    vhtName := "vhtName_example" // string | The ID of the VHT.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-    ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+	vhtName := "vhtName_example" // string | The ID of the VHT.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetAPI.GetVht(context.Background(), vhtName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetAPI.GetVht``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetVht`: VhtItem
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetAPI.GetVht`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VirtualHardwareTargetAPI.GetVht(context.Background(), vhtName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetAPI.GetVht``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetVht`: VhtItem
+	fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetAPI.GetVht`: %v\n", resp)
 }
 ```
 
@@ -103,29 +103,29 @@ List all VHT instances related to this specific VHT.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    vhtName := "vhtName_example" // string | The ID of the VHT.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-    embed := false // bool | Embedding: The whether or not to embed resources into the collection (rather than return links). (optional) (default to false)
-    ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
-    limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
-    offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
+	vhtName := "vhtName_example" // string | The ID of the VHT.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	embed := false // bool | Embedding: The whether or not to embed resources into the collection (rather than return links). (optional) (default to false)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+	limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
+	offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetAPI.ListFilteredVhtInstances(context.Background(), vhtName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetAPI.ListFilteredVhtInstances``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListFilteredVhtInstances`: VhtInstanceCollection
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetAPI.ListFilteredVhtInstances`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VirtualHardwareTargetAPI.ListFilteredVhtInstances(context.Background(), vhtName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetAPI.ListFilteredVhtInstances``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListFilteredVhtInstances`: VhtInstanceCollection
+	fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetAPI.ListFilteredVhtInstances`: %v\n", resp)
 }
 ```
 
@@ -183,28 +183,28 @@ List available VHTs.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-    embed := false // bool | Embedding: The whether or not to embed resources into the collection (rather than return links). (optional) (default to false)
-    ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
-    limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
-    offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	embed := false // bool | Embedding: The whether or not to embed resources into the collection (rather than return links). (optional) (default to false)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+	limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
+	offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetAPI.ListVhts(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetAPI.ListVhts``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListVhts`: VhtCollection
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetAPI.ListVhts`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VirtualHardwareTargetAPI.ListVhts(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetAPI.ListVhts``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListVhts`: VhtCollection
+	fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetAPI.ListVhts`: %v\n", resp)
 }
 ```
 
@@ -257,26 +257,26 @@ Spawns a VHT instance matching this VHT specification.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    vhtName := "vhtName_example" // string | The ID of the VHT.
-    vhtInstanceItem := *openapiclient.NewVhtInstanceItem("TODO", "TODO", false, "332129b3-f14d-49d2-b9be-acd2abd80c6b", false, false, "INITIALISING", true) // VhtInstanceItem | A name of the VHT to request.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	vhtName := "vhtName_example" // string | The ID of the VHT.
+	vhtInstanceItem := *openapiclient.NewVhtInstanceItem("TODO", "TODO", false, "332129b3-f14d-49d2-b9be-acd2abd80c6b", false, false, "INITIALISING", true) // VhtInstanceItem | A name of the VHT to request.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetAPI.StartVhtInstance(context.Background(), vhtName).VhtInstanceItem(vhtInstanceItem).AcceptVersion(acceptVersion).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetAPI.StartVhtInstance``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `StartVhtInstance`: VhtInstanceItem
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetAPI.StartVhtInstance`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VirtualHardwareTargetAPI.StartVhtInstance(context.Background(), vhtName).VhtInstanceItem(vhtInstanceItem).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetAPI.StartVhtInstance``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `StartVhtInstance`: VhtInstanceItem
+	fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetAPI.StartVhtInstance`: %v\n", resp)
 }
 ```
 

@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -375,8 +376,8 @@ func (o HalCollectionLinks) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *HalCollectionLinks) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *HalCollectionLinks) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -385,7 +386,7 @@ func (o *HalCollectionLinks) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -399,7 +400,9 @@ func (o *HalCollectionLinks) UnmarshalJSON(bytes []byte) (err error) {
 
 	varHalCollectionLinks := _HalCollectionLinks{}
 
-	err = json.Unmarshal(bytes, &varHalCollectionLinks)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varHalCollectionLinks)
 
 	if err != nil {
 		return err

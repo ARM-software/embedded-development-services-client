@@ -44,20 +44,20 @@ For more information, please visit [https://www.keil.com/](https://www.keil.com/
 
 Install the following dependencies:
 
-```shell
+```sh
 go get github.com/stretchr/testify/assert
 go get golang.org/x/net/context
 ```
 
 Put the package under your project folder and add the following in import:
 
-```golang
+```go
 import client "github.com/ARM-software/embedded-development-services-client/client"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
 
-```golang
+```go
 os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
 ```
 
@@ -69,7 +69,7 @@ Default configuration comes with `Servers` field that contains server objects as
 
 For using other server than the one defined on index 0 set context value `client.ContextServerIndex` of type `int`.
 
-```golang
+```go
 ctx := context.WithValue(context.Background(), client.ContextServerIndex, 1)
 ```
 
@@ -77,7 +77,7 @@ ctx := context.WithValue(context.Background(), client.ContextServerIndex, 1)
 
 Templated server URL is formatted using default variables from configuration or from context value `client.ContextServerVariables` of type `map[string]string`.
 
-```golang
+```go
 ctx := context.WithValue(context.Background(), client.ContextServerVariables, map[string]string{
 	"basePath": "v2",
 })
@@ -91,7 +91,7 @@ Each operation can use different server URL defined using `OperationServers` map
 An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
 Similar rules for overriding default operation server index and variables applies by using `client.ContextOperationServerIndices` and `client.ContextOperationServerVariables` context maps.
 
-```golang
+```go
 ctx := context.WithValue(context.Background(), client.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
@@ -265,7 +265,7 @@ Authentication schemes defined for the API:
 
 Example
 
-```golang
+```go
 auth := context.WithValue(context.Background(), client.ContextAccessToken, "BEARER_TOKEN_STRING")
 r, err := client.Service.Operation(auth, args)
 ```
@@ -276,7 +276,7 @@ r, err := client.Service.Operation(auth, args)
 
 Example
 
-```golang
+```go
 auth := context.WithValue(context.Background(), client.ContextAccessToken, "BEARER_TOKEN_STRING")
 r, err := client.Service.Operation(auth, args)
 ```

@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -402,8 +403,8 @@ func (o VhtRunJobItem) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *VhtRunJobItem) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *VhtRunJobItem) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -420,7 +421,7 @@ func (o *VhtRunJobItem) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -434,7 +435,9 @@ func (o *VhtRunJobItem) UnmarshalJSON(bytes []byte) (err error) {
 
 	varVhtRunJobItem := _VhtRunJobItem{}
 
-	err = json.Unmarshal(bytes, &varVhtRunJobItem)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varVhtRunJobItem)
 
 	if err != nil {
 		return err

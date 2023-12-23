@@ -18,6 +18,7 @@ package client
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -348,8 +349,8 @@ func (o CmsisBuilderItem) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *CmsisBuilderItem) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *CmsisBuilderItem) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -366,7 +367,7 @@ func (o *CmsisBuilderItem) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -380,7 +381,9 @@ func (o *CmsisBuilderItem) UnmarshalJSON(bytes []byte) (err error) {
 
 	varCmsisBuilderItem := _CmsisBuilderItem{}
 
-	err = json.Unmarshal(bytes, &varCmsisBuilderItem)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCmsisBuilderItem)
 
 	if err != nil {
 		return err

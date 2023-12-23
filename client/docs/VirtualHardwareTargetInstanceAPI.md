@@ -36,24 +36,24 @@ Clear the VHT artefact from the VHT instance.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    artefactName := "artefactName_example" // string | The URL safe name of the artefact.
-    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	artefactName := "artefactName_example" // string | The URL safe name of the artefact.
+	instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.VirtualHardwareTargetInstanceAPI.ClearVhtInstanceArtefact(context.Background(), artefactName, instanceName).AcceptVersion(acceptVersion).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.ClearVhtInstanceArtefact``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.VirtualHardwareTargetInstanceAPI.ClearVhtInstanceArtefact(context.Background(), artefactName, instanceName).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.ClearVhtInstanceArtefact``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -109,23 +109,23 @@ Delete a VHT instance
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.VirtualHardwareTargetInstanceAPI.DeleteVhtInstance(context.Background(), instanceName).AcceptVersion(acceptVersion).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.DeleteVhtInstance``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.VirtualHardwareTargetInstanceAPI.DeleteVhtInstance(context.Background(), instanceName).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.DeleteVhtInstance``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -179,27 +179,27 @@ Download the artefact named `artefactName` present on this VHT instance.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    artefactName := "artefactName_example" // string | The URL safe name of the artefact.
-    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-    ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+	artefactName := "artefactName_example" // string | The URL safe name of the artefact.
+	instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.DownloadVhtInstanceArtefact(context.Background(), artefactName, instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.DownloadVhtInstanceArtefact``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DownloadVhtInstanceArtefact`: *os.File
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.DownloadVhtInstanceArtefact`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.DownloadVhtInstanceArtefact(context.Background(), artefactName, instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.DownloadVhtInstanceArtefact``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DownloadVhtInstanceArtefact`: *os.File
+	fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.DownloadVhtInstanceArtefact`: %v\n", resp)
 }
 ```
 
@@ -256,26 +256,26 @@ Return status of a VHT instance.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-    ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+	instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.GetVhtInstance(context.Background(), instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.GetVhtInstance``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetVhtInstance`: VhtInstanceItem
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.GetVhtInstance`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.GetVhtInstance(context.Background(), instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.GetVhtInstance``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetVhtInstance`: VhtInstanceItem
+	fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.GetVhtInstance`: %v\n", resp)
 }
 ```
 
@@ -330,27 +330,27 @@ Get the VHT artefact manager for the artefact named `artefactName` present of th
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    artefactName := "artefactName_example" // string | The URL safe name of the artefact.
-    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-    ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+	artefactName := "artefactName_example" // string | The URL safe name of the artefact.
+	instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.GetVhtInstanceArtefactManager(context.Background(), artefactName, instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.GetVhtInstanceArtefactManager``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetVhtInstanceArtefactManager`: ArtefactManagerItem
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.GetVhtInstanceArtefactManager`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.GetVhtInstanceArtefactManager(context.Background(), artefactName, instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.GetVhtInstanceArtefactManager``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetVhtInstanceArtefactManager`: ArtefactManagerItem
+	fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.GetVhtInstanceArtefactManager`: %v\n", resp)
 }
 ```
 
@@ -407,28 +407,28 @@ Instance Message Feed.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-    ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
-    limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
-    offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
+	instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+	limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
+	offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.GetVhtInstanceMessages(context.Background(), instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.GetVhtInstanceMessages``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetVhtInstanceMessages`: NotificationFeed
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.GetVhtInstanceMessages`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.GetVhtInstanceMessages(context.Background(), instanceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.GetVhtInstanceMessages``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetVhtInstanceMessages`: NotificationFeed
+	fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.GetVhtInstanceMessages`: %v\n", resp)
 }
 ```
 
@@ -485,29 +485,29 @@ List all the managers of the artefacts (e.g. binary, test input) available on a 
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-    embed := false // bool | Embedding: The whether or not to embed resources into the collection (rather than return links). (optional) (default to false)
-    ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
-    limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
-    offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
+	instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	embed := false // bool | Embedding: The whether or not to embed resources into the collection (rather than return links). (optional) (default to false)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+	limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
+	offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.ListVhtInstanceArtefactManagers(context.Background(), instanceName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.ListVhtInstanceArtefactManagers``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListVhtInstanceArtefactManagers`: ArtefactManagerCollection
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.ListVhtInstanceArtefactManagers`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.ListVhtInstanceArtefactManagers(context.Background(), instanceName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.ListVhtInstanceArtefactManagers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListVhtInstanceArtefactManagers`: ArtefactManagerCollection
+	fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.ListVhtInstanceArtefactManagers`: %v\n", resp)
 }
 ```
 
@@ -565,28 +565,28 @@ List all VHT instances requested.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-    embed := false // bool | Embedding: The whether or not to embed resources into the collection (rather than return links). (optional) (default to false)
-    ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
-    limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
-    offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	embed := false // bool | Embedding: The whether or not to embed resources into the collection (rather than return links). (optional) (default to false)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+	limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
+	offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.ListVhtInstances(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.ListVhtInstances``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListVhtInstances`: VhtInstanceCollection
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.ListVhtInstances`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.ListVhtInstances(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.ListVhtInstances``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListVhtInstances`: VhtInstanceCollection
+	fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.ListVhtInstances`: %v\n", resp)
 }
 ```
 
@@ -639,26 +639,26 @@ Starts a VHT Run job.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
-    vhtRunJobItem := *openapiclient.NewVhtRunJobItem("TODO", "TODO", true, true, "332129b3-f14d-49d2-b9be-acd2abd80c6b", false, "PENDING", false, false) // VhtRunJobItem | A VHT run job.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+	vhtRunJobItem := *openapiclient.NewVhtRunJobItem("TODO", "TODO", true, true, "332129b3-f14d-49d2-b9be-acd2abd80c6b", false, "PENDING", false, false) // VhtRunJobItem | A VHT run job.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.StartVhtRunJob(context.Background(), instanceName).VhtRunJobItem(vhtRunJobItem).AcceptVersion(acceptVersion).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.StartVhtRunJob``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `StartVhtRunJob`: VhtRunJobItem
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.StartVhtRunJob`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.StartVhtRunJob(context.Background(), instanceName).VhtRunJobItem(vhtRunJobItem).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.StartVhtRunJob``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `StartVhtRunJob`: VhtRunJobItem
+	fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.StartVhtRunJob`: %v\n", resp)
 }
 ```
 
@@ -713,25 +713,25 @@ Stop this VHT instance.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.StopVhtInstance(context.Background(), instanceName).AcceptVersion(acceptVersion).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.StopVhtInstance``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `StopVhtInstance`: VhtInstanceItem
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.StopVhtInstance`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.StopVhtInstance(context.Background(), instanceName).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.StopVhtInstance``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `StopVhtInstance`: VhtInstanceItem
+	fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.StopVhtInstance`: %v\n", resp)
 }
 ```
 
@@ -785,32 +785,32 @@ Upload and replace the named VHT artefact on the given VHT instance.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-    artefactName := "artefactName_example" // string | The URL safe name of the artefact.
-    instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
-    ifMatch := "ifMatch_example" // string | Conditional Requests: This is required in order to perform an update of a resource. The value of this header should be the `ETag` of the resource when read (before being subsequently modified by the client).
-    content := os.NewFile(1234, "some_file") // *os.File | artefact content
-    hash := "hash_example" // string | Hash of the artefact (sha256) for network resilience
-    acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-    contentMediaType := "contentMediaType_example" // string | Media type of the artefact according to https://www.iana.org/assignments/media-types/media-types.xhtml Technically redundant, but can be used by JSON Schema tools that may not be aware of the OpenAPI context. (optional)
-    size := int64(789) // int64 | size in bytes of this artefact. Technically redundant, but can be used by JSON Schema tools that may not be aware of the OpenAPI context. (optional)
-    title := "title_example" // string | Optional human readable name of the artefact. (optional)
+	artefactName := "artefactName_example" // string | The URL safe name of the artefact.
+	instanceName := "instanceName_example" // string | Unique ID of the VHT instance.
+	ifMatch := "ifMatch_example" // string | Conditional Requests: This is required in order to perform an update of a resource. The value of this header should be the `ETag` of the resource when read (before being subsequently modified by the client).
+	content := os.NewFile(1234, "some_file") // *os.File | artefact content
+	hash := "hash_example" // string | Hash of the artefact (sha256) for network resilience
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	contentMediaType := "contentMediaType_example" // string | Media type of the artefact according to https://www.iana.org/assignments/media-types/media-types.xhtml Technically redundant, but can be used by JSON Schema tools that may not be aware of the OpenAPI context. (optional)
+	size := int64(789) // int64 | size in bytes of this artefact. Technically redundant, but can be used by JSON Schema tools that may not be aware of the OpenAPI context. (optional)
+	title := "title_example" // string | Optional human readable name of the artefact. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.UploadVhtInstanceArtefact(context.Background(), artefactName, instanceName).IfMatch(ifMatch).Content(content).Hash(hash).AcceptVersion(acceptVersion).ContentMediaType(contentMediaType).Size(size).Title(title).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.UploadVhtInstanceArtefact``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UploadVhtInstanceArtefact`: ArtefactManagerItem
-    fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.UploadVhtInstanceArtefact`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VirtualHardwareTargetInstanceAPI.UploadVhtInstanceArtefact(context.Background(), artefactName, instanceName).IfMatch(ifMatch).Content(content).Hash(hash).AcceptVersion(acceptVersion).ContentMediaType(contentMediaType).Size(size).Title(title).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VirtualHardwareTargetInstanceAPI.UploadVhtInstanceArtefact``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UploadVhtInstanceArtefact`: ArtefactManagerItem
+	fmt.Fprintf(os.Stdout, "Response from `VirtualHardwareTargetInstanceAPI.UploadVhtInstanceArtefact`: %v\n", resp)
 }
 ```
 
