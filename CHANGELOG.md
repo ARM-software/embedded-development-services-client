@@ -2,6 +2,22 @@
 Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"" "1.22.2" (2024-01-10)
+========================
+
+Bugfixes
+--------
+
+- Dependency upgrade: checkout-4 (#20240110133823)
+- Dependency upgrade: setup-python-5 (#20240110133854)
+- Dependency upgrade: git-auto-commit-action-5 (#20240110133906)
+- Dependency upgrade: fetch-metadata-1.6.0 (#20240110133958)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "" "1.22.1" (2024-01-10)
 ========================
 
