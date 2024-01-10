@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // Package client defines an HTTP client for communicating with the web services.
 // It includes the definition of request/response types as well as provides helpers for calling specific helpers.
 package client
@@ -17,7 +22,7 @@ func (r *ApiListCmsisBuildersRequest) FollowBuildersLink(link string) (*CmsisBui
 	return r.ApiService.FollowBuildersLink(r, link)
 }
 
-func (a *CMSISBuildersApiService) FollowBuildersLink(r *ApiListCmsisBuildersRequest, link string) (*CmsisBuilderCollection, *http.Response, error) {
+func (a *CMSISBuildersAPIService) FollowBuildersLink(r *ApiListCmsisBuildersRequest, link string) (*CmsisBuilderCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -41,13 +46,13 @@ func (a *CMSISBuildersApiService) FollowBuildersLink(r *ApiListCmsisBuildersRequ
 	localVarFormParams := url.Values{}
 
 	if r.embed != nil {
-		localVarQueryParams.Add("embed", parameterToString(*r.embed, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -67,10 +72,10 @@ func (a *CMSISBuildersApiService) FollowBuildersLink(r *ApiListCmsisBuildersRequ
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
