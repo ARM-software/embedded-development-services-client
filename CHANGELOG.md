@@ -2,6 +2,19 @@
 Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"" "1.22.3" (2024-01-10)
+========================
+
+Bugfixes
+--------
+
+- Dependency upgrade: setup-go-5 (#20240110133841)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "" "1.22.2" (2024-01-10)
 ========================
 
