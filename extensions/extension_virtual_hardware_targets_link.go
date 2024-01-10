@@ -22,7 +22,7 @@ func (r *ApiListVhtsRequest) FollowVirtualHardwareTargetsLink(link string) (*Vht
 	return r.ApiService.FollowVirtualHardwareTargetsLink(r, link)
 }
 
-func (a *VirtualHardwareTargetApiService) FollowVirtualHardwareTargetsLink(r *ApiListVhtsRequest, link string) (*VhtCollection, *http.Response, error) {
+func (a *VirtualHardwareTargetAPIService) FollowVirtualHardwareTargetsLink(r *ApiListVhtsRequest, link string) (*VhtCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
