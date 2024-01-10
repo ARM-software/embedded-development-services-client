@@ -107,7 +107,7 @@ jobs:
         if [[ "${{ env.SERVER_UPDATE }}" ]] ; then cd-create-news-file --type feature "Updated client due to schema changes" ; fi
     - name: Commit changes
       if: env.SERVER_UPDATE != ''
-      uses: stefanzweifel/git-auto-commit-action@v4
+      uses: stefanzweifel/git-auto-commit-action@v5
       with:
         commit_message: ":sparkles: Automatic changes -> ${{ env.SERVER_UPDATE }} [ci skip]"
         file_pattern: ${{ env.go_module }}/* changes/*
