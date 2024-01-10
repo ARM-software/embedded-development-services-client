@@ -2,7 +2,7 @@ name: Build and Test
 
 # Set environment variables available in all jobs and steps
 env:
-  go_version: "1.21.0"
+  go_version: "1.21.6"
   python_version: "3.9"
 
 on:
