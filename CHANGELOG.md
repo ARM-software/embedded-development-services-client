@@ -1,4 +1,25 @@
 <!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"" "1.22.0" (2024-01-10)
+========================
+
+Features
+--------
+
+- Updated client due to schema changes (#20230203012952, #20230220012959, #20230512012853, #20230826012018, #20231106113930, #20231114012652, #20231130012822, #20231206012845, #20231223012541, #20240101013056)
+
+
+Bugfixes
+--------
+
+- Dependency upgrade: setup-python-4 (#20230227101312)
+- Dependency upgrade: setup-go-4 (#20230316100742)
+- Dependency upgrade: fetch-metadata-1.4.0 (#20230418090507)
+
+
+<!--
 Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
