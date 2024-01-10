@@ -21,10 +21,10 @@ jobs:
     needs: update-client
     steps:
       # Checkout with full history for to allow compare with base branch
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.python_version }}
       - uses: FranzDiebold/github-env-vars-action@v2
@@ -32,7 +32,7 @@ jobs:
         run: pip install continuous-delivery-scripts && pip list
       - name: Dependabot metadata
         id: dependabot-metadata
-        uses: dependabot/fetch-metadata@v1.4.0
+        uses: dependabot/fetch-metadata@v1.6.0
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Add a label

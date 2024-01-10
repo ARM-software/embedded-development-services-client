@@ -2,6 +2,19 @@
 Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"" "1.22.1" (2024-01-10)
+========================
+
+Bugfixes
+--------
+
+- Update client extension links (#20240110114027)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "" "1.22.0" (2024-01-10)
 ========================
 
