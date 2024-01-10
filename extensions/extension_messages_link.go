@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2023 Arm Limited or its affiliates and Contributors. All rights reserved.
+ * Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -22,7 +22,7 @@ func (r *ApiGetBuildMessagesRequest) FollowMessageLink(link string) (*BuildMessa
 	return r.ApiService.FollowMessageLink(r, link)
 }
 
-func (a *BuildJobsApiService) FollowMessageLink(r *ApiGetBuildMessagesRequest, link string) (*BuildMessageItem, *http.Response, error) {
+func (a *BuildJobsAPIService) FollowMessageLink(r *ApiGetBuildMessagesRequest, link string) (*BuildMessageItem, *http.Response, error) {
 
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -47,10 +47,10 @@ func (a *BuildJobsApiService) FollowMessageLink(r *ApiGetBuildMessagesRequest, l
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	var localVarHTTPContentTypes []string
@@ -70,10 +70,10 @@ func (a *BuildJobsApiService) FollowMessageLink(r *ApiGetBuildMessagesRequest, l
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -170,7 +170,7 @@ func (r *ApiGetVhtRunJobMessagesRequest) FollowMessageLink(link string) (*Notifi
 	return r.ApiService.FollowMessageLink(r, link)
 }
 
-func (a *VHTRunJobsApiService) FollowMessageLink(r *ApiGetVhtRunJobMessagesRequest, link string) (*NotificationFeed, *http.Response, error) {
+func (a *VHTRunJobsAPIService) FollowMessageLink(r *ApiGetVhtRunJobMessagesRequest, link string) (*NotificationFeed, *http.Response, error) {
 
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -195,10 +195,10 @@ func (a *VHTRunJobsApiService) FollowMessageLink(r *ApiGetVhtRunJobMessagesReque
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	var localVarHTTPContentTypes []string
@@ -218,10 +218,10 @@ func (a *VHTRunJobsApiService) FollowMessageLink(r *ApiGetVhtRunJobMessagesReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

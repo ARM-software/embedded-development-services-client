@@ -22,7 +22,7 @@ func (r *ApiListWorkspacesRequest) FollowWorkspaceLink(link string) (*WorkspaceC
 	return r.ApiService.FollowWorkspaceLink(r, link)
 }
 
-func (a *WorkspaceApiService) FollowWorkspaceLink(r *ApiListWorkspacesRequest, link string) (*WorkspaceCollection, *http.Response, error) {
+func (a *WorkspaceAPIService) FollowWorkspaceLink(r *ApiListWorkspacesRequest, link string) (*WorkspaceCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -46,13 +46,13 @@ func (a *WorkspaceApiService) FollowWorkspaceLink(r *ApiListWorkspacesRequest, l
 	localVarFormParams := url.Values{}
 
 	if r.embed != nil {
-		localVarQueryParams.Add("embed", parameterToString(*r.embed, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -72,10 +72,10 @@ func (a *WorkspaceApiService) FollowWorkspaceLink(r *ApiListWorkspacesRequest, l
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		localVarHeaderParams["Accept-Version"] = parameterToString(*r.acceptVersion, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		localVarHeaderParams["if-none-match"] = parameterToString(*r.ifNoneMatch, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
