@@ -80,7 +80,7 @@ func (o *ErrorResponse) GetFieldsOk() ([]FieldObject, bool) {
 
 // HasFields returns a boolean if a field has been set.
 func (o *ErrorResponse) HasFields() bool {
-	if o != nil && IsNil(o.Fields) {
+	if o != nil && !IsNil(o.Fields) {
 		return true
 	}
 
