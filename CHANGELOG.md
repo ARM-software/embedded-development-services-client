@@ -2,6 +2,22 @@
 Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"" "1.24.1" (2024-04-08)
+========================
+
+Bugfixes
+--------
+
+- Dependency upgrade: cache-4 (#20240118094658)
+- Dependency upgrade: golangci-lint-action-4 (#20240212090904)
+- Dependency upgrade: testify-1.9.0 (#20240304091445)
+- Dependency upgrade: fetch-metadata-2.0.0 (#20240322090837)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "" "1.24.0" (2024-03-12)
 ========================
 
