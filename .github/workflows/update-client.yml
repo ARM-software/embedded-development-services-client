@@ -90,7 +90,7 @@ jobs:
         chmod +x ./scripts/generate-client.sh
         ./scripts/generate-client.sh -i all-service-definition/all-def-flat.yaml -o ${{ env.go_module }} -d
     - name: Generate pagination extensions
-      run:
+      run: |
         cd generator
         go mod tidy
         go run main.go -i ../all-service-definition/all-def-flat.yaml -o ../client/collection_extension.gen.go
