@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"go/format"
 	"path/filepath"
-	"strings"
 	"text/template"
 
 	"github.com/ARM-software/golang-utils/utils/commonerrors"
