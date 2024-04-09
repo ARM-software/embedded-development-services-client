@@ -68,11 +68,6 @@ func GenerateDataStruct(cfg ExtensionsConfig) (d *Data, err error) {
 func GenerateTemplateFile(d *Data) (err error) {
 	t, err := template.
 		New(filepath.Base(d.TemplatePath)).
-		Funcs(template.FuncMap{
-			"trimCollectionSuffix": func(s string) string {
-				return strings.TrimSuffix(s, "Collection")
-			},
-		}).
 		ParseFS(templates, d.TemplatePath)
 	if err != nil {
 		return
