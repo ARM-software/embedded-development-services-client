@@ -6,10 +6,10 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/ARM-software/golang-utils/utils/commonerrors"
-
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/getkin/kin-openapi/openapi3"
+
+	"github.com/ARM-software/golang-utils/utils/commonerrors"
 )
 
 const (
@@ -17,7 +17,6 @@ const (
 	jsonMIME            = "application/json"
 	collectionFlag      = "x-collection"
 	notificationFeedRef = "NotificationFeed"
-	messageItemRef      = "MessageItem"
 )
 
 var ignoreItems = []string{

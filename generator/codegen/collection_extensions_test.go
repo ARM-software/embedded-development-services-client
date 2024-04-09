@@ -4,16 +4,17 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ARM-software/golang-utils/utils/filesystem"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	"github.com/ARM-software/golang-utils/utils/filesystem"
 )
 
 func TestCollectionExtensions(t *testing.T) {
 	t.Run("Test Successful Generation", func(t *testing.T) {
 		tmpDir := t.TempDir()
 		d, err := GenerateDataStruct(ExtensionsConfig{
-			Input:    filepath.Join("./testdata/all-def-flat.json"),
+			Input:    "testdata/all-def-flat.json",
 			Template: filepath.Join("templates", "collections.go.tmpl"),
 			Output:   filepath.Join(tmpDir, "test.go"),
 		})

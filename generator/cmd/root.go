@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ARM-software/embedded-development-services-client/generator/codegen"
-	configUtils "github.com/ARM-software/golang-utils/utils/config"
-
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+
+	"github.com/ARM-software/embedded-development-services-client/generator/codegen"
+	configUtils "github.com/ARM-software/golang-utils/utils/config"
 )
 
 const (

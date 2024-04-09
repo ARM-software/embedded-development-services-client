@@ -8,13 +8,13 @@ import (
 	"path/filepath"
 	"text/template"
 
-	"github.com/ARM-software/golang-utils/utils/commonerrors"
-	configUtils "github.com/ARM-software/golang-utils/utils/config"
-	"github.com/ARM-software/golang-utils/utils/filesystem"
-
 	"github.com/getkin/kin-openapi/openapi3"
 	validation "github.com/go-ozzo/ozzo-validation"
 	"golang.org/x/tools/imports"
+
+	"github.com/ARM-software/golang-utils/utils/commonerrors"
+	configUtils "github.com/ARM-software/golang-utils/utils/config"
+	"github.com/ARM-software/golang-utils/utils/filesystem"
 )
 
 var (
