@@ -89,6 +89,11 @@ jobs:
         ls all-service-definition
         chmod +x ./scripts/generate-client.sh
         ./scripts/generate-client.sh -i all-service-definition/all-def-flat.yaml -o ${{ env.go_module }} -d
+    - name: Generate pagination extensions
+      run: |
+        cd generator
+        go mod tidy
+        go run main.go -i ../all-service-definition/all-def-flat.yaml -o ../extensions/extension_entities.gen.go
     - name: Copy extensions to client
       run: |
         if [ -d ./extensions/ ] ; then cp -r extensions/. ${{ env.go_module }}/ ; fi
@@ -110,7 +115,7 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
         commit_message: ":sparkles: Automatic changes -> ${{ env.SERVER_UPDATE }} [ci skip]"
-        file_pattern: ${{ env.go_module }}/* changes/*
+        file_pattern: ${{ env.go_module }}/* changes/* extensions/*
         commit_user_name: monty-bot
         commit_user_email: monty-bot@arm.com
 
