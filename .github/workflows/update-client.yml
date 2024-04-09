@@ -93,7 +93,7 @@ jobs:
       run: |
         cd generator
         go mod tidy
-        go run main.go -i ../all-service-definition/all-def-flat.yaml -o ../extensions/collection_extension.gen.go
+        go run main.go -i ../all-service-definition/all-def-flat.yaml -o ../extensions/extension_entities.gen.go
     - name: Copy extensions to client
       run: |
         if [ -d ./extensions/ ] ; then cp -r extensions/. ${{ env.go_module }}/ ; fi

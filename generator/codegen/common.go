@@ -2,6 +2,7 @@ package codegen
 
 import (
 	"bytes"
+	"context"
 	"embed"
 	"fmt"
 	"go/format"
@@ -9,52 +10,17 @@ import (
 	"text/template"
 
 	"github.com/getkin/kin-openapi/openapi3"
-	validation "github.com/go-ozzo/ozzo-validation"
 	"golang.org/x/tools/imports"
 
 	"github.com/ARM-software/golang-utils/utils/commonerrors"
-	configUtils "github.com/ARM-software/golang-utils/utils/config"
 	"github.com/ARM-software/golang-utils/utils/filesystem"
+	"github.com/ARM-software/golang-utils/utils/parallelisation"
 )
 
 var (
 	//go:embed templates/*
 	templates embed.FS
 )
-
-type Data struct {
-	Params          any
-	SpecPath        string
-	TemplatePath    string
-	DestinationPath string
-}
-
-type ExtensionsConfig struct {
-	Input    string `mapstructure:"input"`
-	Output   string `mapstructure:"output"`
-	Template string `mapstructure:"template"`
-}
-
-func DefaultExtensionsConfig() *ExtensionsConfig {
-	return &ExtensionsConfig{
-		Input:    "",
-		Output:   "",
-		Template: "templates/collections.go.tmpl",
-	}
-}
-
-func (cfg *ExtensionsConfig) Validate() error {
-	err := configUtils.ValidateEmbedded(cfg)
-	if err != nil {
-		return err
-	}
-
-	return validation.ValidateStruct(cfg,
-		validation.Field(&cfg.Input, validation.Required),
-		validation.Field(&cfg.Output, validation.Required),
-		validation.Field(&cfg.Template, validation.Required),
-	)
-}
 
 func GenerateDataStruct(cfg ExtensionsConfig) (d *Data, err error) {
 	return &Data{
@@ -64,7 +30,7 @@ func GenerateDataStruct(cfg ExtensionsConfig) (d *Data, err error) {
 	}, nil
 }
 
-func GenerateTemplateFile(d *Data) (err error) {
+func GenerateTemplateFile(ctx context.Context, d *Data) (err error) {
 	t, err := template.
 		New(filepath.Base(d.TemplatePath)).
 		ParseFS(templates, d.TemplatePath)
@@ -72,7 +38,7 @@ func GenerateTemplateFile(d *Data) (err error) {
 		return
 	}
 
-	err = generateSourceCode(d, t)
+	err = generateSourceCode(ctx, d, t)
 	return
 }
 
@@ -92,8 +58,18 @@ func formatImports(path string, src []byte) (bytes []byte, err error) {
 	return
 }
 
-func generateSourceCode(data *Data, template *template.Template) (err error) {
+func generateSourceCode(ctx context.Context, data *Data, template *template.Template) (err error) {
 	if data == nil {
+		err = fmt.Errorf("%w: data must be defined", commonerrors.ErrUndefined)
+		return
+	}
+	if template == nil {
+		err = fmt.Errorf("%w: template must be defined", commonerrors.ErrUndefined)
+		return
+	}
+
+	err = parallelisation.DetermineContextError(ctx)
+	if err != nil {
 		return
 	}
 

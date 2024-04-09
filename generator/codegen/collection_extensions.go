@@ -13,9 +13,11 @@ import (
 )
 
 const (
-	schemaPrefix        = "#/components/schemas/"
-	jsonMIME            = "application/json"
-	collectionFlag      = "x-collection"
+	schemaPrefix   = "#/components/schemas/"
+	jsonMIME       = "application/json"
+	collectionFlag = "x-collection"
+	redactFlag     = "x-redact"
+	// Messages are a special case as they are a feed rather than a normal collection
 	notificationFeedRef = "NotificationFeed"
 )
 
@@ -204,7 +206,7 @@ func GetCollections(swagger *openapi3.T) (collections CollectionParams, err erro
 	notificationFeedCollectionsSet := mapset.NewSet[NotificationFeedCollection]()
 
 	for endpoint, pathInfo := range swagger.Paths {
-		isCollection := false
+		var isCollection bool
 
 		// if no get field then not a collection
 		if pathInfo.Get != nil {
@@ -212,6 +214,17 @@ func GetCollections(swagger *openapi3.T) (collections CollectionParams, err erro
 			if subErr != nil {
 				err = subErr
 				return
+			}
+
+			var isRedacted bool
+			if c, ok := pathInfo.Get.ExtensionProps.Extensions[redactFlag].(json.RawMessage); ok {
+				err = json.Unmarshal(c, &isRedacted)
+				if err != nil {
+					return
+				}
+			}
+			if isRedacted {
+				continue
 			}
 
 			// if get not "application/json" then it is "application/octet-stream" and collections don't have that

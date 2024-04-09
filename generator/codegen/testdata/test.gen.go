@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 package client
 
 import (
@@ -6,7 +11,7 @@ import (
 )
 
 // ============================================================================================
-// This extends ArtefactManagerItem and ArtefactManagerCollection with pagination methods
+// This extends ArtefactManagerItem and ArtefactManagerCollection definitions
 // ============================================================================================
 
 // FetchType returns the resource type
@@ -135,7 +140,7 @@ func NewArtefactManagerCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
-// This extends BuildJobItem and BuildJobCollection with pagination methods
+// This extends BuildJobItem and BuildJobCollection definitions
 // ============================================================================================
 
 // FetchType returns the resource type
@@ -264,7 +269,7 @@ func NewBuildJobCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
-// This extends CmsisBuilderItem and CmsisBuilderCollection with pagination methods
+// This extends CmsisBuilderItem and CmsisBuilderCollection definitions
 // ============================================================================================
 
 // FetchType returns the resource type
@@ -393,7 +398,7 @@ func NewCmsisBuilderCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
-// This extends CmsisIntellisenseItem and CmsisIntellisenseCollection with pagination methods
+// This extends CmsisIntellisenseItem and CmsisIntellisenseCollection definitions
 // ============================================================================================
 
 // FetchType returns the resource type
@@ -522,7 +527,7 @@ func NewCmsisIntellisenseCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
-// This extends IntellisenseJobItem and IntellisenseJobCollection with pagination methods
+// This extends IntellisenseJobItem and IntellisenseJobCollection definitions
 // ============================================================================================
 
 // FetchType returns the resource type
@@ -651,7 +656,7 @@ func NewIntellisenseJobCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
-// This extends VhtInstanceItem and VhtInstanceCollection with pagination methods
+// This extends VhtInstanceItem and VhtInstanceCollection definitions
 // ============================================================================================
 
 // FetchType returns the resource type
@@ -780,7 +785,7 @@ func NewVhtInstanceCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
-// This extends VhtItem and VhtCollection with pagination methods
+// This extends VhtItem and VhtCollection definitions
 // ============================================================================================
 
 // FetchType returns the resource type
@@ -909,7 +914,7 @@ func NewVhtCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
-// This extends VhtRunJobItem and VhtRunJobCollection with pagination methods
+// This extends VhtRunJobItem and VhtRunJobCollection definitions
 // ============================================================================================
 
 // FetchType returns the resource type
@@ -1038,7 +1043,7 @@ func NewVhtRunJobCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
-// This extends WorkspaceItem and WorkspaceCollection with pagination methods
+// This extends WorkspaceItem and WorkspaceCollection definitions
 // ============================================================================================
 
 // FetchType returns the resource type
@@ -1167,7 +1172,7 @@ func NewWorkspaceCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
-// This extends WorkspaceSourceItem and WorkspaceSourceCollection with pagination methods
+// This extends WorkspaceSourceItem and WorkspaceSourceCollection definitions
 // ============================================================================================
 
 // FetchType returns the resource type
@@ -1296,7 +1301,7 @@ func NewWorkspaceSourceCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
-// This extends MessageObject with pagination methods
+// This extends MessageObject definitions
 // ============================================================================================
 
 // FetchType returns the resource type
@@ -1337,7 +1342,7 @@ func NewMessageIterator(elements []MessageObject) (IIterator, error) {
 }
 
 // ============================================================================================
-// This extends NotificationMessageObject with pagination methods
+// This extends NotificationMessageObject definitions
 // ============================================================================================
 
 // FetchType returns the resource type
@@ -1378,7 +1383,7 @@ func NewNotificationMessageIterator(elements []NotificationMessageObject) (IIter
 }
 
 // ============================================================================================
-// This extends NotificationFeed with pagination methods
+// This extends NotificationFeed definitions
 // ============================================================================================
 
 // FetchType returns the resource type

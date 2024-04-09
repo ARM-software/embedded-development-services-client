@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"context"
 	"fmt"
 	"os"
 
@@ -28,6 +29,8 @@ var (
 var rootCmd = &cobra.Command{
 	Use: "extension-generator",
 	RunE: func(_ *cobra.Command, _ []string) (err error) {
+		ctx := context.Background()
+
 		err = configUtils.LoadFromViper(viperSession, app, &extensionConfig, codegen.DefaultExtensionsConfig())
 		if err != nil {
 			fmt.Printf("%+v\n", extensionConfig)
@@ -49,7 +52,7 @@ var rootCmd = &cobra.Command{
 			return
 		}
 
-		err = codegen.GenerateTemplateFile(d)
+		err = codegen.GenerateTemplateFile(ctx, d)
 		return
 	},
 	SilenceUsage: true, // otherwise 'Usage' is printed after any error
