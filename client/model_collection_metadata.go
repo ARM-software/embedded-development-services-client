@@ -23,42 +23,45 @@ import (
 	"fmt"
 )
 
-// checks if the CommonMetadata type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CommonMetadata{}
+// checks if the CollectionMetadata type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CollectionMetadata{}
 
-// CommonMetadata Common information present in every resource, which provides information about the resource.
-type CommonMetadata struct {
+// CollectionMetadata Information present in each resource that supports listing. This information provides information about the collection resource itself.
+type CollectionMetadata struct {
 	// Creation Time: UTC date and time when the resource was created. If this is a system created resource, this will be a fixed time unaffected by user actions.
 	Ctime time.Time `json:"ctime"`
 	// Expiry Time: UTC date and time when the resource will be removed automatically by the system and become unavailable.
 	Etime NullableTime `json:"etime,omitempty"`
 	// Last Modification Time: UTC date and time when the resource was last updated. For a resource that cannot be modified, this will be the same as `ctime`.
 	Mtime time.Time `json:"mtime"`
+	// Collection metadata: Total number of items present in the collection.
+	Total int32 `json:"total"`
 }
 
-type _CommonMetadata CommonMetadata
+type _CollectionMetadata CollectionMetadata
 
-// NewCommonMetadata instantiates a new CommonMetadata object
+// NewCollectionMetadata instantiates a new CollectionMetadata object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCommonMetadata(ctime time.Time, mtime time.Time) *CommonMetadata {
-	this := CommonMetadata{}
+func NewCollectionMetadata(ctime time.Time, mtime time.Time, total int32) *CollectionMetadata {
+	this := CollectionMetadata{}
 	this.Ctime = ctime
 	this.Mtime = mtime
+	this.Total = total
 	return &this
 }
 
-// NewCommonMetadataWithDefaults instantiates a new CommonMetadata object
+// NewCollectionMetadataWithDefaults instantiates a new CollectionMetadata object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCommonMetadataWithDefaults() *CommonMetadata {
-	this := CommonMetadata{}
+func NewCollectionMetadataWithDefaults() *CollectionMetadata {
+	this := CollectionMetadata{}
 	return &this
 }
 
 // GetCtime returns the Ctime field value
-func (o *CommonMetadata) GetCtime() time.Time {
+func (o *CollectionMetadata) GetCtime() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -69,7 +72,7 @@ func (o *CommonMetadata) GetCtime() time.Time {
 
 // GetCtimeOk returns a tuple with the Ctime field value
 // and a boolean to check if the value has been set.
-func (o *CommonMetadata) GetCtimeOk() (*time.Time, bool) {
+func (o *CollectionMetadata) GetCtimeOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -77,12 +80,12 @@ func (o *CommonMetadata) GetCtimeOk() (*time.Time, bool) {
 }
 
 // SetCtime sets field value
-func (o *CommonMetadata) SetCtime(v time.Time) {
+func (o *CollectionMetadata) SetCtime(v time.Time) {
 	o.Ctime = v
 }
 
 // GetEtime returns the Etime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CommonMetadata) GetEtime() time.Time {
+func (o *CollectionMetadata) GetEtime() time.Time {
 	if o == nil || IsNil(o.Etime.Get()) {
 		var ret time.Time
 		return ret
@@ -93,7 +96,7 @@ func (o *CommonMetadata) GetEtime() time.Time {
 // GetEtimeOk returns a tuple with the Etime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CommonMetadata) GetEtimeOk() (*time.Time, bool) {
+func (o *CollectionMetadata) GetEtimeOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -101,7 +104,7 @@ func (o *CommonMetadata) GetEtimeOk() (*time.Time, bool) {
 }
 
 // HasEtime returns a boolean if a field has been set.
-func (o *CommonMetadata) HasEtime() bool {
+func (o *CollectionMetadata) HasEtime() bool {
 	if o != nil && o.Etime.IsSet() {
 		return true
 	}
@@ -110,21 +113,21 @@ func (o *CommonMetadata) HasEtime() bool {
 }
 
 // SetEtime gets a reference to the given NullableTime and assigns it to the Etime field.
-func (o *CommonMetadata) SetEtime(v time.Time) {
+func (o *CollectionMetadata) SetEtime(v time.Time) {
 	o.Etime.Set(&v)
 }
 // SetEtimeNil sets the value for Etime to be an explicit nil
-func (o *CommonMetadata) SetEtimeNil() {
+func (o *CollectionMetadata) SetEtimeNil() {
 	o.Etime.Set(nil)
 }
 
 // UnsetEtime ensures that no value is present for Etime, not even an explicit nil
-func (o *CommonMetadata) UnsetEtime() {
+func (o *CollectionMetadata) UnsetEtime() {
 	o.Etime.Unset()
 }
 
 // GetMtime returns the Mtime field value
-func (o *CommonMetadata) GetMtime() time.Time {
+func (o *CollectionMetadata) GetMtime() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -135,7 +138,7 @@ func (o *CommonMetadata) GetMtime() time.Time {
 
 // GetMtimeOk returns a tuple with the Mtime field value
 // and a boolean to check if the value has been set.
-func (o *CommonMetadata) GetMtimeOk() (*time.Time, bool) {
+func (o *CollectionMetadata) GetMtimeOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -143,11 +146,35 @@ func (o *CommonMetadata) GetMtimeOk() (*time.Time, bool) {
 }
 
 // SetMtime sets field value
-func (o *CommonMetadata) SetMtime(v time.Time) {
+func (o *CollectionMetadata) SetMtime(v time.Time) {
 	o.Mtime = v
 }
 
-func (o CommonMetadata) MarshalJSON() ([]byte, error) {
+// GetTotal returns the Total field value
+func (o *CollectionMetadata) GetTotal() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Total
+}
+
+// GetTotalOk returns a tuple with the Total field value
+// and a boolean to check if the value has been set.
+func (o *CollectionMetadata) GetTotalOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Total, true
+}
+
+// SetTotal sets field value
+func (o *CollectionMetadata) SetTotal(v int32) {
+	o.Total = v
+}
+
+func (o CollectionMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -155,23 +182,25 @@ func (o CommonMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CommonMetadata) ToMap() (map[string]interface{}, error) {
+func (o CollectionMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["ctime"] = o.Ctime
 	if o.Etime.IsSet() {
 		toSerialize["etime"] = o.Etime.Get()
 	}
 	toSerialize["mtime"] = o.Mtime
+	toSerialize["total"] = o.Total
 	return toSerialize, nil
 }
 
-func (o *CommonMetadata) UnmarshalJSON(data []byte) (err error) {
+func (o *CollectionMetadata) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"ctime",
 		"mtime",
+		"total",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -188,53 +217,53 @@ func (o *CommonMetadata) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varCommonMetadata := _CommonMetadata{}
+	varCollectionMetadata := _CollectionMetadata{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCommonMetadata)
+	err = decoder.Decode(&varCollectionMetadata)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CommonMetadata(varCommonMetadata)
+	*o = CollectionMetadata(varCollectionMetadata)
 
 	return err
 }
 
-type NullableCommonMetadata struct {
-	value *CommonMetadata
+type NullableCollectionMetadata struct {
+	value *CollectionMetadata
 	isSet bool
 }
 
-func (v NullableCommonMetadata) Get() *CommonMetadata {
+func (v NullableCollectionMetadata) Get() *CollectionMetadata {
 	return v.value
 }
 
-func (v *NullableCommonMetadata) Set(val *CommonMetadata) {
+func (v *NullableCollectionMetadata) Set(val *CollectionMetadata) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCommonMetadata) IsSet() bool {
+func (v NullableCollectionMetadata) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCommonMetadata) Unset() {
+func (v *NullableCollectionMetadata) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCommonMetadata(val *CommonMetadata) *NullableCommonMetadata {
-	return &NullableCommonMetadata{value: val, isSet: true}
+func NewNullableCollectionMetadata(val *CollectionMetadata) *NullableCollectionMetadata {
+	return &NullableCollectionMetadata{value: val, isSet: true}
 }
 
-func (v NullableCommonMetadata) MarshalJSON() ([]byte, error) {
+func (v NullableCollectionMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCommonMetadata) UnmarshalJSON(src []byte) error {
+func (v *NullableCollectionMetadata) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

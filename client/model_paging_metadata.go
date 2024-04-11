@@ -30,17 +30,17 @@ var _ MappedNullable = &PagingMetadata{}
 type PagingMetadata struct {
 	// Paging metadata: The number of items returned in this message.
 	Count int32 `json:"count"`
-	// Creation Time: UTC date and time (in RFC3339 format) when the resource was created. If this is a system created resource, this will be a fixed time unaffected by user actions.
+	// Creation Time: UTC date and time when the resource was created. If this is a system created resource, this will be a fixed time unaffected by user actions.
 	Ctime time.Time `json:"ctime"`
-	// Expiry Time: UTC date and time (in RFC3339 format) when the resource will be removed automatically by the system and become unavailable.
+	// Expiry Time: UTC date and time when the resource will be removed automatically by the system and become unavailable.
 	Etime NullableTime `json:"etime,omitempty"`
 	// Paging metadata: The limit on the number of items to return.
 	Limit int32 `json:"limit"`
-	// Last Modification Time: UTC date and time (in RFC3339 format) when the resource was last updated. For a resource that cannot be modified this will be the same as `ctime`.
+	// Last Modification Time: UTC date and time when the resource was last updated. For a resource that cannot be modified, this will be the same as `ctime`.
 	Mtime time.Time `json:"mtime"`
 	// Paging metadata: The index of the first item returned.
 	Offset int32 `json:"offset"`
-	// Paging metadata: Total number of items that can be paged through.
+	// Collection metadata: Total number of items present in the collection.
 	Total int32 `json:"total"`
 }
 

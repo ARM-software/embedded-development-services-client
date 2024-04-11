@@ -27,37 +27,37 @@ import (
 )
 
 
-// BuildJobsAPIService BuildJobsAPI service
-type BuildJobsAPIService service
+// GenericWorkJobsAPIService GenericWorkJobsAPI service
+type GenericWorkJobsAPIService service
 
-type ApiCancelBuildJobRequest struct {
+type ApiCancelGenericWorkJobRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsAPIService
+	ApiService *GenericWorkJobsAPIService
 	jobName string
 	acceptVersion *string
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiCancelBuildJobRequest) AcceptVersion(acceptVersion string) ApiCancelBuildJobRequest {
+func (r ApiCancelGenericWorkJobRequest) AcceptVersion(acceptVersion string) ApiCancelGenericWorkJobRequest {
 	r.acceptVersion = &acceptVersion
 	return r
 }
 
-func (r ApiCancelBuildJobRequest) Execute() (*BuildJobItem, *http.Response, error) {
-	return r.ApiService.CancelBuildJobExecute(r)
+func (r ApiCancelGenericWorkJobRequest) Execute() (*GenericWorkJobItem, *http.Response, error) {
+	return r.ApiService.CancelGenericWorkJobExecute(r)
 }
 
 /*
-CancelBuildJob Cancel a Build Job
+CancelGenericWorkJob Cancel an Generic Work Job.
 
-This will cancel a build job that is in progress. All messages associated with the build will be retained.
+This will cancel a job that is in progress. All messages associated with it will be retained.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param jobName Unique ID of the Build Job.
- @return ApiCancelBuildJobRequest
+ @param jobName Unique ID of the generic work Job.
+ @return ApiCancelGenericWorkJobRequest
 */
-func (a *BuildJobsAPIService) CancelBuildJob(ctx context.Context, jobName string) ApiCancelBuildJobRequest {
-	return ApiCancelBuildJobRequest{
+func (a *GenericWorkJobsAPIService) CancelGenericWorkJob(ctx context.Context, jobName string) ApiCancelGenericWorkJobRequest {
+	return ApiCancelGenericWorkJobRequest{
 		ApiService: a,
 		ctx: ctx,
 		jobName: jobName,
@@ -65,21 +65,21 @@ func (a *BuildJobsAPIService) CancelBuildJob(ctx context.Context, jobName string
 }
 
 // Execute executes the request
-//  @return BuildJobItem
-func (a *BuildJobsAPIService) CancelBuildJobExecute(r ApiCancelBuildJobRequest) (*BuildJobItem, *http.Response, error) {
+//  @return GenericWorkJobItem
+func (a *GenericWorkJobsAPIService) CancelGenericWorkJobExecute(r ApiCancelGenericWorkJobRequest) (*GenericWorkJobItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BuildJobItem
+		localVarReturnValue  *GenericWorkJobItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.CancelBuildJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GenericWorkJobsAPIService.CancelGenericWorkJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/build-jobs/{jobName}/cancel"
+	localVarPath := localBasePath + "/generic-work-jobs/{jobName}/cancel"
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -219,34 +219,34 @@ func (a *BuildJobsAPIService) CancelBuildJobExecute(r ApiCancelBuildJobRequest) 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteBuildJobRequest struct {
+type ApiDeleteGenericWorkJobRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsAPIService
+	ApiService *GenericWorkJobsAPIService
 	jobName string
 	acceptVersion *string
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiDeleteBuildJobRequest) AcceptVersion(acceptVersion string) ApiDeleteBuildJobRequest {
+func (r ApiDeleteGenericWorkJobRequest) AcceptVersion(acceptVersion string) ApiDeleteGenericWorkJobRequest {
 	r.acceptVersion = &acceptVersion
 	return r
 }
 
-func (r ApiDeleteBuildJobRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteBuildJobExecute(r)
+func (r ApiDeleteGenericWorkJobRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteGenericWorkJobExecute(r)
 }
 
 /*
-DeleteBuildJob Delete a Build Job
+DeleteGenericWorkJob Delete an Generic Work Job.
 
-Deletes a build job along with all artefacts and messages associated with it. Deleting a build job is only possible if it has already completed or been cancelled.
+Deletes a job along with artefacts and messages associated with it. Deleting a job is only possible if it has already completed or been cancelled.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param jobName Unique ID of the Build Job.
- @return ApiDeleteBuildJobRequest
+ @param jobName Unique ID of the generic work Job.
+ @return ApiDeleteGenericWorkJobRequest
 */
-func (a *BuildJobsAPIService) DeleteBuildJob(ctx context.Context, jobName string) ApiDeleteBuildJobRequest {
-	return ApiDeleteBuildJobRequest{
+func (a *GenericWorkJobsAPIService) DeleteGenericWorkJob(ctx context.Context, jobName string) ApiDeleteGenericWorkJobRequest {
+	return ApiDeleteGenericWorkJobRequest{
 		ApiService: a,
 		ctx: ctx,
 		jobName: jobName,
@@ -254,19 +254,19 @@ func (a *BuildJobsAPIService) DeleteBuildJob(ctx context.Context, jobName string
 }
 
 // Execute executes the request
-func (a *BuildJobsAPIService) DeleteBuildJobExecute(r ApiDeleteBuildJobRequest) (*http.Response, error) {
+func (a *GenericWorkJobsAPIService) DeleteGenericWorkJobExecute(r ApiDeleteGenericWorkJobRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.DeleteBuildJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GenericWorkJobsAPIService.DeleteGenericWorkJob")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/build-jobs/{jobName}"
+	localVarPath := localBasePath + "/generic-work-jobs/{jobName}"
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -397,215 +397,41 @@ func (a *BuildJobsAPIService) DeleteBuildJobExecute(r ApiDeleteBuildJobRequest) 
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetBuildArtefactRequest struct {
+type ApiGetGenericWorkJobRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsAPIService
-	artefactName string
-	jobName string
-	acceptVersion *string
-}
-
-// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiGetBuildArtefactRequest) AcceptVersion(acceptVersion string) ApiGetBuildArtefactRequest {
-	r.acceptVersion = &acceptVersion
-	return r
-}
-
-func (r ApiGetBuildArtefactRequest) Execute() (*os.File, *http.Response, error) {
-	return r.ApiService.GetBuildArtefactExecute(r)
-}
-
-/*
-GetBuildArtefact Download the named Build Artefact for the given Build Job.
-
-An artefact represents a product of a job.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param artefactName Unique ID of a Job Artefact.
- @param jobName Unique ID of the Build Job.
- @return ApiGetBuildArtefactRequest
-
-Deprecated
-*/
-func (a *BuildJobsAPIService) GetBuildArtefact(ctx context.Context, artefactName string, jobName string) ApiGetBuildArtefactRequest {
-	return ApiGetBuildArtefactRequest{
-		ApiService: a,
-		ctx: ctx,
-		artefactName: artefactName,
-		jobName: jobName,
-	}
-}
-
-// Execute executes the request
-//  @return *os.File
-// Deprecated
-func (a *BuildJobsAPIService) GetBuildArtefactExecute(r ApiGetBuildArtefactRequest) (*os.File, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *os.File
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.GetBuildArtefact")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/build-jobs/{jobName}/artefacts/{artefactName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterValueToString(r.artefactName, "artefactName"), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.acceptVersion != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 406 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetBuildJobRequest struct {
-	ctx context.Context
-	ApiService *BuildJobsAPIService
+	ApiService *GenericWorkJobsAPIService
 	jobName string
 	acceptVersion *string
 	ifNoneMatch *string
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiGetBuildJobRequest) AcceptVersion(acceptVersion string) ApiGetBuildJobRequest {
+func (r ApiGetGenericWorkJobRequest) AcceptVersion(acceptVersion string) ApiGetGenericWorkJobRequest {
 	r.acceptVersion = &acceptVersion
 	return r
 }
 
 // Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
-func (r ApiGetBuildJobRequest) IfNoneMatch(ifNoneMatch string) ApiGetBuildJobRequest {
+func (r ApiGetGenericWorkJobRequest) IfNoneMatch(ifNoneMatch string) ApiGetGenericWorkJobRequest {
 	r.ifNoneMatch = &ifNoneMatch
 	return r
 }
 
-func (r ApiGetBuildJobRequest) Execute() (*BuildJobItem, *http.Response, error) {
-	return r.ApiService.GetBuildJobExecute(r)
+func (r ApiGetGenericWorkJobRequest) Execute() (*GenericWorkJobItem, *http.Response, error) {
+	return r.ApiService.GetGenericWorkJobExecute(r)
 }
 
 /*
-GetBuildJob Return status of a Build Job.
+GetGenericWorkJob Return status of an Generic Work Job.
 
-A build job represents the status of a build process (compilation and linking) being executed by a builder.
+An generic work job represents the status of a work job process being executed by an generic worker.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param jobName Unique ID of the Build Job.
- @return ApiGetBuildJobRequest
+ @param jobName Unique ID of the generic work Job.
+ @return ApiGetGenericWorkJobRequest
 */
-func (a *BuildJobsAPIService) GetBuildJob(ctx context.Context, jobName string) ApiGetBuildJobRequest {
-	return ApiGetBuildJobRequest{
+func (a *GenericWorkJobsAPIService) GetGenericWorkJob(ctx context.Context, jobName string) ApiGetGenericWorkJobRequest {
+	return ApiGetGenericWorkJobRequest{
 		ApiService: a,
 		ctx: ctx,
 		jobName: jobName,
@@ -613,21 +439,21 @@ func (a *BuildJobsAPIService) GetBuildJob(ctx context.Context, jobName string) A
 }
 
 // Execute executes the request
-//  @return BuildJobItem
-func (a *BuildJobsAPIService) GetBuildJobExecute(r ApiGetBuildJobRequest) (*BuildJobItem, *http.Response, error) {
+//  @return GenericWorkJobItem
+func (a *GenericWorkJobsAPIService) GetGenericWorkJobExecute(r ApiGetGenericWorkJobRequest) (*GenericWorkJobItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BuildJobItem
+		localVarReturnValue  *GenericWorkJobItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.GetBuildJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GenericWorkJobsAPIService.GetGenericWorkJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/build-jobs/{jobName}"
+	localVarPath := localBasePath + "/generic-work-jobs/{jobName}"
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -748,9 +574,9 @@ func (a *BuildJobsAPIService) GetBuildJobExecute(r ApiGetBuildJobRequest) (*Buil
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetBuildJobArtefactManagerRequest struct {
+type ApiGetGenericWorkJobArtefactManagerRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsAPIService
+	ApiService *GenericWorkJobsAPIService
 	artefactName string
 	jobName string
 	acceptVersion *string
@@ -758,34 +584,34 @@ type ApiGetBuildJobArtefactManagerRequest struct {
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiGetBuildJobArtefactManagerRequest) AcceptVersion(acceptVersion string) ApiGetBuildJobArtefactManagerRequest {
+func (r ApiGetGenericWorkJobArtefactManagerRequest) AcceptVersion(acceptVersion string) ApiGetGenericWorkJobArtefactManagerRequest {
 	r.acceptVersion = &acceptVersion
 	return r
 }
 
 // Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
-func (r ApiGetBuildJobArtefactManagerRequest) IfNoneMatch(ifNoneMatch string) ApiGetBuildJobArtefactManagerRequest {
+func (r ApiGetGenericWorkJobArtefactManagerRequest) IfNoneMatch(ifNoneMatch string) ApiGetGenericWorkJobArtefactManagerRequest {
 	r.ifNoneMatch = &ifNoneMatch
 	return r
 }
 
-func (r ApiGetBuildJobArtefactManagerRequest) Execute() (*ArtefactManagerItem, *http.Response, error) {
-	return r.ApiService.GetBuildJobArtefactManagerExecute(r)
+func (r ApiGetGenericWorkJobArtefactManagerRequest) Execute() (*ArtefactManagerItem, *http.Response, error) {
+	return r.ApiService.GetGenericWorkJobArtefactManagerExecute(r)
 }
 
 /*
-GetBuildJobArtefactManager Get the corresponding Build Job artefact manager.
+GetGenericWorkJobArtefactManager Get the Generic Work Job artefact manager for the artefact named `artefactName` present of job.
 
-An output represents a product/artefact of the build process such as a binary file.
-The managers enable their download.
+An output represents a product/artefact of the work job process.
+The managers enable their download and provides metadata about the artefact.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param artefactName Unique ID of a Job Artefact.
- @param jobName Unique ID of the Build Job.
- @return ApiGetBuildJobArtefactManagerRequest
+ @param jobName Unique ID of the generic work Job.
+ @return ApiGetGenericWorkJobArtefactManagerRequest
 */
-func (a *BuildJobsAPIService) GetBuildJobArtefactManager(ctx context.Context, artefactName string, jobName string) ApiGetBuildJobArtefactManagerRequest {
-	return ApiGetBuildJobArtefactManagerRequest{
+func (a *GenericWorkJobsAPIService) GetGenericWorkJobArtefactManager(ctx context.Context, artefactName string, jobName string) ApiGetGenericWorkJobArtefactManagerRequest {
+	return ApiGetGenericWorkJobArtefactManagerRequest{
 		ApiService: a,
 		ctx: ctx,
 		artefactName: artefactName,
@@ -795,7 +621,7 @@ func (a *BuildJobsAPIService) GetBuildJobArtefactManager(ctx context.Context, ar
 
 // Execute executes the request
 //  @return ArtefactManagerItem
-func (a *BuildJobsAPIService) GetBuildJobArtefactManagerExecute(r ApiGetBuildJobArtefactManagerRequest) (*ArtefactManagerItem, *http.Response, error) {
+func (a *GenericWorkJobsAPIService) GetGenericWorkJobArtefactManagerExecute(r ApiGetGenericWorkJobArtefactManagerRequest) (*ArtefactManagerItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -803,12 +629,12 @@ func (a *BuildJobsAPIService) GetBuildJobArtefactManagerExecute(r ApiGetBuildJob
 		localVarReturnValue  *ArtefactManagerItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.GetBuildJobArtefactManager")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GenericWorkJobsAPIService.GetGenericWorkJobArtefactManager")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/build-jobs/{jobName}/outputs/{artefactName}"
+	localVarPath := localBasePath + "/generic-work-jobs/{jobName}/artefacts/{artefactName}"
 	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterValueToString(r.artefactName, "artefactName"), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 
@@ -930,9 +756,9 @@ func (a *BuildJobsAPIService) GetBuildJobArtefactManagerExecute(r ApiGetBuildJob
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetBuildMessagesRequest struct {
+type ApiGetGenericWorkJobMessagesRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsAPIService
+	ApiService *GenericWorkJobsAPIService
 	jobName string
 	acceptVersion *string
 	ifNoneMatch *string
@@ -941,44 +767,44 @@ type ApiGetBuildMessagesRequest struct {
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiGetBuildMessagesRequest) AcceptVersion(acceptVersion string) ApiGetBuildMessagesRequest {
+func (r ApiGetGenericWorkJobMessagesRequest) AcceptVersion(acceptVersion string) ApiGetGenericWorkJobMessagesRequest {
 	r.acceptVersion = &acceptVersion
 	return r
 }
 
 // Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
-func (r ApiGetBuildMessagesRequest) IfNoneMatch(ifNoneMatch string) ApiGetBuildMessagesRequest {
+func (r ApiGetGenericWorkJobMessagesRequest) IfNoneMatch(ifNoneMatch string) ApiGetGenericWorkJobMessagesRequest {
 	r.ifNoneMatch = &ifNoneMatch
 	return r
 }
 
 // Paging: The maximum number of items to return in a resource.
-func (r ApiGetBuildMessagesRequest) Limit(limit int32) ApiGetBuildMessagesRequest {
+func (r ApiGetGenericWorkJobMessagesRequest) Limit(limit int32) ApiGetGenericWorkJobMessagesRequest {
 	r.limit = &limit
 	return r
 }
 
 // Paging:  The index of the first item to return in the resource.
-func (r ApiGetBuildMessagesRequest) Offset(offset int32) ApiGetBuildMessagesRequest {
+func (r ApiGetGenericWorkJobMessagesRequest) Offset(offset int32) ApiGetGenericWorkJobMessagesRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiGetBuildMessagesRequest) Execute() (*BuildMessageItem, *http.Response, error) {
-	return r.ApiService.GetBuildMessagesExecute(r)
+func (r ApiGetGenericWorkJobMessagesRequest) Execute() (*NotificationFeed, *http.Response, error) {
+	return r.ApiService.GetGenericWorkJobMessagesExecute(r)
 }
 
 /*
-GetBuildMessages Build Message Feed.
+GetGenericWorkJobMessages GenericWorkJob Message Feed.
 
-Retrieve and page through the build messages for a given build.
+Retrieve and page through the messages for a given job.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param jobName Unique ID of the Build Job.
- @return ApiGetBuildMessagesRequest
+ @param jobName Unique ID of the generic work Job.
+ @return ApiGetGenericWorkJobMessagesRequest
 */
-func (a *BuildJobsAPIService) GetBuildMessages(ctx context.Context, jobName string) ApiGetBuildMessagesRequest {
-	return ApiGetBuildMessagesRequest{
+func (a *GenericWorkJobsAPIService) GetGenericWorkJobMessages(ctx context.Context, jobName string) ApiGetGenericWorkJobMessagesRequest {
+	return ApiGetGenericWorkJobMessagesRequest{
 		ApiService: a,
 		ctx: ctx,
 		jobName: jobName,
@@ -986,21 +812,21 @@ func (a *BuildJobsAPIService) GetBuildMessages(ctx context.Context, jobName stri
 }
 
 // Execute executes the request
-//  @return BuildMessageItem
-func (a *BuildJobsAPIService) GetBuildMessagesExecute(r ApiGetBuildMessagesRequest) (*BuildMessageItem, *http.Response, error) {
+//  @return NotificationFeed
+func (a *GenericWorkJobsAPIService) GetGenericWorkJobMessagesExecute(r ApiGetGenericWorkJobMessagesRequest) (*NotificationFeed, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BuildMessageItem
+		localVarReturnValue  *NotificationFeed
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.GetBuildMessages")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GenericWorkJobsAPIService.GetGenericWorkJobMessages")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/build-jobs/{jobName}/messages"
+	localVarPath := localBasePath + "/generic-work-jobs/{jobName}/messages"
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1133,9 +959,9 @@ func (a *BuildJobsAPIService) GetBuildMessagesExecute(r ApiGetBuildMessagesReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetBuildOutputArtefactRequest struct {
+type ApiGetGenericWorkJobOutputArtefactRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsAPIService
+	ApiService *GenericWorkJobsAPIService
 	artefactName string
 	jobName string
 	acceptVersion *string
@@ -1143,33 +969,33 @@ type ApiGetBuildOutputArtefactRequest struct {
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiGetBuildOutputArtefactRequest) AcceptVersion(acceptVersion string) ApiGetBuildOutputArtefactRequest {
+func (r ApiGetGenericWorkJobOutputArtefactRequest) AcceptVersion(acceptVersion string) ApiGetGenericWorkJobOutputArtefactRequest {
 	r.acceptVersion = &acceptVersion
 	return r
 }
 
 // Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
-func (r ApiGetBuildOutputArtefactRequest) IfNoneMatch(ifNoneMatch string) ApiGetBuildOutputArtefactRequest {
+func (r ApiGetGenericWorkJobOutputArtefactRequest) IfNoneMatch(ifNoneMatch string) ApiGetGenericWorkJobOutputArtefactRequest {
 	r.ifNoneMatch = &ifNoneMatch
 	return r
 }
 
-func (r ApiGetBuildOutputArtefactRequest) Execute() (*os.File, *http.Response, error) {
-	return r.ApiService.GetBuildOutputArtefactExecute(r)
+func (r ApiGetGenericWorkJobOutputArtefactRequest) Execute() (*os.File, *http.Response, error) {
+	return r.ApiService.GetGenericWorkJobOutputArtefactExecute(r)
 }
 
 /*
-GetBuildOutputArtefact Download the build artefact for the given build job.
+GetGenericWorkJobOutputArtefact Download the artefact for the corresponding generic work job.
 
 An artefact represents a product of a job.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param artefactName Unique ID of a Job Artefact.
- @param jobName Unique ID of the Build Job.
- @return ApiGetBuildOutputArtefactRequest
+ @param jobName Unique ID of the generic work Job.
+ @return ApiGetGenericWorkJobOutputArtefactRequest
 */
-func (a *BuildJobsAPIService) GetBuildOutputArtefact(ctx context.Context, artefactName string, jobName string) ApiGetBuildOutputArtefactRequest {
-	return ApiGetBuildOutputArtefactRequest{
+func (a *GenericWorkJobsAPIService) GetGenericWorkJobOutputArtefact(ctx context.Context, artefactName string, jobName string) ApiGetGenericWorkJobOutputArtefactRequest {
+	return ApiGetGenericWorkJobOutputArtefactRequest{
 		ApiService: a,
 		ctx: ctx,
 		artefactName: artefactName,
@@ -1179,7 +1005,7 @@ func (a *BuildJobsAPIService) GetBuildOutputArtefact(ctx context.Context, artefa
 
 // Execute executes the request
 //  @return *os.File
-func (a *BuildJobsAPIService) GetBuildOutputArtefactExecute(r ApiGetBuildOutputArtefactRequest) (*os.File, *http.Response, error) {
+func (a *GenericWorkJobsAPIService) GetGenericWorkJobOutputArtefactExecute(r ApiGetGenericWorkJobOutputArtefactRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1187,12 +1013,12 @@ func (a *BuildJobsAPIService) GetBuildOutputArtefactExecute(r ApiGetBuildOutputA
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.GetBuildOutputArtefact")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GenericWorkJobsAPIService.GetGenericWorkJobOutputArtefact")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/build-jobs/{jobName}/outputs/{artefactName}/artefact"
+	localVarPath := localBasePath + "/generic-work-jobs/{jobName}/artefacts/{artefactName}/artefact"
 	localVarPath = strings.Replace(localVarPath, "{"+"artefactName"+"}", parameterValueToString(r.artefactName, "artefactName"), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 
@@ -1314,416 +1140,9 @@ func (a *BuildJobsAPIService) GetBuildOutputArtefactExecute(r ApiGetBuildOutputA
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListBuildArtefactsRequest struct {
+type ApiListGenericWorkJobArtefactManagersRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsAPIService
-	jobName string
-	acceptVersion *string
-	ifNoneMatch *string
-	limit *int32
-	offset *int32
-}
-
-// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiListBuildArtefactsRequest) AcceptVersion(acceptVersion string) ApiListBuildArtefactsRequest {
-	r.acceptVersion = &acceptVersion
-	return r
-}
-
-// Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
-func (r ApiListBuildArtefactsRequest) IfNoneMatch(ifNoneMatch string) ApiListBuildArtefactsRequest {
-	r.ifNoneMatch = &ifNoneMatch
-	return r
-}
-
-// Paging: The maximum number of items to return in a resource.
-func (r ApiListBuildArtefactsRequest) Limit(limit int32) ApiListBuildArtefactsRequest {
-	r.limit = &limit
-	return r
-}
-
-// Paging:  The index of the first item to return in the resource.
-func (r ApiListBuildArtefactsRequest) Offset(offset int32) ApiListBuildArtefactsRequest {
-	r.offset = &offset
-	return r
-}
-
-func (r ApiListBuildArtefactsRequest) Execute() (*SimpleCollection, *http.Response, error) {
-	return r.ApiService.ListBuildArtefactsExecute(r)
-}
-
-/*
-ListBuildArtefacts List all the available Build Artefacts for the given Build Job.
-
-An artefact represents a product of the build process such as a binary file.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param jobName Unique ID of the Build Job.
- @return ApiListBuildArtefactsRequest
-
-Deprecated
-*/
-func (a *BuildJobsAPIService) ListBuildArtefacts(ctx context.Context, jobName string) ApiListBuildArtefactsRequest {
-	return ApiListBuildArtefactsRequest{
-		ApiService: a,
-		ctx: ctx,
-		jobName: jobName,
-	}
-}
-
-// Execute executes the request
-//  @return SimpleCollection
-// Deprecated
-func (a *BuildJobsAPIService) ListBuildArtefactsExecute(r ApiListBuildArtefactsRequest) (*SimpleCollection, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SimpleCollection
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.ListBuildArtefacts")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/build-jobs/{jobName}/artefacts/"
-	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
-	} else {
-		var defaultValue int32 = 20
-		r.limit = &defaultValue
-	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
-	} else {
-		var defaultValue int32 = 0
-		r.offset = &defaultValue
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.acceptVersion != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
-	}
-	if r.ifNoneMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 406 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiListBuildJobRequest struct {
-	ctx context.Context
-	ApiService *BuildJobsAPIService
-	acceptVersion *string
-	embed *bool
-	ifNoneMatch *string
-	limit *int32
-	offset *int32
-}
-
-// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiListBuildJobRequest) AcceptVersion(acceptVersion string) ApiListBuildJobRequest {
-	r.acceptVersion = &acceptVersion
-	return r
-}
-
-// Embedding: The whether or not to embed resources into the collection (rather than return links).
-func (r ApiListBuildJobRequest) Embed(embed bool) ApiListBuildJobRequest {
-	r.embed = &embed
-	return r
-}
-
-// Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
-func (r ApiListBuildJobRequest) IfNoneMatch(ifNoneMatch string) ApiListBuildJobRequest {
-	r.ifNoneMatch = &ifNoneMatch
-	return r
-}
-
-// Paging: The maximum number of items to return in a resource.
-func (r ApiListBuildJobRequest) Limit(limit int32) ApiListBuildJobRequest {
-	r.limit = &limit
-	return r
-}
-
-// Paging:  The index of the first item to return in the resource.
-func (r ApiListBuildJobRequest) Offset(offset int32) ApiListBuildJobRequest {
-	r.offset = &offset
-	return r
-}
-
-func (r ApiListBuildJobRequest) Execute() (*BuildJobCollection, *http.Response, error) {
-	return r.ApiService.ListBuildJobExecute(r)
-}
-
-/*
-ListBuildJob List all Build Jobs.
-
-This returns a collection resource that lists all in progress or recently completed build jobs. The build jobs for all builders are in the same collection.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListBuildJobRequest
-*/
-func (a *BuildJobsAPIService) ListBuildJob(ctx context.Context) ApiListBuildJobRequest {
-	return ApiListBuildJobRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return BuildJobCollection
-func (a *BuildJobsAPIService) ListBuildJobExecute(r ApiListBuildJobRequest) (*BuildJobCollection, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *BuildJobCollection
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.ListBuildJob")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/build-jobs/"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "")
-	} else {
-		var defaultValue bool = false
-		r.embed = &defaultValue
-	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
-	} else {
-		var defaultValue int32 = 20
-		r.limit = &defaultValue
-	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
-	} else {
-		var defaultValue int32 = 0
-		r.offset = &defaultValue
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.acceptVersion != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
-	}
-	if r.ifNoneMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 406 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiListBuildOutputManagersRequest struct {
-	ctx context.Context
-	ApiService *BuildJobsAPIService
+	ApiService *GenericWorkJobsAPIService
 	jobName string
 	acceptVersion *string
 	embed *bool
@@ -1733,51 +1152,50 @@ type ApiListBuildOutputManagersRequest struct {
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiListBuildOutputManagersRequest) AcceptVersion(acceptVersion string) ApiListBuildOutputManagersRequest {
+func (r ApiListGenericWorkJobArtefactManagersRequest) AcceptVersion(acceptVersion string) ApiListGenericWorkJobArtefactManagersRequest {
 	r.acceptVersion = &acceptVersion
 	return r
 }
 
 // Embedding: The whether or not to embed resources into the collection (rather than return links).
-func (r ApiListBuildOutputManagersRequest) Embed(embed bool) ApiListBuildOutputManagersRequest {
+func (r ApiListGenericWorkJobArtefactManagersRequest) Embed(embed bool) ApiListGenericWorkJobArtefactManagersRequest {
 	r.embed = &embed
 	return r
 }
 
 // Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
-func (r ApiListBuildOutputManagersRequest) IfNoneMatch(ifNoneMatch string) ApiListBuildOutputManagersRequest {
+func (r ApiListGenericWorkJobArtefactManagersRequest) IfNoneMatch(ifNoneMatch string) ApiListGenericWorkJobArtefactManagersRequest {
 	r.ifNoneMatch = &ifNoneMatch
 	return r
 }
 
 // Paging: The maximum number of items to return in a resource.
-func (r ApiListBuildOutputManagersRequest) Limit(limit int32) ApiListBuildOutputManagersRequest {
+func (r ApiListGenericWorkJobArtefactManagersRequest) Limit(limit int32) ApiListGenericWorkJobArtefactManagersRequest {
 	r.limit = &limit
 	return r
 }
 
 // Paging:  The index of the first item to return in the resource.
-func (r ApiListBuildOutputManagersRequest) Offset(offset int32) ApiListBuildOutputManagersRequest {
+func (r ApiListGenericWorkJobArtefactManagersRequest) Offset(offset int32) ApiListGenericWorkJobArtefactManagersRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiListBuildOutputManagersRequest) Execute() (*ArtefactManagerCollection, *http.Response, error) {
-	return r.ApiService.ListBuildOutputManagersExecute(r)
+func (r ApiListGenericWorkJobArtefactManagersRequest) Execute() (*ArtefactManagerCollection, *http.Response, error) {
+	return r.ApiService.ListGenericWorkJobArtefactManagersExecute(r)
 }
 
 /*
-ListBuildOutputManagers List all the available managers of Build Artefacts for the given Build Job.
+ListGenericWorkJobArtefactManagers Get the list of artefact managers for the given generic work job.
 
-An output represents a product/artefact of the build process such as a binary file.
-The managers enable their download and provide metadata about the artefacts.
+An artefact manager provides metadata about an artefact as well as ways to download it.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param jobName Unique ID of the Build Job.
- @return ApiListBuildOutputManagersRequest
+ @param jobName Unique ID of the generic work Job.
+ @return ApiListGenericWorkJobArtefactManagersRequest
 */
-func (a *BuildJobsAPIService) ListBuildOutputManagers(ctx context.Context, jobName string) ApiListBuildOutputManagersRequest {
-	return ApiListBuildOutputManagersRequest{
+func (a *GenericWorkJobsAPIService) ListGenericWorkJobArtefactManagers(ctx context.Context, jobName string) ApiListGenericWorkJobArtefactManagersRequest {
+	return ApiListGenericWorkJobArtefactManagersRequest{
 		ApiService: a,
 		ctx: ctx,
 		jobName: jobName,
@@ -1786,7 +1204,7 @@ func (a *BuildJobsAPIService) ListBuildOutputManagers(ctx context.Context, jobNa
 
 // Execute executes the request
 //  @return ArtefactManagerCollection
-func (a *BuildJobsAPIService) ListBuildOutputManagersExecute(r ApiListBuildOutputManagersRequest) (*ArtefactManagerCollection, *http.Response, error) {
+func (a *GenericWorkJobsAPIService) ListGenericWorkJobArtefactManagersExecute(r ApiListGenericWorkJobArtefactManagersRequest) (*ArtefactManagerCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1794,12 +1212,12 @@ func (a *BuildJobsAPIService) ListBuildOutputManagersExecute(r ApiListBuildOutpu
 		localVarReturnValue  *ArtefactManagerCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.ListBuildOutputManagers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GenericWorkJobsAPIService.ListGenericWorkJobArtefactManagers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/build-jobs/{jobName}/outputs/"
+	localVarPath := localBasePath + "/generic-work-jobs/{jobName}/artefacts/"
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1938,41 +1356,242 @@ func (a *BuildJobsAPIService) ListBuildOutputManagersExecute(r ApiListBuildOutpu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiRetainBuildJobRequest struct {
+type ApiListGenericWorkJobsRequest struct {
 	ctx context.Context
-	ApiService *BuildJobsAPIService
+	ApiService *GenericWorkJobsAPIService
+	acceptVersion *string
+	embed *bool
+	ifNoneMatch *string
+	limit *int32
+	offset *int32
+}
+
+// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
+func (r ApiListGenericWorkJobsRequest) AcceptVersion(acceptVersion string) ApiListGenericWorkJobsRequest {
+	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Embedding: The whether or not to embed resources into the collection (rather than return links).
+func (r ApiListGenericWorkJobsRequest) Embed(embed bool) ApiListGenericWorkJobsRequest {
+	r.embed = &embed
+	return r
+}
+
+// Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
+func (r ApiListGenericWorkJobsRequest) IfNoneMatch(ifNoneMatch string) ApiListGenericWorkJobsRequest {
+	r.ifNoneMatch = &ifNoneMatch
+	return r
+}
+
+// Paging: The maximum number of items to return in a resource.
+func (r ApiListGenericWorkJobsRequest) Limit(limit int32) ApiListGenericWorkJobsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Paging:  The index of the first item to return in the resource.
+func (r ApiListGenericWorkJobsRequest) Offset(offset int32) ApiListGenericWorkJobsRequest {
+	r.offset = &offset
+	return r
+}
+
+func (r ApiListGenericWorkJobsRequest) Execute() (*GenericWorkJobCollection, *http.Response, error) {
+	return r.ApiService.ListGenericWorkJobsExecute(r)
+}
+
+/*
+ListGenericWorkJobs List all Generic Work Jobs.
+
+This returns a collection resource that lists all in progress or recently completed generic work jobs. The generic work jobs for all workers are in the same collection.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListGenericWorkJobsRequest
+*/
+func (a *GenericWorkJobsAPIService) ListGenericWorkJobs(ctx context.Context) ApiListGenericWorkJobsRequest {
+	return ApiListGenericWorkJobsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return GenericWorkJobCollection
+func (a *GenericWorkJobsAPIService) ListGenericWorkJobsExecute(r ApiListGenericWorkJobsRequest) (*GenericWorkJobCollection, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GenericWorkJobCollection
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GenericWorkJobsAPIService.ListGenericWorkJobs")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/generic-work-jobs/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.embed != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "")
+	} else {
+		var defaultValue bool = false
+		r.embed = &defaultValue
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	} else {
+		var defaultValue int32 = 0
+		r.offset = &defaultValue
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptVersion != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
+	}
+	if r.ifNoneMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiRetainGenericWorkJobRequest struct {
+	ctx context.Context
+	ApiService *GenericWorkJobsAPIService
 	jobName string
 	acceptVersion *string
 	retainBuildJobRequest *RetainBuildJobRequest
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiRetainBuildJobRequest) AcceptVersion(acceptVersion string) ApiRetainBuildJobRequest {
+func (r ApiRetainGenericWorkJobRequest) AcceptVersion(acceptVersion string) ApiRetainGenericWorkJobRequest {
 	r.acceptVersion = &acceptVersion
 	return r
 }
 
 // TTL configuration.
-func (r ApiRetainBuildJobRequest) RetainBuildJobRequest(retainBuildJobRequest RetainBuildJobRequest) ApiRetainBuildJobRequest {
+func (r ApiRetainGenericWorkJobRequest) RetainBuildJobRequest(retainBuildJobRequest RetainBuildJobRequest) ApiRetainGenericWorkJobRequest {
 	r.retainBuildJobRequest = &retainBuildJobRequest
 	return r
 }
 
-func (r ApiRetainBuildJobRequest) Execute() (*BuildJobItem, *http.Response, error) {
-	return r.ApiService.RetainBuildJobExecute(r)
+func (r ApiRetainGenericWorkJobRequest) Execute() (*GenericWorkJobItem, *http.Response, error) {
+	return r.ApiService.RetainGenericWorkJobExecute(r)
 }
 
 /*
-RetainBuildJob Update how long a build job will be retained before automatic deletion.
+RetainGenericWorkJob Update how long an generic work job will be retained before automatic deletion.
 
 Set the time at which the job and all associated resources such as generated artefacts and messages will be removed from the system.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param jobName Unique ID of the Build Job.
- @return ApiRetainBuildJobRequest
+ @param jobName Unique ID of the generic work Job.
+ @return ApiRetainGenericWorkJobRequest
 */
-func (a *BuildJobsAPIService) RetainBuildJob(ctx context.Context, jobName string) ApiRetainBuildJobRequest {
-	return ApiRetainBuildJobRequest{
+func (a *GenericWorkJobsAPIService) RetainGenericWorkJob(ctx context.Context, jobName string) ApiRetainGenericWorkJobRequest {
+	return ApiRetainGenericWorkJobRequest{
 		ApiService: a,
 		ctx: ctx,
 		jobName: jobName,
@@ -1980,21 +1599,21 @@ func (a *BuildJobsAPIService) RetainBuildJob(ctx context.Context, jobName string
 }
 
 // Execute executes the request
-//  @return BuildJobItem
-func (a *BuildJobsAPIService) RetainBuildJobExecute(r ApiRetainBuildJobRequest) (*BuildJobItem, *http.Response, error) {
+//  @return GenericWorkJobItem
+func (a *GenericWorkJobsAPIService) RetainGenericWorkJobExecute(r ApiRetainGenericWorkJobRequest) (*GenericWorkJobItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BuildJobItem
+		localVarReturnValue  *GenericWorkJobItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.RetainBuildJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GenericWorkJobsAPIService.RetainGenericWorkJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/build-jobs/{jobName}/retain"
+	localVarPath := localBasePath + "/generic-work-jobs/{jobName}/retain"
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 
 	localVarHeaderParams := make(map[string]string)

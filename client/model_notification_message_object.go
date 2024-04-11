@@ -34,7 +34,7 @@ type NotificationMessageObject struct {
 	Message string `json:"message"`
 	// Severity of the message.
 	Severity *string `json:"severity,omitempty"`
-	// The source of the message, typically this could be the VHT service itself or the VHT.
+	// The source of the message, typically this could be the name of the service it was originated from.
 	Source *string `json:"source,omitempty"`
 }
 

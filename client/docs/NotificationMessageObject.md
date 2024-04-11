@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Ctime** | Pointer to **time.Time** | The time and date at which the message was created. | [optional] [readonly] 
 **Message** | **string** | The text of the message. | [readonly] 
 **Severity** | Pointer to **string** | Severity of the message. | [optional] [readonly] 
-**Source** | Pointer to **string** | The source of the message, typically this could be the VHT service itself or the VHT. | [optional] [readonly] 
+**Source** | Pointer to **string** | The source of the message, typically this could be the name of the service it was originated from. | [optional] [readonly] 
 
 ## Methods
 

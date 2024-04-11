@@ -18,136 +18,96 @@ package client
 
 import (
 	"encoding/json"
-	"time"
 	"bytes"
 	"fmt"
 )
 
-// checks if the CommonMetadata type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CommonMetadata{}
+// checks if the PATItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PATItemLinks{}
 
-// CommonMetadata Common information present in every resource, which provides information about the resource.
-type CommonMetadata struct {
-	// Creation Time: UTC date and time when the resource was created. If this is a system created resource, this will be a fixed time unaffected by user actions.
-	Ctime time.Time `json:"ctime"`
-	// Expiry Time: UTC date and time when the resource will be removed automatically by the system and become unavailable.
-	Etime NullableTime `json:"etime,omitempty"`
-	// Last Modification Time: UTC date and time when the resource was last updated. For a resource that cannot be modified, this will be the same as `ctime`.
-	Mtime time.Time `json:"mtime"`
+// PATItemLinks The links for a Personal Access Token Item.
+type PATItemLinks struct {
+	Delete *HalLinkData `json:"delete,omitempty"`
+	Self HalLinkData `json:"self"`
 }
 
-type _CommonMetadata CommonMetadata
+type _PATItemLinks PATItemLinks
 
-// NewCommonMetadata instantiates a new CommonMetadata object
+// NewPATItemLinks instantiates a new PATItemLinks object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCommonMetadata(ctime time.Time, mtime time.Time) *CommonMetadata {
-	this := CommonMetadata{}
-	this.Ctime = ctime
-	this.Mtime = mtime
+func NewPATItemLinks(self HalLinkData) *PATItemLinks {
+	this := PATItemLinks{}
+	this.Self = self
 	return &this
 }
 
-// NewCommonMetadataWithDefaults instantiates a new CommonMetadata object
+// NewPATItemLinksWithDefaults instantiates a new PATItemLinks object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCommonMetadataWithDefaults() *CommonMetadata {
-	this := CommonMetadata{}
+func NewPATItemLinksWithDefaults() *PATItemLinks {
+	this := PATItemLinks{}
 	return &this
 }
 
-// GetCtime returns the Ctime field value
-func (o *CommonMetadata) GetCtime() time.Time {
-	if o == nil {
-		var ret time.Time
+// GetDelete returns the Delete field value if set, zero value otherwise.
+func (o *PATItemLinks) GetDelete() HalLinkData {
+	if o == nil || IsNil(o.Delete) {
+		var ret HalLinkData
 		return ret
 	}
-
-	return o.Ctime
+	return *o.Delete
 }
 
-// GetCtimeOk returns a tuple with the Ctime field value
+// GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CommonMetadata) GetCtimeOk() (*time.Time, bool) {
-	if o == nil {
+func (o *PATItemLinks) GetDeleteOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Delete) {
 		return nil, false
 	}
-	return &o.Ctime, true
+	return o.Delete, true
 }
 
-// SetCtime sets field value
-func (o *CommonMetadata) SetCtime(v time.Time) {
-	o.Ctime = v
-}
-
-// GetEtime returns the Etime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CommonMetadata) GetEtime() time.Time {
-	if o == nil || IsNil(o.Etime.Get()) {
-		var ret time.Time
-		return ret
-	}
-	return *o.Etime.Get()
-}
-
-// GetEtimeOk returns a tuple with the Etime field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CommonMetadata) GetEtimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Etime.Get(), o.Etime.IsSet()
-}
-
-// HasEtime returns a boolean if a field has been set.
-func (o *CommonMetadata) HasEtime() bool {
-	if o != nil && o.Etime.IsSet() {
+// HasDelete returns a boolean if a field has been set.
+func (o *PATItemLinks) HasDelete() bool {
+	if o != nil && !IsNil(o.Delete) {
 		return true
 	}
 
 	return false
 }
 
-// SetEtime gets a reference to the given NullableTime and assigns it to the Etime field.
-func (o *CommonMetadata) SetEtime(v time.Time) {
-	o.Etime.Set(&v)
-}
-// SetEtimeNil sets the value for Etime to be an explicit nil
-func (o *CommonMetadata) SetEtimeNil() {
-	o.Etime.Set(nil)
+// SetDelete gets a reference to the given HalLinkData and assigns it to the Delete field.
+func (o *PATItemLinks) SetDelete(v HalLinkData) {
+	o.Delete = &v
 }
 
-// UnsetEtime ensures that no value is present for Etime, not even an explicit nil
-func (o *CommonMetadata) UnsetEtime() {
-	o.Etime.Unset()
-}
-
-// GetMtime returns the Mtime field value
-func (o *CommonMetadata) GetMtime() time.Time {
+// GetSelf returns the Self field value
+func (o *PATItemLinks) GetSelf() HalLinkData {
 	if o == nil {
-		var ret time.Time
+		var ret HalLinkData
 		return ret
 	}
 
-	return o.Mtime
+	return o.Self
 }
 
-// GetMtimeOk returns a tuple with the Mtime field value
+// GetSelfOk returns a tuple with the Self field value
 // and a boolean to check if the value has been set.
-func (o *CommonMetadata) GetMtimeOk() (*time.Time, bool) {
+func (o *PATItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Mtime, true
+	return &o.Self, true
 }
 
-// SetMtime sets field value
-func (o *CommonMetadata) SetMtime(v time.Time) {
-	o.Mtime = v
+// SetSelf sets field value
+func (o *PATItemLinks) SetSelf(v HalLinkData) {
+	o.Self = v
 }
 
-func (o CommonMetadata) MarshalJSON() ([]byte, error) {
+func (o PATItemLinks) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -155,23 +115,21 @@ func (o CommonMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CommonMetadata) ToMap() (map[string]interface{}, error) {
+func (o PATItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["ctime"] = o.Ctime
-	if o.Etime.IsSet() {
-		toSerialize["etime"] = o.Etime.Get()
+	if !IsNil(o.Delete) {
+		toSerialize["delete"] = o.Delete
 	}
-	toSerialize["mtime"] = o.Mtime
+	toSerialize["self"] = o.Self
 	return toSerialize, nil
 }
 
-func (o *CommonMetadata) UnmarshalJSON(data []byte) (err error) {
+func (o *PATItemLinks) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"ctime",
-		"mtime",
+		"self",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -188,53 +146,53 @@ func (o *CommonMetadata) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varCommonMetadata := _CommonMetadata{}
+	varPATItemLinks := _PATItemLinks{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCommonMetadata)
+	err = decoder.Decode(&varPATItemLinks)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CommonMetadata(varCommonMetadata)
+	*o = PATItemLinks(varPATItemLinks)
 
 	return err
 }
 
-type NullableCommonMetadata struct {
-	value *CommonMetadata
+type NullablePATItemLinks struct {
+	value *PATItemLinks
 	isSet bool
 }
 
-func (v NullableCommonMetadata) Get() *CommonMetadata {
+func (v NullablePATItemLinks) Get() *PATItemLinks {
 	return v.value
 }
 
-func (v *NullableCommonMetadata) Set(val *CommonMetadata) {
+func (v *NullablePATItemLinks) Set(val *PATItemLinks) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCommonMetadata) IsSet() bool {
+func (v NullablePATItemLinks) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCommonMetadata) Unset() {
+func (v *NullablePATItemLinks) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCommonMetadata(val *CommonMetadata) *NullableCommonMetadata {
-	return &NullableCommonMetadata{value: val, isSet: true}
+func NewNullablePATItemLinks(val *PATItemLinks) *NullablePATItemLinks {
+	return &NullablePATItemLinks{value: val, isSet: true}
 }
 
-func (v NullableCommonMetadata) MarshalJSON() ([]byte, error) {
+func (v NullablePATItemLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCommonMetadata) UnmarshalJSON(src []byte) error {
+func (v *NullablePATItemLinks) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

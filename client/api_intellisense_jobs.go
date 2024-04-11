@@ -418,10 +418,10 @@ func (r ApiGetIntellisenseArtefactRequest) Execute() (*os.File, *http.Response, 
 /*
 GetIntellisenseArtefact Download the named Intellisense Artefact for the given Intellisense Job.
 
-An artefact represents a product of the intellisense job process such as a compilation_database.json.
+An artefact represents a product of a job.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param artefactName The URL safe name of a Job Artefact.
+ @param artefactName Unique ID of a Job Artefact.
  @param jobName Unique ID of the Intellisense Job.
  @return ApiGetIntellisenseArtefactRequest
 
@@ -780,7 +780,7 @@ An output represents a product/artefact of the intellisense process.
 The managers enable their download.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param artefactName The URL safe name of a Job Artefact.
+ @param artefactName Unique ID of a Job Artefact.
  @param jobName Unique ID of the Intellisense Job.
  @return ApiGetIntellisenseJobArtefactManagerRequest
 */
@@ -971,7 +971,7 @@ func (r ApiGetIntellisenseMessagesRequest) Execute() (*IntellisenseMessageItem, 
 /*
 GetIntellisenseMessages Intellisense Message Feed.
 
-Retrieve and page through the messages for a given job.
+Retrieve and page through the messages (e.g. stdOut and stdErr) for a given job.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param jobName Unique ID of the Intellisense Job.
@@ -1161,10 +1161,10 @@ func (r ApiGetIntellisenseOutputArtefactRequest) Execute() (*os.File, *http.Resp
 /*
 GetIntellisenseOutputArtefact Download the artefact for the corresponding Intellisense job.
 
-An artefact represents a product of the intellisense job process such as a compilation_database.json.
+An artefact represents a product of a job.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param artefactName The URL safe name of a Job Artefact.
+ @param artefactName Unique ID of a Job Artefact.
  @param jobName Unique ID of the Intellisense Job.
  @return ApiGetIntellisenseOutputArtefactRequest
 */

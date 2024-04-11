@@ -9,12 +9,12 @@ SPDX-License-Identifier: Apache-2.0
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Count** | **int32** | Paging metadata: The number of items returned in this message. | [readonly] 
-**Ctime** | **time.Time** | Creation Time: UTC date and time (in RFC3339 format) when the resource was created. If this is a system created resource, this will be a fixed time unaffected by user actions. | [readonly] 
-**Etime** | Pointer to **NullableTime** | Expiry Time: UTC date and time (in RFC3339 format) when the resource will be removed automatically by the system and become unavailable. | [optional] [readonly] 
+**Ctime** | **time.Time** | Creation Time: UTC date and time when the resource was created. If this is a system created resource, this will be a fixed time unaffected by user actions. | [readonly] 
+**Etime** | Pointer to **NullableTime** | Expiry Time: UTC date and time when the resource will be removed automatically by the system and become unavailable. | [optional] [readonly] 
 **Limit** | **int32** | Paging metadata: The limit on the number of items to return. | [readonly] 
-**Mtime** | **time.Time** | Last Modification Time: UTC date and time (in RFC3339 format) when the resource was last updated. For a resource that cannot be modified this will be the same as &#x60;ctime&#x60;. | [readonly] 
+**Mtime** | **time.Time** | Last Modification Time: UTC date and time when the resource was last updated. For a resource that cannot be modified, this will be the same as &#x60;ctime&#x60;. | [readonly] 
 **Offset** | **int32** | Paging metadata: The index of the first item returned. | [readonly] 
-**Total** | **int32** | Paging metadata: Total number of items that can be paged through. | [readonly] 
+**Total** | **int32** | Collection metadata: Total number of items present in the collection. | [readonly] 
 
 ## Methods
 

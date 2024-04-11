@@ -27,6 +27,7 @@ var _ MappedNullable = &HalFeedLinks{}
 
 // HalFeedLinks These hypermedia links inside a feed resource allow the contents of the resource to be paged. A feed is typically made up of a list of items, that may, as a whole, be a very large object. Feeds can be also be dynamic updating resources, which can have items added to them asynchronously. - The `first` link points to the first page of a feed resource, this will not be be present if the entire   resource has been returned in the current page. - The `last` link points to the last page of a feed resource, this will not be be present if the entire   resource has been returned in the current page. - The `prev` link points to the previous page in the resource, this will not be present if the current page is   the first (or only page) page. - The `next` link points to the next page in the resource, this will not be present if the current page is the   last (or only page) page. - The `future` link points to the next possible page of resources, this will only be present if the current   page is currently the last page of resources. This allows a client to poll and check for new items being added   without having to retrieve the previous items.
 type HalFeedLinks struct {
+	Alternate *HalLinkData `json:"alternate,omitempty"`
 	First *HalLinkData `json:"first,omitempty"`
 	Future *HalLinkData `json:"future,omitempty"`
 	Last *HalLinkData `json:"last,omitempty"`
@@ -53,6 +54,38 @@ func NewHalFeedLinks(self HalLinkData) *HalFeedLinks {
 func NewHalFeedLinksWithDefaults() *HalFeedLinks {
 	this := HalFeedLinks{}
 	return &this
+}
+
+// GetAlternate returns the Alternate field value if set, zero value otherwise.
+func (o *HalFeedLinks) GetAlternate() HalLinkData {
+	if o == nil || IsNil(o.Alternate) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Alternate
+}
+
+// GetAlternateOk returns a tuple with the Alternate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HalFeedLinks) GetAlternateOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Alternate) {
+		return nil, false
+	}
+	return o.Alternate, true
+}
+
+// HasAlternate returns a boolean if a field has been set.
+func (o *HalFeedLinks) HasAlternate() bool {
+	if o != nil && !IsNil(o.Alternate) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlternate gets a reference to the given HalLinkData and assigns it to the Alternate field.
+func (o *HalFeedLinks) SetAlternate(v HalLinkData) {
+	o.Alternate = &v
 }
 
 // GetFirst returns the First field value if set, zero value otherwise.
@@ -249,6 +282,9 @@ func (o HalFeedLinks) MarshalJSON() ([]byte, error) {
 
 func (o HalFeedLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Alternate) {
+		toSerialize["alternate"] = o.Alternate
+	}
 	if !IsNil(o.First) {
 		toSerialize["first"] = o.First
 	}

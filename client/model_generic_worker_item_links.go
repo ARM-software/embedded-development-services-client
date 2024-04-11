@@ -18,136 +18,129 @@ package client
 
 import (
 	"encoding/json"
-	"time"
 	"bytes"
 	"fmt"
 )
 
-// checks if the CommonMetadata type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CommonMetadata{}
+// checks if the GenericWorkerItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GenericWorkerItemLinks{}
 
-// CommonMetadata Common information present in every resource, which provides information about the resource.
-type CommonMetadata struct {
-	// Creation Time: UTC date and time when the resource was created. If this is a system created resource, this will be a fixed time unaffected by user actions.
-	Ctime time.Time `json:"ctime"`
-	// Expiry Time: UTC date and time when the resource will be removed automatically by the system and become unavailable.
-	Etime NullableTime `json:"etime,omitempty"`
-	// Last Modification Time: UTC date and time when the resource was last updated. For a resource that cannot be modified, this will be the same as `ctime`.
-	Mtime time.Time `json:"mtime"`
+// GenericWorkerItemLinks The `create` link (if present) provides the URI where a new generic job can be started
+type GenericWorkerItemLinks struct {
+	Collection *HalLinkData `json:"collection,omitempty"`
+	Create *HalLinkData `json:"create,omitempty"`
+	Self HalLinkData `json:"self"`
 }
 
-type _CommonMetadata CommonMetadata
+type _GenericWorkerItemLinks GenericWorkerItemLinks
 
-// NewCommonMetadata instantiates a new CommonMetadata object
+// NewGenericWorkerItemLinks instantiates a new GenericWorkerItemLinks object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCommonMetadata(ctime time.Time, mtime time.Time) *CommonMetadata {
-	this := CommonMetadata{}
-	this.Ctime = ctime
-	this.Mtime = mtime
+func NewGenericWorkerItemLinks(self HalLinkData) *GenericWorkerItemLinks {
+	this := GenericWorkerItemLinks{}
+	this.Self = self
 	return &this
 }
 
-// NewCommonMetadataWithDefaults instantiates a new CommonMetadata object
+// NewGenericWorkerItemLinksWithDefaults instantiates a new GenericWorkerItemLinks object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCommonMetadataWithDefaults() *CommonMetadata {
-	this := CommonMetadata{}
+func NewGenericWorkerItemLinksWithDefaults() *GenericWorkerItemLinks {
+	this := GenericWorkerItemLinks{}
 	return &this
 }
 
-// GetCtime returns the Ctime field value
-func (o *CommonMetadata) GetCtime() time.Time {
-	if o == nil {
-		var ret time.Time
+// GetCollection returns the Collection field value if set, zero value otherwise.
+func (o *GenericWorkerItemLinks) GetCollection() HalLinkData {
+	if o == nil || IsNil(o.Collection) {
+		var ret HalLinkData
 		return ret
 	}
-
-	return o.Ctime
+	return *o.Collection
 }
 
-// GetCtimeOk returns a tuple with the Ctime field value
+// GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CommonMetadata) GetCtimeOk() (*time.Time, bool) {
-	if o == nil {
+func (o *GenericWorkerItemLinks) GetCollectionOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Collection) {
 		return nil, false
 	}
-	return &o.Ctime, true
+	return o.Collection, true
 }
 
-// SetCtime sets field value
-func (o *CommonMetadata) SetCtime(v time.Time) {
-	o.Ctime = v
-}
-
-// GetEtime returns the Etime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CommonMetadata) GetEtime() time.Time {
-	if o == nil || IsNil(o.Etime.Get()) {
-		var ret time.Time
-		return ret
-	}
-	return *o.Etime.Get()
-}
-
-// GetEtimeOk returns a tuple with the Etime field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CommonMetadata) GetEtimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Etime.Get(), o.Etime.IsSet()
-}
-
-// HasEtime returns a boolean if a field has been set.
-func (o *CommonMetadata) HasEtime() bool {
-	if o != nil && o.Etime.IsSet() {
+// HasCollection returns a boolean if a field has been set.
+func (o *GenericWorkerItemLinks) HasCollection() bool {
+	if o != nil && !IsNil(o.Collection) {
 		return true
 	}
 
 	return false
 }
 
-// SetEtime gets a reference to the given NullableTime and assigns it to the Etime field.
-func (o *CommonMetadata) SetEtime(v time.Time) {
-	o.Etime.Set(&v)
-}
-// SetEtimeNil sets the value for Etime to be an explicit nil
-func (o *CommonMetadata) SetEtimeNil() {
-	o.Etime.Set(nil)
+// SetCollection gets a reference to the given HalLinkData and assigns it to the Collection field.
+func (o *GenericWorkerItemLinks) SetCollection(v HalLinkData) {
+	o.Collection = &v
 }
 
-// UnsetEtime ensures that no value is present for Etime, not even an explicit nil
-func (o *CommonMetadata) UnsetEtime() {
-	o.Etime.Unset()
+// GetCreate returns the Create field value if set, zero value otherwise.
+func (o *GenericWorkerItemLinks) GetCreate() HalLinkData {
+	if o == nil || IsNil(o.Create) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Create
 }
 
-// GetMtime returns the Mtime field value
-func (o *CommonMetadata) GetMtime() time.Time {
+// GetCreateOk returns a tuple with the Create field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GenericWorkerItemLinks) GetCreateOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Create) {
+		return nil, false
+	}
+	return o.Create, true
+}
+
+// HasCreate returns a boolean if a field has been set.
+func (o *GenericWorkerItemLinks) HasCreate() bool {
+	if o != nil && !IsNil(o.Create) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreate gets a reference to the given HalLinkData and assigns it to the Create field.
+func (o *GenericWorkerItemLinks) SetCreate(v HalLinkData) {
+	o.Create = &v
+}
+
+// GetSelf returns the Self field value
+func (o *GenericWorkerItemLinks) GetSelf() HalLinkData {
 	if o == nil {
-		var ret time.Time
+		var ret HalLinkData
 		return ret
 	}
 
-	return o.Mtime
+	return o.Self
 }
 
-// GetMtimeOk returns a tuple with the Mtime field value
+// GetSelfOk returns a tuple with the Self field value
 // and a boolean to check if the value has been set.
-func (o *CommonMetadata) GetMtimeOk() (*time.Time, bool) {
+func (o *GenericWorkerItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Mtime, true
+	return &o.Self, true
 }
 
-// SetMtime sets field value
-func (o *CommonMetadata) SetMtime(v time.Time) {
-	o.Mtime = v
+// SetSelf sets field value
+func (o *GenericWorkerItemLinks) SetSelf(v HalLinkData) {
+	o.Self = v
 }
 
-func (o CommonMetadata) MarshalJSON() ([]byte, error) {
+func (o GenericWorkerItemLinks) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -155,23 +148,24 @@ func (o CommonMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CommonMetadata) ToMap() (map[string]interface{}, error) {
+func (o GenericWorkerItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["ctime"] = o.Ctime
-	if o.Etime.IsSet() {
-		toSerialize["etime"] = o.Etime.Get()
+	if !IsNil(o.Collection) {
+		toSerialize["collection"] = o.Collection
 	}
-	toSerialize["mtime"] = o.Mtime
+	if !IsNil(o.Create) {
+		toSerialize["create"] = o.Create
+	}
+	toSerialize["self"] = o.Self
 	return toSerialize, nil
 }
 
-func (o *CommonMetadata) UnmarshalJSON(data []byte) (err error) {
+func (o *GenericWorkerItemLinks) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"ctime",
-		"mtime",
+		"self",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -188,53 +182,53 @@ func (o *CommonMetadata) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varCommonMetadata := _CommonMetadata{}
+	varGenericWorkerItemLinks := _GenericWorkerItemLinks{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCommonMetadata)
+	err = decoder.Decode(&varGenericWorkerItemLinks)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CommonMetadata(varCommonMetadata)
+	*o = GenericWorkerItemLinks(varGenericWorkerItemLinks)
 
 	return err
 }
 
-type NullableCommonMetadata struct {
-	value *CommonMetadata
+type NullableGenericWorkerItemLinks struct {
+	value *GenericWorkerItemLinks
 	isSet bool
 }
 
-func (v NullableCommonMetadata) Get() *CommonMetadata {
+func (v NullableGenericWorkerItemLinks) Get() *GenericWorkerItemLinks {
 	return v.value
 }
 
-func (v *NullableCommonMetadata) Set(val *CommonMetadata) {
+func (v *NullableGenericWorkerItemLinks) Set(val *GenericWorkerItemLinks) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCommonMetadata) IsSet() bool {
+func (v NullableGenericWorkerItemLinks) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCommonMetadata) Unset() {
+func (v *NullableGenericWorkerItemLinks) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCommonMetadata(val *CommonMetadata) *NullableCommonMetadata {
-	return &NullableCommonMetadata{value: val, isSet: true}
+func NewNullableGenericWorkerItemLinks(val *GenericWorkerItemLinks) *NullableGenericWorkerItemLinks {
+	return &NullableGenericWorkerItemLinks{value: val, isSet: true}
 }
 
-func (v NullableCommonMetadata) MarshalJSON() ([]byte, error) {
+func (v NullableGenericWorkerItemLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCommonMetadata) UnmarshalJSON(src []byte) error {
+func (v *NullableGenericWorkerItemLinks) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
