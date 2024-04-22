@@ -1,7 +1,3 @@
-/*
- * Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
 package client
 
 import (
@@ -56,6 +52,7 @@ func (t *testMessageStream) HasFuture() bool {
 
 func TestExtensionModelInterfaceMappers(t *testing.T) {
 	var x testMessageStream
+
 	err := faker.FakeData(&x)
 	require.NoError(t, err)
 
