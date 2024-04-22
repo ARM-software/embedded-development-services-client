@@ -26,6 +26,9 @@ var ignoreItems = []string{
 	"#/components/schemas/EndpointDeprecationNotice",
 	// VendorItems don't follow the pattern in the schema
 	"#/components/schemas/VendorItem",
+	// The following don't have corresponding clients or haven't been updated
+	"#/components/schemas/PATItem",
+	"#/components/schemas/PATCollection",
 }
 
 var ignoreCollections = []string{
