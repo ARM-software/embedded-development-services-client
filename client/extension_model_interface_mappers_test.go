@@ -2,6 +2,7 @@
  * Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
+
 package client
 
 import (
@@ -86,13 +87,13 @@ func TestExtensionModelInterfaceMappers(t *testing.T) {
 
 	t.Run("Nil case", func(t *testing.T) {
 		t.Run("IStaticPage", func(t *testing.T) {
-			var x IStaticPage = nil
+			var x IStaticPage
 			y := MapIStaticPage(x)
 			assert.Nil(t, y)
 			assert.Equal(t, x, y)
 		})
 		t.Run("IMessageStream", func(t *testing.T) {
-			var x IMessageStream = nil
+			var x IMessageStream
 			y := MapIMessageStream(x)
 			assert.Nil(t, y)
 			assert.Equal(t, x, y)
