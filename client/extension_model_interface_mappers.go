@@ -36,6 +36,9 @@ func (s *staticPageWrapper) GetItemIterator() (pagination.IIterator, error) {
 }
 
 func MapIStaticPage(staticPage IStaticPage) pagination.IStaticPage {
+	if staticPage == nil {
+		return nil
+	}
 	return &staticPageWrapper{staticPage}
 }
 
@@ -49,5 +52,8 @@ func (s *staticPageStreamWrapper) HasFuture() bool {
 }
 
 func MapIMessageStream(messageStream IMessageStream) pagination.IStaticPageStream {
+	if messageStream == nil {
+		return nil
+	}
 	return &staticPageStreamWrapper{IStaticPage: MapIStaticPage(messageStream), stream: messageStream}
 }
