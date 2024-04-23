@@ -51,30 +51,47 @@ func (t *testMessageStream) HasFuture() bool {
 }
 
 func TestExtensionModelInterfaceMappers(t *testing.T) {
-	var x testMessageStream
+	t.Run("Normal case", func(t *testing.T) {
+		var x testMessageStream
 
-	err := faker.FakeData(&x)
-	require.NoError(t, err)
+		err := faker.FakeData(&x)
+		require.NoError(t, err)
 
-	y := MapIMessageStream(&x)
+		y := MapIMessageStream(&x)
 
-	x1, err := x.GetItemCount()
-	assert.NoError(t, err)
-	y1, err := y.GetItemCount()
-	assert.NoError(t, err)
-	assert.EqualValues(t, x1, y1)
+		x1, err := x.GetItemCount()
+		assert.NoError(t, err)
+		y1, err := y.GetItemCount()
+		assert.NoError(t, err)
+		assert.EqualValues(t, x1, y1)
 
-	x2 := x.HasNext()
-	y2 := y.HasNext()
-	assert.EqualValues(t, x2, y2)
+		x2 := x.HasNext()
+		y2 := y.HasNext()
+		assert.EqualValues(t, x2, y2)
 
-	x3 := x.HasFuture()
-	y3 := y.HasFuture()
-	assert.EqualValues(t, x3, y3)
+		x3 := x.HasFuture()
+		y3 := y.HasFuture()
+		assert.EqualValues(t, x3, y3)
 
-	x4, err := x.GetItemIterator()
-	assert.NoError(t, err)
-	y4, err := y.GetItemIterator()
-	assert.NoError(t, err)
-	assert.EqualValues(t, x4, y4)
+		x4, err := x.GetItemIterator()
+		assert.NoError(t, err)
+		y4, err := y.GetItemIterator()
+		assert.NoError(t, err)
+		assert.EqualValues(t, x4, y4)
+	})
+
+	t.Run("Nil case", func(t *testing.T) {
+		t.Run("IStaticPage", func(t *testing.T) {
+			var x IStaticPage = nil
+			y := MapIStaticPage(x)
+			assert.Nil(t, y)
+			assert.Equal(t, x, y)
+		})
+		t.Run("IMessageStream", func(t *testing.T) {
+			var x IMessageStream = nil
+			y := MapIMessageStream(x)
+			assert.Nil(t, y)
+			assert.Equal(t, x, y)
+		})
+	})
 }
