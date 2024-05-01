@@ -255,6 +255,7 @@ Class | Method | HTTP request | Description
  - [NotificationFeed](docs/NotificationFeed.md)
  - [NotificationMessageObject](docs/NotificationMessageObject.md)
  - [PATCollection](docs/PATCollection.md)
+ - [PATCreationItem](docs/PATCreationItem.md)
  - [PATItem](docs/PATItem.md)
  - [PATItemLinks](docs/PATItemLinks.md)
  - [PagingMetadata](docs/PagingMetadata.md)

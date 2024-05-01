@@ -18,52 +18,78 @@ package client
 
 import (
 	"encoding/json"
-	"time"
 	"bytes"
 	"fmt"
 )
 
-// checks if the PATItem type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PATItem{}
+// checks if the PATCreationItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PATCreationItem{}
 
-// PATItem A Personal Access Token Item.
-type PATItem struct {
+// PATCreationItem A Personal Access Token Item.
+type PATCreationItem struct {
+	// The TTL (time to live in seconds) describing how long the personal access token will be alive for.
+	TTL int64 `json:"TTL"`
 	Links PATItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
-	// UTC date and time when the token was last used.
-	LastUsed time.Time `json:"lastUsed"`
 	// Unique ID of the personal access token.
 	Name string `json:"name"`
+	// The personal access token.
+	Secret string `json:"secret"`
 	// Human readable name of the personal access token.
 	Title string `json:"title"`
 }
 
-type _PATItem PATItem
+type _PATCreationItem PATCreationItem
 
-// NewPATItem instantiates a new PATItem object
+// NewPATCreationItem instantiates a new PATCreationItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPATItem(links PATItemLinks, metadata NullableCommonMetadata, lastUsed time.Time, name string, title string) *PATItem {
-	this := PATItem{}
+func NewPATCreationItem(tTL int64, links PATItemLinks, metadata NullableCommonMetadata, name string, secret string, title string) *PATCreationItem {
+	this := PATCreationItem{}
+	this.TTL = tTL
 	this.Links = links
 	this.Metadata = metadata
-	this.LastUsed = lastUsed
 	this.Name = name
+	this.Secret = secret
 	this.Title = title
 	return &this
 }
 
-// NewPATItemWithDefaults instantiates a new PATItem object
+// NewPATCreationItemWithDefaults instantiates a new PATCreationItem object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPATItemWithDefaults() *PATItem {
-	this := PATItem{}
+func NewPATCreationItemWithDefaults() *PATCreationItem {
+	this := PATCreationItem{}
 	return &this
 }
 
+// GetTTL returns the TTL field value
+func (o *PATCreationItem) GetTTL() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.TTL
+}
+
+// GetTTLOk returns a tuple with the TTL field value
+// and a boolean to check if the value has been set.
+func (o *PATCreationItem) GetTTLOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TTL, true
+}
+
+// SetTTL sets field value
+func (o *PATCreationItem) SetTTL(v int64) {
+	o.TTL = v
+}
+
 // GetLinks returns the Links field value
-func (o *PATItem) GetLinks() PATItemLinks {
+func (o *PATCreationItem) GetLinks() PATItemLinks {
 	if o == nil {
 		var ret PATItemLinks
 		return ret
@@ -74,7 +100,7 @@ func (o *PATItem) GetLinks() PATItemLinks {
 
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
-func (o *PATItem) GetLinksOk() (*PATItemLinks, bool) {
+func (o *PATCreationItem) GetLinksOk() (*PATItemLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,13 +108,13 @@ func (o *PATItem) GetLinksOk() (*PATItemLinks, bool) {
 }
 
 // SetLinks sets field value
-func (o *PATItem) SetLinks(v PATItemLinks) {
+func (o *PATCreationItem) SetLinks(v PATItemLinks) {
 	o.Links = v
 }
 
 // GetMetadata returns the Metadata field value
 // If the value is explicit nil, the zero value for CommonMetadata will be returned
-func (o *PATItem) GetMetadata() CommonMetadata {
+func (o *PATCreationItem) GetMetadata() CommonMetadata {
 	if o == nil || o.Metadata.Get() == nil {
 		var ret CommonMetadata
 		return ret
@@ -100,7 +126,7 @@ func (o *PATItem) GetMetadata() CommonMetadata {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PATItem) GetMetadataOk() (*CommonMetadata, bool) {
+func (o *PATCreationItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,36 +134,12 @@ func (o *PATItem) GetMetadataOk() (*CommonMetadata, bool) {
 }
 
 // SetMetadata sets field value
-func (o *PATItem) SetMetadata(v CommonMetadata) {
+func (o *PATCreationItem) SetMetadata(v CommonMetadata) {
 	o.Metadata.Set(&v)
 }
 
-// GetLastUsed returns the LastUsed field value
-func (o *PATItem) GetLastUsed() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.LastUsed
-}
-
-// GetLastUsedOk returns a tuple with the LastUsed field value
-// and a boolean to check if the value has been set.
-func (o *PATItem) GetLastUsedOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastUsed, true
-}
-
-// SetLastUsed sets field value
-func (o *PATItem) SetLastUsed(v time.Time) {
-	o.LastUsed = v
-}
-
 // GetName returns the Name field value
-func (o *PATItem) GetName() string {
+func (o *PATCreationItem) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -148,7 +150,7 @@ func (o *PATItem) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *PATItem) GetNameOk() (*string, bool) {
+func (o *PATCreationItem) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -156,12 +158,36 @@ func (o *PATItem) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *PATItem) SetName(v string) {
+func (o *PATCreationItem) SetName(v string) {
 	o.Name = v
 }
 
+// GetSecret returns the Secret field value
+func (o *PATCreationItem) GetSecret() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Secret
+}
+
+// GetSecretOk returns a tuple with the Secret field value
+// and a boolean to check if the value has been set.
+func (o *PATCreationItem) GetSecretOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Secret, true
+}
+
+// SetSecret sets field value
+func (o *PATCreationItem) SetSecret(v string) {
+	o.Secret = v
+}
+
 // GetTitle returns the Title field value
-func (o *PATItem) GetTitle() string {
+func (o *PATCreationItem) GetTitle() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -172,7 +198,7 @@ func (o *PATItem) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
-func (o *PATItem) GetTitleOk() (*string, bool) {
+func (o *PATCreationItem) GetTitleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -180,11 +206,11 @@ func (o *PATItem) GetTitleOk() (*string, bool) {
 }
 
 // SetTitle sets field value
-func (o *PATItem) SetTitle(v string) {
+func (o *PATCreationItem) SetTitle(v string) {
 	o.Title = v
 }
 
-func (o PATItem) MarshalJSON() ([]byte, error) {
+func (o PATCreationItem) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -192,25 +218,27 @@ func (o PATItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PATItem) ToMap() (map[string]interface{}, error) {
+func (o PATCreationItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["TTL"] = o.TTL
 	toSerialize["_links"] = o.Links
 	toSerialize["_metadata"] = o.Metadata.Get()
-	toSerialize["lastUsed"] = o.LastUsed
 	toSerialize["name"] = o.Name
+	toSerialize["secret"] = o.Secret
 	toSerialize["title"] = o.Title
 	return toSerialize, nil
 }
 
-func (o *PATItem) UnmarshalJSON(data []byte) (err error) {
+func (o *PATCreationItem) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"TTL",
 		"_links",
 		"_metadata",
-		"lastUsed",
 		"name",
+		"secret",
 		"title",
 	}
 
@@ -228,53 +256,53 @@ func (o *PATItem) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varPATItem := _PATItem{}
+	varPATCreationItem := _PATCreationItem{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPATItem)
+	err = decoder.Decode(&varPATCreationItem)
 
 	if err != nil {
 		return err
 	}
 
-	*o = PATItem(varPATItem)
+	*o = PATCreationItem(varPATCreationItem)
 
 	return err
 }
 
-type NullablePATItem struct {
-	value *PATItem
+type NullablePATCreationItem struct {
+	value *PATCreationItem
 	isSet bool
 }
 
-func (v NullablePATItem) Get() *PATItem {
+func (v NullablePATCreationItem) Get() *PATCreationItem {
 	return v.value
 }
 
-func (v *NullablePATItem) Set(val *PATItem) {
+func (v *NullablePATCreationItem) Set(val *PATCreationItem) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePATItem) IsSet() bool {
+func (v NullablePATCreationItem) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePATItem) Unset() {
+func (v *NullablePATCreationItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePATItem(val *PATItem) *NullablePATItem {
-	return &NullablePATItem{value: val, isSet: true}
+func NewNullablePATCreationItem(val *PATCreationItem) *NullablePATCreationItem {
+	return &NullablePATCreationItem{value: val, isSet: true}
 }
 
-func (v NullablePATItem) MarshalJSON() ([]byte, error) {
+func (v NullablePATCreationItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePATItem) UnmarshalJSON(src []byte) error {
+func (v *NullablePATCreationItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

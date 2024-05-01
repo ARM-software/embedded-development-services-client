@@ -32,13 +32,13 @@ type PersonalAccessTokenAPIService service
 type ApiCreatePATRequest struct {
 	ctx context.Context
 	ApiService *PersonalAccessTokenAPIService
-	pATItem *PATItem
+	pATCreationItem *PATCreationItem
 	acceptVersion *string
 }
 
 // Data required to create a new token.
-func (r ApiCreatePATRequest) PATItem(pATItem PATItem) ApiCreatePATRequest {
-	r.pATItem = &pATItem
+func (r ApiCreatePATRequest) PATCreationItem(pATCreationItem PATCreationItem) ApiCreatePATRequest {
+	r.pATCreationItem = &pATCreationItem
 	return r
 }
 
@@ -48,7 +48,7 @@ func (r ApiCreatePATRequest) AcceptVersion(acceptVersion string) ApiCreatePATReq
 	return r
 }
 
-func (r ApiCreatePATRequest) Execute() (*PATItem, *http.Response, error) {
+func (r ApiCreatePATRequest) Execute() (*PATCreationItem, *http.Response, error) {
 	return r.ApiService.CreatePATExecute(r)
 }
 
@@ -68,13 +68,13 @@ func (a *PersonalAccessTokenAPIService) CreatePAT(ctx context.Context) ApiCreate
 }
 
 // Execute executes the request
-//  @return PATItem
-func (a *PersonalAccessTokenAPIService) CreatePATExecute(r ApiCreatePATRequest) (*PATItem, *http.Response, error) {
+//  @return PATCreationItem
+func (a *PersonalAccessTokenAPIService) CreatePATExecute(r ApiCreatePATRequest) (*PATCreationItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PATItem
+		localVarReturnValue  *PATCreationItem
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PersonalAccessTokenAPIService.CreatePAT")
@@ -87,8 +87,8 @@ func (a *PersonalAccessTokenAPIService) CreatePATExecute(r ApiCreatePATRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.pATItem == nil {
-		return localVarReturnValue, nil, reportError("pATItem is required and must be specified")
+	if r.pATCreationItem == nil {
+		return localVarReturnValue, nil, reportError("pATCreationItem is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -112,7 +112,7 @@ func (a *PersonalAccessTokenAPIService) CreatePATExecute(r ApiCreatePATRequest) 
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
 	}
 	// body params
-	localVarPostBody = r.pATItem
+	localVarPostBody = r.pATCreationItem
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

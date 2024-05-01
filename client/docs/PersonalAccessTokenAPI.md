@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## CreatePAT
 
-> PATItem CreatePAT(ctx).PATItem(pATItem).AcceptVersion(acceptVersion).Execute()
+> PATCreationItem CreatePAT(ctx).PATCreationItem(pATCreationItem).AcceptVersion(acceptVersion).Execute()
 
 Create a new personal access token for a user
 
@@ -32,22 +32,21 @@ import (
 	"context"
 	"fmt"
 	"os"
-    "time"
 	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
 )
 
 func main() {
-	pATItem := *openapiclient.NewPATItem(int64(5), *openapiclient.NewPATItemLinks(*openapiclient.NewHalLinkData("/endpoint/?limit=20&offset=0")), "TODO", time.Now(), "88a6137e-1d99-4cde-8db8-015312f7d5e6", "My token") // PATItem | Data required to create a new token.
+	pATCreationItem := *openapiclient.NewPATCreationItem(int64(5), *openapiclient.NewPATItemLinks(*openapiclient.NewHalLinkData("/endpoint/?limit=20&offset=0")), "TODO", "88a6137e-1d99-4cde-8db8-015312f7d5e6", "arm_pat_abcdefgh...", "My token") // PATCreationItem | Data required to create a new token.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PersonalAccessTokenAPI.CreatePAT(context.Background()).PATItem(pATItem).AcceptVersion(acceptVersion).Execute()
+	resp, r, err := apiClient.PersonalAccessTokenAPI.CreatePAT(context.Background()).PATCreationItem(pATCreationItem).AcceptVersion(acceptVersion).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PersonalAccessTokenAPI.CreatePAT``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreatePAT`: PATItem
+	// response from `CreatePAT`: PATCreationItem
 	fmt.Fprintf(os.Stdout, "Response from `PersonalAccessTokenAPI.CreatePAT`: %v\n", resp)
 }
 ```
@@ -63,12 +62,12 @@ Other parameters are passed through a pointer to a apiCreatePATRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pATItem** | [**PATItem**](PATItem.md) | Data required to create a new token. | 
+ **pATCreationItem** | [**PATCreationItem**](PATCreationItem.md) | Data required to create a new token. | 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
 
 ### Return type
 
-[**PATItem**](PATItem.md)
+[**PATCreationItem**](PATCreationItem.md)
 
 ### Authorization
 
