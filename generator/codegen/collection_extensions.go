@@ -27,8 +27,6 @@ var ignoreItems = []string{
 	// VendorItems don't follow the pattern in the schema
 	"#/components/schemas/VendorItem",
 	// The following don't have corresponding clients or haven't been updated
-	"#/components/schemas/GenericWorkerItem",
-	"#/components/schemas/GenericWorkJobItem",
 	"#/components/schemas/PATItem",
 	"#/components/schemas/PATCollection",
 }
