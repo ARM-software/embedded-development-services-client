@@ -2,6 +2,29 @@
 Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"" "1.29.0" (2024-05-03)
+========================
+
+Features
+--------
+
+- :sparkles: Remove excluded schemas now that updated schema has been released (#20240417104654)
+- :sparkles: Add extensions for following generic work job links (#20240422110722)
+- Updated client due to schema changes (#20240422141705, #20240423081646, #20240423084206)
+- :sparkles: Add mapper for client.IMessageStream to pagination.IStaticPageStream (#20240422150732)
+
+
+Bugfixes
+--------
+
+- Dependency upgrade: golangci-lint-action-5 (#20240425090140)
+- Dependency upgrade: fetch-metadata-2.1.0 (#20240425090144)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "" "1.28.0" (2024-05-01)
 ========================
 
