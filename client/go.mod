@@ -3,7 +3,7 @@ module github.com/ARM-software/embedded-development-services-client/client
 go 1.21
 
 require (
-	github.com/ARM-software/golang-utils/utils v1.62.1
+	github.com/ARM-software/golang-utils/utils v1.62.2
 	github.com/go-faker/faker/v4 v4.4.1
 	github.com/stretchr/testify v1.9.0
 )
