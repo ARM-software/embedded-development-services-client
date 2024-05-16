@@ -227,7 +227,7 @@ func (o *{{ .ItemRef }}) HasFuture() bool {
 }
 
 func (o *{{ .ItemRef }}) GetItemIterator() (IIterator, error) {
-	return New{{ .ItemRef }}Iterator(o.GetMessages())
+	return {{ .IteratorRef }}(o.GetMessages())
 }
 
 func (o *{{ .ItemRef }}) GetItemCount() (count int64, err error) {

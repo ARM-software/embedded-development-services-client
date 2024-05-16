@@ -23,7 +23,8 @@ type MessageCollection struct {
 type MessageCollections []MessageCollection
 
 type NotificationFeedCollection struct {
-	ItemRef string
+	ItemRef     string
+	IteratorRef string
 }
 
 type NotificationFeedCollections []NotificationFeedCollection

@@ -193,9 +193,18 @@ func newMessageCollection(itemRef string) MessageCollection {
 		IteratorRef: fmt.Sprintf("%sIterator", strings.TrimSuffix(itemRef, "Object")),
 	}
 }
+
 func newNotificationFeedCollection(itemRef string) NotificationFeedCollection {
+	var iteratorRef string
+	switch {
+	case strings.Contains(itemRef, notificationFeedRef):
+		iteratorRef = "NewNotificationMessageIterator"
+	case strings.Contains(itemRef, messageItemRef):
+		iteratorRef = "NewMessageIterator"
+	}
 	return NotificationFeedCollection{
-		ItemRef: trimRefPrefix(itemRef),
+		ItemRef:     trimRefPrefix(itemRef),
+		IteratorRef: iteratorRef,
 	}
 }
 
