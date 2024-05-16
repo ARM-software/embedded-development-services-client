@@ -1684,7 +1684,7 @@ func (o *BuildMessageItem) HasFuture() bool {
 }
 
 func (o *BuildMessageItem) GetItemIterator() (IIterator, error) {
-	return NewBuildMessageItemIterator(o.GetMessages())
+	return NewMessageIterator(o.GetMessages())
 }
 
 func (o *BuildMessageItem) GetItemCount() (count int64, err error) {
@@ -1746,7 +1746,7 @@ func (o *IntellisenseMessageItem) HasFuture() bool {
 }
 
 func (o *IntellisenseMessageItem) GetItemIterator() (IIterator, error) {
-	return NewIntellisenseMessageItemIterator(o.GetMessages())
+	return NewMessageIterator(o.GetMessages())
 }
 
 func (o *IntellisenseMessageItem) GetItemCount() (count int64, err error) {
@@ -1808,7 +1808,7 @@ func (o *NotificationFeed) HasFuture() bool {
 }
 
 func (o *NotificationFeed) GetItemIterator() (IIterator, error) {
-	return NewNotificationFeedIterator(o.GetMessages())
+	return NewNotificationMessageIterator(o.GetMessages())
 }
 
 func (o *NotificationFeed) GetItemCount() (count int64, err error) {
