@@ -19,6 +19,7 @@ const (
 	redactFlag     = "x-redact"
 	// Messages are a special case as they are a feed rather than a normal collection
 	notificationFeedRef = "NotificationFeed"
+	messageItemRef      = "MessageItem"
 )
 
 var ignoreItems = []string{
@@ -257,7 +258,7 @@ func GetCollections(swagger *openapi3.T) (collections CollectionParams, err erro
 				}
 
 				if isMessagesCollection := strings.HasSuffix(endpoint, "messages"); isMessagesCollection {
-					if strings.Contains(collectionRef, notificationFeedRef) {
+					if strings.Contains(collectionRef, notificationFeedRef) || strings.Contains(collectionRef, messageItemRef) {
 						if shouldIgnoreItem(collectionRef) {
 							continue
 						}
