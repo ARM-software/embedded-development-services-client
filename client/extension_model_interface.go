@@ -7,6 +7,8 @@
 // It includes the definition of request/response types as well as provides helpers for calling specific helpers.
 package client
 
+import "github.com/ARM-software/golang-utils/utils/collection/pagination"
+
 // *************************************************************************************
 // NOTE: this file is not generated.
 // It defines generic models.
@@ -25,22 +27,9 @@ type IModel interface {
 
 // The following definitions match what is in golang-utils for [pagination](https://github.com/ARM-software/golang-utils/blob/master/utils/collection/pagination/interfaces.go)
 
-type IIterator interface {
-	// HasNext returns whether there are more items available or not.
-	HasNext() bool
-	// GetNext returns the next item.
-	GetNext() (interface{}, error)
-}
+type IIterator = pagination.IIterator
 
-// IStaticPage defines a generic page for a collection.
-type IStaticPage interface {
-	// HasNext states whether more pages are accessible.
-	HasNext() bool
-	// GetItemIterator returns a new iterator over the page's items.
-	GetItemIterator() (IIterator, error)
-	// GetItemCount returns the number of items in this page
-	GetItemCount() (int64, error)
-}
+type IStaticPage = pagination.IStaticPage
 
 // IMessageStream defines a page for a collection which does not have any known ending.
 type IMessageStream interface {

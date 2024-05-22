@@ -1,0 +1,1 @@
+:bug: Make sure that paginators are aliased to pagination.IStaticPage etc. as the mappers were not enough

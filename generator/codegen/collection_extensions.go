@@ -19,6 +19,7 @@ const (
 	redactFlag     = "x-redact"
 	// Messages are a special case as they are a feed rather than a normal collection
 	notificationFeedRef = "NotificationFeed"
+	messageItemRef      = "MessageItem"
 )
 
 var ignoreItems = []string{
@@ -192,9 +193,18 @@ func newMessageCollection(itemRef string) MessageCollection {
 		IteratorRef: fmt.Sprintf("%sIterator", strings.TrimSuffix(itemRef, "Object")),
 	}
 }
+
 func newNotificationFeedCollection(itemRef string) NotificationFeedCollection {
+	var iteratorRef string
+	switch {
+	case strings.Contains(itemRef, notificationFeedRef):
+		iteratorRef = "NewNotificationMessageIterator"
+	case strings.Contains(itemRef, messageItemRef):
+		iteratorRef = "NewMessageIterator"
+	}
 	return NotificationFeedCollection{
-		ItemRef: trimRefPrefix(itemRef),
+		ItemRef:     trimRefPrefix(itemRef),
+		IteratorRef: iteratorRef,
 	}
 }
 
@@ -257,7 +267,7 @@ func GetCollections(swagger *openapi3.T) (collections CollectionParams, err erro
 				}
 
 				if isMessagesCollection := strings.HasSuffix(endpoint, "messages"); isMessagesCollection {
-					if strings.Contains(collectionRef, notificationFeedRef) {
+					if strings.Contains(collectionRef, notificationFeedRef) || strings.Contains(collectionRef, messageItemRef) {
 						if shouldIgnoreItem(collectionRef) {
 							continue
 						}
