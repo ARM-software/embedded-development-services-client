@@ -1641,6 +1641,130 @@ func NewNotificationMessageIterator(elements []NotificationMessageObject) (IIter
 }
 
 // ============================================================================================
+// This extends BuildMessageItem definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *BuildMessageItem) FetchType() string {
+	return "Notification messages"
+}
+
+// FetchLinks returns the resource links if present
+func (o *BuildMessageItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *BuildMessageItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *BuildMessageItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *BuildMessageItem) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *BuildMessageItem) HasFuture() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasFuture()
+	}
+	return false
+}
+
+func (o *BuildMessageItem) GetItemIterator() (IIterator, error) {
+	return NewMessageIterator(o.GetMessages())
+}
+
+func (o *BuildMessageItem) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewBuildMessageItemMessageStream returns a message stream.
+func NewBuildMessageItemMessageStream() IMessageStream {
+	return NewBuildMessageItemWithDefaults()
+}
+
+// ============================================================================================
+// This extends IntellisenseMessageItem definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *IntellisenseMessageItem) FetchType() string {
+	return "Notification messages"
+}
+
+// FetchLinks returns the resource links if present
+func (o *IntellisenseMessageItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *IntellisenseMessageItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *IntellisenseMessageItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *IntellisenseMessageItem) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *IntellisenseMessageItem) HasFuture() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasFuture()
+	}
+	return false
+}
+
+func (o *IntellisenseMessageItem) GetItemIterator() (IIterator, error) {
+	return NewMessageIterator(o.GetMessages())
+}
+
+func (o *IntellisenseMessageItem) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewIntellisenseMessageItemMessageStream returns a message stream.
+func NewIntellisenseMessageItemMessageStream() IMessageStream {
+	return NewIntellisenseMessageItemWithDefaults()
+}
+
+// ============================================================================================
 // This extends NotificationFeed definitions
 // ============================================================================================
 
