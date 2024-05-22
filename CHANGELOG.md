@@ -2,6 +2,19 @@
 Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.31.1" (2024-05-22)
+=====================
+
+Bugfixes
+--------
+
+- Dependency upgrade: golangci-lint-action-6 (#20240507085423)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.31.0" (2024-05-22)
 =====================
 
