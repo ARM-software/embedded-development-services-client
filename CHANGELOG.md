@@ -2,6 +2,31 @@
 Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.31.0" (2024-05-22)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20240516125141, #20240516125941, #20240516135153)
+
+
+Bugfixes
+--------
+
+- :bug: Make sure that paginators are aliased to pagination.IStaticPage etc. as the mappers were not enough (#20240508103622)
+
+
+Misc
+----
+
+- #20240522095945
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.30.0" (2024-05-22)
 =====================
 
