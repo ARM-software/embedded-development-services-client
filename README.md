@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Go Reference](https://pkg.go.dev/badge/github.com/ARM-software/embedded-development-services-client/client.svg)](https://pkg.go.dev/github.com/ARM-software/embedded-development-services-client/client)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ARM-software/embedded-development-services-client)](https://goreportcard.com/report/github.com/ARM-software/embedded-development-services-client)
+[![Scorecard Report](https://img.shields.io/ossf-scorecard/github.com/ARM-software/golang-utils?label=openssf%20scorecard&style=flat)](https://github.com/ossf/scorecard-action)
 
 ## Overview
  

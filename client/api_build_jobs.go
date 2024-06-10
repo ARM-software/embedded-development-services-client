@@ -418,10 +418,10 @@ func (r ApiGetBuildArtefactRequest) Execute() (*os.File, *http.Response, error) 
 /*
 GetBuildArtefact Download the named Build Artefact for the given Build Job.
 
-An artefact represents a product of the build process such as a binary file.
+An artefact represents a product of a job.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param artefactName The URL safe name of a Job Artefact.
+ @param artefactName Unique ID of a Job Artefact.
  @param jobName Unique ID of the Build Job.
  @return ApiGetBuildArtefactRequest
 
@@ -470,7 +470,7 @@ func (a *BuildJobsAPIService) GetBuildArtefactExecute(r ApiGetBuildArtefactReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/octet-stream", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -780,7 +780,7 @@ An output represents a product/artefact of the build process such as a binary fi
 The managers enable their download.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param artefactName The URL safe name of a Job Artefact.
+ @param artefactName Unique ID of a Job Artefact.
  @param jobName Unique ID of the Build Job.
  @return ApiGetBuildJobArtefactManagerRequest
 */
@@ -1161,10 +1161,10 @@ func (r ApiGetBuildOutputArtefactRequest) Execute() (*os.File, *http.Response, e
 /*
 GetBuildOutputArtefact Download the build artefact for the given build job.
 
-An artefact represents a product of the build process such as a binary file.
+An artefact represents a product of a job.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param artefactName The URL safe name of a Job Artefact.
+ @param artefactName Unique ID of a Job Artefact.
  @param jobName Unique ID of the Build Job.
  @return ApiGetBuildOutputArtefactRequest
 */
@@ -1210,7 +1210,7 @@ func (a *BuildJobsAPIService) GetBuildOutputArtefactExecute(r ApiGetBuildOutputA
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/octet-stream", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

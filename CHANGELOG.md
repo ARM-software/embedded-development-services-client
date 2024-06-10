@@ -2,6 +2,175 @@
 Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.31.1" (2024-05-22)
+=====================
+
+Bugfixes
+--------
+
+- Dependency upgrade: golangci-lint-action-6 (#20240507085423)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"1.31.0" (2024-05-22)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20240516125141, #20240516125941, #20240516135153)
+
+
+Bugfixes
+--------
+
+- :bug: Make sure that paginators are aliased to pagination.IStaticPage etc. as the mappers were not enough (#20240508103622)
+
+
+Misc
+----
+
+- #20240522095945
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"1.30.0" (2024-05-22)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20240521012901)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"" "1.29.0" (2024-05-03)
+========================
+
+Features
+--------
+
+- :sparkles: Remove excluded schemas now that updated schema has been released (#20240417104654)
+- :sparkles: Add extensions for following generic work job links (#20240422110722)
+- Updated client due to schema changes (#20240422141705, #20240423081646, #20240423084206)
+- :sparkles: Add mapper for client.IMessageStream to pagination.IStaticPageStream (#20240422150732)
+
+
+Bugfixes
+--------
+
+- Dependency upgrade: golangci-lint-action-5 (#20240425090140)
+- Dependency upgrade: fetch-metadata-2.1.0 (#20240425090144)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"" "1.28.0" (2024-05-01)
+========================
+
+Features
+--------
+
+- Updated client due to schema changes (#20240501015736)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"" "1.27.0" (2024-04-18)
+========================
+
+Features
+--------
+
+- Updated client due to schema changes (#20240418012614)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"" "1.26.0" (2024-04-11)
+========================
+
+Features
+--------
+
+- Updated client due to schema changes (#20240411012656)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"" "1.25.0" (2024-04-09)
+========================
+
+Features
+--------
+
+- :sparkles: Automatically generate pagination extensions (#20240409145642)
+- Updated client due to schema changes (#20240409152147)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"" "1.24.1" (2024-04-08)
+========================
+
+Bugfixes
+--------
+
+- Dependency upgrade: cache-4 (#20240118094658)
+- Dependency upgrade: golangci-lint-action-4 (#20240212090904)
+- Dependency upgrade: testify-1.9.0 (#20240304091445)
+- Dependency upgrade: fetch-metadata-2.0.0 (#20240322090837)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"" "1.24.0" (2024-03-12)
+========================
+
+Features
+--------
+
+- Updated client due to schema changes (#20240312012403)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"" "1.23.0" (2024-02-09)
+========================
+
+Features
+--------
+
+- Updated client due to schema changes (#20240209012358)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "" "1.22.5" (2024-01-10)
 ========================
 

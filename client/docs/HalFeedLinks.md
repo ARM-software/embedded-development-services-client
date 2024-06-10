@@ -8,6 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Alternate** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **First** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Future** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Last** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
@@ -33,6 +34,31 @@ will change when the set of required properties is changed
 NewHalFeedLinksWithDefaults instantiates a new HalFeedLinks object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAlternate
+
+`func (o *HalFeedLinks) GetAlternate() HalLinkData`
+
+GetAlternate returns the Alternate field if non-nil, zero value otherwise.
+
+### GetAlternateOk
+
+`func (o *HalFeedLinks) GetAlternateOk() (*HalLinkData, bool)`
+
+GetAlternateOk returns a tuple with the Alternate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAlternate
+
+`func (o *HalFeedLinks) SetAlternate(v HalLinkData)`
+
+SetAlternate sets Alternate field to given value.
+
+### HasAlternate
+
+`func (o *HalFeedLinks) HasAlternate() bool`
+
+HasAlternate returns a boolean if a field has been set.
 
 ### GetFirst
 

@@ -28,11 +28,11 @@ var _ MappedNullable = &CommonMetadata{}
 
 // CommonMetadata Common information present in every resource, which provides information about the resource.
 type CommonMetadata struct {
-	// Creation Time: UTC date and time (in RFC3339 format) when the resource was created. If this is a system created resource, this will be a fixed time unaffected by user actions.
+	// Creation Time: UTC date and time when the resource was created. If this is a system created resource, this will be a fixed time unaffected by user actions.
 	Ctime time.Time `json:"ctime"`
-	// Expiry Time: UTC date and time (in RFC3339 format) when the resource will be removed automatically by the system and become unavailable.
+	// Expiry Time: UTC date and time when the resource will be removed automatically by the system and become unavailable.
 	Etime NullableTime `json:"etime,omitempty"`
-	// Last Modification Time: UTC date and time (in RFC3339 format) when the resource was last updated. For a resource that cannot be modified this will be the same as `ctime`.
+	// Last Modification Time: UTC date and time when the resource was last updated. For a resource that cannot be modified, this will be the same as `ctime`.
 	Mtime time.Time `json:"mtime"`
 }
 

@@ -185,7 +185,7 @@ import (
 )
 
 func main() {
-	artefactName := "artefactName_example" // string | The URL safe name of a Job Artefact.
+	artefactName := "artefactName_example" // string | Unique ID of a Job Artefact.
 	jobName := "jobName_example" // string | Unique ID of the Intellisense Job.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
@@ -207,7 +207,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**artefactName** | **string** | The URL safe name of a Job Artefact. | 
+**artefactName** | **string** | Unique ID of a Job Artefact. | 
 **jobName** | **string** | Unique ID of the Intellisense Job. | 
 
 ### Other Parameters
@@ -334,7 +334,7 @@ import (
 )
 
 func main() {
-	artefactName := "artefactName_example" // string | The URL safe name of a Job Artefact.
+	artefactName := "artefactName_example" // string | Unique ID of a Job Artefact.
 	jobName := "jobName_example" // string | Unique ID of the Intellisense Job.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
@@ -357,7 +357,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**artefactName** | **string** | The URL safe name of a Job Artefact. | 
+**artefactName** | **string** | Unique ID of a Job Artefact. | 
 **jobName** | **string** | Unique ID of the Intellisense Job. | 
 
 ### Other Parameters
@@ -489,7 +489,7 @@ import (
 )
 
 func main() {
-	artefactName := "artefactName_example" // string | The URL safe name of a Job Artefact.
+	artefactName := "artefactName_example" // string | Unique ID of a Job Artefact.
 	jobName := "jobName_example" // string | Unique ID of the Intellisense Job.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
@@ -512,7 +512,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**artefactName** | **string** | The URL safe name of a Job Artefact. | 
+**artefactName** | **string** | Unique ID of a Job Artefact. | 
 **jobName** | **string** | Unique ID of the Intellisense Job. | 
 
 ### Other Parameters

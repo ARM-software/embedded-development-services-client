@@ -63,7 +63,13 @@ type APIClient struct {
 
 	DeprecationNoticeAPI *DeprecationNoticeAPIService
 
+	GenericWorkJobsAPI *GenericWorkJobsAPIService
+
+	GenericWorkersAPI *GenericWorkersAPIService
+
 	IntellisenseJobsAPI *IntellisenseJobsAPIService
+
+	PersonalAccessTokenAPI *PersonalAccessTokenAPIService
 
 	RootResourceAPI *RootResourceAPIService
 
@@ -100,7 +106,10 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CMSISBuildersAPI = (*CMSISBuildersAPIService)(&c.common)
 	c.CMSISIntellisenseBuildersAPI = (*CMSISIntellisenseBuildersAPIService)(&c.common)
 	c.DeprecationNoticeAPI = (*DeprecationNoticeAPIService)(&c.common)
+	c.GenericWorkJobsAPI = (*GenericWorkJobsAPIService)(&c.common)
+	c.GenericWorkersAPI = (*GenericWorkersAPIService)(&c.common)
 	c.IntellisenseJobsAPI = (*IntellisenseJobsAPIService)(&c.common)
+	c.PersonalAccessTokenAPI = (*PersonalAccessTokenAPIService)(&c.common)
 	c.RootResourceAPI = (*RootResourceAPIService)(&c.common)
 	c.VHTRunJobsAPI = (*VHTRunJobsAPIService)(&c.common)
 	c.VendorsAPI = (*VendorsAPIService)(&c.common)
@@ -201,7 +210,7 @@ func parameterAddToHeaderOrQuery(headerOrQueryParams interface{}, keyPrefix stri
 					return
 				}
 				if t, ok := obj.(time.Time); ok {
-					parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, t.Format(time.RFC3339), collectionType)
+					parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, t.Format(time.RFC3339Nano), collectionType)
 					return
 				}
 				value = v.Type().String() + " value"

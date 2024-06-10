@@ -1,0 +1,247 @@
+/*
+ * Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package client
+
+import (
+	"errors"
+	"fmt"
+)
+
+{{ range .Collections }}
+// ============================================================================================
+// This extends {{ .ItemRef }} and {{ .CollectionRef }} definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *{{ .ItemRef }}) FetchType() string {
+	return "{{ .ItemRef }}"
+}
+
+// FetchLinks returns the resource links if present
+func (o *{{ .ItemRef }}) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *{{ .ItemRef }}) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *{{ .ItemRef }}) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// New{{ .ModelRef }} returns a model.
+func New{{ .ModelRef }}() IModel {
+	return New{{ .ItemRef }}WithDefaults()
+}
+
+// {{ .IteratorRef }} defines an iterator over a collection.
+type {{ .IteratorRef }} struct {
+	elements     []{{ .ItemRef }}
+	currentIndex int
+}
+
+func (m *{{ .IteratorRef }}) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *{{ .IteratorRef }}) GetNext() (item any, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func New{{ .IteratorRef }}(elements []{{ .ItemRef }}) (IIterator, error) {
+	return &{{ .IteratorRef }}{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
+
+// FetchType returns the resource type
+func (o *{{ .CollectionRef }}) FetchType() string {
+	return "{{ .CollectionRef }} page"
+}
+
+// FetchLinks returns the resource links if present
+func (o *{{ .CollectionRef }}) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *{{ .CollectionRef }}) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *{{ .CollectionRef }}) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *{{ .CollectionRef }}) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *{{ .CollectionRef }}) GetItemIterator() (IIterator, error) {
+	if o.HasEmbedded() {
+		embedded := o.GetEmbedded()
+		return New{{ .IteratorRef }}(embedded.GetItem())
+	}
+	links, err := o.FetchLinks()
+	if err != nil {
+		return nil, err
+	}
+	l, ok := links.(HalCollectionLinks)
+	if !ok {
+		return nil, fmt.Errorf("wrong link type [%T]; expected [HalCollectionLinks]", links)
+	}
+	return NewHalLinkDataIterator(l.GetItem())
+}
+
+func (o *{{ .CollectionRef }}) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// New{{ .CollectionRef }} returns a page.
+func New{{ .CollectionRef }}Collection() IStaticPage {
+	return New{{ .CollectionRef }}WithDefaults()
+}
+{{ end }}
+{{ range .MessageCollections -}}
+// ============================================================================================
+// This extends {{ .ItemRef }} definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *{{ .ItemRef }}) FetchType() string {
+	return "Message"
+}
+
+// {{ .IteratorRef }} defines an iterator over a collection.
+type {{ .IteratorRef }} struct {
+	elements     []{{ .ItemRef }}
+	currentIndex int
+}
+
+func (m *{{ .IteratorRef }}) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *{{ .IteratorRef }}) GetNext() (item any, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func New{{ .IteratorRef }}(elements []{{ .ItemRef }}) (IIterator, error) {
+	return &{{ .IteratorRef }}{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
+{{ end }}
+{{ range .NotificationFeedCollections -}}
+// ============================================================================================
+// This extends {{ .ItemRef }} definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *{{ .ItemRef }}) FetchType() string {
+	return "Notification messages"
+}
+
+// FetchLinks returns the resource links if present
+func (o *{{ .ItemRef }}) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *{{ .ItemRef }}) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *{{ .ItemRef }}) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *{{ .ItemRef }}) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *{{ .ItemRef }}) HasFuture() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasFuture()
+	}
+	return false
+}
+
+func (o *{{ .ItemRef }}) GetItemIterator() (IIterator, error) {
+	return {{ .IteratorRef }}(o.GetMessages())
+}
+
+func (o *{{ .ItemRef }}) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// New{{ .ItemRef }}MessageStream returns a message stream.
+func New{{ .ItemRef }}MessageStream() IMessageStream {
+	return New{{ .ItemRef }}WithDefaults()
+}
+{{ end }}

@@ -27,6 +27,7 @@ var _ MappedNullable = &HalSimpleCollectionLinks{}
 
 // HalSimpleCollectionLinks These hypermedia links inside a feed resource allow the contents of the resource to be paged. A simple collection only contains the minimum links needed to traverse a collection. - The `first` link points to the first page of a feed resource, this will not be be present if the entire   resource has been returned in the current page. - The `last` link points to the last page of a feed resource, this will not be be present if the entire   resource has been returned in the current page. - The `prev` link points to the previous page in the resource, this will not be present if the current page is   the first (or only page) page. - The `next` link points to the next page in the resource, this will not be present if the current page is the   last (or only page) page.
 type HalSimpleCollectionLinks struct {
+	Alternate *HalLinkData `json:"alternate,omitempty"`
 	First *HalLinkData `json:"first,omitempty"`
 	Last *HalLinkData `json:"last,omitempty"`
 	Next *HalLinkData `json:"next,omitempty"`
@@ -52,6 +53,38 @@ func NewHalSimpleCollectionLinks(self HalLinkData) *HalSimpleCollectionLinks {
 func NewHalSimpleCollectionLinksWithDefaults() *HalSimpleCollectionLinks {
 	this := HalSimpleCollectionLinks{}
 	return &this
+}
+
+// GetAlternate returns the Alternate field value if set, zero value otherwise.
+func (o *HalSimpleCollectionLinks) GetAlternate() HalLinkData {
+	if o == nil || IsNil(o.Alternate) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Alternate
+}
+
+// GetAlternateOk returns a tuple with the Alternate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HalSimpleCollectionLinks) GetAlternateOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Alternate) {
+		return nil, false
+	}
+	return o.Alternate, true
+}
+
+// HasAlternate returns a boolean if a field has been set.
+func (o *HalSimpleCollectionLinks) HasAlternate() bool {
+	if o != nil && !IsNil(o.Alternate) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlternate gets a reference to the given HalLinkData and assigns it to the Alternate field.
+func (o *HalSimpleCollectionLinks) SetAlternate(v HalLinkData) {
+	o.Alternate = &v
 }
 
 // GetFirst returns the First field value if set, zero value otherwise.
@@ -216,6 +249,9 @@ func (o HalSimpleCollectionLinks) MarshalJSON() ([]byte, error) {
 
 func (o HalSimpleCollectionLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Alternate) {
+		toSerialize["alternate"] = o.Alternate
+	}
 	if !IsNil(o.First) {
 		toSerialize["first"] = o.First
 	}

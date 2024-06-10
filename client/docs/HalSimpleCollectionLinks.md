@@ -8,6 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Alternate** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **First** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Last** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Next** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
@@ -32,6 +33,31 @@ will change when the set of required properties is changed
 NewHalSimpleCollectionLinksWithDefaults instantiates a new HalSimpleCollectionLinks object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAlternate
+
+`func (o *HalSimpleCollectionLinks) GetAlternate() HalLinkData`
+
+GetAlternate returns the Alternate field if non-nil, zero value otherwise.
+
+### GetAlternateOk
+
+`func (o *HalSimpleCollectionLinks) GetAlternateOk() (*HalLinkData, bool)`
+
+GetAlternateOk returns a tuple with the Alternate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAlternate
+
+`func (o *HalSimpleCollectionLinks) SetAlternate(v HalLinkData)`
+
+SetAlternate sets Alternate field to given value.
+
+### HasAlternate
+
+`func (o *HalSimpleCollectionLinks) HasAlternate() bool`
+
+HasAlternate returns a boolean if a field has been set.
 
 ### GetFirst
 
