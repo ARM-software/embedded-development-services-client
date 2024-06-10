@@ -2,6 +2,19 @@
 Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.31.2" (2024-06-10)
+=====================
+
+Bugfixes
+--------
+
+- Dependency upgrade: utils-1.64.0 (#20240531081600)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.31.1" (2024-05-22)
 =====================
 
