@@ -2,15 +2,14 @@ package cmd
 
 import (
 	"context"
-	"fmt"
 	"os"
 
-	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
 	"github.com/ARM-software/embedded-development-services-client/generator/codegen"
 	configUtils "github.com/ARM-software/golang-utils/utils/config"
+	"github.com/ARM-software/golang-utils/utils/logs/logrimp"
 )
 
 const (
@@ -30,11 +29,11 @@ var rootCmd = &cobra.Command{
 	Use: "extension-generator",
 	RunE: func(_ *cobra.Command, _ []string) (err error) {
 		ctx := context.Background()
+		logger := logrimp.NewStdOutLogr()
 
 		err = configUtils.LoadFromViper(viperSession, app, &extensionConfig, codegen.DefaultExtensionsConfig())
 		if err != nil {
-			fmt.Printf("%+v\n", extensionConfig)
-			log.Errorf("Failed to initialise CLI with error: %s", err)
+			logger.Error(err, "Failed to initialise CLI with error")
 			return
 		}
 		d, err := codegen.GenerateDataStruct(extensionConfig)
