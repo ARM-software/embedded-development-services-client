@@ -1,9 +1,9 @@
-github.com/ARM-software/golang-utils/utils v1.66.1 h1:fuaJ6uB5hbKXHVeaitZK5KeDCIryN0WAgkwnbbxUX70=
-github.com/ARM-software/golang-utils/utils v1.66.1/go.mod h1:PFxtFy3iRiGvmH6X9EUflQet+VcuUS3WZ0qD/rtTu2A=
+github.com/ARM-software/golang-utils/utils v1.66.2 h1:XHz7O8fymrT3RNrrQdg/n7qCmh0XlKP2HnWDN6fF7gE=
+github.com/ARM-software/golang-utils/utils v1.66.2/go.mod h1:pjIYW6jPUXH7/kxkZEPyzRwiux+NUG/BFJFn8zaJ/0A=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1VwoXQT9A3Wy9MM3WgvqSxFWenqJduM=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/go-faker/faker/v4 v4.4.1 h1:LY1jDgjVkBZWIhATCt+gkl0x9i/7wC61gZx73GTFb+Q=
-github.com/go-faker/faker/v4 v4.4.1/go.mod h1:HRLrjis+tYsbFtIHufEPTAIzcZiRu0rS9EYl2Ccwme4=
+github.com/go-faker/faker/v4 v4.4.2 h1:96WeU9QKEqRUVYdjHquY2/5bAqmVM0IfGKHV5mbfqmQ=
+github.com/go-faker/faker/v4 v4.4.2/go.mod h1:4K3v4AbKXYNHMQNaREMc9/kRB9j5JJzpFo6KHRvrcIw=
 github.com/petermattis/goid v0.0.0-20180202154549-b0b1615b78e5 h1:q2e307iGHPdTGp0hoxKjt1H5pDo6utceo3dQVK3I5XQ=
 github.com/petermattis/goid v0.0.0-20180202154549-b0b1615b78e5/go.mod h1:jvVRKCrJTQWu0XVbaOlby/2lO20uSCHEMzzplHXte1o=
 github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 h1:Jamvg5psRIccs7FGNTlIRMkT8wgtp5eCXdBlqhYGL6U=
