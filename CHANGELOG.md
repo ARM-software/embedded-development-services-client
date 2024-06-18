@@ -2,6 +2,25 @@
 Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.32.0" (2024-06-18)
+=====================
+
+Features
+--------
+
+- :sparkles: Extend jobs to specify when messages or artefacts are available (#20240618115513)
+
+
+Misc
+----
+
+- #20240618115438
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.31.5" (2024-06-18)
 =====================
 
