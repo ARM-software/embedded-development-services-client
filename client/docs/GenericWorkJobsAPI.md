@@ -8,15 +8,15 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CancelGenericWorkJob**](GenericWorkJobsAPI.md#CancelGenericWorkJob) | **Post** /generic-work-jobs/{jobName}/cancel | Cancel an Generic Work Job.
-[**DeleteGenericWorkJob**](GenericWorkJobsAPI.md#DeleteGenericWorkJob) | **Delete** /generic-work-jobs/{jobName} | Delete an Generic Work Job.
-[**GetGenericWorkJob**](GenericWorkJobsAPI.md#GetGenericWorkJob) | **Get** /generic-work-jobs/{jobName} | Return status of an Generic Work Job.
-[**GetGenericWorkJobArtefactManager**](GenericWorkJobsAPI.md#GetGenericWorkJobArtefactManager) | **Get** /generic-work-jobs/{jobName}/artefacts/{artefactName} | Get the Generic Work Job artefact manager for the artefact named &#x60;artefactName&#x60; present of job.
+[**CancelGenericWorkJob**](GenericWorkJobsAPI.md#CancelGenericWorkJob) | **Post** /generic-work-jobs/{jobName}/cancel | Cancel a generic job.
+[**DeleteGenericWorkJob**](GenericWorkJobsAPI.md#DeleteGenericWorkJob) | **Delete** /generic-work-jobs/{jobName} | Delete a generic job.
+[**GetGenericWorkJob**](GenericWorkJobsAPI.md#GetGenericWorkJob) | **Get** /generic-work-jobs/{jobName} | Return the status of a Generic Work Job.
+[**GetGenericWorkJobArtefactManager**](GenericWorkJobsAPI.md#GetGenericWorkJobArtefactManager) | **Get** /generic-work-jobs/{jobName}/artefacts/{artefactName} | Get the job&#39;s artefact manager for the artefact named &#x60;artefactName&#x60;.
 [**GetGenericWorkJobMessages**](GenericWorkJobsAPI.md#GetGenericWorkJobMessages) | **Get** /generic-work-jobs/{jobName}/messages | GenericWorkJob Message Feed.
 [**GetGenericWorkJobOutputArtefact**](GenericWorkJobsAPI.md#GetGenericWorkJobOutputArtefact) | **Get** /generic-work-jobs/{jobName}/artefacts/{artefactName}/artefact | Download the artefact for the corresponding generic work job.
-[**ListGenericWorkJobArtefactManagers**](GenericWorkJobsAPI.md#ListGenericWorkJobArtefactManagers) | **Get** /generic-work-jobs/{jobName}/artefacts/ | Get the list of artefact managers for the given generic work job.
-[**ListGenericWorkJobs**](GenericWorkJobsAPI.md#ListGenericWorkJobs) | **Get** /generic-work-jobs/ | List all Generic Work Jobs.
-[**RetainGenericWorkJob**](GenericWorkJobsAPI.md#RetainGenericWorkJob) | **Post** /generic-work-jobs/{jobName}/retain | Update how long an generic work job will be retained before automatic deletion.
+[**ListGenericWorkJobArtefactManagers**](GenericWorkJobsAPI.md#ListGenericWorkJobArtefactManagers) | **Get** /generic-work-jobs/{jobName}/artefacts/ | Get the list of artefact managers for the given job.
+[**ListGenericWorkJobs**](GenericWorkJobsAPI.md#ListGenericWorkJobs) | **Get** /generic-work-jobs/ | List all jobs performed by generic workers.
+[**RetainGenericWorkJob**](GenericWorkJobsAPI.md#RetainGenericWorkJob) | **Post** /generic-work-jobs/{jobName}/retain | Update how long a generic work job will be retained before automatic deletion.
 
 
 
@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 > GenericWorkJobItem CancelGenericWorkJob(ctx, jobName).AcceptVersion(acceptVersion).Execute()
 
-Cancel an Generic Work Job.
+Cancel a generic job.
 
 
 
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 > DeleteGenericWorkJob(ctx, jobName).AcceptVersion(acceptVersion).Execute()
 
-Delete an Generic Work Job.
+Delete a generic job.
 
 
 
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 
 > GenericWorkJobItem GetGenericWorkJob(ctx, jobName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 
-Return status of an Generic Work Job.
+Return the status of a Generic Work Job.
 
 
 
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 > ArtefactManagerItem GetGenericWorkJobArtefactManager(ctx, artefactName, jobName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 
-Get the Generic Work Job artefact manager for the artefact named `artefactName` present of job.
+Get the job's artefact manager for the artefact named `artefactName`.
 
 
 
@@ -472,7 +472,7 @@ Name | Type | Description  | Notes
 
 > ArtefactManagerCollection ListGenericWorkJobArtefactManagers(ctx, jobName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
 
-Get the list of artefact managers for the given generic work job.
+Get the list of artefact managers for the given job.
 
 
 
@@ -552,7 +552,7 @@ Name | Type | Description  | Notes
 
 > GenericWorkJobCollection ListGenericWorkJobs(ctx).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
 
-List all Generic Work Jobs.
+List all jobs performed by generic workers.
 
 
 
@@ -626,7 +626,7 @@ Name | Type | Description  | Notes
 
 > GenericWorkJobItem RetainGenericWorkJob(ctx, jobName).AcceptVersion(acceptVersion).RetainBuildJobRequest(retainBuildJobRequest).Execute()
 
-Update how long an generic work job will be retained before automatic deletion.
+Update how long a generic work job will be retained before automatic deletion.
 
 
 

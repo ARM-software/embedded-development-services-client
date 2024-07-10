@@ -29,7 +29,7 @@ var _ MappedNullable = &GenericWorkJobItem{}
 type GenericWorkJobItem struct {
 	Links NullableGenericWorkJobItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
-	// Configuration map for jobs that require it. These could be environment variables. This is implementation dependent.
+	// Configuration map for jobs that require it. These could be environment variables. This is job implementation dependent and job documentation should describe it.
 	Configuration map[string]string `json:"configuration,omitempty"`
 	// True when the job has completed (this does necessarily indicate success).
 	Done bool `json:"done"`
@@ -45,7 +45,7 @@ type GenericWorkJobItem struct {
 	JobTimeout *int32 `json:"jobTimeout,omitempty"`
 	// Unique ID of the Generic Work Job.
 	Name string `json:"name"`
-	// project to handle or being handled.
+	// Path in the workspace to the project to handle or being handled.
 	Project *string `json:"project,omitempty"`
 	// True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended.
 	Queued *bool `json:"queued,omitempty"`
@@ -55,8 +55,8 @@ type GenericWorkJobItem struct {
 	Success bool `json:"success"`
 	// Optional human readable name of the generic work job.
 	Title NullableString `json:"title,omitempty"`
-	// Path to user's workspace.
-	Workspace *string `json:"workspace,omitempty"`
+	// Workspace name where the project is present. If not set, the default user's workspace will be used.
+	Workspace NullableString `json:"workspace,omitempty"`
 }
 
 type _GenericWorkJobItem GenericWorkJobItem
@@ -511,36 +511,46 @@ func (o *GenericWorkJobItem) UnsetTitle() {
 	o.Title.Unset()
 }
 
-// GetWorkspace returns the Workspace field value if set, zero value otherwise.
+// GetWorkspace returns the Workspace field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GenericWorkJobItem) GetWorkspace() string {
-	if o == nil || IsNil(o.Workspace) {
+	if o == nil || IsNil(o.Workspace.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Workspace
+	return *o.Workspace.Get()
 }
 
 // GetWorkspaceOk returns a tuple with the Workspace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GenericWorkJobItem) GetWorkspaceOk() (*string, bool) {
-	if o == nil || IsNil(o.Workspace) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Workspace, true
+	return o.Workspace.Get(), o.Workspace.IsSet()
 }
 
 // HasWorkspace returns a boolean if a field has been set.
 func (o *GenericWorkJobItem) HasWorkspace() bool {
-	if o != nil && !IsNil(o.Workspace) {
+	if o != nil && o.Workspace.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetWorkspace gets a reference to the given string and assigns it to the Workspace field.
+// SetWorkspace gets a reference to the given NullableString and assigns it to the Workspace field.
 func (o *GenericWorkJobItem) SetWorkspace(v string) {
-	o.Workspace = &v
+	o.Workspace.Set(&v)
+}
+// SetWorkspaceNil sets the value for Workspace to be an explicit nil
+func (o *GenericWorkJobItem) SetWorkspaceNil() {
+	o.Workspace.Set(nil)
+}
+
+// UnsetWorkspace ensures that no value is present for Workspace, not even an explicit nil
+func (o *GenericWorkJobItem) UnsetWorkspace() {
+	o.Workspace.Unset()
 }
 
 func (o GenericWorkJobItem) MarshalJSON() ([]byte, error) {
@@ -578,8 +588,8 @@ func (o GenericWorkJobItem) ToMap() (map[string]interface{}, error) {
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
-	if !IsNil(o.Workspace) {
-		toSerialize["workspace"] = o.Workspace
+	if o.Workspace.IsSet() {
+		toSerialize["workspace"] = o.Workspace.Get()
 	}
 	return toSerialize, nil
 }

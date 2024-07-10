@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Links** | [**NullableGenericWorkJobItemLinks**](GenericWorkJobItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**Configuration** | Pointer to **map[string]string** | Configuration map for jobs that require it. These could be environment variables. This is implementation dependent. | [optional] 
+**Configuration** | Pointer to **map[string]string** | Configuration map for jobs that require it. These could be environment variables. This is job implementation dependent and job documentation should describe it. | [optional] 
 **Done** | **bool** | True when the job has completed (this does necessarily indicate success). | [readonly] 
 **Error** | **bool** | True if there was an error in the service while attempting the job. | [readonly] 
 **Failure** | **bool** | True if the job failed (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
@@ -18,12 +18,12 @@ Name | Type | Description | Notes
 **JobStepsTotal** | **NullableInt32** | The total number of steps that will need to be performed to complete the job. Please note: - This value also includes additional service orchestration steps, that are outside the core job being    executed by the process, so may differ from the build progress indicated within build messages.  - This value will only be available after the job has been started. | [readonly] 
 **JobTimeout** | Pointer to **int32** | The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started. | [optional] [default to 300]
 **Name** | **string** | Unique ID of the Generic Work Job. | [readonly] 
-**Project** | Pointer to **string** | project to handle or being handled. | [optional] 
+**Project** | Pointer to **string** | Path in the workspace to the project to handle or being handled. | [optional] 
 **Queued** | Pointer to **bool** | True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended. | [optional] [readonly] 
 **Status** | **string** | A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead. | [readonly] 
 **Success** | **bool** | True if the job was successful (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
 **Title** | Pointer to **NullableString** | Optional human readable name of the generic work job. | [optional] 
-**Workspace** | Pointer to **string** | Path to user&#39;s workspace. | [optional] 
+**Workspace** | Pointer to **NullableString** | Workspace name where the project is present. If not set, the default user&#39;s workspace will be used. | [optional] 
 
 ## Methods
 
@@ -454,6 +454,16 @@ SetWorkspace sets Workspace field to given value.
 
 HasWorkspace returns a boolean if a field has been set.
 
+### SetWorkspaceNil
+
+`func (o *GenericWorkJobItem) SetWorkspaceNil(b bool)`
+
+ SetWorkspaceNil sets the value for Workspace to be an explicit nil
+
+### UnsetWorkspace
+`func (o *GenericWorkJobItem) UnsetWorkspace()`
+
+UnsetWorkspace ensures that no value is present for Workspace, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

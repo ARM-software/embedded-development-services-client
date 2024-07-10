@@ -48,7 +48,7 @@ func (r ApiCancelGenericWorkJobRequest) Execute() (*GenericWorkJobItem, *http.Re
 }
 
 /*
-CancelGenericWorkJob Cancel an Generic Work Job.
+CancelGenericWorkJob Cancel a generic job.
 
 This will cancel a job that is in progress. All messages associated with it will be retained.
 
@@ -237,7 +237,7 @@ func (r ApiDeleteGenericWorkJobRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteGenericWorkJob Delete an Generic Work Job.
+DeleteGenericWorkJob Delete a generic job.
 
 Deletes a job along with artefacts and messages associated with it. Deleting a job is only possible if it has already completed or been cancelled.
 
@@ -422,7 +422,7 @@ func (r ApiGetGenericWorkJobRequest) Execute() (*GenericWorkJobItem, *http.Respo
 }
 
 /*
-GetGenericWorkJob Return status of an Generic Work Job.
+GetGenericWorkJob Return the status of a Generic Work Job.
 
 An generic work job represents the status of a work job process being executed by an generic worker.
 
@@ -600,7 +600,7 @@ func (r ApiGetGenericWorkJobArtefactManagerRequest) Execute() (*ArtefactManagerI
 }
 
 /*
-GetGenericWorkJobArtefactManager Get the Generic Work Job artefact manager for the artefact named `artefactName` present of job.
+GetGenericWorkJobArtefactManager Get the job's artefact manager for the artefact named `artefactName`.
 
 An output represents a product/artefact of the work job process.
 The managers enable their download and provides metadata about the artefact.
@@ -1186,7 +1186,7 @@ func (r ApiListGenericWorkJobArtefactManagersRequest) Execute() (*ArtefactManage
 }
 
 /*
-ListGenericWorkJobArtefactManagers Get the list of artefact managers for the given generic work job.
+ListGenericWorkJobArtefactManagers Get the list of artefact managers for the given job.
 
 An artefact manager provides metadata about an artefact as well as ways to download it.
 
@@ -1401,9 +1401,9 @@ func (r ApiListGenericWorkJobsRequest) Execute() (*GenericWorkJobCollection, *ht
 }
 
 /*
-ListGenericWorkJobs List all Generic Work Jobs.
+ListGenericWorkJobs List all jobs performed by generic workers.
 
-This returns a collection resource that lists all in progress or recently completed generic work jobs. The generic work jobs for all workers are in the same collection.
+This returns a collection resource that lists all in progress or recently completed jobs performed by generic workers. The jobs for all workers are in the same collection.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListGenericWorkJobsRequest
@@ -1582,7 +1582,7 @@ func (r ApiRetainGenericWorkJobRequest) Execute() (*GenericWorkJobItem, *http.Re
 }
 
 /*
-RetainGenericWorkJob Update how long an generic work job will be retained before automatic deletion.
+RetainGenericWorkJob Update how long a generic work job will be retained before automatic deletion.
 
 Set the time at which the job and all associated resources such as generated artefacts and messages will be removed from the system.
 

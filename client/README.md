@@ -128,15 +128,15 @@ Class | Method | HTTP request | Description
 *CMSISIntellisenseBuildersAPI* | [**StartCmsisIntellisense**](docs/CMSISIntellisenseBuildersAPI.md#startcmsisintellisense) | **Post** /cmsis-intellisense/{builderName} | Initiate a compilation database generation using the specified CMSIS Intellisense Builder.
 *DeprecationNoticeAPI* | [**GetDeprecationNotice**](docs/DeprecationNoticeAPI.md#getdeprecationnotice) | **Get** /deprecations/{operationName} | Return details of specific endpoint deprecation notice.
 *DeprecationNoticeAPI* | [**ListDeprecatedEndpoints**](docs/DeprecationNoticeAPI.md#listdeprecatedendpoints) | **Get** /deprecations/ | Get the endpoints that have been deprecated with some notice.
-*GenericWorkJobsAPI* | [**CancelGenericWorkJob**](docs/GenericWorkJobsAPI.md#cancelgenericworkjob) | **Post** /generic-work-jobs/{jobName}/cancel | Cancel an Generic Work Job.
-*GenericWorkJobsAPI* | [**DeleteGenericWorkJob**](docs/GenericWorkJobsAPI.md#deletegenericworkjob) | **Delete** /generic-work-jobs/{jobName} | Delete an Generic Work Job.
-*GenericWorkJobsAPI* | [**GetGenericWorkJob**](docs/GenericWorkJobsAPI.md#getgenericworkjob) | **Get** /generic-work-jobs/{jobName} | Return status of an Generic Work Job.
-*GenericWorkJobsAPI* | [**GetGenericWorkJobArtefactManager**](docs/GenericWorkJobsAPI.md#getgenericworkjobartefactmanager) | **Get** /generic-work-jobs/{jobName}/artefacts/{artefactName} | Get the Generic Work Job artefact manager for the artefact named &#x60;artefactName&#x60; present of job.
+*GenericWorkJobsAPI* | [**CancelGenericWorkJob**](docs/GenericWorkJobsAPI.md#cancelgenericworkjob) | **Post** /generic-work-jobs/{jobName}/cancel | Cancel a generic job.
+*GenericWorkJobsAPI* | [**DeleteGenericWorkJob**](docs/GenericWorkJobsAPI.md#deletegenericworkjob) | **Delete** /generic-work-jobs/{jobName} | Delete a generic job.
+*GenericWorkJobsAPI* | [**GetGenericWorkJob**](docs/GenericWorkJobsAPI.md#getgenericworkjob) | **Get** /generic-work-jobs/{jobName} | Return the status of a Generic Work Job.
+*GenericWorkJobsAPI* | [**GetGenericWorkJobArtefactManager**](docs/GenericWorkJobsAPI.md#getgenericworkjobartefactmanager) | **Get** /generic-work-jobs/{jobName}/artefacts/{artefactName} | Get the job&#39;s artefact manager for the artefact named &#x60;artefactName&#x60;.
 *GenericWorkJobsAPI* | [**GetGenericWorkJobMessages**](docs/GenericWorkJobsAPI.md#getgenericworkjobmessages) | **Get** /generic-work-jobs/{jobName}/messages | GenericWorkJob Message Feed.
 *GenericWorkJobsAPI* | [**GetGenericWorkJobOutputArtefact**](docs/GenericWorkJobsAPI.md#getgenericworkjoboutputartefact) | **Get** /generic-work-jobs/{jobName}/artefacts/{artefactName}/artefact | Download the artefact for the corresponding generic work job.
-*GenericWorkJobsAPI* | [**ListGenericWorkJobArtefactManagers**](docs/GenericWorkJobsAPI.md#listgenericworkjobartefactmanagers) | **Get** /generic-work-jobs/{jobName}/artefacts/ | Get the list of artefact managers for the given generic work job.
-*GenericWorkJobsAPI* | [**ListGenericWorkJobs**](docs/GenericWorkJobsAPI.md#listgenericworkjobs) | **Get** /generic-work-jobs/ | List all Generic Work Jobs.
-*GenericWorkJobsAPI* | [**RetainGenericWorkJob**](docs/GenericWorkJobsAPI.md#retaingenericworkjob) | **Post** /generic-work-jobs/{jobName}/retain | Update how long an generic work job will be retained before automatic deletion.
+*GenericWorkJobsAPI* | [**ListGenericWorkJobArtefactManagers**](docs/GenericWorkJobsAPI.md#listgenericworkjobartefactmanagers) | **Get** /generic-work-jobs/{jobName}/artefacts/ | Get the list of artefact managers for the given job.
+*GenericWorkJobsAPI* | [**ListGenericWorkJobs**](docs/GenericWorkJobsAPI.md#listgenericworkjobs) | **Get** /generic-work-jobs/ | List all jobs performed by generic workers.
+*GenericWorkJobsAPI* | [**RetainGenericWorkJob**](docs/GenericWorkJobsAPI.md#retaingenericworkjob) | **Post** /generic-work-jobs/{jobName}/retain | Update how long a generic work job will be retained before automatic deletion.
 *GenericWorkersAPI* | [**GetGenericWorker**](docs/GenericWorkersAPI.md#getgenericworker) | **Get** /generic-workers/{genericWorkerName} | Return details of specific Generic Workers.
 *GenericWorkersAPI* | [**ListGenericWorkers**](docs/GenericWorkersAPI.md#listgenericworkers) | **Get** /generic-workers/ | List available Generic Workers.
 *GenericWorkersAPI* | [**StartGenericWorkJob**](docs/GenericWorkersAPI.md#startgenericworkjob) | **Post** /generic-workers/{genericWorkerName} | Initiate a job using the specified Generic Worker.
