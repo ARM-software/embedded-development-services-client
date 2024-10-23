@@ -4,6 +4,7 @@ run:
   # Run linters over integration tests
   build-tags:
     - integration
+    - integrationwithdeps
 
 linters:
   disable-all: true # Disable defaults, then enable the ones we want
@@ -32,3 +33,10 @@ linters-settings:
       - Standard
       - Default
       - Prefix(github.com/ARM-software)
+  revive:
+    rules:
+      - name: exported
+        severity: warning
+        disabled: false
+        arguments:
+          - "disableStutteringCheck"
