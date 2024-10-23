@@ -109,7 +109,7 @@ func (a *VendorsAPIService) CreateVendorExecute(r ApiCreateVendorRequest) (*Vend
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.vendorItem
@@ -311,7 +311,7 @@ func (a *VendorsAPIService) GetVendorExecute(r ApiGetVendorRequest) (*VendorItem
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -485,19 +485,19 @@ func (a *VendorsAPIService) ListVendorsExecute(r ApiListVendorsRequest) (*ListVe
 	localVarFormParams := url.Values{}
 
 	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
 	} else {
 		var defaultValue bool = false
 		r.embed = &defaultValue
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
 		r.limit = &defaultValue
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	} else {
 		var defaultValue int32 = 0
 		r.offset = &defaultValue
@@ -520,10 +520,10 @@ func (a *VendorsAPIService) ListVendorsExecute(r ApiListVendorsRequest) (*ListVe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
 	}
 	if r.ifNoneMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

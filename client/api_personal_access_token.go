@@ -109,7 +109,7 @@ func (a *PersonalAccessTokenAPIService) CreatePATExecute(r ApiCreatePATRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.pATCreationItem
@@ -298,7 +298,7 @@ func (a *PersonalAccessTokenAPIService) DeletePATExecute(r ApiDeletePATRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -485,10 +485,10 @@ func (a *PersonalAccessTokenAPIService) GetPATExecute(r ApiGetPATRequest) (*PATI
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
 	}
 	if r.ifNoneMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -648,7 +648,7 @@ func (a *PersonalAccessTokenAPIService) ListPATsExecute(r ApiListPATsRequest) (*
 	localVarFormParams := url.Values{}
 
 	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
 	} else {
 		var defaultValue bool = false
 		r.embed = &defaultValue
@@ -671,10 +671,10 @@ func (a *PersonalAccessTokenAPIService) ListPATsExecute(r ApiListPATsRequest) (*
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
 	}
 	if r.ifNoneMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
