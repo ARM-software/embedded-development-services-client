@@ -2,6 +2,27 @@
 Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.35.0" (2024-10-24)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20240820013131, #20241009013210)
+
+
+Bugfixes
+--------
+
+- Dependency upgrade: golang-1.22.5 (#20240705131459)
+- Dependency upgrade: upload-artifact-4.3.4 (#20240708084151)
+- Dependency upgrade: scorecard-action-2.4.0 (#20240729081758)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.34.0" (2024-07-10)
 =====================
 
