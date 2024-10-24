@@ -46,13 +46,13 @@ func (a *BuildJobsAPIService) FollowBuildJobLink(r *ApiListBuildJobRequest, link
 	localVarFormParams := url.Values{}
 
 	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "")
+		wrapParameterAddToQuery(localVarQueryParams, "embed", r.embed, "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		wrapParameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		wrapParameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -72,10 +72,10 @@ func (a *BuildJobsAPIService) FollowBuildJobLink(r *ApiListBuildJobRequest, link
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptVersion != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
+		wrapParameterAddToHeader(localVarHeaderParams, "Accept-Version", r.acceptVersion, "")
 	}
 	if r.ifNoneMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "")
+		wrapParameterAddToHeader(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
