@@ -18,11 +18,11 @@ import (
 	"net/url"
 )
 
-func (r *ApiListGenericWorkJobsRequest) FollowGenericWorkJobArtefactsLink(link string) (*ArtefactManagerCollection, *http.Response, error) {
+func (r *ApiListGenericWorkJobArtefactManagersRequest) FollowGenericWorkJobArtefactsLink(link string) (*ArtefactManagerCollection, *http.Response, error) {
 	return r.ApiService.FollowGenericWorkJobArtefactsLink(r, link)
 }
 
-func (a *GenericWorkJobsAPIService) FollowGenericWorkJobArtefactsLink(r *ApiListGenericWorkJobsRequest, link string) (*ArtefactManagerCollection, *http.Response, error) {
+func (a *GenericWorkJobsAPIService) FollowGenericWorkJobArtefactsLink(r *ApiListGenericWorkJobArtefactManagersRequest, link string) (*ArtefactManagerCollection, *http.Response, error) {
 
 	var (
 		localVarHTTPMethod  = http.MethodGet
