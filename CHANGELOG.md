@@ -2,6 +2,19 @@
 Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.36.0" (2024-10-30)
+=====================
+
+Features
+--------
+
+- :sparkles: Extend client so that it is possible to follow links on generic work job artefact managers (#20241030104752)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.35.4" (2024-10-30)
 =====================
 
