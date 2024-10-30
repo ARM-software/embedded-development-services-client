@@ -49,7 +49,7 @@ func (a *GenericWorkJobsAPIService) FollowGenericWorkJobArtefactsLink(r *ApiList
 	if r.embed != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
 	} else {
-		var defaultValue bool = false
+		var defaultValue = false
 		r.embed = &defaultValue
 	}
 	if r.limit != nil {
