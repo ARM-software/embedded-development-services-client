@@ -1,6 +1,6 @@
 module github.com/ARM-software/embedded-development-services-client/generator
 
-go 1.22
+go 1.23
 
 require (
 	github.com/ARM-software/golang-utils/utils v1.66.1
