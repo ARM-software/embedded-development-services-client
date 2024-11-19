@@ -2,6 +2,19 @@
 Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.37.0" (2024-11-19)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20241119013301)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.36.1" (2024-10-30)
 =====================
 
