@@ -2,6 +2,19 @@
 Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.37.2" (2024-11-25)
+=====================
+
+Bugfixes
+--------
+
+- Dependency upgrade: testify-1.10.0 (#20241125093613)
+
+
+<!--
+Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.37.1" (2024-11-19)
 =====================
 
