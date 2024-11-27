@@ -2,6 +2,7 @@
 .travis.yml
 README.md
 api/openapi.yaml
+api_authentication.go
 api_build_jobs.go
 api_cmsis_builders.go
 api_cmsis_intellisense_builders.go
@@ -23,6 +24,7 @@ docs/AdditionalTool.md
 docs/ArtefactManagerCollection.md
 docs/ArtefactManagerItem.md
 docs/ArtefactManagerLinks.md
+docs/AuthenticationAPI.md
 docs/BuildJobCollection.md
 docs/BuildJobItem.md
 docs/BuildJobItemLinks.md
@@ -94,6 +96,8 @@ docs/RetainWorkspaceRequest.md
 docs/RootResourceAPI.md
 docs/SimpleCollection.md
 docs/ToolchainTypes.md
+docs/UserItem.md
+docs/UserItemLinks.md
 docs/VHTRunJobsAPI.md
 docs/VendorItem.md
 docs/VendorItemLinks.md
@@ -191,6 +195,8 @@ model_retain_build_job_request.go
 model_retain_workspace_request.go
 model_simple_collection.go
 model_toolchain_types.go
+model_user_item.go
+model_user_item_links.go
 model_vendor_item.go
 model_vendor_item_links.go
 model_vht_collection.go
@@ -214,6 +220,7 @@ model_workspace_source_collection.go
 model_workspace_source_item.go
 model_workspace_source_item_links.go
 response.go
+test/api_authentication_test.go
 test/api_build_jobs_test.go
 test/api_cmsis_builders_test.go
 test/api_cmsis_intellisense_builders_test.go

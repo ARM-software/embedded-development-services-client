@@ -109,6 +109,8 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AuthenticationAPI* | [**GetMe**](docs/AuthenticationAPI.md#getme) | **Get** /users/me | Get my user information
+*AuthenticationAPI* | [**GetUser**](docs/AuthenticationAPI.md#getuser) | **Get** /users/{userName} | Get user information
 *BuildJobsAPI* | [**CancelBuildJob**](docs/BuildJobsAPI.md#cancelbuildjob) | **Post** /build-jobs/{jobName}/cancel | Cancel a Build Job
 *BuildJobsAPI* | [**DeleteBuildJob**](docs/BuildJobsAPI.md#deletebuildjob) | **Delete** /build-jobs/{jobName} | Delete a Build Job
 *BuildJobsAPI* | [**GetBuildArtefact**](docs/BuildJobsAPI.md#getbuildartefact) | **Get** /build-jobs/{jobName}/artefacts/{artefactName} | Download the named Build Artefact for the given Build Job.
@@ -263,6 +265,8 @@ Class | Method | HTTP request | Description
  - [RetainWorkspaceRequest](docs/RetainWorkspaceRequest.md)
  - [SimpleCollection](docs/SimpleCollection.md)
  - [ToolchainTypes](docs/ToolchainTypes.md)
+ - [UserItem](docs/UserItem.md)
+ - [UserItemLinks](docs/UserItemLinks.md)
  - [VendorItem](docs/VendorItem.md)
  - [VendorItemLinks](docs/VendorItemLinks.md)
  - [VhtCollection](docs/VhtCollection.md)

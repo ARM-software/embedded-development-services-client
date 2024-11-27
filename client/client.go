@@ -55,6 +55,8 @@ type APIClient struct {
 
 	// API Services
 
+	AuthenticationAPI *AuthenticationAPIService
+
 	BuildJobsAPI *BuildJobsAPIService
 
 	CMSISBuildersAPI *CMSISBuildersAPIService
@@ -102,6 +104,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.AuthenticationAPI = (*AuthenticationAPIService)(&c.common)
 	c.BuildJobsAPI = (*BuildJobsAPIService)(&c.common)
 	c.CMSISBuildersAPI = (*CMSISBuildersAPIService)(&c.common)
 	c.CMSISIntellisenseBuildersAPI = (*CMSISIntellisenseBuildersAPIService)(&c.common)
