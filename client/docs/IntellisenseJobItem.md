@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **Done** | **bool** | True when the job has completed (this does necessarily indicate success). | [readonly] 
 **Error** | **bool** | True if there was an error in the build service while attempting the job. | [readonly] 
 **Failure** | **bool** | True if the compilation database generation failed (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
-**JobTimeout** | Pointer to **int32** | The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started. | [optional] [default to 300]
+**JobTimeout** | Pointer to **int32** | The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started. | [optional] [default to 90]
 **Name** | **string** | Unique ID of the Intellisense Job. | [readonly] 
 **Packs** | **string** | Path to packs repository to replace value in compilation database. | 
 **Project** | **string** | CMSIS project to handle or being handled. | 

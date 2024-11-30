@@ -80,7 +80,7 @@ func NewIntellisenseJobItem(links NullableIntellisenseJobItemLinks, metadata Nul
 	this.Done = done
 	this.Error = error_
 	this.Failure = failure
-	var jobTimeout int32 = 300
+	var jobTimeout int32 = 90
 	this.JobTimeout = &jobTimeout
 	this.Name = name
 	this.Packs = packs
@@ -98,7 +98,7 @@ func NewIntellisenseJobItem(links NullableIntellisenseJobItemLinks, metadata Nul
 // but it doesn't guarantee that properties required by API are set
 func NewIntellisenseJobItemWithDefaults() *IntellisenseJobItem {
 	this := IntellisenseJobItem{}
-	var jobTimeout int32 = 300
+	var jobTimeout int32 = 90
 	this.JobTimeout = &jobTimeout
 	return &this
 }
