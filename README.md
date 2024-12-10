@@ -1,6 +1,6 @@
 # Embedded development services HTTP client
 
-[![Go Badge](https://img.shields.io/badge/go-v1.23.3-blue)](https://golang.org/)
+[![Go Badge](https://img.shields.io/badge/go-v1.23.4-blue)](https://golang.org/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Go Reference](https://pkg.go.dev/badge/github.com/ARM-software/embedded-development-services-client/client.svg)](https://pkg.go.dev/github.com/ARM-software/embedded-development-services-client/client)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ARM-software/embedded-development-services-client)](https://goreportcard.com/report/github.com/ARM-software/embedded-development-services-client)
