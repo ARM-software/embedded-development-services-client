@@ -1,5 +1,5 @@
-github.com/ARM-software/golang-utils/utils v1.77.0 h1:jdiE+9UWcsp7oNH4+0ZvriCBwkaWM15tySEm5XkVR/8=
-github.com/ARM-software/golang-utils/utils v1.77.0/go.mod h1:AwSGaCKLt5oCqS4nf9/uOlQd/p7A3D5NJyI+UpWhkgk=
+github.com/ARM-software/golang-utils/utils v1.79.0 h1:qk6bbNpcpLI/5E1iruWODBoviKQDNC3QDVvYA7PnT4k=
+github.com/ARM-software/golang-utils/utils v1.79.0/go.mod h1:lQIFkhNiLUMqk8Kvhg49VzbT06VFTsyMu00OXN4A7WY=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1VwoXQT9A3Wy9MM3WgvqSxFWenqJduM=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/go-faker/faker/v4 v4.5.0 h1:ARzAY2XoOL9tOUK+KSecUQzyXQsUaZHefjyF8x6YFHc=
