@@ -31,15 +31,15 @@ type GenericWorkJobItem struct {
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// Configuration map for jobs that require it. These could be environment variables. This is job implementation dependent and job documentation should describe it.
 	Configuration map[string]string `json:"configuration,omitempty"`
-	// True when the job has completed (this does necessarily indicate success).
+	// True when the job has completed (this does not necessarily indicate success).
 	Done bool `json:"done"`
 	// True if there was an error in the service while attempting the job.
 	Error bool `json:"error"`
 	// True if the job failed (this should be used in conjunction with the `done` property).
 	Failure bool `json:"failure"`
-	// The number of execution steps that have been completed so far. Please note: - This value also includes additional service orchestration steps, that are outside the core job being    executed by the process, so may differ from the build progress indicated within build messages.  - This value will only be available after the job has been started.
+	// The number of steps that have been completed so far. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started.
 	JobStepsCompleted NullableInt32 `json:"jobStepsCompleted"`
-	// The total number of steps that will need to be performed to complete the job. Please note: - This value also includes additional service orchestration steps, that are outside the core job being    executed by the process, so may differ from the build progress indicated within build messages.  - This value will only be available after the job has been started.
+	// The total number of steps that will need to be performed to complete the job. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started.
 	JobStepsTotal NullableInt32 `json:"jobStepsTotal"`
 	// The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started.
 	JobTimeout *int32 `json:"jobTimeout,omitempty"`

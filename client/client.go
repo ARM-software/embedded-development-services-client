@@ -65,6 +65,14 @@ type APIClient struct {
 
 	DeprecationNoticeAPI *DeprecationNoticeAPIService
 
+	FPGAConnectionAPI *FPGAConnectionAPIService
+
+	FPGAJobsAPI *FPGAJobsAPIService
+
+	FPGAPayloadsAPI *FPGAPayloadsAPIService
+
+	FPGAsAPI *FPGAsAPIService
+
 	GenericWorkJobsAPI *GenericWorkJobsAPIService
 
 	GenericWorkersAPI *GenericWorkersAPIService
@@ -109,6 +117,10 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CMSISBuildersAPI = (*CMSISBuildersAPIService)(&c.common)
 	c.CMSISIntellisenseBuildersAPI = (*CMSISIntellisenseBuildersAPIService)(&c.common)
 	c.DeprecationNoticeAPI = (*DeprecationNoticeAPIService)(&c.common)
+	c.FPGAConnectionAPI = (*FPGAConnectionAPIService)(&c.common)
+	c.FPGAJobsAPI = (*FPGAJobsAPIService)(&c.common)
+	c.FPGAPayloadsAPI = (*FPGAPayloadsAPIService)(&c.common)
+	c.FPGAsAPI = (*FPGAsAPIService)(&c.common)
 	c.GenericWorkJobsAPI = (*GenericWorkJobsAPIService)(&c.common)
 	c.GenericWorkersAPI = (*GenericWorkersAPIService)(&c.common)
 	c.IntellisenseJobsAPI = (*IntellisenseJobsAPIService)(&c.common)

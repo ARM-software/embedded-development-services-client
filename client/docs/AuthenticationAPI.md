@@ -8,9 +8,78 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreateUser**](AuthenticationAPI.md#CreateUser) | **Post** /users/ | Create a user.
 [**GetMe**](AuthenticationAPI.md#GetMe) | **Get** /users/me | Get my user information
-[**GetUser**](AuthenticationAPI.md#GetUser) | **Get** /users/{userName} | Get user information
+[**GetUser**](AuthenticationAPI.md#GetUser) | **Get** /users/{name} | Get user information
 
+
+
+## CreateUser
+
+> UserItem CreateUser(ctx).UserItem(userItem).AcceptVersion(acceptVersion).Execute()
+
+Create a user.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	userItem := *openapiclient.NewUserItem(*openapiclient.NewUserItemLinks(*openapiclient.NewHalLinkData("/endpoint/?limit=20&offset=0")), "TODO", "854f1167-e1f6-4182-a051-f83a8d588a47") // UserItem | Data required to create a new user.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.CreateUser(context.Background()).UserItem(userItem).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.CreateUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateUser`: UserItem
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.CreateUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateUserRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userItem** | [**UserItem**](UserItem.md) | Data required to create a new user. | 
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+[**UserItem**](UserItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## GetMe
@@ -81,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## GetUser
 
-> UserItem GetUser(ctx, userName).AcceptVersion(acceptVersion).Execute()
+> UserItem GetUser(ctx, name).AcceptVersion(acceptVersion).Execute()
 
 Get user information
 
@@ -100,12 +169,12 @@ import (
 )
 
 func main() {
-	userName := "userName_example" // string | The identifier of the user
+	name := "name_example" // string | The identifier of the user.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthenticationAPI.GetUser(context.Background(), userName).AcceptVersion(acceptVersion).Execute()
+	resp, r, err := apiClient.AuthenticationAPI.GetUser(context.Background(), name).AcceptVersion(acceptVersion).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.GetUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userName** | **string** | The identifier of the user | 
+**name** | **string** | The identifier of the user. | 
 
 ### Other Parameters
 

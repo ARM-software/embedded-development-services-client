@@ -29,17 +29,17 @@ var _ MappedNullable = &IntellisenseJobItem{}
 type IntellisenseJobItem struct {
 	Links NullableIntellisenseJobItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
-	// The number of build steps that have been completed so far. Please note: - This value also includes additional service orchestration steps, that are outside the core build process,   so may differ from the build progress indicated within build messages.  - This value will only be available after the build has been started.
+	// The number of steps that have been completed so far. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started.
 	BuildStepsCompleted NullableInt32 `json:"buildStepsCompleted"`
-	// The total number of steps that will need to be performed to complete the build. Please note: - This value also includes additional service orchestration steps, that are outside the core build process,   so may differ from the build progress indicated within build messages.  - This value will only be available after the build has been started.
+	// The total number of steps that will need to be performed to complete the job. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started.
 	BuildStepsTotal NullableInt32 `json:"buildStepsTotal"`
 	// Build context for jobs that require it.
 	Context NullableString `json:"context,omitempty"`
-	// True when the job has completed (this does necessarily indicate success).
+	// True when the job has completed (this does not necessarily indicate success).
 	Done bool `json:"done"`
-	// True if there was an error in the build service while attempting the job.
+	// True if there was an error in the service while attempting the job.
 	Error bool `json:"error"`
-	// True if the compilation database generation failed (this should be used in conjunction with the `done` property).
+	// True if the job failed (this should be used in conjunction with the `done` property).
 	Failure bool `json:"failure"`
 	// The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started.
 	JobTimeout *int32 `json:"jobTimeout,omitempty"`

@@ -22,88 +22,90 @@ import (
 	"fmt"
 )
 
-// checks if the BuildJobItem type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &BuildJobItem{}
+// checks if the FPGAJobItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FPGAJobItem{}
 
-// BuildJobItem This resource allows a Build Job to be configured when it is created, such as defining the project to build. When the build job is read, it will include the current status of the build and links to other available resources, such as build messages and build artefacts.
-type BuildJobItem struct {
-	Links NullableBuildJobItemLinks `json:"_links"`
+// FPGAJobItem This resource allows an FPGA job to be configured when it is created, such as defining the payload to run on the FPGA. When the job is read, it will include the current status of the job and links to other available resources, such as messages and artefacts.
+type FPGAJobItem struct {
+	Links NullableFPGAJobItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
-	// The number of steps that have been completed so far. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started.
-	BuildStepsCompleted NullableInt32 `json:"buildStepsCompleted"`
-	// The total number of steps that will need to be performed to complete the job. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started.
-	BuildStepsTotal NullableInt32 `json:"buildStepsTotal"`
-	// The maximum time (in seconds) that the build will be allowed to run. After the timeout has expired the build will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the build to be started.
-	BuildTimeout *int32 `json:"buildTimeout,omitempty"`
-	// Whether to run a clean build.
-	CleanBuild *bool `json:"cleanBuild,omitempty"`
-	// Build context for jobs that require it.
-	Context NullableString `json:"context,omitempty"`
+	// Configuration map for jobs that require it. These could be environment variables. This is job implementation dependent and job documentation should describe it.
+	Configuration map[string]string `json:"configuration,omitempty"`
+	// True when there is an active connection to the application running on the FPGA. If the job does not support connection, this flag will never be true.
+	Connected bool `json:"connected"`
 	// True when the job has completed (this does not necessarily indicate success).
 	Done bool `json:"done"`
 	// True if there was an error in the service while attempting the job.
 	Error bool `json:"error"`
 	// True if the job failed (this should be used in conjunction with the `done` property).
 	Failure bool `json:"failure"`
-	// Unique ID of the Build Job.
+	// Unique ID of the FPGA job.
 	Name string `json:"name"`
-	// CMSIS project to build or being built.
-	Project string `json:"project"`
+	// Identifier of the payload to run on the FPGA.
+	Project *string `json:"project,omitempty"`
 	// True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended.
 	Queued *bool `json:"queued,omitempty"`
+	// True when the application running on the FPGA is ready to handle connections. If the job does not support connection, this flag will never be true.
+	ReadyForConnection bool `json:"readyForConnection"`
 	// A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead.
 	Status string `json:"status"`
+	// The number of steps that have been completed so far. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started.
+	StepsCompleted NullableInt32 `json:"stepsCompleted"`
+	// The total number of steps that will need to be performed to complete the job. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started.
+	StepsTotal NullableInt32 `json:"stepsTotal"`
 	// True if the job was successful (this should be used in conjunction with the `done` property).
 	Success bool `json:"success"`
-	// Optional human readable name of the CMSIS build job.
+	// True when the job allows direct connection to the job instance (application running on the FPGA).
+	SupportConnection bool `json:"supportConnection"`
+	// The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started.
+	Timeout *int64 `json:"timeout,omitempty"`
+	// Optional human readable name of the FPGA job.
 	Title NullableString `json:"title,omitempty"`
-	// Workspace name where the CMSIS project is present. If not set, the default user's workspace will be used.
+	// Identifier of the workspace where the project is present.
 	Workspace NullableString `json:"workspace,omitempty"`
 }
 
-type _BuildJobItem BuildJobItem
+type _FPGAJobItem FPGAJobItem
 
-// NewBuildJobItem instantiates a new BuildJobItem object
+// NewFPGAJobItem instantiates a new FPGAJobItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBuildJobItem(links NullableBuildJobItemLinks, metadata NullableCommonMetadata, buildStepsCompleted NullableInt32, buildStepsTotal NullableInt32, done bool, error_ bool, failure bool, name string, project string, status string, success bool) *BuildJobItem {
-	this := BuildJobItem{}
+func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, connected bool, done bool, error_ bool, failure bool, name string, readyForConnection bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool) *FPGAJobItem {
+	this := FPGAJobItem{}
 	this.Links = links
 	this.Metadata = metadata
-	this.BuildStepsCompleted = buildStepsCompleted
-	this.BuildStepsTotal = buildStepsTotal
-	var buildTimeout int32 = 300
-	this.BuildTimeout = &buildTimeout
-	var cleanBuild bool = false
-	this.CleanBuild = &cleanBuild
+	this.Connected = connected
 	this.Done = done
 	this.Error = error_
 	this.Failure = failure
 	this.Name = name
-	this.Project = project
+	this.ReadyForConnection = readyForConnection
 	this.Status = status
+	this.StepsCompleted = stepsCompleted
+	this.StepsTotal = stepsTotal
 	this.Success = success
+	this.SupportConnection = supportConnection
+	var timeout int64 = 300
+	this.Timeout = &timeout
 	return &this
 }
 
-// NewBuildJobItemWithDefaults instantiates a new BuildJobItem object
+// NewFPGAJobItemWithDefaults instantiates a new FPGAJobItem object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewBuildJobItemWithDefaults() *BuildJobItem {
-	this := BuildJobItem{}
-	var buildTimeout int32 = 300
-	this.BuildTimeout = &buildTimeout
-	var cleanBuild bool = false
-	this.CleanBuild = &cleanBuild
+func NewFPGAJobItemWithDefaults() *FPGAJobItem {
+	this := FPGAJobItem{}
+	var timeout int64 = 300
+	this.Timeout = &timeout
 	return &this
 }
 
 // GetLinks returns the Links field value
-// If the value is explicit nil, the zero value for BuildJobItemLinks will be returned
-func (o *BuildJobItem) GetLinks() BuildJobItemLinks {
+// If the value is explicit nil, the zero value for FPGAJobItemLinks will be returned
+func (o *FPGAJobItem) GetLinks() FPGAJobItemLinks {
 	if o == nil || o.Links.Get() == nil {
-		var ret BuildJobItemLinks
+		var ret FPGAJobItemLinks
 		return ret
 	}
 
@@ -113,7 +115,7 @@ func (o *BuildJobItem) GetLinks() BuildJobItemLinks {
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *BuildJobItem) GetLinksOk() (*BuildJobItemLinks, bool) {
+func (o *FPGAJobItem) GetLinksOk() (*FPGAJobItemLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -121,13 +123,13 @@ func (o *BuildJobItem) GetLinksOk() (*BuildJobItemLinks, bool) {
 }
 
 // SetLinks sets field value
-func (o *BuildJobItem) SetLinks(v BuildJobItemLinks) {
+func (o *FPGAJobItem) SetLinks(v FPGAJobItemLinks) {
 	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
 // If the value is explicit nil, the zero value for CommonMetadata will be returned
-func (o *BuildJobItem) GetMetadata() CommonMetadata {
+func (o *FPGAJobItem) GetMetadata() CommonMetadata {
 	if o == nil || o.Metadata.Get() == nil {
 		var ret CommonMetadata
 		return ret
@@ -139,7 +141,7 @@ func (o *BuildJobItem) GetMetadata() CommonMetadata {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *BuildJobItem) GetMetadataOk() (*CommonMetadata, bool) {
+func (o *FPGAJobItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -147,170 +149,69 @@ func (o *BuildJobItem) GetMetadataOk() (*CommonMetadata, bool) {
 }
 
 // SetMetadata sets field value
-func (o *BuildJobItem) SetMetadata(v CommonMetadata) {
+func (o *FPGAJobItem) SetMetadata(v CommonMetadata) {
 	o.Metadata.Set(&v)
 }
 
-// GetBuildStepsCompleted returns the BuildStepsCompleted field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *BuildJobItem) GetBuildStepsCompleted() int32 {
-	if o == nil || o.BuildStepsCompleted.Get() == nil {
-		var ret int32
+// GetConfiguration returns the Configuration field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FPGAJobItem) GetConfiguration() map[string]string {
+	if o == nil {
+		var ret map[string]string
 		return ret
 	}
-
-	return *o.BuildStepsCompleted.Get()
+	return o.Configuration
 }
 
-// GetBuildStepsCompletedOk returns a tuple with the BuildStepsCompleted field value
+// GetConfigurationOk returns a tuple with the Configuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *BuildJobItem) GetBuildStepsCompletedOk() (*int32, bool) {
-	if o == nil {
+func (o *FPGAJobItem) GetConfigurationOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Configuration) {
 		return nil, false
 	}
-	return o.BuildStepsCompleted.Get(), o.BuildStepsCompleted.IsSet()
+	return &o.Configuration, true
 }
 
-// SetBuildStepsCompleted sets field value
-func (o *BuildJobItem) SetBuildStepsCompleted(v int32) {
-	o.BuildStepsCompleted.Set(&v)
-}
-
-// GetBuildStepsTotal returns the BuildStepsTotal field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *BuildJobItem) GetBuildStepsTotal() int32 {
-	if o == nil || o.BuildStepsTotal.Get() == nil {
-		var ret int32
-		return ret
-	}
-
-	return *o.BuildStepsTotal.Get()
-}
-
-// GetBuildStepsTotalOk returns a tuple with the BuildStepsTotal field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *BuildJobItem) GetBuildStepsTotalOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.BuildStepsTotal.Get(), o.BuildStepsTotal.IsSet()
-}
-
-// SetBuildStepsTotal sets field value
-func (o *BuildJobItem) SetBuildStepsTotal(v int32) {
-	o.BuildStepsTotal.Set(&v)
-}
-
-// GetBuildTimeout returns the BuildTimeout field value if set, zero value otherwise.
-func (o *BuildJobItem) GetBuildTimeout() int32 {
-	if o == nil || IsNil(o.BuildTimeout) {
-		var ret int32
-		return ret
-	}
-	return *o.BuildTimeout
-}
-
-// GetBuildTimeoutOk returns a tuple with the BuildTimeout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *BuildJobItem) GetBuildTimeoutOk() (*int32, bool) {
-	if o == nil || IsNil(o.BuildTimeout) {
-		return nil, false
-	}
-	return o.BuildTimeout, true
-}
-
-// HasBuildTimeout returns a boolean if a field has been set.
-func (o *BuildJobItem) HasBuildTimeout() bool {
-	if o != nil && !IsNil(o.BuildTimeout) {
+// HasConfiguration returns a boolean if a field has been set.
+func (o *FPGAJobItem) HasConfiguration() bool {
+	if o != nil && !IsNil(o.Configuration) {
 		return true
 	}
 
 	return false
 }
 
-// SetBuildTimeout gets a reference to the given int32 and assigns it to the BuildTimeout field.
-func (o *BuildJobItem) SetBuildTimeout(v int32) {
-	o.BuildTimeout = &v
+// SetConfiguration gets a reference to the given map[string]string and assigns it to the Configuration field.
+func (o *FPGAJobItem) SetConfiguration(v map[string]string) {
+	o.Configuration = v
 }
 
-// GetCleanBuild returns the CleanBuild field value if set, zero value otherwise.
-func (o *BuildJobItem) GetCleanBuild() bool {
-	if o == nil || IsNil(o.CleanBuild) {
+// GetConnected returns the Connected field value
+func (o *FPGAJobItem) GetConnected() bool {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.CleanBuild
+
+	return o.Connected
 }
 
-// GetCleanBuildOk returns a tuple with the CleanBuild field value if set, nil otherwise
+// GetConnectedOk returns a tuple with the Connected field value
 // and a boolean to check if the value has been set.
-func (o *BuildJobItem) GetCleanBuildOk() (*bool, bool) {
-	if o == nil || IsNil(o.CleanBuild) {
-		return nil, false
-	}
-	return o.CleanBuild, true
-}
-
-// HasCleanBuild returns a boolean if a field has been set.
-func (o *BuildJobItem) HasCleanBuild() bool {
-	if o != nil && !IsNil(o.CleanBuild) {
-		return true
-	}
-
-	return false
-}
-
-// SetCleanBuild gets a reference to the given bool and assigns it to the CleanBuild field.
-func (o *BuildJobItem) SetCleanBuild(v bool) {
-	o.CleanBuild = &v
-}
-
-// GetContext returns the Context field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *BuildJobItem) GetContext() string {
-	if o == nil || IsNil(o.Context.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Context.Get()
-}
-
-// GetContextOk returns a tuple with the Context field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *BuildJobItem) GetContextOk() (*string, bool) {
+func (o *FPGAJobItem) GetConnectedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Context.Get(), o.Context.IsSet()
+	return &o.Connected, true
 }
 
-// HasContext returns a boolean if a field has been set.
-func (o *BuildJobItem) HasContext() bool {
-	if o != nil && o.Context.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetContext gets a reference to the given NullableString and assigns it to the Context field.
-func (o *BuildJobItem) SetContext(v string) {
-	o.Context.Set(&v)
-}
-// SetContextNil sets the value for Context to be an explicit nil
-func (o *BuildJobItem) SetContextNil() {
-	o.Context.Set(nil)
-}
-
-// UnsetContext ensures that no value is present for Context, not even an explicit nil
-func (o *BuildJobItem) UnsetContext() {
-	o.Context.Unset()
+// SetConnected sets field value
+func (o *FPGAJobItem) SetConnected(v bool) {
+	o.Connected = v
 }
 
 // GetDone returns the Done field value
-func (o *BuildJobItem) GetDone() bool {
+func (o *FPGAJobItem) GetDone() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -321,7 +222,7 @@ func (o *BuildJobItem) GetDone() bool {
 
 // GetDoneOk returns a tuple with the Done field value
 // and a boolean to check if the value has been set.
-func (o *BuildJobItem) GetDoneOk() (*bool, bool) {
+func (o *FPGAJobItem) GetDoneOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -329,12 +230,12 @@ func (o *BuildJobItem) GetDoneOk() (*bool, bool) {
 }
 
 // SetDone sets field value
-func (o *BuildJobItem) SetDone(v bool) {
+func (o *FPGAJobItem) SetDone(v bool) {
 	o.Done = v
 }
 
 // GetError returns the Error field value
-func (o *BuildJobItem) GetError() bool {
+func (o *FPGAJobItem) GetError() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -345,7 +246,7 @@ func (o *BuildJobItem) GetError() bool {
 
 // GetErrorOk returns a tuple with the Error field value
 // and a boolean to check if the value has been set.
-func (o *BuildJobItem) GetErrorOk() (*bool, bool) {
+func (o *FPGAJobItem) GetErrorOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -353,12 +254,12 @@ func (o *BuildJobItem) GetErrorOk() (*bool, bool) {
 }
 
 // SetError sets field value
-func (o *BuildJobItem) SetError(v bool) {
+func (o *FPGAJobItem) SetError(v bool) {
 	o.Error = v
 }
 
 // GetFailure returns the Failure field value
-func (o *BuildJobItem) GetFailure() bool {
+func (o *FPGAJobItem) GetFailure() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -369,7 +270,7 @@ func (o *BuildJobItem) GetFailure() bool {
 
 // GetFailureOk returns a tuple with the Failure field value
 // and a boolean to check if the value has been set.
-func (o *BuildJobItem) GetFailureOk() (*bool, bool) {
+func (o *FPGAJobItem) GetFailureOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -377,12 +278,12 @@ func (o *BuildJobItem) GetFailureOk() (*bool, bool) {
 }
 
 // SetFailure sets field value
-func (o *BuildJobItem) SetFailure(v bool) {
+func (o *FPGAJobItem) SetFailure(v bool) {
 	o.Failure = v
 }
 
 // GetName returns the Name field value
-func (o *BuildJobItem) GetName() string {
+func (o *FPGAJobItem) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -393,7 +294,7 @@ func (o *BuildJobItem) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *BuildJobItem) GetNameOk() (*string, bool) {
+func (o *FPGAJobItem) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -401,36 +302,44 @@ func (o *BuildJobItem) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *BuildJobItem) SetName(v string) {
+func (o *FPGAJobItem) SetName(v string) {
 	o.Name = v
 }
 
-// GetProject returns the Project field value
-func (o *BuildJobItem) GetProject() string {
-	if o == nil {
+// GetProject returns the Project field value if set, zero value otherwise.
+func (o *FPGAJobItem) GetProject() string {
+	if o == nil || IsNil(o.Project) {
 		var ret string
 		return ret
 	}
-
-	return o.Project
+	return *o.Project
 }
 
-// GetProjectOk returns a tuple with the Project field value
+// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BuildJobItem) GetProjectOk() (*string, bool) {
-	if o == nil {
+func (o *FPGAJobItem) GetProjectOk() (*string, bool) {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
-	return &o.Project, true
+	return o.Project, true
 }
 
-// SetProject sets field value
-func (o *BuildJobItem) SetProject(v string) {
-	o.Project = v
+// HasProject returns a boolean if a field has been set.
+func (o *FPGAJobItem) HasProject() bool {
+	if o != nil && !IsNil(o.Project) {
+		return true
+	}
+
+	return false
+}
+
+// SetProject gets a reference to the given string and assigns it to the Project field.
+func (o *FPGAJobItem) SetProject(v string) {
+	o.Project = &v
 }
 
 // GetQueued returns the Queued field value if set, zero value otherwise.
-func (o *BuildJobItem) GetQueued() bool {
+func (o *FPGAJobItem) GetQueued() bool {
 	if o == nil || IsNil(o.Queued) {
 		var ret bool
 		return ret
@@ -440,7 +349,7 @@ func (o *BuildJobItem) GetQueued() bool {
 
 // GetQueuedOk returns a tuple with the Queued field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BuildJobItem) GetQueuedOk() (*bool, bool) {
+func (o *FPGAJobItem) GetQueuedOk() (*bool, bool) {
 	if o == nil || IsNil(o.Queued) {
 		return nil, false
 	}
@@ -448,7 +357,7 @@ func (o *BuildJobItem) GetQueuedOk() (*bool, bool) {
 }
 
 // HasQueued returns a boolean if a field has been set.
-func (o *BuildJobItem) HasQueued() bool {
+func (o *FPGAJobItem) HasQueued() bool {
 	if o != nil && !IsNil(o.Queued) {
 		return true
 	}
@@ -457,12 +366,36 @@ func (o *BuildJobItem) HasQueued() bool {
 }
 
 // SetQueued gets a reference to the given bool and assigns it to the Queued field.
-func (o *BuildJobItem) SetQueued(v bool) {
+func (o *FPGAJobItem) SetQueued(v bool) {
 	o.Queued = &v
 }
 
+// GetReadyForConnection returns the ReadyForConnection field value
+func (o *FPGAJobItem) GetReadyForConnection() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ReadyForConnection
+}
+
+// GetReadyForConnectionOk returns a tuple with the ReadyForConnection field value
+// and a boolean to check if the value has been set.
+func (o *FPGAJobItem) GetReadyForConnectionOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ReadyForConnection, true
+}
+
+// SetReadyForConnection sets field value
+func (o *FPGAJobItem) SetReadyForConnection(v bool) {
+	o.ReadyForConnection = v
+}
+
 // GetStatus returns the Status field value
-func (o *BuildJobItem) GetStatus() string {
+func (o *FPGAJobItem) GetStatus() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -473,7 +406,7 @@ func (o *BuildJobItem) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *BuildJobItem) GetStatusOk() (*string, bool) {
+func (o *FPGAJobItem) GetStatusOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -481,12 +414,64 @@ func (o *BuildJobItem) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *BuildJobItem) SetStatus(v string) {
+func (o *FPGAJobItem) SetStatus(v string) {
 	o.Status = v
 }
 
+// GetStepsCompleted returns the StepsCompleted field value
+// If the value is explicit nil, the zero value for int32 will be returned
+func (o *FPGAJobItem) GetStepsCompleted() int32 {
+	if o == nil || o.StepsCompleted.Get() == nil {
+		var ret int32
+		return ret
+	}
+
+	return *o.StepsCompleted.Get()
+}
+
+// GetStepsCompletedOk returns a tuple with the StepsCompleted field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FPGAJobItem) GetStepsCompletedOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.StepsCompleted.Get(), o.StepsCompleted.IsSet()
+}
+
+// SetStepsCompleted sets field value
+func (o *FPGAJobItem) SetStepsCompleted(v int32) {
+	o.StepsCompleted.Set(&v)
+}
+
+// GetStepsTotal returns the StepsTotal field value
+// If the value is explicit nil, the zero value for int32 will be returned
+func (o *FPGAJobItem) GetStepsTotal() int32 {
+	if o == nil || o.StepsTotal.Get() == nil {
+		var ret int32
+		return ret
+	}
+
+	return *o.StepsTotal.Get()
+}
+
+// GetStepsTotalOk returns a tuple with the StepsTotal field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FPGAJobItem) GetStepsTotalOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.StepsTotal.Get(), o.StepsTotal.IsSet()
+}
+
+// SetStepsTotal sets field value
+func (o *FPGAJobItem) SetStepsTotal(v int32) {
+	o.StepsTotal.Set(&v)
+}
+
 // GetSuccess returns the Success field value
-func (o *BuildJobItem) GetSuccess() bool {
+func (o *FPGAJobItem) GetSuccess() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -497,7 +482,7 @@ func (o *BuildJobItem) GetSuccess() bool {
 
 // GetSuccessOk returns a tuple with the Success field value
 // and a boolean to check if the value has been set.
-func (o *BuildJobItem) GetSuccessOk() (*bool, bool) {
+func (o *FPGAJobItem) GetSuccessOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -505,12 +490,68 @@ func (o *BuildJobItem) GetSuccessOk() (*bool, bool) {
 }
 
 // SetSuccess sets field value
-func (o *BuildJobItem) SetSuccess(v bool) {
+func (o *FPGAJobItem) SetSuccess(v bool) {
 	o.Success = v
 }
 
+// GetSupportConnection returns the SupportConnection field value
+func (o *FPGAJobItem) GetSupportConnection() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SupportConnection
+}
+
+// GetSupportConnectionOk returns a tuple with the SupportConnection field value
+// and a boolean to check if the value has been set.
+func (o *FPGAJobItem) GetSupportConnectionOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SupportConnection, true
+}
+
+// SetSupportConnection sets field value
+func (o *FPGAJobItem) SetSupportConnection(v bool) {
+	o.SupportConnection = v
+}
+
+// GetTimeout returns the Timeout field value if set, zero value otherwise.
+func (o *FPGAJobItem) GetTimeout() int64 {
+	if o == nil || IsNil(o.Timeout) {
+		var ret int64
+		return ret
+	}
+	return *o.Timeout
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FPGAJobItem) GetTimeoutOk() (*int64, bool) {
+	if o == nil || IsNil(o.Timeout) {
+		return nil, false
+	}
+	return o.Timeout, true
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *FPGAJobItem) HasTimeout() bool {
+	if o != nil && !IsNil(o.Timeout) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given int64 and assigns it to the Timeout field.
+func (o *FPGAJobItem) SetTimeout(v int64) {
+	o.Timeout = &v
+}
+
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *BuildJobItem) GetTitle() string {
+func (o *FPGAJobItem) GetTitle() string {
 	if o == nil || IsNil(o.Title.Get()) {
 		var ret string
 		return ret
@@ -521,7 +562,7 @@ func (o *BuildJobItem) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *BuildJobItem) GetTitleOk() (*string, bool) {
+func (o *FPGAJobItem) GetTitleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -529,7 +570,7 @@ func (o *BuildJobItem) GetTitleOk() (*string, bool) {
 }
 
 // HasTitle returns a boolean if a field has been set.
-func (o *BuildJobItem) HasTitle() bool {
+func (o *FPGAJobItem) HasTitle() bool {
 	if o != nil && o.Title.IsSet() {
 		return true
 	}
@@ -538,21 +579,21 @@ func (o *BuildJobItem) HasTitle() bool {
 }
 
 // SetTitle gets a reference to the given NullableString and assigns it to the Title field.
-func (o *BuildJobItem) SetTitle(v string) {
+func (o *FPGAJobItem) SetTitle(v string) {
 	o.Title.Set(&v)
 }
 // SetTitleNil sets the value for Title to be an explicit nil
-func (o *BuildJobItem) SetTitleNil() {
+func (o *FPGAJobItem) SetTitleNil() {
 	o.Title.Set(nil)
 }
 
 // UnsetTitle ensures that no value is present for Title, not even an explicit nil
-func (o *BuildJobItem) UnsetTitle() {
+func (o *FPGAJobItem) UnsetTitle() {
 	o.Title.Unset()
 }
 
 // GetWorkspace returns the Workspace field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *BuildJobItem) GetWorkspace() string {
+func (o *FPGAJobItem) GetWorkspace() string {
 	if o == nil || IsNil(o.Workspace.Get()) {
 		var ret string
 		return ret
@@ -563,7 +604,7 @@ func (o *BuildJobItem) GetWorkspace() string {
 // GetWorkspaceOk returns a tuple with the Workspace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *BuildJobItem) GetWorkspaceOk() (*string, bool) {
+func (o *FPGAJobItem) GetWorkspaceOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -571,7 +612,7 @@ func (o *BuildJobItem) GetWorkspaceOk() (*string, bool) {
 }
 
 // HasWorkspace returns a boolean if a field has been set.
-func (o *BuildJobItem) HasWorkspace() bool {
+func (o *FPGAJobItem) HasWorkspace() bool {
 	if o != nil && o.Workspace.IsSet() {
 		return true
 	}
@@ -580,20 +621,20 @@ func (o *BuildJobItem) HasWorkspace() bool {
 }
 
 // SetWorkspace gets a reference to the given NullableString and assigns it to the Workspace field.
-func (o *BuildJobItem) SetWorkspace(v string) {
+func (o *FPGAJobItem) SetWorkspace(v string) {
 	o.Workspace.Set(&v)
 }
 // SetWorkspaceNil sets the value for Workspace to be an explicit nil
-func (o *BuildJobItem) SetWorkspaceNil() {
+func (o *FPGAJobItem) SetWorkspaceNil() {
 	o.Workspace.Set(nil)
 }
 
 // UnsetWorkspace ensures that no value is present for Workspace, not even an explicit nil
-func (o *BuildJobItem) UnsetWorkspace() {
+func (o *FPGAJobItem) UnsetWorkspace() {
 	o.Workspace.Unset()
 }
 
-func (o BuildJobItem) MarshalJSON() ([]byte, error) {
+func (o FPGAJobItem) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -601,31 +642,33 @@ func (o BuildJobItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o BuildJobItem) ToMap() (map[string]interface{}, error) {
+func (o FPGAJobItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	toSerialize["buildStepsCompleted"] = o.BuildStepsCompleted.Get()
-	toSerialize["buildStepsTotal"] = o.BuildStepsTotal.Get()
-	if !IsNil(o.BuildTimeout) {
-		toSerialize["buildTimeout"] = o.BuildTimeout
+	if o.Configuration != nil {
+		toSerialize["configuration"] = o.Configuration
 	}
-	if !IsNil(o.CleanBuild) {
-		toSerialize["cleanBuild"] = o.CleanBuild
-	}
-	if o.Context.IsSet() {
-		toSerialize["context"] = o.Context.Get()
-	}
+	toSerialize["connected"] = o.Connected
 	toSerialize["done"] = o.Done
 	toSerialize["error"] = o.Error
 	toSerialize["failure"] = o.Failure
 	toSerialize["name"] = o.Name
-	toSerialize["project"] = o.Project
+	if !IsNil(o.Project) {
+		toSerialize["project"] = o.Project
+	}
 	if !IsNil(o.Queued) {
 		toSerialize["queued"] = o.Queued
 	}
+	toSerialize["readyForConnection"] = o.ReadyForConnection
 	toSerialize["status"] = o.Status
+	toSerialize["stepsCompleted"] = o.StepsCompleted.Get()
+	toSerialize["stepsTotal"] = o.StepsTotal.Get()
 	toSerialize["success"] = o.Success
+	toSerialize["supportConnection"] = o.SupportConnection
+	if !IsNil(o.Timeout) {
+		toSerialize["timeout"] = o.Timeout
+	}
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
@@ -635,22 +678,24 @@ func (o BuildJobItem) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *BuildJobItem) UnmarshalJSON(data []byte) (err error) {
+func (o *FPGAJobItem) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_links",
 		"_metadata",
-		"buildStepsCompleted",
-		"buildStepsTotal",
+		"connected",
 		"done",
 		"error",
 		"failure",
 		"name",
-		"project",
+		"readyForConnection",
 		"status",
+		"stepsCompleted",
+		"stepsTotal",
 		"success",
+		"supportConnection",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -667,53 +712,53 @@ func (o *BuildJobItem) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varBuildJobItem := _BuildJobItem{}
+	varFPGAJobItem := _FPGAJobItem{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBuildJobItem)
+	err = decoder.Decode(&varFPGAJobItem)
 
 	if err != nil {
 		return err
 	}
 
-	*o = BuildJobItem(varBuildJobItem)
+	*o = FPGAJobItem(varFPGAJobItem)
 
 	return err
 }
 
-type NullableBuildJobItem struct {
-	value *BuildJobItem
+type NullableFPGAJobItem struct {
+	value *FPGAJobItem
 	isSet bool
 }
 
-func (v NullableBuildJobItem) Get() *BuildJobItem {
+func (v NullableFPGAJobItem) Get() *FPGAJobItem {
 	return v.value
 }
 
-func (v *NullableBuildJobItem) Set(val *BuildJobItem) {
+func (v *NullableFPGAJobItem) Set(val *FPGAJobItem) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableBuildJobItem) IsSet() bool {
+func (v NullableFPGAJobItem) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableBuildJobItem) Unset() {
+func (v *NullableFPGAJobItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableBuildJobItem(val *BuildJobItem) *NullableBuildJobItem {
-	return &NullableBuildJobItem{value: val, isSet: true}
+func NewNullableFPGAJobItem(val *FPGAJobItem) *NullableFPGAJobItem {
+	return &NullableFPGAJobItem{value: val, isSet: true}
 }
 
-func (v NullableBuildJobItem) MarshalJSON() ([]byte, error) {
+func (v NullableFPGAJobItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableBuildJobItem) UnmarshalJSON(src []byte) error {
+func (v *NullableFPGAJobItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

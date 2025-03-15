@@ -1,0 +1,679 @@
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+# \FPGAPayloadsAPI
+
+All URIs are relative to *https://all.api.keil.arm.com*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**CreateFPGAPayload**](FPGAPayloadsAPI.md#CreateFPGAPayload) | **Post** /fpgas/{fpgaName}/payloads | Create an FPGA payload.
+[**CreateFPGAPayloadUploadSession**](FPGAPayloadsAPI.md#CreateFPGAPayloadUploadSession) | **Post** /payloads/{fpgaPayloadName}/upload-session | Create upload session for FPGA payload.
+[**DeleteFpgaPayload**](FPGAPayloadsAPI.md#DeleteFpgaPayload) | **Delete** /payloads/{fpgaPayloadName} | Delete an FPGA payload.
+[**GetFpgaPayload**](FPGAPayloadsAPI.md#GetFpgaPayload) | **Get** /payloads/{fpgaPayloadName} | Return details of specific FPGA payload.
+[**GetFpgaPayloadUploadOptions**](FPGAPayloadsAPI.md#GetFpgaPayloadUploadOptions) | **Options** /payloads | Return service TUS protocol support.
+[**GetFpgaPayloadUploadProgress**](FPGAPayloadsAPI.md#GetFpgaPayloadUploadProgress) | **Head** /payloads/{fpgaPayloadName} | Return FPGA payload upload progress.
+[**ListFPGAPayloads**](FPGAPayloadsAPI.md#ListFPGAPayloads) | **Get** /fpgas/{fpgaName}/payloads | List payloads for an FPGA.
+[**ListPayloads**](FPGAPayloadsAPI.md#ListPayloads) | **Get** /payloads | List payloads.
+[**UploadPayload**](FPGAPayloadsAPI.md#UploadPayload) | **Patch** /payloads/{fpgaPayloadName} | Upload part of a payload.
+
+
+
+## CreateFPGAPayload
+
+> FPGAPayloadItem CreateFPGAPayload(ctx, fpgaName).FPGAPayloadItem(fPGAPayloadItem).AcceptVersion(acceptVersion).Execute()
+
+Create an FPGA payload.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	fpgaName := "fpgaName_example" // string | Unique ID of an FPGA.
+	fPGAPayloadItem := *openapiclient.NewFPGAPayloadItem("TODO", "TODO", "4545aaf", true, "Demo payload for FPGA 12", "4545aaf") // FPGAPayloadItem | An FPGA Payload to be created.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FPGAPayloadsAPI.CreateFPGAPayload(context.Background(), fpgaName).FPGAPayloadItem(fPGAPayloadItem).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.CreateFPGAPayload``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateFPGAPayload`: FPGAPayloadItem
+	fmt.Fprintf(os.Stdout, "Response from `FPGAPayloadsAPI.CreateFPGAPayload`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fpgaName** | **string** | Unique ID of an FPGA. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateFPGAPayloadRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **fPGAPayloadItem** | [**FPGAPayloadItem**](FPGAPayloadItem.md) | An FPGA Payload to be created. | 
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+[**FPGAPayloadItem**](FPGAPayloadItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateFPGAPayloadUploadSession
+
+> CreateFPGAPayloadUploadSession(ctx, fpgaPayloadName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadDeferLength(uploadDeferLength).UploadLength(uploadLength).UploadMetadata(uploadMetadata).Execute()
+
+Create upload session for FPGA payload.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	fpgaPayloadName := "fpgaPayloadName_example" // string | Unique ID of the FPGA payload.
+	tusResumable := "1.0.0" // string | Version of the Tus protocol being used.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	uploadDeferLength := int32(56) // int32 | Set to 1 if upload size is not known at the time. Any other value results in a 400 Bad Request. (optional)
+	uploadLength := int64(789) // int64 | The size of the entire upload in bytes. (optional)
+	uploadMetadata := "uploadMetadata_example" // string | Additional metadata for the upload request. The header consists of comma-separated key-value pairs. The key MUST NOT contain spaces or commas and MUST be ASCII encoded. The value MUST be Base64 encoded.  The workspace key should be provided with the unique identifier for the payload to be uploaded to. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.FPGAPayloadsAPI.CreateFPGAPayloadUploadSession(context.Background(), fpgaPayloadName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadDeferLength(uploadDeferLength).UploadLength(uploadLength).UploadMetadata(uploadMetadata).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.CreateFPGAPayloadUploadSession``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fpgaPayloadName** | **string** | Unique ID of the FPGA payload. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateFPGAPayloadUploadSessionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **tusResumable** | **string** | Version of the Tus protocol being used. | 
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **uploadDeferLength** | **int32** | Set to 1 if upload size is not known at the time. Any other value results in a 400 Bad Request. | 
+ **uploadLength** | **int64** | The size of the entire upload in bytes. | 
+ **uploadMetadata** | **string** | Additional metadata for the upload request. The header consists of comma-separated key-value pairs. The key MUST NOT contain spaces or commas and MUST be ASCII encoded. The value MUST be Base64 encoded.  The workspace key should be provided with the unique identifier for the payload to be uploaded to. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteFpgaPayload
+
+> DeleteFpgaPayload(ctx, fpgaPayloadName).AcceptVersion(acceptVersion).Execute()
+
+Delete an FPGA payload.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	fpgaPayloadName := "fpgaPayloadName_example" // string | Unique ID of the FPGA payload.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.FPGAPayloadsAPI.DeleteFpgaPayload(context.Background(), fpgaPayloadName).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.DeleteFpgaPayload``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fpgaPayloadName** | **string** | Unique ID of the FPGA payload. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteFpgaPayloadRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetFpgaPayload
+
+> FPGAPayloadItem GetFpgaPayload(ctx, fpgaPayloadName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+
+Return details of specific FPGA payload.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	fpgaPayloadName := "fpgaPayloadName_example" // string | Unique ID of the FPGA payload.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FPGAPayloadsAPI.GetFpgaPayload(context.Background(), fpgaPayloadName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.GetFpgaPayload``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetFpgaPayload`: FPGAPayloadItem
+	fmt.Fprintf(os.Stdout, "Response from `FPGAPayloadsAPI.GetFpgaPayload`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fpgaPayloadName** | **string** | Unique ID of the FPGA payload. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetFpgaPayloadRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
+
+### Return type
+
+[**FPGAPayloadItem**](FPGAPayloadItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetFpgaPayloadUploadOptions
+
+> GetFpgaPayloadUploadOptions(ctx).AcceptVersion(acceptVersion).Execute()
+
+Return service TUS protocol support.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.FPGAPayloadsAPI.GetFpgaPayloadUploadOptions(context.Background()).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.GetFpgaPayloadUploadOptions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetFpgaPayloadUploadOptionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetFpgaPayloadUploadProgress
+
+> GetFpgaPayloadUploadProgress(ctx, fpgaPayloadName).AcceptVersion(acceptVersion).Execute()
+
+Return FPGA payload upload progress.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	fpgaPayloadName := "fpgaPayloadName_example" // string | Unique ID of the FPGA payload.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.FPGAPayloadsAPI.GetFpgaPayloadUploadProgress(context.Background(), fpgaPayloadName).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.GetFpgaPayloadUploadProgress``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fpgaPayloadName** | **string** | Unique ID of the FPGA payload. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetFpgaPayloadUploadProgressRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListFPGAPayloads
+
+> FPGAPayloadCollection ListFPGAPayloads(ctx, fpgaName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+
+List payloads for an FPGA.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	fpgaName := "fpgaName_example" // string | Unique ID of an FPGA.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	embed := false // bool | Embedding: The whether or not to embed resources into the collection (rather than return links). (optional) (default to false)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+	limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
+	offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FPGAPayloadsAPI.ListFPGAPayloads(context.Background(), fpgaName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.ListFPGAPayloads``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListFPGAPayloads`: FPGAPayloadCollection
+	fmt.Fprintf(os.Stdout, "Response from `FPGAPayloadsAPI.ListFPGAPayloads`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fpgaName** | **string** | Unique ID of an FPGA. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListFPGAPayloadsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **embed** | **bool** | Embedding: The whether or not to embed resources into the collection (rather than return links). | [default to false]
+ **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
+ **limit** | **int32** | Paging: The maximum number of items to return in a resource. | [default to 20]
+ **offset** | **int32** | Paging:  The index of the first item to return in the resource. | [default to 0]
+
+### Return type
+
+[**FPGAPayloadCollection**](FPGAPayloadCollection.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListPayloads
+
+> FPGAPayloadCollection ListPayloads(ctx).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+
+List payloads.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	embed := false // bool | Embedding: The whether or not to embed resources into the collection (rather than return links). (optional) (default to false)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+	limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
+	offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FPGAPayloadsAPI.ListPayloads(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.ListPayloads``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListPayloads`: FPGAPayloadCollection
+	fmt.Fprintf(os.Stdout, "Response from `FPGAPayloadsAPI.ListPayloads`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListPayloadsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **embed** | **bool** | Embedding: The whether or not to embed resources into the collection (rather than return links). | [default to false]
+ **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
+ **limit** | **int32** | Paging: The maximum number of items to return in a resource. | [default to 20]
+ **offset** | **int32** | Paging:  The index of the first item to return in the resource. | [default to 0]
+
+### Return type
+
+[**FPGAPayloadCollection**](FPGAPayloadCollection.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UploadPayload
+
+> UploadPayload(ctx, fpgaPayloadName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadOffset(uploadOffset).Execute()
+
+Upload part of a payload.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	fpgaPayloadName := "fpgaPayloadName_example" // string | Unique ID of the FPGA payload.
+	tusResumable := "1.0.0" // string | Version of the Tus protocol being used.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	uploadOffset := int64(789) // int64 | The byte offset within a resource. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.FPGAPayloadsAPI.UploadPayload(context.Background(), fpgaPayloadName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadOffset(uploadOffset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.UploadPayload``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fpgaPayloadName** | **string** | Unique ID of the FPGA payload. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUploadPayloadRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **tusResumable** | **string** | Version of the Tus protocol being used. | 
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **uploadOffset** | **int64** | The byte offset within a resource. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+

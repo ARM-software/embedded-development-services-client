@@ -527,6 +527,522 @@ func NewCmsisIntellisenseCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
+// This extends FPGAConnectionItem and FPGAConnectionCollection definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *FPGAConnectionItem) FetchType() string {
+	return "FPGAConnectionItem"
+}
+
+// FetchLinks returns the resource links if present
+func (o *FPGAConnectionItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *FPGAConnectionItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *FPGAConnectionItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// NewFPGAConnectionModel returns a model.
+func NewFPGAConnectionModel() IModel {
+	return NewFPGAConnectionItemWithDefaults()
+}
+
+// FPGAConnectionIterator defines an iterator over a collection.
+type FPGAConnectionIterator struct {
+	elements     []FPGAConnectionItem
+	currentIndex int
+}
+
+func (m *FPGAConnectionIterator) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *FPGAConnectionIterator) GetNext() (item any, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func NewFPGAConnectionIterator(elements []FPGAConnectionItem) (IIterator, error) {
+	return &FPGAConnectionIterator{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
+
+// FetchType returns the resource type
+func (o *FPGAConnectionCollection) FetchType() string {
+	return "FPGAConnectionCollection page"
+}
+
+// FetchLinks returns the resource links if present
+func (o *FPGAConnectionCollection) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *FPGAConnectionCollection) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *FPGAConnectionCollection) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *FPGAConnectionCollection) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *FPGAConnectionCollection) GetItemIterator() (IIterator, error) {
+	if o.HasEmbedded() {
+		embedded := o.GetEmbedded()
+		return NewFPGAConnectionIterator(embedded.GetItem())
+	}
+	links, err := o.FetchLinks()
+	if err != nil {
+		return nil, err
+	}
+	l, ok := links.(HalCollectionLinks)
+	if !ok {
+		return nil, fmt.Errorf("wrong link type [%T]; expected [HalCollectionLinks]", links)
+	}
+	return NewHalLinkDataIterator(l.GetItem())
+}
+
+func (o *FPGAConnectionCollection) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewFPGAConnectionCollection returns a page.
+func NewFPGAConnectionCollectionCollection() IStaticPage {
+	return NewFPGAConnectionCollectionWithDefaults()
+}
+
+// ============================================================================================
+// This extends FPGAItem and FPGACollection definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *FPGAItem) FetchType() string {
+	return "FPGAItem"
+}
+
+// FetchLinks returns the resource links if present
+func (o *FPGAItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *FPGAItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *FPGAItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// NewFPGAModel returns a model.
+func NewFPGAModel() IModel {
+	return NewFPGAItemWithDefaults()
+}
+
+// FPGAIterator defines an iterator over a collection.
+type FPGAIterator struct {
+	elements     []FPGAItem
+	currentIndex int
+}
+
+func (m *FPGAIterator) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *FPGAIterator) GetNext() (item any, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func NewFPGAIterator(elements []FPGAItem) (IIterator, error) {
+	return &FPGAIterator{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
+
+// FetchType returns the resource type
+func (o *FPGACollection) FetchType() string {
+	return "FPGACollection page"
+}
+
+// FetchLinks returns the resource links if present
+func (o *FPGACollection) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *FPGACollection) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *FPGACollection) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *FPGACollection) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *FPGACollection) GetItemIterator() (IIterator, error) {
+	if o.HasEmbedded() {
+		embedded := o.GetEmbedded()
+		return NewFPGAIterator(embedded.GetItem())
+	}
+	links, err := o.FetchLinks()
+	if err != nil {
+		return nil, err
+	}
+	l, ok := links.(HalCollectionLinks)
+	if !ok {
+		return nil, fmt.Errorf("wrong link type [%T]; expected [HalCollectionLinks]", links)
+	}
+	return NewHalLinkDataIterator(l.GetItem())
+}
+
+func (o *FPGACollection) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewFPGACollection returns a page.
+func NewFPGACollectionCollection() IStaticPage {
+	return NewFPGACollectionWithDefaults()
+}
+
+// ============================================================================================
+// This extends FPGAJobItem and FPGAJobCollection definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *FPGAJobItem) FetchType() string {
+	return "FPGAJobItem"
+}
+
+// FetchLinks returns the resource links if present
+func (o *FPGAJobItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *FPGAJobItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *FPGAJobItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// NewFPGAJobModel returns a model.
+func NewFPGAJobModel() IModel {
+	return NewFPGAJobItemWithDefaults()
+}
+
+// FPGAJobIterator defines an iterator over a collection.
+type FPGAJobIterator struct {
+	elements     []FPGAJobItem
+	currentIndex int
+}
+
+func (m *FPGAJobIterator) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *FPGAJobIterator) GetNext() (item any, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func NewFPGAJobIterator(elements []FPGAJobItem) (IIterator, error) {
+	return &FPGAJobIterator{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
+
+// FetchType returns the resource type
+func (o *FPGAJobCollection) FetchType() string {
+	return "FPGAJobCollection page"
+}
+
+// FetchLinks returns the resource links if present
+func (o *FPGAJobCollection) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *FPGAJobCollection) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *FPGAJobCollection) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *FPGAJobCollection) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *FPGAJobCollection) GetItemIterator() (IIterator, error) {
+	if o.HasEmbedded() {
+		embedded := o.GetEmbedded()
+		return NewFPGAJobIterator(embedded.GetItem())
+	}
+	links, err := o.FetchLinks()
+	if err != nil {
+		return nil, err
+	}
+	l, ok := links.(HalCollectionLinks)
+	if !ok {
+		return nil, fmt.Errorf("wrong link type [%T]; expected [HalCollectionLinks]", links)
+	}
+	return NewHalLinkDataIterator(l.GetItem())
+}
+
+func (o *FPGAJobCollection) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewFPGAJobCollection returns a page.
+func NewFPGAJobCollectionCollection() IStaticPage {
+	return NewFPGAJobCollectionWithDefaults()
+}
+
+// ============================================================================================
+// This extends FPGAPayloadItem and FPGAPayloadCollection definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *FPGAPayloadItem) FetchType() string {
+	return "FPGAPayloadItem"
+}
+
+// FetchLinks returns the resource links if present
+func (o *FPGAPayloadItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *FPGAPayloadItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *FPGAPayloadItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// NewFPGAPayloadModel returns a model.
+func NewFPGAPayloadModel() IModel {
+	return NewFPGAPayloadItemWithDefaults()
+}
+
+// FPGAPayloadIterator defines an iterator over a collection.
+type FPGAPayloadIterator struct {
+	elements     []FPGAPayloadItem
+	currentIndex int
+}
+
+func (m *FPGAPayloadIterator) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *FPGAPayloadIterator) GetNext() (item any, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func NewFPGAPayloadIterator(elements []FPGAPayloadItem) (IIterator, error) {
+	return &FPGAPayloadIterator{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
+
+// FetchType returns the resource type
+func (o *FPGAPayloadCollection) FetchType() string {
+	return "FPGAPayloadCollection page"
+}
+
+// FetchLinks returns the resource links if present
+func (o *FPGAPayloadCollection) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *FPGAPayloadCollection) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *FPGAPayloadCollection) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *FPGAPayloadCollection) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *FPGAPayloadCollection) GetItemIterator() (IIterator, error) {
+	if o.HasEmbedded() {
+		embedded := o.GetEmbedded()
+		return NewFPGAPayloadIterator(embedded.GetItem())
+	}
+	links, err := o.FetchLinks()
+	if err != nil {
+		return nil, err
+	}
+	l, ok := links.(HalCollectionLinks)
+	if !ok {
+		return nil, fmt.Errorf("wrong link type [%T]; expected [HalCollectionLinks]", links)
+	}
+	return NewHalLinkDataIterator(l.GetItem())
+}
+
+func (o *FPGAPayloadCollection) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewFPGAPayloadCollection returns a page.
+func NewFPGAPayloadCollectionCollection() IStaticPage {
+	return NewFPGAPayloadCollectionWithDefaults()
+}
+
+// ============================================================================================
 // This extends GenericWorkJobItem and GenericWorkJobCollection definitions
 // ============================================================================================
 

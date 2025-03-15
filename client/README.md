@@ -109,8 +109,9 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AuthenticationAPI* | [**CreateUser**](docs/AuthenticationAPI.md#createuser) | **Post** /users/ | Create a user.
 *AuthenticationAPI* | [**GetMe**](docs/AuthenticationAPI.md#getme) | **Get** /users/me | Get my user information
-*AuthenticationAPI* | [**GetUser**](docs/AuthenticationAPI.md#getuser) | **Get** /users/{userName} | Get user information
+*AuthenticationAPI* | [**GetUser**](docs/AuthenticationAPI.md#getuser) | **Get** /users/{name} | Get user information
 *BuildJobsAPI* | [**CancelBuildJob**](docs/BuildJobsAPI.md#cancelbuildjob) | **Post** /build-jobs/{jobName}/cancel | Cancel a Build Job
 *BuildJobsAPI* | [**DeleteBuildJob**](docs/BuildJobsAPI.md#deletebuildjob) | **Delete** /build-jobs/{jobName} | Delete a Build Job
 *BuildJobsAPI* | [**GetBuildArtefact**](docs/BuildJobsAPI.md#getbuildartefact) | **Get** /build-jobs/{jobName}/artefacts/{artefactName} | Download the named Build Artefact for the given Build Job.
@@ -130,6 +131,42 @@ Class | Method | HTTP request | Description
 *CMSISIntellisenseBuildersAPI* | [**StartCmsisIntellisense**](docs/CMSISIntellisenseBuildersAPI.md#startcmsisintellisense) | **Post** /cmsis-intellisense/{builderName} | Initiate a compilation database generation using the specified CMSIS Intellisense Builder.
 *DeprecationNoticeAPI* | [**GetDeprecationNotice**](docs/DeprecationNoticeAPI.md#getdeprecationnotice) | **Get** /deprecations/{operationName} | Return details of specific endpoint deprecation notice.
 *DeprecationNoticeAPI* | [**ListDeprecatedEndpoints**](docs/DeprecationNoticeAPI.md#listdeprecatedendpoints) | **Get** /deprecations/ | Get the endpoints that have been deprecated with some notice.
+*FPGAConnectionAPI* | [**GetFpgaConnection**](docs/FPGAConnectionAPI.md#getfpgaconnection) | **Get** /fpga-connections/{connectionName} | Get connection information
+*FPGAConnectionAPI* | [**ListFpgaConnections**](docs/FPGAConnectionAPI.md#listfpgaconnections) | **Get** /fpga-connections/ | List available FPGA connections.
+*FPGAConnectionAPI* | [**StartFpgaConnection**](docs/FPGAConnectionAPI.md#startfpgaconnection) | **Get** /fpga-connections/{connectionName}/connect | starts a websocket connection
+*FPGAConnectionAPI* | [**TerminateFpgaConnection**](docs/FPGAConnectionAPI.md#terminatefpgaconnection) | **Post** /fpga-connections/{connectionName}/terminate | Terminates all websocket connections to the application running on the FPGA
+*FPGAJobsAPI* | [**CancelFpgaJob**](docs/FPGAJobsAPI.md#cancelfpgajob) | **Post** /fpga-jobs/{jobName}/cancel | Cancel an FPGA job.
+*FPGAJobsAPI* | [**ClearFpgaJobArtefact**](docs/FPGAJobsAPI.md#clearfpgajobartefact) | **Delete** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Clear the job artefact.
+*FPGAJobsAPI* | [**CreateFpgaJobArtefactManager**](docs/FPGAJobsAPI.md#createfpgajobartefactmanager) | **Post** /fpga-jobs/{jobName}/artefacts/ | Create a job artefact manager.
+*FPGAJobsAPI* | [**DeleteFpgaJob**](docs/FPGAJobsAPI.md#deletefpgajob) | **Delete** /fpga-jobs/{jobName} | Delete an FPGA job.
+*FPGAJobsAPI* | [**DownloadFpgaJobArtefact**](docs/FPGAJobsAPI.md#downloadfpgajobartefact) | **Get** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Download the artefact for the corresponding FPGA job.
+*FPGAJobsAPI* | [**GetCurrentFpgaJob**](docs/FPGAJobsAPI.md#getcurrentfpgajob) | **Get** /fpgas/{fpgaName}/current-job | Return the job currently handled by the FPGA.
+*FPGAJobsAPI* | [**GetFpgaJob**](docs/FPGAJobsAPI.md#getfpgajob) | **Get** /fpga-jobs/{jobName} | Return the status of a FPGA job.
+*FPGAJobsAPI* | [**GetFpgaJobArtefactManager**](docs/FPGAJobsAPI.md#getfpgajobartefactmanager) | **Get** /fpga-jobs/{jobName}/artefacts/{artefactName} | Get the job&#39;s artefact manager for the artefact named &#x60;artefactName&#x60;.
+*FPGAJobsAPI* | [**GetFpgaJobMessages**](docs/FPGAJobsAPI.md#getfpgajobmessages) | **Get** /fpga-jobs/{jobName}/messages | FPGA job Message Feed.
+*FPGAJobsAPI* | [**ListFPGAJobs**](docs/FPGAJobsAPI.md#listfpgajobs) | **Get** /fpgas/{fpgaName}/jobs/ | List all jobs associated with this FPGA.
+*FPGAJobsAPI* | [**ListFPGAPastJobs**](docs/FPGAJobsAPI.md#listfpgapastjobs) | **Get** /fpgas/{fpgaName}/past-jobs/ | List all past jobs associated with this FPGA.
+*FPGAJobsAPI* | [**ListFPGAQueuedJobs**](docs/FPGAJobsAPI.md#listfpgaqueuedjobs) | **Get** /fpgas/{fpgaName}/queued-jobs/ | List all jobs associated with this FPGA and currently queued up.
+*FPGAJobsAPI* | [**ListFPGAsJobs**](docs/FPGAJobsAPI.md#listfpgasjobs) | **Get** /fpga-jobs/ | List all jobs performed by FPGAs.
+*FPGAJobsAPI* | [**ListFpgaJobArtefactManagers**](docs/FPGAJobsAPI.md#listfpgajobartefactmanagers) | **Get** /fpga-jobs/{jobName}/artefacts/ | Get the list of artefact managers for the given job.
+*FPGAJobsAPI* | [**LogJobMessage**](docs/FPGAJobsAPI.md#logjobmessage) | **Post** /fpga-jobs/{jobName}/messages | Create a job message.
+*FPGAJobsAPI* | [**RetainFpgaJob**](docs/FPGAJobsAPI.md#retainfpgajob) | **Post** /fpga-jobs/{jobName}/retain | Update how long an FPGA job will be retained before automatic deletion.
+*FPGAJobsAPI* | [**StartFpgaJob**](docs/FPGAJobsAPI.md#startfpgajob) | **Post** /fpgas/{fpgaName} | Initiate a job on an FPGA.
+*FPGAJobsAPI* | [**UploadFpgaJobArtefact**](docs/FPGAJobsAPI.md#uploadfpgajobartefact) | **Put** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Upload and replace the named artefact.
+*FPGAPayloadsAPI* | [**CreateFPGAPayload**](docs/FPGAPayloadsAPI.md#createfpgapayload) | **Post** /fpgas/{fpgaName}/payloads | Create an FPGA payload.
+*FPGAPayloadsAPI* | [**CreateFPGAPayloadUploadSession**](docs/FPGAPayloadsAPI.md#createfpgapayloaduploadsession) | **Post** /payloads/{fpgaPayloadName}/upload-session | Create upload session for FPGA payload.
+*FPGAPayloadsAPI* | [**DeleteFpgaPayload**](docs/FPGAPayloadsAPI.md#deletefpgapayload) | **Delete** /payloads/{fpgaPayloadName} | Delete an FPGA payload.
+*FPGAPayloadsAPI* | [**GetFpgaPayload**](docs/FPGAPayloadsAPI.md#getfpgapayload) | **Get** /payloads/{fpgaPayloadName} | Return details of specific FPGA payload.
+*FPGAPayloadsAPI* | [**GetFpgaPayloadUploadOptions**](docs/FPGAPayloadsAPI.md#getfpgapayloaduploadoptions) | **Options** /payloads | Return service TUS protocol support.
+*FPGAPayloadsAPI* | [**GetFpgaPayloadUploadProgress**](docs/FPGAPayloadsAPI.md#getfpgapayloaduploadprogress) | **Head** /payloads/{fpgaPayloadName} | Return FPGA payload upload progress.
+*FPGAPayloadsAPI* | [**ListFPGAPayloads**](docs/FPGAPayloadsAPI.md#listfpgapayloads) | **Get** /fpgas/{fpgaName}/payloads | List payloads for an FPGA.
+*FPGAPayloadsAPI* | [**ListPayloads**](docs/FPGAPayloadsAPI.md#listpayloads) | **Get** /payloads | List payloads.
+*FPGAPayloadsAPI* | [**UploadPayload**](docs/FPGAPayloadsAPI.md#uploadpayload) | **Patch** /payloads/{fpgaPayloadName} | Upload part of a payload.
+*FPGAsAPI* | [**CommissionFpga**](docs/FPGAsAPI.md#commissionfpga) | **Post** /fpgas/ | Commission a new FPGA.
+*FPGAsAPI* | [**DecommissionFpga**](docs/FPGAsAPI.md#decommissionfpga) | **Delete** /fpgas/{fpgaName} | Decommission an FPGA.
+*FPGAsAPI* | [**GetFpga**](docs/FPGAsAPI.md#getfpga) | **Get** /fpgas/{fpgaName} | Return details of specific FPGA.
+*FPGAsAPI* | [**ListFPGAWorkers**](docs/FPGAsAPI.md#listfpgaworkers) | **Get** /fpgas/ | List available FPGAs.
+*FPGAsAPI* | [**UpdateFpga**](docs/FPGAsAPI.md#updatefpga) | **Put** /fpgas/{fpgaName} | Update the status of the FPGA.
 *GenericWorkJobsAPI* | [**CancelGenericWorkJob**](docs/GenericWorkJobsAPI.md#cancelgenericworkjob) | **Post** /generic-work-jobs/{jobName}/cancel | Cancel a generic job.
 *GenericWorkJobsAPI* | [**DeleteGenericWorkJob**](docs/GenericWorkJobsAPI.md#deletegenericworkjob) | **Delete** /generic-work-jobs/{jobName} | Delete a generic job.
 *GenericWorkJobsAPI* | [**GetGenericWorkJob**](docs/GenericWorkJobsAPI.md#getgenericworkjob) | **Get** /generic-work-jobs/{jobName} | Return the status of a Generic Work Job.
@@ -222,6 +259,10 @@ Class | Method | HTTP request | Description
  - [EmbeddedCmsisBuilderItems](docs/EmbeddedCmsisBuilderItems.md)
  - [EmbeddedCmsisIntellisenseItems](docs/EmbeddedCmsisIntellisenseItems.md)
  - [EmbeddedEndpointDeprecationNoticeItems](docs/EmbeddedEndpointDeprecationNoticeItems.md)
+ - [EmbeddedFPGAConnectionItems](docs/EmbeddedFPGAConnectionItems.md)
+ - [EmbeddedFPGAItems](docs/EmbeddedFPGAItems.md)
+ - [EmbeddedFPGAJobItems](docs/EmbeddedFPGAJobItems.md)
+ - [EmbeddedFPGAPayloadItems](docs/EmbeddedFPGAPayloadItems.md)
  - [EmbeddedGenericWorkJobItems](docs/EmbeddedGenericWorkJobItems.md)
  - [EmbeddedGenericWorkerItems](docs/EmbeddedGenericWorkerItems.md)
  - [EmbeddedIntellisenseJobItems](docs/EmbeddedIntellisenseJobItems.md)
@@ -236,6 +277,18 @@ Class | Method | HTTP request | Description
  - [EndpointDeprecationNoticeCollection](docs/EndpointDeprecationNoticeCollection.md)
  - [EndpointDeprecationNoticeLinks](docs/EndpointDeprecationNoticeLinks.md)
  - [ErrorResponse](docs/ErrorResponse.md)
+ - [FPGACollection](docs/FPGACollection.md)
+ - [FPGAConnectionCollection](docs/FPGAConnectionCollection.md)
+ - [FPGAConnectionItem](docs/FPGAConnectionItem.md)
+ - [FPGAConnectionItemLinks](docs/FPGAConnectionItemLinks.md)
+ - [FPGAItem](docs/FPGAItem.md)
+ - [FPGAItemLinks](docs/FPGAItemLinks.md)
+ - [FPGAJobCollection](docs/FPGAJobCollection.md)
+ - [FPGAJobItem](docs/FPGAJobItem.md)
+ - [FPGAJobItemLinks](docs/FPGAJobItemLinks.md)
+ - [FPGAPayloadCollection](docs/FPGAPayloadCollection.md)
+ - [FPGAPayloadItem](docs/FPGAPayloadItem.md)
+ - [FPGAPayloadItemLinks](docs/FPGAPayloadItemLinks.md)
  - [FieldObject](docs/FieldObject.md)
  - [GenericWorkJobCollection](docs/GenericWorkJobCollection.md)
  - [GenericWorkJobItem](docs/GenericWorkJobItem.md)

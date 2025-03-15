@@ -29,10 +29,20 @@ var _ MappedNullable = &UserItem{}
 type UserItem struct {
 	Links UserItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
-	// The identifier of the user.
+	// Country of the user as ISO 3166-1 alpha-2 code.
+	Country *string `json:"country,omitempty" validate:"regexp=^[A-Z]{2}$"`
+	// Email address of the user.
+	Email *string `json:"email,omitempty"`
+	// First name of the user.
+	FirstName *string `json:"firstName,omitempty" validate:"regexp=^[A-Za-z][A-Za-z' -]{1,48}$"`
+	// Last name of the user.
+	LastName *string `json:"lastName,omitempty" validate:"regexp=^[A-Za-z][A-Za-z' -]{1,48}$"`
+	// The system identifier of the user.
 	Name string `json:"name"`
 	// Human readable description of the user
-	Title *string `json:"title,omitempty"`
+	Title *string `json:"title,omitempty" validate:"regexp=^(?!\\\\s)[A-Za-z]+(?:[ '-][A-Za-z]+){0,99}(?<!\\\\s)$"`
+	// Username of the user, which is the identifier provided by Arm account.
+	Username NullableString `json:"username,omitempty"`
 }
 
 type _UserItem UserItem
@@ -107,6 +117,134 @@ func (o *UserItem) SetMetadata(v CommonMetadata) {
 	o.Metadata.Set(&v)
 }
 
+// GetCountry returns the Country field value if set, zero value otherwise.
+func (o *UserItem) GetCountry() string {
+	if o == nil || IsNil(o.Country) {
+		var ret string
+		return ret
+	}
+	return *o.Country
+}
+
+// GetCountryOk returns a tuple with the Country field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserItem) GetCountryOk() (*string, bool) {
+	if o == nil || IsNil(o.Country) {
+		return nil, false
+	}
+	return o.Country, true
+}
+
+// HasCountry returns a boolean if a field has been set.
+func (o *UserItem) HasCountry() bool {
+	if o != nil && !IsNil(o.Country) {
+		return true
+	}
+
+	return false
+}
+
+// SetCountry gets a reference to the given string and assigns it to the Country field.
+func (o *UserItem) SetCountry(v string) {
+	o.Country = &v
+}
+
+// GetEmail returns the Email field value if set, zero value otherwise.
+func (o *UserItem) GetEmail() string {
+	if o == nil || IsNil(o.Email) {
+		var ret string
+		return ret
+	}
+	return *o.Email
+}
+
+// GetEmailOk returns a tuple with the Email field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserItem) GetEmailOk() (*string, bool) {
+	if o == nil || IsNil(o.Email) {
+		return nil, false
+	}
+	return o.Email, true
+}
+
+// HasEmail returns a boolean if a field has been set.
+func (o *UserItem) HasEmail() bool {
+	if o != nil && !IsNil(o.Email) {
+		return true
+	}
+
+	return false
+}
+
+// SetEmail gets a reference to the given string and assigns it to the Email field.
+func (o *UserItem) SetEmail(v string) {
+	o.Email = &v
+}
+
+// GetFirstName returns the FirstName field value if set, zero value otherwise.
+func (o *UserItem) GetFirstName() string {
+	if o == nil || IsNil(o.FirstName) {
+		var ret string
+		return ret
+	}
+	return *o.FirstName
+}
+
+// GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserItem) GetFirstNameOk() (*string, bool) {
+	if o == nil || IsNil(o.FirstName) {
+		return nil, false
+	}
+	return o.FirstName, true
+}
+
+// HasFirstName returns a boolean if a field has been set.
+func (o *UserItem) HasFirstName() bool {
+	if o != nil && !IsNil(o.FirstName) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirstName gets a reference to the given string and assigns it to the FirstName field.
+func (o *UserItem) SetFirstName(v string) {
+	o.FirstName = &v
+}
+
+// GetLastName returns the LastName field value if set, zero value otherwise.
+func (o *UserItem) GetLastName() string {
+	if o == nil || IsNil(o.LastName) {
+		var ret string
+		return ret
+	}
+	return *o.LastName
+}
+
+// GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserItem) GetLastNameOk() (*string, bool) {
+	if o == nil || IsNil(o.LastName) {
+		return nil, false
+	}
+	return o.LastName, true
+}
+
+// HasLastName returns a boolean if a field has been set.
+func (o *UserItem) HasLastName() bool {
+	if o != nil && !IsNil(o.LastName) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastName gets a reference to the given string and assigns it to the LastName field.
+func (o *UserItem) SetLastName(v string) {
+	o.LastName = &v
+}
+
 // GetName returns the Name field value
 func (o *UserItem) GetName() string {
 	if o == nil {
@@ -163,6 +301,48 @@ func (o *UserItem) SetTitle(v string) {
 	o.Title = &v
 }
 
+// GetUsername returns the Username field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UserItem) GetUsername() string {
+	if o == nil || IsNil(o.Username.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Username.Get()
+}
+
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UserItem) GetUsernameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Username.Get(), o.Username.IsSet()
+}
+
+// HasUsername returns a boolean if a field has been set.
+func (o *UserItem) HasUsername() bool {
+	if o != nil && o.Username.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given NullableString and assigns it to the Username field.
+func (o *UserItem) SetUsername(v string) {
+	o.Username.Set(&v)
+}
+// SetUsernameNil sets the value for Username to be an explicit nil
+func (o *UserItem) SetUsernameNil() {
+	o.Username.Set(nil)
+}
+
+// UnsetUsername ensures that no value is present for Username, not even an explicit nil
+func (o *UserItem) UnsetUsername() {
+	o.Username.Unset()
+}
+
 func (o UserItem) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -175,9 +355,24 @@ func (o UserItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links
 	toSerialize["_metadata"] = o.Metadata.Get()
+	if !IsNil(o.Country) {
+		toSerialize["country"] = o.Country
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.FirstName) {
+		toSerialize["firstName"] = o.FirstName
+	}
+	if !IsNil(o.LastName) {
+		toSerialize["lastName"] = o.LastName
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Title) {
 		toSerialize["title"] = o.Title
+	}
+	if o.Username.IsSet() {
+		toSerialize["username"] = o.Username.Get()
 	}
 	return toSerialize, nil
 }

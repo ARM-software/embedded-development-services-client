@@ -10,19 +10,19 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Links** | [**NullableBuildJobItemLinks**](BuildJobItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**BuildStepsCompleted** | **NullableInt32** | The number of build steps that have been completed so far. Please note: - This value also includes additional service orchestration steps, that are outside the core build process,   so may differ from the build progress indicated within build messages. - This value will only be available after the build has been started. | [readonly] 
-**BuildStepsTotal** | **NullableInt32** | The total number of steps that will need to be performed to complete the build. Please note: - This value also includes additional service orchestration steps, that are outside the core build process,   so may differ from the build progress indicated within build messages. - This value will only be available after the build has been started. | [readonly] 
+**BuildStepsCompleted** | **NullableInt32** | The number of steps that have been completed so far. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started. | [readonly] 
+**BuildStepsTotal** | **NullableInt32** | The total number of steps that will need to be performed to complete the job. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started. | [readonly] 
 **BuildTimeout** | Pointer to **int32** | The maximum time (in seconds) that the build will be allowed to run. After the timeout has expired the build will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the build to be started. | [optional] [default to 300]
 **CleanBuild** | Pointer to **bool** | Whether to run a clean build. | [optional] [default to false]
 **Context** | Pointer to **NullableString** | Build context for jobs that require it. | [optional] 
-**Done** | **bool** | True when the build job has completed (this does necessarily indicate success). | [readonly] 
-**Error** | **bool** | True if there was an error in the build service while attempting the build. | [readonly] 
-**Failure** | **bool** | True if the compilation or link failed (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
+**Done** | **bool** | True when the job has completed (this does not necessarily indicate success). | [readonly] 
+**Error** | **bool** | True if there was an error in the service while attempting the job. | [readonly] 
+**Failure** | **bool** | True if the job failed (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
 **Name** | **string** | Unique ID of the Build Job. | [readonly] 
 **Project** | **string** | CMSIS project to build or being built. | 
 **Queued** | Pointer to **bool** | True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended. | [optional] [readonly] 
 **Status** | **string** | A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead. | [readonly] 
-**Success** | **bool** | True if the build job was successful (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
+**Success** | **bool** | True if the job was successful (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
 **Title** | Pointer to **NullableString** | Optional human readable name of the CMSIS build job. | [optional] 
 **Workspace** | Pointer to **NullableString** | Workspace name where the CMSIS project is present. If not set, the default user&#39;s workspace will be used. | [optional] 
 
