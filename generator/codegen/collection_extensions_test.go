@@ -21,7 +21,7 @@ func TestCollectionExtensions(t *testing.T) {
 		})
 		require.NoError(t, err)
 
-		swagger, err := LoadAPIDefinition(d.SpecPath)
+		swagger, err := loadAPIDefinition(d.SpecPath)
 		require.NoError(t, err)
 
 		d.Params, err = GetCollections(swagger)
@@ -47,7 +47,7 @@ func TestCollectionExtensions(t *testing.T) {
 		})
 		require.NoError(t, err)
 
-		swagger, err := LoadAPIDefinition(d.SpecPath)
+		swagger, err := loadAPIDefinition(d.SpecPath)
 		require.NoError(t, err)
 
 		d.Params, err = GetCollections(swagger)
@@ -73,7 +73,7 @@ func TestCollectionExtensions(t *testing.T) {
 		})
 		require.NoError(t, err)
 
-		swagger, err := LoadAPIDefinition(d.SpecPath)
+		swagger, err := loadAPIDefinition(d.SpecPath)
 		require.NoError(t, err)
 
 		d.Params, err = GetCollections(swagger)

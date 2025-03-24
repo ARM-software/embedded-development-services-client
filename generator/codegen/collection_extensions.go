@@ -12,6 +12,35 @@ import (
 	"github.com/ARM-software/golang-utils/utils/commonerrors"
 )
 
+type Collection struct {
+	CollectionRef string
+	ItemRef       string
+	ModelRef      string
+	IteratorRef   string
+}
+
+type Collections = []Collection
+
+type MessageCollection struct {
+	ItemRef     string
+	IteratorRef string
+}
+
+type MessageCollections []MessageCollection
+
+type NotificationFeedCollection struct {
+	ItemRef     string
+	IteratorRef string
+}
+
+type NotificationFeedCollections []NotificationFeedCollection
+
+type CollectionParams = struct {
+	Collections
+	MessageCollections
+	NotificationFeedCollections
+}
+
 const (
 	schemaPrefix   = "#/components/schemas/"
 	jsonMIME       = "application/json"
@@ -35,6 +64,10 @@ var ignoreItems = []string{
 var ignoreCollections = []string{
 	// SimpleCollection is an underlying type
 	"#/components/schemas/SimpleCollection",
+}
+
+func AddCollectionsToParams(d *Data) (err error) {
+	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return GetCollections(swagger) }, "endpoints")
 }
 
 func trimRefPrefix(ref string) string {
