@@ -33,6 +33,7 @@ type Data struct {
 
 var ValidGenerationTargets = map[string]func(*Data) error{
 	"collections": AddCollectionsToParams,
+	"jobs":        AddJobItemsToParams,
 }
 
 type ExtensionsConfig struct {
