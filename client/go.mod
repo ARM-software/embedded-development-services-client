@@ -5,7 +5,7 @@ go 1.23.0
 toolchain go1.23.4
 
 require (
-	github.com/ARM-software/golang-utils/utils v1.86.0
+	github.com/ARM-software/golang-utils/utils v1.87.0
 	github.com/stretchr/testify v1.10.0
 )
 
