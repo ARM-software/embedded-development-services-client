@@ -31,11 +31,13 @@ type FPGAPayloadItem struct {
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// Unique ID of this FPGA Payload.
 	Name string `json:"name"`
+	// Status of the payload. A payload is only ready to be used by an FPGA once it has been processed.
+	Status string `json:"status"`
 	// True when the payload supports direct connection.
 	SupportConnection bool `json:"supportConnection"`
 	// Human readable name of the FPGA Payload.
 	Title string `json:"title"`
-	// The ID of the workspace created for the payload to be uploaded to. This value should be provided to the upload session creation.
+	// The ID of the workspace to upload the payload files from. This value will be returned from the upload session creation.
 	Workspace string `json:"workspace"`
 }
 
@@ -45,11 +47,12 @@ type _FPGAPayloadItem FPGAPayloadItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, supportConnection bool, title string, workspace string) *FPGAPayloadItem {
+func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, status string, supportConnection bool, title string, workspace string) *FPGAPayloadItem {
 	this := FPGAPayloadItem{}
 	this.Links = links
 	this.Metadata = metadata
 	this.Name = name
+	this.Status = status
 	this.SupportConnection = supportConnection
 	this.Title = title
 	this.Workspace = workspace
@@ -140,6 +143,30 @@ func (o *FPGAPayloadItem) SetName(v string) {
 	o.Name = v
 }
 
+// GetStatus returns the Status field value
+func (o *FPGAPayloadItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *FPGAPayloadItem) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *FPGAPayloadItem) SetStatus(v string) {
+	o.Status = v
+}
+
 // GetSupportConnection returns the SupportConnection field value
 func (o *FPGAPayloadItem) GetSupportConnection() bool {
 	if o == nil {
@@ -225,6 +252,7 @@ func (o FPGAPayloadItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["name"] = o.Name
+	toSerialize["status"] = o.Status
 	toSerialize["supportConnection"] = o.SupportConnection
 	toSerialize["title"] = o.Title
 	toSerialize["workspace"] = o.Workspace
@@ -239,6 +267,7 @@ func (o *FPGAPayloadItem) UnmarshalJSON(data []byte) (err error) {
 		"_links",
 		"_metadata",
 		"name",
+		"status",
 		"supportConnection",
 		"title",
 		"workspace",

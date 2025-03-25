@@ -16,9 +16,11 @@ Name | Type | Description | Notes
 **Deprecated** | **bool** | True if this FPGA is scheduled to be removed from the service. | [readonly] 
 **DeprecationInfo** | Pointer to [**DeprecationInfo**](DeprecationInfo.md) |  | [optional] 
 **Description** | **string** | Description of the FPGA configuration | [readonly] 
+**ExtraMetadata** | Pointer to **map[string]string** | Extra metadata to include for FPGAs. | [optional] 
 **Name** | **string** | Unique ID of this FPGA | [readonly] 
 **Ready** | **bool** | True if this FPGA is ready to accept jobs to run. | [readonly] 
-**Title** | **string** | Human readable name of the FPGA. | [readonly] 
+**Repositories** | Pointer to [**FPGAPayloadRepositories**](FPGAPayloadRepositories.md) |  | [optional] 
+**Title** | **string** | Human readable name of the FPGA. | 
 **WorkerAuthToken** | Pointer to **string** | Hybrid RSA AES encoded worker authorisation token to use for authorising with the boundary controller | [optional] 
 
 ## Methods
@@ -235,6 +237,31 @@ and a boolean to check if the value has been set.
 SetDescription sets Description field to given value.
 
 
+### GetExtraMetadata
+
+`func (o *FPGAItem) GetExtraMetadata() map[string]string`
+
+GetExtraMetadata returns the ExtraMetadata field if non-nil, zero value otherwise.
+
+### GetExtraMetadataOk
+
+`func (o *FPGAItem) GetExtraMetadataOk() (*map[string]string, bool)`
+
+GetExtraMetadataOk returns a tuple with the ExtraMetadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtraMetadata
+
+`func (o *FPGAItem) SetExtraMetadata(v map[string]string)`
+
+SetExtraMetadata sets ExtraMetadata field to given value.
+
+### HasExtraMetadata
+
+`func (o *FPGAItem) HasExtraMetadata() bool`
+
+HasExtraMetadata returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *FPGAItem) GetName() string`
@@ -274,6 +301,31 @@ and a boolean to check if the value has been set.
 
 SetReady sets Ready field to given value.
 
+
+### GetRepositories
+
+`func (o *FPGAItem) GetRepositories() FPGAPayloadRepositories`
+
+GetRepositories returns the Repositories field if non-nil, zero value otherwise.
+
+### GetRepositoriesOk
+
+`func (o *FPGAItem) GetRepositoriesOk() (*FPGAPayloadRepositories, bool)`
+
+GetRepositoriesOk returns a tuple with the Repositories field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRepositories
+
+`func (o *FPGAItem) SetRepositories(v FPGAPayloadRepositories)`
+
+SetRepositories sets Repositories field to given value.
+
+### HasRepositories
+
+`func (o *FPGAItem) HasRepositories() bool`
+
+HasRepositories returns a boolean if a field has been set.
 
 ### GetTitle
 

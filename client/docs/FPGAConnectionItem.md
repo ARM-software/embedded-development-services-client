@@ -8,7 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Links** | [**FPGAConnectionItemLinks**](FPGAConnectionItemLinks.md) |  | 
+**Links** | [**NullableFPGAConnectionItemLinks**](FPGAConnectionItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Count** | Pointer to **int32** | Number of current connections using this channel. | [optional] 
 **Name** | **string** | The identifier of the connection. | 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewFPGAConnectionItem
 
-`func NewFPGAConnectionItem(links FPGAConnectionItemLinks, metadata NullableCommonMetadata, name string, ) *FPGAConnectionItem`
+`func NewFPGAConnectionItem(links NullableFPGAConnectionItemLinks, metadata NullableCommonMetadata, name string, ) *FPGAConnectionItem`
 
 NewFPGAConnectionItem instantiates a new FPGAConnectionItem object
 This constructor will assign default values to properties that have it defined,
@@ -55,6 +55,16 @@ and a boolean to check if the value has been set.
 SetLinks sets Links field to given value.
 
 
+### SetLinksNil
+
+`func (o *FPGAConnectionItem) SetLinksNil(b bool)`
+
+ SetLinksNil sets the value for Links to be an explicit nil
+
+### UnsetLinks
+`func (o *FPGAConnectionItem) UnsetLinks()`
+
+UnsetLinks ensures that no value is present for Links, not even an explicit nil
 ### GetMetadata
 
 `func (o *FPGAConnectionItem) GetMetadata() CommonMetadata`

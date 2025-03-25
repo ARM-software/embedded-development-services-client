@@ -25,11 +25,12 @@ import (
 // checks if the FPGAItemLinks type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &FPGAItemLinks{}
 
-// FPGAItemLinks The `create` link (if present) provides the URI where a new job can be spawned The `current` link (if present) provides the URI to the resource describing the job currently running on the FPGA The `prev` link (if present) provides the URI to collection of past jobs which were run on the FPGA The `next` link (if present) provides the URI to collection of queued jobs which will be run on the FPGA The `collection` link (if present) provides the URI to the collection in which this FPGA is an `item`
+// FPGAItemLinks The `create` link (if present) provides the URI where a new job can be spawned The `current` link (if present) provides the URI to the resource describing the job currently running on the FPGA The `prev` link (if present) provides the URI to collection of past jobs which were run on the FPGA The `next` link (if present) provides the URI to collection of queued jobs which will be run on the FPGA The `delete` link (if present) provides the URI where an FPGA can be decommissioned The `collection` link (if present) provides the URI to the collection in which this FPGA is an `item`
 type FPGAItemLinks struct {
 	Collection *HalLinkData `json:"collection,omitempty"`
 	Create *HalLinkData `json:"create,omitempty"`
 	Current *HalLinkData `json:"current,omitempty"`
+	Delete *HalLinkData `json:"delete,omitempty"`
 	Next *HalLinkData `json:"next,omitempty"`
 	Prev *HalLinkData `json:"prev,omitempty"`
 	Self HalLinkData `json:"self"`
@@ -151,6 +152,38 @@ func (o *FPGAItemLinks) SetCurrent(v HalLinkData) {
 	o.Current = &v
 }
 
+// GetDelete returns the Delete field value if set, zero value otherwise.
+func (o *FPGAItemLinks) GetDelete() HalLinkData {
+	if o == nil || IsNil(o.Delete) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Delete
+}
+
+// GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FPGAItemLinks) GetDeleteOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Delete) {
+		return nil, false
+	}
+	return o.Delete, true
+}
+
+// HasDelete returns a boolean if a field has been set.
+func (o *FPGAItemLinks) HasDelete() bool {
+	if o != nil && !IsNil(o.Delete) {
+		return true
+	}
+
+	return false
+}
+
+// SetDelete gets a reference to the given HalLinkData and assigns it to the Delete field.
+func (o *FPGAItemLinks) SetDelete(v HalLinkData) {
+	o.Delete = &v
+}
+
 // GetNext returns the Next field value if set, zero value otherwise.
 func (o *FPGAItemLinks) GetNext() HalLinkData {
 	if o == nil || IsNil(o.Next) {
@@ -257,6 +290,9 @@ func (o FPGAItemLinks) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Current) {
 		toSerialize["current"] = o.Current
+	}
+	if !IsNil(o.Delete) {
+		toSerialize["delete"] = o.Delete
 	}
 	if !IsNil(o.Next) {
 		toSerialize["next"] = o.Next

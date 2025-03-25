@@ -38,7 +38,7 @@ type UserItem struct {
 	// Last name of the user.
 	LastName *string `json:"lastName,omitempty" validate:"regexp=^[A-Za-z][A-Za-z' -]{1,48}$"`
 	// The system identifier of the user.
-	Name string `json:"name"`
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// Human readable description of the user
 	Title *string `json:"title,omitempty" validate:"regexp=^(?!\\\\s)[A-Za-z]+(?:[ '-][A-Za-z]+){0,99}(?<!\\\\s)$"`
 	// Username of the user, which is the identifier provided by Arm account.

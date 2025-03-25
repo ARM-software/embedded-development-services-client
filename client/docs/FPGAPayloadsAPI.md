@@ -8,13 +8,13 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateFPGAPayload**](FPGAPayloadsAPI.md#CreateFPGAPayload) | **Post** /fpgas/{fpgaName}/payloads | Create an FPGA payload.
+[**CreateFPGAPayload**](FPGAPayloadsAPI.md#CreateFPGAPayload) | **Post** /repositories/{repositoryName}/payloads | Create an FPGA payload.
 [**CreateFPGAPayloadUploadSession**](FPGAPayloadsAPI.md#CreateFPGAPayloadUploadSession) | **Post** /payloads/{fpgaPayloadName}/upload-session | Create upload session for FPGA payload.
 [**DeleteFpgaPayload**](FPGAPayloadsAPI.md#DeleteFpgaPayload) | **Delete** /payloads/{fpgaPayloadName} | Delete an FPGA payload.
 [**GetFpgaPayload**](FPGAPayloadsAPI.md#GetFpgaPayload) | **Get** /payloads/{fpgaPayloadName} | Return details of specific FPGA payload.
 [**GetFpgaPayloadUploadOptions**](FPGAPayloadsAPI.md#GetFpgaPayloadUploadOptions) | **Options** /payloads | Return service TUS protocol support.
 [**GetFpgaPayloadUploadProgress**](FPGAPayloadsAPI.md#GetFpgaPayloadUploadProgress) | **Head** /payloads/{fpgaPayloadName} | Return FPGA payload upload progress.
-[**ListFPGAPayloads**](FPGAPayloadsAPI.md#ListFPGAPayloads) | **Get** /fpgas/{fpgaName}/payloads | List payloads for an FPGA.
+[**ListFPGAPayloads**](FPGAPayloadsAPI.md#ListFPGAPayloads) | **Get** /repositories/{repositoryName}/payloads | List payloads in a repository.
 [**ListPayloads**](FPGAPayloadsAPI.md#ListPayloads) | **Get** /payloads | List payloads.
 [**UploadPayload**](FPGAPayloadsAPI.md#UploadPayload) | **Patch** /payloads/{fpgaPayloadName} | Upload part of a payload.
 
@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## CreateFPGAPayload
 
-> FPGAPayloadItem CreateFPGAPayload(ctx, fpgaName).FPGAPayloadItem(fPGAPayloadItem).AcceptVersion(acceptVersion).Execute()
+> FPGAPayloadItem CreateFPGAPayload(ctx, repositoryName).FPGAPayloadItem(fPGAPayloadItem).AcceptVersion(acceptVersion).Execute()
 
 Create an FPGA payload.
 
@@ -41,13 +41,13 @@ import (
 )
 
 func main() {
-	fpgaName := "fpgaName_example" // string | Unique ID of an FPGA.
-	fPGAPayloadItem := *openapiclient.NewFPGAPayloadItem("TODO", "TODO", "4545aaf", true, "Demo payload for FPGA 12", "4545aaf") // FPGAPayloadItem | An FPGA Payload to be created.
+	repositoryName := "repositoryName_example" // string | Unique ID of a repository.
+	fPGAPayloadItem := *openapiclient.NewFPGAPayloadItem("TODO", "TODO", "4545aaf", "READY", true, "Demo payload for FPGA 12", "4545aaf") // FPGAPayloadItem | An FPGA Payload to be created.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FPGAPayloadsAPI.CreateFPGAPayload(context.Background(), fpgaName).FPGAPayloadItem(fPGAPayloadItem).AcceptVersion(acceptVersion).Execute()
+	resp, r, err := apiClient.FPGAPayloadsAPI.CreateFPGAPayload(context.Background(), repositoryName).FPGAPayloadItem(fPGAPayloadItem).AcceptVersion(acceptVersion).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.CreateFPGAPayload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,7 +63,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**fpgaName** | **string** | Unique ID of an FPGA. | 
+**repositoryName** | **string** | Unique ID of a repository. | 
 
 ### Other Parameters
 
@@ -120,7 +120,7 @@ func main() {
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 	uploadDeferLength := int32(56) // int32 | Set to 1 if upload size is not known at the time. Any other value results in a 400 Bad Request. (optional)
 	uploadLength := int64(789) // int64 | The size of the entire upload in bytes. (optional)
-	uploadMetadata := "uploadMetadata_example" // string | Additional metadata for the upload request. The header consists of comma-separated key-value pairs. The key MUST NOT contain spaces or commas and MUST be ASCII encoded. The value MUST be Base64 encoded.  The workspace key should be provided with the unique identifier for the payload to be uploaded to. (optional)
+	uploadMetadata := "uploadMetadata_example" // string | Additional metadata for the upload request. The header consists of comma-separated key-value pairs. The key MUST NOT contain spaces or commas and MUST be ASCII encoded. The value MUST be Base64 encoded. The workspace key should be provided with the unique identifier for the payload to be uploaded to. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
  **uploadDeferLength** | **int32** | Set to 1 if upload size is not known at the time. Any other value results in a 400 Bad Request. | 
  **uploadLength** | **int64** | The size of the entire upload in bytes. | 
- **uploadMetadata** | **string** | Additional metadata for the upload request. The header consists of comma-separated key-value pairs. The key MUST NOT contain spaces or commas and MUST be ASCII encoded. The value MUST be Base64 encoded.  The workspace key should be provided with the unique identifier for the payload to be uploaded to. | 
+ **uploadMetadata** | **string** | Additional metadata for the upload request. The header consists of comma-separated key-value pairs. The key MUST NOT contain spaces or commas and MUST be ASCII encoded. The value MUST be Base64 encoded. The workspace key should be provided with the unique identifier for the payload to be uploaded to. | 
 
 ### Return type
 
@@ -452,9 +452,9 @@ Name | Type | Description  | Notes
 
 ## ListFPGAPayloads
 
-> FPGAPayloadCollection ListFPGAPayloads(ctx, fpgaName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+> FPGAPayloadCollection ListFPGAPayloads(ctx, repositoryName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
 
-List payloads for an FPGA.
+List payloads in a repository.
 
 
 
@@ -471,7 +471,7 @@ import (
 )
 
 func main() {
-	fpgaName := "fpgaName_example" // string | Unique ID of an FPGA.
+	repositoryName := "repositoryName_example" // string | Unique ID of a repository.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 	embed := false // bool | Embedding: The whether or not to embed resources into the collection (rather than return links). (optional) (default to false)
 	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
@@ -480,7 +480,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FPGAPayloadsAPI.ListFPGAPayloads(context.Background(), fpgaName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+	resp, r, err := apiClient.FPGAPayloadsAPI.ListFPGAPayloads(context.Background(), repositoryName).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.ListFPGAPayloads``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -496,7 +496,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**fpgaName** | **string** | Unique ID of an FPGA. | 
+**repositoryName** | **string** | Unique ID of a repository. | 
 
 ### Other Parameters
 
