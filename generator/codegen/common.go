@@ -47,7 +47,7 @@ func DefaultExtensionsConfig() *ExtensionsConfig {
 	return &ExtensionsConfig{
 		Input:    "",
 		Output:   "",
-		Template: "templates/entities.go.tmpl", // FIXME: delete when CI usage is updated
+		Template: "",
 	}
 }
 
