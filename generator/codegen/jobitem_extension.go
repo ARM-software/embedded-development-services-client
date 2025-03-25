@@ -2,8 +2,8 @@ package codegen
 
 import (
 	"encoding/json"
-	"fmt"
-	"sort"
+	"slices"
+	"strings"
 
 	"github.com/ARM-software/golang-utils/utils/commonerrors"
 	"github.com/getkin/kin-openapi/openapi3"
@@ -13,26 +13,14 @@ type JobItem struct {
 	JobItemSchema string
 }
 
-type JobItems []JobItem
-
-func (m JobItems) Len() int {
-	return len(m)
-}
-
-func (m JobItems) Swap(i, j int) {
-	m[i], m[j] = m[j], m[i]
-}
-
-func (m JobItems) Less(i, j int) bool {
-	return m[i].JobItemSchema < m[j].JobItemSchema
-}
+type JobItems = []JobItem
 
 type JobItemsParams = struct {
 	JobItems
 }
 
 const (
-	JobItemName = "x-job"
+	JobItemName = "x-job" // See https://github.com/Arm-Debug/API-Uniform-Contract?tab=readme-ov-file#api-extensions
 )
 
 func AddJobItemsToParams(d *Data) (err error) {
@@ -44,7 +32,7 @@ func GetJobItems(swagger *openapi3.T) (jobItems JobItemsParams, err error) {
 	for schemaName, schema := range swagger.Components.Schemas {
 		schemaVal := schema.Value
 		if schemaVal == nil {
-			err = fmt.Errorf("%w: The schema response for '%s' exists but has no value", commonerrors.ErrUndefined, schemaName)
+			err = commonerrors.Newf(commonerrors.ErrUndefined, "The schema response for '%s' exists but has no value", schemaName)
 			return
 		}
 
@@ -71,7 +59,9 @@ func GetJobItems(swagger *openapi3.T) (jobItems JobItemsParams, err error) {
 		}
 	}
 
-	sort.Sort(jobs)
+	slices.SortFunc(jobs, func(a, b JobItem) int {
+		return strings.Compare(a.JobItemSchema, b.JobItemSchema)
+	})
 
 	jobItems = JobItemsParams{
 		jobs,
