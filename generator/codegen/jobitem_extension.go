@@ -36,21 +36,10 @@ const (
 )
 
 func AddJobItemsToParams(d *Data) (err error) {
-	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return generateJobItems(swagger) }, "deprecations")
+	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return GetJobItems(swagger) }, "deprecations")
 }
 
-func generateJobItems(swagger *openapi3.T) (params JobItemsParams, err error) {
-	JobItems, err := getJobItemsFromPaths(swagger)
-	if err != nil {
-		return
-	}
-
-	sort.Sort(JobItems)
-
-	return JobItems, nil
-}
-
-func getJobItemsFromPaths(swagger *openapi3.T) (jobItems JobItemsParams, err error) {
+func GetJobItems(swagger *openapi3.T) (jobItems JobItemsParams, err error) {
 	var jobs JobItems
 	for schemaName, schema := range swagger.Components.Schemas {
 		schemaVal := schema.Value
@@ -81,6 +70,8 @@ func getJobItemsFromPaths(swagger *openapi3.T) (jobItems JobItemsParams, err err
 			jobs = append(jobs, JobItem{schemaName})
 		}
 	}
+
+	sort.Sort(jobs)
 
 	jobItems = JobItemsParams{
 		jobs,
