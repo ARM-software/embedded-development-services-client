@@ -32,7 +32,7 @@ type FPGAPayloadsAPIService service
 type ApiCreateFPGAPayloadRequest struct {
 	ctx context.Context
 	ApiService *FPGAPayloadsAPIService
-	fpgaName string
+	repositoryName string
 	fPGAPayloadItem *FPGAPayloadItem
 	acceptVersion *string
 }
@@ -56,17 +56,17 @@ func (r ApiCreateFPGAPayloadRequest) Execute() (*FPGAPayloadItem, *http.Response
 /*
 CreateFPGAPayload Create an FPGA payload.
 
-Create a payload for an FPGA.
+Create a payload in the given repository.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param fpgaName Unique ID of an FPGA.
+ @param repositoryName Unique ID of a repository.
  @return ApiCreateFPGAPayloadRequest
 */
-func (a *FPGAPayloadsAPIService) CreateFPGAPayload(ctx context.Context, fpgaName string) ApiCreateFPGAPayloadRequest {
+func (a *FPGAPayloadsAPIService) CreateFPGAPayload(ctx context.Context, repositoryName string) ApiCreateFPGAPayloadRequest {
 	return ApiCreateFPGAPayloadRequest{
 		ApiService: a,
 		ctx: ctx,
-		fpgaName: fpgaName,
+		repositoryName: repositoryName,
 	}
 }
 
@@ -85,8 +85,8 @@ func (a *FPGAPayloadsAPIService) CreateFPGAPayloadExecute(r ApiCreateFPGAPayload
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/fpgas/{fpgaName}/payloads"
-	localVarPath = strings.Replace(localVarPath, "{"+"fpgaName"+"}", parameterValueToString(r.fpgaName, "fpgaName"), -1)
+	localVarPath := localBasePath + "/repositories/{repositoryName}/payloads"
+	localVarPath = strings.Replace(localVarPath, "{"+"repositoryName"+"}", parameterValueToString(r.repositoryName, "repositoryName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -265,7 +265,7 @@ func (r ApiCreateFPGAPayloadUploadSessionRequest) UploadLength(uploadLength int6
 	return r
 }
 
-// Additional metadata for the upload request. The header consists of comma-separated key-value pairs. The key MUST NOT contain spaces or commas and MUST be ASCII encoded. The value MUST be Base64 encoded.  The workspace key should be provided with the unique identifier for the payload to be uploaded to.
+// Additional metadata for the upload request. The header consists of comma-separated key-value pairs. The key MUST NOT contain spaces or commas and MUST be ASCII encoded. The value MUST be Base64 encoded. The workspace key should be provided with the unique identifier for the payload to be uploaded to.
 func (r ApiCreateFPGAPayloadUploadSessionRequest) UploadMetadata(uploadMetadata string) ApiCreateFPGAPayloadUploadSessionRequest {
 	r.uploadMetadata = &uploadMetadata
 	return r
@@ -1094,7 +1094,7 @@ func (a *FPGAPayloadsAPIService) GetFpgaPayloadUploadProgressExecute(r ApiGetFpg
 type ApiListFPGAPayloadsRequest struct {
 	ctx context.Context
 	ApiService *FPGAPayloadsAPIService
-	fpgaName string
+	repositoryName string
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
@@ -1137,19 +1137,19 @@ func (r ApiListFPGAPayloadsRequest) Execute() (*FPGAPayloadCollection, *http.Res
 }
 
 /*
-ListFPGAPayloads List payloads for an FPGA.
+ListFPGAPayloads List payloads in a repository.
 
-This returns a collection resource that lists all payloads available to be used by an FPGA.
+This returns a collection resource that lists all payloads available in the given repository.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param fpgaName Unique ID of an FPGA.
+ @param repositoryName Unique ID of a repository.
  @return ApiListFPGAPayloadsRequest
 */
-func (a *FPGAPayloadsAPIService) ListFPGAPayloads(ctx context.Context, fpgaName string) ApiListFPGAPayloadsRequest {
+func (a *FPGAPayloadsAPIService) ListFPGAPayloads(ctx context.Context, repositoryName string) ApiListFPGAPayloadsRequest {
 	return ApiListFPGAPayloadsRequest{
 		ApiService: a,
 		ctx: ctx,
-		fpgaName: fpgaName,
+		repositoryName: repositoryName,
 	}
 }
 
@@ -1168,8 +1168,8 @@ func (a *FPGAPayloadsAPIService) ListFPGAPayloadsExecute(r ApiListFPGAPayloadsRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/fpgas/{fpgaName}/payloads"
-	localVarPath = strings.Replace(localVarPath, "{"+"fpgaName"+"}", parameterValueToString(r.fpgaName, "fpgaName"), -1)
+	localVarPath := localBasePath + "/repositories/{repositoryName}/payloads"
+	localVarPath = strings.Replace(localVarPath, "{"+"repositoryName"+"}", parameterValueToString(r.repositoryName, "repositoryName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

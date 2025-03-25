@@ -112,6 +112,7 @@ Class | Method | HTTP request | Description
 *AuthenticationAPI* | [**CreateUser**](docs/AuthenticationAPI.md#createuser) | **Post** /users/ | Create a user.
 *AuthenticationAPI* | [**GetMe**](docs/AuthenticationAPI.md#getme) | **Get** /users/me | Get my user information
 *AuthenticationAPI* | [**GetUser**](docs/AuthenticationAPI.md#getuser) | **Get** /users/{name} | Get user information
+*AuthorizationAPI* | [**CheckPermission**](docs/AuthorizationAPI.md#checkpermission) | **Post** /entitlements/check | Check permissions on a resource.
 *BuildJobsAPI* | [**CancelBuildJob**](docs/BuildJobsAPI.md#cancelbuildjob) | **Post** /build-jobs/{jobName}/cancel | Cancel a Build Job
 *BuildJobsAPI* | [**DeleteBuildJob**](docs/BuildJobsAPI.md#deletebuildjob) | **Delete** /build-jobs/{jobName} | Delete a Build Job
 *BuildJobsAPI* | [**GetBuildArtefact**](docs/BuildJobsAPI.md#getbuildartefact) | **Get** /build-jobs/{jobName}/artefacts/{artefactName} | Download the named Build Artefact for the given Build Job.
@@ -153,13 +154,13 @@ Class | Method | HTTP request | Description
 *FPGAJobsAPI* | [**RetainFpgaJob**](docs/FPGAJobsAPI.md#retainfpgajob) | **Post** /fpga-jobs/{jobName}/retain | Update how long an FPGA job will be retained before automatic deletion.
 *FPGAJobsAPI* | [**StartFpgaJob**](docs/FPGAJobsAPI.md#startfpgajob) | **Post** /fpgas/{fpgaName} | Initiate a job on an FPGA.
 *FPGAJobsAPI* | [**UploadFpgaJobArtefact**](docs/FPGAJobsAPI.md#uploadfpgajobartefact) | **Put** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Upload and replace the named artefact.
-*FPGAPayloadsAPI* | [**CreateFPGAPayload**](docs/FPGAPayloadsAPI.md#createfpgapayload) | **Post** /fpgas/{fpgaName}/payloads | Create an FPGA payload.
+*FPGAPayloadsAPI* | [**CreateFPGAPayload**](docs/FPGAPayloadsAPI.md#createfpgapayload) | **Post** /repositories/{repositoryName}/payloads | Create an FPGA payload.
 *FPGAPayloadsAPI* | [**CreateFPGAPayloadUploadSession**](docs/FPGAPayloadsAPI.md#createfpgapayloaduploadsession) | **Post** /payloads/{fpgaPayloadName}/upload-session | Create upload session for FPGA payload.
 *FPGAPayloadsAPI* | [**DeleteFpgaPayload**](docs/FPGAPayloadsAPI.md#deletefpgapayload) | **Delete** /payloads/{fpgaPayloadName} | Delete an FPGA payload.
 *FPGAPayloadsAPI* | [**GetFpgaPayload**](docs/FPGAPayloadsAPI.md#getfpgapayload) | **Get** /payloads/{fpgaPayloadName} | Return details of specific FPGA payload.
 *FPGAPayloadsAPI* | [**GetFpgaPayloadUploadOptions**](docs/FPGAPayloadsAPI.md#getfpgapayloaduploadoptions) | **Options** /payloads | Return service TUS protocol support.
 *FPGAPayloadsAPI* | [**GetFpgaPayloadUploadProgress**](docs/FPGAPayloadsAPI.md#getfpgapayloaduploadprogress) | **Head** /payloads/{fpgaPayloadName} | Return FPGA payload upload progress.
-*FPGAPayloadsAPI* | [**ListFPGAPayloads**](docs/FPGAPayloadsAPI.md#listfpgapayloads) | **Get** /fpgas/{fpgaName}/payloads | List payloads for an FPGA.
+*FPGAPayloadsAPI* | [**ListFPGAPayloads**](docs/FPGAPayloadsAPI.md#listfpgapayloads) | **Get** /repositories/{repositoryName}/payloads | List payloads in a repository.
 *FPGAPayloadsAPI* | [**ListPayloads**](docs/FPGAPayloadsAPI.md#listpayloads) | **Get** /payloads | List payloads.
 *FPGAPayloadsAPI* | [**UploadPayload**](docs/FPGAPayloadsAPI.md#uploadpayload) | **Patch** /payloads/{fpgaPayloadName} | Upload part of a payload.
 *FPGAsAPI* | [**CommissionFpga**](docs/FPGAsAPI.md#commissionfpga) | **Post** /fpgas/ | Commission a new FPGA.
@@ -278,6 +279,7 @@ Class | Method | HTTP request | Description
  - [EndpointDeprecationNoticeLinks](docs/EndpointDeprecationNoticeLinks.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [FPGACollection](docs/FPGACollection.md)
+ - [FPGACollectionLinks](docs/FPGACollectionLinks.md)
  - [FPGAConnectionCollection](docs/FPGAConnectionCollection.md)
  - [FPGAConnectionItem](docs/FPGAConnectionItem.md)
  - [FPGAConnectionItemLinks](docs/FPGAConnectionItemLinks.md)
@@ -289,6 +291,7 @@ Class | Method | HTTP request | Description
  - [FPGAPayloadCollection](docs/FPGAPayloadCollection.md)
  - [FPGAPayloadItem](docs/FPGAPayloadItem.md)
  - [FPGAPayloadItemLinks](docs/FPGAPayloadItemLinks.md)
+ - [FPGAPayloadRepositories](docs/FPGAPayloadRepositories.md)
  - [FieldObject](docs/FieldObject.md)
  - [GenericWorkJobCollection](docs/GenericWorkJobCollection.md)
  - [GenericWorkJobItem](docs/GenericWorkJobItem.md)
@@ -314,6 +317,7 @@ Class | Method | HTTP request | Description
  - [PATItem](docs/PATItem.md)
  - [PATItemLinks](docs/PATItemLinks.md)
  - [PagingMetadata](docs/PagingMetadata.md)
+ - [PermissionItem](docs/PermissionItem.md)
  - [RetainBuildJobRequest](docs/RetainBuildJobRequest.md)
  - [RetainWorkspaceRequest](docs/RetainWorkspaceRequest.md)
  - [SimpleCollection](docs/SimpleCollection.md)

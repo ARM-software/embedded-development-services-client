@@ -1,0 +1,31 @@
+/*
+ * Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package client
+
+{{ range .JobItems -}}
+// ============================================================================================
+// This extends {{ .JobItemSchema }} definitions
+// ============================================================================================
+// HasMessages specifies whether messages are available for this job.
+func (o *{{ .JobItemSchema }}) HasMessages() (available bool) {
+	if o == nil {
+		return
+	}
+	links := o.GetLinks()
+	_, available = links.GetDetailsOk()
+	return
+}
+
+// HasArtefacts specifies whether artefacts are available for this job.
+func (o *{{ .JobItemSchema }}) HasArtefacts() (available bool) {
+	if o == nil {
+		return
+	}
+	links := o.GetLinks()
+	_, available = links.GetArtefactsOk()
+	return
+}
+{{ end }}

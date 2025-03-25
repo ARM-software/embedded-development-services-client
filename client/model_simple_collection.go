@@ -30,7 +30,7 @@ type SimpleCollection struct {
 	Links NullableHalCollectionLinks `json:"_links"`
 	Metadata NullablePagingMetadata `json:"_metadata"`
 	// ID of the Collection.
-	Name string `json:"name"`
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// Human readable title of the collection.
 	Title string `json:"title"`
 }

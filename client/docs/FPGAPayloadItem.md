@@ -11,15 +11,16 @@ Name | Type | Description | Notes
 **Links** | [**NullableFPGAPayloadItemLinks**](FPGAPayloadItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Name** | **string** | Unique ID of this FPGA Payload. | [readonly] 
+**Status** | **string** | Status of the payload. A payload is only ready to be used by an FPGA once it has been processed. | [readonly] 
 **SupportConnection** | **bool** | True when the payload supports direct connection. | 
 **Title** | **string** | Human readable name of the FPGA Payload. | 
-**Workspace** | **string** | The ID of the workspace created for the payload to be uploaded to. This value should be provided to the upload session creation. | [readonly] 
+**Workspace** | **string** | The ID of the workspace to upload the payload files from. This value will be returned from the upload session creation. | 
 
 ## Methods
 
 ### NewFPGAPayloadItem
 
-`func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, supportConnection bool, title string, workspace string, ) *FPGAPayloadItem`
+`func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, status string, supportConnection bool, title string, workspace string, ) *FPGAPayloadItem`
 
 NewFPGAPayloadItem instantiates a new FPGAPayloadItem object
 This constructor will assign default values to properties that have it defined,
@@ -112,6 +113,26 @@ and a boolean to check if the value has been set.
 `func (o *FPGAPayloadItem) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetStatus
+
+`func (o *FPGAPayloadItem) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *FPGAPayloadItem) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *FPGAPayloadItem) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
 
 
 ### GetSupportConnection

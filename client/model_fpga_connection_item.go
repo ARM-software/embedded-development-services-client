@@ -27,7 +27,7 @@ var _ MappedNullable = &FPGAConnectionItem{}
 
 // FPGAConnectionItem struct for FPGAConnectionItem
 type FPGAConnectionItem struct {
-	Links FPGAConnectionItemLinks `json:"_links"`
+	Links NullableFPGAConnectionItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// Number of current connections using this channel.
 	Count *int32 `json:"count,omitempty"`
@@ -47,7 +47,7 @@ type _FPGAConnectionItem FPGAConnectionItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAConnectionItem(links FPGAConnectionItemLinks, metadata NullableCommonMetadata, name string) *FPGAConnectionItem {
+func NewFPGAConnectionItem(links NullableFPGAConnectionItemLinks, metadata NullableCommonMetadata, name string) *FPGAConnectionItem {
 	this := FPGAConnectionItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -64,27 +64,29 @@ func NewFPGAConnectionItemWithDefaults() *FPGAConnectionItem {
 }
 
 // GetLinks returns the Links field value
+// If the value is explicit nil, the zero value for FPGAConnectionItemLinks will be returned
 func (o *FPGAConnectionItem) GetLinks() FPGAConnectionItemLinks {
-	if o == nil {
+	if o == nil || o.Links.Get() == nil {
 		var ret FPGAConnectionItemLinks
 		return ret
 	}
 
-	return o.Links
+	return *o.Links.Get()
 }
 
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FPGAConnectionItem) GetLinksOk() (*FPGAConnectionItemLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Links, true
+	return o.Links.Get(), o.Links.IsSet()
 }
 
 // SetLinks sets field value
 func (o *FPGAConnectionItem) SetLinks(v FPGAConnectionItemLinks) {
-	o.Links = v
+	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
@@ -275,7 +277,7 @@ func (o FPGAConnectionItem) MarshalJSON() ([]byte, error) {
 
 func (o FPGAConnectionItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["_links"] = o.Links
+	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
 	if !IsNil(o.Count) {
 		toSerialize["count"] = o.Count

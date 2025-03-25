@@ -9,7 +9,7 @@ SPDX-License-Identifier: Apache-2.0
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Embedded** | Pointer to [**EmbeddedFPGAItems**](EmbeddedFPGAItems.md) |  | [optional] 
-**Links** | [**NullableHalCollectionLinks**](HalCollectionLinks.md) |  | 
+**Links** | [**NullableFPGACollectionLinks**](FPGACollectionLinks.md) |  | 
 **Metadata** | [**NullablePagingMetadata**](PagingMetadata.md) |  | 
 **Name** | **string** | ID of the Collection. | [readonly] 
 **Title** | **string** | Human readable title of the collection. | [readonly] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewFPGACollection
 
-`func NewFPGACollection(links NullableHalCollectionLinks, metadata NullablePagingMetadata, name string, title string, ) *FPGACollection`
+`func NewFPGACollection(links NullableFPGACollectionLinks, metadata NullablePagingMetadata, name string, title string, ) *FPGACollection`
 
 NewFPGACollection instantiates a new FPGACollection object
 This constructor will assign default values to properties that have it defined,
@@ -60,20 +60,20 @@ HasEmbedded returns a boolean if a field has been set.
 
 ### GetLinks
 
-`func (o *FPGACollection) GetLinks() HalCollectionLinks`
+`func (o *FPGACollection) GetLinks() FPGACollectionLinks`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *FPGACollection) GetLinksOk() (*HalCollectionLinks, bool)`
+`func (o *FPGACollection) GetLinksOk() (*FPGACollectionLinks, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *FPGACollection) SetLinks(v HalCollectionLinks)`
+`func (o *FPGACollection) SetLinks(v FPGACollectionLinks)`
 
 SetLinks sets Links field to given value.
 

@@ -28,10 +28,10 @@ var _ MappedNullable = &FPGACollection{}
 // FPGACollection This collection resource follows the common pattern of linking to contained resources. Optionally, rather than linking to other resources, it can embed then into the collection to reduce the number of round trips to the server (at the expense of caching). In file system terms, it is similar to a directory but only contains links to (or embeds) a single type of resource.
 type FPGACollection struct {
 	Embedded *EmbeddedFPGAItems `json:"_embedded,omitempty"`
-	Links NullableHalCollectionLinks `json:"_links"`
+	Links NullableFPGACollectionLinks `json:"_links"`
 	Metadata NullablePagingMetadata `json:"_metadata"`
 	// ID of the Collection.
-	Name string `json:"name"`
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// Human readable title of the collection.
 	Title string `json:"title"`
 }
@@ -42,7 +42,7 @@ type _FPGACollection FPGACollection
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGACollection(links NullableHalCollectionLinks, metadata NullablePagingMetadata, name string, title string) *FPGACollection {
+func NewFPGACollection(links NullableFPGACollectionLinks, metadata NullablePagingMetadata, name string, title string) *FPGACollection {
 	this := FPGACollection{}
 	this.Links = links
 	this.Metadata = metadata
@@ -92,10 +92,10 @@ func (o *FPGACollection) SetEmbedded(v EmbeddedFPGAItems) {
 }
 
 // GetLinks returns the Links field value
-// If the value is explicit nil, the zero value for HalCollectionLinks will be returned
-func (o *FPGACollection) GetLinks() HalCollectionLinks {
+// If the value is explicit nil, the zero value for FPGACollectionLinks will be returned
+func (o *FPGACollection) GetLinks() FPGACollectionLinks {
 	if o == nil || o.Links.Get() == nil {
-		var ret HalCollectionLinks
+		var ret FPGACollectionLinks
 		return ret
 	}
 
@@ -105,7 +105,7 @@ func (o *FPGACollection) GetLinks() HalCollectionLinks {
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FPGACollection) GetLinksOk() (*HalCollectionLinks, bool) {
+func (o *FPGACollection) GetLinksOk() (*FPGACollectionLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -113,7 +113,7 @@ func (o *FPGACollection) GetLinksOk() (*HalCollectionLinks, bool) {
 }
 
 // SetLinks sets field value
-func (o *FPGACollection) SetLinks(v HalCollectionLinks) {
+func (o *FPGACollection) SetLinks(v FPGACollectionLinks) {
 	o.Links.Set(&v)
 }
 
