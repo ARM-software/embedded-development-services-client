@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2024 Arm Limited or its affiliates and Contributors. All rights reserved.
+ * Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -524,6 +524,264 @@ func (o *CmsisIntellisenseCollection) GetItemCount() (count int64, err error) {
 // NewCmsisIntellisenseCollection returns a page.
 func NewCmsisIntellisenseCollectionCollection() IStaticPage {
 	return NewCmsisIntellisenseCollectionWithDefaults()
+}
+
+// ============================================================================================
+// This extends GenericWorkJobItem and GenericWorkJobCollection definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *GenericWorkJobItem) FetchType() string {
+	return "GenericWorkJobItem"
+}
+
+// FetchLinks returns the resource links if present
+func (o *GenericWorkJobItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *GenericWorkJobItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *GenericWorkJobItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// NewGenericWorkJobModel returns a model.
+func NewGenericWorkJobModel() IModel {
+	return NewGenericWorkJobItemWithDefaults()
+}
+
+// GenericWorkJobIterator defines an iterator over a collection.
+type GenericWorkJobIterator struct {
+	elements     []GenericWorkJobItem
+	currentIndex int
+}
+
+func (m *GenericWorkJobIterator) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *GenericWorkJobIterator) GetNext() (item any, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func NewGenericWorkJobIterator(elements []GenericWorkJobItem) (IIterator, error) {
+	return &GenericWorkJobIterator{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
+
+// FetchType returns the resource type
+func (o *GenericWorkJobCollection) FetchType() string {
+	return "GenericWorkJobCollection page"
+}
+
+// FetchLinks returns the resource links if present
+func (o *GenericWorkJobCollection) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *GenericWorkJobCollection) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *GenericWorkJobCollection) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *GenericWorkJobCollection) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *GenericWorkJobCollection) GetItemIterator() (IIterator, error) {
+	if o.HasEmbedded() {
+		embedded := o.GetEmbedded()
+		return NewGenericWorkJobIterator(embedded.GetItem())
+	}
+	links, err := o.FetchLinks()
+	if err != nil {
+		return nil, err
+	}
+	l, ok := links.(HalCollectionLinks)
+	if !ok {
+		return nil, fmt.Errorf("wrong link type [%T]; expected [HalCollectionLinks]", links)
+	}
+	return NewHalLinkDataIterator(l.GetItem())
+}
+
+func (o *GenericWorkJobCollection) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewGenericWorkJobCollection returns a page.
+func NewGenericWorkJobCollectionCollection() IStaticPage {
+	return NewGenericWorkJobCollectionWithDefaults()
+}
+
+// ============================================================================================
+// This extends GenericWorkerItem and GenericWorkerCollection definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *GenericWorkerItem) FetchType() string {
+	return "GenericWorkerItem"
+}
+
+// FetchLinks returns the resource links if present
+func (o *GenericWorkerItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *GenericWorkerItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *GenericWorkerItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// NewGenericWorkerModel returns a model.
+func NewGenericWorkerModel() IModel {
+	return NewGenericWorkerItemWithDefaults()
+}
+
+// GenericWorkerIterator defines an iterator over a collection.
+type GenericWorkerIterator struct {
+	elements     []GenericWorkerItem
+	currentIndex int
+}
+
+func (m *GenericWorkerIterator) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *GenericWorkerIterator) GetNext() (item any, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func NewGenericWorkerIterator(elements []GenericWorkerItem) (IIterator, error) {
+	return &GenericWorkerIterator{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
+
+// FetchType returns the resource type
+func (o *GenericWorkerCollection) FetchType() string {
+	return "GenericWorkerCollection page"
+}
+
+// FetchLinks returns the resource links if present
+func (o *GenericWorkerCollection) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *GenericWorkerCollection) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *GenericWorkerCollection) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *GenericWorkerCollection) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *GenericWorkerCollection) GetItemIterator() (IIterator, error) {
+	if o.HasEmbedded() {
+		embedded := o.GetEmbedded()
+		return NewGenericWorkerIterator(embedded.GetItem())
+	}
+	links, err := o.FetchLinks()
+	if err != nil {
+		return nil, err
+	}
+	l, ok := links.(HalCollectionLinks)
+	if !ok {
+		return nil, fmt.Errorf("wrong link type [%T]; expected [HalCollectionLinks]", links)
+	}
+	return NewHalLinkDataIterator(l.GetItem())
+}
+
+func (o *GenericWorkerCollection) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewGenericWorkerCollection returns a page.
+func NewGenericWorkerCollectionCollection() IStaticPage {
+	return NewGenericWorkerCollectionWithDefaults()
 }
 
 // ============================================================================================
@@ -1380,6 +1638,130 @@ func NewNotificationMessageIterator(elements []NotificationMessageObject) (IIter
 		elements:     elements,
 		currentIndex: 0,
 	}, nil
+}
+
+// ============================================================================================
+// This extends BuildMessageItem definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *BuildMessageItem) FetchType() string {
+	return "Notification messages"
+}
+
+// FetchLinks returns the resource links if present
+func (o *BuildMessageItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *BuildMessageItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *BuildMessageItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *BuildMessageItem) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *BuildMessageItem) HasFuture() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasFuture()
+	}
+	return false
+}
+
+func (o *BuildMessageItem) GetItemIterator() (IIterator, error) {
+	return NewMessageIterator(o.GetMessages())
+}
+
+func (o *BuildMessageItem) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewBuildMessageItemMessageStream returns a message stream.
+func NewBuildMessageItemMessageStream() IMessageStream {
+	return NewBuildMessageItemWithDefaults()
+}
+
+// ============================================================================================
+// This extends IntellisenseMessageItem definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *IntellisenseMessageItem) FetchType() string {
+	return "Notification messages"
+}
+
+// FetchLinks returns the resource links if present
+func (o *IntellisenseMessageItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *IntellisenseMessageItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *IntellisenseMessageItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *IntellisenseMessageItem) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *IntellisenseMessageItem) HasFuture() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasFuture()
+	}
+	return false
+}
+
+func (o *IntellisenseMessageItem) GetItemIterator() (IIterator, error) {
+	return NewMessageIterator(o.GetMessages())
+}
+
+func (o *IntellisenseMessageItem) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewIntellisenseMessageItemMessageStream returns a message stream.
+func NewIntellisenseMessageItemMessageStream() IMessageStream {
+	return NewIntellisenseMessageItemWithDefaults()
 }
 
 // ============================================================================================

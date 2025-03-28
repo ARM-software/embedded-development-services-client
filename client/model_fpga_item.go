@@ -40,10 +40,13 @@ type FPGAItem struct {
 	DeprecationInfo *DeprecationInfo `json:"deprecationInfo,omitempty"`
 	// Description of the FPGA configuration
 	Description string `json:"description"`
+	// Extra metadata to include for FPGAs.
+	ExtraMetadata *map[string]string `json:"extraMetadata,omitempty"`
 	// Unique ID of this FPGA
 	Name string `json:"name"`
 	// True if this FPGA is ready to accept jobs to run.
 	Ready bool `json:"ready"`
+	Repositories *FPGAPayloadRepositories `json:"repositories,omitempty"`
 	// Human readable name of the FPGA.
 	Title string `json:"title"`
 	// Hybrid RSA AES encoded worker authorisation token to use for authorising with the boundary controller
@@ -297,6 +300,38 @@ func (o *FPGAItem) SetDescription(v string) {
 	o.Description = v
 }
 
+// GetExtraMetadata returns the ExtraMetadata field value if set, zero value otherwise.
+func (o *FPGAItem) GetExtraMetadata() map[string]string {
+	if o == nil || IsNil(o.ExtraMetadata) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.ExtraMetadata
+}
+
+// GetExtraMetadataOk returns a tuple with the ExtraMetadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FPGAItem) GetExtraMetadataOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.ExtraMetadata) {
+		return nil, false
+	}
+	return o.ExtraMetadata, true
+}
+
+// HasExtraMetadata returns a boolean if a field has been set.
+func (o *FPGAItem) HasExtraMetadata() bool {
+	if o != nil && !IsNil(o.ExtraMetadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtraMetadata gets a reference to the given map[string]string and assigns it to the ExtraMetadata field.
+func (o *FPGAItem) SetExtraMetadata(v map[string]string) {
+	o.ExtraMetadata = &v
+}
+
 // GetName returns the Name field value
 func (o *FPGAItem) GetName() string {
 	if o == nil {
@@ -343,6 +378,38 @@ func (o *FPGAItem) GetReadyOk() (*bool, bool) {
 // SetReady sets field value
 func (o *FPGAItem) SetReady(v bool) {
 	o.Ready = v
+}
+
+// GetRepositories returns the Repositories field value if set, zero value otherwise.
+func (o *FPGAItem) GetRepositories() FPGAPayloadRepositories {
+	if o == nil || IsNil(o.Repositories) {
+		var ret FPGAPayloadRepositories
+		return ret
+	}
+	return *o.Repositories
+}
+
+// GetRepositoriesOk returns a tuple with the Repositories field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FPGAItem) GetRepositoriesOk() (*FPGAPayloadRepositories, bool) {
+	if o == nil || IsNil(o.Repositories) {
+		return nil, false
+	}
+	return o.Repositories, true
+}
+
+// HasRepositories returns a boolean if a field has been set.
+func (o *FPGAItem) HasRepositories() bool {
+	if o != nil && !IsNil(o.Repositories) {
+		return true
+	}
+
+	return false
+}
+
+// SetRepositories gets a reference to the given FPGAPayloadRepositories and assigns it to the Repositories field.
+func (o *FPGAItem) SetRepositories(v FPGAPayloadRepositories) {
+	o.Repositories = &v
 }
 
 // GetTitle returns the Title field value
@@ -425,8 +492,14 @@ func (o FPGAItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["deprecationInfo"] = o.DeprecationInfo
 	}
 	toSerialize["description"] = o.Description
+	if !IsNil(o.ExtraMetadata) {
+		toSerialize["extraMetadata"] = o.ExtraMetadata
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["ready"] = o.Ready
+	if !IsNil(o.Repositories) {
+		toSerialize["repositories"] = o.Repositories
+	}
 	toSerialize["title"] = o.Title
 	if !IsNil(o.WorkerAuthToken) {
 		toSerialize["workerAuthToken"] = o.WorkerAuthToken

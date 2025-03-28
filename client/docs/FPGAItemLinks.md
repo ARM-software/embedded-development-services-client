@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Collection** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Create** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Current** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
+**Delete** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Next** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Prev** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Self** | [**HalLinkData**](HalLinkData.md) |  | 
@@ -108,6 +109,31 @@ SetCurrent sets Current field to given value.
 `func (o *FPGAItemLinks) HasCurrent() bool`
 
 HasCurrent returns a boolean if a field has been set.
+
+### GetDelete
+
+`func (o *FPGAItemLinks) GetDelete() HalLinkData`
+
+GetDelete returns the Delete field if non-nil, zero value otherwise.
+
+### GetDeleteOk
+
+`func (o *FPGAItemLinks) GetDeleteOk() (*HalLinkData, bool)`
+
+GetDeleteOk returns a tuple with the Delete field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDelete
+
+`func (o *FPGAItemLinks) SetDelete(v HalLinkData)`
+
+SetDelete sets Delete field to given value.
+
+### HasDelete
+
+`func (o *FPGAItemLinks) HasDelete() bool`
+
+HasDelete returns a boolean if a field has been set.
 
 ### GetNext
 

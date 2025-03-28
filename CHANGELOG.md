@@ -2,6 +2,39 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.45.0" (2025-03-25)
+=====================
+
+Features
+--------
+
+- :sparkles: Extend the code generator for JobItems, which are schemas that have `x-job: true` (#20250325112617)
+- Updated client due to schema changes (#20250325115157, #20250325122844)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"1.44.0" (2025-03-25)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20250315013215)
+
+
+Bugfixes
+--------
+
+- Dependency upgrade: golang-1.23.5 (#20250117095540)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.43.0" (2025-03-01)
 =====================
 

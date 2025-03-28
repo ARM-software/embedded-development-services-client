@@ -15,13 +15,13 @@ func TestCollectionExtensions(t *testing.T) {
 	t.Run("Test Successful Generation", func(t *testing.T) {
 		tmpDir := t.TempDir()
 		d, err := GenerateDataStruct(ExtensionsConfig{
-			Input:    "testdata/test.json",
+			Input:    filepath.Join("testdata", "collections", "test.json"),
 			Template: filepath.Join("templates", "entities.go.tmpl"),
 			Output:   filepath.Join(tmpDir, "test.go"),
 		})
 		require.NoError(t, err)
 
-		swagger, err := LoadAPIDefinition(d.SpecPath)
+		swagger, err := loadAPIDefinition(d.SpecPath)
 		require.NoError(t, err)
 
 		d.Params, err = GetCollections(swagger)
@@ -31,7 +31,7 @@ func TestCollectionExtensions(t *testing.T) {
 		assert.NoError(t, err)
 		assert.FileExists(t, d.DestinationPath)
 
-		expected, err := filesystem.ReadFile(filepath.Join("testdata", "test.gen.go"))
+		expected, err := filesystem.ReadFile(filepath.Join("testdata", "collections", "test.gen.go"))
 		require.NoError(t, err)
 		actual, err := filesystem.ReadFile(d.DestinationPath)
 		require.NoError(t, err)
@@ -41,13 +41,13 @@ func TestCollectionExtensions(t *testing.T) {
 	t.Run("Test Successful Generation (with all redacts)", func(t *testing.T) {
 		tmpDir := t.TempDir()
 		d, err := GenerateDataStruct(ExtensionsConfig{
-			Input:    "testdata/test-redacted.json",
+			Input:    filepath.Join("testdata", "collections", "test-all-redacted.json"),
 			Template: filepath.Join("templates", "entities.go.tmpl"),
 			Output:   filepath.Join(tmpDir, "test.go"),
 		})
 		require.NoError(t, err)
 
-		swagger, err := LoadAPIDefinition(d.SpecPath)
+		swagger, err := loadAPIDefinition(d.SpecPath)
 		require.NoError(t, err)
 
 		d.Params, err = GetCollections(swagger)
@@ -57,7 +57,7 @@ func TestCollectionExtensions(t *testing.T) {
 		assert.NoError(t, err)
 		assert.FileExists(t, d.DestinationPath)
 
-		expected, err := filesystem.ReadFile(filepath.Join("testdata", "test-redacted.gen.go"))
+		expected, err := filesystem.ReadFile(filepath.Join("testdata", "collections", "test-all-redacted.gen.go"))
 		require.NoError(t, err)
 		actual, err := filesystem.ReadFile(d.DestinationPath)
 		require.NoError(t, err)
@@ -67,13 +67,13 @@ func TestCollectionExtensions(t *testing.T) {
 	t.Run("Test Successful Generation (with some redacts)", func(t *testing.T) {
 		tmpDir := t.TempDir()
 		d, err := GenerateDataStruct(ExtensionsConfig{
-			Input:    "testdata/test-redacted-1.json",
+			Input:    filepath.Join("testdata", "collections", "test-some-redacted.json"),
 			Template: filepath.Join("templates", "entities.go.tmpl"),
 			Output:   filepath.Join(tmpDir, "test.go"),
 		})
 		require.NoError(t, err)
 
-		swagger, err := LoadAPIDefinition(d.SpecPath)
+		swagger, err := loadAPIDefinition(d.SpecPath)
 		require.NoError(t, err)
 
 		d.Params, err = GetCollections(swagger)
@@ -83,7 +83,7 @@ func TestCollectionExtensions(t *testing.T) {
 		assert.NoError(t, err)
 		assert.FileExists(t, d.DestinationPath)
 
-		expected, err := filesystem.ReadFile(filepath.Join("testdata", "test-redacted-1.gen.go"))
+		expected, err := filesystem.ReadFile(filepath.Join("testdata", "collections", "test-some-redacted.gen.go"))
 		require.NoError(t, err)
 		actual, err := filesystem.ReadFile(d.DestinationPath)
 		require.NoError(t, err)

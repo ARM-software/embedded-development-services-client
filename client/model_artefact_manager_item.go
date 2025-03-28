@@ -44,7 +44,7 @@ type ArtefactManagerItem struct {
 	// Maximum size in bytes accepted for this artefact.
 	MaxSize int64 `json:"maxSize"`
 	// ID of the artefact as set by the system.
-	Name string `json:"name"`
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// Size in bytes of this artefact.
 	Size *int64 `json:"size,omitempty"`
 	// Optional human readable name of the artefact.
