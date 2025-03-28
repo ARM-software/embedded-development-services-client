@@ -8,7 +8,7 @@ replace github.com/ARM-software/embedded-development-services-client/client => .
 
 require (
 	github.com/ARM-software/embedded-development-services-client/client v1.45.0
-	github.com/ARM-software/golang-utils/utils v1.88.0
+	github.com/ARM-software/golang-utils/utils v1.89.0
 	github.com/deckarep/golang-set/v2 v2.8.0
 	github.com/getkin/kin-openapi v0.112.0
 	github.com/go-ozzo/ozzo-validation v3.6.0+incompatible
