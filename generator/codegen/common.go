@@ -34,7 +34,7 @@ type Data struct {
 var ValidGenerationTargets = map[string]func(*Data) error{
 	"collections": AddCollectionsToParams,
 	"jobs":        AddJobItemsToParams,
-	"links":       GenerateFollowLinks,
+	"links":       AddLinkFollowersToParams,
 }
 
 type ExtensionsConfig struct {
@@ -169,4 +169,12 @@ func AddValuesToParams(d *Data, getValues func(*openapi3.T) (interface{}, error)
 	}
 	d.Params = params
 	return nil
+}
+
+func Map[T, V any](input []T, mapfn func(T) V) []V {
+	result := make([]V, len(input))
+	for i, v := range input {
+		result[i] = mapfn(v)
+	}
+	return result
 }

@@ -9,11 +9,11 @@ import (
 )
 
 {{ range .Followers -}}
-// ============================================================================================
-// This extends {{ .APIService }} definitions
-// ============================================================================================
-func {{ .APIFollowFunc.FirstParam }} Execute(link string) {{ .APIFollowFunc.ReturnList }} {
-	return r.ApiService.{{ .APIFollowFunc.Name }}(r, link)
+// =================================================================================================================
+// This extends {{ .APIRequest }} and {{ .APIService }} definitions
+// =================================================================================================================
+func ({{ .APIFollowFunc.FirstParamName }} {{ .APIFollowFunc.FirstParamType }}) {{ .APIFollowFunc.Name }}(link string) {{ .APIFollowFunc.ReturnList }} {
+	return r.ApiService.{{ .APIFollowFunc.Name }}({{ .APIFollowFunc.FirstParamName }}, link)
 }
 
 {{ .APIFollowFunc.Src }}

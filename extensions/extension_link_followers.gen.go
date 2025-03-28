@@ -8,17 +8,15 @@ import (
 	"strings"
 )
 
-// ============================================================================================
-// This extends BuildJobsAPIService definitions
-// ============================================================================================
-func (r ApiGetBuildMessagesRequest) Execute(link string) (*BuildMessageItem, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiGetBuildMessagesRequest and BuildJobsAPIService definitions
+// =================================================================================================================
+func (r *ApiGetBuildMessagesRequest) FollowGetBuildMessagesLink(link string) (*BuildMessageItem, *http.Response, error) {
 	return r.ApiService.FollowGetBuildMessagesLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `GetBuildMessagesExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return BuildMessageItem
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *BuildJobsAPIService) FollowGetBuildMessagesLink(r ApiGetBuildMessagesRequest, link string) (*BuildMessageItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -162,17 +160,15 @@ func (a *BuildJobsAPIService) FollowGetBuildMessagesLink(r ApiGetBuildMessagesRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends BuildJobsAPIService definitions
-// ============================================================================================
-func (r ApiListBuildJobRequest) Execute(link string) (*BuildJobCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListBuildJobRequest and BuildJobsAPIService definitions
+// =================================================================================================================
+func (r *ApiListBuildJobRequest) FollowBuildJobLink(link string) (*BuildJobCollection, *http.Response, error) {
 	return r.ApiService.FollowBuildJobLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListBuildJobExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return BuildJobCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *BuildJobsAPIService) FollowBuildJobLink(r ApiListBuildJobRequest, link string) (*BuildJobCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -310,17 +306,15 @@ func (a *BuildJobsAPIService) FollowBuildJobLink(r ApiListBuildJobRequest, link 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends BuildJobsAPIService definitions
-// ============================================================================================
-func (r ApiListBuildOutputManagersRequest) Execute(link string) (*ArtefactManagerCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListBuildOutputManagersRequest and BuildJobsAPIService definitions
+// =================================================================================================================
+func (r *ApiListBuildOutputManagersRequest) FollowBuildOutputManagersLink(link string) (*ArtefactManagerCollection, *http.Response, error) {
 	return r.ApiService.FollowBuildOutputManagersLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListBuildOutputManagersExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return ArtefactManagerCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *BuildJobsAPIService) FollowBuildOutputManagersLink(r ApiListBuildOutputManagersRequest, link string) (*ArtefactManagerCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -470,17 +464,15 @@ func (a *BuildJobsAPIService) FollowBuildOutputManagersLink(r ApiListBuildOutput
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends CMSISBuildersAPIService definitions
-// ============================================================================================
-func (r ApiListCmsisBuildersRequest) Execute(link string) (*CmsisBuilderCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListCmsisBuildersRequest and CMSISBuildersAPIService definitions
+// =================================================================================================================
+func (r *ApiListCmsisBuildersRequest) FollowCmsisBuildersLink(link string) (*CmsisBuilderCollection, *http.Response, error) {
 	return r.ApiService.FollowCmsisBuildersLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListCmsisBuildersExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return CmsisBuilderCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *CMSISBuildersAPIService) FollowCmsisBuildersLink(r ApiListCmsisBuildersRequest, link string) (*CmsisBuilderCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -618,17 +610,15 @@ func (a *CMSISBuildersAPIService) FollowCmsisBuildersLink(r ApiListCmsisBuilders
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends CMSISIntellisenseBuildersAPIService definitions
-// ============================================================================================
-func (r ApiListCmsisIntellisenseRequest) Execute(link string) (*CmsisIntellisenseCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListCmsisIntellisenseRequest and CMSISIntellisenseBuildersAPIService definitions
+// =================================================================================================================
+func (r *ApiListCmsisIntellisenseRequest) FollowCmsisIntellisenseLink(link string) (*CmsisIntellisenseCollection, *http.Response, error) {
 	return r.ApiService.FollowCmsisIntellisenseLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListCmsisIntellisenseExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return CmsisIntellisenseCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *CMSISIntellisenseBuildersAPIService) FollowCmsisIntellisenseLink(r ApiListCmsisIntellisenseRequest, link string) (*CmsisIntellisenseCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -766,17 +756,15 @@ func (a *CMSISIntellisenseBuildersAPIService) FollowCmsisIntellisenseLink(r ApiL
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends FPGAConnectionAPIService definitions
-// ============================================================================================
-func (r ApiListFpgaConnectionsRequest) Execute(link string) (*FPGAConnectionCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListFpgaConnectionsRequest and FPGAConnectionAPIService definitions
+// =================================================================================================================
+func (r *ApiListFpgaConnectionsRequest) FollowFpgaConnectionsLink(link string) (*FPGAConnectionCollection, *http.Response, error) {
 	return r.ApiService.FollowFpgaConnectionsLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListFpgaConnectionsExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return FPGAConnectionCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *FPGAConnectionAPIService) FollowFpgaConnectionsLink(r ApiListFpgaConnectionsRequest, link string) (*FPGAConnectionCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -914,17 +902,15 @@ func (a *FPGAConnectionAPIService) FollowFpgaConnectionsLink(r ApiListFpgaConnec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends FPGAJobsAPIService definitions
-// ============================================================================================
-func (r ApiGetFpgaJobMessagesRequest) Execute(link string) (*NotificationFeed, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiGetFpgaJobMessagesRequest and FPGAJobsAPIService definitions
+// =================================================================================================================
+func (r *ApiGetFpgaJobMessagesRequest) FollowGetFpgaJobMessagesLink(link string) (*NotificationFeed, *http.Response, error) {
 	return r.ApiService.FollowGetFpgaJobMessagesLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `GetFpgaJobMessagesExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return NotificationFeed
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *FPGAJobsAPIService) FollowGetFpgaJobMessagesLink(r ApiGetFpgaJobMessagesRequest, link string) (*NotificationFeed, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1068,17 +1054,15 @@ func (a *FPGAJobsAPIService) FollowGetFpgaJobMessagesLink(r ApiGetFpgaJobMessage
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends FPGAJobsAPIService definitions
-// ============================================================================================
-func (r ApiListFpgaJobArtefactManagersRequest) Execute(link string) (*ArtefactManagerCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListFpgaJobArtefactManagersRequest and FPGAJobsAPIService definitions
+// =================================================================================================================
+func (r *ApiListFpgaJobArtefactManagersRequest) FollowFpgaJobArtefactManagersLink(link string) (*ArtefactManagerCollection, *http.Response, error) {
 	return r.ApiService.FollowFpgaJobArtefactManagersLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListFpgaJobArtefactManagersExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return ArtefactManagerCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *FPGAJobsAPIService) FollowFpgaJobArtefactManagersLink(r ApiListFpgaJobArtefactManagersRequest, link string) (*ArtefactManagerCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1228,17 +1212,15 @@ func (a *FPGAJobsAPIService) FollowFpgaJobArtefactManagersLink(r ApiListFpgaJobA
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends FPGAPayloadsAPIService definitions
-// ============================================================================================
-func (r ApiListPayloadsRequest) Execute(link string) (*FPGAPayloadCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListPayloadsRequest and FPGAPayloadsAPIService definitions
+// =================================================================================================================
+func (r *ApiListPayloadsRequest) FollowPayloadsLink(link string) (*FPGAPayloadCollection, *http.Response, error) {
 	return r.ApiService.FollowPayloadsLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListPayloadsExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return FPGAPayloadCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *FPGAPayloadsAPIService) FollowPayloadsLink(r ApiListPayloadsRequest, link string) (*FPGAPayloadCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1376,17 +1358,15 @@ func (a *FPGAPayloadsAPIService) FollowPayloadsLink(r ApiListPayloadsRequest, li
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends GenericWorkJobsAPIService definitions
-// ============================================================================================
-func (r ApiGetGenericWorkJobMessagesRequest) Execute(link string) (*NotificationFeed, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiGetGenericWorkJobMessagesRequest and GenericWorkJobsAPIService definitions
+// =================================================================================================================
+func (r *ApiGetGenericWorkJobMessagesRequest) FollowGetGenericWorkJobMessagesLink(link string) (*NotificationFeed, *http.Response, error) {
 	return r.ApiService.FollowGetGenericWorkJobMessagesLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `GetGenericWorkJobMessagesExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return NotificationFeed
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *GenericWorkJobsAPIService) FollowGetGenericWorkJobMessagesLink(r ApiGetGenericWorkJobMessagesRequest, link string) (*NotificationFeed, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1530,17 +1510,15 @@ func (a *GenericWorkJobsAPIService) FollowGetGenericWorkJobMessagesLink(r ApiGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends GenericWorkJobsAPIService definitions
-// ============================================================================================
-func (r ApiListGenericWorkJobArtefactManagersRequest) Execute(link string) (*ArtefactManagerCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListGenericWorkJobArtefactManagersRequest and GenericWorkJobsAPIService definitions
+// =================================================================================================================
+func (r *ApiListGenericWorkJobArtefactManagersRequest) FollowGenericWorkJobArtefactManagersLink(link string) (*ArtefactManagerCollection, *http.Response, error) {
 	return r.ApiService.FollowGenericWorkJobArtefactManagersLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListGenericWorkJobArtefactManagersExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return ArtefactManagerCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *GenericWorkJobsAPIService) FollowGenericWorkJobArtefactManagersLink(r ApiListGenericWorkJobArtefactManagersRequest, link string) (*ArtefactManagerCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1690,17 +1668,15 @@ func (a *GenericWorkJobsAPIService) FollowGenericWorkJobArtefactManagersLink(r A
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends GenericWorkJobsAPIService definitions
-// ============================================================================================
-func (r ApiListGenericWorkJobsRequest) Execute(link string) (*GenericWorkJobCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListGenericWorkJobsRequest and GenericWorkJobsAPIService definitions
+// =================================================================================================================
+func (r *ApiListGenericWorkJobsRequest) FollowGenericWorkJobsLink(link string) (*GenericWorkJobCollection, *http.Response, error) {
 	return r.ApiService.FollowGenericWorkJobsLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListGenericWorkJobsExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return GenericWorkJobCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *GenericWorkJobsAPIService) FollowGenericWorkJobsLink(r ApiListGenericWorkJobsRequest, link string) (*GenericWorkJobCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1838,17 +1814,15 @@ func (a *GenericWorkJobsAPIService) FollowGenericWorkJobsLink(r ApiListGenericWo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends GenericWorkersAPIService definitions
-// ============================================================================================
-func (r ApiListGenericWorkersRequest) Execute(link string) (*GenericWorkerCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListGenericWorkersRequest and GenericWorkersAPIService definitions
+// =================================================================================================================
+func (r *ApiListGenericWorkersRequest) FollowGenericWorkersLink(link string) (*GenericWorkerCollection, *http.Response, error) {
 	return r.ApiService.FollowGenericWorkersLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListGenericWorkersExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return GenericWorkerCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *GenericWorkersAPIService) FollowGenericWorkersLink(r ApiListGenericWorkersRequest, link string) (*GenericWorkerCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1986,17 +1960,15 @@ func (a *GenericWorkersAPIService) FollowGenericWorkersLink(r ApiListGenericWork
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends IntellisenseJobsAPIService definitions
-// ============================================================================================
-func (r ApiGetIntellisenseMessagesRequest) Execute(link string) (*IntellisenseMessageItem, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiGetIntellisenseMessagesRequest and IntellisenseJobsAPIService definitions
+// =================================================================================================================
+func (r *ApiGetIntellisenseMessagesRequest) FollowGetIntellisenseMessagesLink(link string) (*IntellisenseMessageItem, *http.Response, error) {
 	return r.ApiService.FollowGetIntellisenseMessagesLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `GetIntellisenseMessagesExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return IntellisenseMessageItem
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *IntellisenseJobsAPIService) FollowGetIntellisenseMessagesLink(r ApiGetIntellisenseMessagesRequest, link string) (*IntellisenseMessageItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2140,17 +2112,15 @@ func (a *IntellisenseJobsAPIService) FollowGetIntellisenseMessagesLink(r ApiGetI
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends IntellisenseJobsAPIService definitions
-// ============================================================================================
-func (r ApiListIntellisenseJobRequest) Execute(link string) (*IntellisenseJobCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListIntellisenseJobRequest and IntellisenseJobsAPIService definitions
+// =================================================================================================================
+func (r *ApiListIntellisenseJobRequest) FollowIntellisenseJobLink(link string) (*IntellisenseJobCollection, *http.Response, error) {
 	return r.ApiService.FollowIntellisenseJobLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListIntellisenseJobExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return IntellisenseJobCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *IntellisenseJobsAPIService) FollowIntellisenseJobLink(r ApiListIntellisenseJobRequest, link string) (*IntellisenseJobCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2288,17 +2258,15 @@ func (a *IntellisenseJobsAPIService) FollowIntellisenseJobLink(r ApiListIntellis
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends IntellisenseJobsAPIService definitions
-// ============================================================================================
-func (r ApiListIntellisenseOutputManagersRequest) Execute(link string) (*ArtefactManagerCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListIntellisenseOutputManagersRequest and IntellisenseJobsAPIService definitions
+// =================================================================================================================
+func (r *ApiListIntellisenseOutputManagersRequest) FollowIntellisenseOutputManagersLink(link string) (*ArtefactManagerCollection, *http.Response, error) {
 	return r.ApiService.FollowIntellisenseOutputManagersLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListIntellisenseOutputManagersExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return ArtefactManagerCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *IntellisenseJobsAPIService) FollowIntellisenseOutputManagersLink(r ApiListIntellisenseOutputManagersRequest, link string) (*ArtefactManagerCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2448,17 +2416,15 @@ func (a *IntellisenseJobsAPIService) FollowIntellisenseOutputManagersLink(r ApiL
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends VHTRunJobsAPIService definitions
-// ============================================================================================
-func (r ApiGetVhtRunJobMessagesRequest) Execute(link string) (*NotificationFeed, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiGetVhtRunJobMessagesRequest and VHTRunJobsAPIService definitions
+// =================================================================================================================
+func (r *ApiGetVhtRunJobMessagesRequest) FollowGetVhtRunJobMessagesLink(link string) (*NotificationFeed, *http.Response, error) {
 	return r.ApiService.FollowGetVhtRunJobMessagesLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `GetVhtRunJobMessagesExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return NotificationFeed
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *VHTRunJobsAPIService) FollowGetVhtRunJobMessagesLink(r ApiGetVhtRunJobMessagesRequest, link string) (*NotificationFeed, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2602,17 +2568,15 @@ func (a *VHTRunJobsAPIService) FollowGetVhtRunJobMessagesLink(r ApiGetVhtRunJobM
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends VHTRunJobsAPIService definitions
-// ============================================================================================
-func (r ApiListVhtRunJobsRequest) Execute(link string) (*VhtRunJobCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListVhtRunJobsRequest and VHTRunJobsAPIService definitions
+// =================================================================================================================
+func (r *ApiListVhtRunJobsRequest) FollowVhtRunJobsLink(link string) (*VhtRunJobCollection, *http.Response, error) {
 	return r.ApiService.FollowVhtRunJobsLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListVhtRunJobsExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return VhtRunJobCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *VHTRunJobsAPIService) FollowVhtRunJobsLink(r ApiListVhtRunJobsRequest, link string) (*VhtRunJobCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2750,17 +2714,15 @@ func (a *VHTRunJobsAPIService) FollowVhtRunJobsLink(r ApiListVhtRunJobsRequest, 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends VirtualHardwareTargetAPIService definitions
-// ============================================================================================
-func (r ApiListFilteredVhtInstancesRequest) Execute(link string) (*VhtInstanceCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListFilteredVhtInstancesRequest and VirtualHardwareTargetAPIService definitions
+// =================================================================================================================
+func (r *ApiListFilteredVhtInstancesRequest) FollowFilteredVhtInstancesLink(link string) (*VhtInstanceCollection, *http.Response, error) {
 	return r.ApiService.FollowFilteredVhtInstancesLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListFilteredVhtInstancesExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return VhtInstanceCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *VirtualHardwareTargetAPIService) FollowFilteredVhtInstancesLink(r ApiListFilteredVhtInstancesRequest, link string) (*VhtInstanceCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2899,17 +2861,15 @@ func (a *VirtualHardwareTargetAPIService) FollowFilteredVhtInstancesLink(r ApiLi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends VirtualHardwareTargetAPIService definitions
-// ============================================================================================
-func (r ApiListVhtsRequest) Execute(link string) (*VhtCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListVhtsRequest and VirtualHardwareTargetAPIService definitions
+// =================================================================================================================
+func (r *ApiListVhtsRequest) FollowVhtsLink(link string) (*VhtCollection, *http.Response, error) {
 	return r.ApiService.FollowVhtsLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListVhtsExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return VhtCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *VirtualHardwareTargetAPIService) FollowVhtsLink(r ApiListVhtsRequest, link string) (*VhtCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3047,17 +3007,15 @@ func (a *VirtualHardwareTargetAPIService) FollowVhtsLink(r ApiListVhtsRequest, l
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends VirtualHardwareTargetInstanceAPIService definitions
-// ============================================================================================
-func (r ApiGetVhtInstanceMessagesRequest) Execute(link string) (*NotificationFeed, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiGetVhtInstanceMessagesRequest and VirtualHardwareTargetInstanceAPIService definitions
+// =================================================================================================================
+func (r *ApiGetVhtInstanceMessagesRequest) FollowGetVhtInstanceMessagesLink(link string) (*NotificationFeed, *http.Response, error) {
 	return r.ApiService.FollowGetVhtInstanceMessagesLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `GetVhtInstanceMessagesExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return NotificationFeed
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *VirtualHardwareTargetInstanceAPIService) FollowGetVhtInstanceMessagesLink(r ApiGetVhtInstanceMessagesRequest, link string) (*NotificationFeed, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3201,17 +3159,15 @@ func (a *VirtualHardwareTargetInstanceAPIService) FollowGetVhtInstanceMessagesLi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends VirtualHardwareTargetInstanceAPIService definitions
-// ============================================================================================
-func (r ApiListVhtInstanceArtefactManagersRequest) Execute(link string) (*ArtefactManagerCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListVhtInstanceArtefactManagersRequest and VirtualHardwareTargetInstanceAPIService definitions
+// =================================================================================================================
+func (r *ApiListVhtInstanceArtefactManagersRequest) FollowVhtInstanceArtefactManagersLink(link string) (*ArtefactManagerCollection, *http.Response, error) {
 	return r.ApiService.FollowVhtInstanceArtefactManagersLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListVhtInstanceArtefactManagersExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return ArtefactManagerCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *VirtualHardwareTargetInstanceAPIService) FollowVhtInstanceArtefactManagersLink(r ApiListVhtInstanceArtefactManagersRequest, link string) (*ArtefactManagerCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3361,17 +3317,15 @@ func (a *VirtualHardwareTargetInstanceAPIService) FollowVhtInstanceArtefactManag
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends VirtualHardwareTargetInstanceAPIService definitions
-// ============================================================================================
-func (r ApiListVhtInstancesRequest) Execute(link string) (*VhtInstanceCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListVhtInstancesRequest and VirtualHardwareTargetInstanceAPIService definitions
+// =================================================================================================================
+func (r *ApiListVhtInstancesRequest) FollowVhtInstancesLink(link string) (*VhtInstanceCollection, *http.Response, error) {
 	return r.ApiService.FollowVhtInstancesLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListVhtInstancesExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return VhtInstanceCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *VirtualHardwareTargetInstanceAPIService) FollowVhtInstancesLink(r ApiListVhtInstancesRequest, link string) (*VhtInstanceCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3509,17 +3463,15 @@ func (a *VirtualHardwareTargetInstanceAPIService) FollowVhtInstancesLink(r ApiLi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends WorkspaceAPIService definitions
-// ============================================================================================
-func (r ApiListWorkspacesRequest) Execute(link string) (*WorkspaceCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListWorkspacesRequest and WorkspaceAPIService definitions
+// =================================================================================================================
+func (r *ApiListWorkspacesRequest) FollowWorkspacesLink(link string) (*WorkspaceCollection, *http.Response, error) {
 	return r.ApiService.FollowWorkspacesLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListWorkspacesExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return WorkspaceCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *WorkspaceAPIService) FollowWorkspacesLink(r ApiListWorkspacesRequest, link string) (*WorkspaceCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3657,17 +3609,15 @@ func (a *WorkspaceAPIService) FollowWorkspacesLink(r ApiListWorkspacesRequest, l
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ============================================================================================
-// This extends WorkspaceSourceAPIService definitions
-// ============================================================================================
-func (r ApiListWorkspaceSourcesRequest) Execute(link string) (*WorkspaceSourceCollection, *http.Response, error) {
+// =================================================================================================================
+// This extends ApiListWorkspaceSourcesRequest and WorkspaceSourceAPIService definitions
+// =================================================================================================================
+func (r *ApiListWorkspaceSourcesRequest) FollowWorkspaceSourcesLink(link string) (*WorkspaceSourceCollection, *http.Response, error) {
 	return r.ApiService.FollowWorkspaceSourcesLink(r, link)
 }
 
 // Follows a collection link. This function is based on the `ListWorkspaceSourcesExecute` function, with one key difference:
-// instead of using a fixed endpoint path, `localVarPath` is constructed by combining the base URL with the `link` provided in the arguments.
-//
-//	@return WorkspaceSourceCollection
+// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
 func (a *WorkspaceSourceAPIService) FollowWorkspaceSourcesLink(r ApiListWorkspaceSourcesRequest, link string) (*WorkspaceSourceCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
