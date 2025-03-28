@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	_ "github.com/ARM-software/embedded-development-services-client/client"
 	"github.com/ARM-software/golang-utils/utils/commonerrors"
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/getkin/kin-openapi/openapi3"
@@ -303,9 +304,8 @@ func getLinkFollowers(FuncNameMap map[string]string) (followers Followers, err e
 	cfg := &packages.Config{
 		Mode:  packages.NeedName | packages.NeedSyntax | packages.NeedCompiledGoFiles,
 		Tests: false,
-		Dir:   "../client",
 	}
-	pkgs, loadErr := packages.Load(cfg, ".")
+	pkgs, loadErr := packages.Load(cfg, "github.com/ARM-software/embedded-development-services-client/client")
 	if loadErr != nil {
 		err = commonerrors.Newf(commonerrors.ErrInvalidDestination, "Could not load packages from directory '%s'", cfg.Dir)
 		return
