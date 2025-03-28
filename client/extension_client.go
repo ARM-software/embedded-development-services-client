@@ -35,13 +35,3 @@ func (c *APIClient) PrepareRequest(
 func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 	return c.callAPI(request)
 }
-
-// wrapParameterAddToHeader wraps wrapParameterAddToHeaderOrQuery to avoid future breaking changes.
-func wrapParameterAddToHeader(headerOrQueryParams interface{}, keyPrefix string, obj interface{}, collectionType string) {
-	parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, obj, "simple", collectionType)
-}
-
-// wrapParameterAddToQuery wraps wrapParameterAddToHeaderOrQuery to avoid future breaking changes.
-func wrapParameterAddToQuery(headerOrQueryParams interface{}, keyPrefix string, obj interface{}, collectionType string) {
-	parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, obj, "form", collectionType)
-}

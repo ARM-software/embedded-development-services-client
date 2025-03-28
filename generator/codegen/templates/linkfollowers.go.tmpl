@@ -1,0 +1,25 @@
+/*
+ * Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package client
+
+import (
+	"bytes"
+	"io"
+	"net/http"
+	"net/url"
+	"strings"
+)
+
+{{ range .Followers -}}
+// =================================================================================================================
+// This extends {{ .APIRequest }} and {{ .APIService }} definitions
+// =================================================================================================================
+func ({{ .APIFollowFunc.FirstParamName }} {{ .APIFollowFunc.FirstParamType }}) {{ .APIFollowFunc.Name }}(link string) {{ .APIFollowFunc.ReturnList }} {
+	return r.ApiService.{{ .APIFollowFunc.Name }}({{ .APIFollowFunc.FirstParamName }}, link)
+}
+
+{{ .APIFollowFunc.Src }}
+{{ end }}

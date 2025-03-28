@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"embed"
+	"encoding/json"
 	"fmt"
 	"go/format"
 	"path/filepath"
@@ -24,6 +25,13 @@ var (
 	templates embed.FS
 )
 
+const (
+	schemaPrefix   = "#/components/schemas/"
+	jsonMIME       = "application/json"
+	redactFlag     = "x-redact"
+	collectionFlag = "x-collection"
+)
+
 type Data struct {
 	Params          any
 	SpecPath        string
@@ -34,6 +42,7 @@ type Data struct {
 var ValidGenerationTargets = map[string]func(*Data) error{
 	"collections": AddCollectionsToParams,
 	"jobs":        AddJobItemsToParams,
+	"links":       AddLinkFollowersToParams,
 }
 
 type ExtensionsConfig struct {
@@ -168,4 +177,15 @@ func AddValuesToParams(d *Data, getValues func(*openapi3.T) (interface{}, error)
 	}
 	d.Params = params
 	return nil
+}
+
+func isExtensionFlagSet(props openapi3.ExtensionProps, flagKey string) (isSet bool, err error) {
+	if c, ok := props.Extensions[flagKey].(json.RawMessage); ok {
+		marshallingErr := json.Unmarshal(c, &isSet)
+		if marshallingErr != nil {
+			err = commonerrors.Newf(commonerrors.ErrUnexpected, "failed to unmarshal `%s`", flagKey)
+			return
+		}
+	}
+	return
 }
