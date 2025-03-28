@@ -9,10 +9,11 @@ require (
 	github.com/deckarep/golang-set/v2 v2.8.0
 	github.com/getkin/kin-openapi v0.112.0
 	github.com/go-ozzo/ozzo-validation v3.6.0+incompatible
+	github.com/iancoleman/strcase v0.3.0
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.10.0
-	golang.org/x/tools v0.23.0
+	golang.org/x/tools v0.31.0
 )
 
 require (

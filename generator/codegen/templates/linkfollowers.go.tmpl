@@ -1,0 +1,20 @@
+package client
+
+import (
+	"bytes"
+	"io"
+	"net/http"
+	"net/url"
+	"strings"
+)
+
+{{ range .Followers -}}
+// ============================================================================================
+// This extends {{ .APIService }} definitions
+// ============================================================================================
+func {{ .APIFollowFunc.FirstParam }} Execute(link string) {{ .APIFollowFunc.ReturnList }} {
+	return r.ApiService.{{ .APIFollowFunc.Name }}(r, link)
+}
+
+{{ .APIFollowFunc.Src }}
+{{ end }}
