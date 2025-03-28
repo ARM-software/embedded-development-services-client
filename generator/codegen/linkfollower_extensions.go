@@ -210,6 +210,24 @@ func renderFieldListSrc(fields *ast.FieldList, fset *token.FileSet) (src string,
 	return
 }
 
+func modifyFirstParam(params *ast.FieldList) (err error) {
+	if params == nil || len(params.List) == 0 {
+		err = commonerrors.Newf(commonerrors.ErrUnexpected, "Could not modify first parameter, no fields exists")
+		return
+	}
+
+	param := params.List[0]
+
+	if _, ok := param.Type.(*ast.StarExpr); !ok {
+		param.Type = &ast.StarExpr{
+			Star: token.NoPos,
+			X:    param.Type,
+		}
+	}
+
+	return
+}
+
 func getFirstParam(params *ast.FieldList, fset *token.FileSet) (paramName string, paramType string, err error) {
 	if params == nil || len(params.List) == 0 {
 		err = commonerrors.Newf(commonerrors.ErrUnexpected, "Could not render source code for first parameter, no fields exists")
@@ -281,7 +299,7 @@ func modifyLocalVarPath(fn *ast.FuncDecl) (err error) {
 	return
 }
 
-func modifyFuncDocs(fn *ast.FuncDecl) {
+func addFuncDocs(fn *ast.FuncDecl) {
 	fn.Doc = &ast.CommentGroup{
 		List: []*ast.Comment{
 			{
@@ -323,12 +341,16 @@ func getLinkFollowers(FuncNameMap map[string]string) (followers Followers, err e
 				if fn, ok := decl.(*ast.FuncDecl); ok {
 					if followFuncName, ok := FuncNameMap[fn.Name.Name]; ok {
 						// Process APIService.FollowLink function
-						modifyFuncDocs(fn)
+						addFuncDocs(fn)
 						fn.Name.Name = followFuncName
 						addNewFuncParam(fn, "link", "string")
-						modifyErr := modifyLocalVarPath(fn)
-						if modifyErr != nil {
-							err = modifyErr
+						modifyParamErr := modifyFirstParam(fn.Type.Params)
+						if modifyParamErr != nil {
+							err = modifyParamErr
+						}
+						modifyLineErr := modifyLocalVarPath(fn)
+						if modifyLineErr != nil {
+							err = modifyLineErr
 						}
 						APIServiceFollowFuncSrc, renderErr := renderSrc(fn, pkg.Fset)
 						if renderErr != nil {
@@ -343,9 +365,6 @@ func getLinkFollowers(FuncNameMap map[string]string) (followers Followers, err e
 						paramName, paramType, renderErr := getFirstParam(fn.Type.Params, pkg.Fset)
 						if renderErr != nil {
 							err = renderErr
-						}
-						if !strings.HasPrefix(paramType, "*") {
-							paramType = "*" + paramType
 						}
 						requestReturns, renderErr := renderFieldListSrc(fn.Type.Results, pkg.Fset)
 						if renderErr != nil {
