@@ -2,7 +2,6 @@ package codegen
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"go/ast"
 	"go/printer"
@@ -38,21 +37,29 @@ type FollowersParams = struct {
 	Followers
 }
 
-const followFuncComment = `// Follows a collection link. This function is based on the ` + "`%s`" + ` function, with one key difference:
-// instead of using a fixed endpoint path, ` + "`localVarPath`" + ` is defined as the base URL + the ` + "`link`" + ` provided in the arguments.`
+const resourcePath = "link"
 
 func AddLinkFollowersToParams(d *Data) error {
 	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return getLinkFollowersParams(swagger) }, "linkfollowers.go")
 }
 
 func getLinkFollowersParams(swagger *openapi3.T) (params FollowersParams, err error) {
-	ids, idsErr := getOperationIDs(swagger)
+	ids, idsErr := getListingOperationIDs(swagger)
 	if idsErr != nil {
 		err = idsErr
 		return
 	}
 
-	funcNameMap := getFuncNameReplacementMap(ids)
+	funcNameMap := make(map[string]string)
+	for _, opID := range ids.ToSlice() {
+		// 'strcase.ToCamel' mimics openapi-generator's 'camelize(sanitizeName(operationId))' logic for transforming OperationID.
+		// The "Execute" suffix is hardcoded in the template,
+		// see https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator/src/main/resources/go/api.mustache
+		opID = strcase.ToCamel(opID)
+		execFuncName := fmt.Sprintf("%sExecute", opID)
+		followFuncName := fmt.Sprintf("Follow%sLink", strings.TrimPrefix(opID, "List"))
+		funcNameMap[execFuncName] = followFuncName
+	}
 
 	followers, followersErr := getLinkFollowers(funcNameMap)
 	if followersErr != nil {
@@ -67,33 +74,10 @@ func getLinkFollowersParams(swagger *openapi3.T) (params FollowersParams, err er
 	return
 }
 
-func generateExecuteFnName(in string) string {
-	// 'ToCamel()' mimics openapi-generator's 'camelize(sanitizeName(operationId))' logic for transforming OperationID.
-	// The "Execute" suffix is hardcoded in the template,
-	// see https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator/src/main/resources/go/api.mustache
-	return strcase.ToCamel(in) + "Execute"
-}
-
-func generateFollowFuncName(in string) string {
-	return "Follow" + strings.TrimSuffix(strings.TrimPrefix(strcase.ToCamel(in), "List"), "Execute") + "Link"
-}
-
-func getFuncNameReplacementMap(operationIDs mapset.Set[string]) map[string]string {
-	executeFuncList := Map(operationIDs.ToSlice(), generateExecuteFnName)
-	funcNameMap := make(map[string]string)
-	for _, fnName := range executeFuncList {
-		funcNameMap[fnName] = generateFollowFuncName(fnName)
-	}
-
-	return funcNameMap
-}
-
-func getOperationIDs(swagger *openapi3.T) (opIDs mapset.Set[string], err error) {
+func getListingOperationIDs(swagger *openapi3.T) (opIDs mapset.Set[string], err error) {
 	opIDs = mapset.NewSet[string]()
 
 	for endpoint, pathInfo := range swagger.Paths {
-		var isCollection bool
-
 		// if no get field then not a collection
 		if pathInfo.Get != nil {
 			response200Val, subErr := getResponseFromPathInfo(pathInfo, endpoint, 200)
@@ -102,12 +86,10 @@ func getOperationIDs(swagger *openapi3.T) (opIDs mapset.Set[string], err error) 
 				return
 			}
 
-			var isRedacted bool
-			if c, ok := pathInfo.Get.ExtensionProps.Extensions[redactFlag].(json.RawMessage); ok {
-				err = json.Unmarshal(c, &isRedacted)
-				if err != nil {
-					return
-				}
+			isRedacted, subErr := isExtensionFlagSet(pathInfo.Get.ExtensionProps, redactFlag)
+			if subErr != nil {
+				err = subErr
+				return
 			}
 			if isRedacted {
 				continue
@@ -121,13 +103,14 @@ func getOperationIDs(swagger *openapi3.T) (opIDs mapset.Set[string], err error) 
 					return
 				}
 
-				if c, ok := schemaVal.ExtensionProps.Extensions[collectionFlag].(json.RawMessage); ok {
-					err = json.Unmarshal(c, &isCollection)
-					if err != nil {
-						return
-					}
+				isCollection, subErr := isExtensionFlagSet(schemaVal.ExtensionProps, collectionFlag)
+				if subErr != nil {
+					err = subErr
+					return
+				}
 
-					if !isCollection || shouldIgnoreCollection(collectionRef) {
+				if isCollection {
+					if shouldIgnoreCollection(collectionRef) {
 						continue
 					}
 
@@ -164,7 +147,7 @@ func renderSrc(fn *ast.FuncDecl, fset *token.FileSet) (src string, err error) {
 	var buf bytes.Buffer
 	renderErr := printer.Fprint(&buf, fset, fn)
 	if renderErr != nil {
-		err = commonerrors.Newf(commonerrors.ErrUnexpected, "Could not render source code for func '%s()'", fn.Name.Name)
+		err = commonerrors.Newf(commonerrors.ErrUnexpected, "could not render source code for func '%s'", fn.Name.Name)
 		return
 	}
 
@@ -174,7 +157,7 @@ func renderSrc(fn *ast.FuncDecl, fset *token.FileSet) (src string, err error) {
 
 func renderFieldListSrc(fields *ast.FieldList, fset *token.FileSet) (src string, err error) {
 	if fields == nil || len(fields.List) == 0 {
-		err = commonerrors.Newf(commonerrors.ErrUnexpected, "Could not render source code for FieldList, no fields exists")
+		err = commonerrors.Newf(commonerrors.ErrUnexpected, "could not render source code for FieldList, no fields exists")
 		return
 	}
 
@@ -212,7 +195,7 @@ func renderFieldListSrc(fields *ast.FieldList, fset *token.FileSet) (src string,
 
 func modifyFirstParam(params *ast.FieldList) (err error) {
 	if params == nil || len(params.List) == 0 {
-		err = commonerrors.Newf(commonerrors.ErrUnexpected, "Could not modify first parameter, no fields exists")
+		err = commonerrors.Newf(commonerrors.ErrUnexpected, "could not modify first parameter, no fields exists")
 		return
 	}
 
@@ -230,19 +213,19 @@ func modifyFirstParam(params *ast.FieldList) (err error) {
 
 func getFirstParam(params *ast.FieldList, fset *token.FileSet) (paramName string, paramType string, err error) {
 	if params == nil || len(params.List) == 0 {
-		err = commonerrors.Newf(commonerrors.ErrUnexpected, "Could not render source code for first parameter, no fields exists")
+		err = commonerrors.Newf(commonerrors.ErrUnexpected, "could not render source code for first parameter, no fields exists")
 		return
 	}
 
 	param := params.List[0]
 
 	if len(param.Names) > 1 {
-		err = commonerrors.Newf(commonerrors.ErrUnexpected, "Could not get first parameter, expected only one name")
+		err = commonerrors.Newf(commonerrors.ErrUnexpected, "could not get first parameter, expected only one name")
 		return
 	}
 
 	if len(param.Names) == 0 {
-		err = commonerrors.Newf(commonerrors.ErrUnexpected, "Could not get first parameter, expected a named parameter")
+		err = commonerrors.Newf(commonerrors.ErrUnexpected, "could not get first parameter, expected a named parameter")
 		return
 	}
 
@@ -254,9 +237,9 @@ func getFirstParam(params *ast.FieldList, fset *token.FileSet) (paramName string
 	return
 }
 
-func getReceiverType(fn *ast.FuncDecl) (reciever string, err error) {
+func getReceiverType(fn *ast.FuncDecl) (receiver string, err error) {
 	if fn.Recv == nil || len(fn.Recv.List) == 0 {
-		err = commonerrors.Newf(commonerrors.ErrUnexpected, "No receiver defined for func `%s()`", fn.Name.Name)
+		err = commonerrors.Newf(commonerrors.ErrUnexpected, "no receiver defined for func `%s`", fn.Name.Name)
 		return
 	}
 
@@ -264,20 +247,23 @@ func getReceiverType(fn *ast.FuncDecl) (reciever string, err error) {
 
 	switch t := expr.(type) {
 	case *ast.Ident:
-		reciever = t.Name
+		receiver = t.Name
 		return
 	case *ast.StarExpr:
 		if ident, ok := t.X.(*ast.Ident); ok {
-			reciever = ident.Name
+			receiver = ident.Name
 			return
 		}
 	}
 
-	err = commonerrors.Newf(commonerrors.ErrUnexpected, "Could not get receiver for func `%s()`", fn.Name.Name)
+	err = commonerrors.Newf(commonerrors.ErrUnexpected, "could not get receiver for func `%s`", fn.Name.Name)
 	return
 }
 
 func modifyLocalVarPath(fn *ast.FuncDecl) (err error) {
+	// This function looks for a definition of localVarPath, `localVarPath := localBasePath + "path"`,
+	// and replaces the `"path"` part with `link`.
+	// ex: localVarPath := localBasePath + "/build-jobs/" -> `localVarPath := localBasePath + link`
 	for _, stmt := range fn.Body.List {
 		assign, ok := stmt.(*ast.AssignStmt)
 		if !ok {
@@ -287,7 +273,7 @@ func modifyLocalVarPath(fn *ast.FuncDecl) (err error) {
 		if assign.Tok == token.DEFINE && len(assign.Lhs) > 0 {
 			if ident, ok := assign.Lhs[0].(*ast.Ident); ok && ident.Name == "localVarPath" {
 				if expr, ok := assign.Rhs[0].(*ast.BinaryExpr); ok && len(assign.Rhs) > 0 {
-					expr.Y = ast.NewIdent("link")
+					expr.Y = ast.NewIdent(resourcePath)
 				}
 
 				return
@@ -295,7 +281,7 @@ func modifyLocalVarPath(fn *ast.FuncDecl) (err error) {
 		}
 	}
 
-	err = commonerrors.Newf(commonerrors.ErrUnexpected, "Could not find `localVarPath` definition")
+	err = commonerrors.Newf(commonerrors.ErrUnexpected, "could not find `localVarPath` definition")
 	return
 }
 
@@ -304,7 +290,8 @@ func addFuncDocs(fn *ast.FuncDecl) {
 		List: []*ast.Comment{
 			{
 				Slash: fn.Pos() - 1,
-				Text:  fmt.Sprintf(followFuncComment, fn.Name.Name),
+				Text: fmt.Sprintf("// Follows a collection link. This function is based on the `%s` function, with one key difference:\n"+
+					"// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.", fn.Name.Name),
 			},
 		},
 	}
@@ -317,15 +304,16 @@ func addNewFuncParam(fn *ast.FuncDecl, argName string, argType string) {
 	})
 }
 
-func getLinkFollowers(FuncNameMap map[string]string) (followers Followers, err error) {
-	// 'parser.ParseDir()' returns deprecated 'ast.Package', so we'll use 'packages.Load()' till it gets updated to return 'packages.Package'
+func getLinkFollowers(funcNameMap map[string]string) (followers Followers, err error) {
+	// 'parser.ParseDir' returns deprecated 'ast.Package', so we'll use 'packages.Load' till it gets updated to return 'packages.Package'
 	cfg := &packages.Config{
 		Mode:  packages.NeedName | packages.NeedSyntax | packages.NeedCompiledGoFiles,
 		Tests: false,
 	}
-	pkgs, loadErr := packages.Load(cfg, "github.com/ARM-software/embedded-development-services-client/client")
+	pkgPath := "github.com/ARM-software/embedded-development-services-client/client"
+	pkgs, loadErr := packages.Load(cfg, pkgPath)
 	if loadErr != nil {
-		err = commonerrors.Newf(commonerrors.ErrInvalidDestination, "Could not load packages from directory '%s'", cfg.Dir)
+		err = commonerrors.Newf(commonerrors.ErrInvalidDestination, "could not load packages from '%s'", pkgPath)
 		return
 	}
 
@@ -339,7 +327,7 @@ func getLinkFollowers(FuncNameMap map[string]string) (followers Followers, err e
 
 			for _, decl := range file.Decls {
 				if fn, ok := decl.(*ast.FuncDecl); ok {
-					if followFuncName, ok := FuncNameMap[fn.Name.Name]; ok {
+					if followFuncName, ok := funcNameMap[fn.Name.Name]; ok {
 						// Process APIService.FollowLink function
 						addFuncDocs(fn)
 						fn.Name.Name = followFuncName
@@ -356,7 +344,7 @@ func getLinkFollowers(FuncNameMap map[string]string) (followers Followers, err e
 						if renderErr != nil {
 							err = renderErr
 						}
-						APIServiceRecieverType, renderErr := getReceiverType(fn)
+						APIServiceReceiverType, renderErr := getReceiverType(fn)
 						if renderErr != nil {
 							err = renderErr
 						}
@@ -372,7 +360,7 @@ func getLinkFollowers(FuncNameMap map[string]string) (followers Followers, err e
 						}
 
 						followers = append(followers, Follower{
-							APIService: APIServiceRecieverType,
+							APIService: APIServiceReceiverType,
 							APIRequest: strings.TrimPrefix(paramType, "*"),
 							APIFollowFunc: APIServiceFollowFunc{
 								Name:           fn.Name.Name,

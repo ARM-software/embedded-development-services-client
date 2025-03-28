@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"embed"
+	"encoding/json"
 	"fmt"
 	"go/format"
 	"path/filepath"
@@ -22,6 +23,13 @@ import (
 var (
 	//go:embed templates/*
 	templates embed.FS
+)
+
+const (
+	schemaPrefix   = "#/components/schemas/"
+	jsonMIME       = "application/json"
+	redactFlag     = "x-redact"
+	collectionFlag = "x-collection"
 )
 
 type Data struct {
@@ -171,10 +179,13 @@ func AddValuesToParams(d *Data, getValues func(*openapi3.T) (interface{}, error)
 	return nil
 }
 
-func Map[T, V any](input []T, mapfn func(T) V) []V {
-	result := make([]V, len(input))
-	for i, v := range input {
-		result[i] = mapfn(v)
+func isExtensionFlagSet(props openapi3.ExtensionProps, flagKey string) (isSet bool, err error) {
+	if c, ok := props.Extensions[flagKey].(json.RawMessage); ok {
+		marshallingErr := json.Unmarshal(c, &isSet)
+		if marshallingErr != nil {
+			err = commonerrors.Newf(commonerrors.ErrUnexpected, "failed to unmarshal `%s`", flagKey)
+			return
+		}
 	}
-	return result
+	return
 }
