@@ -67,7 +67,7 @@ var ignoreCollections = []string{
 }
 
 func AddCollectionsToParams(d *Data) (err error) {
-	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return GetCollections(swagger) }, "endpoints")
+	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return GetCollections(swagger) }, "entities.go")
 }
 
 func trimRefPrefix(ref string) string {

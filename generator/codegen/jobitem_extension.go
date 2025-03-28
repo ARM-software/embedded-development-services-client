@@ -24,7 +24,7 @@ const (
 )
 
 func AddJobItemsToParams(d *Data) (err error) {
-	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return GetJobItems(swagger) }, "deprecations")
+	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return GetJobItems(swagger) }, "jobs.go")
 }
 
 func GetJobItems(swagger *openapi3.T) (jobItems JobItemsParams, err error) {
