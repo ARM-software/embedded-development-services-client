@@ -291,7 +291,8 @@ func addFuncDocs(fn *ast.FuncDecl) {
 			{
 				Slash: fn.Pos() - 1,
 				Text: fmt.Sprintf("// Follows a collection link. This function is based on the `%s` function, with one key difference:\n"+
-					"// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.", fn.Name.Name),
+					"// instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.\n"+
+					"//nolint:stylecheck,gocritic", fn.Name.Name),
 			},
 		},
 	}
