@@ -24,7 +24,7 @@ const (
 )
 
 func AddJobItemsToParams(d *Data) (err error) {
-	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return GetJobItems(swagger) }, "deprecations")
+	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return GetJobItems(swagger) }, "jobs.go")
 }
 
 func GetJobItems(swagger *openapi3.T) (jobItems JobItemsParams, err error) {
@@ -32,16 +32,14 @@ func GetJobItems(swagger *openapi3.T) (jobItems JobItemsParams, err error) {
 	for schemaName, schema := range swagger.Components.Schemas {
 		schemaVal := schema.Value
 		if schemaVal == nil {
-			err = commonerrors.Newf(commonerrors.ErrUndefined, "The schema response for '%s' exists but has no value", schemaName)
+			err = commonerrors.Newf(commonerrors.ErrUndefined, "the schema response for '%s' exists but has no value", schemaName)
 			return
 		}
 
-		var isRedacted bool
-		if c, ok := schemaVal.ExtensionProps.Extensions[redactFlag].(json.RawMessage); ok {
-			err = json.Unmarshal(c, &isRedacted)
-			if err != nil {
-				return
-			}
+		isRedacted, subErr := isExtensionFlagSet(schemaVal.ExtensionProps, redactFlag)
+		if subErr != nil {
+			err = subErr
+			return
 		}
 		if isRedacted {
 			continue

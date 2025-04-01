@@ -1,7 +1,6 @@
 package codegen
 
 import (
-	"encoding/json"
 	"fmt"
 	"slices"
 	"strings"
@@ -42,10 +41,6 @@ type CollectionParams = struct {
 }
 
 const (
-	schemaPrefix   = "#/components/schemas/"
-	jsonMIME       = "application/json"
-	collectionFlag = "x-collection"
-	redactFlag     = "x-redact"
 	// Messages are a special case as they are a feed rather than a normal collection
 	notificationFeedRef = "NotificationFeed"
 	messageItemRef      = "MessageItem"
@@ -67,7 +62,7 @@ var ignoreCollections = []string{
 }
 
 func AddCollectionsToParams(d *Data) (err error) {
-	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return GetCollections(swagger) }, "endpoints")
+	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return GetCollections(swagger) }, "entities.go")
 }
 
 func trimRefPrefix(ref string) string {
@@ -94,30 +89,30 @@ func extractItemRef(schemaVal *openapi3.Schema, collectionRef string) (itemRef s
 
 	embeddedRef := schemaVal.Properties["_embedded"]
 	if embeddedRef == nil {
-		err = commonerrors.Newf(commonerrors.ErrNotFound, "The schema for '%s' does not contain embedded objects so their type cannot be determined", collectionRef)
+		err = commonerrors.Newf(commonerrors.ErrNotFound, "the schema for '%s' does not contain embedded objects so their type cannot be determined", collectionRef)
 		return
 	}
 
 	embeddedSchemaVal := embeddedRef.Value
 	if embeddedSchemaVal == nil {
-		err = commonerrors.Newf(commonerrors.ErrUndefined, "The schema response for collection references '%s' exists but has no value", collectionRef)
+		err = commonerrors.Newf(commonerrors.ErrUndefined, "the schema response for collection references '%s' exists but has no value", collectionRef)
 		return
 	}
 
 	underlyingItem := embeddedSchemaVal.Properties["item"]
 	if underlyingItem == nil {
-		err = commonerrors.Newf(commonerrors.ErrNotFound, "The embedded objects for schema for '%s' is missing the item field in its embedded item properties", collectionRef)
+		err = commonerrors.Newf(commonerrors.ErrNotFound, "the embedded objects for schema for '%s' is missing the item field in its embedded item properties", collectionRef)
 		return
 	}
 
 	underlyingItemValue := underlyingItem.Value
 	if underlyingItemValue == nil {
-		err = commonerrors.Newf(commonerrors.ErrUndefined, "The embedded objects for schema for '%s' contains the item field but it is undefined", collectionRef)
+		err = commonerrors.Newf(commonerrors.ErrUndefined, "the embedded objects for schema for '%s' contains the item field but it is undefined", collectionRef)
 		return
 	}
 
 	if underlyingItemValue.Items == nil {
-		err = commonerrors.Newf(commonerrors.ErrInvalid, "The embedded objects for schema for '%s' is missing the items field that was expected in a collection field", collectionRef)
+		err = commonerrors.Newf(commonerrors.ErrInvalid, "the embedded objects for schema for '%s' is missing the items field that was expected in a collection field", collectionRef)
 		return
 	}
 
@@ -133,13 +128,13 @@ func getResponseFromPathInfo(pathInfo *openapi3.PathItem, endpoint string, statu
 
 	response200 := pathInfo.Get.Responses.Get(status)
 	if response200 == nil {
-		err = commonerrors.Newf(commonerrors.ErrNotFound, "The %v response code is missing from object with endpoint '%s'", status, endpoint)
+		err = commonerrors.Newf(commonerrors.ErrNotFound, "the %v response code is missing from object with endpoint '%s'", status, endpoint)
 		return
 	}
 
 	resp = response200.Value
 	if resp == nil {
-		err = commonerrors.Newf(commonerrors.ErrUndefined, "The %v response code exists in object with endpoint '%s' but is missing a value", status, endpoint)
+		err = commonerrors.Newf(commonerrors.ErrUndefined, "the %v response code exists in object with endpoint '%s' but is missing a value", status, endpoint)
 		return
 	}
 
@@ -155,18 +150,18 @@ func parseMessageCollection(schemaVal *openapi3.Schema, endpoint string) (messag
 
 	messagesRef := schemaVal.Properties["messages"]
 	if messagesRef == nil {
-		err = commonerrors.Newf(commonerrors.ErrNotFound, "The the message endpoint '%v' does not contain a messages field ", endpoint)
+		err = commonerrors.Newf(commonerrors.ErrNotFound, "the the message endpoint '%v' does not contain a messages field ", endpoint)
 		return
 	}
 
 	messagesValue := messagesRef.Value
 	if messagesValue == nil {
-		err = commonerrors.Newf(commonerrors.ErrUndefined, "The messages object for '%v' contains the messages field but it is undefined", endpoint)
+		err = commonerrors.Newf(commonerrors.ErrUndefined, "the messages object for '%v' contains the messages field but it is undefined", endpoint)
 		return
 	}
 
 	if messagesValue.Items == nil {
-		err = commonerrors.Newf(commonerrors.ErrInvalid, "The messages object for '%v' is missing the items field that was expected in a collection field", endpoint)
+		err = commonerrors.Newf(commonerrors.ErrInvalid, "the messages object for '%v' is missing the items field that was expected in a collection field", endpoint)
 		return
 	}
 
@@ -186,25 +181,25 @@ func getCollectionSchema(swagger *openapi3.T, appJSON *openapi3.MediaType, endpo
 
 	schema := appJSON.Schema
 	if schema == nil {
-		err = commonerrors.Newf(commonerrors.ErrNotFound, "The object with endpoint '%s' does not have a reference to the schema denoting the type of the response", endpoint)
+		err = commonerrors.Newf(commonerrors.ErrNotFound, "the object with endpoint '%s' does not have a reference to the schema denoting the type of the response", endpoint)
 		return
 	}
 	ref := schema.Ref
 	if ref == "" {
-		err = commonerrors.Newf(commonerrors.ErrEmpty, "The object with endpoint '%s' has a field that should contain a reference the schema denoting the type of the response, but it is empty", endpoint)
+		err = commonerrors.Newf(commonerrors.ErrEmpty, "the object with endpoint '%s' has a field that should contain a reference the schema denoting the type of the response, but it is empty", endpoint)
 		return
 	}
 
 	collectionRef = trimRefPrefix(ref)
 	schema, found := swagger.Components.Schemas[collectionRef]
 	if !found {
-		err = commonerrors.Newf(commonerrors.ErrNotFound, "The reference at '%s' does not contain the type of the endpoint object (%v)", endpoint, collectionRef)
+		err = commonerrors.Newf(commonerrors.ErrNotFound, "the reference at '%s' does not contain the type of the endpoint object (%v)", endpoint, collectionRef)
 		return
 	}
 
 	schemaVal = schema.Value
 	if schemaVal == nil {
-		err = commonerrors.Newf(commonerrors.ErrUndefined, "The schema response for collection references '%s' exists but has no value", collectionRef)
+		err = commonerrors.Newf(commonerrors.ErrUndefined, "the schema response for collection references '%s' exists but has no value", collectionRef)
 		return
 	}
 
@@ -247,8 +242,6 @@ func GetCollections(swagger *openapi3.T) (collections CollectionParams, err erro
 	notificationFeedCollectionsSet := mapset.NewSet[NotificationFeedCollection]()
 
 	for endpoint, pathInfo := range swagger.Paths {
-		var isCollection bool
-
 		// if no get field then not a collection
 		if pathInfo.Get != nil {
 			response200Val, subErr := getResponseFromPathInfo(pathInfo, endpoint, 200)
@@ -257,12 +250,10 @@ func GetCollections(swagger *openapi3.T) (collections CollectionParams, err erro
 				return
 			}
 
-			var isRedacted bool
-			if c, ok := pathInfo.Get.ExtensionProps.Extensions[redactFlag].(json.RawMessage); ok {
-				err = json.Unmarshal(c, &isRedacted)
-				if err != nil {
-					return
-				}
+			isRedacted, subErr := isExtensionFlagSet(pathInfo.Get.ExtensionProps, redactFlag)
+			if subErr != nil {
+				err = subErr
+				return
 			}
 			if isRedacted {
 				continue
@@ -276,13 +267,14 @@ func GetCollections(swagger *openapi3.T) (collections CollectionParams, err erro
 					return
 				}
 
-				if c, ok := schemaVal.ExtensionProps.Extensions[collectionFlag].(json.RawMessage); ok {
-					err = json.Unmarshal(c, &isCollection)
-					if err != nil {
-						return
-					}
+				isCollection, subErr := isExtensionFlagSet(schemaVal.ExtensionProps, collectionFlag)
+				if subErr != nil {
+					err = subErr
+					return
+				}
 
-					if !isCollection || shouldIgnoreCollection(collectionRef) {
+				if isCollection {
+					if shouldIgnoreCollection(collectionRef) {
 						continue
 					}
 
