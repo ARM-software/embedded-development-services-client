@@ -33,10 +33,11 @@ const (
 )
 
 type Data struct {
-	Params          any
-	SpecPath        string
-	TemplatePath    string
-	DestinationPath string
+	Params            any
+	SpecPath          string
+	TemplatePath      string
+	DestinationPath   string
+	ClientPackagePath string
 }
 
 var ValidGenerationTargets = map[string]func(*Data) error{
@@ -46,17 +47,20 @@ var ValidGenerationTargets = map[string]func(*Data) error{
 }
 
 type ExtensionsConfig struct {
-	Input        string `mapstructure:"input"`
-	Output       string `mapstructure:"output"`
-	Template     string `mapstructure:"template"`
-	GenerateType string `mapstructure:"generate_type"`
+	Input             string `mapstructure:"input"`
+	Output            string `mapstructure:"output"`
+	Template          string `mapstructure:"template"`
+	GenerateType      string `mapstructure:"generate_type"`
+	ClientPackagePath string `mapstructure:"client_path"`
 }
 
 func DefaultExtensionsConfig() *ExtensionsConfig {
 	return &ExtensionsConfig{
-		Input:    "",
-		Output:   "",
-		Template: "",
+		Input:             "",
+		Output:            "",
+		Template:          "",
+		GenerateType:      "",
+		ClientPackagePath: "",
 	}
 }
 
@@ -75,9 +79,10 @@ func (cfg *ExtensionsConfig) Validate() error {
 
 func GenerateDataStruct(cfg ExtensionsConfig) (d *Data, err error) {
 	return &Data{
-		DestinationPath: cfg.Output,
-		SpecPath:        cfg.Input,
-		TemplatePath:    cfg.Template,
+		DestinationPath:   cfg.Output,
+		SpecPath:          cfg.Input,
+		TemplatePath:      cfg.Template,
+		ClientPackagePath: cfg.ClientPackagePath,
 	}, nil
 }
 

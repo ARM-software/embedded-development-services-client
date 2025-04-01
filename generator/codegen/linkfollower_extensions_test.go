@@ -23,7 +23,7 @@ func TestLinkFollowerExtensions(t *testing.T) {
 		swagger, err := loadAPIDefinition(d.SpecPath)
 		require.NoError(t, err)
 
-		d.Params, err = getLinkFollowersParams(swagger)
+		d.Params, err = getLinkFollowersParams(swagger, d)
 		require.NoError(t, err)
 
 		err = GenerateTemplateFile(context.Background(), d)

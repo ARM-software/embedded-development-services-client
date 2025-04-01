@@ -40,10 +40,10 @@ type FollowersParams = struct {
 const resourcePath = "link"
 
 func AddLinkFollowersToParams(d *Data) error {
-	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return getLinkFollowersParams(swagger) }, "linkfollowers.go")
+	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return getLinkFollowersParams(swagger, d) }, "linkfollowers.go")
 }
 
-func getLinkFollowersParams(swagger *openapi3.T) (params FollowersParams, err error) {
+func getLinkFollowersParams(swagger *openapi3.T, d *Data) (params FollowersParams, err error) {
 	ids, idsErr := getListingOperationIDs(swagger)
 	if idsErr != nil {
 		err = idsErr
@@ -61,7 +61,7 @@ func getLinkFollowersParams(swagger *openapi3.T) (params FollowersParams, err er
 		funcNameMap[execFuncName] = followFuncName
 	}
 
-	followers, followersErr := getLinkFollowers(funcNameMap)
+	followers, followersErr := getLinkFollowers(funcNameMap, d)
 	if followersErr != nil {
 		err = followersErr
 		return
@@ -305,73 +305,98 @@ func addNewFuncParam(fn *ast.FuncDecl, argName string, argType string) {
 	})
 }
 
-func getLinkFollowers(funcNameMap map[string]string) (followers Followers, err error) {
+func getLinkFollowers(funcNameMap map[string]string, d *Data) (followers Followers, err error) {
 	// 'parser.ParseDir' returns deprecated 'ast.Package', so we'll use 'packages.Load' till it gets updated to return 'packages.Package'
 	cfg := &packages.Config{
-		Mode:  packages.NeedName | packages.NeedSyntax | packages.NeedCompiledGoFiles,
+		Mode:  packages.NeedName | packages.NeedSyntax | packages.NeedCompiledGoFiles | packages.NeedFiles,
 		Tests: false,
 	}
-	pkgPath := "github.com/ARM-software/embedded-development-services-client/client"
+	var pkgPath string
+	if d.ClientPackagePath == "" {
+		pkgPath = "github.com/ARM-software/embedded-development-services-client/client"
+	} else {
+		pkgPath = "."
+		cfg.Dir = d.ClientPackagePath
+	}
 	pkgs, loadErr := packages.Load(cfg, pkgPath)
 	if loadErr != nil {
 		err = commonerrors.Newf(commonerrors.ErrInvalidDestination, "could not load packages from '%s'", pkgPath)
 		return
 	}
 
-	for _, pkg := range pkgs {
-		for i, file := range pkg.Syntax {
-			// Filter filenames that match "api_*.go"
-			filename := pkg.CompiledGoFiles[i]
-			if !strings.HasPrefix(filepath.Base(filename), "api_") {
-				continue
-			}
+	if len(pkgs) != 1 {
+		err = commonerrors.Newf(commonerrors.ErrUnexpected, "expected exactly one package to be loaded from the client module path, got %d", len(pkgs))
+	}
 
-			for _, decl := range file.Decls {
-				if fn, ok := decl.(*ast.FuncDecl); ok {
-					if followFuncName, ok := funcNameMap[fn.Name.Name]; ok {
-						// Process APIService.FollowLink function
-						addFuncDocs(fn)
-						fn.Name.Name = followFuncName
-						addNewFuncParam(fn, "link", "string")
-						modifyParamErr := modifyFirstParam(fn.Type.Params)
-						if modifyParamErr != nil {
-							err = modifyParamErr
-						}
-						modifyLineErr := modifyLocalVarPath(fn)
-						if modifyLineErr != nil {
-							err = modifyLineErr
-						}
-						APIServiceFollowFuncSrc, renderErr := renderSrc(fn, pkg.Fset)
-						if renderErr != nil {
-							err = renderErr
-						}
-						APIServiceReceiverType, renderErr := getReceiverType(fn)
-						if renderErr != nil {
-							err = renderErr
-						}
+	pkg := pkgs[0]
+	if len(pkg.Errors) > 0 {
+		var pkgErrors string
+		for _, e := range pkg.Errors {
+			pkgErrors += fmt.Sprintf("\n- %s", e.Error())
+		}
+		err = commonerrors.Newf(commonerrors.ErrUnexpected, "could not parse package %s:%s", pkg.Name, pkgErrors)
+	}
 
-						// Render out parts of the Request.FollowLink funciton
-						paramName, paramType, renderErr := getFirstParam(fn.Type.Params, pkg.Fset)
-						if renderErr != nil {
-							err = renderErr
-						}
-						requestReturns, renderErr := renderFieldListSrc(fn.Type.Results, pkg.Fset)
-						if renderErr != nil {
-							err = renderErr
-						}
+	if len(pkg.GoFiles) == 0 {
+		err = commonerrors.Newf(commonerrors.ErrUnexpected, "package %s has no go files", pkg.Name)
+	}
 
-						followers = append(followers, Follower{
-							APIService: APIServiceReceiverType,
-							APIRequest: strings.TrimPrefix(paramType, "*"),
-							APIFollowFunc: APIServiceFollowFunc{
-								Name:           fn.Name.Name,
-								FirstParamName: paramName,
-								FirstParamType: paramType,
-								ReturnList:     requestReturns,
-								Src:            APIServiceFollowFuncSrc,
-							},
-						})
+	if len(pkg.CompiledGoFiles) == 0 {
+		err = commonerrors.Newf(commonerrors.ErrUnexpected, "package %s has no compiled Go files, it might be incomplete or have unresolved dependencies", pkg.Name)
+	}
+
+	for i, file := range pkg.Syntax {
+		// Filter filenames that match "api_*.go"
+		filename := pkg.CompiledGoFiles[i]
+		if !strings.HasPrefix(filepath.Base(filename), "api_") {
+			continue
+		}
+
+		for _, decl := range file.Decls {
+			if fn, ok := decl.(*ast.FuncDecl); ok {
+				if followFuncName, ok := funcNameMap[fn.Name.Name]; ok {
+					// Process APIService.FollowLink function
+					addFuncDocs(fn)
+					fn.Name.Name = followFuncName
+					addNewFuncParam(fn, "link", "string")
+					modifyParamErr := modifyFirstParam(fn.Type.Params)
+					if modifyParamErr != nil {
+						err = modifyParamErr
 					}
+					modifyLineErr := modifyLocalVarPath(fn)
+					if modifyLineErr != nil {
+						err = modifyLineErr
+					}
+					APIServiceFollowFuncSrc, renderErr := renderSrc(fn, pkg.Fset)
+					if renderErr != nil {
+						err = renderErr
+					}
+					APIServiceReceiverType, renderErr := getReceiverType(fn)
+					if renderErr != nil {
+						err = renderErr
+					}
+
+					// Render out parts of the Request.FollowLink funciton
+					paramName, paramType, renderErr := getFirstParam(fn.Type.Params, pkg.Fset)
+					if renderErr != nil {
+						err = renderErr
+					}
+					requestReturns, renderErr := renderFieldListSrc(fn.Type.Results, pkg.Fset)
+					if renderErr != nil {
+						err = renderErr
+					}
+
+					followers = append(followers, Follower{
+						APIService: APIServiceReceiverType,
+						APIRequest: strings.TrimPrefix(paramType, "*"),
+						APIFollowFunc: APIServiceFollowFunc{
+							Name:           fn.Name.Name,
+							FirstParamName: paramName,
+							FirstParamType: paramType,
+							ReturnList:     requestReturns,
+							Src:            APIServiceFollowFuncSrc,
+						},
+					})
 				}
 			}
 		}
