@@ -233,7 +233,6 @@ func (a *FPGAPayloadsAPIService) CreateFPGAPayloadExecute(r ApiCreateFPGAPayload
 type ApiCreateFPGAPayloadUploadSessionRequest struct {
 	ctx context.Context
 	ApiService *FPGAPayloadsAPIService
-	fpgaPayloadName string
 	tusResumable *string
 	acceptVersion *string
 	uploadDeferLength *int32
@@ -281,14 +280,12 @@ CreateFPGAPayloadUploadSession Create upload session for FPGA payload.
 Carries out the creation step of the TUS protocol. https://tus.io/protocols/resumable-upload#creation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param fpgaPayloadName Unique ID of the FPGA payload.
  @return ApiCreateFPGAPayloadUploadSessionRequest
 */
-func (a *FPGAPayloadsAPIService) CreateFPGAPayloadUploadSession(ctx context.Context, fpgaPayloadName string) ApiCreateFPGAPayloadUploadSessionRequest {
+func (a *FPGAPayloadsAPIService) CreateFPGAPayloadUploadSession(ctx context.Context) ApiCreateFPGAPayloadUploadSessionRequest {
 	return ApiCreateFPGAPayloadUploadSessionRequest{
 		ApiService: a,
 		ctx: ctx,
-		fpgaPayloadName: fpgaPayloadName,
 	}
 }
 
@@ -305,8 +302,7 @@ func (a *FPGAPayloadsAPIService) CreateFPGAPayloadUploadSessionExecute(r ApiCrea
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/payloads/{fpgaPayloadName}/upload-session"
-	localVarPath = strings.Replace(localVarPath, "{"+"fpgaPayloadName"+"}", parameterValueToString(r.fpgaPayloadName, "fpgaPayloadName"), -1)
+	localVarPath := localBasePath + "/payloads/upload-session"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -486,6 +482,7 @@ type ApiDeleteFpgaPayloadRequest struct {
 	ctx context.Context
 	ApiService *FPGAPayloadsAPIService
 	fpgaPayloadName string
+	repositoryName string
 	acceptVersion *string
 }
 
@@ -506,13 +503,15 @@ Deletes an FPGA payload.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param fpgaPayloadName Unique ID of the FPGA payload.
+ @param repositoryName Unique ID of a repository.
  @return ApiDeleteFpgaPayloadRequest
 */
-func (a *FPGAPayloadsAPIService) DeleteFpgaPayload(ctx context.Context, fpgaPayloadName string) ApiDeleteFpgaPayloadRequest {
+func (a *FPGAPayloadsAPIService) DeleteFpgaPayload(ctx context.Context, fpgaPayloadName string, repositoryName string) ApiDeleteFpgaPayloadRequest {
 	return ApiDeleteFpgaPayloadRequest{
 		ApiService: a,
 		ctx: ctx,
 		fpgaPayloadName: fpgaPayloadName,
+		repositoryName: repositoryName,
 	}
 }
 
@@ -529,8 +528,9 @@ func (a *FPGAPayloadsAPIService) DeleteFpgaPayloadExecute(r ApiDeleteFpgaPayload
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/payloads/{fpgaPayloadName}"
+	localVarPath := localBasePath + "/repositories/{repositoryName}/payloads/{fpgaPayloadName}"
 	localVarPath = strings.Replace(localVarPath, "{"+"fpgaPayloadName"+"}", parameterValueToString(r.fpgaPayloadName, "fpgaPayloadName"), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"repositoryName"+"}", parameterValueToString(r.repositoryName, "repositoryName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -664,6 +664,7 @@ type ApiGetFpgaPayloadRequest struct {
 	ctx context.Context
 	ApiService *FPGAPayloadsAPIService
 	fpgaPayloadName string
+	repositoryName string
 	acceptVersion *string
 	ifNoneMatch *string
 }
@@ -691,13 +692,15 @@ An FPGA payload is an application which can be used to perform a specific job on
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param fpgaPayloadName Unique ID of the FPGA payload.
+ @param repositoryName Unique ID of a repository.
  @return ApiGetFpgaPayloadRequest
 */
-func (a *FPGAPayloadsAPIService) GetFpgaPayload(ctx context.Context, fpgaPayloadName string) ApiGetFpgaPayloadRequest {
+func (a *FPGAPayloadsAPIService) GetFpgaPayload(ctx context.Context, fpgaPayloadName string, repositoryName string) ApiGetFpgaPayloadRequest {
 	return ApiGetFpgaPayloadRequest{
 		ApiService: a,
 		ctx: ctx,
 		fpgaPayloadName: fpgaPayloadName,
+		repositoryName: repositoryName,
 	}
 }
 
@@ -716,8 +719,9 @@ func (a *FPGAPayloadsAPIService) GetFpgaPayloadExecute(r ApiGetFpgaPayloadReques
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/payloads/{fpgaPayloadName}"
+	localVarPath := localBasePath + "/repositories/{repositoryName}/payloads/{fpgaPayloadName}"
 	localVarPath = strings.Replace(localVarPath, "{"+"fpgaPayloadName"+"}", parameterValueToString(r.fpgaPayloadName, "fpgaPayloadName"), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"repositoryName"+"}", parameterValueToString(r.repositoryName, "repositoryName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -881,7 +885,7 @@ func (a *FPGAPayloadsAPIService) GetFpgaPayloadUploadOptionsExecute(r ApiGetFpga
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/payloads"
+	localVarPath := localBasePath + "/payloads/upload-session"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -938,7 +942,7 @@ func (a *FPGAPayloadsAPIService) GetFpgaPayloadUploadOptionsExecute(r ApiGetFpga
 type ApiGetFpgaPayloadUploadProgressRequest struct {
 	ctx context.Context
 	ApiService *FPGAPayloadsAPIService
-	fpgaPayloadName string
+	uploadSessionName string
 	acceptVersion *string
 }
 
@@ -958,14 +962,14 @@ GetFpgaPayloadUploadProgress Return FPGA payload upload progress.
 Returns headers indicating the progress of an upload for an FPGA payload. https://tus.io/protocols/resumable-upload#head
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param fpgaPayloadName Unique ID of the FPGA payload.
+ @param uploadSessionName Unique ID of an upload session.
  @return ApiGetFpgaPayloadUploadProgressRequest
 */
-func (a *FPGAPayloadsAPIService) GetFpgaPayloadUploadProgress(ctx context.Context, fpgaPayloadName string) ApiGetFpgaPayloadUploadProgressRequest {
+func (a *FPGAPayloadsAPIService) GetFpgaPayloadUploadProgress(ctx context.Context, uploadSessionName string) ApiGetFpgaPayloadUploadProgressRequest {
 	return ApiGetFpgaPayloadUploadProgressRequest{
 		ApiService: a,
 		ctx: ctx,
-		fpgaPayloadName: fpgaPayloadName,
+		uploadSessionName: uploadSessionName,
 	}
 }
 
@@ -982,8 +986,8 @@ func (a *FPGAPayloadsAPIService) GetFpgaPayloadUploadProgressExecute(r ApiGetFpg
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/payloads/{fpgaPayloadName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"fpgaPayloadName"+"}", parameterValueToString(r.fpgaPayloadName, "fpgaPayloadName"), -1)
+	localVarPath := localBasePath + "/payloads/upload-session/{uploadSessionName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"uploadSessionName"+"}", parameterValueToString(r.uploadSessionName, "uploadSessionName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1500,7 +1504,7 @@ func (a *FPGAPayloadsAPIService) ListPayloadsExecute(r ApiListPayloadsRequest) (
 type ApiUploadPayloadRequest struct {
 	ctx context.Context
 	ApiService *FPGAPayloadsAPIService
-	fpgaPayloadName string
+	uploadSessionName string
 	tusResumable *string
 	acceptVersion *string
 	uploadOffset *int64
@@ -1534,14 +1538,14 @@ UploadPayload Upload part of a payload.
 Write bytes to the payload from the offset provided. https://tus.io/protocols/resumable-upload#patch
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param fpgaPayloadName Unique ID of the FPGA payload.
+ @param uploadSessionName Unique ID of an upload session.
  @return ApiUploadPayloadRequest
 */
-func (a *FPGAPayloadsAPIService) UploadPayload(ctx context.Context, fpgaPayloadName string) ApiUploadPayloadRequest {
+func (a *FPGAPayloadsAPIService) UploadPayload(ctx context.Context, uploadSessionName string) ApiUploadPayloadRequest {
 	return ApiUploadPayloadRequest{
 		ApiService: a,
 		ctx: ctx,
-		fpgaPayloadName: fpgaPayloadName,
+		uploadSessionName: uploadSessionName,
 	}
 }
 
@@ -1558,8 +1562,8 @@ func (a *FPGAPayloadsAPIService) UploadPayloadExecute(r ApiUploadPayloadRequest)
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/payloads/{fpgaPayloadName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"fpgaPayloadName"+"}", parameterValueToString(r.fpgaPayloadName, "fpgaPayloadName"), -1)
+	localVarPath := localBasePath + "/payloads/upload-session/{uploadSessionName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"uploadSessionName"+"}", parameterValueToString(r.uploadSessionName, "uploadSessionName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -9,14 +9,14 @@ All URIs are relative to *https://all.api.keil.arm.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateFPGAPayload**](FPGAPayloadsAPI.md#CreateFPGAPayload) | **Post** /repositories/{repositoryName}/payloads | Create an FPGA payload.
-[**CreateFPGAPayloadUploadSession**](FPGAPayloadsAPI.md#CreateFPGAPayloadUploadSession) | **Post** /payloads/{fpgaPayloadName}/upload-session | Create upload session for FPGA payload.
-[**DeleteFpgaPayload**](FPGAPayloadsAPI.md#DeleteFpgaPayload) | **Delete** /payloads/{fpgaPayloadName} | Delete an FPGA payload.
-[**GetFpgaPayload**](FPGAPayloadsAPI.md#GetFpgaPayload) | **Get** /payloads/{fpgaPayloadName} | Return details of specific FPGA payload.
-[**GetFpgaPayloadUploadOptions**](FPGAPayloadsAPI.md#GetFpgaPayloadUploadOptions) | **Options** /payloads | Return service TUS protocol support.
-[**GetFpgaPayloadUploadProgress**](FPGAPayloadsAPI.md#GetFpgaPayloadUploadProgress) | **Head** /payloads/{fpgaPayloadName} | Return FPGA payload upload progress.
+[**CreateFPGAPayloadUploadSession**](FPGAPayloadsAPI.md#CreateFPGAPayloadUploadSession) | **Post** /payloads/upload-session | Create upload session for FPGA payload.
+[**DeleteFpgaPayload**](FPGAPayloadsAPI.md#DeleteFpgaPayload) | **Delete** /repositories/{repositoryName}/payloads/{fpgaPayloadName} | Delete an FPGA payload.
+[**GetFpgaPayload**](FPGAPayloadsAPI.md#GetFpgaPayload) | **Get** /repositories/{repositoryName}/payloads/{fpgaPayloadName} | Return details of specific FPGA payload.
+[**GetFpgaPayloadUploadOptions**](FPGAPayloadsAPI.md#GetFpgaPayloadUploadOptions) | **Options** /payloads/upload-session | Return service TUS protocol support.
+[**GetFpgaPayloadUploadProgress**](FPGAPayloadsAPI.md#GetFpgaPayloadUploadProgress) | **Head** /payloads/upload-session/{uploadSessionName} | Return FPGA payload upload progress.
 [**ListFPGAPayloads**](FPGAPayloadsAPI.md#ListFPGAPayloads) | **Get** /repositories/{repositoryName}/payloads | List payloads in a repository.
 [**ListPayloads**](FPGAPayloadsAPI.md#ListPayloads) | **Get** /payloads | List payloads.
-[**UploadPayload**](FPGAPayloadsAPI.md#UploadPayload) | **Patch** /payloads/{fpgaPayloadName} | Upload part of a payload.
+[**UploadPayload**](FPGAPayloadsAPI.md#UploadPayload) | **Patch** /payloads/upload-session/{uploadSessionName} | Upload part of a payload.
 
 
 
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 ## CreateFPGAPayloadUploadSession
 
-> CreateFPGAPayloadUploadSession(ctx, fpgaPayloadName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadDeferLength(uploadDeferLength).UploadLength(uploadLength).UploadMetadata(uploadMetadata).Execute()
+> CreateFPGAPayloadUploadSession(ctx).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadDeferLength(uploadDeferLength).UploadLength(uploadLength).UploadMetadata(uploadMetadata).Execute()
 
 Create upload session for FPGA payload.
 
@@ -115,7 +115,6 @@ import (
 )
 
 func main() {
-	fpgaPayloadName := "fpgaPayloadName_example" // string | Unique ID of the FPGA payload.
 	tusResumable := "1.0.0" // string | Version of the Tus protocol being used.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 	uploadDeferLength := int32(56) // int32 | Set to 1 if upload size is not known at the time. Any other value results in a 400 Bad Request. (optional)
@@ -124,7 +123,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FPGAPayloadsAPI.CreateFPGAPayloadUploadSession(context.Background(), fpgaPayloadName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadDeferLength(uploadDeferLength).UploadLength(uploadLength).UploadMetadata(uploadMetadata).Execute()
+	r, err := apiClient.FPGAPayloadsAPI.CreateFPGAPayloadUploadSession(context.Background()).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadDeferLength(uploadDeferLength).UploadLength(uploadLength).UploadMetadata(uploadMetadata).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.CreateFPGAPayloadUploadSession``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -135,10 +134,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**fpgaPayloadName** | **string** | Unique ID of the FPGA payload. | 
 
 ### Other Parameters
 
@@ -147,7 +142,6 @@ Other parameters are passed through a pointer to a apiCreateFPGAPayloadUploadSes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **tusResumable** | **string** | Version of the Tus protocol being used. | 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
  **uploadDeferLength** | **int32** | Set to 1 if upload size is not known at the time. Any other value results in a 400 Bad Request. | 
@@ -174,7 +168,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFpgaPayload
 
-> DeleteFpgaPayload(ctx, fpgaPayloadName).AcceptVersion(acceptVersion).Execute()
+> DeleteFpgaPayload(ctx, fpgaPayloadName, repositoryName).AcceptVersion(acceptVersion).Execute()
 
 Delete an FPGA payload.
 
@@ -194,11 +188,12 @@ import (
 
 func main() {
 	fpgaPayloadName := "fpgaPayloadName_example" // string | Unique ID of the FPGA payload.
+	repositoryName := "repositoryName_example" // string | Unique ID of a repository.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FPGAPayloadsAPI.DeleteFpgaPayload(context.Background(), fpgaPayloadName).AcceptVersion(acceptVersion).Execute()
+	r, err := apiClient.FPGAPayloadsAPI.DeleteFpgaPayload(context.Background(), fpgaPayloadName, repositoryName).AcceptVersion(acceptVersion).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.DeleteFpgaPayload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -213,6 +208,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **fpgaPayloadName** | **string** | Unique ID of the FPGA payload. | 
+**repositoryName** | **string** | Unique ID of a repository. | 
 
 ### Other Parameters
 
@@ -221,6 +217,7 @@ Other parameters are passed through a pointer to a apiDeleteFpgaPayloadRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
 
@@ -244,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## GetFpgaPayload
 
-> FPGAPayloadItem GetFpgaPayload(ctx, fpgaPayloadName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+> FPGAPayloadItem GetFpgaPayload(ctx, fpgaPayloadName, repositoryName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 
 Return details of specific FPGA payload.
 
@@ -264,12 +261,13 @@ import (
 
 func main() {
 	fpgaPayloadName := "fpgaPayloadName_example" // string | Unique ID of the FPGA payload.
+	repositoryName := "repositoryName_example" // string | Unique ID of a repository.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FPGAPayloadsAPI.GetFpgaPayload(context.Background(), fpgaPayloadName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+	resp, r, err := apiClient.FPGAPayloadsAPI.GetFpgaPayload(context.Background(), fpgaPayloadName, repositoryName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.GetFpgaPayload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -286,6 +284,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **fpgaPayloadName** | **string** | Unique ID of the FPGA payload. | 
+**repositoryName** | **string** | Unique ID of a repository. | 
 
 ### Other Parameters
 
@@ -294,6 +293,7 @@ Other parameters are passed through a pointer to a apiGetFpgaPayloadRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
  **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ## GetFpgaPayloadUploadProgress
 
-> GetFpgaPayloadUploadProgress(ctx, fpgaPayloadName).AcceptVersion(acceptVersion).Execute()
+> GetFpgaPayloadUploadProgress(ctx, uploadSessionName).AcceptVersion(acceptVersion).Execute()
 
 Return FPGA payload upload progress.
 
@@ -401,12 +401,12 @@ import (
 )
 
 func main() {
-	fpgaPayloadName := "fpgaPayloadName_example" // string | Unique ID of the FPGA payload.
+	uploadSessionName := "uploadSessionName_example" // string | Unique ID of an upload session.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FPGAPayloadsAPI.GetFpgaPayloadUploadProgress(context.Background(), fpgaPayloadName).AcceptVersion(acceptVersion).Execute()
+	r, err := apiClient.FPGAPayloadsAPI.GetFpgaPayloadUploadProgress(context.Background(), uploadSessionName).AcceptVersion(acceptVersion).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.GetFpgaPayloadUploadProgress``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -420,7 +420,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**fpgaPayloadName** | **string** | Unique ID of the FPGA payload. | 
+**uploadSessionName** | **string** | Unique ID of an upload session. | 
 
 ### Other Parameters
 
@@ -606,7 +606,7 @@ Name | Type | Description  | Notes
 
 ## UploadPayload
 
-> UploadPayload(ctx, fpgaPayloadName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadOffset(uploadOffset).Execute()
+> UploadPayload(ctx, uploadSessionName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadOffset(uploadOffset).Execute()
 
 Upload part of a payload.
 
@@ -625,14 +625,14 @@ import (
 )
 
 func main() {
-	fpgaPayloadName := "fpgaPayloadName_example" // string | Unique ID of the FPGA payload.
+	uploadSessionName := "uploadSessionName_example" // string | Unique ID of an upload session.
 	tusResumable := "1.0.0" // string | Version of the Tus protocol being used.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 	uploadOffset := int64(789) // int64 | The byte offset within a resource. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FPGAPayloadsAPI.UploadPayload(context.Background(), fpgaPayloadName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadOffset(uploadOffset).Execute()
+	r, err := apiClient.FPGAPayloadsAPI.UploadPayload(context.Background(), uploadSessionName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadOffset(uploadOffset).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.UploadPayload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -646,7 +646,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**fpgaPayloadName** | **string** | Unique ID of the FPGA payload. | 
+**uploadSessionName** | **string** | Unique ID of an upload session. | 
 
 ### Other Parameters
 
