@@ -9,7 +9,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	_ "github.com/ARM-software/embedded-development-services-client/client"
 	"github.com/ARM-software/golang-utils/utils/commonerrors"
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/getkin/kin-openapi/openapi3"
@@ -307,25 +306,24 @@ func addNewFuncParam(fn *ast.FuncDecl, argName string, argType string) {
 
 func getLinkFollowers(funcNameMap map[string]string, d *Data) (followers Followers, err error) {
 	// 'parser.ParseDir' returns deprecated 'ast.Package', so we'll use 'packages.Load' till it gets updated to return 'packages.Package'
+	if d.ClientPackagePath == "" {
+		err = commonerrors.Newf(commonerrors.ErrUnexpected, "missing client package path, provide a client package path using '-c' or '--client_path'")
+		return
+	}
 	cfg := &packages.Config{
 		Mode:  packages.NeedName | packages.NeedSyntax | packages.NeedCompiledGoFiles | packages.NeedFiles,
 		Tests: false,
+		Dir:   d.ClientPackagePath,
 	}
-	var pkgPath string
-	if d.ClientPackagePath == "" {
-		pkgPath = "github.com/ARM-software/embedded-development-services-client/client"
-	} else {
-		pkgPath = "."
-		cfg.Dir = d.ClientPackagePath
-	}
-	pkgs, loadErr := packages.Load(cfg, pkgPath)
+	pkgs, loadErr := packages.Load(cfg, ".")
 	if loadErr != nil {
-		err = commonerrors.Newf(commonerrors.ErrInvalidDestination, "could not load packages from '%s'", pkgPath)
+		err = commonerrors.Newf(commonerrors.ErrInvalidDestination, "could not load packages from '%s'", d.ClientPackagePath)
 		return
 	}
 
 	if len(pkgs) != 1 {
 		err = commonerrors.Newf(commonerrors.ErrUnexpected, "expected exactly one package to be loaded from the client module path, got %d", len(pkgs))
+		return
 	}
 
 	pkg := pkgs[0]
@@ -335,14 +333,17 @@ func getLinkFollowers(funcNameMap map[string]string, d *Data) (followers Followe
 			pkgErrors += fmt.Sprintf("\n- %s", e.Error())
 		}
 		err = commonerrors.Newf(commonerrors.ErrUnexpected, "could not parse package %s:%s", pkg.Name, pkgErrors)
+		return
 	}
 
 	if len(pkg.GoFiles) == 0 {
 		err = commonerrors.Newf(commonerrors.ErrUnexpected, "package %s has no go files", pkg.Name)
+		return
 	}
 
 	if len(pkg.CompiledGoFiles) == 0 {
 		err = commonerrors.Newf(commonerrors.ErrUnexpected, "package %s has no compiled Go files, it might be incomplete or have unresolved dependencies", pkg.Name)
+		return
 	}
 
 	for i, file := range pkg.Syntax {
@@ -362,28 +363,34 @@ func getLinkFollowers(funcNameMap map[string]string, d *Data) (followers Followe
 					modifyParamErr := modifyFirstParam(fn.Type.Params)
 					if modifyParamErr != nil {
 						err = modifyParamErr
+						return
 					}
 					modifyLineErr := modifyLocalVarPath(fn)
 					if modifyLineErr != nil {
 						err = modifyLineErr
+						return
 					}
 					APIServiceFollowFuncSrc, renderErr := renderSrc(fn, pkg.Fset)
 					if renderErr != nil {
 						err = renderErr
+						return
 					}
 					APIServiceReceiverType, renderErr := getReceiverType(fn)
 					if renderErr != nil {
 						err = renderErr
+						return
 					}
 
 					// Render out parts of the Request.FollowLink funciton
 					paramName, paramType, renderErr := getFirstParam(fn.Type.Params, pkg.Fset)
 					if renderErr != nil {
 						err = renderErr
+						return
 					}
 					requestReturns, renderErr := renderFieldListSrc(fn.Type.Results, pkg.Fset)
 					if renderErr != nil {
 						err = renderErr
+						return
 					}
 
 					followers = append(followers, Follower{

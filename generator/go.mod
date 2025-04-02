@@ -4,8 +4,6 @@ go 1.24
 
 toolchain go1.24.1
 
-replace github.com/ARM-software/embedded-development-services-client/client => ../client
-
 require (
 	github.com/ARM-software/embedded-development-services-client/client v1.45.0
 	github.com/ARM-software/golang-utils/utils v1.89.0

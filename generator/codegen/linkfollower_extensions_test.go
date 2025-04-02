@@ -14,9 +14,10 @@ func TestLinkFollowerExtensions(t *testing.T) {
 	t.Run("Test Successful Generation", func(t *testing.T) {
 		tmpDir := t.TempDir()
 		d, err := GenerateDataStruct(ExtensionsConfig{
-			Input:    filepath.Join("testdata", "linkfollowers", "test.json"),
-			Template: filepath.Join("templates", "linkfollowers.go.tmpl"),
-			Output:   filepath.Join(tmpDir, "test.go"),
+			Input:             filepath.Join("testdata", "linkfollowers", "test.json"),
+			Template:          filepath.Join("templates", "linkfollowers.go.tmpl"),
+			Output:            filepath.Join(tmpDir, "test.go"),
+			ClientPackagePath: filepath.Join("..", "..", "client"),
 		})
 		require.NoError(t, err)
 
