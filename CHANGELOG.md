@@ -2,6 +2,20 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.48.0" (2025-04-03)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20250401193344, #20250403121709)
+- :sparkles: Update the generator to work with external client packages (#20250401201356)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.47.0" (2025-04-03)
 =====================
 
