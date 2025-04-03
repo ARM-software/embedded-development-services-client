@@ -305,16 +305,22 @@ func addNewFuncParam(fn *ast.FuncDecl, argName string, argType string) {
 }
 
 func getLinkFollowers(funcNameMap map[string]string, d *Data) (followers Followers, err error) {
-	// 'parser.ParseDir' returns deprecated 'ast.Package', so we'll use 'packages.Load' till it gets updated to return 'packages.Package'
+	if d == nil {
+		err = commonerrors.Newf(commonerrors.ErrUndefined, "data must be defined")
+		return
+	}
+
 	if d.ClientPackagePath == "" {
 		err = commonerrors.Newf(commonerrors.ErrUnexpected, "missing client package path, provide a client package path using '-c' or '--client_path'")
 		return
 	}
+
 	cfg := &packages.Config{
 		Mode:  packages.NeedName | packages.NeedSyntax | packages.NeedCompiledGoFiles | packages.NeedFiles,
 		Tests: false,
 		Dir:   d.ClientPackagePath,
 	}
+	// 'parser.ParseDir' returns deprecated 'ast.Package', so we'll use 'packages.Load' till it gets updated to return 'packages.Package'
 	pkgs, loadErr := packages.Load(cfg, ".")
 	if loadErr != nil {
 		err = commonerrors.Newf(commonerrors.ErrInvalidDestination, "could not load packages from '%s'", d.ClientPackagePath)
