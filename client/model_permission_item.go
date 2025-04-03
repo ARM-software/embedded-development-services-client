@@ -29,8 +29,6 @@ var _ MappedNullable = &PermissionItem{}
 type PermissionItem struct {
 	// The list of allowed CRUDL operations.
 	Operations []string `json:"operations"`
-	// The function or service under which the permission is being evaluated.
-	Origin string `json:"origin"`
 	// The unique identifier of the resource instance.
 	ResourceInstance string `json:"resourceInstance" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// The unique identifier of the user or system entity that owns the specified resource instance.
@@ -49,10 +47,9 @@ type _PermissionItem PermissionItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPermissionItem(operations []string, origin string, resourceInstance string, resourceOwnerName string, resourceType string, userName string, userToken string) *PermissionItem {
+func NewPermissionItem(operations []string, resourceInstance string, resourceOwnerName string, resourceType string, userName string, userToken string) *PermissionItem {
 	this := PermissionItem{}
 	this.Operations = operations
-	this.Origin = origin
 	this.ResourceInstance = resourceInstance
 	this.ResourceOwnerName = resourceOwnerName
 	this.ResourceType = resourceType
@@ -93,30 +90,6 @@ func (o *PermissionItem) GetOperationsOk() ([]string, bool) {
 // SetOperations sets field value
 func (o *PermissionItem) SetOperations(v []string) {
 	o.Operations = v
-}
-
-// GetOrigin returns the Origin field value
-func (o *PermissionItem) GetOrigin() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Origin
-}
-
-// GetOriginOk returns a tuple with the Origin field value
-// and a boolean to check if the value has been set.
-func (o *PermissionItem) GetOriginOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Origin, true
-}
-
-// SetOrigin sets field value
-func (o *PermissionItem) SetOrigin(v string) {
-	o.Origin = v
 }
 
 // GetResourceInstance returns the ResourceInstance field value
@@ -252,7 +225,6 @@ func (o PermissionItem) ToMap() (map[string]interface{}, error) {
 	if o.Operations != nil {
 		toSerialize["operations"] = o.Operations
 	}
-	toSerialize["origin"] = o.Origin
 	toSerialize["resourceInstance"] = o.ResourceInstance
 	toSerialize["resourceOwnerName"] = o.ResourceOwnerName
 	toSerialize["resourceType"] = o.ResourceType
@@ -267,7 +239,6 @@ func (o *PermissionItem) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"operations",
-		"origin",
 		"resourceInstance",
 		"resourceOwnerName",
 		"resourceType",

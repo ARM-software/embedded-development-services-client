@@ -9,7 +9,6 @@ SPDX-License-Identifier: Apache-2.0
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Operations** | **[]string** | The list of allowed CRUDL operations. | 
-**Origin** | **string** | The function or service under which the permission is being evaluated. | 
 **ResourceInstance** | **string** | The unique identifier of the resource instance. | 
 **ResourceOwnerName** | **string** | The unique identifier of the user or system entity that owns the specified resource instance. | 
 **ResourceType** | **string** | The type of resource for which permission is being checked. This should only refer to items and not collections. | 
@@ -20,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewPermissionItem
 
-`func NewPermissionItem(operations []string, origin string, resourceInstance string, resourceOwnerName string, resourceType string, userName string, userToken string, ) *PermissionItem`
+`func NewPermissionItem(operations []string, resourceInstance string, resourceOwnerName string, resourceType string, userName string, userToken string, ) *PermissionItem`
 
 NewPermissionItem instantiates a new PermissionItem object
 This constructor will assign default values to properties that have it defined,
@@ -65,26 +64,6 @@ SetOperations sets Operations field to given value.
 `func (o *PermissionItem) UnsetOperations()`
 
 UnsetOperations ensures that no value is present for Operations, not even an explicit nil
-### GetOrigin
-
-`func (o *PermissionItem) GetOrigin() string`
-
-GetOrigin returns the Origin field if non-nil, zero value otherwise.
-
-### GetOriginOk
-
-`func (o *PermissionItem) GetOriginOk() (*string, bool)`
-
-GetOriginOk returns a tuple with the Origin field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOrigin
-
-`func (o *PermissionItem) SetOrigin(v string)`
-
-SetOrigin sets Origin field to given value.
-
-
 ### GetResourceInstance
 
 `func (o *PermissionItem) GetResourceInstance() string`
