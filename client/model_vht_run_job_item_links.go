@@ -25,8 +25,9 @@ import (
 // checks if the VhtRunJobItemLinks type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VhtRunJobItemLinks{}
 
-// VhtRunJobItemLinks The `related` link indicates the VHT instance on which the job is run. The `details` links to a resource that provides details of progress (messages).
+// VhtRunJobItemLinks The `related` link indicates the VHT instance on which the job is run. The `details` links to a resource that provides details of progress (messages). The `artefacts` links to a collection which will contain downloadable artefacts (if any).
 type VhtRunJobItemLinks struct {
+	Artefacts *HalLinkData `json:"artefacts,omitempty"`
 	Cancel *HalLinkData `json:"cancel,omitempty"`
 	Collection *HalLinkData `json:"collection,omitempty"`
 	Delete *HalLinkData `json:"delete,omitempty"`
@@ -54,6 +55,38 @@ func NewVhtRunJobItemLinks(related HalLinkData, self HalLinkData) *VhtRunJobItem
 func NewVhtRunJobItemLinksWithDefaults() *VhtRunJobItemLinks {
 	this := VhtRunJobItemLinks{}
 	return &this
+}
+
+// GetArtefacts returns the Artefacts field value if set, zero value otherwise.
+func (o *VhtRunJobItemLinks) GetArtefacts() HalLinkData {
+	if o == nil || IsNil(o.Artefacts) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Artefacts
+}
+
+// GetArtefactsOk returns a tuple with the Artefacts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VhtRunJobItemLinks) GetArtefactsOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Artefacts) {
+		return nil, false
+	}
+	return o.Artefacts, true
+}
+
+// HasArtefacts returns a boolean if a field has been set.
+func (o *VhtRunJobItemLinks) HasArtefacts() bool {
+	if o != nil && !IsNil(o.Artefacts) {
+		return true
+	}
+
+	return false
+}
+
+// SetArtefacts gets a reference to the given HalLinkData and assigns it to the Artefacts field.
+func (o *VhtRunJobItemLinks) SetArtefacts(v HalLinkData) {
+	o.Artefacts = &v
 }
 
 // GetCancel returns the Cancel field value if set, zero value otherwise.
@@ -242,6 +275,9 @@ func (o VhtRunJobItemLinks) MarshalJSON() ([]byte, error) {
 
 func (o VhtRunJobItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Artefacts) {
+		toSerialize["artefacts"] = o.Artefacts
+	}
 	if !IsNil(o.Cancel) {
 		toSerialize["cancel"] = o.Cancel
 	}

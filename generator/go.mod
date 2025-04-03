@@ -4,10 +4,7 @@ go 1.24
 
 toolchain go1.24.1
 
-replace github.com/ARM-software/embedded-development-services-client/client => ../client
-
 require (
-	github.com/ARM-software/embedded-development-services-client/client v1.45.0
 	github.com/ARM-software/golang-utils/utils v1.89.0
 	github.com/deckarep/golang-set/v2 v2.8.0
 	github.com/getkin/kin-openapi v0.112.0
@@ -31,7 +28,6 @@ require (
 	github.com/evanphx/hclogr v0.2.0 // indirect
 	github.com/fatih/color v1.16.0 // indirect
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
-	github.com/go-faker/faker/v4 v4.6.0 // indirect
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-logr/zapr v1.3.0 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect

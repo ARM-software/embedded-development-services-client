@@ -8,6 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Artefacts** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Cancel** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Collection** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Delete** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
@@ -33,6 +34,31 @@ will change when the set of required properties is changed
 NewVhtRunJobItemLinksWithDefaults instantiates a new VhtRunJobItemLinks object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetArtefacts
+
+`func (o *VhtRunJobItemLinks) GetArtefacts() HalLinkData`
+
+GetArtefacts returns the Artefacts field if non-nil, zero value otherwise.
+
+### GetArtefactsOk
+
+`func (o *VhtRunJobItemLinks) GetArtefactsOk() (*HalLinkData, bool)`
+
+GetArtefactsOk returns a tuple with the Artefacts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetArtefacts
+
+`func (o *VhtRunJobItemLinks) SetArtefacts(v HalLinkData)`
+
+SetArtefacts sets Artefacts field to given value.
+
+### HasArtefacts
+
+`func (o *VhtRunJobItemLinks) HasArtefacts() bool`
+
+HasArtefacts returns a boolean if a field has been set.
 
 ### GetCancel
 

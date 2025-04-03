@@ -54,7 +54,7 @@ func (r ApiCheckPermissionRequest) Execute() (*PermissionItem, *http.Response, e
 /*
 CheckPermission Check permissions on a resource.
 
-Check the permissions a user is allowed to perform on a resource in the context of an origin.
+Check the operations a user is allowed to perform on a resource.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCheckPermissionRequest
