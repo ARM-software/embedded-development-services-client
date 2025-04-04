@@ -140,6 +140,35 @@ func New{{ .CollectionRef }}Collection() IStaticPage {
 	return New{{ .CollectionRef }}WithDefaults()
 }
 {{ end }}
+{{ range .JobItems -}}
+// ============================================================================================
+// This extends {{ .JobItemSchema }} definitions
+// ============================================================================================
+// FetchType returns the resource type
+func (o *{{ .JobItemSchema }}) FetchType() string {
+	return "{{ .JobItemSchema }}"
+}
+
+// FetchLinks returns the resource links if present
+func (o *{{ .JobItemSchema }}) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *{{ .JobItemSchema }}) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *{{ .JobItemSchema }}) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+{{ end }}
 {{ range .MessageCollections -}}
 // ============================================================================================
 // This extends {{ .ItemRef }} definitions

@@ -26,9 +26,11 @@ var (
 )
 
 const (
-	schemaPrefix   = "#/components/schemas/"
-	jsonMIME       = "application/json"
+	schemaPrefix = "#/components/schemas/"
+	jsonMIME     = "application/json"
+	// See https://github.com/Arm-Debug/API-Uniform-Contract?tab=readme-ov-file#api-extensions
 	redactFlag     = "x-redact"
+	jobFlag        = "x-job"
 	collectionFlag = "x-collection"
 )
 

@@ -1,7 +1,6 @@
 package codegen
 
 import (
-	"encoding/json"
 	"slices"
 	"strings"
 
@@ -18,10 +17,6 @@ type JobItems = []JobItem
 type JobItemsParams = struct {
 	JobItems
 }
-
-const (
-	JobItemName = "x-job" // See https://github.com/Arm-Debug/API-Uniform-Contract?tab=readme-ov-file#api-extensions
-)
 
 func AddJobItemsToParams(d *Data) (err error) {
 	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return GetJobItems(swagger) }, "jobs.go")
@@ -45,14 +40,12 @@ func GetJobItems(swagger *openapi3.T) (jobItems JobItemsParams, err error) {
 			continue
 		}
 
-		var isExtendedJobItem bool
-		if c, ok := schemaVal.ExtensionProps.Extensions[JobItemName].(json.RawMessage); ok {
-			err = json.Unmarshal(c, &isExtendedJobItem)
-			if err != nil {
-				return
-			}
+		isJobItem, subErr := isExtensionFlagSet(schemaVal.ExtensionProps, jobFlag)
+		if subErr != nil {
+			err = subErr
+			return
 		}
-		if isExtendedJobItem {
+		if isJobItem {
 			jobs = append(jobs, JobItem{schemaName})
 		}
 	}
