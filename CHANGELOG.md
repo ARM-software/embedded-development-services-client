@@ -2,6 +2,19 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.49.0" (2025-04-04)
+=====================
+
+Features
+--------
+
+- :sparkle: Add IMethod generation for Items that are not in Collections (#20250404155011)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.48.0" (2025-04-03)
 =====================
 
