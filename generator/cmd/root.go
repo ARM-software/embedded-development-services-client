@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -80,6 +81,12 @@ func RunCLI(ctx context.Context) (err error) {
 		return
 	}
 
+	err = codegen.CopyStaticFiles(filepath.Join("..", "extensions"))
+	if err != nil {
+		return
+	}
+
 	err = codegen.GenerateTemplateFile(ctx, d)
+
 	return
 }
