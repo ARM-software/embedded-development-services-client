@@ -7,7 +7,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"go/format"
+	"io/fs"
+	"os"
 	"path/filepath"
+	"strings"
 	"text/template"
 
 	"github.com/getkin/kin-openapi/openapi3"
@@ -23,6 +26,8 @@ import (
 var (
 	//go:embed templates/*
 	templates embed.FS
+	//go:embed static/*
+	static embed.FS
 )
 
 const (
@@ -193,4 +198,43 @@ func isExtensionFlagSet(props openapi3.ExtensionProps, flagKey string) (isSet bo
 		}
 	}
 	return
+}
+
+func CopyStaticFiles(destination string) error {
+	return fs.WalkDir(static, "static", func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+
+		if d.IsDir() {
+			return nil
+		}
+
+		if !strings.HasSuffix(path, ".go.static") {
+			return nil
+		}
+
+		if err := os.MkdirAll(destination, 0755); err != nil {
+			return commonerrors.Newf(commonerrors.ErrUnexpected, "failed to create directory`%s`: %s", destination, err.Error())
+		}
+
+		file, err := static.ReadFile(path)
+		if err != nil {
+			return commonerrors.Newf(commonerrors.ErrUnexpected, "failed to read static file `%s`: %s", path, err.Error())
+		}
+
+		resultFileName := strings.TrimPrefix(path, "static/")
+		resultFileName = strings.TrimSuffix(resultFileName, ".static")
+		destPath := filepath.Join(destination, resultFileName)
+
+		if _, err := os.Stat(destPath); err == nil {
+			return nil
+		}
+
+		if err := os.WriteFile(destPath, file, 0664); err != nil {
+			return commonerrors.Newf(commonerrors.ErrUnexpected, "failed to write static file `%s`: %s", destPath, err.Error())
+		}
+
+		return nil
+	})
 }
