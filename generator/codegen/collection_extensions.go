@@ -36,6 +36,7 @@ type NotificationFeedCollections []NotificationFeedCollection
 
 type CollectionParams = struct {
 	Collections
+	JobItems
 	MessageCollections
 	NotificationFeedCollections
 }
@@ -236,6 +237,30 @@ func newNotificationFeedCollection(itemRef string) NotificationFeedCollection {
 	}
 }
 
+func getStandaloneJobItems(swagger *openapi3.T, collections []Collection) (standalone JobItems, err error) {
+	jobsParams, subErr := GetJobItems(swagger)
+	if subErr != nil {
+		err = subErr
+		return
+	}
+
+	jobSet := mapset.NewSet[JobItem]()
+	for _, jobItem := range jobsParams.JobItems {
+		jobSet.Add(jobItem)
+	}
+
+	for _, collection := range collections {
+		jobTarget := JobItem{collection.ItemRef}
+		if jobSet.Contains(jobTarget) {
+			jobSet.Remove(jobTarget)
+		}
+	}
+
+	standalone = jobSet.ToSlice()
+
+	return
+}
+
 func GetCollections(swagger *openapi3.T) (collections CollectionParams, err error) {
 	collectionSet := mapset.NewSet[Collection]()
 	messageCollectionsSet := mapset.NewSet[MessageCollection]()
@@ -324,8 +349,15 @@ func GetCollections(swagger *openapi3.T) (collections CollectionParams, err erro
 	slices.SortFunc(messageCollectionSlice, func(a, b MessageCollection) int { return strings.Compare(a.ItemRef, b.ItemRef) })
 	slices.SortFunc(notificationFeedCollectionSlice, func(a, b NotificationFeedCollection) int { return strings.Compare(a.ItemRef, b.ItemRef) })
 
+	standaloneJobItems, subErr := getStandaloneJobItems(swagger, collectionSlice)
+	if subErr != nil {
+		err = subErr
+		return
+	}
+
 	collections = CollectionParams{
 		collectionSlice,
+		standaloneJobItems,
 		messageCollectionSlice,
 		notificationFeedCollectionSlice,
 	}
