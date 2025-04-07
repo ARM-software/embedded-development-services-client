@@ -2,6 +2,19 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.50.1" (2025-04-07)
+=====================
+
+Bugfixes
+--------
+
+- :bug: Fix static files fixed path output (#20250407145829)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.50.0" (2025-04-07)
 =====================
 
