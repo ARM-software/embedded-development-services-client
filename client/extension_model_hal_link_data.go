@@ -52,3 +52,14 @@ func NewHalLinkDataIterator(elements []HalLinkData) (IIterator, error) {
 		currentIndex: 0,
 	}, nil
 }
+
+// *************************************************************************************
+// Definitions for making types compatible with Client Utils
+// *************************************************************************************
+// GetNext returns the Next field value if set, zero value otherwise.
+func (o *HalCollectionLinks) GetNextP() *HalLinkData {
+	if o == nil || IsNil(o.Next) {
+		return nil
+	}
+	return o.Next
+}

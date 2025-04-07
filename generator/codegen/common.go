@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"go/format"
 	"path/filepath"
+	"strings"
 	"text/template"
 
 	"github.com/getkin/kin-openapi/openapi3"
@@ -23,6 +24,8 @@ import (
 var (
 	//go:embed templates/*
 	templates embed.FS
+	//go:embed static/*
+	static embed.FS
 )
 
 const (
@@ -195,4 +198,30 @@ func isExtensionFlagSet(props openapi3.ExtensionProps, flagKey string) (isSet bo
 		}
 	}
 	return
+}
+
+func CopyStaticFiles(ctx context.Context, destination string) error {
+	efs, fsErr := filesystem.NewEmbedFileSystem(&static)
+	if fsErr != nil {
+		return commonerrors.Newf(commonerrors.ErrUnexpected, "failed to create a filesystem for directory `%s`: %s", destination, fsErr.Error())
+	}
+
+	files, lsErr := efs.FindAll(".", "go.static")
+	if lsErr != nil {
+		return commonerrors.Newf(commonerrors.ErrUnexpected, "no files with the '.go.static' extension were found in the directory `%s`", destination)
+	}
+
+	mkdirErr := filesystem.MkDir(destination)
+	if mkdirErr != nil {
+		return commonerrors.Newf(commonerrors.ErrUnexpected, "could not create directory `%s`: %s", destination, mkdirErr.Error())
+	}
+
+	sfs := filesystem.NewStandardFileSystem()
+	for _, f := range files {
+		resultFileName := strings.TrimPrefix(f, "static/") // The embedded filesystem always uses Unix-style paths, regardless of the target platform
+		resultFileName = strings.TrimSuffix(resultFileName, ".static")
+		filesystem.CopyBetweenFS(ctx, efs, f, sfs, filepath.Join(destination, resultFileName))
+	}
+
+	return nil
 }
