@@ -7,8 +7,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"go/format"
-	"io/fs"
-	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
@@ -200,41 +198,28 @@ func isExtensionFlagSet(props openapi3.ExtensionProps, flagKey string) (isSet bo
 	return
 }
 
-func CopyStaticFiles(destination string) error {
-	return fs.WalkDir(static, "static", func(path string, d fs.DirEntry, err error) error {
-		if err != nil {
-			return err
-		}
+func CopyStaticFiles(ctx context.Context, destination string) error {
+	efs, fsErr := filesystem.NewEmbedFileSystem(&static)
+	if fsErr != nil {
+		return commonerrors.Newf(commonerrors.ErrUnexpected, "failed to create a filesystem for directory `%s`: %s", destination, fsErr.Error())
+	}
 
-		if d.IsDir() {
-			return nil
-		}
+	files, lsErr := efs.FindAll(".", "go.static")
+	if lsErr != nil {
+		return commonerrors.Newf(commonerrors.ErrUnexpected, "no files with the '.go.static' extension were found in the directory `%s`", destination)
+	}
 
-		if !strings.HasSuffix(path, ".go.static") {
-			return nil
-		}
+	mkdirErr := filesystem.MkDir(destination)
+	if mkdirErr != nil {
+		return commonerrors.Newf(commonerrors.ErrUnexpected, "could not create directory `%s`: %s", destination, mkdirErr.Error())
+	}
 
-		if err := os.MkdirAll(destination, 0755); err != nil {
-			return commonerrors.Newf(commonerrors.ErrUnexpected, "failed to create directory`%s`: %s", destination, err.Error())
-		}
-
-		file, err := static.ReadFile(path)
-		if err != nil {
-			return commonerrors.Newf(commonerrors.ErrUnexpected, "failed to read static file `%s`: %s", path, err.Error())
-		}
-
-		resultFileName := strings.TrimPrefix(path, "static/")
+	sfs := filesystem.NewStandardFileSystem()
+	for _, f := range files {
+		resultFileName := strings.TrimPrefix(f, "static/") // The embedded filesystem always uses Unix-style paths, regardless of the target platform
 		resultFileName = strings.TrimSuffix(resultFileName, ".static")
-		destPath := filepath.Join(destination, resultFileName)
+		filesystem.CopyBetweenFS(ctx, efs, f, sfs, filepath.Join(destination, resultFileName))
+	}
 
-		if _, err := os.Stat(destPath); err == nil {
-			return nil
-		}
-
-		if err := os.WriteFile(destPath, file, 0664); err != nil {
-			return commonerrors.Newf(commonerrors.ErrUnexpected, "failed to write static file `%s`: %s", destPath, err.Error())
-		}
-
-		return nil
-	})
+	return nil
 }
