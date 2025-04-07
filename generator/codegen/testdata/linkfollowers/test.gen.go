@@ -2,7 +2,7 @@
  * Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-
+// nolint
 package client
 
 import (
@@ -22,8 +22,6 @@ func (r *ApiGetBuildMessagesRequest) FollowGetBuildMessagesLink(link string) (*B
 
 // Follows a collection link. This function is based on the `GetBuildMessagesExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *BuildJobsAPIService) FollowGetBuildMessagesLink(r *ApiGetBuildMessagesRequest, link string) (*BuildMessageItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -176,8 +174,6 @@ func (r *ApiListBuildJobRequest) FollowBuildJobLink(link string) (*BuildJobColle
 
 // Follows a collection link. This function is based on the `ListBuildJobExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *BuildJobsAPIService) FollowBuildJobLink(r *ApiListBuildJobRequest, link string) (*BuildJobCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -324,8 +320,6 @@ func (r *ApiListBuildOutputManagersRequest) FollowBuildOutputManagersLink(link s
 
 // Follows a collection link. This function is based on the `ListBuildOutputManagersExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *BuildJobsAPIService) FollowBuildOutputManagersLink(r *ApiListBuildOutputManagersRequest, link string) (*ArtefactManagerCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -484,8 +478,6 @@ func (r *ApiListCmsisBuildersRequest) FollowCmsisBuildersLink(link string) (*Cms
 
 // Follows a collection link. This function is based on the `ListCmsisBuildersExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *CMSISBuildersAPIService) FollowCmsisBuildersLink(r *ApiListCmsisBuildersRequest, link string) (*CmsisBuilderCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -632,8 +624,6 @@ func (r *ApiListCmsisIntellisenseRequest) FollowCmsisIntellisenseLink(link strin
 
 // Follows a collection link. This function is based on the `ListCmsisIntellisenseExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *CMSISIntellisenseBuildersAPIService) FollowCmsisIntellisenseLink(r *ApiListCmsisIntellisenseRequest, link string) (*CmsisIntellisenseCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -780,8 +770,6 @@ func (r *ApiListFpgaConnectionsRequest) FollowFpgaConnectionsLink(link string) (
 
 // Follows a collection link. This function is based on the `ListFpgaConnectionsExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *FPGAConnectionAPIService) FollowFpgaConnectionsLink(r *ApiListFpgaConnectionsRequest, link string) (*FPGAConnectionCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -928,8 +916,6 @@ func (r *ApiGetFpgaJobMessagesRequest) FollowGetFpgaJobMessagesLink(link string)
 
 // Follows a collection link. This function is based on the `GetFpgaJobMessagesExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *FPGAJobsAPIService) FollowGetFpgaJobMessagesLink(r *ApiGetFpgaJobMessagesRequest, link string) (*NotificationFeed, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1082,8 +1068,6 @@ func (r *ApiListFpgaJobArtefactManagersRequest) FollowFpgaJobArtefactManagersLin
 
 // Follows a collection link. This function is based on the `ListFpgaJobArtefactManagersExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *FPGAJobsAPIService) FollowFpgaJobArtefactManagersLink(r *ApiListFpgaJobArtefactManagersRequest, link string) (*ArtefactManagerCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1242,8 +1226,6 @@ func (r *ApiListPayloadsRequest) FollowPayloadsLink(link string) (*FPGAPayloadCo
 
 // Follows a collection link. This function is based on the `ListPayloadsExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *FPGAPayloadsAPIService) FollowPayloadsLink(r *ApiListPayloadsRequest, link string) (*FPGAPayloadCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1390,8 +1372,6 @@ func (r *ApiGetGenericWorkJobMessagesRequest) FollowGetGenericWorkJobMessagesLin
 
 // Follows a collection link. This function is based on the `GetGenericWorkJobMessagesExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *GenericWorkJobsAPIService) FollowGetGenericWorkJobMessagesLink(r *ApiGetGenericWorkJobMessagesRequest, link string) (*NotificationFeed, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1544,8 +1524,6 @@ func (r *ApiListGenericWorkJobArtefactManagersRequest) FollowGenericWorkJobArtef
 
 // Follows a collection link. This function is based on the `ListGenericWorkJobArtefactManagersExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *GenericWorkJobsAPIService) FollowGenericWorkJobArtefactManagersLink(r *ApiListGenericWorkJobArtefactManagersRequest, link string) (*ArtefactManagerCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1704,8 +1682,6 @@ func (r *ApiListGenericWorkJobsRequest) FollowGenericWorkJobsLink(link string) (
 
 // Follows a collection link. This function is based on the `ListGenericWorkJobsExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *GenericWorkJobsAPIService) FollowGenericWorkJobsLink(r *ApiListGenericWorkJobsRequest, link string) (*GenericWorkJobCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1852,8 +1828,6 @@ func (r *ApiListGenericWorkersRequest) FollowGenericWorkersLink(link string) (*G
 
 // Follows a collection link. This function is based on the `ListGenericWorkersExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *GenericWorkersAPIService) FollowGenericWorkersLink(r *ApiListGenericWorkersRequest, link string) (*GenericWorkerCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2000,8 +1974,6 @@ func (r *ApiGetIntellisenseMessagesRequest) FollowGetIntellisenseMessagesLink(li
 
 // Follows a collection link. This function is based on the `GetIntellisenseMessagesExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *IntellisenseJobsAPIService) FollowGetIntellisenseMessagesLink(r *ApiGetIntellisenseMessagesRequest, link string) (*IntellisenseMessageItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2154,8 +2126,6 @@ func (r *ApiListIntellisenseJobRequest) FollowIntellisenseJobLink(link string) (
 
 // Follows a collection link. This function is based on the `ListIntellisenseJobExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *IntellisenseJobsAPIService) FollowIntellisenseJobLink(r *ApiListIntellisenseJobRequest, link string) (*IntellisenseJobCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2302,8 +2272,6 @@ func (r *ApiListIntellisenseOutputManagersRequest) FollowIntellisenseOutputManag
 
 // Follows a collection link. This function is based on the `ListIntellisenseOutputManagersExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *IntellisenseJobsAPIService) FollowIntellisenseOutputManagersLink(r *ApiListIntellisenseOutputManagersRequest, link string) (*ArtefactManagerCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2462,8 +2430,6 @@ func (r *ApiGetVhtRunJobMessagesRequest) FollowGetVhtRunJobMessagesLink(link str
 
 // Follows a collection link. This function is based on the `GetVhtRunJobMessagesExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *VHTRunJobsAPIService) FollowGetVhtRunJobMessagesLink(r *ApiGetVhtRunJobMessagesRequest, link string) (*NotificationFeed, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2616,8 +2582,6 @@ func (r *ApiListVhtRunJobsRequest) FollowVhtRunJobsLink(link string) (*VhtRunJob
 
 // Follows a collection link. This function is based on the `ListVhtRunJobsExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *VHTRunJobsAPIService) FollowVhtRunJobsLink(r *ApiListVhtRunJobsRequest, link string) (*VhtRunJobCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2764,8 +2728,6 @@ func (r *ApiListFilteredVhtInstancesRequest) FollowFilteredVhtInstancesLink(link
 
 // Follows a collection link. This function is based on the `ListFilteredVhtInstancesExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *VirtualHardwareTargetAPIService) FollowFilteredVhtInstancesLink(r *ApiListFilteredVhtInstancesRequest, link string) (*VhtInstanceCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2913,8 +2875,6 @@ func (r *ApiListVhtsRequest) FollowVhtsLink(link string) (*VhtCollection, *http.
 
 // Follows a collection link. This function is based on the `ListVhtsExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *VirtualHardwareTargetAPIService) FollowVhtsLink(r *ApiListVhtsRequest, link string) (*VhtCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3061,8 +3021,6 @@ func (r *ApiGetVhtInstanceMessagesRequest) FollowGetVhtInstanceMessagesLink(link
 
 // Follows a collection link. This function is based on the `GetVhtInstanceMessagesExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *VirtualHardwareTargetInstanceAPIService) FollowGetVhtInstanceMessagesLink(r *ApiGetVhtInstanceMessagesRequest, link string) (*NotificationFeed, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3215,8 +3173,6 @@ func (r *ApiListVhtInstanceArtefactManagersRequest) FollowVhtInstanceArtefactMan
 
 // Follows a collection link. This function is based on the `ListVhtInstanceArtefactManagersExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *VirtualHardwareTargetInstanceAPIService) FollowVhtInstanceArtefactManagersLink(r *ApiListVhtInstanceArtefactManagersRequest, link string) (*ArtefactManagerCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3375,8 +3331,6 @@ func (r *ApiListVhtInstancesRequest) FollowVhtInstancesLink(link string) (*VhtIn
 
 // Follows a collection link. This function is based on the `ListVhtInstancesExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *VirtualHardwareTargetInstanceAPIService) FollowVhtInstancesLink(r *ApiListVhtInstancesRequest, link string) (*VhtInstanceCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3523,8 +3477,6 @@ func (r *ApiListWorkspacesRequest) FollowWorkspacesLink(link string) (*Workspace
 
 // Follows a collection link. This function is based on the `ListWorkspacesExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *WorkspaceAPIService) FollowWorkspacesLink(r *ApiListWorkspacesRequest, link string) (*WorkspaceCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3671,8 +3623,6 @@ func (r *ApiListWorkspaceSourcesRequest) FollowWorkspaceSourcesLink(link string)
 
 // Follows a collection link. This function is based on the `ListWorkspaceSourcesExecute` function, with one key difference:
 // instead of using a fixed endpoint path, `localVarPath` is defined as the base URL + the `link` provided in the arguments.
-//
-//nolint:stylecheck,gocritic
 func (a *WorkspaceSourceAPIService) FollowWorkspaceSourcesLink(r *ApiListWorkspaceSourcesRequest, link string) (*WorkspaceSourceCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
