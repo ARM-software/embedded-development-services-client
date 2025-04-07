@@ -2,6 +2,25 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.51.0" (2025-04-07)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20250407153229, #20250407155638)
+
+
+Bugfixes
+--------
+
+- :gear: Add a global nolint directive to the generated files (#20250407162739)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.50.1" (2025-04-07)
 =====================
 
