@@ -14,9 +14,10 @@ func TestJobItemsExtensions(t *testing.T) {
 	t.Run("Test Successful Generation", func(t *testing.T) {
 		tmpDir := t.TempDir()
 		d, err := GenerateDataStruct(ExtensionsConfig{
-			Input:    filepath.Join("testdata", "jobs", "test.json"),
-			Template: filepath.Join("templates", "jobs.go.tmpl"),
-			Output:   filepath.Join(tmpDir, "test.go"),
+			Input:             filepath.Join("testdata", "jobs", "test.json"),
+			Template:          filepath.Join("templates", "jobs.go.tmpl"),
+			Output:            filepath.Join(tmpDir, "test.go"),
+			ClientPackagePath: filepath.Join("..", "..", "client"),
 		})
 		require.NoError(t, err)
 
@@ -40,9 +41,10 @@ func TestJobItemsExtensions(t *testing.T) {
 	t.Run("Test Successful Generation (with all redacts)", func(t *testing.T) {
 		tmpDir := t.TempDir()
 		d, err := GenerateDataStruct(ExtensionsConfig{
-			Input:    filepath.Join("testdata", "jobs", "test-all-redacted.json"),
-			Template: filepath.Join("templates", "jobs.go.tmpl"),
-			Output:   filepath.Join(tmpDir, "test.go"),
+			Input:             filepath.Join("testdata", "jobs", "test-all-redacted.json"),
+			Template:          filepath.Join("templates", "jobs.go.tmpl"),
+			Output:            filepath.Join(tmpDir, "test.go"),
+			ClientPackagePath: filepath.Join("..", "..", "client"),
 		})
 		require.NoError(t, err)
 
@@ -66,9 +68,10 @@ func TestJobItemsExtensions(t *testing.T) {
 	t.Run("Test Successful Generation (with some redacts)", func(t *testing.T) {
 		tmpDir := t.TempDir()
 		d, err := GenerateDataStruct(ExtensionsConfig{
-			Input:    filepath.Join("testdata", "jobs", "test-some-redacted.json"),
-			Template: filepath.Join("templates", "jobs.go.tmpl"),
-			Output:   filepath.Join(tmpDir, "test.go"),
+			Input:             filepath.Join("testdata", "jobs", "test-some-redacted.json"),
+			Template:          filepath.Join("templates", "jobs.go.tmpl"),
+			Output:            filepath.Join(tmpDir, "test.go"),
+			ClientPackagePath: filepath.Join("..", "..", "client"),
 		})
 		require.NoError(t, err)
 
