@@ -85,7 +85,7 @@ func (cfg *ExtensionsConfig) Validate() error {
 
 func getPackageNameFromPath(clientPath string) (clientName string, err error) {
 	if clientPath == "" {
-		err = commonerrors.Newf(commonerrors.ErrUnexpected, "missing client package path, provide a client package path using '-c' or '--client_path'")
+		err = commonerrors.Newf(commonerrors.ErrUndefined, "missing client package path, provide a client package path using '-c' or '--client_path'")
 		return
 	}
 	isDir, err := filesystem.IsDir(clientPath)
@@ -94,7 +94,7 @@ func getPackageNameFromPath(clientPath string) (clientName string, err error) {
 	}
 
 	if !isDir {
-		err = commonerrors.Newf(commonerrors.ErrUnexpected, "client path '%s' is not a directory", clientPath)
+		err = commonerrors.Newf(commonerrors.ErrInvalid, "client path '%s' is not a directory", clientPath)
 		return
 	}
 
@@ -245,7 +245,7 @@ func CopyStaticFiles(ctx context.Context, clientName string, destination string)
 
 	for _, f := range files {
 		t, tmplErr := template.
-			New(filepath.Base(f)).
+			New(filesystem.FilePathBase(efs, f)).
 			ParseFS(static, f)
 		if tmplErr != nil {
 			return tmplErr
