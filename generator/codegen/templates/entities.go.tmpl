@@ -3,14 +3,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package client
+package {{ .PackageName }}
 
 import (
 	"errors"
 	"fmt"
 )
 
-{{ range .Collections }}
+{{ range .Params.Collections }}
 // ============================================================================================
 // This extends {{ .ItemRef }} and {{ .CollectionRef }} definitions
 // ============================================================================================
@@ -140,7 +140,7 @@ func New{{ .CollectionRef }}Collection() IStaticPage {
 	return New{{ .CollectionRef }}WithDefaults()
 }
 {{ end }}
-{{ range .JobItems -}}
+{{ range .Params.JobItems -}}
 // ============================================================================================
 // This extends {{ .JobItemSchema }} definitions
 // ============================================================================================
@@ -169,7 +169,7 @@ func (o *{{ .JobItemSchema }}) FetchTitle() (string, error) {
 	return o.GetTitle(), nil
 }
 {{ end }}
-{{ range .MessageCollections -}}
+{{ range .Params.MessageCollections -}}
 // ============================================================================================
 // This extends {{ .ItemRef }} definitions
 // ============================================================================================
@@ -211,7 +211,7 @@ func New{{ .IteratorRef }}(elements []{{ .ItemRef }}) (IIterator, error) {
 	}, nil
 }
 {{ end }}
-{{ range .NotificationFeedCollections -}}
+{{ range .Params.NotificationFeedCollections -}}
 // ============================================================================================
 // This extends {{ .ItemRef }} definitions
 // ============================================================================================

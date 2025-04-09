@@ -81,7 +81,7 @@ func RunCLI(ctx context.Context) (err error) {
 		return
 	}
 
-	err = codegen.CopyStaticFiles(ctx, filepath.Dir(d.DestinationPath))
+	err = codegen.CopyStaticFiles(ctx, d.PackageName, filepath.Dir(d.DestinationPath))
 	if err != nil {
 		return
 	}

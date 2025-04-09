@@ -93,8 +93,8 @@ jobs:
       run: |
         cd generator
         go mod tidy
-        go run main.go -i ../all-service-definition/all-def-flat.yaml -o ../extensions/extension_entities.gen.go -t templates/entities.go.tmpl -g collections
-        go run main.go -i ../all-service-definition/all-def-flat.yaml -o ../extensions/extension_jobs.gen.go -t templates/jobs.go.tmpl -g jobs
+        go run main.go -i ../all-service-definition/all-def-flat.yaml -o ../extensions/extension_entities.gen.go -t templates/entities.go.tmpl -g collections -c ../client
+        go run main.go -i ../all-service-definition/all-def-flat.yaml -o ../extensions/extension_jobs.gen.go -t templates/jobs.go.tmpl -g jobs -c ../client
         go run main.go -i ../all-service-definition/all-def-flat.yaml -o ../extensions/extension_link_followers.gen.go -t templates/linkfollowers.go.tmpl -g links -c ../client
     - name: Copy extensions to client
       run: |

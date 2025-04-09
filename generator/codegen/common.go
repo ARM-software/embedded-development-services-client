@@ -43,6 +43,7 @@ type Data struct {
 	TemplatePath      string
 	DestinationPath   string
 	ClientPackagePath string
+	PackageName       string
 }
 
 var ValidGenerationTargets = map[string]func(*Data) error{
@@ -82,12 +83,38 @@ func (cfg *ExtensionsConfig) Validate() error {
 	)
 }
 
+func getPackageNameFromPath(clientPath string) (clientName string, err error) {
+	if clientPath == "" {
+		err = commonerrors.Newf(commonerrors.ErrUndefined, "missing client package path, provide a client package path using '-c' or '--client_path'")
+		return
+	}
+	isDir, err := filesystem.IsDir(clientPath)
+	if err != nil {
+		return
+	}
+
+	if !isDir {
+		err = commonerrors.Newf(commonerrors.ErrInvalid, "client path '%s' is not a directory", clientPath)
+		return
+	}
+
+	clientName = filepath.Base(clientPath)
+
+	return
+}
+
 func GenerateDataStruct(cfg ExtensionsConfig) (d *Data, err error) {
+	clientName, err := getPackageNameFromPath(cfg.ClientPackagePath)
+	if err != nil {
+		return
+	}
+
 	return &Data{
 		DestinationPath:   cfg.Output,
 		SpecPath:          cfg.Input,
 		TemplatePath:      cfg.Template,
 		ClientPackagePath: cfg.ClientPackagePath,
+		PackageName:       clientName,
 	}, nil
 }
 
@@ -135,7 +162,7 @@ func generateSourceCode(ctx context.Context, data *Data, template *template.Temp
 	}
 
 	var tempBuffer bytes.Buffer
-	err = template.Execute(&tempBuffer, data.Params)
+	err = template.Execute(&tempBuffer, data)
 	if err != nil {
 		return
 	}
@@ -200,7 +227,7 @@ func isExtensionFlagSet(props openapi3.ExtensionProps, flagKey string) (isSet bo
 	return
 }
 
-func CopyStaticFiles(ctx context.Context, destination string) error {
+func CopyStaticFiles(ctx context.Context, clientName string, destination string) (err error) {
 	efs, fsErr := filesystem.NewEmbedFileSystem(&static)
 	if fsErr != nil {
 		return commonerrors.Newf(commonerrors.ErrUnexpected, "failed to create a filesystem for directory `%s`: %s", destination, fsErr.Error())
@@ -216,12 +243,27 @@ func CopyStaticFiles(ctx context.Context, destination string) error {
 		return commonerrors.Newf(commonerrors.ErrUnexpected, "could not create directory `%s`: %s", destination, mkdirErr.Error())
 	}
 
-	sfs := filesystem.NewStandardFileSystem()
 	for _, f := range files {
+		t, tmplErr := template.
+			New(filesystem.FilePathBase(efs, f)).
+			ParseFS(static, f)
+		if tmplErr != nil {
+			return tmplErr
+		}
+
 		resultFileName := strings.TrimPrefix(f, "static/") // The embedded filesystem always uses Unix-style paths, regardless of the target platform
 		resultFileName = strings.TrimSuffix(resultFileName, ".static")
-		filesystem.CopyBetweenFS(ctx, efs, f, sfs, filepath.Join(destination, resultFileName))
+
+		d := Data{
+			DestinationPath: filepath.Join(destination, resultFileName),
+			PackageName:     clientName,
+		}
+		err = generateSourceCode(ctx, &d, t)
+		if err != nil {
+			return
+		}
+
 	}
 
-	return nil
+	return
 }
