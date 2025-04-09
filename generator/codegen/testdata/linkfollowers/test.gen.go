@@ -7,6 +7,7 @@ package client
 
 import (
 	"bytes"
+	"errors"
 	"io"
 	"net/http"
 	"net/url"
@@ -33,6 +34,9 @@ func (a *BuildJobsAPIService) FollowGetBuildMessagesLink(r *ApiGetBuildMessagesR
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.GetBuildMessages")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
 	}
 
 	localVarPath := localBasePath + link
@@ -186,6 +190,9 @@ func (a *BuildJobsAPIService) FollowBuildJobLink(r *ApiListBuildJobRequest, link
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
+	}
 
 	localVarPath := localBasePath + link
 
@@ -331,6 +338,9 @@ func (a *BuildJobsAPIService) FollowBuildOutputManagersLink(r *ApiListBuildOutpu
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BuildJobsAPIService.ListBuildOutputManagers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
 	}
 
 	localVarPath := localBasePath + link
@@ -490,6 +500,9 @@ func (a *CMSISBuildersAPIService) FollowCmsisBuildersLink(r *ApiListCmsisBuilder
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
+	}
 
 	localVarPath := localBasePath + link
 
@@ -635,6 +648,9 @@ func (a *CMSISIntellisenseBuildersAPIService) FollowCmsisIntellisenseLink(r *Api
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CMSISIntellisenseBuildersAPIService.ListCmsisIntellisense")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
 	}
 
 	localVarPath := localBasePath + link
@@ -782,6 +798,9 @@ func (a *FPGAConnectionAPIService) FollowFpgaConnectionsLink(r *ApiListFpgaConne
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
+	}
 
 	localVarPath := localBasePath + link
 
@@ -927,6 +946,9 @@ func (a *FPGAJobsAPIService) FollowGetFpgaJobMessagesLink(r *ApiGetFpgaJobMessag
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FPGAJobsAPIService.GetFpgaJobMessages")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
 	}
 
 	localVarPath := localBasePath + link
@@ -1079,6 +1101,9 @@ func (a *FPGAJobsAPIService) FollowFpgaJobArtefactManagersLink(r *ApiListFpgaJob
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FPGAJobsAPIService.ListFpgaJobArtefactManagers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
 	}
 
 	localVarPath := localBasePath + link
@@ -1238,6 +1263,9 @@ func (a *FPGAPayloadsAPIService) FollowPayloadsLink(r *ApiListPayloadsRequest, l
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
+	}
 
 	localVarPath := localBasePath + link
 
@@ -1383,6 +1411,9 @@ func (a *GenericWorkJobsAPIService) FollowGetGenericWorkJobMessagesLink(r *ApiGe
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GenericWorkJobsAPIService.GetGenericWorkJobMessages")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
 	}
 
 	localVarPath := localBasePath + link
@@ -1535,6 +1566,9 @@ func (a *GenericWorkJobsAPIService) FollowGenericWorkJobArtefactManagersLink(r *
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GenericWorkJobsAPIService.ListGenericWorkJobArtefactManagers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
 	}
 
 	localVarPath := localBasePath + link
@@ -1694,6 +1728,9 @@ func (a *GenericWorkJobsAPIService) FollowGenericWorkJobsLink(r *ApiListGenericW
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
+	}
 
 	localVarPath := localBasePath + link
 
@@ -1840,6 +1877,9 @@ func (a *GenericWorkersAPIService) FollowGenericWorkersLink(r *ApiListGenericWor
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
+	}
 
 	localVarPath := localBasePath + link
 
@@ -1985,6 +2025,9 @@ func (a *IntellisenseJobsAPIService) FollowGetIntellisenseMessagesLink(r *ApiGet
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsAPIService.GetIntellisenseMessages")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
 	}
 
 	localVarPath := localBasePath + link
@@ -2138,6 +2181,9 @@ func (a *IntellisenseJobsAPIService) FollowIntellisenseJobLink(r *ApiListIntelli
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
+	}
 
 	localVarPath := localBasePath + link
 
@@ -2283,6 +2329,9 @@ func (a *IntellisenseJobsAPIService) FollowIntellisenseOutputManagersLink(r *Api
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IntellisenseJobsAPIService.ListIntellisenseOutputManagers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
 	}
 
 	localVarPath := localBasePath + link
@@ -2442,6 +2491,9 @@ func (a *VHTRunJobsAPIService) FollowGetVhtRunJobMessagesLink(r *ApiGetVhtRunJob
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
+	}
 
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
@@ -2594,6 +2646,9 @@ func (a *VHTRunJobsAPIService) FollowVhtRunJobsLink(r *ApiListVhtRunJobsRequest,
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
+	}
 
 	localVarPath := localBasePath + link
 
@@ -2739,6 +2794,9 @@ func (a *VirtualHardwareTargetAPIService) FollowFilteredVhtInstancesLink(r *ApiL
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetAPIService.ListFilteredVhtInstances")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
 	}
 
 	localVarPath := localBasePath + link
@@ -2887,6 +2945,9 @@ func (a *VirtualHardwareTargetAPIService) FollowVhtsLink(r *ApiListVhtsRequest, 
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
+	}
 
 	localVarPath := localBasePath + link
 
@@ -3032,6 +3093,9 @@ func (a *VirtualHardwareTargetInstanceAPIService) FollowGetVhtInstanceMessagesLi
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceAPIService.GetVhtInstanceMessages")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
 	}
 
 	localVarPath := localBasePath + link
@@ -3184,6 +3248,9 @@ func (a *VirtualHardwareTargetInstanceAPIService) FollowVhtInstanceArtefactManag
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualHardwareTargetInstanceAPIService.ListVhtInstanceArtefactManagers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
 	}
 
 	localVarPath := localBasePath + link
@@ -3343,6 +3410,9 @@ func (a *VirtualHardwareTargetInstanceAPIService) FollowVhtInstancesLink(r *ApiL
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
+	}
 
 	localVarPath := localBasePath + link
 
@@ -3489,6 +3559,9 @@ func (a *WorkspaceAPIService) FollowWorkspacesLink(r *ApiListWorkspacesRequest, 
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
+	}
 
 	localVarPath := localBasePath + link
 
@@ -3634,6 +3707,9 @@ func (a *WorkspaceSourceAPIService) FollowWorkspaceSourcesLink(r *ApiListWorkspa
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceSourceAPIService.ListWorkspaceSources")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+	if link == "" {
+		return nil, nil, errors.New("empty link")
 	}
 
 	localVarPath := localBasePath + link
