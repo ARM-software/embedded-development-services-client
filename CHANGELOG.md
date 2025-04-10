@@ -2,6 +2,19 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.52.0" (2025-04-09)
+=====================
+
+Features
+--------
+
+- :sparkles: Update the generator to templatize the package name (#20250408155442)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.51.0" (2025-04-07)
 =====================
 

@@ -15,9 +15,10 @@ func TestCollectionExtensions(t *testing.T) {
 	t.Run("Test Successful Generation", func(t *testing.T) {
 		tmpDir := t.TempDir()
 		d, err := GenerateDataStruct(ExtensionsConfig{
-			Input:    filepath.Join("testdata", "collections", "test.json"),
-			Template: filepath.Join("templates", "entities.go.tmpl"),
-			Output:   filepath.Join(tmpDir, "test.go"),
+			Input:             filepath.Join("testdata", "collections", "test.json"),
+			Template:          filepath.Join("templates", "entities.go.tmpl"),
+			Output:            filepath.Join(tmpDir, "test.go"),
+			ClientPackagePath: filepath.Join("..", "..", "client"),
 		})
 		require.NoError(t, err)
 
@@ -41,9 +42,10 @@ func TestCollectionExtensions(t *testing.T) {
 	t.Run("Test Successful Generation (with all redacts)", func(t *testing.T) {
 		tmpDir := t.TempDir()
 		d, err := GenerateDataStruct(ExtensionsConfig{
-			Input:    filepath.Join("testdata", "collections", "test-all-redacted.json"),
-			Template: filepath.Join("templates", "entities.go.tmpl"),
-			Output:   filepath.Join(tmpDir, "test.go"),
+			Input:             filepath.Join("testdata", "collections", "test-all-redacted.json"),
+			Template:          filepath.Join("templates", "entities.go.tmpl"),
+			Output:            filepath.Join(tmpDir, "test.go"),
+			ClientPackagePath: filepath.Join("..", "..", "client"),
 		})
 		require.NoError(t, err)
 
@@ -67,9 +69,10 @@ func TestCollectionExtensions(t *testing.T) {
 	t.Run("Test Successful Generation (with some redacts)", func(t *testing.T) {
 		tmpDir := t.TempDir()
 		d, err := GenerateDataStruct(ExtensionsConfig{
-			Input:    filepath.Join("testdata", "collections", "test-some-redacted.json"),
-			Template: filepath.Join("templates", "entities.go.tmpl"),
-			Output:   filepath.Join(tmpDir, "test.go"),
+			Input:             filepath.Join("testdata", "collections", "test-some-redacted.json"),
+			Template:          filepath.Join("templates", "entities.go.tmpl"),
+			Output:            filepath.Join(tmpDir, "test.go"),
+			ClientPackagePath: filepath.Join("..", "..", "client"),
 		})
 		require.NoError(t, err)
 

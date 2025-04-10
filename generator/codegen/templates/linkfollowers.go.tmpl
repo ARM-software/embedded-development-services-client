@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 // nolint:stylecheck,gocritic,revive
-package client
+package {{ .PackageName }}
 
 import (
 	"bytes"
@@ -13,7 +13,7 @@ import (
 	"strings"
 )
 
-{{ range .Followers -}}
+{{ range .Params.Followers -}}
 // =================================================================================================================
 // This extends {{ .APIRequest }} and {{ .APIService }} definitions
 // =================================================================================================================
