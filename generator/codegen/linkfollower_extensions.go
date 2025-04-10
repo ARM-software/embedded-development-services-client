@@ -259,11 +259,55 @@ func getReceiverType(fn *ast.FuncDecl) (receiver string, err error) {
 	return
 }
 
+func createEmptyLinkCheck() *ast.IfStmt {
+	// link == ""
+	cond := &ast.BinaryExpr{
+		X:  &ast.Ident{Name: "link"},
+		Op: token.EQL,
+		Y:  &ast.BasicLit{Kind: token.STRING, Value: "\"\""},
+	}
+
+	// errors.New("empty link")
+	callExpr := &ast.CallExpr{
+		Fun: &ast.SelectorExpr{
+			X:   &ast.Ident{Name: "errors"},
+			Sel: &ast.Ident{Name: "New"},
+		},
+		Args: []ast.Expr{
+			&ast.BasicLit{Kind: token.STRING, Value: "\"empty link\""},
+		},
+	}
+
+	// return nil, nil, errors.New("empty link")
+	retStmt := &ast.ReturnStmt{
+		Results: []ast.Expr{
+			&ast.Ident{Name: "nil"},
+			&ast.Ident{Name: "nil"},
+			callExpr,
+		},
+	}
+
+	// { return nil, nil, errors.New("empty link") }
+	block := &ast.BlockStmt{
+		List: []ast.Stmt{retStmt},
+	}
+
+	// if link == "" {
+	//     return nil, nil, errors.New("empty link")
+	// }
+	ifStmt := &ast.IfStmt{
+		Cond: cond,
+		Body: block,
+	}
+
+	return ifStmt
+}
+
 func modifyLocalVarPath(fn *ast.FuncDecl) (err error) {
 	// This function looks for a definition of localVarPath, `localVarPath := localBasePath + "path"`,
 	// and replaces the `"path"` part with `link`.
 	// ex: localVarPath := localBasePath + "/build-jobs/" -> `localVarPath := localBasePath + link`
-	for _, stmt := range fn.Body.List {
+	for i, stmt := range fn.Body.List {
 		assign, ok := stmt.(*ast.AssignStmt)
 		if !ok {
 			continue
@@ -272,6 +316,14 @@ func modifyLocalVarPath(fn *ast.FuncDecl) (err error) {
 		if assign.Tok == token.DEFINE && len(assign.Lhs) > 0 {
 			if ident, ok := assign.Lhs[0].(*ast.Ident); ok && ident.Name == "localVarPath" {
 				if expr, ok := assign.Rhs[0].(*ast.BinaryExpr); ok && len(assign.Rhs) > 0 {
+					// Add empty string check before modification
+					newBody := make([]ast.Stmt, 0, len(fn.Body.List)+1)
+					newBody = append(newBody, fn.Body.List[:i]...)
+					newBody = append(newBody, createEmptyLinkCheck())
+					newBody = append(newBody, fn.Body.List[i:]...)
+					fn.Body.List = newBody
+
+					// Modify the line
 					expr.Y = ast.NewIdent(resourcePath)
 				}
 
