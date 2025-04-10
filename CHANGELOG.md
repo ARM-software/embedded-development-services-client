@@ -2,6 +2,20 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.53.0" (2025-04-10)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20250409172526)
+- :sparkles: Inject empty string check into link followers (#20250409181749)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.52.0" (2025-04-09)
 =====================
 
