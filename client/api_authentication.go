@@ -392,7 +392,7 @@ func (a *AuthenticationAPIService) GetMeExecute(r ApiGetMeRequest) (*UserItem, *
 type ApiGetUserRequest struct {
 	ctx context.Context
 	ApiService *AuthenticationAPIService
-	name string
+	userName string
 	acceptVersion *string
 }
 
@@ -412,14 +412,14 @@ GetUser Get user information
 Return user data associated with the specified user item.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name The identifier of the user.
+ @param userName The identifier of the user.
  @return ApiGetUserRequest
 */
-func (a *AuthenticationAPIService) GetUser(ctx context.Context, name string) ApiGetUserRequest {
+func (a *AuthenticationAPIService) GetUser(ctx context.Context, userName string) ApiGetUserRequest {
 	return ApiGetUserRequest{
 		ApiService: a,
 		ctx: ctx,
-		name: name,
+		userName: userName,
 	}
 }
 
@@ -438,8 +438,8 @@ func (a *AuthenticationAPIService) GetUserExecute(r ApiGetUserRequest) (*UserIte
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/users/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", parameterValueToString(r.name, "name"), -1)
+	localVarPath := localBasePath + "/users/{userName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"userName"+"}", parameterValueToString(r.userName, "userName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

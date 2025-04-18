@@ -1301,6 +1301,135 @@ func NewGenericWorkerCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
+// This extends InstancePermissionItem and InstancePermissionCollection definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *InstancePermissionItem) FetchType() string {
+	return "InstancePermissionItem"
+}
+
+// FetchLinks returns the resource links if present
+func (o *InstancePermissionItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *InstancePermissionItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *InstancePermissionItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// NewInstancePermissionModel returns a model.
+func NewInstancePermissionModel() IModel {
+	return NewInstancePermissionItemWithDefaults()
+}
+
+// InstancePermissionIterator defines an iterator over a collection.
+type InstancePermissionIterator struct {
+	elements     []InstancePermissionItem
+	currentIndex int
+}
+
+func (m *InstancePermissionIterator) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *InstancePermissionIterator) GetNext() (item any, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func NewInstancePermissionIterator(elements []InstancePermissionItem) (IIterator, error) {
+	return &InstancePermissionIterator{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
+
+// FetchType returns the resource type
+func (o *InstancePermissionCollection) FetchType() string {
+	return "InstancePermissionCollection page"
+}
+
+// FetchLinks returns the resource links if present
+func (o *InstancePermissionCollection) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *InstancePermissionCollection) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *InstancePermissionCollection) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *InstancePermissionCollection) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *InstancePermissionCollection) GetItemIterator() (IIterator, error) {
+	if o.HasEmbedded() {
+		embedded := o.GetEmbedded()
+		return NewInstancePermissionIterator(embedded.GetItem())
+	}
+	links, err := o.FetchLinks()
+	if err != nil {
+		return nil, err
+	}
+	l, ok := links.(HalCollectionLinks)
+	if !ok {
+		return nil, fmt.Errorf("wrong link type [%T]; expected [HalCollectionLinks]", links)
+	}
+	return NewHalLinkDataIterator(l.GetItem())
+}
+
+func (o *InstancePermissionCollection) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewInstancePermissionCollection returns a page.
+func NewInstancePermissionCollectionCollection() IStaticPage {
+	return NewInstancePermissionCollectionWithDefaults()
+}
+
+// ============================================================================================
 // This extends IntellisenseJobItem and IntellisenseJobCollection definitions
 // ============================================================================================
 

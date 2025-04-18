@@ -10,7 +10,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateUser**](AuthenticationAPI.md#CreateUser) | **Post** /users/ | Create a user.
 [**GetMe**](AuthenticationAPI.md#GetMe) | **Get** /users/me | Get my user information
-[**GetUser**](AuthenticationAPI.md#GetUser) | **Get** /users/{name} | Get user information
+[**GetUser**](AuthenticationAPI.md#GetUser) | **Get** /users/{userName} | Get user information
 
 
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## GetUser
 
-> UserItem GetUser(ctx, name).AcceptVersion(acceptVersion).Execute()
+> UserItem GetUser(ctx, userName).AcceptVersion(acceptVersion).Execute()
 
 Get user information
 
@@ -169,12 +169,12 @@ import (
 )
 
 func main() {
-	name := "name_example" // string | The identifier of the user.
+	userName := "userName_example" // string | The identifier of the user.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthenticationAPI.GetUser(context.Background(), name).AcceptVersion(acceptVersion).Execute()
+	resp, r, err := apiClient.AuthenticationAPI.GetUser(context.Background(), userName).AcceptVersion(acceptVersion).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.GetUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -190,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** | The identifier of the user. | 
+**userName** | **string** | The identifier of the user. | 
 
 ### Other Parameters
 

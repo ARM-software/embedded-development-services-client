@@ -8,6 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Operations** | **[]string** | The list of allowed CRUDL operations. | 
 **ResourceInstance** | **string** | The unique identifier of the resource instance. | 
 **ResourceOwnerName** | **string** | The unique identifier of the user or system entity that owns the specified resource instance. | 
@@ -19,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewPermissionItem
 
-`func NewPermissionItem(operations []string, resourceInstance string, resourceOwnerName string, resourceType string, userName string, userToken string, ) *PermissionItem`
+`func NewPermissionItem(metadata NullableCommonMetadata, operations []string, resourceInstance string, resourceOwnerName string, resourceType string, userName string, userToken string, ) *PermissionItem`
 
 NewPermissionItem instantiates a new PermissionItem object
 This constructor will assign default values to properties that have it defined,
@@ -34,6 +35,36 @@ NewPermissionItemWithDefaults instantiates a new PermissionItem object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetMetadata
+
+`func (o *PermissionItem) GetMetadata() CommonMetadata`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *PermissionItem) GetMetadataOk() (*CommonMetadata, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *PermissionItem) SetMetadata(v CommonMetadata)`
+
+SetMetadata sets Metadata field to given value.
+
+
+### SetMetadataNil
+
+`func (o *PermissionItem) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *PermissionItem) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetOperations
 
 `func (o *PermissionItem) GetOperations() []string`

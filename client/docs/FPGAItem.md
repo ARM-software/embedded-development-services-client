@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Links** | [**NullableFPGAItemLinks**](FPGAItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
+**AccessibleRepositories** | Pointer to **[]string** | A list of repositories accessible from the FPGA host | [optional] [readonly] 
 **AgentAuthToken** | Pointer to **string** | Hybrid RSA AES encoded token for the agent managing this specific FPGA host | [optional] 
 **AgentHost** | Pointer to **string** | The name of the host machine where the agent controlling this FPGA is running | [optional] 
 **Busy** | **bool** | True if this FPGA is currently busy running a job. If this case, the &#x60;current&#x60; link should be accessible to give more details about the on-going job. | [readonly] 
@@ -102,6 +103,31 @@ SetMetadata sets Metadata field to given value.
 `func (o *FPGAItem) UnsetMetadata()`
 
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
+### GetAccessibleRepositories
+
+`func (o *FPGAItem) GetAccessibleRepositories() []string`
+
+GetAccessibleRepositories returns the AccessibleRepositories field if non-nil, zero value otherwise.
+
+### GetAccessibleRepositoriesOk
+
+`func (o *FPGAItem) GetAccessibleRepositoriesOk() (*[]string, bool)`
+
+GetAccessibleRepositoriesOk returns a tuple with the AccessibleRepositories field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccessibleRepositories
+
+`func (o *FPGAItem) SetAccessibleRepositories(v []string)`
+
+SetAccessibleRepositories sets AccessibleRepositories field to given value.
+
+### HasAccessibleRepositories
+
+`func (o *FPGAItem) HasAccessibleRepositories() bool`
+
+HasAccessibleRepositories returns a boolean if a field has been set.
+
 ### GetAgentAuthToken
 
 `func (o *FPGAItem) GetAgentAuthToken() string`

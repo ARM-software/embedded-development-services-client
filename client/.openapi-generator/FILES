@@ -60,6 +60,7 @@ docs/EmbeddedFPGAJobItems.md
 docs/EmbeddedFPGAPayloadItems.md
 docs/EmbeddedGenericWorkJobItems.md
 docs/EmbeddedGenericWorkerItems.md
+docs/EmbeddedInstancePermissionItem.md
 docs/EmbeddedIntellisenseJobItems.md
 docs/EmbeddedPATItem.md
 docs/EmbeddedVendorItems.md
@@ -104,6 +105,9 @@ docs/HalFeedLinks.md
 docs/HalLinkData.md
 docs/HalOnlyEmbeddableCollectionLinks.md
 docs/HalSimpleCollectionLinks.md
+docs/InstancePermissionCollection.md
+docs/InstancePermissionItem.md
+docs/InstancePermissionItemLinks.md
 docs/IntellisenseJobCollection.md
 docs/IntellisenseJobItem.md
 docs/IntellisenseJobItemLinks.md
@@ -120,6 +124,8 @@ docs/PATItemLinks.md
 docs/PagingMetadata.md
 docs/PermissionItem.md
 docs/PersonalAccessTokenAPI.md
+docs/ResourceTypePermissionItem.md
+docs/ResourceTypePermissionItemLinks.md
 docs/RetainBuildJobRequest.md
 docs/RetainWorkspaceRequest.md
 docs/RootResourceAPI.md
@@ -187,6 +193,7 @@ model_embedded_fpga_job_items.go
 model_embedded_fpga_payload_items.go
 model_embedded_generic_work_job_items.go
 model_embedded_generic_worker_items.go
+model_embedded_instance_permission_item.go
 model_embedded_intellisense_job_items.go
 model_embedded_pat_item.go
 model_embedded_vendor_items.go
@@ -225,6 +232,9 @@ model_hal_feed_links.go
 model_hal_link_data.go
 model_hal_only_embeddable_collection_links.go
 model_hal_simple_collection_links.go
+model_instance_permission_collection.go
+model_instance_permission_item.go
+model_instance_permission_item_links.go
 model_intellisense_job_collection.go
 model_intellisense_job_item.go
 model_intellisense_job_item_links.go
@@ -239,6 +249,8 @@ model_pat_creation_item.go
 model_pat_item.go
 model_pat_item_links.go
 model_permission_item.go
+model_resource_type_permission_item.go
+model_resource_type_permission_item_links.go
 model_retain_build_job_request.go
 model_retain_workspace_request.go
 model_simple_collection.go

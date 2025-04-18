@@ -14,13 +14,13 @@ Name | Type | Description | Notes
 **Status** | **string** | Status of the payload. A payload is only ready to be used by an FPGA once it has been processed. | [readonly] 
 **SupportConnection** | **bool** | True when the payload supports direct connection. | 
 **Title** | **string** | Human readable name of the FPGA Payload. | 
-**Workspace** | **string** | The ID of the workspace to upload the payload files from. This value will be returned from the upload session creation. | 
+**UploadLocation** | **string** | The upload location to upload the payload files from. This value will be returned from the upload session creation. | 
 
 ## Methods
 
 ### NewFPGAPayloadItem
 
-`func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, status string, supportConnection bool, title string, workspace string, ) *FPGAPayloadItem`
+`func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, status string, supportConnection bool, title string, uploadLocation string, ) *FPGAPayloadItem`
 
 NewFPGAPayloadItem instantiates a new FPGAPayloadItem object
 This constructor will assign default values to properties that have it defined,
@@ -175,24 +175,24 @@ and a boolean to check if the value has been set.
 SetTitle sets Title field to given value.
 
 
-### GetWorkspace
+### GetUploadLocation
 
-`func (o *FPGAPayloadItem) GetWorkspace() string`
+`func (o *FPGAPayloadItem) GetUploadLocation() string`
 
-GetWorkspace returns the Workspace field if non-nil, zero value otherwise.
+GetUploadLocation returns the UploadLocation field if non-nil, zero value otherwise.
 
-### GetWorkspaceOk
+### GetUploadLocationOk
 
-`func (o *FPGAPayloadItem) GetWorkspaceOk() (*string, bool)`
+`func (o *FPGAPayloadItem) GetUploadLocationOk() (*string, bool)`
 
-GetWorkspaceOk returns a tuple with the Workspace field if it's non-nil, zero value otherwise
+GetUploadLocationOk returns a tuple with the UploadLocation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWorkspace
+### SetUploadLocation
 
-`func (o *FPGAPayloadItem) SetWorkspace(v string)`
+`func (o *FPGAPayloadItem) SetUploadLocation(v string)`
 
-SetWorkspace sets Workspace field to given value.
+SetUploadLocation sets UploadLocation field to given value.
 
 
 

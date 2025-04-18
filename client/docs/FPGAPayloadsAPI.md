@@ -42,7 +42,7 @@ import (
 
 func main() {
 	repositoryName := "repositoryName_example" // string | Unique ID of a repository.
-	fPGAPayloadItem := *openapiclient.NewFPGAPayloadItem("TODO", "TODO", "4545aaf", "READY", true, "Demo payload for FPGA 12", "4545aaf") // FPGAPayloadItem | An FPGA Payload to be created.
+	fPGAPayloadItem := *openapiclient.NewFPGAPayloadItem("TODO", "TODO", "4545aaf", "READY", true, "Demo payload for FPGA 12", "http://some-location/4545aaf") // FPGAPayloadItem | An FPGA Payload to be created.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()

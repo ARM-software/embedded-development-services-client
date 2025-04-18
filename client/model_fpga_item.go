@@ -29,6 +29,8 @@ var _ MappedNullable = &FPGAItem{}
 type FPGAItem struct {
 	Links NullableFPGAItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
+	// A list of repositories accessible from the FPGA host
+	AccessibleRepositories []string `json:"accessibleRepositories,omitempty"`
 	// Hybrid RSA AES encoded token for the agent managing this specific FPGA host
 	AgentAuthToken *string `json:"agentAuthToken,omitempty"`
 	// The name of the host machine where the agent controlling this FPGA is running
@@ -130,6 +132,38 @@ func (o *FPGAItem) GetMetadataOk() (*CommonMetadata, bool) {
 // SetMetadata sets field value
 func (o *FPGAItem) SetMetadata(v CommonMetadata) {
 	o.Metadata.Set(&v)
+}
+
+// GetAccessibleRepositories returns the AccessibleRepositories field value if set, zero value otherwise.
+func (o *FPGAItem) GetAccessibleRepositories() []string {
+	if o == nil || IsNil(o.AccessibleRepositories) {
+		var ret []string
+		return ret
+	}
+	return o.AccessibleRepositories
+}
+
+// GetAccessibleRepositoriesOk returns a tuple with the AccessibleRepositories field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FPGAItem) GetAccessibleRepositoriesOk() ([]string, bool) {
+	if o == nil || IsNil(o.AccessibleRepositories) {
+		return nil, false
+	}
+	return o.AccessibleRepositories, true
+}
+
+// HasAccessibleRepositories returns a boolean if a field has been set.
+func (o *FPGAItem) HasAccessibleRepositories() bool {
+	if o != nil && !IsNil(o.AccessibleRepositories) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccessibleRepositories gets a reference to the given []string and assigns it to the AccessibleRepositories field.
+func (o *FPGAItem) SetAccessibleRepositories(v []string) {
+	o.AccessibleRepositories = v
 }
 
 // GetAgentAuthToken returns the AgentAuthToken field value if set, zero value otherwise.
@@ -480,6 +514,9 @@ func (o FPGAItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
+	if !IsNil(o.AccessibleRepositories) {
+		toSerialize["accessibleRepositories"] = o.AccessibleRepositories
+	}
 	if !IsNil(o.AgentAuthToken) {
 		toSerialize["agentAuthToken"] = o.AgentAuthToken
 	}

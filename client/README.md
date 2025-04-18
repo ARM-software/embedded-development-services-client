@@ -111,8 +111,11 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AuthenticationAPI* | [**CreateUser**](docs/AuthenticationAPI.md#createuser) | **Post** /users/ | Create a user.
 *AuthenticationAPI* | [**GetMe**](docs/AuthenticationAPI.md#getme) | **Get** /users/me | Get my user information
-*AuthenticationAPI* | [**GetUser**](docs/AuthenticationAPI.md#getuser) | **Get** /users/{name} | Get user information
-*AuthorizationAPI* | [**CheckPermission**](docs/AuthorizationAPI.md#checkpermission) | **Post** /entitlements/check | Check permissions on a resource.
+*AuthenticationAPI* | [**GetUser**](docs/AuthenticationAPI.md#getuser) | **Get** /users/{userName} | Get user information
+*AuthorizationAPI* | [**CheckEntitlements**](docs/AuthorizationAPI.md#checkentitlements) | **Post** /entitlements/check | Check permissions on a resource.
+*AuthorizationAPI* | [**GetResourceInstanceEntitlements**](docs/AuthorizationAPI.md#getresourceinstanceentitlements) | **Get** /users/{userName}/entitlements/{resourceType}/instances/{resourceInstanceName} | Return details of the user&#39;s permissions for a resource instance.
+*AuthorizationAPI* | [**GetResourceTypeEntitlements**](docs/AuthorizationAPI.md#getresourcetypeentitlements) | **Get** /users/{userName}/entitlements/{resourceType} | Return details of the user&#39;s permissions for a resource type.
+*AuthorizationAPI* | [**ListResourceInstanceEntitlements**](docs/AuthorizationAPI.md#listresourceinstanceentitlements) | **Get** /users/{userName}/entitlements/{resourceType}/instances | List the user&#39;s permissions for all instances of a resource type.
 *BuildJobsAPI* | [**CancelBuildJob**](docs/BuildJobsAPI.md#cancelbuildjob) | **Post** /build-jobs/{jobName}/cancel | Cancel a Build Job
 *BuildJobsAPI* | [**DeleteBuildJob**](docs/BuildJobsAPI.md#deletebuildjob) | **Delete** /build-jobs/{jobName} | Delete a Build Job
 *BuildJobsAPI* | [**GetBuildArtefact**](docs/BuildJobsAPI.md#getbuildartefact) | **Get** /build-jobs/{jobName}/artefacts/{artefactName} | Download the named Build Artefact for the given Build Job.
@@ -266,6 +269,7 @@ Class | Method | HTTP request | Description
  - [EmbeddedFPGAPayloadItems](docs/EmbeddedFPGAPayloadItems.md)
  - [EmbeddedGenericWorkJobItems](docs/EmbeddedGenericWorkJobItems.md)
  - [EmbeddedGenericWorkerItems](docs/EmbeddedGenericWorkerItems.md)
+ - [EmbeddedInstancePermissionItem](docs/EmbeddedInstancePermissionItem.md)
  - [EmbeddedIntellisenseJobItems](docs/EmbeddedIntellisenseJobItems.md)
  - [EmbeddedPATItem](docs/EmbeddedPATItem.md)
  - [EmbeddedVendorItems](docs/EmbeddedVendorItems.md)
@@ -304,6 +308,9 @@ Class | Method | HTTP request | Description
  - [HalLinkData](docs/HalLinkData.md)
  - [HalOnlyEmbeddableCollectionLinks](docs/HalOnlyEmbeddableCollectionLinks.md)
  - [HalSimpleCollectionLinks](docs/HalSimpleCollectionLinks.md)
+ - [InstancePermissionCollection](docs/InstancePermissionCollection.md)
+ - [InstancePermissionItem](docs/InstancePermissionItem.md)
+ - [InstancePermissionItemLinks](docs/InstancePermissionItemLinks.md)
  - [IntellisenseJobCollection](docs/IntellisenseJobCollection.md)
  - [IntellisenseJobItem](docs/IntellisenseJobItem.md)
  - [IntellisenseJobItemLinks](docs/IntellisenseJobItemLinks.md)
@@ -318,6 +325,8 @@ Class | Method | HTTP request | Description
  - [PATItemLinks](docs/PATItemLinks.md)
  - [PagingMetadata](docs/PagingMetadata.md)
  - [PermissionItem](docs/PermissionItem.md)
+ - [ResourceTypePermissionItem](docs/ResourceTypePermissionItem.md)
+ - [ResourceTypePermissionItemLinks](docs/ResourceTypePermissionItemLinks.md)
  - [RetainBuildJobRequest](docs/RetainBuildJobRequest.md)
  - [RetainWorkspaceRequest](docs/RetainWorkspaceRequest.md)
  - [SimpleCollection](docs/SimpleCollection.md)

@@ -22,56 +22,80 @@ import (
 	"fmt"
 )
 
-// checks if the FPGAPayloadItem type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &FPGAPayloadItem{}
+// checks if the InstancePermissionCollection type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InstancePermissionCollection{}
 
-// FPGAPayloadItem struct for FPGAPayloadItem
-type FPGAPayloadItem struct {
-	Links NullableFPGAPayloadItemLinks `json:"_links"`
-	Metadata NullableCommonMetadata `json:"_metadata"`
-	// Unique ID of this FPGA Payload.
-	Name string `json:"name"`
-	// Status of the payload. A payload is only ready to be used by an FPGA once it has been processed.
-	Status string `json:"status"`
-	// True when the payload supports direct connection.
-	SupportConnection bool `json:"supportConnection"`
-	// Human readable name of the FPGA Payload.
+// InstancePermissionCollection This collection resource follows the common pattern of linking to contained resources. Optionally, rather than linking to other resources, it can embed then into the collection to reduce the number of round trips to the server (at the expense of caching). In file system terms, it is similar to a directory but only contains links to (or embeds) a single type of resource.
+type InstancePermissionCollection struct {
+	Embedded *EmbeddedInstancePermissionItem `json:"_embedded,omitempty"`
+	Links NullableHalCollectionLinks `json:"_links"`
+	Metadata NullablePagingMetadata `json:"_metadata"`
+	// ID of the Collection.
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	// Human readable title of the collection.
 	Title string `json:"title"`
-	// The upload location to upload the payload files from. This value will be returned from the upload session creation.
-	UploadLocation string `json:"uploadLocation"`
 }
 
-type _FPGAPayloadItem FPGAPayloadItem
+type _InstancePermissionCollection InstancePermissionCollection
 
-// NewFPGAPayloadItem instantiates a new FPGAPayloadItem object
+// NewInstancePermissionCollection instantiates a new InstancePermissionCollection object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, status string, supportConnection bool, title string, uploadLocation string) *FPGAPayloadItem {
-	this := FPGAPayloadItem{}
+func NewInstancePermissionCollection(links NullableHalCollectionLinks, metadata NullablePagingMetadata, name string, title string) *InstancePermissionCollection {
+	this := InstancePermissionCollection{}
 	this.Links = links
 	this.Metadata = metadata
 	this.Name = name
-	this.Status = status
-	this.SupportConnection = supportConnection
 	this.Title = title
-	this.UploadLocation = uploadLocation
 	return &this
 }
 
-// NewFPGAPayloadItemWithDefaults instantiates a new FPGAPayloadItem object
+// NewInstancePermissionCollectionWithDefaults instantiates a new InstancePermissionCollection object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewFPGAPayloadItemWithDefaults() *FPGAPayloadItem {
-	this := FPGAPayloadItem{}
+func NewInstancePermissionCollectionWithDefaults() *InstancePermissionCollection {
+	this := InstancePermissionCollection{}
 	return &this
+}
+
+// GetEmbedded returns the Embedded field value if set, zero value otherwise.
+func (o *InstancePermissionCollection) GetEmbedded() EmbeddedInstancePermissionItem {
+	if o == nil || IsNil(o.Embedded) {
+		var ret EmbeddedInstancePermissionItem
+		return ret
+	}
+	return *o.Embedded
+}
+
+// GetEmbeddedOk returns a tuple with the Embedded field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstancePermissionCollection) GetEmbeddedOk() (*EmbeddedInstancePermissionItem, bool) {
+	if o == nil || IsNil(o.Embedded) {
+		return nil, false
+	}
+	return o.Embedded, true
+}
+
+// HasEmbedded returns a boolean if a field has been set.
+func (o *InstancePermissionCollection) HasEmbedded() bool {
+	if o != nil && !IsNil(o.Embedded) {
+		return true
+	}
+
+	return false
+}
+
+// SetEmbedded gets a reference to the given EmbeddedInstancePermissionItem and assigns it to the Embedded field.
+func (o *InstancePermissionCollection) SetEmbedded(v EmbeddedInstancePermissionItem) {
+	o.Embedded = &v
 }
 
 // GetLinks returns the Links field value
-// If the value is explicit nil, the zero value for FPGAPayloadItemLinks will be returned
-func (o *FPGAPayloadItem) GetLinks() FPGAPayloadItemLinks {
+// If the value is explicit nil, the zero value for HalCollectionLinks will be returned
+func (o *InstancePermissionCollection) GetLinks() HalCollectionLinks {
 	if o == nil || o.Links.Get() == nil {
-		var ret FPGAPayloadItemLinks
+		var ret HalCollectionLinks
 		return ret
 	}
 
@@ -81,7 +105,7 @@ func (o *FPGAPayloadItem) GetLinks() FPGAPayloadItemLinks {
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FPGAPayloadItem) GetLinksOk() (*FPGAPayloadItemLinks, bool) {
+func (o *InstancePermissionCollection) GetLinksOk() (*HalCollectionLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,15 +113,15 @@ func (o *FPGAPayloadItem) GetLinksOk() (*FPGAPayloadItemLinks, bool) {
 }
 
 // SetLinks sets field value
-func (o *FPGAPayloadItem) SetLinks(v FPGAPayloadItemLinks) {
+func (o *InstancePermissionCollection) SetLinks(v HalCollectionLinks) {
 	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
-// If the value is explicit nil, the zero value for CommonMetadata will be returned
-func (o *FPGAPayloadItem) GetMetadata() CommonMetadata {
+// If the value is explicit nil, the zero value for PagingMetadata will be returned
+func (o *InstancePermissionCollection) GetMetadata() PagingMetadata {
 	if o == nil || o.Metadata.Get() == nil {
-		var ret CommonMetadata
+		var ret PagingMetadata
 		return ret
 	}
 
@@ -107,7 +131,7 @@ func (o *FPGAPayloadItem) GetMetadata() CommonMetadata {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FPGAPayloadItem) GetMetadataOk() (*CommonMetadata, bool) {
+func (o *InstancePermissionCollection) GetMetadataOk() (*PagingMetadata, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -115,12 +139,12 @@ func (o *FPGAPayloadItem) GetMetadataOk() (*CommonMetadata, bool) {
 }
 
 // SetMetadata sets field value
-func (o *FPGAPayloadItem) SetMetadata(v CommonMetadata) {
+func (o *InstancePermissionCollection) SetMetadata(v PagingMetadata) {
 	o.Metadata.Set(&v)
 }
 
 // GetName returns the Name field value
-func (o *FPGAPayloadItem) GetName() string {
+func (o *InstancePermissionCollection) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -131,7 +155,7 @@ func (o *FPGAPayloadItem) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *FPGAPayloadItem) GetNameOk() (*string, bool) {
+func (o *InstancePermissionCollection) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -139,60 +163,12 @@ func (o *FPGAPayloadItem) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *FPGAPayloadItem) SetName(v string) {
+func (o *InstancePermissionCollection) SetName(v string) {
 	o.Name = v
 }
 
-// GetStatus returns the Status field value
-func (o *FPGAPayloadItem) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *FPGAPayloadItem) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *FPGAPayloadItem) SetStatus(v string) {
-	o.Status = v
-}
-
-// GetSupportConnection returns the SupportConnection field value
-func (o *FPGAPayloadItem) GetSupportConnection() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.SupportConnection
-}
-
-// GetSupportConnectionOk returns a tuple with the SupportConnection field value
-// and a boolean to check if the value has been set.
-func (o *FPGAPayloadItem) GetSupportConnectionOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SupportConnection, true
-}
-
-// SetSupportConnection sets field value
-func (o *FPGAPayloadItem) SetSupportConnection(v bool) {
-	o.SupportConnection = v
-}
-
 // GetTitle returns the Title field value
-func (o *FPGAPayloadItem) GetTitle() string {
+func (o *InstancePermissionCollection) GetTitle() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -203,7 +179,7 @@ func (o *FPGAPayloadItem) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
-func (o *FPGAPayloadItem) GetTitleOk() (*string, bool) {
+func (o *InstancePermissionCollection) GetTitleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -211,35 +187,11 @@ func (o *FPGAPayloadItem) GetTitleOk() (*string, bool) {
 }
 
 // SetTitle sets field value
-func (o *FPGAPayloadItem) SetTitle(v string) {
+func (o *InstancePermissionCollection) SetTitle(v string) {
 	o.Title = v
 }
 
-// GetUploadLocation returns the UploadLocation field value
-func (o *FPGAPayloadItem) GetUploadLocation() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.UploadLocation
-}
-
-// GetUploadLocationOk returns a tuple with the UploadLocation field value
-// and a boolean to check if the value has been set.
-func (o *FPGAPayloadItem) GetUploadLocationOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UploadLocation, true
-}
-
-// SetUploadLocation sets field value
-func (o *FPGAPayloadItem) SetUploadLocation(v string) {
-	o.UploadLocation = v
-}
-
-func (o FPGAPayloadItem) MarshalJSON() ([]byte, error) {
+func (o InstancePermissionCollection) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -247,19 +199,19 @@ func (o FPGAPayloadItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o FPGAPayloadItem) ToMap() (map[string]interface{}, error) {
+func (o InstancePermissionCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Embedded) {
+		toSerialize["_embedded"] = o.Embedded
+	}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["name"] = o.Name
-	toSerialize["status"] = o.Status
-	toSerialize["supportConnection"] = o.SupportConnection
 	toSerialize["title"] = o.Title
-	toSerialize["uploadLocation"] = o.UploadLocation
 	return toSerialize, nil
 }
 
-func (o *FPGAPayloadItem) UnmarshalJSON(data []byte) (err error) {
+func (o *InstancePermissionCollection) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -267,10 +219,7 @@ func (o *FPGAPayloadItem) UnmarshalJSON(data []byte) (err error) {
 		"_links",
 		"_metadata",
 		"name",
-		"status",
-		"supportConnection",
 		"title",
-		"uploadLocation",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -287,53 +236,53 @@ func (o *FPGAPayloadItem) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varFPGAPayloadItem := _FPGAPayloadItem{}
+	varInstancePermissionCollection := _InstancePermissionCollection{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFPGAPayloadItem)
+	err = decoder.Decode(&varInstancePermissionCollection)
 
 	if err != nil {
 		return err
 	}
 
-	*o = FPGAPayloadItem(varFPGAPayloadItem)
+	*o = InstancePermissionCollection(varInstancePermissionCollection)
 
 	return err
 }
 
-type NullableFPGAPayloadItem struct {
-	value *FPGAPayloadItem
+type NullableInstancePermissionCollection struct {
+	value *InstancePermissionCollection
 	isSet bool
 }
 
-func (v NullableFPGAPayloadItem) Get() *FPGAPayloadItem {
+func (v NullableInstancePermissionCollection) Get() *InstancePermissionCollection {
 	return v.value
 }
 
-func (v *NullableFPGAPayloadItem) Set(val *FPGAPayloadItem) {
+func (v *NullableInstancePermissionCollection) Set(val *InstancePermissionCollection) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableFPGAPayloadItem) IsSet() bool {
+func (v NullableInstancePermissionCollection) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableFPGAPayloadItem) Unset() {
+func (v *NullableInstancePermissionCollection) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableFPGAPayloadItem(val *FPGAPayloadItem) *NullableFPGAPayloadItem {
-	return &NullableFPGAPayloadItem{value: val, isSet: true}
+func NewNullableInstancePermissionCollection(val *InstancePermissionCollection) *NullableInstancePermissionCollection {
+	return &NullableInstancePermissionCollection{value: val, isSet: true}
 }
 
-func (v NullableFPGAPayloadItem) MarshalJSON() ([]byte, error) {
+func (v NullableInstancePermissionCollection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableFPGAPayloadItem) UnmarshalJSON(src []byte) error {
+func (v *NullableInstancePermissionCollection) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

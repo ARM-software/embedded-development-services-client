@@ -27,6 +27,7 @@ var _ MappedNullable = &PermissionItem{}
 
 // PermissionItem struct for PermissionItem
 type PermissionItem struct {
+	Metadata NullableCommonMetadata `json:"_metadata"`
 	// The list of allowed CRUDL operations.
 	Operations []string `json:"operations"`
 	// The unique identifier of the resource instance.
@@ -47,8 +48,9 @@ type _PermissionItem PermissionItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPermissionItem(operations []string, resourceInstance string, resourceOwnerName string, resourceType string, userName string, userToken string) *PermissionItem {
+func NewPermissionItem(metadata NullableCommonMetadata, operations []string, resourceInstance string, resourceOwnerName string, resourceType string, userName string, userToken string) *PermissionItem {
 	this := PermissionItem{}
+	this.Metadata = metadata
 	this.Operations = operations
 	this.ResourceInstance = resourceInstance
 	this.ResourceOwnerName = resourceOwnerName
@@ -64,6 +66,32 @@ func NewPermissionItem(operations []string, resourceInstance string, resourceOwn
 func NewPermissionItemWithDefaults() *PermissionItem {
 	this := PermissionItem{}
 	return &this
+}
+
+// GetMetadata returns the Metadata field value
+// If the value is explicit nil, the zero value for CommonMetadata will be returned
+func (o *PermissionItem) GetMetadata() CommonMetadata {
+	if o == nil || o.Metadata.Get() == nil {
+		var ret CommonMetadata
+		return ret
+	}
+
+	return *o.Metadata.Get()
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PermissionItem) GetMetadataOk() (*CommonMetadata, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Metadata.Get(), o.Metadata.IsSet()
+}
+
+// SetMetadata sets field value
+func (o *PermissionItem) SetMetadata(v CommonMetadata) {
+	o.Metadata.Set(&v)
 }
 
 // GetOperations returns the Operations field value
@@ -222,6 +250,7 @@ func (o PermissionItem) MarshalJSON() ([]byte, error) {
 
 func (o PermissionItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["_metadata"] = o.Metadata.Get()
 	if o.Operations != nil {
 		toSerialize["operations"] = o.Operations
 	}
@@ -238,6 +267,7 @@ func (o *PermissionItem) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"_metadata",
 		"operations",
 		"resourceInstance",
 		"resourceOwnerName",
