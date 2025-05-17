@@ -49,6 +49,8 @@ type FPGAItem struct {
 	// True if this FPGA is ready to accept jobs to run.
 	Ready bool `json:"ready"`
 	Repositories *FPGAPayloadRepositories `json:"repositories,omitempty"`
+	// A list of targets supported for this FPGA
+	SupportedTargets []FPGATarget `json:"supported_targets"`
 	// Human readable name of the FPGA.
 	Title string `json:"title"`
 	// Hybrid RSA AES encoded worker authorisation token to use for authorising with the boundary controller
@@ -61,7 +63,7 @@ type _FPGAItem FPGAItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAItem(links NullableFPGAItemLinks, metadata NullableCommonMetadata, busy bool, deprecated bool, description string, name string, ready bool, title string) *FPGAItem {
+func NewFPGAItem(links NullableFPGAItemLinks, metadata NullableCommonMetadata, busy bool, deprecated bool, description string, name string, ready bool, supportedTargets []FPGATarget, title string) *FPGAItem {
 	this := FPGAItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -70,6 +72,7 @@ func NewFPGAItem(links NullableFPGAItemLinks, metadata NullableCommonMetadata, b
 	this.Description = description
 	this.Name = name
 	this.Ready = ready
+	this.SupportedTargets = supportedTargets
 	this.Title = title
 	return &this
 }
@@ -446,6 +449,30 @@ func (o *FPGAItem) SetRepositories(v FPGAPayloadRepositories) {
 	o.Repositories = &v
 }
 
+// GetSupportedTargets returns the SupportedTargets field value
+func (o *FPGAItem) GetSupportedTargets() []FPGATarget {
+	if o == nil {
+		var ret []FPGATarget
+		return ret
+	}
+
+	return o.SupportedTargets
+}
+
+// GetSupportedTargetsOk returns a tuple with the SupportedTargets field value
+// and a boolean to check if the value has been set.
+func (o *FPGAItem) GetSupportedTargetsOk() ([]FPGATarget, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SupportedTargets, true
+}
+
+// SetSupportedTargets sets field value
+func (o *FPGAItem) SetSupportedTargets(v []FPGATarget) {
+	o.SupportedTargets = v
+}
+
 // GetTitle returns the Title field value
 func (o *FPGAItem) GetTitle() string {
 	if o == nil {
@@ -537,6 +564,7 @@ func (o FPGAItem) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Repositories) {
 		toSerialize["repositories"] = o.Repositories
 	}
+	toSerialize["supported_targets"] = o.SupportedTargets
 	toSerialize["title"] = o.Title
 	if !IsNil(o.WorkerAuthToken) {
 		toSerialize["workerAuthToken"] = o.WorkerAuthToken
@@ -556,6 +584,7 @@ func (o *FPGAItem) UnmarshalJSON(data []byte) (err error) {
 		"description",
 		"name",
 		"ready",
+		"supported_targets",
 		"title",
 	}
 

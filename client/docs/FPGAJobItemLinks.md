@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Collection** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Connect** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Delete** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
+**Describedby** | [**HalLinkData**](HalLinkData.md) |  | 
 **Details** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Related** | [**HalLinkData**](HalLinkData.md) |  | 
 **Retain** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
@@ -22,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewFPGAJobItemLinks
 
-`func NewFPGAJobItemLinks(related HalLinkData, self HalLinkData, ) *FPGAJobItemLinks`
+`func NewFPGAJobItemLinks(describedby HalLinkData, related HalLinkData, self HalLinkData, ) *FPGAJobItemLinks`
 
 NewFPGAJobItemLinks instantiates a new FPGAJobItemLinks object
 This constructor will assign default values to properties that have it defined,
@@ -161,6 +162,26 @@ SetDelete sets Delete field to given value.
 `func (o *FPGAJobItemLinks) HasDelete() bool`
 
 HasDelete returns a boolean if a field has been set.
+
+### GetDescribedby
+
+`func (o *FPGAJobItemLinks) GetDescribedby() HalLinkData`
+
+GetDescribedby returns the Describedby field if non-nil, zero value otherwise.
+
+### GetDescribedbyOk
+
+`func (o *FPGAJobItemLinks) GetDescribedbyOk() (*HalLinkData, bool)`
+
+GetDescribedbyOk returns a tuple with the Describedby field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescribedby
+
+`func (o *FPGAJobItemLinks) SetDescribedby(v HalLinkData)`
+
+SetDescribedby sets Describedby field to given value.
+
 
 ### GetDetails
 

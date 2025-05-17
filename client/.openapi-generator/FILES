@@ -90,6 +90,8 @@ docs/FPGAPayloadItem.md
 docs/FPGAPayloadItemLinks.md
 docs/FPGAPayloadRepositories.md
 docs/FPGAPayloadsAPI.md
+docs/FPGATarget.md
+docs/FPGAWorkload.md
 docs/FPGAsAPI.md
 docs/FieldObject.md
 docs/GenericWorkJobCollection.md
@@ -221,6 +223,8 @@ model_fpga_payload_collection.go
 model_fpga_payload_item.go
 model_fpga_payload_item_links.go
 model_fpga_payload_repositories.go
+model_fpga_target.go
+model_fpga_workload.go
 model_generic_work_job_collection.go
 model_generic_work_job_item.go
 model_generic_work_job_item_links.go

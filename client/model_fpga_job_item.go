@@ -25,7 +25,7 @@ import (
 // checks if the FPGAJobItem type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &FPGAJobItem{}
 
-// FPGAJobItem This resource allows an FPGA job to be configured when it is created, such as defining the payload to run on the FPGA. When the job is read, it will include the current status of the job and links to other available resources, such as messages and artefacts.
+// FPGAJobItem This resource allows an FPGA job to be configured when it is created, such as defining the payload to run onto the FPGA. When the job is read, it will include the current status of the job and links to other available resources, such as messages and artefacts.
 type FPGAJobItem struct {
 	Links NullableFPGAJobItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
@@ -41,10 +41,8 @@ type FPGAJobItem struct {
 	Failure bool `json:"failure"`
 	// Unique ID of the FPGA job.
 	Name string `json:"name"`
-	// Identifier of the payload to run on the FPGA.
-	Project *string `json:"project,omitempty"`
 	// True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended.
-	Queued *bool `json:"queued,omitempty"`
+	Queued bool `json:"queued"`
 	// True when the application running on the FPGA is ready to handle connections. If the job does not support connection, this flag will never be true.
 	ReadyForConnection bool `json:"readyForConnection"`
 	// A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead.
@@ -57,12 +55,12 @@ type FPGAJobItem struct {
 	Success bool `json:"success"`
 	// True when the job allows direct connection to the job instance (application running on the FPGA).
 	SupportConnection bool `json:"supportConnection"`
+	Target FPGATarget `json:"target"`
 	// The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started.
 	Timeout *int64 `json:"timeout,omitempty"`
-	// Optional human readable name of the FPGA job.
+	// Optional human-readable name of the FPGA job.
 	Title NullableString `json:"title,omitempty"`
-	// Identifier of the workspace where the project is present.
-	Workspace NullableString `json:"workspace,omitempty"`
+	Workload FPGAWorkload `json:"workload"`
 }
 
 type _FPGAJobItem FPGAJobItem
@@ -71,7 +69,7 @@ type _FPGAJobItem FPGAJobItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, connected bool, done bool, error_ bool, failure bool, name string, readyForConnection bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool) *FPGAJobItem {
+func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, connected bool, done bool, error_ bool, failure bool, name string, queued bool, readyForConnection bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, target FPGATarget, workload FPGAWorkload) *FPGAJobItem {
 	this := FPGAJobItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -80,14 +78,17 @@ func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetad
 	this.Error = error_
 	this.Failure = failure
 	this.Name = name
+	this.Queued = queued
 	this.ReadyForConnection = readyForConnection
 	this.Status = status
 	this.StepsCompleted = stepsCompleted
 	this.StepsTotal = stepsTotal
 	this.Success = success
 	this.SupportConnection = supportConnection
+	this.Target = target
 	var timeout int64 = 300
 	this.Timeout = &timeout
+	this.Workload = workload
 	return &this
 }
 
@@ -306,68 +307,28 @@ func (o *FPGAJobItem) SetName(v string) {
 	o.Name = v
 }
 
-// GetProject returns the Project field value if set, zero value otherwise.
-func (o *FPGAJobItem) GetProject() string {
-	if o == nil || IsNil(o.Project) {
-		var ret string
-		return ret
-	}
-	return *o.Project
-}
-
-// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FPGAJobItem) GetProjectOk() (*string, bool) {
-	if o == nil || IsNil(o.Project) {
-		return nil, false
-	}
-	return o.Project, true
-}
-
-// HasProject returns a boolean if a field has been set.
-func (o *FPGAJobItem) HasProject() bool {
-	if o != nil && !IsNil(o.Project) {
-		return true
-	}
-
-	return false
-}
-
-// SetProject gets a reference to the given string and assigns it to the Project field.
-func (o *FPGAJobItem) SetProject(v string) {
-	o.Project = &v
-}
-
-// GetQueued returns the Queued field value if set, zero value otherwise.
+// GetQueued returns the Queued field value
 func (o *FPGAJobItem) GetQueued() bool {
-	if o == nil || IsNil(o.Queued) {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Queued
+
+	return o.Queued
 }
 
-// GetQueuedOk returns a tuple with the Queued field value if set, nil otherwise
+// GetQueuedOk returns a tuple with the Queued field value
 // and a boolean to check if the value has been set.
 func (o *FPGAJobItem) GetQueuedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Queued) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Queued, true
+	return &o.Queued, true
 }
 
-// HasQueued returns a boolean if a field has been set.
-func (o *FPGAJobItem) HasQueued() bool {
-	if o != nil && !IsNil(o.Queued) {
-		return true
-	}
-
-	return false
-}
-
-// SetQueued gets a reference to the given bool and assigns it to the Queued field.
+// SetQueued sets field value
 func (o *FPGAJobItem) SetQueued(v bool) {
-	o.Queued = &v
+	o.Queued = v
 }
 
 // GetReadyForConnection returns the ReadyForConnection field value
@@ -518,6 +479,30 @@ func (o *FPGAJobItem) SetSupportConnection(v bool) {
 	o.SupportConnection = v
 }
 
+// GetTarget returns the Target field value
+func (o *FPGAJobItem) GetTarget() FPGATarget {
+	if o == nil {
+		var ret FPGATarget
+		return ret
+	}
+
+	return o.Target
+}
+
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *FPGAJobItem) GetTargetOk() (*FPGATarget, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Target, true
+}
+
+// SetTarget sets field value
+func (o *FPGAJobItem) SetTarget(v FPGATarget) {
+	o.Target = v
+}
+
 // GetTimeout returns the Timeout field value if set, zero value otherwise.
 func (o *FPGAJobItem) GetTimeout() int64 {
 	if o == nil || IsNil(o.Timeout) {
@@ -592,46 +577,28 @@ func (o *FPGAJobItem) UnsetTitle() {
 	o.Title.Unset()
 }
 
-// GetWorkspace returns the Workspace field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FPGAJobItem) GetWorkspace() string {
-	if o == nil || IsNil(o.Workspace.Get()) {
-		var ret string
+// GetWorkload returns the Workload field value
+func (o *FPGAJobItem) GetWorkload() FPGAWorkload {
+	if o == nil {
+		var ret FPGAWorkload
 		return ret
 	}
-	return *o.Workspace.Get()
+
+	return o.Workload
 }
 
-// GetWorkspaceOk returns a tuple with the Workspace field value if set, nil otherwise
+// GetWorkloadOk returns a tuple with the Workload field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FPGAJobItem) GetWorkspaceOk() (*string, bool) {
+func (o *FPGAJobItem) GetWorkloadOk() (*FPGAWorkload, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Workspace.Get(), o.Workspace.IsSet()
+	return &o.Workload, true
 }
 
-// HasWorkspace returns a boolean if a field has been set.
-func (o *FPGAJobItem) HasWorkspace() bool {
-	if o != nil && o.Workspace.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetWorkspace gets a reference to the given NullableString and assigns it to the Workspace field.
-func (o *FPGAJobItem) SetWorkspace(v string) {
-	o.Workspace.Set(&v)
-}
-// SetWorkspaceNil sets the value for Workspace to be an explicit nil
-func (o *FPGAJobItem) SetWorkspaceNil() {
-	o.Workspace.Set(nil)
-}
-
-// UnsetWorkspace ensures that no value is present for Workspace, not even an explicit nil
-func (o *FPGAJobItem) UnsetWorkspace() {
-	o.Workspace.Unset()
+// SetWorkload sets field value
+func (o *FPGAJobItem) SetWorkload(v FPGAWorkload) {
+	o.Workload = v
 }
 
 func (o FPGAJobItem) MarshalJSON() ([]byte, error) {
@@ -654,27 +621,21 @@ func (o FPGAJobItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["error"] = o.Error
 	toSerialize["failure"] = o.Failure
 	toSerialize["name"] = o.Name
-	if !IsNil(o.Project) {
-		toSerialize["project"] = o.Project
-	}
-	if !IsNil(o.Queued) {
-		toSerialize["queued"] = o.Queued
-	}
+	toSerialize["queued"] = o.Queued
 	toSerialize["readyForConnection"] = o.ReadyForConnection
 	toSerialize["status"] = o.Status
 	toSerialize["stepsCompleted"] = o.StepsCompleted.Get()
 	toSerialize["stepsTotal"] = o.StepsTotal.Get()
 	toSerialize["success"] = o.Success
 	toSerialize["supportConnection"] = o.SupportConnection
+	toSerialize["target"] = o.Target
 	if !IsNil(o.Timeout) {
 		toSerialize["timeout"] = o.Timeout
 	}
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
-	if o.Workspace.IsSet() {
-		toSerialize["workspace"] = o.Workspace.Get()
-	}
+	toSerialize["workload"] = o.Workload
 	return toSerialize, nil
 }
 
@@ -690,12 +651,15 @@ func (o *FPGAJobItem) UnmarshalJSON(data []byte) (err error) {
 		"error",
 		"failure",
 		"name",
+		"queued",
 		"readyForConnection",
 		"status",
 		"stepsCompleted",
 		"stepsTotal",
 		"success",
 		"supportConnection",
+		"target",
+		"workload",
 	}
 
 	allProperties := make(map[string]interface{})

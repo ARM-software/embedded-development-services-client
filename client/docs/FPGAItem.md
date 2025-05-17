@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **Name** | **string** | Unique ID of this FPGA | [readonly] 
 **Ready** | **bool** | True if this FPGA is ready to accept jobs to run. | [readonly] 
 **Repositories** | Pointer to [**FPGAPayloadRepositories**](FPGAPayloadRepositories.md) |  | [optional] 
+**SupportedTargets** | [**[]FPGATarget**](FPGATarget.md) | A list of targets supported for this FPGA | 
 **Title** | **string** | Human readable name of the FPGA. | 
 **WorkerAuthToken** | Pointer to **string** | Hybrid RSA AES encoded worker authorisation token to use for authorising with the boundary controller | [optional] 
 
@@ -28,7 +29,7 @@ Name | Type | Description | Notes
 
 ### NewFPGAItem
 
-`func NewFPGAItem(links NullableFPGAItemLinks, metadata NullableCommonMetadata, busy bool, deprecated bool, description string, name string, ready bool, title string, ) *FPGAItem`
+`func NewFPGAItem(links NullableFPGAItemLinks, metadata NullableCommonMetadata, busy bool, deprecated bool, description string, name string, ready bool, supportedTargets []FPGATarget, title string, ) *FPGAItem`
 
 NewFPGAItem instantiates a new FPGAItem object
 This constructor will assign default values to properties that have it defined,
@@ -352,6 +353,26 @@ SetRepositories sets Repositories field to given value.
 `func (o *FPGAItem) HasRepositories() bool`
 
 HasRepositories returns a boolean if a field has been set.
+
+### GetSupportedTargets
+
+`func (o *FPGAItem) GetSupportedTargets() []FPGATarget`
+
+GetSupportedTargets returns the SupportedTargets field if non-nil, zero value otherwise.
+
+### GetSupportedTargetsOk
+
+`func (o *FPGAItem) GetSupportedTargetsOk() (*[]FPGATarget, bool)`
+
+GetSupportedTargetsOk returns a tuple with the SupportedTargets field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSupportedTargets
+
+`func (o *FPGAItem) SetSupportedTargets(v []FPGATarget)`
+
+SetSupportedTargets sets SupportedTargets field to given value.
+
 
 ### GetTitle
 

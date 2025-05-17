@@ -16,23 +16,23 @@ Name | Type | Description | Notes
 **Error** | **bool** | True if there was an error in the service while attempting the job. | [readonly] 
 **Failure** | **bool** | True if the job failed (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
 **Name** | **string** | Unique ID of the FPGA job. | [readonly] 
-**Project** | Pointer to **string** | Identifier of the payload to run on the FPGA. | [optional] 
-**Queued** | Pointer to **bool** | True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended. | [optional] [readonly] 
+**Queued** | **bool** | True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended. | [readonly] 
 **ReadyForConnection** | **bool** | True when the application running on the FPGA is ready to handle connections. If the job does not support connection, this flag will never be true. | [readonly] 
 **Status** | **string** | A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead. | [readonly] 
 **StepsCompleted** | **NullableInt32** | The number of steps that have been completed so far. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started. | [readonly] 
 **StepsTotal** | **NullableInt32** | The total number of steps that will need to be performed to complete the job. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started. | [readonly] 
 **Success** | **bool** | True if the job was successful (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
 **SupportConnection** | **bool** | True when the job allows direct connection to the job instance (application running on the FPGA). | [readonly] 
+**Target** | [**FPGATarget**](FPGATarget.md) |  | 
 **Timeout** | Pointer to **int64** | The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started. | [optional] [default to 300]
-**Title** | Pointer to **NullableString** | Optional human readable name of the FPGA job. | [optional] 
-**Workspace** | Pointer to **NullableString** | Identifier of the workspace where the project is present. | [optional] 
+**Title** | Pointer to **NullableString** | Optional human-readable name of the FPGA job. | [optional] 
+**Workload** | [**FPGAWorkload**](FPGAWorkload.md) |  | 
 
 ## Methods
 
 ### NewFPGAJobItem
 
-`func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, connected bool, done bool, error_ bool, failure bool, name string, readyForConnection bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, ) *FPGAJobItem`
+`func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, connected bool, done bool, error_ bool, failure bool, name string, queued bool, readyForConnection bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, target FPGATarget, workload FPGAWorkload, ) *FPGAJobItem`
 
 NewFPGAJobItem instantiates a new FPGAJobItem object
 This constructor will assign default values to properties that have it defined,
@@ -242,31 +242,6 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetProject
-
-`func (o *FPGAJobItem) GetProject() string`
-
-GetProject returns the Project field if non-nil, zero value otherwise.
-
-### GetProjectOk
-
-`func (o *FPGAJobItem) GetProjectOk() (*string, bool)`
-
-GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProject
-
-`func (o *FPGAJobItem) SetProject(v string)`
-
-SetProject sets Project field to given value.
-
-### HasProject
-
-`func (o *FPGAJobItem) HasProject() bool`
-
-HasProject returns a boolean if a field has been set.
-
 ### GetQueued
 
 `func (o *FPGAJobItem) GetQueued() bool`
@@ -286,11 +261,6 @@ and a boolean to check if the value has been set.
 
 SetQueued sets Queued field to given value.
 
-### HasQueued
-
-`func (o *FPGAJobItem) HasQueued() bool`
-
-HasQueued returns a boolean if a field has been set.
 
 ### GetReadyForConnection
 
@@ -432,6 +402,26 @@ and a boolean to check if the value has been set.
 SetSupportConnection sets SupportConnection field to given value.
 
 
+### GetTarget
+
+`func (o *FPGAJobItem) GetTarget() FPGATarget`
+
+GetTarget returns the Target field if non-nil, zero value otherwise.
+
+### GetTargetOk
+
+`func (o *FPGAJobItem) GetTargetOk() (*FPGATarget, bool)`
+
+GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTarget
+
+`func (o *FPGAJobItem) SetTarget(v FPGATarget)`
+
+SetTarget sets Target field to given value.
+
+
 ### GetTimeout
 
 `func (o *FPGAJobItem) GetTimeout() int64`
@@ -492,41 +482,26 @@ HasTitle returns a boolean if a field has been set.
 `func (o *FPGAJobItem) UnsetTitle()`
 
 UnsetTitle ensures that no value is present for Title, not even an explicit nil
-### GetWorkspace
+### GetWorkload
 
-`func (o *FPGAJobItem) GetWorkspace() string`
+`func (o *FPGAJobItem) GetWorkload() FPGAWorkload`
 
-GetWorkspace returns the Workspace field if non-nil, zero value otherwise.
+GetWorkload returns the Workload field if non-nil, zero value otherwise.
 
-### GetWorkspaceOk
+### GetWorkloadOk
 
-`func (o *FPGAJobItem) GetWorkspaceOk() (*string, bool)`
+`func (o *FPGAJobItem) GetWorkloadOk() (*FPGAWorkload, bool)`
 
-GetWorkspaceOk returns a tuple with the Workspace field if it's non-nil, zero value otherwise
+GetWorkloadOk returns a tuple with the Workload field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWorkspace
+### SetWorkload
 
-`func (o *FPGAJobItem) SetWorkspace(v string)`
+`func (o *FPGAJobItem) SetWorkload(v FPGAWorkload)`
 
-SetWorkspace sets Workspace field to given value.
+SetWorkload sets Workload field to given value.
 
-### HasWorkspace
 
-`func (o *FPGAJobItem) HasWorkspace() bool`
-
-HasWorkspace returns a boolean if a field has been set.
-
-### SetWorkspaceNil
-
-`func (o *FPGAJobItem) SetWorkspaceNil(b bool)`
-
- SetWorkspaceNil sets the value for Workspace to be an explicit nil
-
-### UnsetWorkspace
-`func (o *FPGAJobItem) UnsetWorkspace()`
-
-UnsetWorkspace ensures that no value is present for Workspace, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
