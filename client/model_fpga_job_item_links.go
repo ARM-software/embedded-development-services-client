@@ -25,13 +25,14 @@ import (
 // checks if the FPGAJobItemLinks type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &FPGAJobItemLinks{}
 
-// FPGAJobItemLinks The `related` link indicates the FPGA the job is running on. The `details` links to a resource that provides details of progress (messages). The `artefacts` links to a collection which will contain downloadable artefacts (if any). The `connect` links to a collection of connections (if any) to an application running on the FPGA as part of this job.
+// FPGAJobItemLinks The `related` link indicates the FPGA the job is running on. The `details` links to a resource that provides details of progress (messages). The `artefacts` links to a collection which will contain downloadable artefacts (if any). The `connect` links to a collection of connections (if any) to an application running on the FPGA as part of this job. The `describedby` links to a resource which describes the payload being used.
 type FPGAJobItemLinks struct {
 	Artefacts *HalLinkData `json:"artefacts,omitempty"`
 	Cancel *HalLinkData `json:"cancel,omitempty"`
 	Collection *HalLinkData `json:"collection,omitempty"`
 	Connect *HalLinkData `json:"connect,omitempty"`
 	Delete *HalLinkData `json:"delete,omitempty"`
+	Describedby HalLinkData `json:"describedby"`
 	Details *HalLinkData `json:"details,omitempty"`
 	Related HalLinkData `json:"related"`
 	Retain *HalLinkData `json:"retain,omitempty"`
@@ -44,8 +45,9 @@ type _FPGAJobItemLinks FPGAJobItemLinks
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAJobItemLinks(related HalLinkData, self HalLinkData) *FPGAJobItemLinks {
+func NewFPGAJobItemLinks(describedby HalLinkData, related HalLinkData, self HalLinkData) *FPGAJobItemLinks {
 	this := FPGAJobItemLinks{}
+	this.Describedby = describedby
 	this.Related = related
 	this.Self = self
 	return &this
@@ -219,6 +221,30 @@ func (o *FPGAJobItemLinks) SetDelete(v HalLinkData) {
 	o.Delete = &v
 }
 
+// GetDescribedby returns the Describedby field value
+func (o *FPGAJobItemLinks) GetDescribedby() HalLinkData {
+	if o == nil {
+		var ret HalLinkData
+		return ret
+	}
+
+	return o.Describedby
+}
+
+// GetDescribedbyOk returns a tuple with the Describedby field value
+// and a boolean to check if the value has been set.
+func (o *FPGAJobItemLinks) GetDescribedbyOk() (*HalLinkData, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Describedby, true
+}
+
+// SetDescribedby sets field value
+func (o *FPGAJobItemLinks) SetDescribedby(v HalLinkData) {
+	o.Describedby = v
+}
+
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *FPGAJobItemLinks) GetDetails() HalLinkData {
 	if o == nil || IsNil(o.Details) {
@@ -356,6 +382,7 @@ func (o FPGAJobItemLinks) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Delete) {
 		toSerialize["delete"] = o.Delete
 	}
+	toSerialize["describedby"] = o.Describedby
 	if !IsNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
@@ -372,6 +399,7 @@ func (o *FPGAJobItemLinks) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"describedby",
 		"related",
 		"self",
 	}

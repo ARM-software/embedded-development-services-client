@@ -37,7 +37,7 @@ import (
 )
 
 func main() {
-	fPGAItem := *openapiclient.NewFPGAItem("TODO", "TODO", false, false, "FPGA with IP 123", "4545aaf", false, "FPGA 103 for Demo application") // FPGAItem | An FPGA to commission.
+	fPGAItem := *openapiclient.NewFPGAItem("TODO", "TODO", false, false, "FPGA with IP 123", "4545aaf", false, []openapiclient.FPGATarget{*openapiclient.NewFPGATarget("HardwareImage_example", "SoftwareImage_example")}, "FPGA 103 for Demo application") // FPGAItem | An FPGA to commission.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -325,7 +325,7 @@ import (
 func main() {
 	fpgaName := "fpgaName_example" // string | Unique ID of an FPGA.
 	ifMatch := "ifMatch_example" // string | Conditional Requests: This is required in order to perform an update of a resource. The value of this header should be the `ETag` of the resource when read (before being subsequently modified by the client).
-	fPGAItem := *openapiclient.NewFPGAItem("TODO", "TODO", false, false, "FPGA with IP 123", "4545aaf", false, "FPGA 103 for Demo application") // FPGAItem | An FPGA to update.
+	fPGAItem := *openapiclient.NewFPGAItem("TODO", "TODO", false, false, "FPGA with IP 123", "4545aaf", false, []openapiclient.FPGATarget{*openapiclient.NewFPGATarget("HardwareImage_example", "SoftwareImage_example")}, "FPGA 103 for Demo application") // FPGAItem | An FPGA to update.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
