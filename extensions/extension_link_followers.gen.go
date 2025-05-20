@@ -53,6 +53,18 @@ func (a *AuthorizationAPIService) FollowResourceInstanceEntitlementsLink(r *ApiL
 		var defaultValue bool = false
 		r.embed = &defaultValue
 	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+	} else {
+		var defaultValue int32 = 0
+		r.offset = &defaultValue
+	}
 
 	localVarHTTPContentTypes := []string{}
 

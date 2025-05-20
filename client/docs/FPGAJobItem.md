@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **StepsTotal** | **NullableInt32** | The total number of steps that will need to be performed to complete the job. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started. | [readonly] 
 **Success** | **bool** | True if the job was successful (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
 **SupportConnection** | **bool** | True when the job allows direct connection to the job instance (application running on the FPGA). | [readonly] 
-**Target** | [**FPGATarget**](FPGATarget.md) |  | 
+**Target** | [**FPGATargetID**](FPGATargetID.md) |  | 
 **Timeout** | Pointer to **int64** | The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started. | [optional] [default to 300]
 **Title** | Pointer to **NullableString** | Optional human-readable name of the FPGA job. | [optional] 
 **Workload** | [**FPGAWorkload**](FPGAWorkload.md) |  | 
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 
 ### NewFPGAJobItem
 
-`func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, connected bool, done bool, error_ bool, failure bool, name string, queued bool, readyForConnection bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, target FPGATarget, workload FPGAWorkload, ) *FPGAJobItem`
+`func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, connected bool, done bool, error_ bool, failure bool, name string, queued bool, readyForConnection bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, target FPGATargetID, workload FPGAWorkload, ) *FPGAJobItem`
 
 NewFPGAJobItem instantiates a new FPGAJobItem object
 This constructor will assign default values to properties that have it defined,
@@ -404,20 +404,20 @@ SetSupportConnection sets SupportConnection field to given value.
 
 ### GetTarget
 
-`func (o *FPGAJobItem) GetTarget() FPGATarget`
+`func (o *FPGAJobItem) GetTarget() FPGATargetID`
 
 GetTarget returns the Target field if non-nil, zero value otherwise.
 
 ### GetTargetOk
 
-`func (o *FPGAJobItem) GetTargetOk() (*FPGATarget, bool)`
+`func (o *FPGAJobItem) GetTargetOk() (*FPGATargetID, bool)`
 
 GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTarget
 
-`func (o *FPGAJobItem) SetTarget(v FPGATarget)`
+`func (o *FPGAJobItem) SetTarget(v FPGATargetID)`
 
 SetTarget sets Target field to given value.
 

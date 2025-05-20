@@ -29,10 +29,9 @@ var _ MappedNullable = &FPGATarget{}
 type FPGATarget struct {
 	// a human-readable description of the target
 	Description NullableString `json:"description,omitempty"`
-	// identifier of the hardware image
-	HardwareImage string `json:"hardware_image"`
-	// identifier of the software image
-	SoftwareImage string `json:"software_image"`
+	// Extra metadata describing FPGA targets
+	Details *map[string]string `json:"details,omitempty"`
+	Identifier FPGATargetID `json:"identifier"`
 	// a human-readable name for the target
 	Title *string `json:"title,omitempty"`
 }
@@ -43,10 +42,9 @@ type _FPGATarget FPGATarget
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGATarget(hardwareImage string, softwareImage string) *FPGATarget {
+func NewFPGATarget(identifier FPGATargetID) *FPGATarget {
 	this := FPGATarget{}
-	this.HardwareImage = hardwareImage
-	this.SoftwareImage = softwareImage
+	this.Identifier = identifier
 	return &this
 }
 
@@ -100,52 +98,60 @@ func (o *FPGATarget) UnsetDescription() {
 	o.Description.Unset()
 }
 
-// GetHardwareImage returns the HardwareImage field value
-func (o *FPGATarget) GetHardwareImage() string {
+// GetDetails returns the Details field value if set, zero value otherwise.
+func (o *FPGATarget) GetDetails() map[string]string {
+	if o == nil || IsNil(o.Details) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Details
+}
+
+// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FPGATarget) GetDetailsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Details) {
+		return nil, false
+	}
+	return o.Details, true
+}
+
+// HasDetails returns a boolean if a field has been set.
+func (o *FPGATarget) HasDetails() bool {
+	if o != nil && !IsNil(o.Details) {
+		return true
+	}
+
+	return false
+}
+
+// SetDetails gets a reference to the given map[string]string and assigns it to the Details field.
+func (o *FPGATarget) SetDetails(v map[string]string) {
+	o.Details = &v
+}
+
+// GetIdentifier returns the Identifier field value
+func (o *FPGATarget) GetIdentifier() FPGATargetID {
 	if o == nil {
-		var ret string
+		var ret FPGATargetID
 		return ret
 	}
 
-	return o.HardwareImage
+	return o.Identifier
 }
 
-// GetHardwareImageOk returns a tuple with the HardwareImage field value
+// GetIdentifierOk returns a tuple with the Identifier field value
 // and a boolean to check if the value has been set.
-func (o *FPGATarget) GetHardwareImageOk() (*string, bool) {
+func (o *FPGATarget) GetIdentifierOk() (*FPGATargetID, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.HardwareImage, true
+	return &o.Identifier, true
 }
 
-// SetHardwareImage sets field value
-func (o *FPGATarget) SetHardwareImage(v string) {
-	o.HardwareImage = v
-}
-
-// GetSoftwareImage returns the SoftwareImage field value
-func (o *FPGATarget) GetSoftwareImage() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SoftwareImage
-}
-
-// GetSoftwareImageOk returns a tuple with the SoftwareImage field value
-// and a boolean to check if the value has been set.
-func (o *FPGATarget) GetSoftwareImageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SoftwareImage, true
-}
-
-// SetSoftwareImage sets field value
-func (o *FPGATarget) SetSoftwareImage(v string) {
-	o.SoftwareImage = v
+// SetIdentifier sets field value
+func (o *FPGATarget) SetIdentifier(v FPGATargetID) {
+	o.Identifier = v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
@@ -193,8 +199,10 @@ func (o FPGATarget) ToMap() (map[string]interface{}, error) {
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	toSerialize["hardware_image"] = o.HardwareImage
-	toSerialize["software_image"] = o.SoftwareImage
+	if !IsNil(o.Details) {
+		toSerialize["details"] = o.Details
+	}
+	toSerialize["identifier"] = o.Identifier
 	if !IsNil(o.Title) {
 		toSerialize["title"] = o.Title
 	}
@@ -206,8 +214,7 @@ func (o *FPGATarget) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"hardware_image",
-		"software_image",
+		"identifier",
 	}
 
 	allProperties := make(map[string]interface{})

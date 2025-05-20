@@ -1262,7 +1262,7 @@ import (
 
 func main() {
 	fpgaName := "fpgaName_example" // string | Unique ID of an FPGA.
-	fPGAJobItem := *openapiclient.NewFPGAJobItem("TODO", "TODO", true, true, false, true, "332129b3-f14d-49d2-b9be-acd2abd80c6b", false, true, "INITIALISING", NullableInt32(50), NullableInt32(70), false, true, *openapiclient.NewFPGATarget("HardwareImage_example", "SoftwareImage_example"), *openapiclient.NewFPGAWorkload("payload0001", "./helloworld/sayhello")) // FPGAJobItem | A FPGA job to start.
+	fPGAJobItem := *openapiclient.NewFPGAJobItem("TODO", "TODO", true, true, false, true, "332129b3-f14d-49d2-b9be-acd2abd80c6b", false, true, "INITIALISING", NullableInt32(50), NullableInt32(70), false, true, *openapiclient.NewFPGATargetID("HardwareImage_example", "SoftwareImage_example"), *openapiclient.NewFPGAWorkload("payload0001", "./helloworld/sayhello")) // FPGAJobItem | A FPGA job to start.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()

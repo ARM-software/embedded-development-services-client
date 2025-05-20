@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **Deprecated** | **bool** | True if this FPGA is scheduled to be removed from the service. | [readonly] 
 **DeprecationInfo** | Pointer to [**DeprecationInfo**](DeprecationInfo.md) |  | [optional] 
 **Description** | **string** | Description of the FPGA configuration | [readonly] 
-**ExtraMetadata** | Pointer to **map[string]string** | Extra metadata to include for FPGAs. | [optional] 
+**ExtraMetadata** | Pointer to **map[string]string** | Extra metadata describing FPGAs. | [optional] 
 **Name** | **string** | Unique ID of this FPGA | [readonly] 
 **Ready** | **bool** | True if this FPGA is ready to accept jobs to run. | [readonly] 
 **Repositories** | Pointer to [**FPGAPayloadRepositories**](FPGAPayloadRepositories.md) |  | [optional] 

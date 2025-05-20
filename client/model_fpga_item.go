@@ -42,7 +42,7 @@ type FPGAItem struct {
 	DeprecationInfo *DeprecationInfo `json:"deprecationInfo,omitempty"`
 	// Description of the FPGA configuration
 	Description string `json:"description"`
-	// Extra metadata to include for FPGAs.
+	// Extra metadata describing FPGAs.
 	ExtraMetadata *map[string]string `json:"extraMetadata,omitempty"`
 	// Unique ID of this FPGA
 	Name string `json:"name"`

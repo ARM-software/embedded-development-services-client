@@ -580,6 +580,8 @@ type ApiListResourceInstanceEntitlementsRequest struct {
 	acceptVersion *string
 	embed *bool
 	ifNoneMatch *string
+	limit *int32
+	offset *int32
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
@@ -597,6 +599,18 @@ func (r ApiListResourceInstanceEntitlementsRequest) Embed(embed bool) ApiListRes
 // Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
 func (r ApiListResourceInstanceEntitlementsRequest) IfNoneMatch(ifNoneMatch string) ApiListResourceInstanceEntitlementsRequest {
 	r.ifNoneMatch = &ifNoneMatch
+	return r
+}
+
+// Paging: The maximum number of items to return in a resource.
+func (r ApiListResourceInstanceEntitlementsRequest) Limit(limit int32) ApiListResourceInstanceEntitlementsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Paging:  The index of the first item to return in the resource.
+func (r ApiListResourceInstanceEntitlementsRequest) Offset(offset int32) ApiListResourceInstanceEntitlementsRequest {
+	r.offset = &offset
 	return r
 }
 
@@ -651,6 +665,18 @@ func (a *AuthorizationAPIService) ListResourceInstanceEntitlementsExecute(r ApiL
 	} else {
 		var defaultValue bool = false
 		r.embed = &defaultValue
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+	} else {
+		var defaultValue int32 = 0
+		r.offset = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

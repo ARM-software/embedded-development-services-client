@@ -55,7 +55,7 @@ type FPGAJobItem struct {
 	Success bool `json:"success"`
 	// True when the job allows direct connection to the job instance (application running on the FPGA).
 	SupportConnection bool `json:"supportConnection"`
-	Target FPGATarget `json:"target"`
+	Target FPGATargetID `json:"target"`
 	// The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started.
 	Timeout *int64 `json:"timeout,omitempty"`
 	// Optional human-readable name of the FPGA job.
@@ -69,7 +69,7 @@ type _FPGAJobItem FPGAJobItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, connected bool, done bool, error_ bool, failure bool, name string, queued bool, readyForConnection bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, target FPGATarget, workload FPGAWorkload) *FPGAJobItem {
+func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, connected bool, done bool, error_ bool, failure bool, name string, queued bool, readyForConnection bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, target FPGATargetID, workload FPGAWorkload) *FPGAJobItem {
 	this := FPGAJobItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -480,9 +480,9 @@ func (o *FPGAJobItem) SetSupportConnection(v bool) {
 }
 
 // GetTarget returns the Target field value
-func (o *FPGAJobItem) GetTarget() FPGATarget {
+func (o *FPGAJobItem) GetTarget() FPGATargetID {
 	if o == nil {
-		var ret FPGATarget
+		var ret FPGATargetID
 		return ret
 	}
 
@@ -491,7 +491,7 @@ func (o *FPGAJobItem) GetTarget() FPGATarget {
 
 // GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
-func (o *FPGAJobItem) GetTargetOk() (*FPGATarget, bool) {
+func (o *FPGAJobItem) GetTargetOk() (*FPGATargetID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -499,7 +499,7 @@ func (o *FPGAJobItem) GetTargetOk() (*FPGATarget, bool) {
 }
 
 // SetTarget sets field value
-func (o *FPGAJobItem) SetTarget(v FPGATarget) {
+func (o *FPGAJobItem) SetTarget(v FPGATargetID) {
 	o.Target = v
 }
 

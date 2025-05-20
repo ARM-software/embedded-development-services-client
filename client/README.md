@@ -297,6 +297,7 @@ Class | Method | HTTP request | Description
  - [FPGAPayloadItemLinks](docs/FPGAPayloadItemLinks.md)
  - [FPGAPayloadRepositories](docs/FPGAPayloadRepositories.md)
  - [FPGATarget](docs/FPGATarget.md)
+ - [FPGATargetID](docs/FPGATargetID.md)
  - [FPGAWorkload](docs/FPGAWorkload.md)
  - [FieldObject](docs/FieldObject.md)
  - [GenericWorkJobCollection](docs/GenericWorkJobCollection.md)

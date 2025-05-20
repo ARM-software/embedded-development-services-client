@@ -9,15 +9,15 @@ SPDX-License-Identifier: Apache-2.0
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **NullableString** | a human-readable description of the target | [optional] 
-**HardwareImage** | **string** | identifier of the hardware image | 
-**SoftwareImage** | **string** | identifier of the software image | 
+**Details** | Pointer to **map[string]string** | Extra metadata describing FPGA targets | [optional] 
+**Identifier** | [**FPGATargetID**](FPGATargetID.md) |  | 
 **Title** | Pointer to **string** | a human-readable name for the target | [optional] 
 
 ## Methods
 
 ### NewFPGATarget
 
-`func NewFPGATarget(hardwareImage string, softwareImage string, ) *FPGATarget`
+`func NewFPGATarget(identifier FPGATargetID, ) *FPGATarget`
 
 NewFPGATarget instantiates a new FPGATarget object
 This constructor will assign default values to properties that have it defined,
@@ -67,44 +67,49 @@ HasDescription returns a boolean if a field has been set.
 `func (o *FPGATarget) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetHardwareImage
+### GetDetails
 
-`func (o *FPGATarget) GetHardwareImage() string`
+`func (o *FPGATarget) GetDetails() map[string]string`
 
-GetHardwareImage returns the HardwareImage field if non-nil, zero value otherwise.
+GetDetails returns the Details field if non-nil, zero value otherwise.
 
-### GetHardwareImageOk
+### GetDetailsOk
 
-`func (o *FPGATarget) GetHardwareImageOk() (*string, bool)`
+`func (o *FPGATarget) GetDetailsOk() (*map[string]string, bool)`
 
-GetHardwareImageOk returns a tuple with the HardwareImage field if it's non-nil, zero value otherwise
+GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHardwareImage
+### SetDetails
 
-`func (o *FPGATarget) SetHardwareImage(v string)`
+`func (o *FPGATarget) SetDetails(v map[string]string)`
 
-SetHardwareImage sets HardwareImage field to given value.
+SetDetails sets Details field to given value.
 
+### HasDetails
 
-### GetSoftwareImage
+`func (o *FPGATarget) HasDetails() bool`
 
-`func (o *FPGATarget) GetSoftwareImage() string`
+HasDetails returns a boolean if a field has been set.
 
-GetSoftwareImage returns the SoftwareImage field if non-nil, zero value otherwise.
+### GetIdentifier
 
-### GetSoftwareImageOk
+`func (o *FPGATarget) GetIdentifier() FPGATargetID`
 
-`func (o *FPGATarget) GetSoftwareImageOk() (*string, bool)`
+GetIdentifier returns the Identifier field if non-nil, zero value otherwise.
 
-GetSoftwareImageOk returns a tuple with the SoftwareImage field if it's non-nil, zero value otherwise
+### GetIdentifierOk
+
+`func (o *FPGATarget) GetIdentifierOk() (*FPGATargetID, bool)`
+
+GetIdentifierOk returns a tuple with the Identifier field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSoftwareImage
+### SetIdentifier
 
-`func (o *FPGATarget) SetSoftwareImage(v string)`
+`func (o *FPGATarget) SetIdentifier(v FPGATargetID)`
 
-SetSoftwareImage sets SoftwareImage field to given value.
+SetIdentifier sets Identifier field to given value.
 
 
 ### GetTitle
