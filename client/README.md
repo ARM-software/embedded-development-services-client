@@ -112,6 +112,8 @@ Class | Method | HTTP request | Description
 *AuthenticationAPI* | [**CreateUser**](docs/AuthenticationAPI.md#createuser) | **Post** /users/ | Create a user.
 *AuthenticationAPI* | [**GetMe**](docs/AuthenticationAPI.md#getme) | **Get** /users/me | Get my user information
 *AuthenticationAPI* | [**GetUser**](docs/AuthenticationAPI.md#getuser) | **Get** /users/{userName} | Get user information
+*AuthenticationAPI* | [**InviteUser**](docs/AuthenticationAPI.md#inviteuser) | **Post** /users/invite | Invite a user.
+*AuthenticationAPI* | [**ListUsers**](docs/AuthenticationAPI.md#listusers) | **Get** /users/ | List all users
 *AuthorizationAPI* | [**CheckEntitlements**](docs/AuthorizationAPI.md#checkentitlements) | **Post** /entitlements/check | Check permissions on a resource.
 *AuthorizationAPI* | [**GetResourceInstanceEntitlements**](docs/AuthorizationAPI.md#getresourceinstanceentitlements) | **Get** /users/{userName}/entitlements/{resourceType}/instances/{resourceInstanceName} | Return details of the user&#39;s permissions for a resource instance.
 *AuthorizationAPI* | [**GetResourceTypeEntitlements**](docs/AuthorizationAPI.md#getresourcetypeentitlements) | **Get** /users/{userName}/entitlements/{resourceType} | Return details of the user&#39;s permissions for a resource type.
@@ -272,6 +274,7 @@ Class | Method | HTTP request | Description
  - [EmbeddedInstancePermissionItem](docs/EmbeddedInstancePermissionItem.md)
  - [EmbeddedIntellisenseJobItems](docs/EmbeddedIntellisenseJobItems.md)
  - [EmbeddedPATItem](docs/EmbeddedPATItem.md)
+ - [EmbeddedUserItem](docs/EmbeddedUserItem.md)
  - [EmbeddedVendorItems](docs/EmbeddedVendorItems.md)
  - [EmbeddedVhtInstanceItems](docs/EmbeddedVhtInstanceItems.md)
  - [EmbeddedVhtItems](docs/EmbeddedVhtItems.md)
@@ -334,6 +337,8 @@ Class | Method | HTTP request | Description
  - [RetainWorkspaceRequest](docs/RetainWorkspaceRequest.md)
  - [SimpleCollection](docs/SimpleCollection.md)
  - [ToolchainTypes](docs/ToolchainTypes.md)
+ - [UserCollection](docs/UserCollection.md)
+ - [UserInviteItem](docs/UserInviteItem.md)
  - [UserItem](docs/UserItem.md)
  - [UserItemLinks](docs/UserItemLinks.md)
  - [VendorItem](docs/VendorItem.md)

@@ -1559,6 +1559,135 @@ func NewIntellisenseJobCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
+// This extends UserItem and UserCollection definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *UserItem) FetchType() string {
+	return "UserItem"
+}
+
+// FetchLinks returns the resource links if present
+func (o *UserItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *UserItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *UserItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// NewUserModel returns a model.
+func NewUserModel() IModel {
+	return NewUserItemWithDefaults()
+}
+
+// UserIterator defines an iterator over a collection.
+type UserIterator struct {
+	elements     []UserItem
+	currentIndex int
+}
+
+func (m *UserIterator) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *UserIterator) GetNext() (item any, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func NewUserIterator(elements []UserItem) (IIterator, error) {
+	return &UserIterator{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
+
+// FetchType returns the resource type
+func (o *UserCollection) FetchType() string {
+	return "UserCollection page"
+}
+
+// FetchLinks returns the resource links if present
+func (o *UserCollection) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *UserCollection) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *UserCollection) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *UserCollection) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *UserCollection) GetItemIterator() (IIterator, error) {
+	if o.HasEmbedded() {
+		embedded := o.GetEmbedded()
+		return NewUserIterator(embedded.GetItem())
+	}
+	links, err := o.FetchLinks()
+	if err != nil {
+		return nil, err
+	}
+	l, ok := links.(HalCollectionLinks)
+	if !ok {
+		return nil, fmt.Errorf("wrong link type [%T]; expected [HalCollectionLinks]", links)
+	}
+	return NewHalLinkDataIterator(l.GetItem())
+}
+
+func (o *UserCollection) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewUserCollection returns a page.
+func NewUserCollectionCollection() IStaticPage {
+	return NewUserCollectionWithDefaults()
+}
+
+// ============================================================================================
 // This extends VhtInstanceItem and VhtInstanceCollection definitions
 // ============================================================================================
 

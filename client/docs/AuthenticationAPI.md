@@ -11,6 +11,8 @@ Method | HTTP request | Description
 [**CreateUser**](AuthenticationAPI.md#CreateUser) | **Post** /users/ | Create a user.
 [**GetMe**](AuthenticationAPI.md#GetMe) | **Get** /users/me | Get my user information
 [**GetUser**](AuthenticationAPI.md#GetUser) | **Get** /users/{userName} | Get user information
+[**InviteUser**](AuthenticationAPI.md#InviteUser) | **Post** /users/invite | Invite a user.
+[**ListUsers**](AuthenticationAPI.md#ListUsers) | **Get** /users/ | List all users
 
 
 
@@ -205,6 +207,148 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserItem**](UserItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## InviteUser
+
+> UserItem InviteUser(ctx).UserInviteItem(userInviteItem).AcceptVersion(acceptVersion).Execute()
+
+Invite a user.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	userInviteItem := *openapiclient.NewUserInviteItem("johndoe@doe.com") // UserInviteItem | Data required to invite a new user.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.InviteUser(context.Background()).UserInviteItem(userInviteItem).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.InviteUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `InviteUser`: UserItem
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.InviteUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInviteUserRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userInviteItem** | [**UserInviteItem**](UserInviteItem.md) | Data required to invite a new user. | 
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+[**UserItem**](UserItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListUsers
+
+> UserCollection ListUsers(ctx).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+
+List all users
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	embed := false // bool | Embedding: The whether or not to embed resources into the collection (rather than return links). (optional) (default to false)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+	limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
+	offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.ListUsers(context.Background()).AcceptVersion(acceptVersion).Embed(embed).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.ListUsers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListUsers`: UserCollection
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.ListUsers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUsersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **embed** | **bool** | Embedding: The whether or not to embed resources into the collection (rather than return links). | [default to false]
+ **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
+ **limit** | **int32** | Paging: The maximum number of items to return in a resource. | [default to 20]
+ **offset** | **int32** | Paging:  The index of the first item to return in the resource. | [default to 0]
+
+### Return type
+
+[**UserCollection**](UserCollection.md)
 
 ### Authorization
 

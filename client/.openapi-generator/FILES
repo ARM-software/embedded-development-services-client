@@ -63,6 +63,7 @@ docs/EmbeddedGenericWorkerItems.md
 docs/EmbeddedInstancePermissionItem.md
 docs/EmbeddedIntellisenseJobItems.md
 docs/EmbeddedPATItem.md
+docs/EmbeddedUserItem.md
 docs/EmbeddedVendorItems.md
 docs/EmbeddedVhtInstanceItems.md
 docs/EmbeddedVhtItems.md
@@ -134,6 +135,8 @@ docs/RetainWorkspaceRequest.md
 docs/RootResourceAPI.md
 docs/SimpleCollection.md
 docs/ToolchainTypes.md
+docs/UserCollection.md
+docs/UserInviteItem.md
 docs/UserItem.md
 docs/UserItemLinks.md
 docs/VHTRunJobsAPI.md
@@ -199,6 +202,7 @@ model_embedded_generic_worker_items.go
 model_embedded_instance_permission_item.go
 model_embedded_intellisense_job_items.go
 model_embedded_pat_item.go
+model_embedded_user_item.go
 model_embedded_vendor_items.go
 model_embedded_vht_instance_items.go
 model_embedded_vht_items.go
@@ -261,6 +265,8 @@ model_retain_build_job_request.go
 model_retain_workspace_request.go
 model_simple_collection.go
 model_toolchain_types.go
+model_user_collection.go
+model_user_invite_item.go
 model_user_item.go
 model_user_item_links.go
 model_vendor_item.go
