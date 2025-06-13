@@ -11,6 +11,6 @@ import (
 )
 
 func TestClientExtension(t *testing.T) {
-	// Placeholder test for codeclimate
+	// Placeholder test for Qlty Cloud
 	require.Nil(t, nil)
 }
