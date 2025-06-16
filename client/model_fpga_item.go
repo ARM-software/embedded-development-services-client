@@ -46,6 +46,8 @@ type FPGAItem struct {
 	ExtraMetadata *map[string]string `json:"extraMetadata,omitempty"`
 	// Unique ID of this FPGA
 	Name string `json:"name"`
+	// A list of UART connections that will be read from during a job
+	ReadUARTConnections []FPGAUARTConnection `json:"readUARTConnections,omitempty"`
 	// True if this FPGA is ready to accept jobs to run.
 	Ready bool `json:"ready"`
 	Repositories *FPGAPayloadRepositories `json:"repositories,omitempty"`
@@ -55,6 +57,7 @@ type FPGAItem struct {
 	Title string `json:"title"`
 	// Hybrid RSA AES encoded worker authorisation token to use for authorising with the boundary controller
 	WorkerAuthToken *string `json:"workerAuthToken,omitempty"`
+	WriteUARTConnection *FPGAUARTConnection `json:"writeUARTConnection,omitempty"`
 }
 
 type _FPGAItem FPGAItem
@@ -393,6 +396,38 @@ func (o *FPGAItem) SetName(v string) {
 	o.Name = v
 }
 
+// GetReadUARTConnections returns the ReadUARTConnections field value if set, zero value otherwise.
+func (o *FPGAItem) GetReadUARTConnections() []FPGAUARTConnection {
+	if o == nil || IsNil(o.ReadUARTConnections) {
+		var ret []FPGAUARTConnection
+		return ret
+	}
+	return o.ReadUARTConnections
+}
+
+// GetReadUARTConnectionsOk returns a tuple with the ReadUARTConnections field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FPGAItem) GetReadUARTConnectionsOk() ([]FPGAUARTConnection, bool) {
+	if o == nil || IsNil(o.ReadUARTConnections) {
+		return nil, false
+	}
+	return o.ReadUARTConnections, true
+}
+
+// HasReadUARTConnections returns a boolean if a field has been set.
+func (o *FPGAItem) HasReadUARTConnections() bool {
+	if o != nil && !IsNil(o.ReadUARTConnections) {
+		return true
+	}
+
+	return false
+}
+
+// SetReadUARTConnections gets a reference to the given []FPGAUARTConnection and assigns it to the ReadUARTConnections field.
+func (o *FPGAItem) SetReadUARTConnections(v []FPGAUARTConnection) {
+	o.ReadUARTConnections = v
+}
+
 // GetReady returns the Ready field value
 func (o *FPGAItem) GetReady() bool {
 	if o == nil {
@@ -529,6 +564,38 @@ func (o *FPGAItem) SetWorkerAuthToken(v string) {
 	o.WorkerAuthToken = &v
 }
 
+// GetWriteUARTConnection returns the WriteUARTConnection field value if set, zero value otherwise.
+func (o *FPGAItem) GetWriteUARTConnection() FPGAUARTConnection {
+	if o == nil || IsNil(o.WriteUARTConnection) {
+		var ret FPGAUARTConnection
+		return ret
+	}
+	return *o.WriteUARTConnection
+}
+
+// GetWriteUARTConnectionOk returns a tuple with the WriteUARTConnection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FPGAItem) GetWriteUARTConnectionOk() (*FPGAUARTConnection, bool) {
+	if o == nil || IsNil(o.WriteUARTConnection) {
+		return nil, false
+	}
+	return o.WriteUARTConnection, true
+}
+
+// HasWriteUARTConnection returns a boolean if a field has been set.
+func (o *FPGAItem) HasWriteUARTConnection() bool {
+	if o != nil && !IsNil(o.WriteUARTConnection) {
+		return true
+	}
+
+	return false
+}
+
+// SetWriteUARTConnection gets a reference to the given FPGAUARTConnection and assigns it to the WriteUARTConnection field.
+func (o *FPGAItem) SetWriteUARTConnection(v FPGAUARTConnection) {
+	o.WriteUARTConnection = &v
+}
+
 func (o FPGAItem) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -560,6 +627,9 @@ func (o FPGAItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["extraMetadata"] = o.ExtraMetadata
 	}
 	toSerialize["name"] = o.Name
+	if !IsNil(o.ReadUARTConnections) {
+		toSerialize["readUARTConnections"] = o.ReadUARTConnections
+	}
 	toSerialize["ready"] = o.Ready
 	if !IsNil(o.Repositories) {
 		toSerialize["repositories"] = o.Repositories
@@ -568,6 +638,9 @@ func (o FPGAItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["title"] = o.Title
 	if !IsNil(o.WorkerAuthToken) {
 		toSerialize["workerAuthToken"] = o.WorkerAuthToken
+	}
+	if !IsNil(o.WriteUARTConnection) {
+		toSerialize["writeUARTConnection"] = o.WriteUARTConnection
 	}
 	return toSerialize, nil
 }

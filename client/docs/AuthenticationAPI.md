@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**GetUser**](AuthenticationAPI.md#GetUser) | **Get** /users/{userName} | Get user information
 [**InviteUser**](AuthenticationAPI.md#InviteUser) | **Post** /users/invite | Invite a user.
 [**ListUsers**](AuthenticationAPI.md#ListUsers) | **Get** /users/ | List all users
+[**TokenIntrospect**](AuthenticationAPI.md#TokenIntrospect) | **Post** /token/introspect | Introspect a token.
 
 
 
@@ -357,6 +358,74 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TokenIntrospect
+
+> TokenIntrospectionResponseItem TokenIntrospect(ctx).TokenIntrospectionRequestItem(tokenIntrospectionRequestItem).AcceptVersion(acceptVersion).Execute()
+
+Introspect a token.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	tokenIntrospectionRequestItem := *openapiclient.NewTokenIntrospectionRequestItem("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...") // TokenIntrospectionRequestItem | Data required to introspect a token.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.TokenIntrospect(context.Background()).TokenIntrospectionRequestItem(tokenIntrospectionRequestItem).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.TokenIntrospect``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TokenIntrospect`: TokenIntrospectionResponseItem
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.TokenIntrospect`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTokenIntrospectRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tokenIntrospectionRequestItem** | [**TokenIntrospectionRequestItem**](TokenIntrospectionRequestItem.md) | Data required to introspect a token. | 
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+[**TokenIntrospectionResponseItem**](TokenIntrospectionResponseItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

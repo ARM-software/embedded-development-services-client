@@ -114,6 +114,7 @@ Class | Method | HTTP request | Description
 *AuthenticationAPI* | [**GetUser**](docs/AuthenticationAPI.md#getuser) | **Get** /users/{userName} | Get user information
 *AuthenticationAPI* | [**InviteUser**](docs/AuthenticationAPI.md#inviteuser) | **Post** /users/invite | Invite a user.
 *AuthenticationAPI* | [**ListUsers**](docs/AuthenticationAPI.md#listusers) | **Get** /users/ | List all users
+*AuthenticationAPI* | [**TokenIntrospect**](docs/AuthenticationAPI.md#tokenintrospect) | **Post** /token/introspect | Introspect a token.
 *AuthorizationAPI* | [**CheckEntitlements**](docs/AuthorizationAPI.md#checkentitlements) | **Post** /entitlements/check | Check permissions on a resource.
 *AuthorizationAPI* | [**GetResourceInstanceEntitlements**](docs/AuthorizationAPI.md#getresourceinstanceentitlements) | **Get** /users/{userName}/entitlements/{resourceType}/instances/{resourceInstanceName} | Return details of the user&#39;s permissions for a resource instance.
 *AuthorizationAPI* | [**GetResourceTypeEntitlements**](docs/AuthorizationAPI.md#getresourcetypeentitlements) | **Get** /users/{userName}/entitlements/{resourceType} | Return details of the user&#39;s permissions for a resource type.
@@ -137,10 +138,14 @@ Class | Method | HTTP request | Description
 *CMSISIntellisenseBuildersAPI* | [**StartCmsisIntellisense**](docs/CMSISIntellisenseBuildersAPI.md#startcmsisintellisense) | **Post** /cmsis-intellisense/{builderName} | Initiate a compilation database generation using the specified CMSIS Intellisense Builder.
 *DeprecationNoticeAPI* | [**GetDeprecationNotice**](docs/DeprecationNoticeAPI.md#getdeprecationnotice) | **Get** /deprecations/{operationName} | Return details of specific endpoint deprecation notice.
 *DeprecationNoticeAPI* | [**ListDeprecatedEndpoints**](docs/DeprecationNoticeAPI.md#listdeprecatedendpoints) | **Get** /deprecations/ | Get the endpoints that have been deprecated with some notice.
+*FPGAAdminAPI* | [**AddFPGAAdmin**](docs/FPGAAdminAPI.md#addfpgaadmin) | **Post** /fpga-admins | Add a user to the FPGA admin group
+*FPGAAdminAPI* | [**ListFPGAAdmins**](docs/FPGAAdminAPI.md#listfpgaadmins) | **Get** /fpga-admins | List all the members of the FPGA admin group
+*FPGAAdminAPI* | [**RemoveFPGAAdmin**](docs/FPGAAdminAPI.md#removefpgaadmin) | **Delete** /fpga-admins/{fpgaAdminName} | Remove a user from the FPGA admin group
 *FPGAConnectionAPI* | [**GetFpgaConnection**](docs/FPGAConnectionAPI.md#getfpgaconnection) | **Get** /fpga-connections/{connectionName} | Get connection information
 *FPGAConnectionAPI* | [**ListFpgaConnections**](docs/FPGAConnectionAPI.md#listfpgaconnections) | **Get** /fpga-connections/ | List available FPGA connections.
 *FPGAConnectionAPI* | [**StartFpgaConnection**](docs/FPGAConnectionAPI.md#startfpgaconnection) | **Get** /fpga-connections/{connectionName}/connect | starts a websocket connection
 *FPGAConnectionAPI* | [**TerminateFpgaConnection**](docs/FPGAConnectionAPI.md#terminatefpgaconnection) | **Post** /fpga-connections/{connectionName}/terminate | Terminates all websocket connections to the application running on the FPGA
+*FPGAEntitlementsAPI* | [**UpdateFPGAEntitlement**](docs/FPGAEntitlementsAPI.md#updatefpgaentitlement) | **Put** /fpga-entitlements | Update an FPGA entitlement that defines which users are permitted to interact with an FPGA.
 *FPGAJobsAPI* | [**CancelFpgaJob**](docs/FPGAJobsAPI.md#cancelfpgajob) | **Post** /fpga-jobs/{jobName}/cancel | Cancel an FPGA job.
 *FPGAJobsAPI* | [**ClearFpgaJobArtefact**](docs/FPGAJobsAPI.md#clearfpgajobartefact) | **Delete** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Clear the job artefact.
 *FPGAJobsAPI* | [**CreateFpgaJobArtefactManager**](docs/FPGAJobsAPI.md#createfpgajobartefactmanager) | **Post** /fpga-jobs/{jobName}/artefacts/ | Create a job artefact manager.
@@ -265,6 +270,7 @@ Class | Method | HTTP request | Description
  - [EmbeddedCmsisBuilderItems](docs/EmbeddedCmsisBuilderItems.md)
  - [EmbeddedCmsisIntellisenseItems](docs/EmbeddedCmsisIntellisenseItems.md)
  - [EmbeddedEndpointDeprecationNoticeItems](docs/EmbeddedEndpointDeprecationNoticeItems.md)
+ - [EmbeddedFPGAAdminItem](docs/EmbeddedFPGAAdminItem.md)
  - [EmbeddedFPGAConnectionItems](docs/EmbeddedFPGAConnectionItems.md)
  - [EmbeddedFPGAItems](docs/EmbeddedFPGAItems.md)
  - [EmbeddedFPGAJobItems](docs/EmbeddedFPGAJobItems.md)
@@ -285,11 +291,14 @@ Class | Method | HTTP request | Description
  - [EndpointDeprecationNoticeCollection](docs/EndpointDeprecationNoticeCollection.md)
  - [EndpointDeprecationNoticeLinks](docs/EndpointDeprecationNoticeLinks.md)
  - [ErrorResponse](docs/ErrorResponse.md)
+ - [FPGAAdminCollection](docs/FPGAAdminCollection.md)
+ - [FPGAAdminItem](docs/FPGAAdminItem.md)
  - [FPGACollection](docs/FPGACollection.md)
  - [FPGACollectionLinks](docs/FPGACollectionLinks.md)
  - [FPGAConnectionCollection](docs/FPGAConnectionCollection.md)
  - [FPGAConnectionItem](docs/FPGAConnectionItem.md)
  - [FPGAConnectionItemLinks](docs/FPGAConnectionItemLinks.md)
+ - [FPGAEntitlementItem](docs/FPGAEntitlementItem.md)
  - [FPGAItem](docs/FPGAItem.md)
  - [FPGAItemLinks](docs/FPGAItemLinks.md)
  - [FPGAJobCollection](docs/FPGAJobCollection.md)
@@ -301,6 +310,7 @@ Class | Method | HTTP request | Description
  - [FPGAPayloadRepositories](docs/FPGAPayloadRepositories.md)
  - [FPGATarget](docs/FPGATarget.md)
  - [FPGATargetID](docs/FPGATargetID.md)
+ - [FPGAUARTConnection](docs/FPGAUARTConnection.md)
  - [FPGAWorkload](docs/FPGAWorkload.md)
  - [FieldObject](docs/FieldObject.md)
  - [GenericWorkJobCollection](docs/GenericWorkJobCollection.md)
@@ -336,6 +346,8 @@ Class | Method | HTTP request | Description
  - [RetainBuildJobRequest](docs/RetainBuildJobRequest.md)
  - [RetainWorkspaceRequest](docs/RetainWorkspaceRequest.md)
  - [SimpleCollection](docs/SimpleCollection.md)
+ - [TokenIntrospectionRequestItem](docs/TokenIntrospectionRequestItem.md)
+ - [TokenIntrospectionResponseItem](docs/TokenIntrospectionResponseItem.md)
  - [ToolchainTypes](docs/ToolchainTypes.md)
  - [UserCollection](docs/UserCollection.md)
  - [UserInviteItem](docs/UserInviteItem.md)

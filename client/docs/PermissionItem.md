@@ -9,18 +9,17 @@ SPDX-License-Identifier: Apache-2.0
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**Operations** | **[]string** | The list of allowed CRUDL operations. | 
+**Operations** | Pointer to **[]string** | The list of allowed CRUDL operations. | [optional] 
 **ResourceInstance** | **string** | The unique identifier of the resource instance. | 
-**ResourceOwnerName** | **string** | The unique identifier of the user or system entity that owns the specified resource instance. | 
 **ResourceType** | **string** | The type of resource for which permission is being checked. This should only refer to items and not collections. | 
 **UserName** | **string** | The unique identifier of the user requesting access. | 
-**UserToken** | **string** | The API token of the user requesting access. This can be a JWT or an internal access token. | 
+**UserToken** | Pointer to **string** | The API token of the user requesting access. This can be a JWT or an internal access token. | [optional] 
 
 ## Methods
 
 ### NewPermissionItem
 
-`func NewPermissionItem(metadata NullableCommonMetadata, operations []string, resourceInstance string, resourceOwnerName string, resourceType string, userName string, userToken string, ) *PermissionItem`
+`func NewPermissionItem(metadata NullableCommonMetadata, resourceInstance string, resourceType string, userName string, ) *PermissionItem`
 
 NewPermissionItem instantiates a new PermissionItem object
 This constructor will assign default values to properties that have it defined,
@@ -84,6 +83,11 @@ and a boolean to check if the value has been set.
 
 SetOperations sets Operations field to given value.
 
+### HasOperations
+
+`func (o *PermissionItem) HasOperations() bool`
+
+HasOperations returns a boolean if a field has been set.
 
 ### SetOperationsNil
 
@@ -113,26 +117,6 @@ and a boolean to check if the value has been set.
 `func (o *PermissionItem) SetResourceInstance(v string)`
 
 SetResourceInstance sets ResourceInstance field to given value.
-
-
-### GetResourceOwnerName
-
-`func (o *PermissionItem) GetResourceOwnerName() string`
-
-GetResourceOwnerName returns the ResourceOwnerName field if non-nil, zero value otherwise.
-
-### GetResourceOwnerNameOk
-
-`func (o *PermissionItem) GetResourceOwnerNameOk() (*string, bool)`
-
-GetResourceOwnerNameOk returns a tuple with the ResourceOwnerName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetResourceOwnerName
-
-`func (o *PermissionItem) SetResourceOwnerName(v string)`
-
-SetResourceOwnerName sets ResourceOwnerName field to given value.
 
 
 ### GetResourceType
@@ -194,6 +178,11 @@ and a boolean to check if the value has been set.
 
 SetUserToken sets UserToken field to given value.
 
+### HasUserToken
+
+`func (o *PermissionItem) HasUserToken() bool`
+
+HasUserToken returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

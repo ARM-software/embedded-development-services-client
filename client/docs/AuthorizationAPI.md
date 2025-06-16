@@ -36,7 +36,7 @@ import (
 )
 
 func main() {
-	permissionItem := *openapiclient.NewPermissionItem("TODO", []string{"Operations_example"}, "worker_1234-job-5678", "9c2d1b2f-3d4e-456a-a7fc-12b5d9c6e8a4", "GenericWorkJobItem", "b7f6c5d1-2a44-4f9a-9d77-6e5a8c9d4e1b", "arm_pat_HGfmzxFblhr6AXiTnyaUqd1pgA9waIiO") // PermissionItem | Data required to check permissions on a resource.
+	permissionItem := *openapiclient.NewPermissionItem("TODO", "worker_1234-job-5678", "GenericWorkJobItem", "b7f6c5d1-2a44-4f9a-9d77-6e5a8c9d4e1b") // PermissionItem | Data required to check permissions on a resource.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()

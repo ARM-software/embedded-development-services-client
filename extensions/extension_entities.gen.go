@@ -527,6 +527,135 @@ func NewCmsisIntellisenseCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
+// This extends FPGAAdminItem and FPGAAdminCollection definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *FPGAAdminItem) FetchType() string {
+	return "FPGAAdminItem"
+}
+
+// FetchLinks returns the resource links if present
+func (o *FPGAAdminItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *FPGAAdminItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *FPGAAdminItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// NewFPGAAdminModel returns a model.
+func NewFPGAAdminModel() IModel {
+	return NewFPGAAdminItemWithDefaults()
+}
+
+// FPGAAdminIterator defines an iterator over a collection.
+type FPGAAdminIterator struct {
+	elements     []FPGAAdminItem
+	currentIndex int
+}
+
+func (m *FPGAAdminIterator) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *FPGAAdminIterator) GetNext() (item any, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func NewFPGAAdminIterator(elements []FPGAAdminItem) (IIterator, error) {
+	return &FPGAAdminIterator{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
+
+// FetchType returns the resource type
+func (o *FPGAAdminCollection) FetchType() string {
+	return "FPGAAdminCollection page"
+}
+
+// FetchLinks returns the resource links if present
+func (o *FPGAAdminCollection) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *FPGAAdminCollection) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *FPGAAdminCollection) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *FPGAAdminCollection) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *FPGAAdminCollection) GetItemIterator() (IIterator, error) {
+	if o.HasEmbedded() {
+		embedded := o.GetEmbedded()
+		return NewFPGAAdminIterator(embedded.GetItem())
+	}
+	links, err := o.FetchLinks()
+	if err != nil {
+		return nil, err
+	}
+	l, ok := links.(HalCollectionLinks)
+	if !ok {
+		return nil, fmt.Errorf("wrong link type [%T]; expected [HalCollectionLinks]", links)
+	}
+	return NewHalLinkDataIterator(l.GetItem())
+}
+
+func (o *FPGAAdminCollection) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewFPGAAdminCollection returns a page.
+func NewFPGAAdminCollectionCollection() IStaticPage {
+	return NewFPGAAdminCollectionWithDefaults()
+}
+
+// ============================================================================================
 // This extends FPGAConnectionItem and FPGAConnectionCollection definitions
 // ============================================================================================
 
