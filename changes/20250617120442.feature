@@ -1,1 +1,1 @@
-:sparkles: Add support for disabling link generation
+:sparkles: Add support to disable generating extensions for HAL link data
