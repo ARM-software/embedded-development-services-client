@@ -14,6 +14,8 @@ import (
 	"github.com/getkin/kin-openapi/openapi3"
 	"golang.org/x/tools/imports"
 
+	"slices"
+
 	"github.com/ARM-software/golang-utils/utils/commonerrors"
 	configUtils "github.com/ARM-software/golang-utils/utils/config"
 	"github.com/ARM-software/golang-utils/utils/filesystem"
@@ -44,6 +46,7 @@ type Data struct {
 	DestinationPath   string
 	ClientPackagePath string
 	PackageName       string
+	DisableLinks      bool
 }
 
 var ValidGenerationTargets = map[string]func(*Data) error{
@@ -58,6 +61,13 @@ type ExtensionsConfig struct {
 	Template          string `mapstructure:"template"`
 	GenerateType      string `mapstructure:"generate_type"`
 	ClientPackagePath string `mapstructure:"client_path"`
+	DisableLinks      bool   `mapstructure:"disable_links"`
+}
+
+type StaticFileConfig struct {
+	ClientName  string
+	Destination string
+	Exclusions  []string
 }
 
 func DefaultExtensionsConfig() *ExtensionsConfig {
@@ -115,6 +125,24 @@ func GenerateDataStruct(cfg ExtensionsConfig) (d *Data, err error) {
 		TemplatePath:      cfg.Template,
 		ClientPackagePath: cfg.ClientPackagePath,
 		PackageName:       clientName,
+	}, nil
+}
+
+func GenerateStaticFileConfigStruct(cfg ExtensionsConfig) (d *StaticFileConfig, err error) {
+	clientName, err := getPackageNameFromPath(cfg.ClientPackagePath)
+	if err != nil {
+		return
+	}
+
+	var exclusions []string
+	if cfg.DisableLinks {
+		exclusions = append(exclusions, "static/extension_model_hal_link_data.go.static")
+	}
+
+	return &StaticFileConfig{
+		ClientName:  clientName,
+		Destination: filepath.Dir(cfg.Output),
+		Exclusions:  exclusions,
 	}, nil
 }
 
@@ -227,23 +255,28 @@ func isExtensionFlagSet(props openapi3.ExtensionProps, flagKey string) (isSet bo
 	return
 }
 
-func CopyStaticFiles(ctx context.Context, clientName string, destination string) (err error) {
+func CopyStaticFiles(ctx context.Context, staticFileConfig *StaticFileConfig) (err error) {
 	efs, fsErr := filesystem.NewEmbedFileSystem(&static)
 	if fsErr != nil {
-		return commonerrors.Newf(commonerrors.ErrUnexpected, "failed to create a filesystem for directory `%s`: %s", destination, fsErr.Error())
+		return commonerrors.Newf(commonerrors.ErrUnexpected, "failed to create a filesystem for directory `%s`: %s", staticFileConfig.Destination, fsErr.Error())
 	}
 
 	files, lsErr := efs.FindAll(".", "go.static")
 	if lsErr != nil {
-		return commonerrors.Newf(commonerrors.ErrUnexpected, "no files with the '.go.static' extension were found in the directory `%s`", destination)
+		return commonerrors.Newf(commonerrors.ErrUnexpected, "no files with the '.go.static' extension were found in the directory `%s`", staticFileConfig.Destination)
 	}
 
-	mkdirErr := filesystem.MkDir(destination)
+	mkdirErr := filesystem.MkDir(staticFileConfig.Destination)
 	if mkdirErr != nil {
-		return commonerrors.Newf(commonerrors.ErrUnexpected, "could not create directory `%s`: %s", destination, mkdirErr.Error())
+		return commonerrors.Newf(commonerrors.ErrUnexpected, "could not create directory `%s`: %s", staticFileConfig.Destination, mkdirErr.Error())
 	}
 
 	for _, f := range files {
+		// Skip the file if it's contained in exclusions
+		if slices.Contains(staticFileConfig.Exclusions, f) {
+			continue
+		}
+
 		t, tmplErr := template.
 			New(filesystem.FilePathBase(efs, f)).
 			ParseFS(static, f)
@@ -255,8 +288,8 @@ func CopyStaticFiles(ctx context.Context, clientName string, destination string)
 		resultFileName = strings.TrimSuffix(resultFileName, ".static")
 
 		d := Data{
-			DestinationPath: filepath.Join(destination, resultFileName),
-			PackageName:     clientName,
+			DestinationPath: filepath.Join(staticFileConfig.Destination, resultFileName),
+			PackageName:     staticFileConfig.ClientName,
 		}
 		err = generateSourceCode(ctx, &d, t)
 		if err != nil {
