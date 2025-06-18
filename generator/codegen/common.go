@@ -8,13 +8,12 @@ import (
 	"fmt"
 	"go/format"
 	"path/filepath"
+	"slices"
 	"strings"
 	"text/template"
 
 	"github.com/getkin/kin-openapi/openapi3"
 	"golang.org/x/tools/imports"
-
-	"slices"
 
 	"github.com/ARM-software/golang-utils/utils/commonerrors"
 	configUtils "github.com/ARM-software/golang-utils/utils/config"
