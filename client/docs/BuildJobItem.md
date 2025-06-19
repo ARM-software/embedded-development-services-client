@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **Error** | **bool** | True if there was an error in the service while attempting the job. | [readonly] 
 **Failure** | **bool** | True if the job failed (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
 **Name** | **string** | Unique ID of the Build Job. | [readonly] 
+**Priority** | Pointer to **string** | The priority of a job: * A &#39;normal&#39; job has the lowest priority * A &#39;jump&#39; job will jump the queue * A &#39;MAWS&#39; job is a job that should supercede all others, e.g. terminating a managed service immediately Note: not all jobs will allow different priority levels and it will depend on the type of job requested to accept or take into account this information | [optional] [default to "NORMAL"]
 **Project** | **string** | CMSIS project to build or being built. | 
 **Queued** | Pointer to **bool** | True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended. | [optional] [readonly] 
 **Status** | **string** | A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead. | [readonly] 
@@ -329,6 +330,31 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+
+### GetPriority
+
+`func (o *BuildJobItem) GetPriority() string`
+
+GetPriority returns the Priority field if non-nil, zero value otherwise.
+
+### GetPriorityOk
+
+`func (o *BuildJobItem) GetPriorityOk() (*string, bool)`
+
+GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriority
+
+`func (o *BuildJobItem) SetPriority(v string)`
+
+SetPriority sets Priority field to given value.
+
+### HasPriority
+
+`func (o *BuildJobItem) HasPriority() bool`
+
+HasPriority returns a boolean if a field has been set.
 
 ### GetProject
 

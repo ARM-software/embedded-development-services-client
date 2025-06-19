@@ -45,6 +45,8 @@ type GenericWorkJobItem struct {
 	JobTimeout *int32 `json:"jobTimeout,omitempty"`
 	// Unique ID of the Generic Work Job.
 	Name string `json:"name"`
+	// The priority of a job: * A 'normal' job has the lowest priority * A 'jump' job will jump the queue * A 'MAWS' job is a job that should supercede all others, e.g. terminating a managed service immediately Note: not all jobs will allow different priority levels and it will depend on the type of job requested to accept or take into account this information
+	Priority *string `json:"priority,omitempty"`
 	// Path in the workspace to the project to handle or being handled.
 	Project *string `json:"project,omitempty"`
 	// True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended.
@@ -77,6 +79,8 @@ func NewGenericWorkJobItem(links NullableGenericWorkJobItemLinks, metadata Nulla
 	var jobTimeout int32 = 300
 	this.JobTimeout = &jobTimeout
 	this.Name = name
+	var priority string = "NORMAL"
+	this.Priority = &priority
 	this.Status = status
 	this.Success = success
 	return &this
@@ -89,6 +93,8 @@ func NewGenericWorkJobItemWithDefaults() *GenericWorkJobItem {
 	this := GenericWorkJobItem{}
 	var jobTimeout int32 = 300
 	this.JobTimeout = &jobTimeout
+	var priority string = "NORMAL"
+	this.Priority = &priority
 	return &this
 }
 
@@ -357,6 +363,38 @@ func (o *GenericWorkJobItem) SetName(v string) {
 	o.Name = v
 }
 
+// GetPriority returns the Priority field value if set, zero value otherwise.
+func (o *GenericWorkJobItem) GetPriority() string {
+	if o == nil || IsNil(o.Priority) {
+		var ret string
+		return ret
+	}
+	return *o.Priority
+}
+
+// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GenericWorkJobItem) GetPriorityOk() (*string, bool) {
+	if o == nil || IsNil(o.Priority) {
+		return nil, false
+	}
+	return o.Priority, true
+}
+
+// HasPriority returns a boolean if a field has been set.
+func (o *GenericWorkJobItem) HasPriority() bool {
+	if o != nil && !IsNil(o.Priority) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriority gets a reference to the given string and assigns it to the Priority field.
+func (o *GenericWorkJobItem) SetPriority(v string) {
+	o.Priority = &v
+}
+
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *GenericWorkJobItem) GetProject() string {
 	if o == nil || IsNil(o.Project) {
@@ -577,6 +615,9 @@ func (o GenericWorkJobItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["jobTimeout"] = o.JobTimeout
 	}
 	toSerialize["name"] = o.Name
+	if !IsNil(o.Priority) {
+		toSerialize["priority"] = o.Priority
+	}
 	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}

@@ -19,11 +19,13 @@ Name | Type | Description | Notes
 **Description** | **string** | Description of the FPGA configuration | [readonly] 
 **ExtraMetadata** | Pointer to **map[string]string** | Extra metadata describing FPGAs. | [optional] 
 **Name** | **string** | Unique ID of this FPGA | [readonly] 
+**ReadUARTConnections** | Pointer to [**[]FPGAUARTConnection**](FPGAUARTConnection.md) | A list of UART connections that will be read from during a job | [optional] 
 **Ready** | **bool** | True if this FPGA is ready to accept jobs to run. | [readonly] 
 **Repositories** | Pointer to [**FPGAPayloadRepositories**](FPGAPayloadRepositories.md) |  | [optional] 
 **SupportedTargets** | [**[]FPGATarget**](FPGATarget.md) | A list of targets supported for this FPGA | 
 **Title** | **string** | Human readable name of the FPGA. | 
 **WorkerAuthToken** | Pointer to **string** | Hybrid RSA AES encoded worker authorisation token to use for authorising with the boundary controller | [optional] 
+**WriteUARTConnection** | Pointer to [**FPGAUARTConnection**](FPGAUARTConnection.md) |  | [optional] 
 
 ## Methods
 
@@ -309,6 +311,31 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetReadUARTConnections
+
+`func (o *FPGAItem) GetReadUARTConnections() []FPGAUARTConnection`
+
+GetReadUARTConnections returns the ReadUARTConnections field if non-nil, zero value otherwise.
+
+### GetReadUARTConnectionsOk
+
+`func (o *FPGAItem) GetReadUARTConnectionsOk() (*[]FPGAUARTConnection, bool)`
+
+GetReadUARTConnectionsOk returns a tuple with the ReadUARTConnections field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReadUARTConnections
+
+`func (o *FPGAItem) SetReadUARTConnections(v []FPGAUARTConnection)`
+
+SetReadUARTConnections sets ReadUARTConnections field to given value.
+
+### HasReadUARTConnections
+
+`func (o *FPGAItem) HasReadUARTConnections() bool`
+
+HasReadUARTConnections returns a boolean if a field has been set.
+
 ### GetReady
 
 `func (o *FPGAItem) GetReady() bool`
@@ -418,6 +445,31 @@ SetWorkerAuthToken sets WorkerAuthToken field to given value.
 `func (o *FPGAItem) HasWorkerAuthToken() bool`
 
 HasWorkerAuthToken returns a boolean if a field has been set.
+
+### GetWriteUARTConnection
+
+`func (o *FPGAItem) GetWriteUARTConnection() FPGAUARTConnection`
+
+GetWriteUARTConnection returns the WriteUARTConnection field if non-nil, zero value otherwise.
+
+### GetWriteUARTConnectionOk
+
+`func (o *FPGAItem) GetWriteUARTConnectionOk() (*FPGAUARTConnection, bool)`
+
+GetWriteUARTConnectionOk returns a tuple with the WriteUARTConnection field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWriteUARTConnection
+
+`func (o *FPGAItem) SetWriteUARTConnection(v FPGAUARTConnection)`
+
+SetWriteUARTConnection sets WriteUARTConnection field to given value.
+
+### HasWriteUARTConnection
+
+`func (o *FPGAItem) HasWriteUARTConnection() bool`
+
+HasWriteUARTConnection returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

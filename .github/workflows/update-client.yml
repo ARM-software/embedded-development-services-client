@@ -25,8 +25,9 @@ jobs:
         token: ${{ secrets.GIT_SECRET }}
         repository: Arm-Debug/API-Uniform-Contract
         path: API-Uniform-Contract
-        ref: production
-    - uses: actions/upload-artifact@master
+        ref: main
+        # FIXME set to `production`
+    - uses: actions/upload-artifact@4.6.2
       with:
         name: all-service-flat
         path: API-Uniform-Contract/all/1/
