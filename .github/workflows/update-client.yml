@@ -99,8 +99,18 @@ jobs:
         go run main.go -i ../all-service-definition/all-def-flat.yaml -o ../extensions/extension_link_followers.gen.go -t templates/linkfollowers.go.tmpl -g links -c ../client
     - name: Copy extensions to client
       run: |
-        if [ -d ./extensions/ ] ; then cp -r extensions/. ${{ env.go_module }}/ ; fi
+        if [ -d ./extensions/ ]; then
+          cp -r extensions/. ${{ env.go_module }}/
+          echo "EXTENSIONS_EXISTS=true" >> $GITHUB_ENV
+        fi
         ls -l ${{ env.go_module }}/*
+    - name: Upload extensions
+      if: ${{ env.EXTENSIONS_EXISTS == 'true' }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: extensions
+        path: extensions/
+        retention-days: 1
     - name: License files
       run: |
         cd-license-files
