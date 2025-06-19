@@ -100,7 +100,8 @@ jobs:
       run: |
         if [ -d ./extensions/ ] ; then cp -r extensions/. ${{ env.go_module }}/ ; fi
         ls -l ${{ env.go_module }}/*
-    - uses: actions/upload-artifact@v4
+    - name: Upload extensions
+      uses: actions/upload-artifact@v4
       with:
         name: extensions
         path: extensions/
