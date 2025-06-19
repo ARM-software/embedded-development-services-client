@@ -47,6 +47,8 @@ type BuildJobItem struct {
 	Failure bool `json:"failure"`
 	// Unique ID of the Build Job.
 	Name string `json:"name"`
+	// The priority of a job: * A 'normal' job has the lowest priority * A 'jump' job will jump the queue * A 'MAWS' job is a job that should supercede all others, e.g. terminating a managed service immediately Note: not all jobs will allow different priority levels and it will depend on the type of job requested to accept or take into account this information
+	Priority *string `json:"priority,omitempty"`
 	// CMSIS project to build or being built.
 	Project string `json:"project"`
 	// True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended.
@@ -81,6 +83,8 @@ func NewBuildJobItem(links NullableBuildJobItemLinks, metadata NullableCommonMet
 	this.Error = error_
 	this.Failure = failure
 	this.Name = name
+	var priority string = "NORMAL"
+	this.Priority = &priority
 	this.Project = project
 	this.Status = status
 	this.Success = success
@@ -96,6 +100,8 @@ func NewBuildJobItemWithDefaults() *BuildJobItem {
 	this.BuildTimeout = &buildTimeout
 	var cleanBuild bool = false
 	this.CleanBuild = &cleanBuild
+	var priority string = "NORMAL"
+	this.Priority = &priority
 	return &this
 }
 
@@ -405,6 +411,38 @@ func (o *BuildJobItem) SetName(v string) {
 	o.Name = v
 }
 
+// GetPriority returns the Priority field value if set, zero value otherwise.
+func (o *BuildJobItem) GetPriority() string {
+	if o == nil || IsNil(o.Priority) {
+		var ret string
+		return ret
+	}
+	return *o.Priority
+}
+
+// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BuildJobItem) GetPriorityOk() (*string, bool) {
+	if o == nil || IsNil(o.Priority) {
+		return nil, false
+	}
+	return o.Priority, true
+}
+
+// HasPriority returns a boolean if a field has been set.
+func (o *BuildJobItem) HasPriority() bool {
+	if o != nil && !IsNil(o.Priority) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriority gets a reference to the given string and assigns it to the Priority field.
+func (o *BuildJobItem) SetPriority(v string) {
+	o.Priority = &v
+}
+
 // GetProject returns the Project field value
 func (o *BuildJobItem) GetProject() string {
 	if o == nil {
@@ -620,6 +658,9 @@ func (o BuildJobItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["error"] = o.Error
 	toSerialize["failure"] = o.Failure
 	toSerialize["name"] = o.Name
+	if !IsNil(o.Priority) {
+		toSerialize["priority"] = o.Priority
+	}
 	toSerialize["project"] = o.Project
 	if !IsNil(o.Queued) {
 		toSerialize["queued"] = o.Queued

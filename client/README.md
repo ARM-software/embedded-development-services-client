@@ -145,6 +145,7 @@ Class | Method | HTTP request | Description
 *FPGAConnectionAPI* | [**ListFpgaConnections**](docs/FPGAConnectionAPI.md#listfpgaconnections) | **Get** /fpga-connections/ | List available FPGA connections.
 *FPGAConnectionAPI* | [**StartFpgaConnection**](docs/FPGAConnectionAPI.md#startfpgaconnection) | **Get** /fpga-connections/{connectionName}/connect | starts a websocket connection
 *FPGAConnectionAPI* | [**TerminateFpgaConnection**](docs/FPGAConnectionAPI.md#terminatefpgaconnection) | **Post** /fpga-connections/{connectionName}/terminate | Terminates all websocket connections to the application running on the FPGA
+*FPGAEntitlementsAPI* | [**GetFpgaEntitlement**](docs/FPGAEntitlementsAPI.md#getfpgaentitlement) | **Get** /fpga-entitlements/{fpgaEntitlementName} | Return details of specific FPGA entitlement.
 *FPGAEntitlementsAPI* | [**UpdateFPGAEntitlement**](docs/FPGAEntitlementsAPI.md#updatefpgaentitlement) | **Put** /fpga-entitlements | Update an FPGA entitlement that defines which users are permitted to interact with an FPGA.
 *FPGAJobsAPI* | [**CancelFpgaJob**](docs/FPGAJobsAPI.md#cancelfpgajob) | **Post** /fpga-jobs/{jobName}/cancel | Cancel an FPGA job.
 *FPGAJobsAPI* | [**ClearFpgaJobArtefact**](docs/FPGAJobsAPI.md#clearfpgajobartefact) | **Delete** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Clear the job artefact.

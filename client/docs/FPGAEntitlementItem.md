@@ -11,13 +11,14 @@ Name | Type | Description | Notes
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Fpga** | **string** | The identifier of the FPGA resource. | 
 **Name** | **string** | The unique identifier of the resource instance. | 
+**Repository** | **string** | The identifier of the Repository resource. | 
 **Users** | **[]string** | A list of user IDs permitted to access the FPGA. | 
 
 ## Methods
 
 ### NewFPGAEntitlementItem
 
-`func NewFPGAEntitlementItem(metadata NullableCommonMetadata, fpga string, name string, users []string, ) *FPGAEntitlementItem`
+`func NewFPGAEntitlementItem(metadata NullableCommonMetadata, fpga string, name string, repository string, users []string, ) *FPGAEntitlementItem`
 
 NewFPGAEntitlementItem instantiates a new FPGAEntitlementItem object
 This constructor will assign default values to properties that have it defined,
@@ -100,6 +101,26 @@ and a boolean to check if the value has been set.
 `func (o *FPGAEntitlementItem) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetRepository
+
+`func (o *FPGAEntitlementItem) GetRepository() string`
+
+GetRepository returns the Repository field if non-nil, zero value otherwise.
+
+### GetRepositoryOk
+
+`func (o *FPGAEntitlementItem) GetRepositoryOk() (*string, bool)`
+
+GetRepositoryOk returns a tuple with the Repository field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRepository
+
+`func (o *FPGAEntitlementItem) SetRepository(v string)`
+
+SetRepository sets Repository field to given value.
 
 
 ### GetUsers

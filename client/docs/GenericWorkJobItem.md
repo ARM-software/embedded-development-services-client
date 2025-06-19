@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **JobStepsTotal** | **NullableInt32** | The total number of steps that will need to be performed to complete the job. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started. | [readonly] 
 **JobTimeout** | Pointer to **int32** | The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started. | [optional] [default to 300]
 **Name** | **string** | Unique ID of the Generic Work Job. | [readonly] 
+**Priority** | Pointer to **string** | The priority of a job: * A &#39;normal&#39; job has the lowest priority * A &#39;jump&#39; job will jump the queue * A &#39;MAWS&#39; job is a job that should supercede all others, e.g. terminating a managed service immediately Note: not all jobs will allow different priority levels and it will depend on the type of job requested to accept or take into account this information | [optional] [default to "NORMAL"]
 **Project** | Pointer to **string** | Path in the workspace to the project to handle or being handled. | [optional] 
 **Queued** | Pointer to **bool** | True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended. | [optional] [readonly] 
 **Status** | **string** | A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead. | [readonly] 
@@ -303,6 +304,31 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+
+### GetPriority
+
+`func (o *GenericWorkJobItem) GetPriority() string`
+
+GetPriority returns the Priority field if non-nil, zero value otherwise.
+
+### GetPriorityOk
+
+`func (o *GenericWorkJobItem) GetPriorityOk() (*string, bool)`
+
+GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriority
+
+`func (o *GenericWorkJobItem) SetPriority(v string)`
+
+SetPriority sets Priority field to given value.
+
+### HasPriority
+
+`func (o *GenericWorkJobItem) HasPriority() bool`
+
+HasPriority returns a boolean if a field has been set.
 
 ### GetProject
 

@@ -8,8 +8,83 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**GetFpgaEntitlement**](FPGAEntitlementsAPI.md#GetFpgaEntitlement) | **Get** /fpga-entitlements/{fpgaEntitlementName} | Return details of specific FPGA entitlement.
 [**UpdateFPGAEntitlement**](FPGAEntitlementsAPI.md#UpdateFPGAEntitlement) | **Put** /fpga-entitlements | Update an FPGA entitlement that defines which users are permitted to interact with an FPGA.
 
+
+
+## GetFpgaEntitlement
+
+> FPGAEntitlementItem GetFpgaEntitlement(ctx, fpgaEntitlementName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+
+Return details of specific FPGA entitlement.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	fpgaEntitlementName := "fpgaEntitlementName_example" // string | Unique ID of the FPGA entitlement.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FPGAEntitlementsAPI.GetFpgaEntitlement(context.Background(), fpgaEntitlementName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAEntitlementsAPI.GetFpgaEntitlement``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetFpgaEntitlement`: FPGAEntitlementItem
+	fmt.Fprintf(os.Stdout, "Response from `FPGAEntitlementsAPI.GetFpgaEntitlement`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fpgaEntitlementName** | **string** | Unique ID of the FPGA entitlement. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetFpgaEntitlementRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
+
+### Return type
+
+[**FPGAEntitlementItem**](FPGAEntitlementItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## UpdateFPGAEntitlement
@@ -34,7 +109,7 @@ import (
 
 func main() {
 	ifMatch := "ifMatch_example" // string | Conditional Requests: This is required in order to perform an update of a resource. The value of this header should be the `ETag` of the resource when read (before being subsequently modified by the client).
-	fPGAEntitlementItem := *openapiclient.NewFPGAEntitlementItem("TODO", "Fpga_example", "samsung", []string{"Users_example"}) // FPGAEntitlementItem | 
+	fPGAEntitlementItem := *openapiclient.NewFPGAEntitlementItem("TODO", "Fpga_example", "samsung", "Repository_example", []string{"Users_example"}) // FPGAEntitlementItem | 
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
