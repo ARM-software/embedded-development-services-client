@@ -64,11 +64,15 @@ jobs:
         env:
           GIT_TOKEN: ${{ secrets.GIT_SECRET }}
       - name: Build ${{ matrix.go-module }} on ${{ matrix.os }}
+        id: build
         run: |
           cat go.mod
           go mod download
           go build -v ./...
         working-directory: ${{ matrix.go-module }}
+      - name: Build failure
+        if: ${{ steps.build.outcome == 'failure' }}
+        run: echo "If the build failure relates to go extension files, these files can be downloaded from the 'Update client' job's 'actions/upload-artifact@v4' step."
       - if: ${{ startsWith(matrix.os, 'ubuntu') }}
         name: Linting
         uses: golangci/golangci-lint-action@v6
