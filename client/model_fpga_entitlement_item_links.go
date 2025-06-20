@@ -22,116 +22,59 @@ import (
 	"fmt"
 )
 
-// checks if the FPGAAdminItem type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &FPGAAdminItem{}
+// checks if the FPGAEntitlementItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FPGAEntitlementItemLinks{}
 
-// FPGAAdminItem struct for FPGAAdminItem
-type FPGAAdminItem struct {
-	Links NullableFPGAAdminItemLinks `json:"_links"`
-	Metadata NullableCommonMetadata `json:"_metadata"`
-	// The unique identifier of the user
-	Name string `json:"name"`
+// FPGAEntitlementItemLinks The `self` link can be used to get this resource.
+type FPGAEntitlementItemLinks struct {
+	Self HalLinkData `json:"self"`
 }
 
-type _FPGAAdminItem FPGAAdminItem
+type _FPGAEntitlementItemLinks FPGAEntitlementItemLinks
 
-// NewFPGAAdminItem instantiates a new FPGAAdminItem object
+// NewFPGAEntitlementItemLinks instantiates a new FPGAEntitlementItemLinks object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAAdminItem(links NullableFPGAAdminItemLinks, metadata NullableCommonMetadata, name string) *FPGAAdminItem {
-	this := FPGAAdminItem{}
-	this.Links = links
-	this.Metadata = metadata
-	this.Name = name
+func NewFPGAEntitlementItemLinks(self HalLinkData) *FPGAEntitlementItemLinks {
+	this := FPGAEntitlementItemLinks{}
+	this.Self = self
 	return &this
 }
 
-// NewFPGAAdminItemWithDefaults instantiates a new FPGAAdminItem object
+// NewFPGAEntitlementItemLinksWithDefaults instantiates a new FPGAEntitlementItemLinks object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewFPGAAdminItemWithDefaults() *FPGAAdminItem {
-	this := FPGAAdminItem{}
+func NewFPGAEntitlementItemLinksWithDefaults() *FPGAEntitlementItemLinks {
+	this := FPGAEntitlementItemLinks{}
 	return &this
 }
 
-// GetLinks returns the Links field value
-// If the value is explicit nil, the zero value for FPGAAdminItemLinks will be returned
-func (o *FPGAAdminItem) GetLinks() FPGAAdminItemLinks {
-	if o == nil || o.Links.Get() == nil {
-		var ret FPGAAdminItemLinks
+// GetSelf returns the Self field value
+func (o *FPGAEntitlementItemLinks) GetSelf() HalLinkData {
+	if o == nil {
+		var ret HalLinkData
 		return ret
 	}
 
-	return *o.Links.Get()
+	return o.Self
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetSelfOk returns a tuple with the Self field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FPGAAdminItem) GetLinksOk() (*FPGAAdminItemLinks, bool) {
+func (o *FPGAEntitlementItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Links.Get(), o.Links.IsSet()
+	return &o.Self, true
 }
 
-// SetLinks sets field value
-func (o *FPGAAdminItem) SetLinks(v FPGAAdminItemLinks) {
-	o.Links.Set(&v)
+// SetSelf sets field value
+func (o *FPGAEntitlementItemLinks) SetSelf(v HalLinkData) {
+	o.Self = v
 }
 
-// GetMetadata returns the Metadata field value
-// If the value is explicit nil, the zero value for CommonMetadata will be returned
-func (o *FPGAAdminItem) GetMetadata() CommonMetadata {
-	if o == nil || o.Metadata.Get() == nil {
-		var ret CommonMetadata
-		return ret
-	}
-
-	return *o.Metadata.Get()
-}
-
-// GetMetadataOk returns a tuple with the Metadata field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FPGAAdminItem) GetMetadataOk() (*CommonMetadata, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Metadata.Get(), o.Metadata.IsSet()
-}
-
-// SetMetadata sets field value
-func (o *FPGAAdminItem) SetMetadata(v CommonMetadata) {
-	o.Metadata.Set(&v)
-}
-
-// GetName returns the Name field value
-func (o *FPGAAdminItem) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *FPGAAdminItem) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *FPGAAdminItem) SetName(v string) {
-	o.Name = v
-}
-
-func (o FPGAAdminItem) MarshalJSON() ([]byte, error) {
+func (o FPGAEntitlementItemLinks) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -139,22 +82,18 @@ func (o FPGAAdminItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o FPGAAdminItem) ToMap() (map[string]interface{}, error) {
+func (o FPGAEntitlementItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["_links"] = o.Links.Get()
-	toSerialize["_metadata"] = o.Metadata.Get()
-	toSerialize["name"] = o.Name
+	toSerialize["self"] = o.Self
 	return toSerialize, nil
 }
 
-func (o *FPGAAdminItem) UnmarshalJSON(data []byte) (err error) {
+func (o *FPGAEntitlementItemLinks) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"_links",
-		"_metadata",
-		"name",
+		"self",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -171,53 +110,53 @@ func (o *FPGAAdminItem) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varFPGAAdminItem := _FPGAAdminItem{}
+	varFPGAEntitlementItemLinks := _FPGAEntitlementItemLinks{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFPGAAdminItem)
+	err = decoder.Decode(&varFPGAEntitlementItemLinks)
 
 	if err != nil {
 		return err
 	}
 
-	*o = FPGAAdminItem(varFPGAAdminItem)
+	*o = FPGAEntitlementItemLinks(varFPGAEntitlementItemLinks)
 
 	return err
 }
 
-type NullableFPGAAdminItem struct {
-	value *FPGAAdminItem
+type NullableFPGAEntitlementItemLinks struct {
+	value *FPGAEntitlementItemLinks
 	isSet bool
 }
 
-func (v NullableFPGAAdminItem) Get() *FPGAAdminItem {
+func (v NullableFPGAEntitlementItemLinks) Get() *FPGAEntitlementItemLinks {
 	return v.value
 }
 
-func (v *NullableFPGAAdminItem) Set(val *FPGAAdminItem) {
+func (v *NullableFPGAEntitlementItemLinks) Set(val *FPGAEntitlementItemLinks) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableFPGAAdminItem) IsSet() bool {
+func (v NullableFPGAEntitlementItemLinks) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableFPGAAdminItem) Unset() {
+func (v *NullableFPGAEntitlementItemLinks) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableFPGAAdminItem(val *FPGAAdminItem) *NullableFPGAAdminItem {
-	return &NullableFPGAAdminItem{value: val, isSet: true}
+func NewNullableFPGAEntitlementItemLinks(val *FPGAEntitlementItemLinks) *NullableFPGAEntitlementItemLinks {
+	return &NullableFPGAEntitlementItemLinks{value: val, isSet: true}
 }
 
-func (v NullableFPGAAdminItem) MarshalJSON() ([]byte, error) {
+func (v NullableFPGAEntitlementItemLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableFPGAAdminItem) UnmarshalJSON(src []byte) error {
+func (v *NullableFPGAEntitlementItemLinks) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -109,7 +109,7 @@ import (
 
 func main() {
 	ifMatch := "ifMatch_example" // string | Conditional Requests: This is required in order to perform an update of a resource. The value of this header should be the `ETag` of the resource when read (before being subsequently modified by the client).
-	fPGAEntitlementItem := *openapiclient.NewFPGAEntitlementItem("TODO", "Fpga_example", "samsung", "Repository_example", []string{"Users_example"}) // FPGAEntitlementItem | 
+	fPGAEntitlementItem := *openapiclient.NewFPGAEntitlementItem("TODO", "TODO", "Fpga_example", "samsung", "Repository_example", []string{"Users_example"}) // FPGAEntitlementItem | 
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()

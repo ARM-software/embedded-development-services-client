@@ -8,6 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Links** | [**NullableFPGAAdminItemLinks**](FPGAAdminItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Name** | **string** | The unique identifier of the user | 
 
@@ -15,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewFPGAAdminItem
 
-`func NewFPGAAdminItem(metadata NullableCommonMetadata, name string, ) *FPGAAdminItem`
+`func NewFPGAAdminItem(links NullableFPGAAdminItemLinks, metadata NullableCommonMetadata, name string, ) *FPGAAdminItem`
 
 NewFPGAAdminItem instantiates a new FPGAAdminItem object
 This constructor will assign default values to properties that have it defined,
@@ -30,6 +31,36 @@ NewFPGAAdminItemWithDefaults instantiates a new FPGAAdminItem object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetLinks
+
+`func (o *FPGAAdminItem) GetLinks() FPGAAdminItemLinks`
+
+GetLinks returns the Links field if non-nil, zero value otherwise.
+
+### GetLinksOk
+
+`func (o *FPGAAdminItem) GetLinksOk() (*FPGAAdminItemLinks, bool)`
+
+GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinks
+
+`func (o *FPGAAdminItem) SetLinks(v FPGAAdminItemLinks)`
+
+SetLinks sets Links field to given value.
+
+
+### SetLinksNil
+
+`func (o *FPGAAdminItem) SetLinksNil(b bool)`
+
+ SetLinksNil sets the value for Links to be an explicit nil
+
+### UnsetLinks
+`func (o *FPGAAdminItem) UnsetLinks()`
+
+UnsetLinks ensures that no value is present for Links, not even an explicit nil
 ### GetMetadata
 
 `func (o *FPGAAdminItem) GetMetadata() CommonMetadata`

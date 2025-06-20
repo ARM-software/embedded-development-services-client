@@ -35,7 +35,7 @@ import (
 )
 
 func main() {
-	fPGAAdminItem := *openapiclient.NewFPGAAdminItem("TODO", "9a8f4eac-4c2b-4db5-88e4-42e05f9fca87") // FPGAAdminItem | Data required to add a user to the FPGA admin group.
+	fPGAAdminItem := *openapiclient.NewFPGAAdminItem("TODO", "TODO", "9a8f4eac-4c2b-4db5-88e4-42e05f9fca87") // FPGAAdminItem | Data required to add a user to the FPGA admin group.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()

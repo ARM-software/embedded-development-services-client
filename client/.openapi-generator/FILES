@@ -80,6 +80,7 @@ docs/ErrorResponse.md
 docs/FPGAAdminAPI.md
 docs/FPGAAdminCollection.md
 docs/FPGAAdminItem.md
+docs/FPGAAdminItemLinks.md
 docs/FPGACollection.md
 docs/FPGACollectionLinks.md
 docs/FPGAConnectionAPI.md
@@ -87,6 +88,7 @@ docs/FPGAConnectionCollection.md
 docs/FPGAConnectionItem.md
 docs/FPGAConnectionItemLinks.md
 docs/FPGAEntitlementItem.md
+docs/FPGAEntitlementItemLinks.md
 docs/FPGAEntitlementsAPI.md
 docs/FPGAItem.md
 docs/FPGAItemLinks.md
@@ -228,12 +230,14 @@ model_error_response.go
 model_field_object.go
 model_fpga_admin_collection.go
 model_fpga_admin_item.go
+model_fpga_admin_item_links.go
 model_fpga_collection.go
 model_fpga_collection_links.go
 model_fpga_connection_collection.go
 model_fpga_connection_item.go
 model_fpga_connection_item_links.go
 model_fpga_entitlement_item.go
+model_fpga_entitlement_item_links.go
 model_fpga_item.go
 model_fpga_item_links.go
 model_fpga_job_collection.go

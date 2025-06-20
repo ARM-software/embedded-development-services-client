@@ -27,6 +27,7 @@ var _ MappedNullable = &FPGAEntitlementItem{}
 
 // FPGAEntitlementItem struct for FPGAEntitlementItem
 type FPGAEntitlementItem struct {
+	Links NullableFPGAEntitlementItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// The identifier of the FPGA resource.
 	Fpga string `json:"fpga"`
@@ -44,8 +45,9 @@ type _FPGAEntitlementItem FPGAEntitlementItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAEntitlementItem(metadata NullableCommonMetadata, fpga string, name string, repository string, users []string) *FPGAEntitlementItem {
+func NewFPGAEntitlementItem(links NullableFPGAEntitlementItemLinks, metadata NullableCommonMetadata, fpga string, name string, repository string, users []string) *FPGAEntitlementItem {
 	this := FPGAEntitlementItem{}
+	this.Links = links
 	this.Metadata = metadata
 	this.Fpga = fpga
 	this.Name = name
@@ -60,6 +62,32 @@ func NewFPGAEntitlementItem(metadata NullableCommonMetadata, fpga string, name s
 func NewFPGAEntitlementItemWithDefaults() *FPGAEntitlementItem {
 	this := FPGAEntitlementItem{}
 	return &this
+}
+
+// GetLinks returns the Links field value
+// If the value is explicit nil, the zero value for FPGAEntitlementItemLinks will be returned
+func (o *FPGAEntitlementItem) GetLinks() FPGAEntitlementItemLinks {
+	if o == nil || o.Links.Get() == nil {
+		var ret FPGAEntitlementItemLinks
+		return ret
+	}
+
+	return *o.Links.Get()
+}
+
+// GetLinksOk returns a tuple with the Links field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FPGAEntitlementItem) GetLinksOk() (*FPGAEntitlementItemLinks, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Links.Get(), o.Links.IsSet()
+}
+
+// SetLinks sets field value
+func (o *FPGAEntitlementItem) SetLinks(v FPGAEntitlementItemLinks) {
+	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
@@ -194,6 +222,7 @@ func (o FPGAEntitlementItem) MarshalJSON() ([]byte, error) {
 
 func (o FPGAEntitlementItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["fpga"] = o.Fpga
 	toSerialize["name"] = o.Name
@@ -207,6 +236,7 @@ func (o *FPGAEntitlementItem) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"_links",
 		"_metadata",
 		"fpga",
 		"name",
