@@ -6,6 +6,13 @@ env:
   go_module: "client"
 
 on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description:
+          "Branch to commit updated client changes to:"
+        type: string
+        required: true
   workflow_call:
     inputs:
       branch:
