@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Links** | [**NullableFPGAAdminItemLinks**](FPGAAdminItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Name** | **string** | The unique identifier of the user | 
+**Title** | Pointer to **NullableString** | Optional human-readable name of the FPGA admin member. | [optional] 
 
 ## Methods
 
@@ -111,6 +112,41 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetTitle
+
+`func (o *FPGAAdminItem) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *FPGAAdminItem) GetTitleOk() (*string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *FPGAAdminItem) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
+
+### HasTitle
+
+`func (o *FPGAAdminItem) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
+
+### SetTitleNil
+
+`func (o *FPGAAdminItem) SetTitleNil(b bool)`
+
+ SetTitleNil sets the value for Title to be an explicit nil
+
+### UnsetTitle
+`func (o *FPGAAdminItem) UnsetTitle()`
+
+UnsetTitle ensures that no value is present for Title, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
