@@ -102,6 +102,9 @@ func (o *{{ .CollectionRef }}) FetchTitle() (string, error) {
 	return o.GetTitle(), nil
 }
 
+{{^vendorExtensions.x-no-pagination}}
+// Generate this block only if x-no-pagination is false or does not exist
+// This ensures that pagination operations are not generated for collection resources
 func (o *{{ .CollectionRef }}) HasNext() bool {
 	if links, has := o.GetLinksOk(); has {
 		return links.HasNext()
@@ -134,6 +137,7 @@ func (o *{{ .CollectionRef }}) GetItemCount() (count int64, err error) {
 	count = int64(m.GetCount())
 	return
 }
+{{/vendorExtensions.x-custom-extension}}
 
 // New{{ .CollectionRef }} returns a page.
 func New{{ .CollectionRef }}Collection() IStaticPage {
