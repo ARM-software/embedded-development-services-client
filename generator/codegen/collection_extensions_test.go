@@ -92,4 +92,31 @@ func TestCollectionExtensions(t *testing.T) {
 		require.NoError(t, err)
 		assert.Equal(t, string(expected), string(actual))
 	})
+
+	t.Run("Test Successful Generation (with x-no-pagination flag set)", func(t *testing.T) {
+		tmpDir := t.TempDir()
+		d, err := GenerateDataStruct(ExtensionsConfig{
+			Input:             filepath.Join("testdata", "collections", "test-x-no-pagination.json"),
+			Template:          filepath.Join("templates", "entities.go.tmpl"),
+			Output:            filepath.Join(tmpDir, "test.go"),
+			ClientPackagePath: filepath.Join("..", "..", "client"),
+		})
+		require.NoError(t, err)
+
+		swagger, err := loadAPIDefinition(d.SpecPath)
+		require.NoError(t, err)
+
+		d.Params, err = GetCollections(swagger)
+		require.NoError(t, err)
+
+		err = GenerateTemplateFile(context.Background(), d)
+		assert.NoError(t, err)
+		assert.FileExists(t, d.DestinationPath)
+
+		expected, err := filesystem.ReadFile(filepath.Join("testdata", "collections", "test-x-no-pagination.gen.go"))
+		require.NoError(t, err)
+		actual, err := filesystem.ReadFile(d.DestinationPath)
+		require.NoError(t, err)
+		assert.Equal(t, string(expected), string(actual))
+	})
 }
