@@ -16,6 +16,7 @@ type Collection struct {
 	ItemRef       string
 	ModelRef      string
 	IteratorRef   string
+	NoPagination  bool
 }
 
 type Collections = []Collection
@@ -207,12 +208,13 @@ func getCollectionSchema(swagger *openapi3.T, appJSON *openapi3.MediaType, endpo
 	return
 }
 
-func newCollection(collectionRef, itemRef string) Collection {
+func newCollection(collectionRef, itemRef string, NoPagination bool) Collection {
 	return Collection{
 		CollectionRef: collectionRef,
 		ItemRef:       trimRefPrefix(itemRef),
 		ModelRef:      fmt.Sprintf("%sModel", strings.TrimSuffix(collectionRef, "Collection")),
 		IteratorRef:   fmt.Sprintf("%sIterator", strings.TrimSuffix(collectionRef, "Collection")),
+		NoPagination:  NoPagination,
 	}
 }
 
@@ -313,7 +315,13 @@ func GetCollections(swagger *openapi3.T) (collections CollectionParams, err erro
 						continue
 					}
 
-					collectionSet.Add(newCollection(collectionRef, itemRef))
+					isNoPaginationCollection, subErr := isExtensionFlagSet(schemaVal.ExtensionProps, noPaginationFlag)
+					if subErr != nil {
+						err = subErr
+						return
+					}
+
+					collectionSet.Add(newCollection(collectionRef, itemRef, isNoPaginationCollection))
 				}
 
 				if isMessagesCollection := strings.HasSuffix(endpoint, "messages"); isMessagesCollection {
