@@ -1778,11 +1778,6 @@ func (o *UserCollection) FetchTitle() (string, error) {
 	return o.GetTitle(), nil
 }
 
-// NewUserCollection returns a page.
-func NewUserCollectionCollection() IStaticPage {
-	return NewUserCollectionWithDefaults()
-}
-
 // ============================================================================================
 // This extends VhtInstanceItem and VhtInstanceCollection definitions
 // ============================================================================================
