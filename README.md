@@ -51,4 +51,3 @@ The follow described the major aspects of the project structure:
   [Code of Conduct](CODE_OF_CONDUCT.md) for more information.
 - For ways to contribute to the project, please see the [Contributions Guidelines](CONTRIBUTING.md)
 - For a technical introduction into developing this package, please see the [Development Guide](DEVELOPMENT.md)
-
