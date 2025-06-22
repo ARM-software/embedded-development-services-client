@@ -38,7 +38,7 @@ import (
 )
 
 func main() {
-	userItem := *openapiclient.NewUserItem(*openapiclient.NewUserItemLinks(*openapiclient.NewHalLinkData("/endpoint/?limit=20&offset=0")), "TODO", "854f1167-e1f6-4182-a051-f83a8d588a47") // UserItem | Data required to create a new user.
+	userItem := *openapiclient.NewUserItem("TODO", "TODO", "854f1167-e1f6-4182-a051-f83a8d588a47") // UserItem | Data required to create a new user.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
