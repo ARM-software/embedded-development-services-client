@@ -135,12 +135,12 @@ func (o *{{ .CollectionRef }}) GetItemCount() (count int64, err error) {
 	count = int64(m.GetCount())
 	return
 }
-{{ end }}
 
 // New{{ .CollectionRef }} returns a page.
 func New{{ .CollectionRef }}Collection() IStaticPage {
 	return New{{ .CollectionRef }}WithDefaults()
 }
+{{ end }}   {{/* end if not .NoPagination */}}
 {{ end }}
 {{ range .Params.JobItems -}}
 // ============================================================================================
