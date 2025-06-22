@@ -2,6 +2,26 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.57.0" (2025-06-22)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20250521013307, #20250616131104, #20250619151146, #20250620132850, #20250620143144)
+- :sparkles: Add support to disable generating extensions for HAL link data (#20250617120442)
+
+
+Misc
+----
+
+- #20250613164851, #20250619143339, #20250620150629
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.56.0" (2025-05-20)
 =====================
 
