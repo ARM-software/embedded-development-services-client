@@ -208,13 +208,13 @@ func getCollectionSchema(swagger *openapi3.T, appJSON *openapi3.MediaType, endpo
 	return
 }
 
-func newCollection(collectionRef, itemRef string, NoPagination bool) Collection {
+func newCollection(collectionRef, itemRef string, noPagination bool) Collection {
 	return Collection{
 		CollectionRef: collectionRef,
 		ItemRef:       trimRefPrefix(itemRef),
 		ModelRef:      fmt.Sprintf("%sModel", strings.TrimSuffix(collectionRef, "Collection")),
 		IteratorRef:   fmt.Sprintf("%sIterator", strings.TrimSuffix(collectionRef, "Collection")),
-		NoPagination:  NoPagination,
+		NoPagination:  noPagination,
 	}
 }
 
