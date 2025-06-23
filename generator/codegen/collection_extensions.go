@@ -42,6 +42,24 @@ type CollectionParams = struct {
 	NotificationFeedCollections
 }
 
+type collectionOptions struct {
+	noPagination bool
+}
+
+type CollectionOption interface {
+	apply(*collectionOptions)
+}
+
+type noPaginationOption bool
+
+func (n noPaginationOption) apply(opts *collectionOptions) {
+	opts.noPagination = bool(n)
+}
+
+func WithNoPagination(n bool) CollectionOption {
+	return noPaginationOption(n)
+}
+
 const (
 	// Messages are a special case as they are a feed rather than a normal collection
 	notificationFeedRef = "NotificationFeed"
@@ -208,13 +226,21 @@ func getCollectionSchema(swagger *openapi3.T, appJSON *openapi3.MediaType, endpo
 	return
 }
 
-func newCollection(collectionRef, itemRef string, noPagination bool) Collection {
+func newCollection(collectionRef, itemRef string, opts ...CollectionOption) Collection {
+	options := collectionOptions{
+		noPagination: false,
+	}
+
+	for _, opt := range opts {
+		opt.apply(&options)
+	}
+
 	return Collection{
 		CollectionRef: collectionRef,
 		ItemRef:       trimRefPrefix(itemRef),
 		ModelRef:      fmt.Sprintf("%sModel", strings.TrimSuffix(collectionRef, "Collection")),
 		IteratorRef:   fmt.Sprintf("%sIterator", strings.TrimSuffix(collectionRef, "Collection")),
-		NoPagination:  noPagination,
+		NoPagination:  options.noPagination,
 	}
 }
 
@@ -321,7 +347,11 @@ func GetCollections(swagger *openapi3.T) (collections CollectionParams, err erro
 						return
 					}
 
-					collectionSet.Add(newCollection(collectionRef, itemRef, isNoPaginationCollection))
+					if isNoPaginationCollection {
+						collectionSet.Add(newCollection(collectionRef, itemRef, WithNoPagination(true)))
+					} else {
+						collectionSet.Add(newCollection(collectionRef, itemRef))
+					}
 				}
 
 				if isMessagesCollection := strings.HasSuffix(endpoint, "messages"); isMessagesCollection {
