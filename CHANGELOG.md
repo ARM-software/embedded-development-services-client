@@ -2,6 +2,25 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.59.0" (2025-06-23)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20250622162325)
+
+
+Bugfixes
+--------
+
+- :bug: only generate pagination functions if `x-no-pagination` is false or non-existent (#20250621234303)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.58.0" (2025-06-23)
 =====================
 
