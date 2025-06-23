@@ -2,6 +2,25 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.60.0" (2025-06-23)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20250623122045)
+
+
+Bugfixes
+--------
+
+- Dependency upgrade: golang-1.24.4 (#20250623095149)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.59.0" (2025-06-23)
 =====================
 
