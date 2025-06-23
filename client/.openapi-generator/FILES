@@ -10,6 +10,7 @@ api_cmsis_intellisense_builders.go
 api_deprecation_notice.go
 api_fpga_admin.go
 api_fpga_connection.go
+api_fpga_entitlement.go
 api_fpga_entitlements.go
 api_fpga_jobs.go
 api_fpga_payloads.go
@@ -87,6 +88,7 @@ docs/FPGAConnectionAPI.md
 docs/FPGAConnectionCollection.md
 docs/FPGAConnectionItem.md
 docs/FPGAConnectionItemLinks.md
+docs/FPGAEntitlementAPI.md
 docs/FPGAEntitlementItem.md
 docs/FPGAEntitlementItemLinks.md
 docs/FPGAEntitlementsAPI.md
@@ -322,6 +324,7 @@ test/api_cmsis_intellisense_builders_test.go
 test/api_deprecation_notice_test.go
 test/api_fpga_admin_test.go
 test/api_fpga_connection_test.go
+test/api_fpga_entitlement_test.go
 test/api_fpga_entitlements_test.go
 test/api_fpga_jobs_test.go
 test/api_fpga_payloads_test.go

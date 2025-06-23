@@ -29,7 +29,7 @@ import (
 // FPGAEntitlementsAPIService FPGAEntitlementsAPI service
 type FPGAEntitlementsAPIService service
 
-type ApiGetFpgaEntitlementRequest struct {
+type ApiGetFPGAEntitlementRequest struct {
 	ctx context.Context
 	ApiService *FPGAEntitlementsAPIService
 	fpgaEntitlementName string
@@ -38,32 +38,32 @@ type ApiGetFpgaEntitlementRequest struct {
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiGetFpgaEntitlementRequest) AcceptVersion(acceptVersion string) ApiGetFpgaEntitlementRequest {
+func (r ApiGetFPGAEntitlementRequest) AcceptVersion(acceptVersion string) ApiGetFPGAEntitlementRequest {
 	r.acceptVersion = &acceptVersion
 	return r
 }
 
 // Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
-func (r ApiGetFpgaEntitlementRequest) IfNoneMatch(ifNoneMatch string) ApiGetFpgaEntitlementRequest {
+func (r ApiGetFPGAEntitlementRequest) IfNoneMatch(ifNoneMatch string) ApiGetFPGAEntitlementRequest {
 	r.ifNoneMatch = &ifNoneMatch
 	return r
 }
 
-func (r ApiGetFpgaEntitlementRequest) Execute() (*FPGAEntitlementItem, *http.Response, error) {
-	return r.ApiService.GetFpgaEntitlementExecute(r)
+func (r ApiGetFPGAEntitlementRequest) Execute() (*FPGAEntitlementItem, *http.Response, error) {
+	return r.ApiService.GetFPGAEntitlementExecute(r)
 }
 
 /*
-GetFpgaEntitlement Return details of specific FPGA entitlement.
+GetFPGAEntitlement Return details of specific FPGA entitlement.
 
 An FPGA entitlement is a collection of permissions that enable access to resources in the FPGA service.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param fpgaEntitlementName Unique ID of the FPGA entitlement.
- @return ApiGetFpgaEntitlementRequest
+ @return ApiGetFPGAEntitlementRequest
 */
-func (a *FPGAEntitlementsAPIService) GetFpgaEntitlement(ctx context.Context, fpgaEntitlementName string) ApiGetFpgaEntitlementRequest {
-	return ApiGetFpgaEntitlementRequest{
+func (a *FPGAEntitlementsAPIService) GetFPGAEntitlement(ctx context.Context, fpgaEntitlementName string) ApiGetFPGAEntitlementRequest {
+	return ApiGetFPGAEntitlementRequest{
 		ApiService: a,
 		ctx: ctx,
 		fpgaEntitlementName: fpgaEntitlementName,
@@ -72,7 +72,7 @@ func (a *FPGAEntitlementsAPIService) GetFpgaEntitlement(ctx context.Context, fpg
 
 // Execute executes the request
 //  @return FPGAEntitlementItem
-func (a *FPGAEntitlementsAPIService) GetFpgaEntitlementExecute(r ApiGetFpgaEntitlementRequest) (*FPGAEntitlementItem, *http.Response, error) {
+func (a *FPGAEntitlementsAPIService) GetFPGAEntitlementExecute(r ApiGetFPGAEntitlementRequest) (*FPGAEntitlementItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -80,7 +80,7 @@ func (a *FPGAEntitlementsAPIService) GetFpgaEntitlementExecute(r ApiGetFpgaEntit
 		localVarReturnValue  *FPGAEntitlementItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FPGAEntitlementsAPIService.GetFpgaEntitlement")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FPGAEntitlementsAPIService.GetFPGAEntitlement")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -92,6 +92,205 @@ func (a *FPGAEntitlementsAPIService) GetFpgaEntitlementExecute(r ApiGetFpgaEntit
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptVersion != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	if r.ifNoneMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiListFPGAEntitlementsRequest struct {
+	ctx context.Context
+	ApiService *FPGAEntitlementsAPIService
+	acceptVersion *string
+	ifNoneMatch *string
+	limit *int32
+	offset *int32
+}
+
+// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
+func (r ApiListFPGAEntitlementsRequest) AcceptVersion(acceptVersion string) ApiListFPGAEntitlementsRequest {
+	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
+func (r ApiListFPGAEntitlementsRequest) IfNoneMatch(ifNoneMatch string) ApiListFPGAEntitlementsRequest {
+	r.ifNoneMatch = &ifNoneMatch
+	return r
+}
+
+// Paging: The maximum number of items to return in a resource.
+func (r ApiListFPGAEntitlementsRequest) Limit(limit int32) ApiListFPGAEntitlementsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Paging:  The index of the first item to return in the resource.
+func (r ApiListFPGAEntitlementsRequest) Offset(offset int32) ApiListFPGAEntitlementsRequest {
+	r.offset = &offset
+	return r
+}
+
+func (r ApiListFPGAEntitlementsRequest) Execute() (*SimpleCollection, *http.Response, error) {
+	return r.ApiService.ListFPGAEntitlementsExecute(r)
+}
+
+/*
+ListFPGAEntitlements List all the entitlements that are managable by the FPGA admin group.
+
+An FPGA entitlement is a collection of permissions that provide a group of users with access to components across the FPGA service.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListFPGAEntitlementsRequest
+*/
+func (a *FPGAEntitlementsAPIService) ListFPGAEntitlements(ctx context.Context) ApiListFPGAEntitlementsRequest {
+	return ApiListFPGAEntitlementsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return SimpleCollection
+func (a *FPGAEntitlementsAPIService) ListFPGAEntitlementsExecute(r ApiListFPGAEntitlementsRequest) (*SimpleCollection, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SimpleCollection
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FPGAEntitlementsAPIService.ListFPGAEntitlements")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/fpga-entitlements"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+	} else {
+		var defaultValue int32 = 0
+		r.offset = &defaultValue
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

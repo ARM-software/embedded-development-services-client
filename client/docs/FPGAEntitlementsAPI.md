@@ -8,14 +8,15 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetFpgaEntitlement**](FPGAEntitlementsAPI.md#GetFpgaEntitlement) | **Get** /fpga-entitlements/{fpgaEntitlementName} | Return details of specific FPGA entitlement.
+[**GetFPGAEntitlement**](FPGAEntitlementsAPI.md#GetFPGAEntitlement) | **Get** /fpga-entitlements/{fpgaEntitlementName} | Return details of specific FPGA entitlement.
+[**ListFPGAEntitlements**](FPGAEntitlementsAPI.md#ListFPGAEntitlements) | **Get** /fpga-entitlements | List all the entitlements that are managable by the FPGA admin group.
 [**UpdateFPGAEntitlement**](FPGAEntitlementsAPI.md#UpdateFPGAEntitlement) | **Put** /fpga-entitlements | Update an FPGA entitlement that defines which users are permitted to interact with an FPGA.
 
 
 
-## GetFpgaEntitlement
+## GetFPGAEntitlement
 
-> FPGAEntitlementItem GetFpgaEntitlement(ctx, fpgaEntitlementName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+> FPGAEntitlementItem GetFPGAEntitlement(ctx, fpgaEntitlementName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 
 Return details of specific FPGA entitlement.
 
@@ -40,13 +41,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FPGAEntitlementsAPI.GetFpgaEntitlement(context.Background(), fpgaEntitlementName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+	resp, r, err := apiClient.FPGAEntitlementsAPI.GetFPGAEntitlement(context.Background(), fpgaEntitlementName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FPGAEntitlementsAPI.GetFpgaEntitlement``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAEntitlementsAPI.GetFPGAEntitlement``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetFpgaEntitlement`: FPGAEntitlementItem
-	fmt.Fprintf(os.Stdout, "Response from `FPGAEntitlementsAPI.GetFpgaEntitlement`: %v\n", resp)
+	// response from `GetFPGAEntitlement`: FPGAEntitlementItem
+	fmt.Fprintf(os.Stdout, "Response from `FPGAEntitlementsAPI.GetFPGAEntitlement`: %v\n", resp)
 }
 ```
 
@@ -60,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetFpgaEntitlementRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetFPGAEntitlementRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -72,6 +73,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**FPGAEntitlementItem**](FPGAEntitlementItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListFPGAEntitlements
+
+> SimpleCollection ListFPGAEntitlements(ctx).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+
+List all the entitlements that are managable by the FPGA admin group.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+	limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
+	offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FPGAEntitlementsAPI.ListFPGAEntitlements(context.Background()).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAEntitlementsAPI.ListFPGAEntitlements``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListFPGAEntitlements`: SimpleCollection
+	fmt.Fprintf(os.Stdout, "Response from `FPGAEntitlementsAPI.ListFPGAEntitlements`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListFPGAEntitlementsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
+ **limit** | **int32** | Paging: The maximum number of items to return in a resource. | [default to 20]
+ **offset** | **int32** | Paging:  The index of the first item to return in the resource. | [default to 0]
+
+### Return type
+
+[**SimpleCollection**](SimpleCollection.md)
 
 ### Authorization
 

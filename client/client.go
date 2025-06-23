@@ -71,6 +71,8 @@ type APIClient struct {
 
 	FPGAConnectionAPI *FPGAConnectionAPIService
 
+	FPGAEntitlementAPI *FPGAEntitlementAPIService
+
 	FPGAEntitlementsAPI *FPGAEntitlementsAPIService
 
 	FPGAJobsAPI *FPGAJobsAPIService
@@ -126,6 +128,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DeprecationNoticeAPI = (*DeprecationNoticeAPIService)(&c.common)
 	c.FPGAAdminAPI = (*FPGAAdminAPIService)(&c.common)
 	c.FPGAConnectionAPI = (*FPGAConnectionAPIService)(&c.common)
+	c.FPGAEntitlementAPI = (*FPGAEntitlementAPIService)(&c.common)
 	c.FPGAEntitlementsAPI = (*FPGAEntitlementsAPIService)(&c.common)
 	c.FPGAJobsAPI = (*FPGAJobsAPIService)(&c.common)
 	c.FPGAPayloadsAPI = (*FPGAPayloadsAPIService)(&c.common)
