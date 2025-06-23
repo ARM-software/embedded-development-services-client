@@ -16,6 +16,7 @@ type Collection struct {
 	ItemRef       string
 	ModelRef      string
 	IteratorRef   string
+	NoPagination  bool
 }
 
 type Collections = []Collection
@@ -39,6 +40,24 @@ type CollectionParams = struct {
 	JobItems
 	MessageCollections
 	NotificationFeedCollections
+}
+
+type collectionOptions struct {
+	noPagination bool
+}
+
+type CollectionOption interface {
+	apply(*collectionOptions)
+}
+
+type noPaginationOption bool
+
+func (n noPaginationOption) apply(opts *collectionOptions) {
+	opts.noPagination = bool(n)
+}
+
+func WithNoPagination(n bool) CollectionOption {
+	return noPaginationOption(n)
 }
 
 const (
@@ -207,12 +226,21 @@ func getCollectionSchema(swagger *openapi3.T, appJSON *openapi3.MediaType, endpo
 	return
 }
 
-func newCollection(collectionRef, itemRef string) Collection {
+func newCollection(collectionRef, itemRef string, opts ...CollectionOption) Collection {
+	options := collectionOptions{
+		noPagination: false,
+	}
+
+	for _, opt := range opts {
+		opt.apply(&options)
+	}
+
 	return Collection{
 		CollectionRef: collectionRef,
 		ItemRef:       trimRefPrefix(itemRef),
 		ModelRef:      fmt.Sprintf("%sModel", strings.TrimSuffix(collectionRef, "Collection")),
 		IteratorRef:   fmt.Sprintf("%sIterator", strings.TrimSuffix(collectionRef, "Collection")),
+		NoPagination:  options.noPagination,
 	}
 }
 
@@ -313,7 +341,17 @@ func GetCollections(swagger *openapi3.T) (collections CollectionParams, err erro
 						continue
 					}
 
-					collectionSet.Add(newCollection(collectionRef, itemRef))
+					isNoPaginationCollection, subErr := isExtensionFlagSet(schemaVal.ExtensionProps, noPaginationFlag)
+					if subErr != nil {
+						err = subErr
+						return
+					}
+
+					if isNoPaginationCollection {
+						collectionSet.Add(newCollection(collectionRef, itemRef, WithNoPagination(true)))
+					} else {
+						collectionSet.Add(newCollection(collectionRef, itemRef))
+					}
 				}
 
 				if isMessagesCollection := strings.HasSuffix(endpoint, "messages"); isMessagesCollection {

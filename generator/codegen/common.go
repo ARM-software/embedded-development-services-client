@@ -33,9 +33,10 @@ const (
 	schemaPrefix = "#/components/schemas/"
 	jsonMIME     = "application/json"
 	// See https://github.com/Arm-Debug/API-Uniform-Contract?tab=readme-ov-file#api-extensions
-	redactFlag     = "x-redact"
-	jobFlag        = "x-job"
-	collectionFlag = "x-collection"
+	redactFlag       = "x-redact"
+	jobFlag          = "x-job"
+	collectionFlag   = "x-collection"
+	noPaginationFlag = "x-no-pagination"
 )
 
 type Data struct {

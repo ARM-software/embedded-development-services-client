@@ -1,0 +1,1 @@
+:bug: only generate pagination functions if `x-no-pagination` is false or non-existent

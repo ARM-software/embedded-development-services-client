@@ -102,6 +102,7 @@ func (o *{{ .CollectionRef }}) FetchTitle() (string, error) {
 	return o.GetTitle(), nil
 }
 
+{{ if not .NoPagination }}
 func (o *{{ .CollectionRef }}) HasNext() bool {
 	if links, has := o.GetLinksOk(); has {
 		return links.HasNext()
@@ -139,6 +140,7 @@ func (o *{{ .CollectionRef }}) GetItemCount() (count int64, err error) {
 func New{{ .CollectionRef }}Collection() IStaticPage {
 	return New{{ .CollectionRef }}WithDefaults()
 }
+{{ end }}
 {{ end }}
 {{ range .Params.JobItems -}}
 // ============================================================================================
