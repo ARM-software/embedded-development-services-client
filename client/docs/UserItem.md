@@ -8,7 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Links** | [**UserItemLinks**](UserItemLinks.md) |  | 
+**Links** | [**NullableUserItemLinks**](UserItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Country** | Pointer to **string** | Country of the user as ISO 3166-1 alpha-2 code. | [optional] 
 **Email** | Pointer to **string** | Email address of the user. | [optional] 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewUserItem
 
-`func NewUserItem(links UserItemLinks, metadata NullableCommonMetadata, name string, ) *UserItem`
+`func NewUserItem(links NullableUserItemLinks, metadata NullableCommonMetadata, name string, ) *UserItem`
 
 NewUserItem instantiates a new UserItem object
 This constructor will assign default values to properties that have it defined,
@@ -57,6 +57,16 @@ and a boolean to check if the value has been set.
 SetLinks sets Links field to given value.
 
 
+### SetLinksNil
+
+`func (o *UserItem) SetLinksNil(b bool)`
+
+ SetLinksNil sets the value for Links to be an explicit nil
+
+### UnsetLinks
+`func (o *UserItem) UnsetLinks()`
+
+UnsetLinks ensures that no value is present for Links, not even an explicit nil
 ### GetMetadata
 
 `func (o *UserItem) GetMetadata() CommonMetadata`

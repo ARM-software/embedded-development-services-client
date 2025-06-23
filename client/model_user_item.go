@@ -27,7 +27,7 @@ var _ MappedNullable = &UserItem{}
 
 // UserItem struct for UserItem
 type UserItem struct {
-	Links UserItemLinks `json:"_links"`
+	Links NullableUserItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// Country of the user as ISO 3166-1 alpha-2 code.
 	Country *string `json:"country,omitempty" validate:"regexp=^[A-Z]{2}$"`
@@ -51,7 +51,7 @@ type _UserItem UserItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserItem(links UserItemLinks, metadata NullableCommonMetadata, name string) *UserItem {
+func NewUserItem(links NullableUserItemLinks, metadata NullableCommonMetadata, name string) *UserItem {
 	this := UserItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -68,27 +68,29 @@ func NewUserItemWithDefaults() *UserItem {
 }
 
 // GetLinks returns the Links field value
+// If the value is explicit nil, the zero value for UserItemLinks will be returned
 func (o *UserItem) GetLinks() UserItemLinks {
-	if o == nil {
+	if o == nil || o.Links.Get() == nil {
 		var ret UserItemLinks
 		return ret
 	}
 
-	return o.Links
+	return *o.Links.Get()
 }
 
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UserItem) GetLinksOk() (*UserItemLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Links, true
+	return o.Links.Get(), o.Links.IsSet()
 }
 
 // SetLinks sets field value
 func (o *UserItem) SetLinks(v UserItemLinks) {
-	o.Links = v
+	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
@@ -353,7 +355,7 @@ func (o UserItem) MarshalJSON() ([]byte, error) {
 
 func (o UserItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["_links"] = o.Links
+	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
 	if !IsNil(o.Country) {
 		toSerialize["country"] = o.Country
