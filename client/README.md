@@ -138,6 +138,7 @@ Class | Method | HTTP request | Description
 *CMSISIntellisenseBuildersAPI* | [**StartCmsisIntellisense**](docs/CMSISIntellisenseBuildersAPI.md#startcmsisintellisense) | **Post** /cmsis-intellisense/{builderName} | Initiate a compilation database generation using the specified CMSIS Intellisense Builder.
 *DeprecationNoticeAPI* | [**GetDeprecationNotice**](docs/DeprecationNoticeAPI.md#getdeprecationnotice) | **Get** /deprecations/{operationName} | Return details of specific endpoint deprecation notice.
 *DeprecationNoticeAPI* | [**ListDeprecatedEndpoints**](docs/DeprecationNoticeAPI.md#listdeprecatedendpoints) | **Get** /deprecations/ | Get the endpoints that have been deprecated with some notice.
+*FPGAAPI* | [**SunsetFpga**](docs/FPGAAPI.md#sunsetfpga) | **Post** /fpgas/{fpgaName}/sunset | Initiate the sunsetting of the FPGA as part of a decommission
 *FPGAAdminAPI* | [**AddFPGAAdmin**](docs/FPGAAdminAPI.md#addfpgaadmin) | **Post** /fpga-admins | Add a user to the FPGA admin group
 *FPGAAdminAPI* | [**ListFPGAAdmins**](docs/FPGAAdminAPI.md#listfpgaadmins) | **Get** /fpga-admins | List all the members of the FPGA admin group
 *FPGAAdminAPI* | [**RemoveFPGAAdmin**](docs/FPGAAdminAPI.md#removefpgaadmin) | **Delete** /fpga-admins/{fpgaAdminName} | Remove a user from the FPGA admin group
