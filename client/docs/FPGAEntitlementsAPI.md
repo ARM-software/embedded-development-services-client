@@ -10,6 +10,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetFPGAEntitlement**](FPGAEntitlementsAPI.md#GetFPGAEntitlement) | **Get** /fpga-entitlements/{fpgaEntitlementName} | Return details of specific FPGA entitlement.
 [**ListFPGAEntitlements**](FPGAEntitlementsAPI.md#ListFPGAEntitlements) | **Get** /fpga-entitlements | List all the entitlements that are managable by the FPGA admin group.
+[**RemoveFPGAEntitlement**](FPGAEntitlementsAPI.md#RemoveFPGAEntitlement) | **Delete** /fpga-entitlements/{fpgaEntitlementName} | Remove all the permissions associated with an FPGA entitlement
 [**UpdateFPGAEntitlement**](FPGAEntitlementsAPI.md#UpdateFPGAEntitlement) | **Put** /fpga-entitlements | Update an FPGA entitlement that defines which users are permitted to interact with an FPGA.
 
 
@@ -145,6 +146,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SimpleCollection**](SimpleCollection.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RemoveFPGAEntitlement
+
+> RemoveFPGAEntitlement(ctx, fpgaEntitlementName).AcceptVersion(acceptVersion).Execute()
+
+Remove all the permissions associated with an FPGA entitlement
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	fpgaEntitlementName := "fpgaEntitlementName_example" // string | Unique ID of the FPGA entitlement.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.FPGAEntitlementsAPI.RemoveFPGAEntitlement(context.Background(), fpgaEntitlementName).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAEntitlementsAPI.RemoveFPGAEntitlement``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fpgaEntitlementName** | **string** | Unique ID of the FPGA entitlement. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemoveFPGAEntitlementRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 
