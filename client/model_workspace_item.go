@@ -47,7 +47,7 @@ type _WorkspaceItem WorkspaceItem
 // will change when the set of required properties is changed
 func NewWorkspaceItem(links NullableWorkspaceItemLinks, metadata NullableCommonMetadata, name string) *WorkspaceItem {
 	this := WorkspaceItem{}
-	var tTL int64 = 3600
+	var tTL int64 = 259200
 	this.TTL = *NewNullableInt64(&tTL)
 	this.Links = links
 	this.Metadata = metadata
@@ -60,7 +60,7 @@ func NewWorkspaceItem(links NullableWorkspaceItemLinks, metadata NullableCommonM
 // but it doesn't guarantee that properties required by API are set
 func NewWorkspaceItemWithDefaults() *WorkspaceItem {
 	this := WorkspaceItem{}
-	var tTL int64 = 3600
+	var tTL int64 = 259200
 	this.TTL = *NewNullableInt64(&tTL)
 	return &this
 }

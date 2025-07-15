@@ -8,7 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TTL** | Pointer to **NullableInt64** | The TTL (time to live in seconds) describing how long the workspace will be still available for. | [optional] [default to 3600]
+**TTL** | Pointer to **NullableInt64** | The TTL (time to live in seconds) describing how long the workspace will be still available for. | [optional] [default to 259200]
 **Links** | [**NullableWorkspaceItemLinks**](WorkspaceItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Ephemeral** | Pointer to **bool** | True when the workspace has a TTL | [optional] [readonly] 
