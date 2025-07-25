@@ -42,6 +42,8 @@ type FPGAItem struct {
 	DeprecationInfo *DeprecationInfo `json:"deprecationInfo,omitempty"`
 	// Description of the FPGA configuration
 	Description string `json:"description"`
+	// A list of entitlement groups the FPGA is associated with.
+	EntitlementGroups []string `json:"entitlementGroups,omitempty"`
 	// Extra metadata describing FPGAs.
 	ExtraMetadata *map[string]string `json:"extraMetadata,omitempty"`
 	// Unique ID of this FPGA
@@ -340,6 +342,38 @@ func (o *FPGAItem) SetDescription(v string) {
 	o.Description = v
 }
 
+// GetEntitlementGroups returns the EntitlementGroups field value if set, zero value otherwise.
+func (o *FPGAItem) GetEntitlementGroups() []string {
+	if o == nil || IsNil(o.EntitlementGroups) {
+		var ret []string
+		return ret
+	}
+	return o.EntitlementGroups
+}
+
+// GetEntitlementGroupsOk returns a tuple with the EntitlementGroups field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FPGAItem) GetEntitlementGroupsOk() ([]string, bool) {
+	if o == nil || IsNil(o.EntitlementGroups) {
+		return nil, false
+	}
+	return o.EntitlementGroups, true
+}
+
+// HasEntitlementGroups returns a boolean if a field has been set.
+func (o *FPGAItem) HasEntitlementGroups() bool {
+	if o != nil && !IsNil(o.EntitlementGroups) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntitlementGroups gets a reference to the given []string and assigns it to the EntitlementGroups field.
+func (o *FPGAItem) SetEntitlementGroups(v []string) {
+	o.EntitlementGroups = v
+}
+
 // GetExtraMetadata returns the ExtraMetadata field value if set, zero value otherwise.
 func (o *FPGAItem) GetExtraMetadata() map[string]string {
 	if o == nil || IsNil(o.ExtraMetadata) {
@@ -623,6 +657,9 @@ func (o FPGAItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["deprecationInfo"] = o.DeprecationInfo
 	}
 	toSerialize["description"] = o.Description
+	if !IsNil(o.EntitlementGroups) {
+		toSerialize["entitlementGroups"] = o.EntitlementGroups
+	}
 	if !IsNil(o.ExtraMetadata) {
 		toSerialize["extraMetadata"] = o.ExtraMetadata
 	}

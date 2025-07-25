@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **Deprecated** | **bool** | True if this FPGA is scheduled to be removed from the service. | [readonly] 
 **DeprecationInfo** | Pointer to [**DeprecationInfo**](DeprecationInfo.md) |  | [optional] 
 **Description** | **string** | Description of the FPGA configuration | [readonly] 
+**EntitlementGroups** | Pointer to **[]string** | A list of entitlement groups the FPGA is associated with. | [optional] 
 **ExtraMetadata** | Pointer to **map[string]string** | Extra metadata describing FPGAs. | [optional] 
 **Name** | **string** | Unique ID of this FPGA | [readonly] 
 **ReadUARTConnections** | Pointer to [**[]FPGAUARTConnection**](FPGAUARTConnection.md) | A list of UART connections that will be read from during a job | [optional] 
@@ -265,6 +266,31 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
+
+### GetEntitlementGroups
+
+`func (o *FPGAItem) GetEntitlementGroups() []string`
+
+GetEntitlementGroups returns the EntitlementGroups field if non-nil, zero value otherwise.
+
+### GetEntitlementGroupsOk
+
+`func (o *FPGAItem) GetEntitlementGroupsOk() (*[]string, bool)`
+
+GetEntitlementGroupsOk returns a tuple with the EntitlementGroups field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntitlementGroups
+
+`func (o *FPGAItem) SetEntitlementGroups(v []string)`
+
+SetEntitlementGroups sets EntitlementGroups field to given value.
+
+### HasEntitlementGroups
+
+`func (o *FPGAItem) HasEntitlementGroups() bool`
+
+HasEntitlementGroups returns a boolean if a field has been set.
 
 ### GetExtraMetadata
 
