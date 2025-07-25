@@ -9,17 +9,17 @@ SPDX-License-Identifier: Apache-2.0
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**Operations** | Pointer to **[]string** | The list of allowed CRUDL operations. | [optional] 
-**ResourceInstance** | **string** | The unique identifier of the resource instance. | 
+**Operations** | Pointer to [**[]PermissionOperation**](PermissionOperation.md) | The list of allowed CRUDL operations. | [optional] 
+**OwnerOperations** | Pointer to [**[]PermissionOperation**](PermissionOperation.md) | The list of allowed CRUDL operations for a resource owner. A resource owner is usually the user who created the resource, or someone who has been given ownership responsibilities—such as managing the the lifecycle of a resource. | [optional] [readonly] 
+**ResourceInstance** | Pointer to **string** | The unique identifier of the resource instance. | [optional] 
 **ResourceType** | **string** | The type of resource for which permission is being checked. This should only refer to items and not collections. | 
-**UserName** | **string** | The unique identifier of the user requesting access. | 
-**UserToken** | Pointer to **string** | The API token of the user requesting access. This can be a JWT or an internal access token. | [optional] 
+**Token** | **string** | The API token of the user requesting access. This can be a JWT or an internal access token. | 
 
 ## Methods
 
 ### NewPermissionItem
 
-`func NewPermissionItem(metadata NullableCommonMetadata, resourceInstance string, resourceType string, userName string, ) *PermissionItem`
+`func NewPermissionItem(metadata NullableCommonMetadata, resourceType string, token string, ) *PermissionItem`
 
 NewPermissionItem instantiates a new PermissionItem object
 This constructor will assign default values to properties that have it defined,
@@ -66,20 +66,20 @@ SetMetadata sets Metadata field to given value.
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetOperations
 
-`func (o *PermissionItem) GetOperations() []string`
+`func (o *PermissionItem) GetOperations() []PermissionOperation`
 
 GetOperations returns the Operations field if non-nil, zero value otherwise.
 
 ### GetOperationsOk
 
-`func (o *PermissionItem) GetOperationsOk() (*[]string, bool)`
+`func (o *PermissionItem) GetOperationsOk() (*[]PermissionOperation, bool)`
 
 GetOperationsOk returns a tuple with the Operations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOperations
 
-`func (o *PermissionItem) SetOperations(v []string)`
+`func (o *PermissionItem) SetOperations(v []PermissionOperation)`
 
 SetOperations sets Operations field to given value.
 
@@ -99,6 +99,41 @@ HasOperations returns a boolean if a field has been set.
 `func (o *PermissionItem) UnsetOperations()`
 
 UnsetOperations ensures that no value is present for Operations, not even an explicit nil
+### GetOwnerOperations
+
+`func (o *PermissionItem) GetOwnerOperations() []PermissionOperation`
+
+GetOwnerOperations returns the OwnerOperations field if non-nil, zero value otherwise.
+
+### GetOwnerOperationsOk
+
+`func (o *PermissionItem) GetOwnerOperationsOk() (*[]PermissionOperation, bool)`
+
+GetOwnerOperationsOk returns a tuple with the OwnerOperations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOwnerOperations
+
+`func (o *PermissionItem) SetOwnerOperations(v []PermissionOperation)`
+
+SetOwnerOperations sets OwnerOperations field to given value.
+
+### HasOwnerOperations
+
+`func (o *PermissionItem) HasOwnerOperations() bool`
+
+HasOwnerOperations returns a boolean if a field has been set.
+
+### SetOwnerOperationsNil
+
+`func (o *PermissionItem) SetOwnerOperationsNil(b bool)`
+
+ SetOwnerOperationsNil sets the value for OwnerOperations to be an explicit nil
+
+### UnsetOwnerOperations
+`func (o *PermissionItem) UnsetOwnerOperations()`
+
+UnsetOwnerOperations ensures that no value is present for OwnerOperations, not even an explicit nil
 ### GetResourceInstance
 
 `func (o *PermissionItem) GetResourceInstance() string`
@@ -118,6 +153,11 @@ and a boolean to check if the value has been set.
 
 SetResourceInstance sets ResourceInstance field to given value.
 
+### HasResourceInstance
+
+`func (o *PermissionItem) HasResourceInstance() bool`
+
+HasResourceInstance returns a boolean if a field has been set.
 
 ### GetResourceType
 
@@ -139,50 +179,25 @@ and a boolean to check if the value has been set.
 SetResourceType sets ResourceType field to given value.
 
 
-### GetUserName
+### GetToken
 
-`func (o *PermissionItem) GetUserName() string`
+`func (o *PermissionItem) GetToken() string`
 
-GetUserName returns the UserName field if non-nil, zero value otherwise.
+GetToken returns the Token field if non-nil, zero value otherwise.
 
-### GetUserNameOk
+### GetTokenOk
 
-`func (o *PermissionItem) GetUserNameOk() (*string, bool)`
+`func (o *PermissionItem) GetTokenOk() (*string, bool)`
 
-GetUserNameOk returns a tuple with the UserName field if it's non-nil, zero value otherwise
+GetTokenOk returns a tuple with the Token field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUserName
+### SetToken
 
-`func (o *PermissionItem) SetUserName(v string)`
+`func (o *PermissionItem) SetToken(v string)`
 
-SetUserName sets UserName field to given value.
+SetToken sets Token field to given value.
 
-
-### GetUserToken
-
-`func (o *PermissionItem) GetUserToken() string`
-
-GetUserToken returns the UserToken field if non-nil, zero value otherwise.
-
-### GetUserTokenOk
-
-`func (o *PermissionItem) GetUserTokenOk() (*string, bool)`
-
-GetUserTokenOk returns a tuple with the UserToken field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUserToken
-
-`func (o *PermissionItem) SetUserToken(v string)`
-
-SetUserToken sets UserToken field to given value.
-
-### HasUserToken
-
-`func (o *PermissionItem) HasUserToken() bool`
-
-HasUserToken returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

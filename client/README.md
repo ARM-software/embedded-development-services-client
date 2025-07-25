@@ -116,9 +116,7 @@ Class | Method | HTTP request | Description
 *AuthenticationAPI* | [**ListUsers**](docs/AuthenticationAPI.md#listusers) | **Get** /users/ | List all users
 *AuthenticationAPI* | [**TokenIntrospect**](docs/AuthenticationAPI.md#tokenintrospect) | **Post** /token/introspect | Introspect a token.
 *AuthorizationAPI* | [**CheckEntitlements**](docs/AuthorizationAPI.md#checkentitlements) | **Post** /entitlements/check | Check permissions on a resource.
-*AuthorizationAPI* | [**GetResourceInstanceEntitlements**](docs/AuthorizationAPI.md#getresourceinstanceentitlements) | **Get** /users/{userName}/entitlements/{resourceType}/instances/{resourceInstanceName} | Return details of the user&#39;s permissions for a resource instance.
-*AuthorizationAPI* | [**GetResourceTypeEntitlements**](docs/AuthorizationAPI.md#getresourcetypeentitlements) | **Get** /users/{userName}/entitlements/{resourceType} | Return details of the user&#39;s permissions for a resource type.
-*AuthorizationAPI* | [**ListResourceInstanceEntitlements**](docs/AuthorizationAPI.md#listresourceinstanceentitlements) | **Get** /users/{userName}/entitlements/{resourceType}/instances | List the user&#39;s permissions for all instances of a resource type.
+*AuthorizationAPI* | [**ListEntitlements**](docs/AuthorizationAPI.md#listentitlements) | **Post** /entitlements/list | List permissions on instances of a resource type.
 *BuildJobsAPI* | [**CancelBuildJob**](docs/BuildJobsAPI.md#cancelbuildjob) | **Post** /build-jobs/{jobName}/cancel | Cancel a Build Job
 *BuildJobsAPI* | [**DeleteBuildJob**](docs/BuildJobsAPI.md#deletebuildjob) | **Delete** /build-jobs/{jobName} | Delete a Build Job
 *BuildJobsAPI* | [**GetBuildArtefact**](docs/BuildJobsAPI.md#getbuildartefact) | **Get** /build-jobs/{jobName}/artefacts/{artefactName} | Download the named Build Artefact for the given Build Job.
@@ -281,7 +279,6 @@ Class | Method | HTTP request | Description
  - [EmbeddedFPGAPayloadItems](docs/EmbeddedFPGAPayloadItems.md)
  - [EmbeddedGenericWorkJobItems](docs/EmbeddedGenericWorkJobItems.md)
  - [EmbeddedGenericWorkerItems](docs/EmbeddedGenericWorkerItems.md)
- - [EmbeddedInstancePermissionItem](docs/EmbeddedInstancePermissionItem.md)
  - [EmbeddedIntellisenseJobItems](docs/EmbeddedIntellisenseJobItems.md)
  - [EmbeddedPATItem](docs/EmbeddedPATItem.md)
  - [EmbeddedUserItem](docs/EmbeddedUserItem.md)
@@ -294,6 +291,8 @@ Class | Method | HTTP request | Description
  - [EndpointDeprecationNotice](docs/EndpointDeprecationNotice.md)
  - [EndpointDeprecationNoticeCollection](docs/EndpointDeprecationNoticeCollection.md)
  - [EndpointDeprecationNoticeLinks](docs/EndpointDeprecationNoticeLinks.md)
+ - [EntitlementsListFeedItem](docs/EntitlementsListFeedItem.md)
+ - [EntitlementsListRequest](docs/EntitlementsListRequest.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [FPGAAdminCollection](docs/FPGAAdminCollection.md)
  - [FPGAAdminItem](docs/FPGAAdminItem.md)
@@ -330,9 +329,7 @@ Class | Method | HTTP request | Description
  - [HalLinkData](docs/HalLinkData.md)
  - [HalOnlyEmbeddableCollectionLinks](docs/HalOnlyEmbeddableCollectionLinks.md)
  - [HalSimpleCollectionLinks](docs/HalSimpleCollectionLinks.md)
- - [InstancePermissionCollection](docs/InstancePermissionCollection.md)
  - [InstancePermissionItem](docs/InstancePermissionItem.md)
- - [InstancePermissionItemLinks](docs/InstancePermissionItemLinks.md)
  - [IntellisenseJobCollection](docs/IntellisenseJobCollection.md)
  - [IntellisenseJobItem](docs/IntellisenseJobItem.md)
  - [IntellisenseJobItemLinks](docs/IntellisenseJobItemLinks.md)
@@ -347,8 +344,7 @@ Class | Method | HTTP request | Description
  - [PATItemLinks](docs/PATItemLinks.md)
  - [PagingMetadata](docs/PagingMetadata.md)
  - [PermissionItem](docs/PermissionItem.md)
- - [ResourceTypePermissionItem](docs/ResourceTypePermissionItem.md)
- - [ResourceTypePermissionItemLinks](docs/ResourceTypePermissionItemLinks.md)
+ - [PermissionOperation](docs/PermissionOperation.md)
  - [RetainBuildJobRequest](docs/RetainBuildJobRequest.md)
  - [RetainWorkspaceRequest](docs/RetainWorkspaceRequest.md)
  - [SimpleCollection](docs/SimpleCollection.md)

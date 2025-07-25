@@ -22,7 +22,6 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 )
 
 
@@ -226,446 +225,89 @@ func (a *AuthorizationAPIService) CheckEntitlementsExecute(r ApiCheckEntitlement
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetResourceInstanceEntitlementsRequest struct {
+type ApiListEntitlementsRequest struct {
 	ctx context.Context
 	ApiService *AuthorizationAPIService
-	resourceInstanceName string
-	resourceType string
-	userName string
+	entitlementsListRequest *EntitlementsListRequest
 	acceptVersion *string
-}
-
-// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiGetResourceInstanceEntitlementsRequest) AcceptVersion(acceptVersion string) ApiGetResourceInstanceEntitlementsRequest {
-	r.acceptVersion = &acceptVersion
-	return r
-}
-
-func (r ApiGetResourceInstanceEntitlementsRequest) Execute() (*InstancePermissionItem, *http.Response, error) {
-	return r.ApiService.GetResourceInstanceEntitlementsExecute(r)
-}
-
-/*
-GetResourceInstanceEntitlements Return details of the user's permissions for a resource instance.
-
-Return details of the operations a user is allowed to perform on a specific resource of a specified type.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourceInstanceName The identifier of the resource.
- @param resourceType The type of resource.
- @param userName The identifier of the user.
- @return ApiGetResourceInstanceEntitlementsRequest
-*/
-func (a *AuthorizationAPIService) GetResourceInstanceEntitlements(ctx context.Context, resourceInstanceName string, resourceType string, userName string) ApiGetResourceInstanceEntitlementsRequest {
-	return ApiGetResourceInstanceEntitlementsRequest{
-		ApiService: a,
-		ctx: ctx,
-		resourceInstanceName: resourceInstanceName,
-		resourceType: resourceType,
-		userName: userName,
-	}
-}
-
-// Execute executes the request
-//  @return InstancePermissionItem
-func (a *AuthorizationAPIService) GetResourceInstanceEntitlementsExecute(r ApiGetResourceInstanceEntitlementsRequest) (*InstancePermissionItem, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *InstancePermissionItem
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthorizationAPIService.GetResourceInstanceEntitlements")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/users/{userName}/entitlements/{resourceType}/instances/{resourceInstanceName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"resourceInstanceName"+"}", parameterValueToString(r.resourceInstanceName, "resourceInstanceName"), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resourceType"+"}", parameterValueToString(r.resourceType, "resourceType"), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"userName"+"}", parameterValueToString(r.userName, "userName"), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.acceptVersion != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 406 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetResourceTypeEntitlementsRequest struct {
-	ctx context.Context
-	ApiService *AuthorizationAPIService
-	resourceType string
-	userName string
-	acceptVersion *string
-}
-
-// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiGetResourceTypeEntitlementsRequest) AcceptVersion(acceptVersion string) ApiGetResourceTypeEntitlementsRequest {
-	r.acceptVersion = &acceptVersion
-	return r
-}
-
-func (r ApiGetResourceTypeEntitlementsRequest) Execute() (*ResourceTypePermissionItem, *http.Response, error) {
-	return r.ApiService.GetResourceTypeEntitlementsExecute(r)
-}
-
-/*
-GetResourceTypeEntitlements Return details of the user's permissions for a resource type.
-
-Return details of the operations a user is allowed to perform on resources of a specified type.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourceType The type of resource.
- @param userName The identifier of the user.
- @return ApiGetResourceTypeEntitlementsRequest
-*/
-func (a *AuthorizationAPIService) GetResourceTypeEntitlements(ctx context.Context, resourceType string, userName string) ApiGetResourceTypeEntitlementsRequest {
-	return ApiGetResourceTypeEntitlementsRequest{
-		ApiService: a,
-		ctx: ctx,
-		resourceType: resourceType,
-		userName: userName,
-	}
-}
-
-// Execute executes the request
-//  @return ResourceTypePermissionItem
-func (a *AuthorizationAPIService) GetResourceTypeEntitlementsExecute(r ApiGetResourceTypeEntitlementsRequest) (*ResourceTypePermissionItem, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ResourceTypePermissionItem
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthorizationAPIService.GetResourceTypeEntitlements")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/users/{userName}/entitlements/{resourceType}"
-	localVarPath = strings.Replace(localVarPath, "{"+"resourceType"+"}", parameterValueToString(r.resourceType, "resourceType"), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"userName"+"}", parameterValueToString(r.userName, "userName"), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.acceptVersion != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 406 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiListResourceInstanceEntitlementsRequest struct {
-	ctx context.Context
-	ApiService *AuthorizationAPIService
-	resourceType string
-	userName string
-	acceptVersion *string
-	embed *bool
 	ifNoneMatch *string
 	limit *int32
 	offset *int32
 }
 
+// Data required to list permissions for a resource type.
+func (r ApiListEntitlementsRequest) EntitlementsListRequest(entitlementsListRequest EntitlementsListRequest) ApiListEntitlementsRequest {
+	r.entitlementsListRequest = &entitlementsListRequest
+	return r
+}
+
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
-func (r ApiListResourceInstanceEntitlementsRequest) AcceptVersion(acceptVersion string) ApiListResourceInstanceEntitlementsRequest {
+func (r ApiListEntitlementsRequest) AcceptVersion(acceptVersion string) ApiListEntitlementsRequest {
 	r.acceptVersion = &acceptVersion
 	return r
 }
 
-// Embedding: The whether or not to embed resources into the collection (rather than return links).
-func (r ApiListResourceInstanceEntitlementsRequest) Embed(embed bool) ApiListResourceInstanceEntitlementsRequest {
-	r.embed = &embed
-	return r
-}
-
 // Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
-func (r ApiListResourceInstanceEntitlementsRequest) IfNoneMatch(ifNoneMatch string) ApiListResourceInstanceEntitlementsRequest {
+func (r ApiListEntitlementsRequest) IfNoneMatch(ifNoneMatch string) ApiListEntitlementsRequest {
 	r.ifNoneMatch = &ifNoneMatch
 	return r
 }
 
 // Paging: The maximum number of items to return in a resource.
-func (r ApiListResourceInstanceEntitlementsRequest) Limit(limit int32) ApiListResourceInstanceEntitlementsRequest {
+func (r ApiListEntitlementsRequest) Limit(limit int32) ApiListEntitlementsRequest {
 	r.limit = &limit
 	return r
 }
 
 // Paging:  The index of the first item to return in the resource.
-func (r ApiListResourceInstanceEntitlementsRequest) Offset(offset int32) ApiListResourceInstanceEntitlementsRequest {
+func (r ApiListEntitlementsRequest) Offset(offset int32) ApiListEntitlementsRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiListResourceInstanceEntitlementsRequest) Execute() (*InstancePermissionCollection, *http.Response, error) {
-	return r.ApiService.ListResourceInstanceEntitlementsExecute(r)
+func (r ApiListEntitlementsRequest) Execute() (*EntitlementsListFeedItem, *http.Response, error) {
+	return r.ApiService.ListEntitlementsExecute(r)
 }
 
 /*
-ListResourceInstanceEntitlements List the user's permissions for all instances of a resource type.
+ListEntitlements List permissions on instances of a resource type.
 
 List the operations a user is allowed to perform on individual instances of a specified resource type.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourceType The type of resource.
- @param userName The identifier of the user.
- @return ApiListResourceInstanceEntitlementsRequest
+ @return ApiListEntitlementsRequest
 */
-func (a *AuthorizationAPIService) ListResourceInstanceEntitlements(ctx context.Context, resourceType string, userName string) ApiListResourceInstanceEntitlementsRequest {
-	return ApiListResourceInstanceEntitlementsRequest{
+func (a *AuthorizationAPIService) ListEntitlements(ctx context.Context) ApiListEntitlementsRequest {
+	return ApiListEntitlementsRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourceType: resourceType,
-		userName: userName,
 	}
 }
 
 // Execute executes the request
-//  @return InstancePermissionCollection
-func (a *AuthorizationAPIService) ListResourceInstanceEntitlementsExecute(r ApiListResourceInstanceEntitlementsRequest) (*InstancePermissionCollection, *http.Response, error) {
+//  @return EntitlementsListFeedItem
+func (a *AuthorizationAPIService) ListEntitlementsExecute(r ApiListEntitlementsRequest) (*EntitlementsListFeedItem, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InstancePermissionCollection
+		localVarReturnValue  *EntitlementsListFeedItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthorizationAPIService.ListResourceInstanceEntitlements")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthorizationAPIService.ListEntitlements")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/users/{userName}/entitlements/{resourceType}/instances"
-	localVarPath = strings.Replace(localVarPath, "{"+"resourceType"+"}", parameterValueToString(r.resourceType, "resourceType"), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"userName"+"}", parameterValueToString(r.userName, "userName"), -1)
+	localVarPath := localBasePath + "/entitlements/list"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		r.embed = &defaultValue
+	if r.entitlementsListRequest == nil {
+		return localVarReturnValue, nil, reportError("entitlementsListRequest is required and must be specified")
 	}
+
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
@@ -679,7 +321,7 @@ func (a *AuthorizationAPIService) ListResourceInstanceEntitlementsExecute(r ApiL
 		r.offset = &defaultValue
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -701,6 +343,8 @@ func (a *AuthorizationAPIService) ListResourceInstanceEntitlementsExecute(r ApiL
 	if r.ifNoneMatch != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "simple", "")
 	}
+	// body params
+	localVarPostBody = r.entitlementsListRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -745,7 +389,40 @@ func (a *AuthorizationAPIService) ListResourceInstanceEntitlementsExecute(r ApiL
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 405 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

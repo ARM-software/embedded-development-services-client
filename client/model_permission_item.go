@@ -29,15 +29,15 @@ var _ MappedNullable = &PermissionItem{}
 type PermissionItem struct {
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// The list of allowed CRUDL operations.
-	Operations []string `json:"operations,omitempty"`
+	Operations []PermissionOperation `json:"operations,omitempty"`
+	// The list of allowed CRUDL operations for a resource owner. A resource owner is usually the user who created the resource, or someone who has been given ownership responsibilities—such as managing the the lifecycle of a resource.
+	OwnerOperations []PermissionOperation `json:"ownerOperations,omitempty"`
 	// The unique identifier of the resource instance.
-	ResourceInstance string `json:"resourceInstance" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	ResourceInstance *string `json:"resourceInstance,omitempty" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// The type of resource for which permission is being checked. This should only refer to items and not collections.
 	ResourceType string `json:"resourceType"`
-	// The unique identifier of the user requesting access.
-	UserName string `json:"userName" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// The API token of the user requesting access. This can be a JWT or an internal access token.
-	UserToken *string `json:"userToken,omitempty" validate:"regexp=[a-zA-Z0-9-_.]"`
+	Token string `json:"token"`
 }
 
 type _PermissionItem PermissionItem
@@ -46,12 +46,11 @@ type _PermissionItem PermissionItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPermissionItem(metadata NullableCommonMetadata, resourceInstance string, resourceType string, userName string) *PermissionItem {
+func NewPermissionItem(metadata NullableCommonMetadata, resourceType string, token string) *PermissionItem {
 	this := PermissionItem{}
 	this.Metadata = metadata
-	this.ResourceInstance = resourceInstance
 	this.ResourceType = resourceType
-	this.UserName = userName
+	this.Token = token
 	return &this
 }
 
@@ -90,9 +89,9 @@ func (o *PermissionItem) SetMetadata(v CommonMetadata) {
 }
 
 // GetOperations returns the Operations field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PermissionItem) GetOperations() []string {
+func (o *PermissionItem) GetOperations() []PermissionOperation {
 	if o == nil {
-		var ret []string
+		var ret []PermissionOperation
 		return ret
 	}
 	return o.Operations
@@ -101,7 +100,7 @@ func (o *PermissionItem) GetOperations() []string {
 // GetOperationsOk returns a tuple with the Operations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PermissionItem) GetOperationsOk() ([]string, bool) {
+func (o *PermissionItem) GetOperationsOk() ([]PermissionOperation, bool) {
 	if o == nil || IsNil(o.Operations) {
 		return nil, false
 	}
@@ -117,33 +116,74 @@ func (o *PermissionItem) HasOperations() bool {
 	return false
 }
 
-// SetOperations gets a reference to the given []string and assigns it to the Operations field.
-func (o *PermissionItem) SetOperations(v []string) {
+// SetOperations gets a reference to the given []PermissionOperation and assigns it to the Operations field.
+func (o *PermissionItem) SetOperations(v []PermissionOperation) {
 	o.Operations = v
 }
 
-// GetResourceInstance returns the ResourceInstance field value
-func (o *PermissionItem) GetResourceInstance() string {
+// GetOwnerOperations returns the OwnerOperations field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PermissionItem) GetOwnerOperations() []PermissionOperation {
 	if o == nil {
+		var ret []PermissionOperation
+		return ret
+	}
+	return o.OwnerOperations
+}
+
+// GetOwnerOperationsOk returns a tuple with the OwnerOperations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PermissionItem) GetOwnerOperationsOk() ([]PermissionOperation, bool) {
+	if o == nil || IsNil(o.OwnerOperations) {
+		return nil, false
+	}
+	return o.OwnerOperations, true
+}
+
+// HasOwnerOperations returns a boolean if a field has been set.
+func (o *PermissionItem) HasOwnerOperations() bool {
+	if o != nil && !IsNil(o.OwnerOperations) {
+		return true
+	}
+
+	return false
+}
+
+// SetOwnerOperations gets a reference to the given []PermissionOperation and assigns it to the OwnerOperations field.
+func (o *PermissionItem) SetOwnerOperations(v []PermissionOperation) {
+	o.OwnerOperations = v
+}
+
+// GetResourceInstance returns the ResourceInstance field value if set, zero value otherwise.
+func (o *PermissionItem) GetResourceInstance() string {
+	if o == nil || IsNil(o.ResourceInstance) {
 		var ret string
 		return ret
 	}
-
-	return o.ResourceInstance
+	return *o.ResourceInstance
 }
 
-// GetResourceInstanceOk returns a tuple with the ResourceInstance field value
+// GetResourceInstanceOk returns a tuple with the ResourceInstance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PermissionItem) GetResourceInstanceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ResourceInstance) {
 		return nil, false
 	}
-	return &o.ResourceInstance, true
+	return o.ResourceInstance, true
 }
 
-// SetResourceInstance sets field value
+// HasResourceInstance returns a boolean if a field has been set.
+func (o *PermissionItem) HasResourceInstance() bool {
+	if o != nil && !IsNil(o.ResourceInstance) {
+		return true
+	}
+
+	return false
+}
+
+// SetResourceInstance gets a reference to the given string and assigns it to the ResourceInstance field.
 func (o *PermissionItem) SetResourceInstance(v string) {
-	o.ResourceInstance = v
+	o.ResourceInstance = &v
 }
 
 // GetResourceType returns the ResourceType field value
@@ -170,60 +210,28 @@ func (o *PermissionItem) SetResourceType(v string) {
 	o.ResourceType = v
 }
 
-// GetUserName returns the UserName field value
-func (o *PermissionItem) GetUserName() string {
+// GetToken returns the Token field value
+func (o *PermissionItem) GetToken() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.UserName
+	return o.Token
 }
 
-// GetUserNameOk returns a tuple with the UserName field value
+// GetTokenOk returns a tuple with the Token field value
 // and a boolean to check if the value has been set.
-func (o *PermissionItem) GetUserNameOk() (*string, bool) {
+func (o *PermissionItem) GetTokenOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.UserName, true
+	return &o.Token, true
 }
 
-// SetUserName sets field value
-func (o *PermissionItem) SetUserName(v string) {
-	o.UserName = v
-}
-
-// GetUserToken returns the UserToken field value if set, zero value otherwise.
-func (o *PermissionItem) GetUserToken() string {
-	if o == nil || IsNil(o.UserToken) {
-		var ret string
-		return ret
-	}
-	return *o.UserToken
-}
-
-// GetUserTokenOk returns a tuple with the UserToken field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PermissionItem) GetUserTokenOk() (*string, bool) {
-	if o == nil || IsNil(o.UserToken) {
-		return nil, false
-	}
-	return o.UserToken, true
-}
-
-// HasUserToken returns a boolean if a field has been set.
-func (o *PermissionItem) HasUserToken() bool {
-	if o != nil && !IsNil(o.UserToken) {
-		return true
-	}
-
-	return false
-}
-
-// SetUserToken gets a reference to the given string and assigns it to the UserToken field.
-func (o *PermissionItem) SetUserToken(v string) {
-	o.UserToken = &v
+// SetToken sets field value
+func (o *PermissionItem) SetToken(v string) {
+	o.Token = v
 }
 
 func (o PermissionItem) MarshalJSON() ([]byte, error) {
@@ -240,12 +248,14 @@ func (o PermissionItem) ToMap() (map[string]interface{}, error) {
 	if o.Operations != nil {
 		toSerialize["operations"] = o.Operations
 	}
-	toSerialize["resourceInstance"] = o.ResourceInstance
-	toSerialize["resourceType"] = o.ResourceType
-	toSerialize["userName"] = o.UserName
-	if !IsNil(o.UserToken) {
-		toSerialize["userToken"] = o.UserToken
+	if o.OwnerOperations != nil {
+		toSerialize["ownerOperations"] = o.OwnerOperations
 	}
+	if !IsNil(o.ResourceInstance) {
+		toSerialize["resourceInstance"] = o.ResourceInstance
+	}
+	toSerialize["resourceType"] = o.ResourceType
+	toSerialize["token"] = o.Token
 	return toSerialize, nil
 }
 
@@ -255,9 +265,8 @@ func (o *PermissionItem) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_metadata",
-		"resourceInstance",
 		"resourceType",
-		"userName",
+		"token",
 	}
 
 	allProperties := make(map[string]interface{})

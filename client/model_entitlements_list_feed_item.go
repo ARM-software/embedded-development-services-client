@@ -22,80 +22,46 @@ import (
 	"fmt"
 )
 
-// checks if the InstancePermissionCollection type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &InstancePermissionCollection{}
+// checks if the EntitlementsListFeedItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EntitlementsListFeedItem{}
 
-// InstancePermissionCollection This collection resource follows the common pattern of linking to contained resources. Optionally, rather than linking to other resources, it can embed then into the collection to reduce the number of round trips to the server (at the expense of caching). In file system terms, it is similar to a directory but only contains links to (or embeds) a single type of resource.
-type InstancePermissionCollection struct {
-	Embedded *EmbeddedInstancePermissionItem `json:"_embedded,omitempty"`
-	Links NullableHalCollectionLinks `json:"_links"`
+// EntitlementsListFeedItem struct for EntitlementsListFeedItem
+type EntitlementsListFeedItem struct {
+	Links NullableHalFeedLinks `json:"_links"`
 	Metadata NullablePagingMetadata `json:"_metadata"`
-	// ID of the Collection.
-	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
-	// Human readable title of the collection.
-	Title string `json:"title"`
+	// A list of resource instances and the operations a user is allowed to perform on each.
+	Items []InstancePermissionItem `json:"items"`
+	// The list of allowed CRUDL operations for a resource owner. A resource owner is usually the user who created the resource, or someone who has been given ownership responsibilities—such as managing the the lifecycle of a resource.
+	OwnerOperations []PermissionOperation `json:"ownerOperations,omitempty"`
 }
 
-type _InstancePermissionCollection InstancePermissionCollection
+type _EntitlementsListFeedItem EntitlementsListFeedItem
 
-// NewInstancePermissionCollection instantiates a new InstancePermissionCollection object
+// NewEntitlementsListFeedItem instantiates a new EntitlementsListFeedItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstancePermissionCollection(links NullableHalCollectionLinks, metadata NullablePagingMetadata, name string, title string) *InstancePermissionCollection {
-	this := InstancePermissionCollection{}
+func NewEntitlementsListFeedItem(links NullableHalFeedLinks, metadata NullablePagingMetadata, items []InstancePermissionItem) *EntitlementsListFeedItem {
+	this := EntitlementsListFeedItem{}
 	this.Links = links
 	this.Metadata = metadata
-	this.Name = name
-	this.Title = title
+	this.Items = items
 	return &this
 }
 
-// NewInstancePermissionCollectionWithDefaults instantiates a new InstancePermissionCollection object
+// NewEntitlementsListFeedItemWithDefaults instantiates a new EntitlementsListFeedItem object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewInstancePermissionCollectionWithDefaults() *InstancePermissionCollection {
-	this := InstancePermissionCollection{}
+func NewEntitlementsListFeedItemWithDefaults() *EntitlementsListFeedItem {
+	this := EntitlementsListFeedItem{}
 	return &this
-}
-
-// GetEmbedded returns the Embedded field value if set, zero value otherwise.
-func (o *InstancePermissionCollection) GetEmbedded() EmbeddedInstancePermissionItem {
-	if o == nil || IsNil(o.Embedded) {
-		var ret EmbeddedInstancePermissionItem
-		return ret
-	}
-	return *o.Embedded
-}
-
-// GetEmbeddedOk returns a tuple with the Embedded field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InstancePermissionCollection) GetEmbeddedOk() (*EmbeddedInstancePermissionItem, bool) {
-	if o == nil || IsNil(o.Embedded) {
-		return nil, false
-	}
-	return o.Embedded, true
-}
-
-// HasEmbedded returns a boolean if a field has been set.
-func (o *InstancePermissionCollection) HasEmbedded() bool {
-	if o != nil && !IsNil(o.Embedded) {
-		return true
-	}
-
-	return false
-}
-
-// SetEmbedded gets a reference to the given EmbeddedInstancePermissionItem and assigns it to the Embedded field.
-func (o *InstancePermissionCollection) SetEmbedded(v EmbeddedInstancePermissionItem) {
-	o.Embedded = &v
 }
 
 // GetLinks returns the Links field value
-// If the value is explicit nil, the zero value for HalCollectionLinks will be returned
-func (o *InstancePermissionCollection) GetLinks() HalCollectionLinks {
+// If the value is explicit nil, the zero value for HalFeedLinks will be returned
+func (o *EntitlementsListFeedItem) GetLinks() HalFeedLinks {
 	if o == nil || o.Links.Get() == nil {
-		var ret HalCollectionLinks
+		var ret HalFeedLinks
 		return ret
 	}
 
@@ -105,7 +71,7 @@ func (o *InstancePermissionCollection) GetLinks() HalCollectionLinks {
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InstancePermissionCollection) GetLinksOk() (*HalCollectionLinks, bool) {
+func (o *EntitlementsListFeedItem) GetLinksOk() (*HalFeedLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -113,13 +79,13 @@ func (o *InstancePermissionCollection) GetLinksOk() (*HalCollectionLinks, bool) 
 }
 
 // SetLinks sets field value
-func (o *InstancePermissionCollection) SetLinks(v HalCollectionLinks) {
+func (o *EntitlementsListFeedItem) SetLinks(v HalFeedLinks) {
 	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
 // If the value is explicit nil, the zero value for PagingMetadata will be returned
-func (o *InstancePermissionCollection) GetMetadata() PagingMetadata {
+func (o *EntitlementsListFeedItem) GetMetadata() PagingMetadata {
 	if o == nil || o.Metadata.Get() == nil {
 		var ret PagingMetadata
 		return ret
@@ -131,7 +97,7 @@ func (o *InstancePermissionCollection) GetMetadata() PagingMetadata {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InstancePermissionCollection) GetMetadataOk() (*PagingMetadata, bool) {
+func (o *EntitlementsListFeedItem) GetMetadataOk() (*PagingMetadata, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -139,59 +105,70 @@ func (o *InstancePermissionCollection) GetMetadataOk() (*PagingMetadata, bool) {
 }
 
 // SetMetadata sets field value
-func (o *InstancePermissionCollection) SetMetadata(v PagingMetadata) {
+func (o *EntitlementsListFeedItem) SetMetadata(v PagingMetadata) {
 	o.Metadata.Set(&v)
 }
 
-// GetName returns the Name field value
-func (o *InstancePermissionCollection) GetName() string {
+// GetItems returns the Items field value
+// If the value is explicit nil, the zero value for []InstancePermissionItem will be returned
+func (o *EntitlementsListFeedItem) GetItems() []InstancePermissionItem {
 	if o == nil {
-		var ret string
+		var ret []InstancePermissionItem
 		return ret
 	}
 
-	return o.Name
+	return o.Items
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *InstancePermissionCollection) GetNameOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EntitlementsListFeedItem) GetItemsOk() ([]InstancePermissionItem, bool) {
+	if o == nil || IsNil(o.Items) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Items, true
 }
 
-// SetName sets field value
-func (o *InstancePermissionCollection) SetName(v string) {
-	o.Name = v
+// SetItems sets field value
+func (o *EntitlementsListFeedItem) SetItems(v []InstancePermissionItem) {
+	o.Items = v
 }
 
-// GetTitle returns the Title field value
-func (o *InstancePermissionCollection) GetTitle() string {
+// GetOwnerOperations returns the OwnerOperations field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EntitlementsListFeedItem) GetOwnerOperations() []PermissionOperation {
 	if o == nil {
-		var ret string
+		var ret []PermissionOperation
 		return ret
 	}
-
-	return o.Title
+	return o.OwnerOperations
 }
 
-// GetTitleOk returns a tuple with the Title field value
+// GetOwnerOperationsOk returns a tuple with the OwnerOperations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstancePermissionCollection) GetTitleOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EntitlementsListFeedItem) GetOwnerOperationsOk() ([]PermissionOperation, bool) {
+	if o == nil || IsNil(o.OwnerOperations) {
 		return nil, false
 	}
-	return &o.Title, true
+	return o.OwnerOperations, true
 }
 
-// SetTitle sets field value
-func (o *InstancePermissionCollection) SetTitle(v string) {
-	o.Title = v
+// HasOwnerOperations returns a boolean if a field has been set.
+func (o *EntitlementsListFeedItem) HasOwnerOperations() bool {
+	if o != nil && !IsNil(o.OwnerOperations) {
+		return true
+	}
+
+	return false
 }
 
-func (o InstancePermissionCollection) MarshalJSON() ([]byte, error) {
+// SetOwnerOperations gets a reference to the given []PermissionOperation and assigns it to the OwnerOperations field.
+func (o *EntitlementsListFeedItem) SetOwnerOperations(v []PermissionOperation) {
+	o.OwnerOperations = v
+}
+
+func (o EntitlementsListFeedItem) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -199,27 +176,27 @@ func (o InstancePermissionCollection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o InstancePermissionCollection) ToMap() (map[string]interface{}, error) {
+func (o EntitlementsListFeedItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Embedded) {
-		toSerialize["_embedded"] = o.Embedded
-	}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	toSerialize["name"] = o.Name
-	toSerialize["title"] = o.Title
+	if o.Items != nil {
+		toSerialize["items"] = o.Items
+	}
+	if o.OwnerOperations != nil {
+		toSerialize["ownerOperations"] = o.OwnerOperations
+	}
 	return toSerialize, nil
 }
 
-func (o *InstancePermissionCollection) UnmarshalJSON(data []byte) (err error) {
+func (o *EntitlementsListFeedItem) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_links",
 		"_metadata",
-		"name",
-		"title",
+		"items",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -236,53 +213,53 @@ func (o *InstancePermissionCollection) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varInstancePermissionCollection := _InstancePermissionCollection{}
+	varEntitlementsListFeedItem := _EntitlementsListFeedItem{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstancePermissionCollection)
+	err = decoder.Decode(&varEntitlementsListFeedItem)
 
 	if err != nil {
 		return err
 	}
 
-	*o = InstancePermissionCollection(varInstancePermissionCollection)
+	*o = EntitlementsListFeedItem(varEntitlementsListFeedItem)
 
 	return err
 }
 
-type NullableInstancePermissionCollection struct {
-	value *InstancePermissionCollection
+type NullableEntitlementsListFeedItem struct {
+	value *EntitlementsListFeedItem
 	isSet bool
 }
 
-func (v NullableInstancePermissionCollection) Get() *InstancePermissionCollection {
+func (v NullableEntitlementsListFeedItem) Get() *EntitlementsListFeedItem {
 	return v.value
 }
 
-func (v *NullableInstancePermissionCollection) Set(val *InstancePermissionCollection) {
+func (v *NullableEntitlementsListFeedItem) Set(val *EntitlementsListFeedItem) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableInstancePermissionCollection) IsSet() bool {
+func (v NullableEntitlementsListFeedItem) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableInstancePermissionCollection) Unset() {
+func (v *NullableEntitlementsListFeedItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableInstancePermissionCollection(val *InstancePermissionCollection) *NullableInstancePermissionCollection {
-	return &NullableInstancePermissionCollection{value: val, isSet: true}
+func NewNullableEntitlementsListFeedItem(val *EntitlementsListFeedItem) *NullableEntitlementsListFeedItem {
+	return &NullableEntitlementsListFeedItem{value: val, isSet: true}
 }
 
-func (v NullableInstancePermissionCollection) MarshalJSON() ([]byte, error) {
+func (v NullableEntitlementsListFeedItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableInstancePermissionCollection) UnmarshalJSON(src []byte) error {
+func (v *NullableEntitlementsListFeedItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

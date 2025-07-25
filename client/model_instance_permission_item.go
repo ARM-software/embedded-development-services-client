@@ -27,14 +27,10 @@ var _ MappedNullable = &InstancePermissionItem{}
 
 // InstancePermissionItem struct for InstancePermissionItem
 type InstancePermissionItem struct {
-	Links NullableInstancePermissionItemLinks `json:"_links"`
-	Metadata NullableCommonMetadata `json:"_metadata"`
-	// The unique identifier of the resource instance.
-	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// The list of allowed CRUDL operations.
-	Operations []string `json:"operations"`
-	// Optional description of the permission.
-	Title *string `json:"title,omitempty"`
+	Operations []PermissionOperation `json:"operations"`
+	// The unique identifier of the resource instance.
+	ResourceInstance string `json:"resourceInstance" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 }
 
 type _InstancePermissionItem InstancePermissionItem
@@ -43,12 +39,10 @@ type _InstancePermissionItem InstancePermissionItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstancePermissionItem(links NullableInstancePermissionItemLinks, metadata NullableCommonMetadata, name string, operations []string) *InstancePermissionItem {
+func NewInstancePermissionItem(operations []PermissionOperation, resourceInstance string) *InstancePermissionItem {
 	this := InstancePermissionItem{}
-	this.Links = links
-	this.Metadata = metadata
-	this.Name = name
 	this.Operations = operations
+	this.ResourceInstance = resourceInstance
 	return &this
 }
 
@@ -60,87 +54,11 @@ func NewInstancePermissionItemWithDefaults() *InstancePermissionItem {
 	return &this
 }
 
-// GetLinks returns the Links field value
-// If the value is explicit nil, the zero value for InstancePermissionItemLinks will be returned
-func (o *InstancePermissionItem) GetLinks() InstancePermissionItemLinks {
-	if o == nil || o.Links.Get() == nil {
-		var ret InstancePermissionItemLinks
-		return ret
-	}
-
-	return *o.Links.Get()
-}
-
-// GetLinksOk returns a tuple with the Links field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InstancePermissionItem) GetLinksOk() (*InstancePermissionItemLinks, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Links.Get(), o.Links.IsSet()
-}
-
-// SetLinks sets field value
-func (o *InstancePermissionItem) SetLinks(v InstancePermissionItemLinks) {
-	o.Links.Set(&v)
-}
-
-// GetMetadata returns the Metadata field value
-// If the value is explicit nil, the zero value for CommonMetadata will be returned
-func (o *InstancePermissionItem) GetMetadata() CommonMetadata {
-	if o == nil || o.Metadata.Get() == nil {
-		var ret CommonMetadata
-		return ret
-	}
-
-	return *o.Metadata.Get()
-}
-
-// GetMetadataOk returns a tuple with the Metadata field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InstancePermissionItem) GetMetadataOk() (*CommonMetadata, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Metadata.Get(), o.Metadata.IsSet()
-}
-
-// SetMetadata sets field value
-func (o *InstancePermissionItem) SetMetadata(v CommonMetadata) {
-	o.Metadata.Set(&v)
-}
-
-// GetName returns the Name field value
-func (o *InstancePermissionItem) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *InstancePermissionItem) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *InstancePermissionItem) SetName(v string) {
-	o.Name = v
-}
-
 // GetOperations returns the Operations field value
-// If the value is explicit nil, the zero value for []string will be returned
-func (o *InstancePermissionItem) GetOperations() []string {
+// If the value is explicit nil, the zero value for []PermissionOperation will be returned
+func (o *InstancePermissionItem) GetOperations() []PermissionOperation {
 	if o == nil {
-		var ret []string
+		var ret []PermissionOperation
 		return ret
 	}
 
@@ -150,7 +68,7 @@ func (o *InstancePermissionItem) GetOperations() []string {
 // GetOperationsOk returns a tuple with the Operations field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InstancePermissionItem) GetOperationsOk() ([]string, bool) {
+func (o *InstancePermissionItem) GetOperationsOk() ([]PermissionOperation, bool) {
 	if o == nil || IsNil(o.Operations) {
 		return nil, false
 	}
@@ -158,40 +76,32 @@ func (o *InstancePermissionItem) GetOperationsOk() ([]string, bool) {
 }
 
 // SetOperations sets field value
-func (o *InstancePermissionItem) SetOperations(v []string) {
+func (o *InstancePermissionItem) SetOperations(v []PermissionOperation) {
 	o.Operations = v
 }
 
-// GetTitle returns the Title field value if set, zero value otherwise.
-func (o *InstancePermissionItem) GetTitle() string {
-	if o == nil || IsNil(o.Title) {
+// GetResourceInstance returns the ResourceInstance field value
+func (o *InstancePermissionItem) GetResourceInstance() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Title
+
+	return o.ResourceInstance
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
+// GetResourceInstanceOk returns a tuple with the ResourceInstance field value
 // and a boolean to check if the value has been set.
-func (o *InstancePermissionItem) GetTitleOk() (*string, bool) {
-	if o == nil || IsNil(o.Title) {
+func (o *InstancePermissionItem) GetResourceInstanceOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Title, true
+	return &o.ResourceInstance, true
 }
 
-// HasTitle returns a boolean if a field has been set.
-func (o *InstancePermissionItem) HasTitle() bool {
-	if o != nil && !IsNil(o.Title) {
-		return true
-	}
-
-	return false
-}
-
-// SetTitle gets a reference to the given string and assigns it to the Title field.
-func (o *InstancePermissionItem) SetTitle(v string) {
-	o.Title = &v
+// SetResourceInstance sets field value
+func (o *InstancePermissionItem) SetResourceInstance(v string) {
+	o.ResourceInstance = v
 }
 
 func (o InstancePermissionItem) MarshalJSON() ([]byte, error) {
@@ -204,15 +114,10 @@ func (o InstancePermissionItem) MarshalJSON() ([]byte, error) {
 
 func (o InstancePermissionItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["_links"] = o.Links.Get()
-	toSerialize["_metadata"] = o.Metadata.Get()
-	toSerialize["name"] = o.Name
 	if o.Operations != nil {
 		toSerialize["operations"] = o.Operations
 	}
-	if !IsNil(o.Title) {
-		toSerialize["title"] = o.Title
-	}
+	toSerialize["resourceInstance"] = o.ResourceInstance
 	return toSerialize, nil
 }
 
@@ -221,10 +126,8 @@ func (o *InstancePermissionItem) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"_links",
-		"_metadata",
-		"name",
 		"operations",
+		"resourceInstance",
 	}
 
 	allProperties := make(map[string]interface{})

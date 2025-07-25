@@ -22,92 +22,122 @@ import (
 	"fmt"
 )
 
-// checks if the ResourceTypePermissionItemLinks type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ResourceTypePermissionItemLinks{}
+// checks if the EntitlementsListRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EntitlementsListRequest{}
 
-// ResourceTypePermissionItemLinks The links for an Instance Permission Item.
-type ResourceTypePermissionItemLinks struct {
-	Details *HalLinkData `json:"details,omitempty"`
-	Self HalLinkData `json:"self"`
+// EntitlementsListRequest struct for EntitlementsListRequest
+type EntitlementsListRequest struct {
+	// The list of CRUDL operations to check.
+	Operations []PermissionOperation `json:"operations,omitempty"`
+	// The type of resource for which permission is being checked. This should only refer to items and not collections.
+	ResourceType string `json:"resourceType"`
+	// The API token of the user requesting access. This can be a JWT or an internal access token.
+	Token string `json:"token"`
 }
 
-type _ResourceTypePermissionItemLinks ResourceTypePermissionItemLinks
+type _EntitlementsListRequest EntitlementsListRequest
 
-// NewResourceTypePermissionItemLinks instantiates a new ResourceTypePermissionItemLinks object
+// NewEntitlementsListRequest instantiates a new EntitlementsListRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResourceTypePermissionItemLinks(self HalLinkData) *ResourceTypePermissionItemLinks {
-	this := ResourceTypePermissionItemLinks{}
-	this.Self = self
+func NewEntitlementsListRequest(resourceType string, token string) *EntitlementsListRequest {
+	this := EntitlementsListRequest{}
+	this.ResourceType = resourceType
+	this.Token = token
 	return &this
 }
 
-// NewResourceTypePermissionItemLinksWithDefaults instantiates a new ResourceTypePermissionItemLinks object
+// NewEntitlementsListRequestWithDefaults instantiates a new EntitlementsListRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewResourceTypePermissionItemLinksWithDefaults() *ResourceTypePermissionItemLinks {
-	this := ResourceTypePermissionItemLinks{}
+func NewEntitlementsListRequestWithDefaults() *EntitlementsListRequest {
+	this := EntitlementsListRequest{}
 	return &this
 }
 
-// GetDetails returns the Details field value if set, zero value otherwise.
-func (o *ResourceTypePermissionItemLinks) GetDetails() HalLinkData {
-	if o == nil || IsNil(o.Details) {
-		var ret HalLinkData
+// GetOperations returns the Operations field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EntitlementsListRequest) GetOperations() []PermissionOperation {
+	if o == nil {
+		var ret []PermissionOperation
 		return ret
 	}
-	return *o.Details
+	return o.Operations
 }
 
-// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
+// GetOperationsOk returns a tuple with the Operations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResourceTypePermissionItemLinks) GetDetailsOk() (*HalLinkData, bool) {
-	if o == nil || IsNil(o.Details) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EntitlementsListRequest) GetOperationsOk() ([]PermissionOperation, bool) {
+	if o == nil || IsNil(o.Operations) {
 		return nil, false
 	}
-	return o.Details, true
+	return o.Operations, true
 }
 
-// HasDetails returns a boolean if a field has been set.
-func (o *ResourceTypePermissionItemLinks) HasDetails() bool {
-	if o != nil && !IsNil(o.Details) {
+// HasOperations returns a boolean if a field has been set.
+func (o *EntitlementsListRequest) HasOperations() bool {
+	if o != nil && !IsNil(o.Operations) {
 		return true
 	}
 
 	return false
 }
 
-// SetDetails gets a reference to the given HalLinkData and assigns it to the Details field.
-func (o *ResourceTypePermissionItemLinks) SetDetails(v HalLinkData) {
-	o.Details = &v
+// SetOperations gets a reference to the given []PermissionOperation and assigns it to the Operations field.
+func (o *EntitlementsListRequest) SetOperations(v []PermissionOperation) {
+	o.Operations = v
 }
 
-// GetSelf returns the Self field value
-func (o *ResourceTypePermissionItemLinks) GetSelf() HalLinkData {
+// GetResourceType returns the ResourceType field value
+func (o *EntitlementsListRequest) GetResourceType() string {
 	if o == nil {
-		var ret HalLinkData
+		var ret string
 		return ret
 	}
 
-	return o.Self
+	return o.ResourceType
 }
 
-// GetSelfOk returns a tuple with the Self field value
+// GetResourceTypeOk returns a tuple with the ResourceType field value
 // and a boolean to check if the value has been set.
-func (o *ResourceTypePermissionItemLinks) GetSelfOk() (*HalLinkData, bool) {
+func (o *EntitlementsListRequest) GetResourceTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Self, true
+	return &o.ResourceType, true
 }
 
-// SetSelf sets field value
-func (o *ResourceTypePermissionItemLinks) SetSelf(v HalLinkData) {
-	o.Self = v
+// SetResourceType sets field value
+func (o *EntitlementsListRequest) SetResourceType(v string) {
+	o.ResourceType = v
 }
 
-func (o ResourceTypePermissionItemLinks) MarshalJSON() ([]byte, error) {
+// GetToken returns the Token field value
+func (o *EntitlementsListRequest) GetToken() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Token
+}
+
+// GetTokenOk returns a tuple with the Token field value
+// and a boolean to check if the value has been set.
+func (o *EntitlementsListRequest) GetTokenOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Token, true
+}
+
+// SetToken sets field value
+func (o *EntitlementsListRequest) SetToken(v string) {
+	o.Token = v
+}
+
+func (o EntitlementsListRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -115,21 +145,23 @@ func (o ResourceTypePermissionItemLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ResourceTypePermissionItemLinks) ToMap() (map[string]interface{}, error) {
+func (o EntitlementsListRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Details) {
-		toSerialize["details"] = o.Details
+	if o.Operations != nil {
+		toSerialize["operations"] = o.Operations
 	}
-	toSerialize["self"] = o.Self
+	toSerialize["resourceType"] = o.ResourceType
+	toSerialize["token"] = o.Token
 	return toSerialize, nil
 }
 
-func (o *ResourceTypePermissionItemLinks) UnmarshalJSON(data []byte) (err error) {
+func (o *EntitlementsListRequest) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"self",
+		"resourceType",
+		"token",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -146,53 +178,53 @@ func (o *ResourceTypePermissionItemLinks) UnmarshalJSON(data []byte) (err error)
 		}
 	}
 
-	varResourceTypePermissionItemLinks := _ResourceTypePermissionItemLinks{}
+	varEntitlementsListRequest := _EntitlementsListRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varResourceTypePermissionItemLinks)
+	err = decoder.Decode(&varEntitlementsListRequest)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ResourceTypePermissionItemLinks(varResourceTypePermissionItemLinks)
+	*o = EntitlementsListRequest(varEntitlementsListRequest)
 
 	return err
 }
 
-type NullableResourceTypePermissionItemLinks struct {
-	value *ResourceTypePermissionItemLinks
+type NullableEntitlementsListRequest struct {
+	value *EntitlementsListRequest
 	isSet bool
 }
 
-func (v NullableResourceTypePermissionItemLinks) Get() *ResourceTypePermissionItemLinks {
+func (v NullableEntitlementsListRequest) Get() *EntitlementsListRequest {
 	return v.value
 }
 
-func (v *NullableResourceTypePermissionItemLinks) Set(val *ResourceTypePermissionItemLinks) {
+func (v *NullableEntitlementsListRequest) Set(val *EntitlementsListRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableResourceTypePermissionItemLinks) IsSet() bool {
+func (v NullableEntitlementsListRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableResourceTypePermissionItemLinks) Unset() {
+func (v *NullableEntitlementsListRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableResourceTypePermissionItemLinks(val *ResourceTypePermissionItemLinks) *NullableResourceTypePermissionItemLinks {
-	return &NullableResourceTypePermissionItemLinks{value: val, isSet: true}
+func NewNullableEntitlementsListRequest(val *EntitlementsListRequest) *NullableEntitlementsListRequest {
+	return &NullableEntitlementsListRequest{value: val, isSet: true}
 }
 
-func (v NullableResourceTypePermissionItemLinks) MarshalJSON() ([]byte, error) {
+func (v NullableEntitlementsListRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableResourceTypePermissionItemLinks) UnmarshalJSON(src []byte) error {
+func (v *NullableEntitlementsListRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
