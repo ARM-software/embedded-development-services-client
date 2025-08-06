@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **AccessibleRepositories** | Pointer to **[]string** | A list of repositories accessible from the FPGA host | [optional] [readonly] 
 **AgentAuthToken** | Pointer to **string** | Hybrid RSA AES encoded token for the agent managing this specific FPGA host | [optional] 
 **AgentHost** | Pointer to **string** | The name of the host machine where the agent controlling this FPGA is running | [optional] 
+**AgentPort** | Pointer to **string** | The port of the host machine where the agent controlling this FPGA is running | [optional] 
 **Busy** | **bool** | True if this FPGA is currently busy running a job. If this case, the &#x60;current&#x60; link should be accessible to give more details about the on-going job. | [readonly] 
 **Deprecated** | **bool** | True if this FPGA is scheduled to be removed from the service. | [readonly] 
 **DeprecationInfo** | Pointer to [**DeprecationInfo**](DeprecationInfo.md) |  | [optional] 
@@ -181,6 +182,31 @@ SetAgentHost sets AgentHost field to given value.
 `func (o *FPGAItem) HasAgentHost() bool`
 
 HasAgentHost returns a boolean if a field has been set.
+
+### GetAgentPort
+
+`func (o *FPGAItem) GetAgentPort() string`
+
+GetAgentPort returns the AgentPort field if non-nil, zero value otherwise.
+
+### GetAgentPortOk
+
+`func (o *FPGAItem) GetAgentPortOk() (*string, bool)`
+
+GetAgentPortOk returns a tuple with the AgentPort field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAgentPort
+
+`func (o *FPGAItem) SetAgentPort(v string)`
+
+SetAgentPort sets AgentPort field to given value.
+
+### HasAgentPort
+
+`func (o *FPGAItem) HasAgentPort() bool`
+
+HasAgentPort returns a boolean if a field has been set.
 
 ### GetBusy
 

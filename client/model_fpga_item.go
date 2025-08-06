@@ -35,6 +35,8 @@ type FPGAItem struct {
 	AgentAuthToken *string `json:"agentAuthToken,omitempty"`
 	// The name of the host machine where the agent controlling this FPGA is running
 	AgentHost *string `json:"agentHost,omitempty"`
+	// The port of the host machine where the agent controlling this FPGA is running
+	AgentPort *string `json:"agentPort,omitempty"`
 	// True if this FPGA is currently busy running a job. If this case, the `current` link should be accessible to give more details about the on-going job.
 	Busy bool `json:"busy"`
 	// True if this FPGA is scheduled to be removed from the service.
@@ -236,6 +238,38 @@ func (o *FPGAItem) HasAgentHost() bool {
 // SetAgentHost gets a reference to the given string and assigns it to the AgentHost field.
 func (o *FPGAItem) SetAgentHost(v string) {
 	o.AgentHost = &v
+}
+
+// GetAgentPort returns the AgentPort field value if set, zero value otherwise.
+func (o *FPGAItem) GetAgentPort() string {
+	if o == nil || IsNil(o.AgentPort) {
+		var ret string
+		return ret
+	}
+	return *o.AgentPort
+}
+
+// GetAgentPortOk returns a tuple with the AgentPort field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FPGAItem) GetAgentPortOk() (*string, bool) {
+	if o == nil || IsNil(o.AgentPort) {
+		return nil, false
+	}
+	return o.AgentPort, true
+}
+
+// HasAgentPort returns a boolean if a field has been set.
+func (o *FPGAItem) HasAgentPort() bool {
+	if o != nil && !IsNil(o.AgentPort) {
+		return true
+	}
+
+	return false
+}
+
+// SetAgentPort gets a reference to the given string and assigns it to the AgentPort field.
+func (o *FPGAItem) SetAgentPort(v string) {
+	o.AgentPort = &v
 }
 
 // GetBusy returns the Busy field value
@@ -650,6 +684,9 @@ func (o FPGAItem) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.AgentHost) {
 		toSerialize["agentHost"] = o.AgentHost
+	}
+	if !IsNil(o.AgentPort) {
+		toSerialize["agentPort"] = o.AgentPort
 	}
 	toSerialize["busy"] = o.Busy
 	toSerialize["deprecated"] = o.Deprecated
