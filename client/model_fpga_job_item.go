@@ -55,11 +55,15 @@ type FPGAJobItem struct {
 	Success bool `json:"success"`
 	// True when the job allows direct connection to the job instance (application running on the FPGA).
 	SupportConnection bool `json:"supportConnection"`
+	// True if job has been cancelled or an order to halt it has been received.
+	Suspended bool `json:"suspended"`
 	Target FPGATargetID `json:"target"`
 	// The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started.
 	Timeout *int64 `json:"timeout,omitempty"`
 	// Optional human-readable name of the FPGA job.
 	Title NullableString `json:"title,omitempty"`
+	// type of the FPGA job.
+	Type NullableString `json:"type,omitempty"`
 	Workload FPGAWorkload `json:"workload"`
 }
 
@@ -69,7 +73,7 @@ type _FPGAJobItem FPGAJobItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, connected bool, done bool, error_ bool, failure bool, name string, queued bool, readyForConnection bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, target FPGATargetID, workload FPGAWorkload) *FPGAJobItem {
+func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, connected bool, done bool, error_ bool, failure bool, name string, queued bool, readyForConnection bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, suspended bool, target FPGATargetID, workload FPGAWorkload) *FPGAJobItem {
 	this := FPGAJobItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -85,6 +89,7 @@ func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetad
 	this.StepsTotal = stepsTotal
 	this.Success = success
 	this.SupportConnection = supportConnection
+	this.Suspended = suspended
 	this.Target = target
 	var timeout int64 = 300
 	this.Timeout = &timeout
@@ -479,6 +484,30 @@ func (o *FPGAJobItem) SetSupportConnection(v bool) {
 	o.SupportConnection = v
 }
 
+// GetSuspended returns the Suspended field value
+func (o *FPGAJobItem) GetSuspended() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Suspended
+}
+
+// GetSuspendedOk returns a tuple with the Suspended field value
+// and a boolean to check if the value has been set.
+func (o *FPGAJobItem) GetSuspendedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Suspended, true
+}
+
+// SetSuspended sets field value
+func (o *FPGAJobItem) SetSuspended(v bool) {
+	o.Suspended = v
+}
+
 // GetTarget returns the Target field value
 func (o *FPGAJobItem) GetTarget() FPGATargetID {
 	if o == nil {
@@ -577,6 +606,48 @@ func (o *FPGAJobItem) UnsetTitle() {
 	o.Title.Unset()
 }
 
+// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FPGAJobItem) GetType() string {
+	if o == nil || IsNil(o.Type.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Type.Get()
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FPGAJobItem) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Type.Get(), o.Type.IsSet()
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *FPGAJobItem) HasType() bool {
+	if o != nil && o.Type.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given NullableString and assigns it to the Type field.
+func (o *FPGAJobItem) SetType(v string) {
+	o.Type.Set(&v)
+}
+// SetTypeNil sets the value for Type to be an explicit nil
+func (o *FPGAJobItem) SetTypeNil() {
+	o.Type.Set(nil)
+}
+
+// UnsetType ensures that no value is present for Type, not even an explicit nil
+func (o *FPGAJobItem) UnsetType() {
+	o.Type.Unset()
+}
+
 // GetWorkload returns the Workload field value
 func (o *FPGAJobItem) GetWorkload() FPGAWorkload {
 	if o == nil {
@@ -628,12 +699,16 @@ func (o FPGAJobItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["stepsTotal"] = o.StepsTotal.Get()
 	toSerialize["success"] = o.Success
 	toSerialize["supportConnection"] = o.SupportConnection
+	toSerialize["suspended"] = o.Suspended
 	toSerialize["target"] = o.Target
 	if !IsNil(o.Timeout) {
 		toSerialize["timeout"] = o.Timeout
 	}
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
+	}
+	if o.Type.IsSet() {
+		toSerialize["type"] = o.Type.Get()
 	}
 	toSerialize["workload"] = o.Workload
 	return toSerialize, nil
@@ -658,6 +733,7 @@ func (o *FPGAJobItem) UnmarshalJSON(data []byte) (err error) {
 		"stepsTotal",
 		"success",
 		"supportConnection",
+		"suspended",
 		"target",
 		"workload",
 	}

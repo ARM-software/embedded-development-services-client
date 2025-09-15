@@ -52,11 +52,13 @@ type BuildJobItem struct {
 	// CMSIS project to build or being built.
 	Project string `json:"project"`
 	// True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended.
-	Queued *bool `json:"queued,omitempty"`
+	Queued bool `json:"queued"`
 	// A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead.
 	Status string `json:"status"`
 	// True if the job was successful (this should be used in conjunction with the `done` property).
 	Success bool `json:"success"`
+	// True if job has been cancelled or an order to halt it has been received.
+	Suspended bool `json:"suspended"`
 	// Optional human readable name of the CMSIS build job.
 	Title NullableString `json:"title,omitempty"`
 	// Workspace name where the CMSIS project is present. If not set, the default user's workspace will be used.
@@ -69,7 +71,7 @@ type _BuildJobItem BuildJobItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBuildJobItem(links NullableBuildJobItemLinks, metadata NullableCommonMetadata, buildStepsCompleted NullableInt32, buildStepsTotal NullableInt32, done bool, error_ bool, failure bool, name string, project string, status string, success bool) *BuildJobItem {
+func NewBuildJobItem(links NullableBuildJobItemLinks, metadata NullableCommonMetadata, buildStepsCompleted NullableInt32, buildStepsTotal NullableInt32, done bool, error_ bool, failure bool, name string, project string, queued bool, status string, success bool, suspended bool) *BuildJobItem {
 	this := BuildJobItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -86,8 +88,10 @@ func NewBuildJobItem(links NullableBuildJobItemLinks, metadata NullableCommonMet
 	var priority string = "NORMAL"
 	this.Priority = &priority
 	this.Project = project
+	this.Queued = queued
 	this.Status = status
 	this.Success = success
+	this.Suspended = suspended
 	return &this
 }
 
@@ -467,36 +471,28 @@ func (o *BuildJobItem) SetProject(v string) {
 	o.Project = v
 }
 
-// GetQueued returns the Queued field value if set, zero value otherwise.
+// GetQueued returns the Queued field value
 func (o *BuildJobItem) GetQueued() bool {
-	if o == nil || IsNil(o.Queued) {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Queued
+
+	return o.Queued
 }
 
-// GetQueuedOk returns a tuple with the Queued field value if set, nil otherwise
+// GetQueuedOk returns a tuple with the Queued field value
 // and a boolean to check if the value has been set.
 func (o *BuildJobItem) GetQueuedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Queued) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Queued, true
+	return &o.Queued, true
 }
 
-// HasQueued returns a boolean if a field has been set.
-func (o *BuildJobItem) HasQueued() bool {
-	if o != nil && !IsNil(o.Queued) {
-		return true
-	}
-
-	return false
-}
-
-// SetQueued gets a reference to the given bool and assigns it to the Queued field.
+// SetQueued sets field value
 func (o *BuildJobItem) SetQueued(v bool) {
-	o.Queued = &v
+	o.Queued = v
 }
 
 // GetStatus returns the Status field value
@@ -545,6 +541,30 @@ func (o *BuildJobItem) GetSuccessOk() (*bool, bool) {
 // SetSuccess sets field value
 func (o *BuildJobItem) SetSuccess(v bool) {
 	o.Success = v
+}
+
+// GetSuspended returns the Suspended field value
+func (o *BuildJobItem) GetSuspended() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Suspended
+}
+
+// GetSuspendedOk returns a tuple with the Suspended field value
+// and a boolean to check if the value has been set.
+func (o *BuildJobItem) GetSuspendedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Suspended, true
+}
+
+// SetSuspended sets field value
+func (o *BuildJobItem) SetSuspended(v bool) {
+	o.Suspended = v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -662,11 +682,10 @@ func (o BuildJobItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["priority"] = o.Priority
 	}
 	toSerialize["project"] = o.Project
-	if !IsNil(o.Queued) {
-		toSerialize["queued"] = o.Queued
-	}
+	toSerialize["queued"] = o.Queued
 	toSerialize["status"] = o.Status
 	toSerialize["success"] = o.Success
+	toSerialize["suspended"] = o.Suspended
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
@@ -690,8 +709,10 @@ func (o *BuildJobItem) UnmarshalJSON(data []byte) (err error) {
 		"failure",
 		"name",
 		"project",
+		"queued",
 		"status",
 		"success",
+		"suspended",
 	}
 
 	allProperties := make(map[string]interface{})

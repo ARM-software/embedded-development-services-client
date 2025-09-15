@@ -184,7 +184,7 @@ import (
 
 func main() {
 	genericWorkerName := "genericWorkerName_example" // string | The ID of the Generic Worker.
-	genericWorkJobItem := *openapiclient.NewGenericWorkJobItem("TODO", "TODO", true, false, true, NullableInt32(50), NullableInt32(70), "332129b3-f14d-49d2-b9be-acd2abd80c6b", "INITIALISING", false) // GenericWorkJobItem | A generic work job to start.
+	genericWorkJobItem := *openapiclient.NewGenericWorkJobItem("TODO", "TODO", true, false, true, NullableInt32(50), NullableInt32(70), "332129b3-f14d-49d2-b9be-acd2abd80c6b", false, "INITIALISING", false, false) // GenericWorkJobItem | A generic work job to start.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
