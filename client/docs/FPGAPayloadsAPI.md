@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**CreateFPGAPayloadUploadSession**](FPGAPayloadsAPI.md#CreateFPGAPayloadUploadSession) | **Post** /payloads/upload-session | Create upload session for FPGA payload.
 [**DeleteFpgaPayload**](FPGAPayloadsAPI.md#DeleteFpgaPayload) | **Delete** /repositories/{repositoryName}/payloads/{fpgaPayloadName} | Delete an FPGA payload.
 [**GetFpgaPayload**](FPGAPayloadsAPI.md#GetFpgaPayload) | **Get** /repositories/{repositoryName}/payloads/{fpgaPayloadName} | Return details of specific FPGA payload.
+[**GetFpgaPayloadUploadJobMessages**](FPGAPayloadsAPI.md#GetFpgaPayloadUploadJobMessages) | **Get** /upload-jobs/{uploadJobName}/messages | FPGA payload upload job Message Feed.
 [**GetFpgaPayloadUploadOptions**](FPGAPayloadsAPI.md#GetFpgaPayloadUploadOptions) | **Options** /payloads/upload-session | Return service TUS protocol support.
 [**GetFpgaPayloadUploadProgress**](FPGAPayloadsAPI.md#GetFpgaPayloadUploadProgress) | **Head** /payloads/upload-session/{uploadSessionName} | Return FPGA payload upload progress.
 [**ListFPGAPayloads**](FPGAPayloadsAPI.md#ListFPGAPayloads) | **Get** /repositories/{repositoryName}/payloads | List payloads in a repository.
@@ -301,6 +302,84 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**FPGAPayloadItem**](FPGAPayloadItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetFpgaPayloadUploadJobMessages
+
+> NotificationFeed GetFpgaPayloadUploadJobMessages(ctx, uploadJobName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+
+FPGA payload upload job Message Feed.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	uploadJobName := "uploadJobName_example" // string | Unique ID of the FPGA payload upload job.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
+	limit := int32(20) // int32 | Paging: The maximum number of items to return in a resource. (optional) (default to 20)
+	offset := int32(0) // int32 | Paging:  The index of the first item to return in the resource. (optional) (default to 0)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FPGAPayloadsAPI.GetFpgaPayloadUploadJobMessages(context.Background(), uploadJobName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.GetFpgaPayloadUploadJobMessages``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetFpgaPayloadUploadJobMessages`: NotificationFeed
+	fmt.Fprintf(os.Stdout, "Response from `FPGAPayloadsAPI.GetFpgaPayloadUploadJobMessages`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**uploadJobName** | **string** | Unique ID of the FPGA payload upload job. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetFpgaPayloadUploadJobMessagesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
+ **limit** | **int32** | Paging: The maximum number of items to return in a resource. | [default to 20]
+ **offset** | **int32** | Paging:  The index of the first item to return in the resource. | [default to 0]
+
+### Return type
+
+[**NotificationFeed**](NotificationFeed.md)
 
 ### Authorization
 
