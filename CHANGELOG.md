@@ -2,6 +2,25 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.69.0" (2025-09-15)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20250915084512)
+
+
+Misc
+----
+
+- #20250915103828
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.68.1" (2025-09-10)
 =====================
 
