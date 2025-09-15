@@ -175,6 +175,7 @@ Class | Method | HTTP request | Description
 *FPGAPayloadsAPI* | [**CreateFPGAPayloadUploadSession**](docs/FPGAPayloadsAPI.md#createfpgapayloaduploadsession) | **Post** /payloads/upload-session | Create upload session for FPGA payload.
 *FPGAPayloadsAPI* | [**DeleteFpgaPayload**](docs/FPGAPayloadsAPI.md#deletefpgapayload) | **Delete** /repositories/{repositoryName}/payloads/{fpgaPayloadName} | Delete an FPGA payload.
 *FPGAPayloadsAPI* | [**GetFpgaPayload**](docs/FPGAPayloadsAPI.md#getfpgapayload) | **Get** /repositories/{repositoryName}/payloads/{fpgaPayloadName} | Return details of specific FPGA payload.
+*FPGAPayloadsAPI* | [**GetFpgaPayloadUploadJobMessages**](docs/FPGAPayloadsAPI.md#getfpgapayloaduploadjobmessages) | **Get** /upload-jobs/{uploadJobName}/messages | FPGA payload upload job Message Feed.
 *FPGAPayloadsAPI* | [**GetFpgaPayloadUploadOptions**](docs/FPGAPayloadsAPI.md#getfpgapayloaduploadoptions) | **Options** /payloads/upload-session | Return service TUS protocol support.
 *FPGAPayloadsAPI* | [**GetFpgaPayloadUploadProgress**](docs/FPGAPayloadsAPI.md#getfpgapayloaduploadprogress) | **Head** /payloads/upload-session/{uploadSessionName} | Return FPGA payload upload progress.
 *FPGAPayloadsAPI* | [**ListFPGAPayloads**](docs/FPGAPayloadsAPI.md#listfpgapayloads) | **Get** /repositories/{repositoryName}/payloads | List payloads in a repository.
