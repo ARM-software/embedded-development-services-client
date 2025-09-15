@@ -2,6 +2,34 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.70.0" (2025-09-15)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20250915134208, #20250915134214, #20250915134215, #20250915134219, #20250915134238, #20250915134239, #20250915134243, #20250915134245, #20250915143540)
+
+
+Bugfixes
+--------
+
+- Dependency upgrade: golang-1.25.0 (#20250915112203)
+- Dependency upgrade: setup-python-6 (#20250915134007)
+- Dependency upgrade: codeql-action-3.30.3 (#20250915134019)
+- Dependency upgrade: scorecard-action-2.4.2 (#20250915134024)
+- Dependency upgrade: setup-go-6 (#20250915134028)
+- Dependency upgrade: fetch-metadata-2.4.0 (#20250915134029)
+- Dependency upgrade: upload-artifact-4.6.2 (#20250915134032)
+- Dependency upgrade: golangci-lint-action-8 (#20250915134033)
+- Dependency upgrade: git-auto-commit-action-6 (#20250915134042)
+- Dependency upgrade: checkout-5 (#20250915134047)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.69.0" (2025-09-15)
 =====================
 
