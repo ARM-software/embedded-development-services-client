@@ -11,16 +11,18 @@ Name | Type | Description | Notes
 **Links** | [**NullableFPGAPayloadItemLinks**](FPGAPayloadItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Name** | **string** | Unique ID of this FPGA Payload. | [readonly] 
+**Owner** | [**FPGAPayloadOwner**](FPGAPayloadOwner.md) |  | 
 **Status** | **string** | Status of the payload. A payload is only ready to be used by an FPGA once it has been processed. | [readonly] 
 **SupportConnection** | **bool** | True when the payload supports direct connection. | 
 **Title** | **string** | Human readable name of the FPGA Payload. | 
+**UploadJob** | Pointer to **NullableString** | The unique ID of the upload job that processed this payload. This will be null if the payload has not been processed yet. | [optional] [readonly] 
 **UploadLocation** | **string** | The upload location to upload the payload files from. This value will be returned from the upload session creation. | 
 
 ## Methods
 
 ### NewFPGAPayloadItem
 
-`func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, status string, supportConnection bool, title string, uploadLocation string, ) *FPGAPayloadItem`
+`func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, owner FPGAPayloadOwner, status string, supportConnection bool, title string, uploadLocation string, ) *FPGAPayloadItem`
 
 NewFPGAPayloadItem instantiates a new FPGAPayloadItem object
 This constructor will assign default values to properties that have it defined,
@@ -115,6 +117,26 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetOwner
+
+`func (o *FPGAPayloadItem) GetOwner() FPGAPayloadOwner`
+
+GetOwner returns the Owner field if non-nil, zero value otherwise.
+
+### GetOwnerOk
+
+`func (o *FPGAPayloadItem) GetOwnerOk() (*FPGAPayloadOwner, bool)`
+
+GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOwner
+
+`func (o *FPGAPayloadItem) SetOwner(v FPGAPayloadOwner)`
+
+SetOwner sets Owner field to given value.
+
+
 ### GetStatus
 
 `func (o *FPGAPayloadItem) GetStatus() string`
@@ -175,6 +197,41 @@ and a boolean to check if the value has been set.
 SetTitle sets Title field to given value.
 
 
+### GetUploadJob
+
+`func (o *FPGAPayloadItem) GetUploadJob() string`
+
+GetUploadJob returns the UploadJob field if non-nil, zero value otherwise.
+
+### GetUploadJobOk
+
+`func (o *FPGAPayloadItem) GetUploadJobOk() (*string, bool)`
+
+GetUploadJobOk returns a tuple with the UploadJob field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUploadJob
+
+`func (o *FPGAPayloadItem) SetUploadJob(v string)`
+
+SetUploadJob sets UploadJob field to given value.
+
+### HasUploadJob
+
+`func (o *FPGAPayloadItem) HasUploadJob() bool`
+
+HasUploadJob returns a boolean if a field has been set.
+
+### SetUploadJobNil
+
+`func (o *FPGAPayloadItem) SetUploadJobNil(b bool)`
+
+ SetUploadJobNil sets the value for UploadJob to be an explicit nil
+
+### UnsetUploadJob
+`func (o *FPGAPayloadItem) UnsetUploadJob()`
+
+UnsetUploadJob ensures that no value is present for UploadJob, not even an explicit nil
 ### GetUploadLocation
 
 `func (o *FPGAPayloadItem) GetUploadLocation() string`

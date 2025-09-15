@@ -34,7 +34,7 @@ jobs:
         path: API-Uniform-Contract
         ref: main
         # FIXME set to `production`
-    - uses: actions/upload-artifact@4.6.2
+    - uses: actions/upload-artifact@v4.6.2
       with:
         name: all-service-flat
         path: API-Uniform-Contract/all/1/
@@ -79,7 +79,7 @@ jobs:
       with:
         ref: ${{ inputs.branch || github.head_ref || github.ref }}
     - name: Download all-service-flat artefact
-      uses: actions/download-artifact@master
+      uses: actions/download-artifact@v5.0.0
       with:
         name: all-service-flat
         path: all-service-definition
@@ -113,7 +113,7 @@ jobs:
         ls -l ${{ env.go_module }}/*
     - name: Upload extensions
       if: ${{ env.EXTENSIONS_EXISTS == 'true' }}
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v4.6.2
       with:
         name: extensions
         path: extensions/

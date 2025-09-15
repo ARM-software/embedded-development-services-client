@@ -20,9 +20,10 @@ Name | Type | Description | Notes
 **Name** | **string** | Unique ID of the Intellisense Job. | [readonly] 
 **Packs** | **string** | Path to packs repository to replace value in compilation database. | 
 **Project** | **string** | CMSIS project to handle or being handled. | 
-**Queued** | Pointer to **bool** | True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended. | [optional] [readonly] 
+**Queued** | **bool** | True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended. | [readonly] 
 **Status** | **string** | A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead. | [readonly] 
 **Success** | **bool** | True if the job was successful (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
+**Suspended** | **bool** | True if job has been cancelled or an order to halt it has been received. | [readonly] 
 **Title** | Pointer to **NullableString** | Optional human readable name of the CMSIS Intellisense job. | [optional] 
 **Toolchain** | **string** | Path to toolchain binaries to replace value in compilation database. | 
 **ToolchainHeaders** | **string** | Path to toolchain headers to replace value in compilation database. | 
@@ -32,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewIntellisenseJobItem
 
-`func NewIntellisenseJobItem(links NullableIntellisenseJobItemLinks, metadata NullableCommonMetadata, buildStepsCompleted NullableInt32, buildStepsTotal NullableInt32, done bool, error_ bool, failure bool, name string, packs string, project string, status string, success bool, toolchain string, toolchainHeaders string, workspace string, ) *IntellisenseJobItem`
+`func NewIntellisenseJobItem(links NullableIntellisenseJobItemLinks, metadata NullableCommonMetadata, buildStepsCompleted NullableInt32, buildStepsTotal NullableInt32, done bool, error_ bool, failure bool, name string, packs string, project string, queued bool, status string, success bool, suspended bool, toolchain string, toolchainHeaders string, workspace string, ) *IntellisenseJobItem`
 
 NewIntellisenseJobItem instantiates a new IntellisenseJobItem object
 This constructor will assign default values to properties that have it defined,
@@ -366,11 +367,6 @@ and a boolean to check if the value has been set.
 
 SetQueued sets Queued field to given value.
 
-### HasQueued
-
-`func (o *IntellisenseJobItem) HasQueued() bool`
-
-HasQueued returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -410,6 +406,26 @@ and a boolean to check if the value has been set.
 `func (o *IntellisenseJobItem) SetSuccess(v bool)`
 
 SetSuccess sets Success field to given value.
+
+
+### GetSuspended
+
+`func (o *IntellisenseJobItem) GetSuspended() bool`
+
+GetSuspended returns the Suspended field if non-nil, zero value otherwise.
+
+### GetSuspendedOk
+
+`func (o *IntellisenseJobItem) GetSuspendedOk() (*bool, bool)`
+
+GetSuspendedOk returns a tuple with the Suspended field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSuspended
+
+`func (o *IntellisenseJobItem) SetSuspended(v bool)`
+
+SetSuspended sets Suspended field to given value.
 
 
 ### GetTitle

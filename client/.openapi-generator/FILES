@@ -102,6 +102,7 @@ docs/FPGAJobsAPI.md
 docs/FPGAPayloadCollection.md
 docs/FPGAPayloadItem.md
 docs/FPGAPayloadItemLinks.md
+docs/FPGAPayloadOwner.md
 docs/FPGAPayloadRepositories.md
 docs/FPGAPayloadsAPI.md
 docs/FPGATarget.md
@@ -247,6 +248,7 @@ model_fpga_job_item_links.go
 model_fpga_payload_collection.go
 model_fpga_payload_item.go
 model_fpga_payload_item_links.go
+model_fpga_payload_owner.go
 model_fpga_payload_repositories.go
 model_fpga_target.go
 model_fpga_target_id.go

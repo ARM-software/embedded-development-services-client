@@ -184,7 +184,7 @@ import (
 
 func main() {
 	builderName := "builderName_example" // string | The ID of the CMSIS Builder.
-	buildJobItem := *openapiclient.NewBuildJobItem("TODO", "TODO", NullableInt32(50), NullableInt32(70), true, false, true, "332129b3-f14d-49d2-b9be-acd2abd80c6b", "workspace/debug-build.csolution.yaml", "INITIALISING", false) // BuildJobItem | A name of the CMSIS project to build.
+	buildJobItem := *openapiclient.NewBuildJobItem("TODO", "TODO", NullableInt32(50), NullableInt32(70), true, false, true, "332129b3-f14d-49d2-b9be-acd2abd80c6b", "workspace/debug-build.csolution.yaml", false, "INITIALISING", false, false) // BuildJobItem | A name of the CMSIS project to build.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
