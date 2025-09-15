@@ -50,11 +50,13 @@ type GenericWorkJobItem struct {
 	// Path in the workspace to the project to handle or being handled.
 	Project *string `json:"project,omitempty"`
 	// True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended.
-	Queued *bool `json:"queued,omitempty"`
+	Queued bool `json:"queued"`
 	// A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead.
 	Status string `json:"status"`
 	// True if the job was successful (this should be used in conjunction with the `done` property).
 	Success bool `json:"success"`
+	// True if job has been cancelled or an order to halt it has been received.
+	Suspended bool `json:"suspended"`
 	// Optional human readable name of the generic work job.
 	Title NullableString `json:"title,omitempty"`
 	// Workspace name where the project is present. If not set, the default user's workspace will be used.
@@ -67,7 +69,7 @@ type _GenericWorkJobItem GenericWorkJobItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGenericWorkJobItem(links NullableGenericWorkJobItemLinks, metadata NullableCommonMetadata, done bool, error_ bool, failure bool, jobStepsCompleted NullableInt32, jobStepsTotal NullableInt32, name string, status string, success bool) *GenericWorkJobItem {
+func NewGenericWorkJobItem(links NullableGenericWorkJobItemLinks, metadata NullableCommonMetadata, done bool, error_ bool, failure bool, jobStepsCompleted NullableInt32, jobStepsTotal NullableInt32, name string, queued bool, status string, success bool, suspended bool) *GenericWorkJobItem {
 	this := GenericWorkJobItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -81,8 +83,10 @@ func NewGenericWorkJobItem(links NullableGenericWorkJobItemLinks, metadata Nulla
 	this.Name = name
 	var priority string = "NORMAL"
 	this.Priority = &priority
+	this.Queued = queued
 	this.Status = status
 	this.Success = success
+	this.Suspended = suspended
 	return &this
 }
 
@@ -427,36 +431,28 @@ func (o *GenericWorkJobItem) SetProject(v string) {
 	o.Project = &v
 }
 
-// GetQueued returns the Queued field value if set, zero value otherwise.
+// GetQueued returns the Queued field value
 func (o *GenericWorkJobItem) GetQueued() bool {
-	if o == nil || IsNil(o.Queued) {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Queued
+
+	return o.Queued
 }
 
-// GetQueuedOk returns a tuple with the Queued field value if set, nil otherwise
+// GetQueuedOk returns a tuple with the Queued field value
 // and a boolean to check if the value has been set.
 func (o *GenericWorkJobItem) GetQueuedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Queued) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Queued, true
+	return &o.Queued, true
 }
 
-// HasQueued returns a boolean if a field has been set.
-func (o *GenericWorkJobItem) HasQueued() bool {
-	if o != nil && !IsNil(o.Queued) {
-		return true
-	}
-
-	return false
-}
-
-// SetQueued gets a reference to the given bool and assigns it to the Queued field.
+// SetQueued sets field value
 func (o *GenericWorkJobItem) SetQueued(v bool) {
-	o.Queued = &v
+	o.Queued = v
 }
 
 // GetStatus returns the Status field value
@@ -505,6 +501,30 @@ func (o *GenericWorkJobItem) GetSuccessOk() (*bool, bool) {
 // SetSuccess sets field value
 func (o *GenericWorkJobItem) SetSuccess(v bool) {
 	o.Success = v
+}
+
+// GetSuspended returns the Suspended field value
+func (o *GenericWorkJobItem) GetSuspended() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Suspended
+}
+
+// GetSuspendedOk returns a tuple with the Suspended field value
+// and a boolean to check if the value has been set.
+func (o *GenericWorkJobItem) GetSuspendedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Suspended, true
+}
+
+// SetSuspended sets field value
+func (o *GenericWorkJobItem) SetSuspended(v bool) {
+	o.Suspended = v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -621,11 +641,10 @@ func (o GenericWorkJobItem) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Project) {
 		toSerialize["project"] = o.Project
 	}
-	if !IsNil(o.Queued) {
-		toSerialize["queued"] = o.Queued
-	}
+	toSerialize["queued"] = o.Queued
 	toSerialize["status"] = o.Status
 	toSerialize["success"] = o.Success
+	toSerialize["suspended"] = o.Suspended
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
@@ -648,8 +667,10 @@ func (o *GenericWorkJobItem) UnmarshalJSON(data []byte) (err error) {
 		"jobStepsCompleted",
 		"jobStepsTotal",
 		"name",
+		"queued",
 		"status",
 		"success",
+		"suspended",
 	}
 
 	allProperties := make(map[string]interface{})

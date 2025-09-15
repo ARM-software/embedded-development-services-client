@@ -31,12 +31,15 @@ type FPGAPayloadItem struct {
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// Unique ID of this FPGA Payload.
 	Name string `json:"name"`
+	Owner FPGAPayloadOwner `json:"owner"`
 	// Status of the payload. A payload is only ready to be used by an FPGA once it has been processed.
 	Status string `json:"status"`
 	// True when the payload supports direct connection.
 	SupportConnection bool `json:"supportConnection"`
 	// Human readable name of the FPGA Payload.
 	Title string `json:"title"`
+	// The unique ID of the upload job that processed this payload. This will be null if the payload has not been processed yet.
+	UploadJob NullableString `json:"uploadJob,omitempty"`
 	// The upload location to upload the payload files from. This value will be returned from the upload session creation.
 	UploadLocation string `json:"uploadLocation"`
 }
@@ -47,11 +50,12 @@ type _FPGAPayloadItem FPGAPayloadItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, status string, supportConnection bool, title string, uploadLocation string) *FPGAPayloadItem {
+func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, owner FPGAPayloadOwner, status string, supportConnection bool, title string, uploadLocation string) *FPGAPayloadItem {
 	this := FPGAPayloadItem{}
 	this.Links = links
 	this.Metadata = metadata
 	this.Name = name
+	this.Owner = owner
 	this.Status = status
 	this.SupportConnection = supportConnection
 	this.Title = title
@@ -143,6 +147,30 @@ func (o *FPGAPayloadItem) SetName(v string) {
 	o.Name = v
 }
 
+// GetOwner returns the Owner field value
+func (o *FPGAPayloadItem) GetOwner() FPGAPayloadOwner {
+	if o == nil {
+		var ret FPGAPayloadOwner
+		return ret
+	}
+
+	return o.Owner
+}
+
+// GetOwnerOk returns a tuple with the Owner field value
+// and a boolean to check if the value has been set.
+func (o *FPGAPayloadItem) GetOwnerOk() (*FPGAPayloadOwner, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Owner, true
+}
+
+// SetOwner sets field value
+func (o *FPGAPayloadItem) SetOwner(v FPGAPayloadOwner) {
+	o.Owner = v
+}
+
 // GetStatus returns the Status field value
 func (o *FPGAPayloadItem) GetStatus() string {
 	if o == nil {
@@ -215,6 +243,48 @@ func (o *FPGAPayloadItem) SetTitle(v string) {
 	o.Title = v
 }
 
+// GetUploadJob returns the UploadJob field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FPGAPayloadItem) GetUploadJob() string {
+	if o == nil || IsNil(o.UploadJob.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.UploadJob.Get()
+}
+
+// GetUploadJobOk returns a tuple with the UploadJob field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FPGAPayloadItem) GetUploadJobOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UploadJob.Get(), o.UploadJob.IsSet()
+}
+
+// HasUploadJob returns a boolean if a field has been set.
+func (o *FPGAPayloadItem) HasUploadJob() bool {
+	if o != nil && o.UploadJob.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUploadJob gets a reference to the given NullableString and assigns it to the UploadJob field.
+func (o *FPGAPayloadItem) SetUploadJob(v string) {
+	o.UploadJob.Set(&v)
+}
+// SetUploadJobNil sets the value for UploadJob to be an explicit nil
+func (o *FPGAPayloadItem) SetUploadJobNil() {
+	o.UploadJob.Set(nil)
+}
+
+// UnsetUploadJob ensures that no value is present for UploadJob, not even an explicit nil
+func (o *FPGAPayloadItem) UnsetUploadJob() {
+	o.UploadJob.Unset()
+}
+
 // GetUploadLocation returns the UploadLocation field value
 func (o *FPGAPayloadItem) GetUploadLocation() string {
 	if o == nil {
@@ -252,9 +322,13 @@ func (o FPGAPayloadItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["name"] = o.Name
+	toSerialize["owner"] = o.Owner
 	toSerialize["status"] = o.Status
 	toSerialize["supportConnection"] = o.SupportConnection
 	toSerialize["title"] = o.Title
+	if o.UploadJob.IsSet() {
+		toSerialize["uploadJob"] = o.UploadJob.Get()
+	}
 	toSerialize["uploadLocation"] = o.UploadLocation
 	return toSerialize, nil
 }
@@ -267,6 +341,7 @@ func (o *FPGAPayloadItem) UnmarshalJSON(data []byte) (err error) {
 		"_links",
 		"_metadata",
 		"name",
+		"owner",
 		"status",
 		"supportConnection",
 		"title",

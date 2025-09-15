@@ -21,9 +21,10 @@ Name | Type | Description | Notes
 **Name** | **string** | Unique ID of the Build Job. | [readonly] 
 **Priority** | Pointer to **string** | The priority of a job: * A &#39;normal&#39; job has the lowest priority * A &#39;jump&#39; job will jump the queue * A &#39;MAWS&#39; job is a job that should supercede all others, e.g. terminating a managed service immediately Note: not all jobs will allow different priority levels and it will depend on the type of job requested to accept or take into account this information | [optional] [default to "NORMAL"]
 **Project** | **string** | CMSIS project to build or being built. | 
-**Queued** | Pointer to **bool** | True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended. | [optional] [readonly] 
+**Queued** | **bool** | True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended. | [readonly] 
 **Status** | **string** | A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead. | [readonly] 
 **Success** | **bool** | True if the job was successful (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
+**Suspended** | **bool** | True if job has been cancelled or an order to halt it has been received. | [readonly] 
 **Title** | Pointer to **NullableString** | Optional human readable name of the CMSIS build job. | [optional] 
 **Workspace** | Pointer to **NullableString** | Workspace name where the CMSIS project is present. If not set, the default user&#39;s workspace will be used. | [optional] 
 
@@ -31,7 +32,7 @@ Name | Type | Description | Notes
 
 ### NewBuildJobItem
 
-`func NewBuildJobItem(links NullableBuildJobItemLinks, metadata NullableCommonMetadata, buildStepsCompleted NullableInt32, buildStepsTotal NullableInt32, done bool, error_ bool, failure bool, name string, project string, status string, success bool, ) *BuildJobItem`
+`func NewBuildJobItem(links NullableBuildJobItemLinks, metadata NullableCommonMetadata, buildStepsCompleted NullableInt32, buildStepsTotal NullableInt32, done bool, error_ bool, failure bool, name string, project string, queued bool, status string, success bool, suspended bool, ) *BuildJobItem`
 
 NewBuildJobItem instantiates a new BuildJobItem object
 This constructor will assign default values to properties that have it defined,
@@ -395,11 +396,6 @@ and a boolean to check if the value has been set.
 
 SetQueued sets Queued field to given value.
 
-### HasQueued
-
-`func (o *BuildJobItem) HasQueued() bool`
-
-HasQueued returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -439,6 +435,26 @@ and a boolean to check if the value has been set.
 `func (o *BuildJobItem) SetSuccess(v bool)`
 
 SetSuccess sets Success field to given value.
+
+
+### GetSuspended
+
+`func (o *BuildJobItem) GetSuspended() bool`
+
+GetSuspended returns the Suspended field if non-nil, zero value otherwise.
+
+### GetSuspendedOk
+
+`func (o *BuildJobItem) GetSuspendedOk() (*bool, bool)`
+
+GetSuspendedOk returns a tuple with the Suspended field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSuspended
+
+`func (o *BuildJobItem) SetSuspended(v bool)`
+
+SetSuspended sets Suspended field to given value.
 
 
 ### GetTitle
