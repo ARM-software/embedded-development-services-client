@@ -35,11 +35,18 @@ type ApiClearWorkspaceArchiveContentRequest struct {
 	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
+	tusResumable *string
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
 func (r ApiClearWorkspaceArchiveContentRequest) AcceptVersion(acceptVersion string) ApiClearWorkspaceArchiveContentRequest {
 	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Version of the Tus protocol being used.
+func (r ApiClearWorkspaceArchiveContentRequest) TusResumable(tusResumable string) ApiClearWorkspaceArchiveContentRequest {
+	r.tusResumable = &tusResumable
 	return r
 }
 
@@ -105,6 +112,199 @@ func (a *WorkspaceAPIService) ClearWorkspaceArchiveContentExecute(r ApiClearWork
 	if r.acceptVersion != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
 	}
+	if r.tusResumable != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 405 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiClearWorkspaceIncrementalChunkRequest struct {
+	ctx context.Context
+	ApiService *WorkspaceAPIService
+	workspaceName string
+	tusResumable *string
+	acceptVersion *string
+}
+
+// Version of the Tus protocol being used.
+func (r ApiClearWorkspaceIncrementalChunkRequest) TusResumable(tusResumable string) ApiClearWorkspaceIncrementalChunkRequest {
+	r.tusResumable = &tusResumable
+	return r
+}
+
+// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
+func (r ApiClearWorkspaceIncrementalChunkRequest) AcceptVersion(acceptVersion string) ApiClearWorkspaceIncrementalChunkRequest {
+	r.acceptVersion = &acceptVersion
+	return r
+}
+
+func (r ApiClearWorkspaceIncrementalChunkRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ClearWorkspaceIncrementalChunkExecute(r)
+}
+
+/*
+ClearWorkspaceIncrementalChunk Clear the content of this chunked workspace.
+
+Clears the content of the chunked workspace.
+The content of the workspace is removed from the platform and will not be retrievable anymore.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param workspaceName Unique ID of the Workspace.
+ @return ApiClearWorkspaceIncrementalChunkRequest
+*/
+func (a *WorkspaceAPIService) ClearWorkspaceIncrementalChunk(ctx context.Context, workspaceName string) ApiClearWorkspaceIncrementalChunkRequest {
+	return ApiClearWorkspaceIncrementalChunkRequest{
+		ApiService: a,
+		ctx: ctx,
+		workspaceName: workspaceName,
+	}
+}
+
+// Execute executes the request
+func (a *WorkspaceAPIService) ClearWorkspaceIncrementalChunkExecute(r ApiClearWorkspaceIncrementalChunkRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.ClearWorkspaceIncrementalChunk")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspaces/{workspaceName}/chunk"
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.tusResumable == nil {
+		return nil, reportError("tusResumable is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptVersion != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -388,12 +588,279 @@ func (a *WorkspaceAPIService) ClearWorkspaceRepositoryContentManagerExecute(r Ap
 	return localVarHTTPResponse, nil
 }
 
+type ApiCreateCompositeWorkspaceChunkRequest struct {
+	ctx context.Context
+	ApiService *WorkspaceAPIService
+	workspaceName string
+	tusResumable *string
+	uploadConcat *string
+	acceptVersion *string
+	uploadDeferLength *int32
+	uploadLength *int64
+	uploadMetadata *string
+}
+
+// Version of the Tus protocol being used.
+func (r ApiCreateCompositeWorkspaceChunkRequest) TusResumable(tusResumable string) ApiCreateCompositeWorkspaceChunkRequest {
+	r.tusResumable = &tusResumable
+	return r
+}
+
+// whether it is a partial upload or a final upload.  https://tus.io/protocols/resumable-upload#upload-concat
+func (r ApiCreateCompositeWorkspaceChunkRequest) UploadConcat(uploadConcat string) ApiCreateCompositeWorkspaceChunkRequest {
+	r.uploadConcat = &uploadConcat
+	return r
+}
+
+// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
+func (r ApiCreateCompositeWorkspaceChunkRequest) AcceptVersion(acceptVersion string) ApiCreateCompositeWorkspaceChunkRequest {
+	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Set to 1 if upload size is not known at the time. Any other value results in a 400 Bad Request.
+func (r ApiCreateCompositeWorkspaceChunkRequest) UploadDeferLength(uploadDeferLength int32) ApiCreateCompositeWorkspaceChunkRequest {
+	r.uploadDeferLength = &uploadDeferLength
+	return r
+}
+
+// The size of the entire upload in bytes.
+func (r ApiCreateCompositeWorkspaceChunkRequest) UploadLength(uploadLength int64) ApiCreateCompositeWorkspaceChunkRequest {
+	r.uploadLength = &uploadLength
+	return r
+}
+
+// Additional metadata for the upload request. The header consists of comma-separated key-value pairs. The key MUST NOT contain spaces or commas and MUST be ASCII encoded. The value MUST be Base64 encoded. The workspace key should be provided with the unique identifier for the payload to be uploaded to.
+func (r ApiCreateCompositeWorkspaceChunkRequest) UploadMetadata(uploadMetadata string) ApiCreateCompositeWorkspaceChunkRequest {
+	r.uploadMetadata = &uploadMetadata
+	return r
+}
+
+func (r ApiCreateCompositeWorkspaceChunkRequest) Execute() (*http.Response, error) {
+	return r.ApiService.CreateCompositeWorkspaceChunkExecute(r)
+}
+
+/*
+CreateCompositeWorkspaceChunk Create workspace chunks of a composite workspace
+
+Carries out the creation step of the TUS protocol. https://tus.io/protocols/resumable-upload#creation https://tus.io/protocols/resumable-upload#concatenation
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param workspaceName Unique ID of the Workspace.
+ @return ApiCreateCompositeWorkspaceChunkRequest
+*/
+func (a *WorkspaceAPIService) CreateCompositeWorkspaceChunk(ctx context.Context, workspaceName string) ApiCreateCompositeWorkspaceChunkRequest {
+	return ApiCreateCompositeWorkspaceChunkRequest{
+		ApiService: a,
+		ctx: ctx,
+		workspaceName: workspaceName,
+	}
+}
+
+// Execute executes the request
+func (a *WorkspaceAPIService) CreateCompositeWorkspaceChunkExecute(r ApiCreateCompositeWorkspaceChunkRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.CreateCompositeWorkspaceChunk")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspaces/{workspaceName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.tusResumable == nil {
+		return nil, reportError("tusResumable is required and must be specified")
+	}
+	if r.uploadConcat == nil {
+		return nil, reportError("uploadConcat is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptVersion != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Upload-Concat", r.uploadConcat, "simple", "")
+	if r.uploadDeferLength != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Upload-Defer-Length", r.uploadDeferLength, "simple", "")
+	}
+	if r.uploadLength != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Upload-Length", r.uploadLength, "simple", "")
+	}
+	if r.uploadMetadata != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Upload-Metadata", r.uploadMetadata, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 405 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 415 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 428 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiCreateWorkspaceRequest struct {
 	ctx context.Context
 	ApiService *WorkspaceAPIService
 	workspaceSourceName string
 	workspaceItem *WorkspaceItem
 	acceptVersion *string
+	tusResumable *string
+	uploadDeferLength *int32
+	uploadLength *int64
+	uploadMetadata *string
 }
 
 // A name of the source type to create the workspace from.
@@ -405,6 +872,30 @@ func (r ApiCreateWorkspaceRequest) WorkspaceItem(workspaceItem WorkspaceItem) Ap
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
 func (r ApiCreateWorkspaceRequest) AcceptVersion(acceptVersion string) ApiCreateWorkspaceRequest {
 	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Version of the Tus protocol being used.
+func (r ApiCreateWorkspaceRequest) TusResumable(tusResumable string) ApiCreateWorkspaceRequest {
+	r.tusResumable = &tusResumable
+	return r
+}
+
+// Set to 1 if upload size is not known at the time. Any other value results in a 400 Bad Request.
+func (r ApiCreateWorkspaceRequest) UploadDeferLength(uploadDeferLength int32) ApiCreateWorkspaceRequest {
+	r.uploadDeferLength = &uploadDeferLength
+	return r
+}
+
+// The size of the entire upload in bytes.
+func (r ApiCreateWorkspaceRequest) UploadLength(uploadLength int64) ApiCreateWorkspaceRequest {
+	r.uploadLength = &uploadLength
+	return r
+}
+
+// Additional metadata for the upload request. The header consists of comma-separated key-value pairs. The key MUST NOT contain spaces or commas and MUST be ASCII encoded. The value MUST be Base64 encoded. The workspace key should be provided with the unique identifier for the payload to be uploaded to.
+func (r ApiCreateWorkspaceRequest) UploadMetadata(uploadMetadata string) ApiCreateWorkspaceRequest {
+	r.uploadMetadata = &uploadMetadata
 	return r
 }
 
@@ -473,6 +964,18 @@ func (a *WorkspaceAPIService) CreateWorkspaceExecute(r ApiCreateWorkspaceRequest
 	}
 	if r.acceptVersion != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	if r.tusResumable != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
+	}
+	if r.uploadDeferLength != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Upload-Defer-Length", r.uploadDeferLength, "simple", "")
+	}
+	if r.uploadLength != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Upload-Length", r.uploadLength, "simple", "")
+	}
+	if r.uploadMetadata != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Upload-Metadata", r.uploadMetadata, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.workspaceItem
@@ -594,11 +1097,18 @@ type ApiDeleteWorkspaceRequest struct {
 	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
+	tusResumable *string
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
 func (r ApiDeleteWorkspaceRequest) AcceptVersion(acceptVersion string) ApiDeleteWorkspaceRequest {
 	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Version of the Tus protocol being used.
+func (r ApiDeleteWorkspaceRequest) TusResumable(tusResumable string) ApiDeleteWorkspaceRequest {
+	r.tusResumable = &tusResumable
 	return r
 }
 
@@ -662,6 +1172,9 @@ func (a *WorkspaceAPIService) DeleteWorkspaceExecute(r ApiDeleteWorkspaceRequest
 	}
 	if r.acceptVersion != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	if r.tusResumable != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -999,6 +1512,475 @@ func (a *WorkspaceAPIService) EditWorkspaceRepositoryContentManagerExecute(r Api
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetChunkedWorkspaceUploadProgressRequest struct {
+	ctx context.Context
+	ApiService *WorkspaceAPIService
+	workspaceName string
+	acceptVersion *string
+}
+
+// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
+func (r ApiGetChunkedWorkspaceUploadProgressRequest) AcceptVersion(acceptVersion string) ApiGetChunkedWorkspaceUploadProgressRequest {
+	r.acceptVersion = &acceptVersion
+	return r
+}
+
+func (r ApiGetChunkedWorkspaceUploadProgressRequest) Execute() (*http.Response, error) {
+	return r.ApiService.GetChunkedWorkspaceUploadProgressExecute(r)
+}
+
+/*
+GetChunkedWorkspaceUploadProgress Return workspace content upload progress.
+
+Returns headers indicating the progress of an upload for workspace content.
+https://tus.io/protocols/resumable-upload#head
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param workspaceName Unique ID of the Workspace.
+ @return ApiGetChunkedWorkspaceUploadProgressRequest
+*/
+func (a *WorkspaceAPIService) GetChunkedWorkspaceUploadProgress(ctx context.Context, workspaceName string) ApiGetChunkedWorkspaceUploadProgressRequest {
+	return ApiGetChunkedWorkspaceUploadProgressRequest{
+		ApiService: a,
+		ctx: ctx,
+		workspaceName: workspaceName,
+	}
+}
+
+// Execute executes the request
+func (a *WorkspaceAPIService) GetChunkedWorkspaceUploadProgressExecute(r ApiGetChunkedWorkspaceUploadProgressRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodHead
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.GetChunkedWorkspaceUploadProgress")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspaces/{workspaceName}/chunk"
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptVersion != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiGetCompositeWorkspaceUploadOptionsRequest struct {
+	ctx context.Context
+	ApiService *WorkspaceAPIService
+	workspaceName string
+	acceptVersion *string
+}
+
+// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
+func (r ApiGetCompositeWorkspaceUploadOptionsRequest) AcceptVersion(acceptVersion string) ApiGetCompositeWorkspaceUploadOptionsRequest {
+	r.acceptVersion = &acceptVersion
+	return r
+}
+
+func (r ApiGetCompositeWorkspaceUploadOptionsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.GetCompositeWorkspaceUploadOptionsExecute(r)
+}
+
+/*
+GetCompositeWorkspaceUploadOptions Return workspace TUS protocol support.
+
+Returns headers indicating the versions and extensions of the TUS protocol supported by this workspace. https://tus.io/protocols/resumable-upload#options
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param workspaceName Unique ID of the Workspace.
+ @return ApiGetCompositeWorkspaceUploadOptionsRequest
+*/
+func (a *WorkspaceAPIService) GetCompositeWorkspaceUploadOptions(ctx context.Context, workspaceName string) ApiGetCompositeWorkspaceUploadOptionsRequest {
+	return ApiGetCompositeWorkspaceUploadOptionsRequest{
+		ApiService: a,
+		ctx: ctx,
+		workspaceName: workspaceName,
+	}
+}
+
+// Execute executes the request
+func (a *WorkspaceAPIService) GetCompositeWorkspaceUploadOptionsExecute(r ApiGetCompositeWorkspaceUploadOptionsRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodOptions
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.GetCompositeWorkspaceUploadOptions")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspaces/{workspaceName}/details"
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptVersion != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiGetCompositeWorkspaceUploadSupportRequest struct {
+	ctx context.Context
+	ApiService *WorkspaceAPIService
+	workspaceName string
+	acceptVersion *string
+}
+
+// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
+func (r ApiGetCompositeWorkspaceUploadSupportRequest) AcceptVersion(acceptVersion string) ApiGetCompositeWorkspaceUploadSupportRequest {
+	r.acceptVersion = &acceptVersion
+	return r
+}
+
+func (r ApiGetCompositeWorkspaceUploadSupportRequest) Execute() (*http.Response, error) {
+	return r.ApiService.GetCompositeWorkspaceUploadSupportExecute(r)
+}
+
+/*
+GetCompositeWorkspaceUploadSupport Return workspace TUS protocol support.
+
+Returns headers indicating the versions and extensions of the TUS protocol supported by this workspace. https://tus.io/protocols/resumable-upload#options
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param workspaceName Unique ID of the Workspace.
+ @return ApiGetCompositeWorkspaceUploadSupportRequest
+*/
+func (a *WorkspaceAPIService) GetCompositeWorkspaceUploadSupport(ctx context.Context, workspaceName string) ApiGetCompositeWorkspaceUploadSupportRequest {
+	return ApiGetCompositeWorkspaceUploadSupportRequest{
+		ApiService: a,
+		ctx: ctx,
+		workspaceName: workspaceName,
+	}
+}
+
+// Execute executes the request
+func (a *WorkspaceAPIService) GetCompositeWorkspaceUploadSupportExecute(r ApiGetCompositeWorkspaceUploadSupportRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodOptions
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.GetCompositeWorkspaceUploadSupport")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspaces/{workspaceName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptVersion != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type ApiGetWorkspaceRequest struct {
@@ -1356,6 +2338,163 @@ func (a *WorkspaceAPIService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspac
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetWorkspaceArchiveContentUploadProgressRequest struct {
+	ctx context.Context
+	ApiService *WorkspaceAPIService
+	workspaceName string
+	acceptVersion *string
+}
+
+// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
+func (r ApiGetWorkspaceArchiveContentUploadProgressRequest) AcceptVersion(acceptVersion string) ApiGetWorkspaceArchiveContentUploadProgressRequest {
+	r.acceptVersion = &acceptVersion
+	return r
+}
+
+func (r ApiGetWorkspaceArchiveContentUploadProgressRequest) Execute() (*http.Response, error) {
+	return r.ApiService.GetWorkspaceArchiveContentUploadProgressExecute(r)
+}
+
+/*
+GetWorkspaceArchiveContentUploadProgress Return progress about the upload.
+
+Returns headers indicating the progress of an upload for workspace content.
+https://tus.io/protocols/resumable-upload#head
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param workspaceName Unique ID of the Workspace.
+ @return ApiGetWorkspaceArchiveContentUploadProgressRequest
+*/
+func (a *WorkspaceAPIService) GetWorkspaceArchiveContentUploadProgress(ctx context.Context, workspaceName string) ApiGetWorkspaceArchiveContentUploadProgressRequest {
+	return ApiGetWorkspaceArchiveContentUploadProgressRequest{
+		ApiService: a,
+		ctx: ctx,
+		workspaceName: workspaceName,
+	}
+}
+
+// Execute executes the request
+func (a *WorkspaceAPIService) GetWorkspaceArchiveContentUploadProgressExecute(r ApiGetWorkspaceArchiveContentUploadProgressRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodHead
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.GetWorkspaceArchiveContentUploadProgress")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspaces/{workspaceName}/archive-content"
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptVersion != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiGetWorkspaceDetailsRequest struct {
 	ctx context.Context
 	ApiService *WorkspaceAPIService
@@ -1463,6 +2602,184 @@ func (a *WorkspaceAPIService) GetWorkspaceDetailsExecute(r ApiGetWorkspaceDetail
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetWorkspaceIncrementalChunkRequest struct {
+	ctx context.Context
+	ApiService *WorkspaceAPIService
+	workspaceName string
+	acceptVersion *string
+	ifNoneMatch *string
+}
+
+// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
+func (r ApiGetWorkspaceIncrementalChunkRequest) AcceptVersion(acceptVersion string) ApiGetWorkspaceIncrementalChunkRequest {
+	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content.
+func (r ApiGetWorkspaceIncrementalChunkRequest) IfNoneMatch(ifNoneMatch string) ApiGetWorkspaceIncrementalChunkRequest {
+	r.ifNoneMatch = &ifNoneMatch
+	return r
+}
+
+func (r ApiGetWorkspaceIncrementalChunkRequest) Execute() (*ArtefactManagerItem, *http.Response, error) {
+	return r.ApiService.GetWorkspaceIncrementalChunkExecute(r)
+}
+
+/*
+GetWorkspaceIncrementalChunk Get the manager of the file containing the chunked workspace content.
+
+The content of the chunked workspace is contained into a file.
+ The manager enables upload and deletion of said file.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param workspaceName Unique ID of the Workspace.
+ @return ApiGetWorkspaceIncrementalChunkRequest
+*/
+func (a *WorkspaceAPIService) GetWorkspaceIncrementalChunk(ctx context.Context, workspaceName string) ApiGetWorkspaceIncrementalChunkRequest {
+	return ApiGetWorkspaceIncrementalChunkRequest{
+		ApiService: a,
+		ctx: ctx,
+		workspaceName: workspaceName,
+	}
+}
+
+// Execute executes the request
+//  @return ArtefactManagerItem
+func (a *WorkspaceAPIService) GetWorkspaceIncrementalChunkExecute(r ApiGetWorkspaceIncrementalChunkRequest) (*ArtefactManagerItem, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ArtefactManagerItem
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.GetWorkspaceIncrementalChunk")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspaces/{workspaceName}/chunk"
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptVersion != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	if r.ifNoneMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2353,4 +3670,246 @@ func (a *WorkspaceAPIService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUploadWorkspaceIncrementalChunkRequest struct {
+	ctx context.Context
+	ApiService *WorkspaceAPIService
+	workspaceName string
+	tusResumable *string
+	acceptVersion *string
+	uploadChecksum *string
+	uploadOffset *int64
+}
+
+// Version of the Tus protocol being used.
+func (r ApiUploadWorkspaceIncrementalChunkRequest) TusResumable(tusResumable string) ApiUploadWorkspaceIncrementalChunkRequest {
+	r.tusResumable = &tusResumable
+	return r
+}
+
+// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
+func (r ApiUploadWorkspaceIncrementalChunkRequest) AcceptVersion(acceptVersion string) ApiUploadWorkspaceIncrementalChunkRequest {
+	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Information about the checksum of the current body payload.
+func (r ApiUploadWorkspaceIncrementalChunkRequest) UploadChecksum(uploadChecksum string) ApiUploadWorkspaceIncrementalChunkRequest {
+	r.uploadChecksum = &uploadChecksum
+	return r
+}
+
+// The byte offset within a resource.
+func (r ApiUploadWorkspaceIncrementalChunkRequest) UploadOffset(uploadOffset int64) ApiUploadWorkspaceIncrementalChunkRequest {
+	r.uploadOffset = &uploadOffset
+	return r
+}
+
+func (r ApiUploadWorkspaceIncrementalChunkRequest) Execute() (*http.Response, error) {
+	return r.ApiService.UploadWorkspaceIncrementalChunkExecute(r)
+}
+
+/*
+UploadWorkspaceIncrementalChunk Upload part of a workspace.
+
+Write bytes to the workspace from the offset provided. https://tus.io/protocols/resumable-upload#patch
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param workspaceName Unique ID of the Workspace.
+ @return ApiUploadWorkspaceIncrementalChunkRequest
+*/
+func (a *WorkspaceAPIService) UploadWorkspaceIncrementalChunk(ctx context.Context, workspaceName string) ApiUploadWorkspaceIncrementalChunkRequest {
+	return ApiUploadWorkspaceIncrementalChunkRequest{
+		ApiService: a,
+		ctx: ctx,
+		workspaceName: workspaceName,
+	}
+}
+
+// Execute executes the request
+func (a *WorkspaceAPIService) UploadWorkspaceIncrementalChunkExecute(r ApiUploadWorkspaceIncrementalChunkRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceAPIService.UploadWorkspaceIncrementalChunk")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspaces/{workspaceName}/chunk"
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceName"+"}", parameterValueToString(r.workspaceName, "workspaceName"), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.tusResumable == nil {
+		return nil, reportError("tusResumable is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptVersion != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
+	if r.uploadChecksum != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Upload-Checksum", r.uploadChecksum, "simple", "")
+	}
+	if r.uploadOffset != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Upload-Offset", r.uploadOffset, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 405 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 415 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 428 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }

@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ## CreateFPGAPayloadUploadSession
 
-> CreateFPGAPayloadUploadSession(ctx).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadDeferLength(uploadDeferLength).UploadLength(uploadLength).UploadMetadata(uploadMetadata).Execute()
+> CreateFPGAPayloadUploadSession(ctx).AcceptVersion(acceptVersion).TusResumable(tusResumable).UploadDeferLength(uploadDeferLength).UploadLength(uploadLength).UploadMetadata(uploadMetadata).Execute()
 
 Create upload session for FPGA payload.
 
@@ -116,15 +116,15 @@ import (
 )
 
 func main() {
-	tusResumable := "1.0.0" // string | Version of the Tus protocol being used.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	tusResumable := "1.0.0" // string | Version of the Tus protocol being used. (optional)
 	uploadDeferLength := int32(56) // int32 | Set to 1 if upload size is not known at the time. Any other value results in a 400 Bad Request. (optional)
 	uploadLength := int64(789) // int64 | The size of the entire upload in bytes. (optional)
 	uploadMetadata := "uploadMetadata_example" // string | Additional metadata for the upload request. The header consists of comma-separated key-value pairs. The key MUST NOT contain spaces or commas and MUST be ASCII encoded. The value MUST be Base64 encoded. The workspace key should be provided with the unique identifier for the payload to be uploaded to. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FPGAPayloadsAPI.CreateFPGAPayloadUploadSession(context.Background()).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadDeferLength(uploadDeferLength).UploadLength(uploadLength).UploadMetadata(uploadMetadata).Execute()
+	r, err := apiClient.FPGAPayloadsAPI.CreateFPGAPayloadUploadSession(context.Background()).AcceptVersion(acceptVersion).TusResumable(tusResumable).UploadDeferLength(uploadDeferLength).UploadLength(uploadLength).UploadMetadata(uploadMetadata).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.CreateFPGAPayloadUploadSession``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -143,8 +143,8 @@ Other parameters are passed through a pointer to a apiCreateFPGAPayloadUploadSes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tusResumable** | **string** | Version of the Tus protocol being used. | 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **tusResumable** | **string** | Version of the Tus protocol being used. | 
  **uploadDeferLength** | **int32** | Set to 1 if upload size is not known at the time. Any other value results in a 400 Bad Request. | 
  **uploadLength** | **int64** | The size of the entire upload in bytes. | 
  **uploadMetadata** | **string** | Additional metadata for the upload request. The header consists of comma-separated key-value pairs. The key MUST NOT contain spaces or commas and MUST be ASCII encoded. The value MUST be Base64 encoded. The workspace key should be provided with the unique identifier for the payload to be uploaded to. | 
@@ -685,7 +685,7 @@ Name | Type | Description  | Notes
 
 ## UploadPayload
 
-> UploadPayload(ctx, uploadSessionName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadOffset(uploadOffset).Execute()
+> UploadPayload(ctx, uploadSessionName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadChecksum(uploadChecksum).UploadOffset(uploadOffset).Execute()
 
 Upload part of a payload.
 
@@ -707,11 +707,12 @@ func main() {
 	uploadSessionName := "uploadSessionName_example" // string | Unique ID of an upload session.
 	tusResumable := "1.0.0" // string | Version of the Tus protocol being used.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	uploadChecksum := "uploadChecksum_example" // string | Information about the checksum of the current body payload. (optional)
 	uploadOffset := int64(789) // int64 | The byte offset within a resource. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FPGAPayloadsAPI.UploadPayload(context.Background(), uploadSessionName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadOffset(uploadOffset).Execute()
+	r, err := apiClient.FPGAPayloadsAPI.UploadPayload(context.Background(), uploadSessionName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadChecksum(uploadChecksum).UploadOffset(uploadOffset).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.UploadPayload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -737,6 +738,7 @@ Name | Type | Description  | Notes
 
  **tusResumable** | **string** | Version of the Tus protocol being used. | 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **uploadChecksum** | **string** | Information about the checksum of the current body payload. | 
  **uploadOffset** | **int64** | The byte offset within a resource. | 
 
 ### Return type

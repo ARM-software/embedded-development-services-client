@@ -238,18 +238,27 @@ Class | Method | HTTP request | Description
 *VirtualHardwareTargetInstanceAPI* | [**StopVhtInstance**](docs/VirtualHardwareTargetInstanceAPI.md#stopvhtinstance) | **Post** /vht-instances/{instanceName}/cancel | Stop this VHT instance.
 *VirtualHardwareTargetInstanceAPI* | [**UploadVhtInstanceArtefact**](docs/VirtualHardwareTargetInstanceAPI.md#uploadvhtinstanceartefact) | **Put** /vht-instances/{instanceName}/artefacts/{artefactName}/artefact | Upload and replace the named VHT artefact on the given VHT instance.
 *WorkspaceAPI* | [**ClearWorkspaceArchiveContent**](docs/WorkspaceAPI.md#clearworkspacearchivecontent) | **Delete** /workspaces/{workspaceName}/archive-content | Clear the content of this workspace.
+*WorkspaceAPI* | [**ClearWorkspaceIncrementalChunk**](docs/WorkspaceAPI.md#clearworkspaceincrementalchunk) | **Delete** /workspaces/{workspaceName}/chunk | Clear the content of this chunked workspace.
 *WorkspaceAPI* | [**ClearWorkspaceRepositoryContentManager**](docs/WorkspaceAPI.md#clearworkspacerepositorycontentmanager) | **Delete** /workspaces/{workspaceName}/repository-content | Clear the content of this workspace.
+*WorkspaceAPI* | [**CreateCompositeWorkspaceChunk**](docs/WorkspaceAPI.md#createcompositeworkspacechunk) | **Post** /workspaces/{workspaceName} | Create workspace chunks of a composite workspace
 *WorkspaceAPI* | [**CreateWorkspace**](docs/WorkspaceAPI.md#createworkspace) | **Post** /workspace-sources/{workspaceSourceName} | Creates a workspace based on the source.
 *WorkspaceAPI* | [**DeleteWorkspace**](docs/WorkspaceAPI.md#deleteworkspace) | **Delete** /workspaces/{workspaceName} | Delete a Workspace
 *WorkspaceAPI* | [**EditWorkspaceRepositoryContentManager**](docs/WorkspaceAPI.md#editworkspacerepositorycontentmanager) | **Put** /workspaces/{workspaceName}/repository-content | Edit the source for the content of the workspace.
+*WorkspaceAPI* | [**GetChunkedWorkspaceUploadProgress**](docs/WorkspaceAPI.md#getchunkedworkspaceuploadprogress) | **Head** /workspaces/{workspaceName}/chunk | Return workspace content upload progress.
+*WorkspaceAPI* | [**GetCompositeWorkspaceUploadOptions**](docs/WorkspaceAPI.md#getcompositeworkspaceuploadoptions) | **Options** /workspaces/{workspaceName}/details | Return workspace TUS protocol support.
+*WorkspaceAPI* | [**GetCompositeWorkspaceUploadSupport**](docs/WorkspaceAPI.md#getcompositeworkspaceuploadsupport) | **Options** /workspaces/{workspaceName} | Return workspace TUS protocol support.
 *WorkspaceAPI* | [**GetWorkspace**](docs/WorkspaceAPI.md#getworkspace) | **Get** /workspaces/{workspaceName} | Return the state of a workspace.
 *WorkspaceAPI* | [**GetWorkspaceArchiveContent**](docs/WorkspaceAPI.md#getworkspacearchivecontent) | **Get** /workspaces/{workspaceName}/archive-content | Get the manager of the archive file containing the workspace content.
+*WorkspaceAPI* | [**GetWorkspaceArchiveContentUploadProgress**](docs/WorkspaceAPI.md#getworkspacearchivecontentuploadprogress) | **Head** /workspaces/{workspaceName}/archive-content | Return progress about the upload.
 *WorkspaceAPI* | [**GetWorkspaceDetails**](docs/WorkspaceAPI.md#getworkspacedetails) | **Get** /workspaces/{workspaceName}/details | Details about the workspace.
+*WorkspaceAPI* | [**GetWorkspaceIncrementalChunk**](docs/WorkspaceAPI.md#getworkspaceincrementalchunk) | **Get** /workspaces/{workspaceName}/chunk | Get the manager of the file containing the chunked workspace content.
 *WorkspaceAPI* | [**GetWorkspaceRepositoryContentManager**](docs/WorkspaceAPI.md#getworkspacerepositorycontentmanager) | **Get** /workspaces/{workspaceName}/repository-content | Get the manager of the workspace content defined in a repository.
 *WorkspaceAPI* | [**ListWorkspaces**](docs/WorkspaceAPI.md#listworkspaces) | **Get** /workspaces/ | List all workspaces available.
 *WorkspaceAPI* | [**RetainWorkspace**](docs/WorkspaceAPI.md#retainworkspace) | **Post** /workspaces/{workspaceName}/retain | Update how long a workspace will be retained before automatic deletion..
 *WorkspaceAPI* | [**UploadWorkspaceArchiveContent**](docs/WorkspaceAPI.md#uploadworkspacearchivecontent) | **Put** /workspaces/{workspaceName}/archive-content | Upload and replace the content of the named workspace.
+*WorkspaceAPI* | [**UploadWorkspaceIncrementalChunk**](docs/WorkspaceAPI.md#uploadworkspaceincrementalchunk) | **Patch** /workspaces/{workspaceName}/chunk | Upload part of a workspace.
 *WorkspaceSourceAPI* | [**GetWorkspaceSource**](docs/WorkspaceSourceAPI.md#getworkspacesource) | **Get** /workspace-sources/{workspaceSourceName} | Return details of the specific workspace source.
+*WorkspaceSourceAPI* | [**GetWorkspaceSourceUploadOptions**](docs/WorkspaceSourceAPI.md#getworkspacesourceuploadoptions) | **Options** /workspace-sources/{workspaceSourceName} | Return source TUS protocol support.
 *WorkspaceSourceAPI* | [**ListWorkspaceSources**](docs/WorkspaceSourceAPI.md#listworkspacesources) | **Get** /workspace-sources/ | List available workspace sources.
 
 

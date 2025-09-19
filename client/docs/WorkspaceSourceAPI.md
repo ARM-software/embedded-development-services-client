@@ -9,6 +9,7 @@ All URIs are relative to *https://all.api.keil.arm.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetWorkspaceSource**](WorkspaceSourceAPI.md#GetWorkspaceSource) | **Get** /workspace-sources/{workspaceSourceName} | Return details of the specific workspace source.
+[**GetWorkspaceSourceUploadOptions**](WorkspaceSourceAPI.md#GetWorkspaceSourceUploadOptions) | **Options** /workspace-sources/{workspaceSourceName} | Return source TUS protocol support.
 [**ListWorkspaceSources**](WorkspaceSourceAPI.md#ListWorkspaceSources) | **Get** /workspace-sources/ | List available workspace sources.
 
 
@@ -72,6 +73,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**WorkspaceSourceItem**](WorkspaceSourceItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetWorkspaceSourceUploadOptions
+
+> GetWorkspaceSourceUploadOptions(ctx, workspaceSourceName).AcceptVersion(acceptVersion).Execute()
+
+Return source TUS protocol support.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	workspaceSourceName := "workspaceSourceName_example" // string | The ID of the workspace source.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.WorkspaceSourceAPI.GetWorkspaceSourceUploadOptions(context.Background(), workspaceSourceName).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceSourceAPI.GetWorkspaceSourceUploadOptions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**workspaceSourceName** | **string** | The ID of the workspace source. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorkspaceSourceUploadOptionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 

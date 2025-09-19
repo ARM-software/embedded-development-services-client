@@ -233,22 +233,22 @@ func (a *FPGAPayloadsAPIService) CreateFPGAPayloadExecute(r ApiCreateFPGAPayload
 type ApiCreateFPGAPayloadUploadSessionRequest struct {
 	ctx context.Context
 	ApiService *FPGAPayloadsAPIService
-	tusResumable *string
 	acceptVersion *string
+	tusResumable *string
 	uploadDeferLength *int32
 	uploadLength *int64
 	uploadMetadata *string
 }
 
-// Version of the Tus protocol being used.
-func (r ApiCreateFPGAPayloadUploadSessionRequest) TusResumable(tusResumable string) ApiCreateFPGAPayloadUploadSessionRequest {
-	r.tusResumable = &tusResumable
-	return r
-}
-
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
 func (r ApiCreateFPGAPayloadUploadSessionRequest) AcceptVersion(acceptVersion string) ApiCreateFPGAPayloadUploadSessionRequest {
 	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Version of the Tus protocol being used.
+func (r ApiCreateFPGAPayloadUploadSessionRequest) TusResumable(tusResumable string) ApiCreateFPGAPayloadUploadSessionRequest {
+	r.tusResumable = &tusResumable
 	return r
 }
 
@@ -307,9 +307,6 @@ func (a *FPGAPayloadsAPIService) CreateFPGAPayloadUploadSessionExecute(r ApiCrea
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.tusResumable == nil {
-		return nil, reportError("tusResumable is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -331,7 +328,9 @@ func (a *FPGAPayloadsAPIService) CreateFPGAPayloadUploadSessionExecute(r ApiCrea
 	if r.acceptVersion != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
+	if r.tusResumable != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
+	}
 	if r.uploadDeferLength != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Upload-Defer-Length", r.uploadDeferLength, "simple", "")
 	}
@@ -1721,6 +1720,7 @@ type ApiUploadPayloadRequest struct {
 	uploadSessionName string
 	tusResumable *string
 	acceptVersion *string
+	uploadChecksum *string
 	uploadOffset *int64
 }
 
@@ -1733,6 +1733,12 @@ func (r ApiUploadPayloadRequest) TusResumable(tusResumable string) ApiUploadPayl
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
 func (r ApiUploadPayloadRequest) AcceptVersion(acceptVersion string) ApiUploadPayloadRequest {
 	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Information about the checksum of the current body payload.
+func (r ApiUploadPayloadRequest) UploadChecksum(uploadChecksum string) ApiUploadPayloadRequest {
+	r.uploadChecksum = &uploadChecksum
 	return r
 }
 
@@ -1807,6 +1813,9 @@ func (a *FPGAPayloadsAPIService) UploadPayloadExecute(r ApiUploadPayloadRequest)
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
 	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
+	if r.uploadChecksum != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Upload-Checksum", r.uploadChecksum, "simple", "")
+	}
 	if r.uploadOffset != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Upload-Offset", r.uploadOffset, "simple", "")
 	}

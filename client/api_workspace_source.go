@@ -206,6 +206,162 @@ func (a *WorkspaceSourceAPIService) GetWorkspaceSourceExecute(r ApiGetWorkspaceS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetWorkspaceSourceUploadOptionsRequest struct {
+	ctx context.Context
+	ApiService *WorkspaceSourceAPIService
+	workspaceSourceName string
+	acceptVersion *string
+}
+
+// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
+func (r ApiGetWorkspaceSourceUploadOptionsRequest) AcceptVersion(acceptVersion string) ApiGetWorkspaceSourceUploadOptionsRequest {
+	r.acceptVersion = &acceptVersion
+	return r
+}
+
+func (r ApiGetWorkspaceSourceUploadOptionsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.GetWorkspaceSourceUploadOptionsExecute(r)
+}
+
+/*
+GetWorkspaceSourceUploadOptions Return source TUS protocol support.
+
+Returns headers indicating the versions and extensions of the TUS protocol supported by this source. https://tus.io/protocols/resumable-upload#options
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param workspaceSourceName The ID of the workspace source.
+ @return ApiGetWorkspaceSourceUploadOptionsRequest
+*/
+func (a *WorkspaceSourceAPIService) GetWorkspaceSourceUploadOptions(ctx context.Context, workspaceSourceName string) ApiGetWorkspaceSourceUploadOptionsRequest {
+	return ApiGetWorkspaceSourceUploadOptionsRequest{
+		ApiService: a,
+		ctx: ctx,
+		workspaceSourceName: workspaceSourceName,
+	}
+}
+
+// Execute executes the request
+func (a *WorkspaceSourceAPIService) GetWorkspaceSourceUploadOptionsExecute(r ApiGetWorkspaceSourceUploadOptionsRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodOptions
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkspaceSourceAPIService.GetWorkspaceSourceUploadOptions")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspace-sources/{workspaceSourceName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"workspaceSourceName"+"}", parameterValueToString(r.workspaceSourceName, "workspaceSourceName"), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptVersion != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiListWorkspaceSourcesRequest struct {
 	ctx context.Context
 	ApiService *WorkspaceSourceAPIService
