@@ -12,14 +12,14 @@ Name | Type | Description | Notes
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Fpga** | **string** | The identifier of the FPGA resource. | 
 **Name** | **string** | The unique identifier of the resource instance. | 
-**Repository** | **string** | The identifier of the Repository resource. | 
-**Users** | **[]string** | A list of user IDs permitted to access the FPGA. | 
+**Repositories** | **[]string** | A list of Repository resource identifiers that the entitlement provides access to. | 
+**Users** | **[]string** | A list of user emails permitted to access the FPGA. | 
 
 ## Methods
 
 ### NewFPGAEntitlementItem
 
-`func NewFPGAEntitlementItem(links NullableFPGAEntitlementItemLinks, metadata NullableCommonMetadata, fpga string, name string, repository string, users []string, ) *FPGAEntitlementItem`
+`func NewFPGAEntitlementItem(links NullableFPGAEntitlementItemLinks, metadata NullableCommonMetadata, fpga string, name string, repositories []string, users []string, ) *FPGAEntitlementItem`
 
 NewFPGAEntitlementItem instantiates a new FPGAEntitlementItem object
 This constructor will assign default values to properties that have it defined,
@@ -134,24 +134,24 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetRepository
+### GetRepositories
 
-`func (o *FPGAEntitlementItem) GetRepository() string`
+`func (o *FPGAEntitlementItem) GetRepositories() []string`
 
-GetRepository returns the Repository field if non-nil, zero value otherwise.
+GetRepositories returns the Repositories field if non-nil, zero value otherwise.
 
-### GetRepositoryOk
+### GetRepositoriesOk
 
-`func (o *FPGAEntitlementItem) GetRepositoryOk() (*string, bool)`
+`func (o *FPGAEntitlementItem) GetRepositoriesOk() (*[]string, bool)`
 
-GetRepositoryOk returns a tuple with the Repository field if it's non-nil, zero value otherwise
+GetRepositoriesOk returns a tuple with the Repositories field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRepository
+### SetRepositories
 
-`func (o *FPGAEntitlementItem) SetRepository(v string)`
+`func (o *FPGAEntitlementItem) SetRepositories(v []string)`
 
-SetRepository sets Repository field to given value.
+SetRepositories sets Repositories field to given value.
 
 
 ### GetUsers

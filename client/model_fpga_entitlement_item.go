@@ -33,9 +33,9 @@ type FPGAEntitlementItem struct {
 	Fpga string `json:"fpga"`
 	// The unique identifier of the resource instance.
 	Name string `json:"name"`
-	// The identifier of the Repository resource.
-	Repository string `json:"repository"`
-	// A list of user IDs permitted to access the FPGA.
+	// A list of Repository resource identifiers that the entitlement provides access to.
+	Repositories []string `json:"repositories"`
+	// A list of user emails permitted to access the FPGA.
 	Users []string `json:"users"`
 }
 
@@ -45,13 +45,13 @@ type _FPGAEntitlementItem FPGAEntitlementItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAEntitlementItem(links NullableFPGAEntitlementItemLinks, metadata NullableCommonMetadata, fpga string, name string, repository string, users []string) *FPGAEntitlementItem {
+func NewFPGAEntitlementItem(links NullableFPGAEntitlementItemLinks, metadata NullableCommonMetadata, fpga string, name string, repositories []string, users []string) *FPGAEntitlementItem {
 	this := FPGAEntitlementItem{}
 	this.Links = links
 	this.Metadata = metadata
 	this.Fpga = fpga
 	this.Name = name
-	this.Repository = repository
+	this.Repositories = repositories
 	this.Users = users
 	return &this
 }
@@ -164,28 +164,28 @@ func (o *FPGAEntitlementItem) SetName(v string) {
 	o.Name = v
 }
 
-// GetRepository returns the Repository field value
-func (o *FPGAEntitlementItem) GetRepository() string {
+// GetRepositories returns the Repositories field value
+func (o *FPGAEntitlementItem) GetRepositories() []string {
 	if o == nil {
-		var ret string
+		var ret []string
 		return ret
 	}
 
-	return o.Repository
+	return o.Repositories
 }
 
-// GetRepositoryOk returns a tuple with the Repository field value
+// GetRepositoriesOk returns a tuple with the Repositories field value
 // and a boolean to check if the value has been set.
-func (o *FPGAEntitlementItem) GetRepositoryOk() (*string, bool) {
+func (o *FPGAEntitlementItem) GetRepositoriesOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Repository, true
+	return o.Repositories, true
 }
 
-// SetRepository sets field value
-func (o *FPGAEntitlementItem) SetRepository(v string) {
-	o.Repository = v
+// SetRepositories sets field value
+func (o *FPGAEntitlementItem) SetRepositories(v []string) {
+	o.Repositories = v
 }
 
 // GetUsers returns the Users field value
@@ -226,7 +226,7 @@ func (o FPGAEntitlementItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["fpga"] = o.Fpga
 	toSerialize["name"] = o.Name
-	toSerialize["repository"] = o.Repository
+	toSerialize["repositories"] = o.Repositories
 	toSerialize["users"] = o.Users
 	return toSerialize, nil
 }
@@ -240,7 +240,7 @@ func (o *FPGAEntitlementItem) UnmarshalJSON(data []byte) (err error) {
 		"_metadata",
 		"fpga",
 		"name",
-		"repository",
+		"repositories",
 		"users",
 	}
 
