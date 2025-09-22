@@ -29,12 +29,18 @@ var _ MappedNullable = &FPGAEntitlementItem{}
 type FPGAEntitlementItem struct {
 	Links NullableFPGAEntitlementItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
-	// The identifier of the FPGA resource.
-	Fpga string `json:"fpga"`
+	// Deprecated in favour of `fpgas`. The identifier of the FPGA resource.
+	// Deprecated
+	Fpga *string `json:"fpga,omitempty"`
+	// A list of FPGA resource identifiers that the entitlement provides access to.
+	Fpgas []string `json:"fpgas"`
 	// The unique identifier of the resource instance.
 	Name string `json:"name"`
 	// A list of Repository resource identifiers that the entitlement provides access to.
 	Repositories []string `json:"repositories"`
+	// Deprecated in favour of `repositories`. The identifier of the Repository resource.
+	// Deprecated
+	Repository *string `json:"repository,omitempty"`
 	// A list of user emails permitted to access the FPGA.
 	Users []string `json:"users"`
 }
@@ -45,11 +51,11 @@ type _FPGAEntitlementItem FPGAEntitlementItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAEntitlementItem(links NullableFPGAEntitlementItemLinks, metadata NullableCommonMetadata, fpga string, name string, repositories []string, users []string) *FPGAEntitlementItem {
+func NewFPGAEntitlementItem(links NullableFPGAEntitlementItemLinks, metadata NullableCommonMetadata, fpgas []string, name string, repositories []string, users []string) *FPGAEntitlementItem {
 	this := FPGAEntitlementItem{}
 	this.Links = links
 	this.Metadata = metadata
-	this.Fpga = fpga
+	this.Fpgas = fpgas
 	this.Name = name
 	this.Repositories = repositories
 	this.Users = users
@@ -116,28 +122,63 @@ func (o *FPGAEntitlementItem) SetMetadata(v CommonMetadata) {
 	o.Metadata.Set(&v)
 }
 
-// GetFpga returns the Fpga field value
+// GetFpga returns the Fpga field value if set, zero value otherwise.
+// Deprecated
 func (o *FPGAEntitlementItem) GetFpga() string {
-	if o == nil {
+	if o == nil || IsNil(o.Fpga) {
 		var ret string
 		return ret
 	}
-
-	return o.Fpga
+	return *o.Fpga
 }
 
-// GetFpgaOk returns a tuple with the Fpga field value
+// GetFpgaOk returns a tuple with the Fpga field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *FPGAEntitlementItem) GetFpgaOk() (*string, bool) {
+	if o == nil || IsNil(o.Fpga) {
+		return nil, false
+	}
+	return o.Fpga, true
+}
+
+// HasFpga returns a boolean if a field has been set.
+func (o *FPGAEntitlementItem) HasFpga() bool {
+	if o != nil && !IsNil(o.Fpga) {
+		return true
+	}
+
+	return false
+}
+
+// SetFpga gets a reference to the given string and assigns it to the Fpga field.
+// Deprecated
+func (o *FPGAEntitlementItem) SetFpga(v string) {
+	o.Fpga = &v
+}
+
+// GetFpgas returns the Fpgas field value
+func (o *FPGAEntitlementItem) GetFpgas() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Fpgas
+}
+
+// GetFpgasOk returns a tuple with the Fpgas field value
+// and a boolean to check if the value has been set.
+func (o *FPGAEntitlementItem) GetFpgasOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Fpga, true
+	return o.Fpgas, true
 }
 
-// SetFpga sets field value
-func (o *FPGAEntitlementItem) SetFpga(v string) {
-	o.Fpga = v
+// SetFpgas sets field value
+func (o *FPGAEntitlementItem) SetFpgas(v []string) {
+	o.Fpgas = v
 }
 
 // GetName returns the Name field value
@@ -188,6 +229,41 @@ func (o *FPGAEntitlementItem) SetRepositories(v []string) {
 	o.Repositories = v
 }
 
+// GetRepository returns the Repository field value if set, zero value otherwise.
+// Deprecated
+func (o *FPGAEntitlementItem) GetRepository() string {
+	if o == nil || IsNil(o.Repository) {
+		var ret string
+		return ret
+	}
+	return *o.Repository
+}
+
+// GetRepositoryOk returns a tuple with the Repository field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated
+func (o *FPGAEntitlementItem) GetRepositoryOk() (*string, bool) {
+	if o == nil || IsNil(o.Repository) {
+		return nil, false
+	}
+	return o.Repository, true
+}
+
+// HasRepository returns a boolean if a field has been set.
+func (o *FPGAEntitlementItem) HasRepository() bool {
+	if o != nil && !IsNil(o.Repository) {
+		return true
+	}
+
+	return false
+}
+
+// SetRepository gets a reference to the given string and assigns it to the Repository field.
+// Deprecated
+func (o *FPGAEntitlementItem) SetRepository(v string) {
+	o.Repository = &v
+}
+
 // GetUsers returns the Users field value
 func (o *FPGAEntitlementItem) GetUsers() []string {
 	if o == nil {
@@ -224,9 +300,15 @@ func (o FPGAEntitlementItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	toSerialize["fpga"] = o.Fpga
+	if !IsNil(o.Fpga) {
+		toSerialize["fpga"] = o.Fpga
+	}
+	toSerialize["fpgas"] = o.Fpgas
 	toSerialize["name"] = o.Name
 	toSerialize["repositories"] = o.Repositories
+	if !IsNil(o.Repository) {
+		toSerialize["repository"] = o.Repository
+	}
 	toSerialize["users"] = o.Users
 	return toSerialize, nil
 }
@@ -238,7 +320,7 @@ func (o *FPGAEntitlementItem) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"_links",
 		"_metadata",
-		"fpga",
+		"fpgas",
 		"name",
 		"repositories",
 		"users",
