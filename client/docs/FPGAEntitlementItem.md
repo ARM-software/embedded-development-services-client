@@ -10,11 +10,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Links** | [**NullableFPGAEntitlementItemLinks**](FPGAEntitlementItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**Fpga** | Pointer to **string** | Deprecated in favour of &#x60;fpgas&#x60;. The identifier of the FPGA resource. | [optional] 
 **Fpgas** | **[]string** | A list of FPGA resource identifiers that the entitlement provides access to. | 
 **Name** | **string** | The unique identifier of the resource instance. | 
 **Repositories** | **[]string** | A list of Repository resource identifiers that the entitlement provides access to. | 
-**Repository** | Pointer to **string** | Deprecated in favour of &#x60;repositories&#x60;. The identifier of the Repository resource. | [optional] 
 **Users** | **[]string** | A list of user emails permitted to access the FPGA. | 
 
 ## Methods
@@ -96,31 +94,6 @@ SetMetadata sets Metadata field to given value.
 `func (o *FPGAEntitlementItem) UnsetMetadata()`
 
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
-### GetFpga
-
-`func (o *FPGAEntitlementItem) GetFpga() string`
-
-GetFpga returns the Fpga field if non-nil, zero value otherwise.
-
-### GetFpgaOk
-
-`func (o *FPGAEntitlementItem) GetFpgaOk() (*string, bool)`
-
-GetFpgaOk returns a tuple with the Fpga field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFpga
-
-`func (o *FPGAEntitlementItem) SetFpga(v string)`
-
-SetFpga sets Fpga field to given value.
-
-### HasFpga
-
-`func (o *FPGAEntitlementItem) HasFpga() bool`
-
-HasFpga returns a boolean if a field has been set.
-
 ### GetFpgas
 
 `func (o *FPGAEntitlementItem) GetFpgas() []string`
@@ -180,31 +153,6 @@ and a boolean to check if the value has been set.
 
 SetRepositories sets Repositories field to given value.
 
-
-### GetRepository
-
-`func (o *FPGAEntitlementItem) GetRepository() string`
-
-GetRepository returns the Repository field if non-nil, zero value otherwise.
-
-### GetRepositoryOk
-
-`func (o *FPGAEntitlementItem) GetRepositoryOk() (*string, bool)`
-
-GetRepositoryOk returns a tuple with the Repository field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRepository
-
-`func (o *FPGAEntitlementItem) SetRepository(v string)`
-
-SetRepository sets Repository field to given value.
-
-### HasRepository
-
-`func (o *FPGAEntitlementItem) HasRepository() bool`
-
-HasRepository returns a boolean if a field has been set.
 
 ### GetUsers
 
