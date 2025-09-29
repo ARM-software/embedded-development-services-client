@@ -25,10 +25,11 @@ import (
 // checks if the FPGAPayloadItemLinks type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &FPGAPayloadItemLinks{}
 
-// FPGAPayloadItemLinks The `collection` link (if present) provides the URI to the collection in which this FPGA Payload is an `item` The `delete` link provides the URI to remove this FPGA Payload
+// FPGAPayloadItemLinks The `self` link provides the URI to access this FPGA Payload The `related` link (if present) provides the URI to the upload job that processed this FPGA Payload The `collection` link (if present) provides the URI to the collection in which this FPGA Payload is an `item` The `delete` link provides the URI to remove this FPGA Payload
 type FPGAPayloadItemLinks struct {
 	Collection HalLinkData `json:"collection"`
 	Delete HalLinkData `json:"delete"`
+	Related *HalLinkData `json:"related,omitempty"`
 	Self HalLinkData `json:"self"`
 }
 
@@ -102,6 +103,38 @@ func (o *FPGAPayloadItemLinks) SetDelete(v HalLinkData) {
 	o.Delete = v
 }
 
+// GetRelated returns the Related field value if set, zero value otherwise.
+func (o *FPGAPayloadItemLinks) GetRelated() HalLinkData {
+	if o == nil || IsNil(o.Related) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Related
+}
+
+// GetRelatedOk returns a tuple with the Related field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FPGAPayloadItemLinks) GetRelatedOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Related) {
+		return nil, false
+	}
+	return o.Related, true
+}
+
+// HasRelated returns a boolean if a field has been set.
+func (o *FPGAPayloadItemLinks) HasRelated() bool {
+	if o != nil && !IsNil(o.Related) {
+		return true
+	}
+
+	return false
+}
+
+// SetRelated gets a reference to the given HalLinkData and assigns it to the Related field.
+func (o *FPGAPayloadItemLinks) SetRelated(v HalLinkData) {
+	o.Related = &v
+}
+
 // GetSelf returns the Self field value
 func (o *FPGAPayloadItemLinks) GetSelf() HalLinkData {
 	if o == nil {
@@ -138,6 +171,9 @@ func (o FPGAPayloadItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["collection"] = o.Collection
 	toSerialize["delete"] = o.Delete
+	if !IsNil(o.Related) {
+		toSerialize["related"] = o.Related
+	}
 	toSerialize["self"] = o.Self
 	return toSerialize, nil
 }
