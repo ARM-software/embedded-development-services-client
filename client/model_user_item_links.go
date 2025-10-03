@@ -27,6 +27,8 @@ var _ MappedNullable = &UserItemLinks{}
 
 // UserItemLinks The links for a User Item.
 type UserItemLinks struct {
+	Delete *HalLinkData `json:"delete,omitempty"`
+	Edit *HalLinkData `json:"edit,omitempty"`
 	Me *HalLinkData `json:"me,omitempty"`
 	Self HalLinkData `json:"self"`
 }
@@ -49,6 +51,70 @@ func NewUserItemLinks(self HalLinkData) *UserItemLinks {
 func NewUserItemLinksWithDefaults() *UserItemLinks {
 	this := UserItemLinks{}
 	return &this
+}
+
+// GetDelete returns the Delete field value if set, zero value otherwise.
+func (o *UserItemLinks) GetDelete() HalLinkData {
+	if o == nil || IsNil(o.Delete) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Delete
+}
+
+// GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserItemLinks) GetDeleteOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Delete) {
+		return nil, false
+	}
+	return o.Delete, true
+}
+
+// HasDelete returns a boolean if a field has been set.
+func (o *UserItemLinks) HasDelete() bool {
+	if o != nil && !IsNil(o.Delete) {
+		return true
+	}
+
+	return false
+}
+
+// SetDelete gets a reference to the given HalLinkData and assigns it to the Delete field.
+func (o *UserItemLinks) SetDelete(v HalLinkData) {
+	o.Delete = &v
+}
+
+// GetEdit returns the Edit field value if set, zero value otherwise.
+func (o *UserItemLinks) GetEdit() HalLinkData {
+	if o == nil || IsNil(o.Edit) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Edit
+}
+
+// GetEditOk returns a tuple with the Edit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserItemLinks) GetEditOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Edit) {
+		return nil, false
+	}
+	return o.Edit, true
+}
+
+// HasEdit returns a boolean if a field has been set.
+func (o *UserItemLinks) HasEdit() bool {
+	if o != nil && !IsNil(o.Edit) {
+		return true
+	}
+
+	return false
+}
+
+// SetEdit gets a reference to the given HalLinkData and assigns it to the Edit field.
+func (o *UserItemLinks) SetEdit(v HalLinkData) {
+	o.Edit = &v
 }
 
 // GetMe returns the Me field value if set, zero value otherwise.
@@ -117,6 +183,12 @@ func (o UserItemLinks) MarshalJSON() ([]byte, error) {
 
 func (o UserItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Delete) {
+		toSerialize["delete"] = o.Delete
+	}
+	if !IsNil(o.Edit) {
+		toSerialize["edit"] = o.Edit
+	}
 	if !IsNil(o.Me) {
 		toSerialize["me"] = o.Me
 	}

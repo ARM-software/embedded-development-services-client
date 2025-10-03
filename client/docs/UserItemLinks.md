@@ -8,6 +8,8 @@ SPDX-License-Identifier: Apache-2.0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Delete** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
+**Edit** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Me** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Self** | [**HalLinkData**](HalLinkData.md) |  | 
 
@@ -29,6 +31,56 @@ will change when the set of required properties is changed
 NewUserItemLinksWithDefaults instantiates a new UserItemLinks object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDelete
+
+`func (o *UserItemLinks) GetDelete() HalLinkData`
+
+GetDelete returns the Delete field if non-nil, zero value otherwise.
+
+### GetDeleteOk
+
+`func (o *UserItemLinks) GetDeleteOk() (*HalLinkData, bool)`
+
+GetDeleteOk returns a tuple with the Delete field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDelete
+
+`func (o *UserItemLinks) SetDelete(v HalLinkData)`
+
+SetDelete sets Delete field to given value.
+
+### HasDelete
+
+`func (o *UserItemLinks) HasDelete() bool`
+
+HasDelete returns a boolean if a field has been set.
+
+### GetEdit
+
+`func (o *UserItemLinks) GetEdit() HalLinkData`
+
+GetEdit returns the Edit field if non-nil, zero value otherwise.
+
+### GetEditOk
+
+`func (o *UserItemLinks) GetEditOk() (*HalLinkData, bool)`
+
+GetEditOk returns a tuple with the Edit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEdit
+
+`func (o *UserItemLinks) SetEdit(v HalLinkData)`
+
+SetEdit sets Edit field to given value.
+
+### HasEdit
+
+`func (o *UserItemLinks) HasEdit() bool`
+
+HasEdit returns a boolean if a field has been set.
 
 ### GetMe
 

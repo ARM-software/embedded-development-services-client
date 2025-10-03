@@ -34,7 +34,7 @@ type ServiceAccountItem struct {
 	// Unique ID of the service account.
 	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// Human readable name of the service account.
-	Title *string `json:"title,omitempty"`
+	Title *string `json:"title,omitempty" validate:"regexp=^(?!\\\\s)[A-Za-z]+(?:[ '-][A-Za-z]+){0,99}(?<!\\\\s)$"`
 }
 
 type _ServiceAccountItem ServiceAccountItem

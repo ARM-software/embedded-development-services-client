@@ -8,20 +8,21 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateUser**](AuthenticationAPI.md#CreateUser) | **Post** /users/ | Create a user.
+[**DeleteUser**](AuthenticationAPI.md#DeleteUser) | **Delete** /users/{userName} | Delete a user.
 [**GetMe**](AuthenticationAPI.md#GetMe) | **Get** /users/me | Get my user information
 [**GetUser**](AuthenticationAPI.md#GetUser) | **Get** /users/{userName} | Get user information
 [**InviteUser**](AuthenticationAPI.md#InviteUser) | **Post** /users/invite | Invite a user.
 [**ListUsers**](AuthenticationAPI.md#ListUsers) | **Get** /users/ | List all users
 [**TokenIntrospect**](AuthenticationAPI.md#TokenIntrospect) | **Post** /token/introspect | Introspect a token.
+[**UpdateUser**](AuthenticationAPI.md#UpdateUser) | **Put** /users/{userName} | Update a user.
 
 
 
-## CreateUser
+## DeleteUser
 
-> UserItem CreateUser(ctx).UserItem(userItem).AcceptVersion(acceptVersion).Execute()
+> DeleteUser(ctx, userName).AcceptVersion(acceptVersion).Execute()
 
-Create a user.
+Delete a user.
 
 
 
@@ -38,38 +39,40 @@ import (
 )
 
 func main() {
-	userItem := *openapiclient.NewUserItem("TODO", "TODO", "854f1167-e1f6-4182-a051-f83a8d588a47") // UserItem | Data required to create a new user.
+	userName := "userName_example" // string | The identifier of the user.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthenticationAPI.CreateUser(context.Background()).UserItem(userItem).AcceptVersion(acceptVersion).Execute()
+	r, err := apiClient.AuthenticationAPI.DeleteUser(context.Background(), userName).AcceptVersion(acceptVersion).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.CreateUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.DeleteUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateUser`: UserItem
-	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.CreateUser`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userName** | **string** | The identifier of the user. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateUserRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteUserRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userItem** | [**UserItem**](UserItem.md) | Data required to create a new user. | 
+
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
 
 ### Return type
 
-[**UserItem**](UserItem.md)
+ (empty response body)
 
 ### Authorization
 
@@ -77,7 +80,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -418,6 +421,82 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TokenIntrospectionResponseItem**](TokenIntrospectionResponseItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateUser
+
+> UserItem UpdateUser(ctx, userName).IfMatch(ifMatch).UserItem(userItem).AcceptVersion(acceptVersion).Execute()
+
+Update a user.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	userName := "userName_example" // string | The identifier of the user.
+	ifMatch := "ifMatch_example" // string | Conditional Requests: This is required in order to perform an update of a resource. The value of this header should be the `ETag` of the resource when read (before being subsequently modified by the client).
+	userItem := *openapiclient.NewUserItem("TODO", "TODO", "854f1167-e1f6-4182-a051-f83a8d588a47") // UserItem | Updated data for the user.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.UpdateUser(context.Background(), userName).IfMatch(ifMatch).UserItem(userItem).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.UpdateUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateUser`: UserItem
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.UpdateUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userName** | **string** | The identifier of the user. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateUserRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Conditional Requests: This is required in order to perform an update of a resource. The value of this header should be the &#x60;ETag&#x60; of the resource when read (before being subsequently modified by the client). | 
+ **userItem** | [**UserItem**](UserItem.md) | Updated data for the user. | 
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+[**UserItem**](UserItem.md)
 
 ### Authorization
 

@@ -109,12 +109,13 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AuthenticationAPI* | [**CreateUser**](docs/AuthenticationAPI.md#createuser) | **Post** /users/ | Create a user.
+*AuthenticationAPI* | [**DeleteUser**](docs/AuthenticationAPI.md#deleteuser) | **Delete** /users/{userName} | Delete a user.
 *AuthenticationAPI* | [**GetMe**](docs/AuthenticationAPI.md#getme) | **Get** /users/me | Get my user information
 *AuthenticationAPI* | [**GetUser**](docs/AuthenticationAPI.md#getuser) | **Get** /users/{userName} | Get user information
 *AuthenticationAPI* | [**InviteUser**](docs/AuthenticationAPI.md#inviteuser) | **Post** /users/invite | Invite a user.
 *AuthenticationAPI* | [**ListUsers**](docs/AuthenticationAPI.md#listusers) | **Get** /users/ | List all users
 *AuthenticationAPI* | [**TokenIntrospect**](docs/AuthenticationAPI.md#tokenintrospect) | **Post** /token/introspect | Introspect a token.
+*AuthenticationAPI* | [**UpdateUser**](docs/AuthenticationAPI.md#updateuser) | **Put** /users/{userName} | Update a user.
 *AuthorizationAPI* | [**CheckEntitlements**](docs/AuthorizationAPI.md#checkentitlements) | **Post** /entitlements/check | Check permissions on a resource.
 *AuthorizationAPI* | [**ListEntitlements**](docs/AuthorizationAPI.md#listentitlements) | **Post** /entitlements/list | List permissions on instances of a resource type.
 *BuildJobsAPI* | [**CancelBuildJob**](docs/BuildJobsAPI.md#cancelbuildjob) | **Post** /build-jobs/{jobName}/cancel | Cancel a Build Job
