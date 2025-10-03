@@ -20,6 +20,7 @@ api_generic_workers.go
 api_intellisense_jobs.go
 api_personal_access_token.go
 api_root_resource.go
+api_service_account.go
 api_vendors.go
 api_vht_run_jobs.go
 api_virtual_hardware_target.go
@@ -66,6 +67,7 @@ docs/EmbeddedGenericWorkJobItems.md
 docs/EmbeddedGenericWorkerItems.md
 docs/EmbeddedIntellisenseJobItems.md
 docs/EmbeddedPATItem.md
+docs/EmbeddedServiceAccountItem.md
 docs/EmbeddedUserItem.md
 docs/EmbeddedVendorItems.md
 docs/EmbeddedVhtInstanceItems.md
@@ -145,6 +147,10 @@ docs/PersonalAccessTokenAPI.md
 docs/RetainBuildJobRequest.md
 docs/RetainWorkspaceRequest.md
 docs/RootResourceAPI.md
+docs/ServiceAccountAPI.md
+docs/ServiceAccountCollection.md
+docs/ServiceAccountItem.md
+docs/ServiceAccountItemLinks.md
 docs/SimpleCollection.md
 docs/TokenIntrospectionRequestItem.md
 docs/TokenIntrospectionResponseItem.md
@@ -216,6 +222,7 @@ model_embedded_generic_work_job_items.go
 model_embedded_generic_worker_items.go
 model_embedded_intellisense_job_items.go
 model_embedded_pat_item.go
+model_embedded_service_account_item.go
 model_embedded_user_item.go
 model_embedded_vendor_items.go
 model_embedded_vht_instance_items.go
@@ -283,6 +290,9 @@ model_permission_item.go
 model_permission_operation.go
 model_retain_build_job_request.go
 model_retain_workspace_request.go
+model_service_account_collection.go
+model_service_account_item.go
+model_service_account_item_links.go
 model_simple_collection.go
 model_token_introspection_request_item.go
 model_token_introspection_response_item.go
@@ -332,6 +342,7 @@ test/api_generic_workers_test.go
 test/api_intellisense_jobs_test.go
 test/api_personal_access_token_test.go
 test/api_root_resource_test.go
+test/api_service_account_test.go
 test/api_vendors_test.go
 test/api_vht_run_jobs_test.go
 test/api_virtual_hardware_target_instance_test.go

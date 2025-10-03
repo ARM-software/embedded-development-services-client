@@ -91,6 +91,8 @@ type APIClient struct {
 
 	RootResourceAPI *RootResourceAPIService
 
+	ServiceAccountAPI *ServiceAccountAPIService
+
 	VHTRunJobsAPI *VHTRunJobsAPIService
 
 	VendorsAPI *VendorsAPIService
@@ -138,6 +140,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.IntellisenseJobsAPI = (*IntellisenseJobsAPIService)(&c.common)
 	c.PersonalAccessTokenAPI = (*PersonalAccessTokenAPIService)(&c.common)
 	c.RootResourceAPI = (*RootResourceAPIService)(&c.common)
+	c.ServiceAccountAPI = (*ServiceAccountAPIService)(&c.common)
 	c.VHTRunJobsAPI = (*VHTRunJobsAPIService)(&c.common)
 	c.VendorsAPI = (*VendorsAPIService)(&c.common)
 	c.VirtualHardwareTargetAPI = (*VirtualHardwareTargetAPIService)(&c.common)

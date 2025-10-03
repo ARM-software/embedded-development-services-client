@@ -215,6 +215,11 @@ Class | Method | HTTP request | Description
 *PersonalAccessTokenAPI* | [**GetPAT**](docs/PersonalAccessTokenAPI.md#getpat) | **Get** /personal-access-tokens/{patName} | Get a personal access token
 *PersonalAccessTokenAPI* | [**ListPATs**](docs/PersonalAccessTokenAPI.md#listpats) | **Get** /personal-access-tokens/ | List all personal access tokens for the user
 *RootResourceAPI* | [**GetRoot**](docs/RootResourceAPI.md#getroot) | **Get** / | Get the Root resource.
+*ServiceAccountAPI* | [**CreateServiceAccount**](docs/ServiceAccountAPI.md#createserviceaccount) | **Post** /service-accounts/ | Create a service account.
+*ServiceAccountAPI* | [**DeleteServiceAccount**](docs/ServiceAccountAPI.md#deleteserviceaccount) | **Delete** /service-accounts/{serviceAccountName} | Delete a service account
+*ServiceAccountAPI* | [**EditServiceAccount**](docs/ServiceAccountAPI.md#editserviceaccount) | **Put** /service-accounts/{serviceAccountName} | Update a service account
+*ServiceAccountAPI* | [**GetServiceAccount**](docs/ServiceAccountAPI.md#getserviceaccount) | **Get** /service-accounts/{serviceAccountName} | Get a service account
+*ServiceAccountAPI* | [**ListServiceAccounts**](docs/ServiceAccountAPI.md#listserviceaccounts) | **Get** /service-accounts/ | List all service accounts
 *VHTRunJobsAPI* | [**CancelVhtRunJob**](docs/VHTRunJobsAPI.md#cancelvhtrunjob) | **Post** /vht-run-jobs/{jobName}/cancel | Cancel a VHT run job.
 *VHTRunJobsAPI* | [**DeleteVhtRunJob**](docs/VHTRunJobsAPI.md#deletevhtrunjob) | **Delete** /vht-run-jobs/{jobName} | Delete an VHT run Job.
 *VHTRunJobsAPI* | [**GetVhtRunJob**](docs/VHTRunJobsAPI.md#getvhtrunjob) | **Get** /vht-run-jobs/{jobName} | Return status of an VHT run Job.
@@ -297,6 +302,7 @@ Class | Method | HTTP request | Description
  - [EmbeddedGenericWorkerItems](docs/EmbeddedGenericWorkerItems.md)
  - [EmbeddedIntellisenseJobItems](docs/EmbeddedIntellisenseJobItems.md)
  - [EmbeddedPATItem](docs/EmbeddedPATItem.md)
+ - [EmbeddedServiceAccountItem](docs/EmbeddedServiceAccountItem.md)
  - [EmbeddedUserItem](docs/EmbeddedUserItem.md)
  - [EmbeddedVendorItems](docs/EmbeddedVendorItems.md)
  - [EmbeddedVhtInstanceItems](docs/EmbeddedVhtInstanceItems.md)
@@ -364,6 +370,9 @@ Class | Method | HTTP request | Description
  - [PermissionOperation](docs/PermissionOperation.md)
  - [RetainBuildJobRequest](docs/RetainBuildJobRequest.md)
  - [RetainWorkspaceRequest](docs/RetainWorkspaceRequest.md)
+ - [ServiceAccountCollection](docs/ServiceAccountCollection.md)
+ - [ServiceAccountItem](docs/ServiceAccountItem.md)
+ - [ServiceAccountItemLinks](docs/ServiceAccountItemLinks.md)
  - [SimpleCollection](docs/SimpleCollection.md)
  - [TokenIntrospectionRequestItem](docs/TokenIntrospectionRequestItem.md)
  - [TokenIntrospectionResponseItem](docs/TokenIntrospectionResponseItem.md)
