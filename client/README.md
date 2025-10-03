@@ -171,6 +171,7 @@ Class | Method | HTTP request | Description
 *FPGAJobsAPI* | [**RetainFpgaJob**](docs/FPGAJobsAPI.md#retainfpgajob) | **Post** /fpga-jobs/{jobName}/retain | Update how long an FPGA job will be retained before automatic deletion.
 *FPGAJobsAPI* | [**StartFpgaJob**](docs/FPGAJobsAPI.md#startfpgajob) | **Post** /fpgas/{fpgaName} | Initiate a job on an FPGA.
 *FPGAJobsAPI* | [**UploadFpgaJobArtefact**](docs/FPGAJobsAPI.md#uploadfpgajobartefact) | **Put** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Upload and replace the named artefact.
+*FPGAPayloadsAPI* | [**CheckFPGAPayloadStatus**](docs/FPGAPayloadsAPI.md#checkfpgapayloadstatus) | **Post** /repositories/{repositoryName}/payloads/{fpgaPayloadName}/check | Check and update the payload status.
 *FPGAPayloadsAPI* | [**CreateFPGAPayload**](docs/FPGAPayloadsAPI.md#createfpgapayload) | **Post** /repositories/{repositoryName}/payloads | Create an FPGA payload.
 *FPGAPayloadsAPI* | [**CreateFPGAPayloadUploadSession**](docs/FPGAPayloadsAPI.md#createfpgapayloaduploadsession) | **Post** /payloads/upload-session | Create upload session for FPGA payload.
 *FPGAPayloadsAPI* | [**DeleteFpgaPayload**](docs/FPGAPayloadsAPI.md#deletefpgapayload) | **Delete** /repositories/{repositoryName}/payloads/{fpgaPayloadName} | Delete an FPGA payload.
