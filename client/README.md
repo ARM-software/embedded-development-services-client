@@ -109,12 +109,13 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AuthenticationAPI* | [**CreateUser**](docs/AuthenticationAPI.md#createuser) | **Post** /users/ | Create a user.
+*AuthenticationAPI* | [**DeleteUser**](docs/AuthenticationAPI.md#deleteuser) | **Delete** /users/{userName} | Delete a user.
 *AuthenticationAPI* | [**GetMe**](docs/AuthenticationAPI.md#getme) | **Get** /users/me | Get my user information
 *AuthenticationAPI* | [**GetUser**](docs/AuthenticationAPI.md#getuser) | **Get** /users/{userName} | Get user information
 *AuthenticationAPI* | [**InviteUser**](docs/AuthenticationAPI.md#inviteuser) | **Post** /users/invite | Invite a user.
 *AuthenticationAPI* | [**ListUsers**](docs/AuthenticationAPI.md#listusers) | **Get** /users/ | List all users
 *AuthenticationAPI* | [**TokenIntrospect**](docs/AuthenticationAPI.md#tokenintrospect) | **Post** /token/introspect | Introspect a token.
+*AuthenticationAPI* | [**UpdateUser**](docs/AuthenticationAPI.md#updateuser) | **Put** /users/{userName} | Update a user.
 *AuthorizationAPI* | [**CheckEntitlements**](docs/AuthorizationAPI.md#checkentitlements) | **Post** /entitlements/check | Check permissions on a resource.
 *AuthorizationAPI* | [**ListEntitlements**](docs/AuthorizationAPI.md#listentitlements) | **Post** /entitlements/list | List permissions on instances of a resource type.
 *BuildJobsAPI* | [**CancelBuildJob**](docs/BuildJobsAPI.md#cancelbuildjob) | **Post** /build-jobs/{jobName}/cancel | Cancel a Build Job
@@ -171,6 +172,7 @@ Class | Method | HTTP request | Description
 *FPGAJobsAPI* | [**RetainFpgaJob**](docs/FPGAJobsAPI.md#retainfpgajob) | **Post** /fpga-jobs/{jobName}/retain | Update how long an FPGA job will be retained before automatic deletion.
 *FPGAJobsAPI* | [**StartFpgaJob**](docs/FPGAJobsAPI.md#startfpgajob) | **Post** /fpgas/{fpgaName} | Initiate a job on an FPGA.
 *FPGAJobsAPI* | [**UploadFpgaJobArtefact**](docs/FPGAJobsAPI.md#uploadfpgajobartefact) | **Put** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Upload and replace the named artefact.
+*FPGAPayloadsAPI* | [**CheckFPGAPayloadStatus**](docs/FPGAPayloadsAPI.md#checkfpgapayloadstatus) | **Post** /repositories/{repositoryName}/payloads/{fpgaPayloadName}/check | Check and update the payload status.
 *FPGAPayloadsAPI* | [**CreateFPGAPayload**](docs/FPGAPayloadsAPI.md#createfpgapayload) | **Post** /repositories/{repositoryName}/payloads | Create an FPGA payload.
 *FPGAPayloadsAPI* | [**CreateFPGAPayloadUploadSession**](docs/FPGAPayloadsAPI.md#createfpgapayloaduploadsession) | **Post** /payloads/upload-session | Create upload session for FPGA payload.
 *FPGAPayloadsAPI* | [**DeleteFpgaPayload**](docs/FPGAPayloadsAPI.md#deletefpgapayload) | **Delete** /repositories/{repositoryName}/payloads/{fpgaPayloadName} | Delete an FPGA payload.
@@ -214,6 +216,11 @@ Class | Method | HTTP request | Description
 *PersonalAccessTokenAPI* | [**GetPAT**](docs/PersonalAccessTokenAPI.md#getpat) | **Get** /personal-access-tokens/{patName} | Get a personal access token
 *PersonalAccessTokenAPI* | [**ListPATs**](docs/PersonalAccessTokenAPI.md#listpats) | **Get** /personal-access-tokens/ | List all personal access tokens for the user
 *RootResourceAPI* | [**GetRoot**](docs/RootResourceAPI.md#getroot) | **Get** / | Get the Root resource.
+*ServiceAccountAPI* | [**CreateServiceAccount**](docs/ServiceAccountAPI.md#createserviceaccount) | **Post** /service-accounts/ | Create a service account.
+*ServiceAccountAPI* | [**DeleteServiceAccount**](docs/ServiceAccountAPI.md#deleteserviceaccount) | **Delete** /service-accounts/{serviceAccountName} | Delete a service account
+*ServiceAccountAPI* | [**EditServiceAccount**](docs/ServiceAccountAPI.md#editserviceaccount) | **Put** /service-accounts/{serviceAccountName} | Update a service account
+*ServiceAccountAPI* | [**GetServiceAccount**](docs/ServiceAccountAPI.md#getserviceaccount) | **Get** /service-accounts/{serviceAccountName} | Get a service account
+*ServiceAccountAPI* | [**ListServiceAccounts**](docs/ServiceAccountAPI.md#listserviceaccounts) | **Get** /service-accounts/ | List all service accounts
 *VHTRunJobsAPI* | [**CancelVhtRunJob**](docs/VHTRunJobsAPI.md#cancelvhtrunjob) | **Post** /vht-run-jobs/{jobName}/cancel | Cancel a VHT run job.
 *VHTRunJobsAPI* | [**DeleteVhtRunJob**](docs/VHTRunJobsAPI.md#deletevhtrunjob) | **Delete** /vht-run-jobs/{jobName} | Delete an VHT run Job.
 *VHTRunJobsAPI* | [**GetVhtRunJob**](docs/VHTRunJobsAPI.md#getvhtrunjob) | **Get** /vht-run-jobs/{jobName} | Return status of an VHT run Job.
@@ -296,6 +303,7 @@ Class | Method | HTTP request | Description
  - [EmbeddedGenericWorkerItems](docs/EmbeddedGenericWorkerItems.md)
  - [EmbeddedIntellisenseJobItems](docs/EmbeddedIntellisenseJobItems.md)
  - [EmbeddedPATItem](docs/EmbeddedPATItem.md)
+ - [EmbeddedServiceAccountItem](docs/EmbeddedServiceAccountItem.md)
  - [EmbeddedUserItem](docs/EmbeddedUserItem.md)
  - [EmbeddedVendorItems](docs/EmbeddedVendorItems.md)
  - [EmbeddedVhtInstanceItems](docs/EmbeddedVhtInstanceItems.md)
@@ -363,6 +371,9 @@ Class | Method | HTTP request | Description
  - [PermissionOperation](docs/PermissionOperation.md)
  - [RetainBuildJobRequest](docs/RetainBuildJobRequest.md)
  - [RetainWorkspaceRequest](docs/RetainWorkspaceRequest.md)
+ - [ServiceAccountCollection](docs/ServiceAccountCollection.md)
+ - [ServiceAccountItem](docs/ServiceAccountItem.md)
+ - [ServiceAccountItemLinks](docs/ServiceAccountItemLinks.md)
  - [SimpleCollection](docs/SimpleCollection.md)
  - [TokenIntrospectionRequestItem](docs/TokenIntrospectionRequestItem.md)
  - [TokenIntrospectionResponseItem](docs/TokenIntrospectionResponseItem.md)

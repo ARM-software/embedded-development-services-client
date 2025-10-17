@@ -9,7 +9,7 @@ SPDX-License-Identifier: Apache-2.0
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TTL** | **int64** | The TTL (time to live in seconds) describing how long the personal access token will be alive for. | 
-**Links** | [**PATItemLinks**](PATItemLinks.md) |  | 
+**Links** | [**NullablePATItemLinks**](PATItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Name** | **string** | Unique ID of the personal access token. | [readonly] 
 **Secret** | **string** | The personal access token. | [readonly] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewPATCreationItem
 
-`func NewPATCreationItem(tTL int64, links PATItemLinks, metadata NullableCommonMetadata, name string, secret string, title string, ) *PATCreationItem`
+`func NewPATCreationItem(tTL int64, links NullablePATItemLinks, metadata NullableCommonMetadata, name string, secret string, title string, ) *PATCreationItem`
 
 NewPATCreationItem instantiates a new PATCreationItem object
 This constructor will assign default values to properties that have it defined,
@@ -74,6 +74,16 @@ and a boolean to check if the value has been set.
 SetLinks sets Links field to given value.
 
 
+### SetLinksNil
+
+`func (o *PATCreationItem) SetLinksNil(b bool)`
+
+ SetLinksNil sets the value for Links to be an explicit nil
+
+### UnsetLinks
+`func (o *PATCreationItem) UnsetLinks()`
+
+UnsetLinks ensures that no value is present for Links, not even an explicit nil
 ### GetMetadata
 
 `func (o *PATCreationItem) GetMetadata() CommonMetadata`

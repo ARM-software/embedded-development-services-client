@@ -28,7 +28,7 @@ var _ MappedNullable = &PATItem{}
 
 // PATItem A Personal Access Token Item.
 type PATItem struct {
-	Links PATItemLinks `json:"_links"`
+	Links NullablePATItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// UTC date and time when the token was last used.
 	LastUsed time.Time `json:"lastUsed"`
@@ -44,7 +44,7 @@ type _PATItem PATItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPATItem(links PATItemLinks, metadata NullableCommonMetadata, lastUsed time.Time, name string, title string) *PATItem {
+func NewPATItem(links NullablePATItemLinks, metadata NullableCommonMetadata, lastUsed time.Time, name string, title string) *PATItem {
 	this := PATItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -63,27 +63,29 @@ func NewPATItemWithDefaults() *PATItem {
 }
 
 // GetLinks returns the Links field value
+// If the value is explicit nil, the zero value for PATItemLinks will be returned
 func (o *PATItem) GetLinks() PATItemLinks {
-	if o == nil {
+	if o == nil || o.Links.Get() == nil {
 		var ret PATItemLinks
 		return ret
 	}
 
-	return o.Links
+	return *o.Links.Get()
 }
 
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PATItem) GetLinksOk() (*PATItemLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Links, true
+	return o.Links.Get(), o.Links.IsSet()
 }
 
 // SetLinks sets field value
 func (o *PATItem) SetLinks(v PATItemLinks) {
-	o.Links = v
+	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
@@ -194,7 +196,7 @@ func (o PATItem) MarshalJSON() ([]byte, error) {
 
 func (o PATItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["_links"] = o.Links
+	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["lastUsed"] = o.LastUsed
 	toSerialize["name"] = o.Name

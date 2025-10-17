@@ -22,39 +22,71 @@ import (
 	"fmt"
 )
 
-// checks if the UserItemLinks type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UserItemLinks{}
+// checks if the ServiceAccountItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServiceAccountItemLinks{}
 
-// UserItemLinks The links for a User Item.
-type UserItemLinks struct {
+// ServiceAccountItemLinks The links for a Service Account Item.
+type ServiceAccountItemLinks struct {
+	Collection *HalLinkData `json:"collection,omitempty"`
 	Delete *HalLinkData `json:"delete,omitempty"`
 	Edit *HalLinkData `json:"edit,omitempty"`
-	Me *HalLinkData `json:"me,omitempty"`
 	Self HalLinkData `json:"self"`
 }
 
-type _UserItemLinks UserItemLinks
+type _ServiceAccountItemLinks ServiceAccountItemLinks
 
-// NewUserItemLinks instantiates a new UserItemLinks object
+// NewServiceAccountItemLinks instantiates a new ServiceAccountItemLinks object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserItemLinks(self HalLinkData) *UserItemLinks {
-	this := UserItemLinks{}
+func NewServiceAccountItemLinks(self HalLinkData) *ServiceAccountItemLinks {
+	this := ServiceAccountItemLinks{}
 	this.Self = self
 	return &this
 }
 
-// NewUserItemLinksWithDefaults instantiates a new UserItemLinks object
+// NewServiceAccountItemLinksWithDefaults instantiates a new ServiceAccountItemLinks object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUserItemLinksWithDefaults() *UserItemLinks {
-	this := UserItemLinks{}
+func NewServiceAccountItemLinksWithDefaults() *ServiceAccountItemLinks {
+	this := ServiceAccountItemLinks{}
 	return &this
 }
 
+// GetCollection returns the Collection field value if set, zero value otherwise.
+func (o *ServiceAccountItemLinks) GetCollection() HalLinkData {
+	if o == nil || IsNil(o.Collection) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Collection
+}
+
+// GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceAccountItemLinks) GetCollectionOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Collection) {
+		return nil, false
+	}
+	return o.Collection, true
+}
+
+// HasCollection returns a boolean if a field has been set.
+func (o *ServiceAccountItemLinks) HasCollection() bool {
+	if o != nil && !IsNil(o.Collection) {
+		return true
+	}
+
+	return false
+}
+
+// SetCollection gets a reference to the given HalLinkData and assigns it to the Collection field.
+func (o *ServiceAccountItemLinks) SetCollection(v HalLinkData) {
+	o.Collection = &v
+}
+
 // GetDelete returns the Delete field value if set, zero value otherwise.
-func (o *UserItemLinks) GetDelete() HalLinkData {
+func (o *ServiceAccountItemLinks) GetDelete() HalLinkData {
 	if o == nil || IsNil(o.Delete) {
 		var ret HalLinkData
 		return ret
@@ -64,7 +96,7 @@ func (o *UserItemLinks) GetDelete() HalLinkData {
 
 // GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserItemLinks) GetDeleteOk() (*HalLinkData, bool) {
+func (o *ServiceAccountItemLinks) GetDeleteOk() (*HalLinkData, bool) {
 	if o == nil || IsNil(o.Delete) {
 		return nil, false
 	}
@@ -72,7 +104,7 @@ func (o *UserItemLinks) GetDeleteOk() (*HalLinkData, bool) {
 }
 
 // HasDelete returns a boolean if a field has been set.
-func (o *UserItemLinks) HasDelete() bool {
+func (o *ServiceAccountItemLinks) HasDelete() bool {
 	if o != nil && !IsNil(o.Delete) {
 		return true
 	}
@@ -81,12 +113,12 @@ func (o *UserItemLinks) HasDelete() bool {
 }
 
 // SetDelete gets a reference to the given HalLinkData and assigns it to the Delete field.
-func (o *UserItemLinks) SetDelete(v HalLinkData) {
+func (o *ServiceAccountItemLinks) SetDelete(v HalLinkData) {
 	o.Delete = &v
 }
 
 // GetEdit returns the Edit field value if set, zero value otherwise.
-func (o *UserItemLinks) GetEdit() HalLinkData {
+func (o *ServiceAccountItemLinks) GetEdit() HalLinkData {
 	if o == nil || IsNil(o.Edit) {
 		var ret HalLinkData
 		return ret
@@ -96,7 +128,7 @@ func (o *UserItemLinks) GetEdit() HalLinkData {
 
 // GetEditOk returns a tuple with the Edit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserItemLinks) GetEditOk() (*HalLinkData, bool) {
+func (o *ServiceAccountItemLinks) GetEditOk() (*HalLinkData, bool) {
 	if o == nil || IsNil(o.Edit) {
 		return nil, false
 	}
@@ -104,7 +136,7 @@ func (o *UserItemLinks) GetEditOk() (*HalLinkData, bool) {
 }
 
 // HasEdit returns a boolean if a field has been set.
-func (o *UserItemLinks) HasEdit() bool {
+func (o *ServiceAccountItemLinks) HasEdit() bool {
 	if o != nil && !IsNil(o.Edit) {
 		return true
 	}
@@ -113,44 +145,12 @@ func (o *UserItemLinks) HasEdit() bool {
 }
 
 // SetEdit gets a reference to the given HalLinkData and assigns it to the Edit field.
-func (o *UserItemLinks) SetEdit(v HalLinkData) {
+func (o *ServiceAccountItemLinks) SetEdit(v HalLinkData) {
 	o.Edit = &v
 }
 
-// GetMe returns the Me field value if set, zero value otherwise.
-func (o *UserItemLinks) GetMe() HalLinkData {
-	if o == nil || IsNil(o.Me) {
-		var ret HalLinkData
-		return ret
-	}
-	return *o.Me
-}
-
-// GetMeOk returns a tuple with the Me field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserItemLinks) GetMeOk() (*HalLinkData, bool) {
-	if o == nil || IsNil(o.Me) {
-		return nil, false
-	}
-	return o.Me, true
-}
-
-// HasMe returns a boolean if a field has been set.
-func (o *UserItemLinks) HasMe() bool {
-	if o != nil && !IsNil(o.Me) {
-		return true
-	}
-
-	return false
-}
-
-// SetMe gets a reference to the given HalLinkData and assigns it to the Me field.
-func (o *UserItemLinks) SetMe(v HalLinkData) {
-	o.Me = &v
-}
-
 // GetSelf returns the Self field value
-func (o *UserItemLinks) GetSelf() HalLinkData {
+func (o *ServiceAccountItemLinks) GetSelf() HalLinkData {
 	if o == nil {
 		var ret HalLinkData
 		return ret
@@ -161,7 +161,7 @@ func (o *UserItemLinks) GetSelf() HalLinkData {
 
 // GetSelfOk returns a tuple with the Self field value
 // and a boolean to check if the value has been set.
-func (o *UserItemLinks) GetSelfOk() (*HalLinkData, bool) {
+func (o *ServiceAccountItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -169,11 +169,11 @@ func (o *UserItemLinks) GetSelfOk() (*HalLinkData, bool) {
 }
 
 // SetSelf sets field value
-func (o *UserItemLinks) SetSelf(v HalLinkData) {
+func (o *ServiceAccountItemLinks) SetSelf(v HalLinkData) {
 	o.Self = v
 }
 
-func (o UserItemLinks) MarshalJSON() ([]byte, error) {
+func (o ServiceAccountItemLinks) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -181,22 +181,22 @@ func (o UserItemLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o UserItemLinks) ToMap() (map[string]interface{}, error) {
+func (o ServiceAccountItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Collection) {
+		toSerialize["collection"] = o.Collection
+	}
 	if !IsNil(o.Delete) {
 		toSerialize["delete"] = o.Delete
 	}
 	if !IsNil(o.Edit) {
 		toSerialize["edit"] = o.Edit
 	}
-	if !IsNil(o.Me) {
-		toSerialize["me"] = o.Me
-	}
 	toSerialize["self"] = o.Self
 	return toSerialize, nil
 }
 
-func (o *UserItemLinks) UnmarshalJSON(data []byte) (err error) {
+func (o *ServiceAccountItemLinks) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -218,53 +218,53 @@ func (o *UserItemLinks) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varUserItemLinks := _UserItemLinks{}
+	varServiceAccountItemLinks := _ServiceAccountItemLinks{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserItemLinks)
+	err = decoder.Decode(&varServiceAccountItemLinks)
 
 	if err != nil {
 		return err
 	}
 
-	*o = UserItemLinks(varUserItemLinks)
+	*o = ServiceAccountItemLinks(varServiceAccountItemLinks)
 
 	return err
 }
 
-type NullableUserItemLinks struct {
-	value *UserItemLinks
+type NullableServiceAccountItemLinks struct {
+	value *ServiceAccountItemLinks
 	isSet bool
 }
 
-func (v NullableUserItemLinks) Get() *UserItemLinks {
+func (v NullableServiceAccountItemLinks) Get() *ServiceAccountItemLinks {
 	return v.value
 }
 
-func (v *NullableUserItemLinks) Set(val *UserItemLinks) {
+func (v *NullableServiceAccountItemLinks) Set(val *ServiceAccountItemLinks) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUserItemLinks) IsSet() bool {
+func (v NullableServiceAccountItemLinks) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUserItemLinks) Unset() {
+func (v *NullableServiceAccountItemLinks) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUserItemLinks(val *UserItemLinks) *NullableUserItemLinks {
-	return &NullableUserItemLinks{value: val, isSet: true}
+func NewNullableServiceAccountItemLinks(val *ServiceAccountItemLinks) *NullableServiceAccountItemLinks {
+	return &NullableServiceAccountItemLinks{value: val, isSet: true}
 }
 
-func (v NullableUserItemLinks) MarshalJSON() ([]byte, error) {
+func (v NullableServiceAccountItemLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUserItemLinks) UnmarshalJSON(src []byte) error {
+func (v *NullableServiceAccountItemLinks) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -2,156 +2,161 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
-# PATItem
+# ServiceAccountItem
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Links** | [**NullablePATItemLinks**](PATItemLinks.md) |  | 
+**Links** | [**NullableServiceAccountItemLinks**](ServiceAccountItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**LastUsed** | **time.Time** | UTC date and time when the token was last used. | [readonly] 
-**Name** | **string** | Unique ID of the personal access token. | [readonly] 
-**Title** | **string** | Human readable name of the personal access token. | [readonly] 
+**CreatedBy** | **string** | ID of the user who created this service account. | [readonly] 
+**Name** | **string** | Unique ID of the service account. | [readonly] 
+**Title** | Pointer to **string** | Human readable name of the service account. | [optional] 
 
 ## Methods
 
-### NewPATItem
+### NewServiceAccountItem
 
-`func NewPATItem(links NullablePATItemLinks, metadata NullableCommonMetadata, lastUsed time.Time, name string, title string, ) *PATItem`
+`func NewServiceAccountItem(links NullableServiceAccountItemLinks, metadata NullableCommonMetadata, createdBy string, name string, ) *ServiceAccountItem`
 
-NewPATItem instantiates a new PATItem object
+NewServiceAccountItem instantiates a new ServiceAccountItem object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewPATItemWithDefaults
+### NewServiceAccountItemWithDefaults
 
-`func NewPATItemWithDefaults() *PATItem`
+`func NewServiceAccountItemWithDefaults() *ServiceAccountItem`
 
-NewPATItemWithDefaults instantiates a new PATItem object
+NewServiceAccountItemWithDefaults instantiates a new ServiceAccountItem object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetLinks
 
-`func (o *PATItem) GetLinks() PATItemLinks`
+`func (o *ServiceAccountItem) GetLinks() ServiceAccountItemLinks`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *PATItem) GetLinksOk() (*PATItemLinks, bool)`
+`func (o *ServiceAccountItem) GetLinksOk() (*ServiceAccountItemLinks, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *PATItem) SetLinks(v PATItemLinks)`
+`func (o *ServiceAccountItem) SetLinks(v ServiceAccountItemLinks)`
 
 SetLinks sets Links field to given value.
 
 
 ### SetLinksNil
 
-`func (o *PATItem) SetLinksNil(b bool)`
+`func (o *ServiceAccountItem) SetLinksNil(b bool)`
 
  SetLinksNil sets the value for Links to be an explicit nil
 
 ### UnsetLinks
-`func (o *PATItem) UnsetLinks()`
+`func (o *ServiceAccountItem) UnsetLinks()`
 
 UnsetLinks ensures that no value is present for Links, not even an explicit nil
 ### GetMetadata
 
-`func (o *PATItem) GetMetadata() CommonMetadata`
+`func (o *ServiceAccountItem) GetMetadata() CommonMetadata`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *PATItem) GetMetadataOk() (*CommonMetadata, bool)`
+`func (o *ServiceAccountItem) GetMetadataOk() (*CommonMetadata, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *PATItem) SetMetadata(v CommonMetadata)`
+`func (o *ServiceAccountItem) SetMetadata(v CommonMetadata)`
 
 SetMetadata sets Metadata field to given value.
 
 
 ### SetMetadataNil
 
-`func (o *PATItem) SetMetadataNil(b bool)`
+`func (o *ServiceAccountItem) SetMetadataNil(b bool)`
 
  SetMetadataNil sets the value for Metadata to be an explicit nil
 
 ### UnsetMetadata
-`func (o *PATItem) UnsetMetadata()`
+`func (o *ServiceAccountItem) UnsetMetadata()`
 
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
-### GetLastUsed
+### GetCreatedBy
 
-`func (o *PATItem) GetLastUsed() time.Time`
+`func (o *ServiceAccountItem) GetCreatedBy() string`
 
-GetLastUsed returns the LastUsed field if non-nil, zero value otherwise.
+GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
-### GetLastUsedOk
+### GetCreatedByOk
 
-`func (o *PATItem) GetLastUsedOk() (*time.Time, bool)`
+`func (o *ServiceAccountItem) GetCreatedByOk() (*string, bool)`
 
-GetLastUsedOk returns a tuple with the LastUsed field if it's non-nil, zero value otherwise
+GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLastUsed
+### SetCreatedBy
 
-`func (o *PATItem) SetLastUsed(v time.Time)`
+`func (o *ServiceAccountItem) SetCreatedBy(v string)`
 
-SetLastUsed sets LastUsed field to given value.
+SetCreatedBy sets CreatedBy field to given value.
 
 
 ### GetName
 
-`func (o *PATItem) GetName() string`
+`func (o *ServiceAccountItem) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *PATItem) GetNameOk() (*string, bool)`
+`func (o *ServiceAccountItem) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *PATItem) SetName(v string)`
+`func (o *ServiceAccountItem) SetName(v string)`
 
 SetName sets Name field to given value.
 
 
 ### GetTitle
 
-`func (o *PATItem) GetTitle() string`
+`func (o *ServiceAccountItem) GetTitle() string`
 
 GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *PATItem) GetTitleOk() (*string, bool)`
+`func (o *ServiceAccountItem) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTitle
 
-`func (o *PATItem) SetTitle(v string)`
+`func (o *ServiceAccountItem) SetTitle(v string)`
 
 SetTitle sets Title field to given value.
 
+### HasTitle
+
+`func (o *ServiceAccountItem) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -22,77 +22,80 @@ import (
 	"fmt"
 )
 
-// checks if the PATCreationItem type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PATCreationItem{}
+// checks if the ServiceAccountCollection type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServiceAccountCollection{}
 
-// PATCreationItem A Personal Access Token Item.
-type PATCreationItem struct {
-	// The TTL (time to live in seconds) describing how long the personal access token will be alive for.
-	TTL int64 `json:"TTL"`
-	Links NullablePATItemLinks `json:"_links"`
-	Metadata NullableCommonMetadata `json:"_metadata"`
-	// Unique ID of the personal access token.
-	Name string `json:"name"`
-	// The personal access token.
-	Secret string `json:"secret"`
-	// Human readable name of the personal access token.
+// ServiceAccountCollection This collection resource follows the common pattern of linking to contained resources. Optionally, rather than linking to other resources, it can embed then into the collection to reduce the number of round trips to the server (at the expense of caching). In file system terms, it is similar to a directory but only contains links to (or embeds) a single type of resource.
+type ServiceAccountCollection struct {
+	Embedded *EmbeddedServiceAccountItem `json:"_embedded,omitempty"`
+	Links NullableHalOnlyEmbeddableCollectionLinks `json:"_links"`
+	Metadata NullableCollectionMetadata `json:"_metadata"`
+	// ID of the Collection.
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	// Human readable title of the collection.
 	Title string `json:"title"`
 }
 
-type _PATCreationItem PATCreationItem
+type _ServiceAccountCollection ServiceAccountCollection
 
-// NewPATCreationItem instantiates a new PATCreationItem object
+// NewServiceAccountCollection instantiates a new ServiceAccountCollection object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPATCreationItem(tTL int64, links NullablePATItemLinks, metadata NullableCommonMetadata, name string, secret string, title string) *PATCreationItem {
-	this := PATCreationItem{}
-	this.TTL = tTL
+func NewServiceAccountCollection(links NullableHalOnlyEmbeddableCollectionLinks, metadata NullableCollectionMetadata, name string, title string) *ServiceAccountCollection {
+	this := ServiceAccountCollection{}
 	this.Links = links
 	this.Metadata = metadata
 	this.Name = name
-	this.Secret = secret
 	this.Title = title
 	return &this
 }
 
-// NewPATCreationItemWithDefaults instantiates a new PATCreationItem object
+// NewServiceAccountCollectionWithDefaults instantiates a new ServiceAccountCollection object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPATCreationItemWithDefaults() *PATCreationItem {
-	this := PATCreationItem{}
+func NewServiceAccountCollectionWithDefaults() *ServiceAccountCollection {
+	this := ServiceAccountCollection{}
 	return &this
 }
 
-// GetTTL returns the TTL field value
-func (o *PATCreationItem) GetTTL() int64 {
-	if o == nil {
-		var ret int64
+// GetEmbedded returns the Embedded field value if set, zero value otherwise.
+func (o *ServiceAccountCollection) GetEmbedded() EmbeddedServiceAccountItem {
+	if o == nil || IsNil(o.Embedded) {
+		var ret EmbeddedServiceAccountItem
 		return ret
 	}
-
-	return o.TTL
+	return *o.Embedded
 }
 
-// GetTTLOk returns a tuple with the TTL field value
+// GetEmbeddedOk returns a tuple with the Embedded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PATCreationItem) GetTTLOk() (*int64, bool) {
-	if o == nil {
+func (o *ServiceAccountCollection) GetEmbeddedOk() (*EmbeddedServiceAccountItem, bool) {
+	if o == nil || IsNil(o.Embedded) {
 		return nil, false
 	}
-	return &o.TTL, true
+	return o.Embedded, true
 }
 
-// SetTTL sets field value
-func (o *PATCreationItem) SetTTL(v int64) {
-	o.TTL = v
+// HasEmbedded returns a boolean if a field has been set.
+func (o *ServiceAccountCollection) HasEmbedded() bool {
+	if o != nil && !IsNil(o.Embedded) {
+		return true
+	}
+
+	return false
+}
+
+// SetEmbedded gets a reference to the given EmbeddedServiceAccountItem and assigns it to the Embedded field.
+func (o *ServiceAccountCollection) SetEmbedded(v EmbeddedServiceAccountItem) {
+	o.Embedded = &v
 }
 
 // GetLinks returns the Links field value
-// If the value is explicit nil, the zero value for PATItemLinks will be returned
-func (o *PATCreationItem) GetLinks() PATItemLinks {
+// If the value is explicit nil, the zero value for HalOnlyEmbeddableCollectionLinks will be returned
+func (o *ServiceAccountCollection) GetLinks() HalOnlyEmbeddableCollectionLinks {
 	if o == nil || o.Links.Get() == nil {
-		var ret PATItemLinks
+		var ret HalOnlyEmbeddableCollectionLinks
 		return ret
 	}
 
@@ -102,7 +105,7 @@ func (o *PATCreationItem) GetLinks() PATItemLinks {
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PATCreationItem) GetLinksOk() (*PATItemLinks, bool) {
+func (o *ServiceAccountCollection) GetLinksOk() (*HalOnlyEmbeddableCollectionLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -110,15 +113,15 @@ func (o *PATCreationItem) GetLinksOk() (*PATItemLinks, bool) {
 }
 
 // SetLinks sets field value
-func (o *PATCreationItem) SetLinks(v PATItemLinks) {
+func (o *ServiceAccountCollection) SetLinks(v HalOnlyEmbeddableCollectionLinks) {
 	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
-// If the value is explicit nil, the zero value for CommonMetadata will be returned
-func (o *PATCreationItem) GetMetadata() CommonMetadata {
+// If the value is explicit nil, the zero value for CollectionMetadata will be returned
+func (o *ServiceAccountCollection) GetMetadata() CollectionMetadata {
 	if o == nil || o.Metadata.Get() == nil {
-		var ret CommonMetadata
+		var ret CollectionMetadata
 		return ret
 	}
 
@@ -128,7 +131,7 @@ func (o *PATCreationItem) GetMetadata() CommonMetadata {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PATCreationItem) GetMetadataOk() (*CommonMetadata, bool) {
+func (o *ServiceAccountCollection) GetMetadataOk() (*CollectionMetadata, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -136,12 +139,12 @@ func (o *PATCreationItem) GetMetadataOk() (*CommonMetadata, bool) {
 }
 
 // SetMetadata sets field value
-func (o *PATCreationItem) SetMetadata(v CommonMetadata) {
+func (o *ServiceAccountCollection) SetMetadata(v CollectionMetadata) {
 	o.Metadata.Set(&v)
 }
 
 // GetName returns the Name field value
-func (o *PATCreationItem) GetName() string {
+func (o *ServiceAccountCollection) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -152,7 +155,7 @@ func (o *PATCreationItem) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *PATCreationItem) GetNameOk() (*string, bool) {
+func (o *ServiceAccountCollection) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -160,36 +163,12 @@ func (o *PATCreationItem) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *PATCreationItem) SetName(v string) {
+func (o *ServiceAccountCollection) SetName(v string) {
 	o.Name = v
 }
 
-// GetSecret returns the Secret field value
-func (o *PATCreationItem) GetSecret() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Secret
-}
-
-// GetSecretOk returns a tuple with the Secret field value
-// and a boolean to check if the value has been set.
-func (o *PATCreationItem) GetSecretOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Secret, true
-}
-
-// SetSecret sets field value
-func (o *PATCreationItem) SetSecret(v string) {
-	o.Secret = v
-}
-
 // GetTitle returns the Title field value
-func (o *PATCreationItem) GetTitle() string {
+func (o *ServiceAccountCollection) GetTitle() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -200,7 +179,7 @@ func (o *PATCreationItem) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
-func (o *PATCreationItem) GetTitleOk() (*string, bool) {
+func (o *ServiceAccountCollection) GetTitleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -208,11 +187,11 @@ func (o *PATCreationItem) GetTitleOk() (*string, bool) {
 }
 
 // SetTitle sets field value
-func (o *PATCreationItem) SetTitle(v string) {
+func (o *ServiceAccountCollection) SetTitle(v string) {
 	o.Title = v
 }
 
-func (o PATCreationItem) MarshalJSON() ([]byte, error) {
+func (o ServiceAccountCollection) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -220,27 +199,26 @@ func (o PATCreationItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PATCreationItem) ToMap() (map[string]interface{}, error) {
+func (o ServiceAccountCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["TTL"] = o.TTL
+	if !IsNil(o.Embedded) {
+		toSerialize["_embedded"] = o.Embedded
+	}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["name"] = o.Name
-	toSerialize["secret"] = o.Secret
 	toSerialize["title"] = o.Title
 	return toSerialize, nil
 }
 
-func (o *PATCreationItem) UnmarshalJSON(data []byte) (err error) {
+func (o *ServiceAccountCollection) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"TTL",
 		"_links",
 		"_metadata",
 		"name",
-		"secret",
 		"title",
 	}
 
@@ -258,53 +236,53 @@ func (o *PATCreationItem) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varPATCreationItem := _PATCreationItem{}
+	varServiceAccountCollection := _ServiceAccountCollection{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPATCreationItem)
+	err = decoder.Decode(&varServiceAccountCollection)
 
 	if err != nil {
 		return err
 	}
 
-	*o = PATCreationItem(varPATCreationItem)
+	*o = ServiceAccountCollection(varServiceAccountCollection)
 
 	return err
 }
 
-type NullablePATCreationItem struct {
-	value *PATCreationItem
+type NullableServiceAccountCollection struct {
+	value *ServiceAccountCollection
 	isSet bool
 }
 
-func (v NullablePATCreationItem) Get() *PATCreationItem {
+func (v NullableServiceAccountCollection) Get() *ServiceAccountCollection {
 	return v.value
 }
 
-func (v *NullablePATCreationItem) Set(val *PATCreationItem) {
+func (v *NullableServiceAccountCollection) Set(val *ServiceAccountCollection) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePATCreationItem) IsSet() bool {
+func (v NullableServiceAccountCollection) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePATCreationItem) Unset() {
+func (v *NullableServiceAccountCollection) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePATCreationItem(val *PATCreationItem) *NullablePATCreationItem {
-	return &NullablePATCreationItem{value: val, isSet: true}
+func NewNullableServiceAccountCollection(val *ServiceAccountCollection) *NullableServiceAccountCollection {
+	return &NullableServiceAccountCollection{value: val, isSet: true}
 }
 
-func (v NullablePATCreationItem) MarshalJSON() ([]byte, error) {
+func (v NullableServiceAccountCollection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePATCreationItem) UnmarshalJSON(src []byte) error {
+func (v *NullableServiceAccountCollection) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
