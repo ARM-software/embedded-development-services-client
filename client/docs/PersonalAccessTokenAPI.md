@@ -36,7 +36,7 @@ import (
 )
 
 func main() {
-	pATCreationItem := *openapiclient.NewPATCreationItem(int64(5), *openapiclient.NewPATItemLinks(*openapiclient.NewHalLinkData("/endpoint/?limit=20&offset=0")), "TODO", "88a6137e-1d99-4cde-8db8-015312f7d5e6", "arm_pat_abcdefgh...", "My token") // PATCreationItem | Data required to create a new token.
+	pATCreationItem := *openapiclient.NewPATCreationItem(int64(5), "TODO", "TODO", "88a6137e-1d99-4cde-8db8-015312f7d5e6", "arm_pat_abcdefgh...", "My token") // PATCreationItem | Data required to create a new token.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()

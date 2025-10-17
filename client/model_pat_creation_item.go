@@ -29,7 +29,7 @@ var _ MappedNullable = &PATCreationItem{}
 type PATCreationItem struct {
 	// The TTL (time to live in seconds) describing how long the personal access token will be alive for.
 	TTL int64 `json:"TTL"`
-	Links PATItemLinks `json:"_links"`
+	Links NullablePATItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// Unique ID of the personal access token.
 	Name string `json:"name"`
@@ -45,7 +45,7 @@ type _PATCreationItem PATCreationItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPATCreationItem(tTL int64, links PATItemLinks, metadata NullableCommonMetadata, name string, secret string, title string) *PATCreationItem {
+func NewPATCreationItem(tTL int64, links NullablePATItemLinks, metadata NullableCommonMetadata, name string, secret string, title string) *PATCreationItem {
 	this := PATCreationItem{}
 	this.TTL = tTL
 	this.Links = links
@@ -89,27 +89,29 @@ func (o *PATCreationItem) SetTTL(v int64) {
 }
 
 // GetLinks returns the Links field value
+// If the value is explicit nil, the zero value for PATItemLinks will be returned
 func (o *PATCreationItem) GetLinks() PATItemLinks {
-	if o == nil {
+	if o == nil || o.Links.Get() == nil {
 		var ret PATItemLinks
 		return ret
 	}
 
-	return o.Links
+	return *o.Links.Get()
 }
 
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PATCreationItem) GetLinksOk() (*PATItemLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Links, true
+	return o.Links.Get(), o.Links.IsSet()
 }
 
 // SetLinks sets field value
 func (o *PATCreationItem) SetLinks(v PATItemLinks) {
-	o.Links = v
+	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
@@ -221,7 +223,7 @@ func (o PATCreationItem) MarshalJSON() ([]byte, error) {
 func (o PATCreationItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["TTL"] = o.TTL
-	toSerialize["_links"] = o.Links
+	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["name"] = o.Name
 	toSerialize["secret"] = o.Secret

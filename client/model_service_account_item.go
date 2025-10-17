@@ -27,7 +27,7 @@ var _ MappedNullable = &ServiceAccountItem{}
 
 // ServiceAccountItem A Service Account represents a non-human identity used for automation.
 type ServiceAccountItem struct {
-	Links ServiceAccountItemLinks `json:"_links"`
+	Links NullableServiceAccountItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// ID of the user who created this service account.
 	CreatedBy string `json:"createdBy" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
@@ -43,7 +43,7 @@ type _ServiceAccountItem ServiceAccountItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceAccountItem(links ServiceAccountItemLinks, metadata NullableCommonMetadata, createdBy string, name string) *ServiceAccountItem {
+func NewServiceAccountItem(links NullableServiceAccountItemLinks, metadata NullableCommonMetadata, createdBy string, name string) *ServiceAccountItem {
 	this := ServiceAccountItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -61,27 +61,29 @@ func NewServiceAccountItemWithDefaults() *ServiceAccountItem {
 }
 
 // GetLinks returns the Links field value
+// If the value is explicit nil, the zero value for ServiceAccountItemLinks will be returned
 func (o *ServiceAccountItem) GetLinks() ServiceAccountItemLinks {
-	if o == nil {
+	if o == nil || o.Links.Get() == nil {
 		var ret ServiceAccountItemLinks
 		return ret
 	}
 
-	return o.Links
+	return *o.Links.Get()
 }
 
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ServiceAccountItem) GetLinksOk() (*ServiceAccountItemLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Links, true
+	return o.Links.Get(), o.Links.IsSet()
 }
 
 // SetLinks sets field value
 func (o *ServiceAccountItem) SetLinks(v ServiceAccountItemLinks) {
-	o.Links = v
+	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
@@ -200,7 +202,7 @@ func (o ServiceAccountItem) MarshalJSON() ([]byte, error) {
 
 func (o ServiceAccountItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["_links"] = o.Links
+	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["createdBy"] = o.CreatedBy
 	toSerialize["name"] = o.Name

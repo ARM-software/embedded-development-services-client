@@ -37,7 +37,7 @@ import (
 )
 
 func main() {
-	serviceAccountItem := *openapiclient.NewServiceAccountItem(*openapiclient.NewServiceAccountItemLinks(*openapiclient.NewHalLinkData("/endpoint/?limit=20&offset=0")), "TODO", "CreatedBy_example", "88a6137e-1d99-4cde-8db8-015312f7d5e6") // ServiceAccountItem | Data required to create a new service account.
+	serviceAccountItem := *openapiclient.NewServiceAccountItem("TODO", "TODO", "CreatedBy_example", "88a6137e-1d99-4cde-8db8-015312f7d5e6") // ServiceAccountItem | Data required to create a new service account.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -177,7 +177,7 @@ import (
 func main() {
 	serviceAccountName := "serviceAccountName_example" // string | Unique ID of the service account.
 	ifMatch := "ifMatch_example" // string | Conditional Requests: This is required in order to perform an update of a resource. The value of this header should be the `ETag` of the resource when read (before being subsequently modified by the client).
-	serviceAccountItem := *openapiclient.NewServiceAccountItem(*openapiclient.NewServiceAccountItemLinks(*openapiclient.NewHalLinkData("/endpoint/?limit=20&offset=0")), "TODO", "CreatedBy_example", "88a6137e-1d99-4cde-8db8-015312f7d5e6") // ServiceAccountItem | The new definition of the service account.
+	serviceAccountItem := *openapiclient.NewServiceAccountItem("TODO", "TODO", "CreatedBy_example", "88a6137e-1d99-4cde-8db8-015312f7d5e6") // ServiceAccountItem | The new definition of the service account.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()

@@ -8,7 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Links** | [**ServiceAccountItemLinks**](ServiceAccountItemLinks.md) |  | 
+**Links** | [**NullableServiceAccountItemLinks**](ServiceAccountItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **CreatedBy** | **string** | ID of the user who created this service account. | [readonly] 
 **Name** | **string** | Unique ID of the service account. | [readonly] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewServiceAccountItem
 
-`func NewServiceAccountItem(links ServiceAccountItemLinks, metadata NullableCommonMetadata, createdBy string, name string, ) *ServiceAccountItem`
+`func NewServiceAccountItem(links NullableServiceAccountItemLinks, metadata NullableCommonMetadata, createdBy string, name string, ) *ServiceAccountItem`
 
 NewServiceAccountItem instantiates a new ServiceAccountItem object
 This constructor will assign default values to properties that have it defined,
@@ -53,6 +53,16 @@ and a boolean to check if the value has been set.
 SetLinks sets Links field to given value.
 
 
+### SetLinksNil
+
+`func (o *ServiceAccountItem) SetLinksNil(b bool)`
+
+ SetLinksNil sets the value for Links to be an explicit nil
+
+### UnsetLinks
+`func (o *ServiceAccountItem) UnsetLinks()`
+
+UnsetLinks ensures that no value is present for Links, not even an explicit nil
 ### GetMetadata
 
 `func (o *ServiceAccountItem) GetMetadata() CommonMetadata`

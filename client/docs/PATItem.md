@@ -8,7 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Links** | [**PATItemLinks**](PATItemLinks.md) |  | 
+**Links** | [**NullablePATItemLinks**](PATItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **LastUsed** | **time.Time** | UTC date and time when the token was last used. | [readonly] 
 **Name** | **string** | Unique ID of the personal access token. | [readonly] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewPATItem
 
-`func NewPATItem(links PATItemLinks, metadata NullableCommonMetadata, lastUsed time.Time, name string, title string, ) *PATItem`
+`func NewPATItem(links NullablePATItemLinks, metadata NullableCommonMetadata, lastUsed time.Time, name string, title string, ) *PATItem`
 
 NewPATItem instantiates a new PATItem object
 This constructor will assign default values to properties that have it defined,
@@ -53,6 +53,16 @@ and a boolean to check if the value has been set.
 SetLinks sets Links field to given value.
 
 
+### SetLinksNil
+
+`func (o *PATItem) SetLinksNil(b bool)`
+
+ SetLinksNil sets the value for Links to be an explicit nil
+
+### UnsetLinks
+`func (o *PATItem) UnsetLinks()`
+
+UnsetLinks ensures that no value is present for Links, not even an explicit nil
 ### GetMetadata
 
 `func (o *PATItem) GetMetadata() CommonMetadata`
