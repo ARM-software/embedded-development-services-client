@@ -2,6 +2,20 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.79.2" (2025-10-17)
+=====================
+
+Bugfixes
+--------
+
+- Dependency upgrade: git-auto-commit-action-7 (#20251017164949)
+- Dependency upgrade: golang-1.25.2 (#20251017165640)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.79.1" (2025-10-17)
 =====================
 
