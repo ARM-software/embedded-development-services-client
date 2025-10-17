@@ -1561,6 +1561,97 @@ func NewIntellisenseJobCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
+// This extends ServiceAccountItem and ServiceAccountCollection definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *ServiceAccountItem) FetchType() string {
+	return "ServiceAccountItem"
+}
+
+// FetchLinks returns the resource links if present
+func (o *ServiceAccountItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *ServiceAccountItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *ServiceAccountItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// NewServiceAccountModel returns a model.
+func NewServiceAccountModel() IModel {
+	return NewServiceAccountItemWithDefaults()
+}
+
+// ServiceAccountIterator defines an iterator over a collection.
+type ServiceAccountIterator struct {
+	elements     []ServiceAccountItem
+	currentIndex int
+}
+
+func (m *ServiceAccountIterator) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *ServiceAccountIterator) GetNext() (item any, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func NewServiceAccountIterator(elements []ServiceAccountItem) (IIterator, error) {
+	return &ServiceAccountIterator{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
+
+// FetchType returns the resource type
+func (o *ServiceAccountCollection) FetchType() string {
+	return "ServiceAccountCollection page"
+}
+
+// FetchLinks returns the resource links if present
+func (o *ServiceAccountCollection) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *ServiceAccountCollection) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *ServiceAccountCollection) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// ============================================================================================
 // This extends UserItem and UserCollection definitions
 // ============================================================================================
 

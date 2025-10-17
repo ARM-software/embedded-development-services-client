@@ -2,127 +2,127 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
-# UserItemLinks
+# ServiceAccountItemLinks
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Collection** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Delete** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Edit** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
-**Me** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Self** | [**HalLinkData**](HalLinkData.md) |  | 
 
 ## Methods
 
-### NewUserItemLinks
+### NewServiceAccountItemLinks
 
-`func NewUserItemLinks(self HalLinkData, ) *UserItemLinks`
+`func NewServiceAccountItemLinks(self HalLinkData, ) *ServiceAccountItemLinks`
 
-NewUserItemLinks instantiates a new UserItemLinks object
+NewServiceAccountItemLinks instantiates a new ServiceAccountItemLinks object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUserItemLinksWithDefaults
+### NewServiceAccountItemLinksWithDefaults
 
-`func NewUserItemLinksWithDefaults() *UserItemLinks`
+`func NewServiceAccountItemLinksWithDefaults() *ServiceAccountItemLinks`
 
-NewUserItemLinksWithDefaults instantiates a new UserItemLinks object
+NewServiceAccountItemLinksWithDefaults instantiates a new ServiceAccountItemLinks object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetCollection
+
+`func (o *ServiceAccountItemLinks) GetCollection() HalLinkData`
+
+GetCollection returns the Collection field if non-nil, zero value otherwise.
+
+### GetCollectionOk
+
+`func (o *ServiceAccountItemLinks) GetCollectionOk() (*HalLinkData, bool)`
+
+GetCollectionOk returns a tuple with the Collection field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCollection
+
+`func (o *ServiceAccountItemLinks) SetCollection(v HalLinkData)`
+
+SetCollection sets Collection field to given value.
+
+### HasCollection
+
+`func (o *ServiceAccountItemLinks) HasCollection() bool`
+
+HasCollection returns a boolean if a field has been set.
+
 ### GetDelete
 
-`func (o *UserItemLinks) GetDelete() HalLinkData`
+`func (o *ServiceAccountItemLinks) GetDelete() HalLinkData`
 
 GetDelete returns the Delete field if non-nil, zero value otherwise.
 
 ### GetDeleteOk
 
-`func (o *UserItemLinks) GetDeleteOk() (*HalLinkData, bool)`
+`func (o *ServiceAccountItemLinks) GetDeleteOk() (*HalLinkData, bool)`
 
 GetDeleteOk returns a tuple with the Delete field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDelete
 
-`func (o *UserItemLinks) SetDelete(v HalLinkData)`
+`func (o *ServiceAccountItemLinks) SetDelete(v HalLinkData)`
 
 SetDelete sets Delete field to given value.
 
 ### HasDelete
 
-`func (o *UserItemLinks) HasDelete() bool`
+`func (o *ServiceAccountItemLinks) HasDelete() bool`
 
 HasDelete returns a boolean if a field has been set.
 
 ### GetEdit
 
-`func (o *UserItemLinks) GetEdit() HalLinkData`
+`func (o *ServiceAccountItemLinks) GetEdit() HalLinkData`
 
 GetEdit returns the Edit field if non-nil, zero value otherwise.
 
 ### GetEditOk
 
-`func (o *UserItemLinks) GetEditOk() (*HalLinkData, bool)`
+`func (o *ServiceAccountItemLinks) GetEditOk() (*HalLinkData, bool)`
 
 GetEditOk returns a tuple with the Edit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEdit
 
-`func (o *UserItemLinks) SetEdit(v HalLinkData)`
+`func (o *ServiceAccountItemLinks) SetEdit(v HalLinkData)`
 
 SetEdit sets Edit field to given value.
 
 ### HasEdit
 
-`func (o *UserItemLinks) HasEdit() bool`
+`func (o *ServiceAccountItemLinks) HasEdit() bool`
 
 HasEdit returns a boolean if a field has been set.
 
-### GetMe
-
-`func (o *UserItemLinks) GetMe() HalLinkData`
-
-GetMe returns the Me field if non-nil, zero value otherwise.
-
-### GetMeOk
-
-`func (o *UserItemLinks) GetMeOk() (*HalLinkData, bool)`
-
-GetMeOk returns a tuple with the Me field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMe
-
-`func (o *UserItemLinks) SetMe(v HalLinkData)`
-
-SetMe sets Me field to given value.
-
-### HasMe
-
-`func (o *UserItemLinks) HasMe() bool`
-
-HasMe returns a boolean if a field has been set.
-
 ### GetSelf
 
-`func (o *UserItemLinks) GetSelf() HalLinkData`
+`func (o *ServiceAccountItemLinks) GetSelf() HalLinkData`
 
 GetSelf returns the Self field if non-nil, zero value otherwise.
 
 ### GetSelfOk
 
-`func (o *UserItemLinks) GetSelfOk() (*HalLinkData, bool)`
+`func (o *ServiceAccountItemLinks) GetSelfOk() (*HalLinkData, bool)`
 
 GetSelfOk returns a tuple with the Self field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSelf
 
-`func (o *UserItemLinks) SetSelf(v HalLinkData)`
+`func (o *ServiceAccountItemLinks) SetSelf(v HalLinkData)`
 
 SetSelf sets Self field to given value.
 

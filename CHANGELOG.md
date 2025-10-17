@@ -2,6 +2,71 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.79.0" (2025-10-17)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20251017160200)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"1.78.0" (2025-10-17)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20251003133245)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"1.77.0" (2025-10-03)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20251003110338)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"1.76.0" (2025-10-03)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20251003103730)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+"1.75.0" (2025-09-29)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20250929134404)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.74.0" (2025-09-25)
 =====================
 

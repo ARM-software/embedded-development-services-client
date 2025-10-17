@@ -22,121 +22,135 @@ import (
 	"fmt"
 )
 
-// checks if the FPGAPayloadItemLinks type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &FPGAPayloadItemLinks{}
+// checks if the ServiceAccountItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServiceAccountItemLinks{}
 
-// FPGAPayloadItemLinks The `self` link provides the URI to access this FPGA Payload The `related` link (if present) provides the URI to the upload job that processed this FPGA Payload The `collection` link (if present) provides the URI to the collection in which this FPGA Payload is an `item` The `delete` link provides the URI to remove this FPGA Payload
-type FPGAPayloadItemLinks struct {
-	Collection HalLinkData `json:"collection"`
-	Delete HalLinkData `json:"delete"`
-	Related *HalLinkData `json:"related,omitempty"`
+// ServiceAccountItemLinks The links for a Service Account Item.
+type ServiceAccountItemLinks struct {
+	Collection *HalLinkData `json:"collection,omitempty"`
+	Delete *HalLinkData `json:"delete,omitempty"`
+	Edit *HalLinkData `json:"edit,omitempty"`
 	Self HalLinkData `json:"self"`
 }
 
-type _FPGAPayloadItemLinks FPGAPayloadItemLinks
+type _ServiceAccountItemLinks ServiceAccountItemLinks
 
-// NewFPGAPayloadItemLinks instantiates a new FPGAPayloadItemLinks object
+// NewServiceAccountItemLinks instantiates a new ServiceAccountItemLinks object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAPayloadItemLinks(collection HalLinkData, delete HalLinkData, self HalLinkData) *FPGAPayloadItemLinks {
-	this := FPGAPayloadItemLinks{}
-	this.Collection = collection
-	this.Delete = delete
+func NewServiceAccountItemLinks(self HalLinkData) *ServiceAccountItemLinks {
+	this := ServiceAccountItemLinks{}
 	this.Self = self
 	return &this
 }
 
-// NewFPGAPayloadItemLinksWithDefaults instantiates a new FPGAPayloadItemLinks object
+// NewServiceAccountItemLinksWithDefaults instantiates a new ServiceAccountItemLinks object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewFPGAPayloadItemLinksWithDefaults() *FPGAPayloadItemLinks {
-	this := FPGAPayloadItemLinks{}
+func NewServiceAccountItemLinksWithDefaults() *ServiceAccountItemLinks {
+	this := ServiceAccountItemLinks{}
 	return &this
 }
 
-// GetCollection returns the Collection field value
-func (o *FPGAPayloadItemLinks) GetCollection() HalLinkData {
-	if o == nil {
+// GetCollection returns the Collection field value if set, zero value otherwise.
+func (o *ServiceAccountItemLinks) GetCollection() HalLinkData {
+	if o == nil || IsNil(o.Collection) {
 		var ret HalLinkData
 		return ret
 	}
-
-	return o.Collection
+	return *o.Collection
 }
 
-// GetCollectionOk returns a tuple with the Collection field value
+// GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FPGAPayloadItemLinks) GetCollectionOk() (*HalLinkData, bool) {
-	if o == nil {
+func (o *ServiceAccountItemLinks) GetCollectionOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Collection) {
 		return nil, false
 	}
-	return &o.Collection, true
+	return o.Collection, true
 }
 
-// SetCollection sets field value
-func (o *FPGAPayloadItemLinks) SetCollection(v HalLinkData) {
-	o.Collection = v
-}
-
-// GetDelete returns the Delete field value
-func (o *FPGAPayloadItemLinks) GetDelete() HalLinkData {
-	if o == nil {
-		var ret HalLinkData
-		return ret
-	}
-
-	return o.Delete
-}
-
-// GetDeleteOk returns a tuple with the Delete field value
-// and a boolean to check if the value has been set.
-func (o *FPGAPayloadItemLinks) GetDeleteOk() (*HalLinkData, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Delete, true
-}
-
-// SetDelete sets field value
-func (o *FPGAPayloadItemLinks) SetDelete(v HalLinkData) {
-	o.Delete = v
-}
-
-// GetRelated returns the Related field value if set, zero value otherwise.
-func (o *FPGAPayloadItemLinks) GetRelated() HalLinkData {
-	if o == nil || IsNil(o.Related) {
-		var ret HalLinkData
-		return ret
-	}
-	return *o.Related
-}
-
-// GetRelatedOk returns a tuple with the Related field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FPGAPayloadItemLinks) GetRelatedOk() (*HalLinkData, bool) {
-	if o == nil || IsNil(o.Related) {
-		return nil, false
-	}
-	return o.Related, true
-}
-
-// HasRelated returns a boolean if a field has been set.
-func (o *FPGAPayloadItemLinks) HasRelated() bool {
-	if o != nil && !IsNil(o.Related) {
+// HasCollection returns a boolean if a field has been set.
+func (o *ServiceAccountItemLinks) HasCollection() bool {
+	if o != nil && !IsNil(o.Collection) {
 		return true
 	}
 
 	return false
 }
 
-// SetRelated gets a reference to the given HalLinkData and assigns it to the Related field.
-func (o *FPGAPayloadItemLinks) SetRelated(v HalLinkData) {
-	o.Related = &v
+// SetCollection gets a reference to the given HalLinkData and assigns it to the Collection field.
+func (o *ServiceAccountItemLinks) SetCollection(v HalLinkData) {
+	o.Collection = &v
+}
+
+// GetDelete returns the Delete field value if set, zero value otherwise.
+func (o *ServiceAccountItemLinks) GetDelete() HalLinkData {
+	if o == nil || IsNil(o.Delete) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Delete
+}
+
+// GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceAccountItemLinks) GetDeleteOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Delete) {
+		return nil, false
+	}
+	return o.Delete, true
+}
+
+// HasDelete returns a boolean if a field has been set.
+func (o *ServiceAccountItemLinks) HasDelete() bool {
+	if o != nil && !IsNil(o.Delete) {
+		return true
+	}
+
+	return false
+}
+
+// SetDelete gets a reference to the given HalLinkData and assigns it to the Delete field.
+func (o *ServiceAccountItemLinks) SetDelete(v HalLinkData) {
+	o.Delete = &v
+}
+
+// GetEdit returns the Edit field value if set, zero value otherwise.
+func (o *ServiceAccountItemLinks) GetEdit() HalLinkData {
+	if o == nil || IsNil(o.Edit) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Edit
+}
+
+// GetEditOk returns a tuple with the Edit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceAccountItemLinks) GetEditOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Edit) {
+		return nil, false
+	}
+	return o.Edit, true
+}
+
+// HasEdit returns a boolean if a field has been set.
+func (o *ServiceAccountItemLinks) HasEdit() bool {
+	if o != nil && !IsNil(o.Edit) {
+		return true
+	}
+
+	return false
+}
+
+// SetEdit gets a reference to the given HalLinkData and assigns it to the Edit field.
+func (o *ServiceAccountItemLinks) SetEdit(v HalLinkData) {
+	o.Edit = &v
 }
 
 // GetSelf returns the Self field value
-func (o *FPGAPayloadItemLinks) GetSelf() HalLinkData {
+func (o *ServiceAccountItemLinks) GetSelf() HalLinkData {
 	if o == nil {
 		var ret HalLinkData
 		return ret
@@ -147,7 +161,7 @@ func (o *FPGAPayloadItemLinks) GetSelf() HalLinkData {
 
 // GetSelfOk returns a tuple with the Self field value
 // and a boolean to check if the value has been set.
-func (o *FPGAPayloadItemLinks) GetSelfOk() (*HalLinkData, bool) {
+func (o *ServiceAccountItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -155,11 +169,11 @@ func (o *FPGAPayloadItemLinks) GetSelfOk() (*HalLinkData, bool) {
 }
 
 // SetSelf sets field value
-func (o *FPGAPayloadItemLinks) SetSelf(v HalLinkData) {
+func (o *ServiceAccountItemLinks) SetSelf(v HalLinkData) {
 	o.Self = v
 }
 
-func (o FPGAPayloadItemLinks) MarshalJSON() ([]byte, error) {
+func (o ServiceAccountItemLinks) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -167,24 +181,26 @@ func (o FPGAPayloadItemLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o FPGAPayloadItemLinks) ToMap() (map[string]interface{}, error) {
+func (o ServiceAccountItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["collection"] = o.Collection
-	toSerialize["delete"] = o.Delete
-	if !IsNil(o.Related) {
-		toSerialize["related"] = o.Related
+	if !IsNil(o.Collection) {
+		toSerialize["collection"] = o.Collection
+	}
+	if !IsNil(o.Delete) {
+		toSerialize["delete"] = o.Delete
+	}
+	if !IsNil(o.Edit) {
+		toSerialize["edit"] = o.Edit
 	}
 	toSerialize["self"] = o.Self
 	return toSerialize, nil
 }
 
-func (o *FPGAPayloadItemLinks) UnmarshalJSON(data []byte) (err error) {
+func (o *ServiceAccountItemLinks) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"collection",
-		"delete",
 		"self",
 	}
 
@@ -202,53 +218,53 @@ func (o *FPGAPayloadItemLinks) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varFPGAPayloadItemLinks := _FPGAPayloadItemLinks{}
+	varServiceAccountItemLinks := _ServiceAccountItemLinks{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFPGAPayloadItemLinks)
+	err = decoder.Decode(&varServiceAccountItemLinks)
 
 	if err != nil {
 		return err
 	}
 
-	*o = FPGAPayloadItemLinks(varFPGAPayloadItemLinks)
+	*o = ServiceAccountItemLinks(varServiceAccountItemLinks)
 
 	return err
 }
 
-type NullableFPGAPayloadItemLinks struct {
-	value *FPGAPayloadItemLinks
+type NullableServiceAccountItemLinks struct {
+	value *ServiceAccountItemLinks
 	isSet bool
 }
 
-func (v NullableFPGAPayloadItemLinks) Get() *FPGAPayloadItemLinks {
+func (v NullableServiceAccountItemLinks) Get() *ServiceAccountItemLinks {
 	return v.value
 }
 
-func (v *NullableFPGAPayloadItemLinks) Set(val *FPGAPayloadItemLinks) {
+func (v *NullableServiceAccountItemLinks) Set(val *ServiceAccountItemLinks) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableFPGAPayloadItemLinks) IsSet() bool {
+func (v NullableServiceAccountItemLinks) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableFPGAPayloadItemLinks) Unset() {
+func (v *NullableServiceAccountItemLinks) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableFPGAPayloadItemLinks(val *FPGAPayloadItemLinks) *NullableFPGAPayloadItemLinks {
-	return &NullableFPGAPayloadItemLinks{value: val, isSet: true}
+func NewNullableServiceAccountItemLinks(val *ServiceAccountItemLinks) *NullableServiceAccountItemLinks {
+	return &NullableServiceAccountItemLinks{value: val, isSet: true}
 }
 
-func (v NullableFPGAPayloadItemLinks) MarshalJSON() ([]byte, error) {
+func (v NullableServiceAccountItemLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableFPGAPayloadItemLinks) UnmarshalJSON(src []byte) error {
+func (v *NullableServiceAccountItemLinks) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

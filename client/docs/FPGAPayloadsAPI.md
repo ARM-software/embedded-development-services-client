@@ -8,6 +8,7 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CheckFPGAPayloadStatus**](FPGAPayloadsAPI.md#CheckFPGAPayloadStatus) | **Post** /repositories/{repositoryName}/payloads/{fpgaPayloadName}/check | Check and update the payload status.
 [**CreateFPGAPayload**](FPGAPayloadsAPI.md#CreateFPGAPayload) | **Post** /repositories/{repositoryName}/payloads | Create an FPGA payload.
 [**CreateFPGAPayloadUploadSession**](FPGAPayloadsAPI.md#CreateFPGAPayloadUploadSession) | **Post** /payloads/upload-session | Create upload session for FPGA payload.
 [**DeleteFpgaPayload**](FPGAPayloadsAPI.md#DeleteFpgaPayload) | **Delete** /repositories/{repositoryName}/payloads/{fpgaPayloadName} | Delete an FPGA payload.
@@ -19,6 +20,81 @@ Method | HTTP request | Description
 [**ListPayloads**](FPGAPayloadsAPI.md#ListPayloads) | **Get** /payloads | List payloads.
 [**UploadPayload**](FPGAPayloadsAPI.md#UploadPayload) | **Patch** /payloads/upload-session/{uploadSessionName} | Upload part of a payload.
 
+
+
+## CheckFPGAPayloadStatus
+
+> FPGAPayloadItem CheckFPGAPayloadStatus(ctx, fpgaPayloadName, repositoryName).AcceptVersion(acceptVersion).Execute()
+
+Check and update the payload status.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	fpgaPayloadName := "fpgaPayloadName_example" // string | Unique ID of the FPGA payload.
+	repositoryName := "repositoryName_example" // string | Unique ID of a repository.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FPGAPayloadsAPI.CheckFPGAPayloadStatus(context.Background(), fpgaPayloadName, repositoryName).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.CheckFPGAPayloadStatus``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CheckFPGAPayloadStatus`: FPGAPayloadItem
+	fmt.Fprintf(os.Stdout, "Response from `FPGAPayloadsAPI.CheckFPGAPayloadStatus`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fpgaPayloadName** | **string** | Unique ID of the FPGA payload. | 
+**repositoryName** | **string** | Unique ID of a repository. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCheckFPGAPayloadStatusRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+[**FPGAPayloadItem**](FPGAPayloadItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateFPGAPayload

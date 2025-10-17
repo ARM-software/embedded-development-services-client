@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Collection** | [**HalLinkData**](HalLinkData.md) |  | 
 **Delete** | [**HalLinkData**](HalLinkData.md) |  | 
+**Related** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Self** | [**HalLinkData**](HalLinkData.md) |  | 
 
 ## Methods
@@ -70,6 +71,31 @@ and a boolean to check if the value has been set.
 
 SetDelete sets Delete field to given value.
 
+
+### GetRelated
+
+`func (o *FPGAPayloadItemLinks) GetRelated() HalLinkData`
+
+GetRelated returns the Related field if non-nil, zero value otherwise.
+
+### GetRelatedOk
+
+`func (o *FPGAPayloadItemLinks) GetRelatedOk() (*HalLinkData, bool)`
+
+GetRelatedOk returns a tuple with the Related field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRelated
+
+`func (o *FPGAPayloadItemLinks) SetRelated(v HalLinkData)`
+
+SetRelated sets Related field to given value.
+
+### HasRelated
+
+`func (o *FPGAPayloadItemLinks) HasRelated() bool`
+
+HasRelated returns a boolean if a field has been set.
 
 ### GetSelf
 

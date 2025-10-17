@@ -10,13 +10,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Links** | [**NullableUserItemLinks**](UserItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**Country** | Pointer to **string** | Country of the user as ISO 3166-1 alpha-2 code. | [optional] 
-**Email** | Pointer to **string** | Email address of the user. | [optional] 
-**FirstName** | Pointer to **string** | First name of the user. | [optional] 
-**LastName** | Pointer to **string** | Last name of the user. | [optional] 
+**Country** | Pointer to **string** | Country of the user as ISO 3166-1 alpha-2 code. | [optional] [readonly] 
+**Email** | Pointer to **string** | Email address of the user. | [optional] [readonly] 
+**FirstName** | Pointer to **string** | First name of the user. | [optional] [readonly] 
+**LastName** | Pointer to **string** | Last name of the user. | [optional] [readonly] 
 **Name** | **string** | The system identifier of the user. | [readonly] 
-**Title** | Pointer to **string** | Human readable description of the user | [optional] 
-**Username** | Pointer to **NullableString** | Username of the user, which is the identifier provided by Arm account. | [optional] 
+**Title** | Pointer to **string** | Human readable description of the user | [optional] [readonly] 
+**Username** | Pointer to **NullableString** | Username of the user, which is the identifier provided by Arm account. | [optional] [readonly] 
 
 ## Methods
 
