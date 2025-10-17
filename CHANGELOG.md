@@ -2,6 +2,19 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.79.3" (2025-10-17)
+=====================
+
+Bugfixes
+--------
+
+- Dependency upgrade: scorecard-action-2.4.3 (#20251001080901)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.79.2" (2025-10-17)
 =====================
 
