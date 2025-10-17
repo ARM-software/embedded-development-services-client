@@ -61,7 +61,7 @@ jobs:
     #  with:
     #    config-path: .gitleaks.toml
     - name: Check for secrets using detect-secrets
-      run: git ls-files -z | xargs -0 detect-secrets-hook --baseline .secrets.baseline --exclude-files '.*go\.sum$' --exclude-files '.*\.html$' --exclude-files '.*\.properties$' --exclude-files 'ci.yml'
+      run: git ls-files -z | xargs -0 detect-secrets-hook --baseline .secrets.baseline
       working-directory: .
 
   build-and-test:
