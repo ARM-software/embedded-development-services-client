@@ -1519,11 +1519,18 @@ type ApiGetChunkedWorkspaceUploadProgressRequest struct {
 	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
+	tusResumable *string
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
 func (r ApiGetChunkedWorkspaceUploadProgressRequest) AcceptVersion(acceptVersion string) ApiGetChunkedWorkspaceUploadProgressRequest {
 	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Version of the Tus protocol being used.
+func (r ApiGetChunkedWorkspaceUploadProgressRequest) TusResumable(tusResumable string) ApiGetChunkedWorkspaceUploadProgressRequest {
+	r.tusResumable = &tusResumable
 	return r
 }
 
@@ -1588,6 +1595,9 @@ func (a *WorkspaceAPIService) GetChunkedWorkspaceUploadProgressExecute(r ApiGetC
 	}
 	if r.acceptVersion != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	if r.tusResumable != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1988,12 +1998,19 @@ type ApiGetWorkspaceRequest struct {
 	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
+	tusResumable *string
 	ifNoneMatch *string
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
 func (r ApiGetWorkspaceRequest) AcceptVersion(acceptVersion string) ApiGetWorkspaceRequest {
 	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Version of the Tus protocol being used.
+func (r ApiGetWorkspaceRequest) TusResumable(tusResumable string) ApiGetWorkspaceRequest {
+	r.tusResumable = &tusResumable
 	return r
 }
 
@@ -2065,6 +2082,9 @@ func (a *WorkspaceAPIService) GetWorkspaceExecute(r ApiGetWorkspaceRequest) (*Wo
 	}
 	if r.acceptVersion != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	if r.tusResumable != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
 	}
 	if r.ifNoneMatch != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "simple", "")
@@ -2165,12 +2185,19 @@ type ApiGetWorkspaceArchiveContentRequest struct {
 	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
+	tusResumable *string
 	ifNoneMatch *string
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
 func (r ApiGetWorkspaceArchiveContentRequest) AcceptVersion(acceptVersion string) ApiGetWorkspaceArchiveContentRequest {
 	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Version of the Tus protocol being used.
+func (r ApiGetWorkspaceArchiveContentRequest) TusResumable(tusResumable string) ApiGetWorkspaceArchiveContentRequest {
+	r.tusResumable = &tusResumable
 	return r
 }
 
@@ -2243,6 +2270,9 @@ func (a *WorkspaceAPIService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspac
 	}
 	if r.acceptVersion != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	if r.tusResumable != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
 	}
 	if r.ifNoneMatch != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "simple", "")
@@ -2343,11 +2373,18 @@ type ApiGetWorkspaceArchiveContentUploadProgressRequest struct {
 	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
+	tusResumable *string
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
 func (r ApiGetWorkspaceArchiveContentUploadProgressRequest) AcceptVersion(acceptVersion string) ApiGetWorkspaceArchiveContentUploadProgressRequest {
 	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Version of the Tus protocol being used.
+func (r ApiGetWorkspaceArchiveContentUploadProgressRequest) TusResumable(tusResumable string) ApiGetWorkspaceArchiveContentUploadProgressRequest {
+	r.tusResumable = &tusResumable
 	return r
 }
 
@@ -2412,6 +2449,9 @@ func (a *WorkspaceAPIService) GetWorkspaceArchiveContentUploadProgressExecute(r 
 	}
 	if r.acceptVersion != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	if r.tusResumable != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2500,12 +2540,19 @@ type ApiGetWorkspaceDetailsRequest struct {
 	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
+	tusResumable *string
 	ifNoneMatch *string
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
 func (r ApiGetWorkspaceDetailsRequest) AcceptVersion(acceptVersion string) ApiGetWorkspaceDetailsRequest {
 	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Version of the Tus protocol being used.
+func (r ApiGetWorkspaceDetailsRequest) TusResumable(tusResumable string) ApiGetWorkspaceDetailsRequest {
+	r.tusResumable = &tusResumable
 	return r
 }
 
@@ -2578,6 +2625,9 @@ func (a *WorkspaceAPIService) GetWorkspaceDetailsExecute(r ApiGetWorkspaceDetail
 	if r.acceptVersion != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
 	}
+	if r.tusResumable != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
+	}
 	if r.ifNoneMatch != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "simple", "")
 	}
@@ -2623,12 +2673,19 @@ type ApiGetWorkspaceIncrementalChunkRequest struct {
 	ApiService *WorkspaceAPIService
 	workspaceName string
 	acceptVersion *string
+	tusResumable *string
 	ifNoneMatch *string
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
 func (r ApiGetWorkspaceIncrementalChunkRequest) AcceptVersion(acceptVersion string) ApiGetWorkspaceIncrementalChunkRequest {
 	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Version of the Tus protocol being used.
+func (r ApiGetWorkspaceIncrementalChunkRequest) TusResumable(tusResumable string) ApiGetWorkspaceIncrementalChunkRequest {
+	r.tusResumable = &tusResumable
 	return r
 }
 
@@ -2701,6 +2758,9 @@ func (a *WorkspaceAPIService) GetWorkspaceIncrementalChunkExecute(r ApiGetWorksp
 	}
 	if r.acceptVersion != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	if r.tusResumable != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
 	}
 	if r.ifNoneMatch != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "simple", "")
@@ -3381,6 +3441,7 @@ type ApiUploadWorkspaceArchiveContentRequest struct {
 	content *os.File
 	hash *string
 	acceptVersion *string
+	tusResumable *string
 	contentMediaType *string
 	size *int64
 	title *string
@@ -3407,6 +3468,12 @@ func (r ApiUploadWorkspaceArchiveContentRequest) Hash(hash string) ApiUploadWork
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
 func (r ApiUploadWorkspaceArchiveContentRequest) AcceptVersion(acceptVersion string) ApiUploadWorkspaceArchiveContentRequest {
 	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Version of the Tus protocol being used.
+func (r ApiUploadWorkspaceArchiveContentRequest) TusResumable(tusResumable string) ApiUploadWorkspaceArchiveContentRequest {
+	r.tusResumable = &tusResumable
 	return r
 }
 
@@ -3499,6 +3566,9 @@ func (a *WorkspaceAPIService) UploadWorkspaceArchiveContentExecute(r ApiUploadWo
 	}
 	if r.acceptVersion != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	if r.tusResumable != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
 	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "if-match", r.ifMatch, "simple", "")
 	var contentLocalVarFormFileName string

@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## GetWorkspaceSource
 
-> WorkspaceSourceItem GetWorkspaceSource(ctx, workspaceSourceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+> WorkspaceSourceItem GetWorkspaceSource(ctx, workspaceSourceName).AcceptVersion(acceptVersion).TusResumable(tusResumable).IfNoneMatch(ifNoneMatch).Execute()
 
 Return details of the specific workspace source.
 
@@ -37,11 +37,12 @@ import (
 func main() {
 	workspaceSourceName := "workspaceSourceName_example" // string | The ID of the workspace source.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+	tusResumable := "1.0.0" // string | Version of the Tus protocol being used. (optional)
 	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkspaceSourceAPI.GetWorkspaceSource(context.Background(), workspaceSourceName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+	resp, r, err := apiClient.WorkspaceSourceAPI.GetWorkspaceSource(context.Background(), workspaceSourceName).AcceptVersion(acceptVersion).TusResumable(tusResumable).IfNoneMatch(ifNoneMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceSourceAPI.GetWorkspaceSource``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -68,6 +69,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+ **tusResumable** | **string** | Version of the Tus protocol being used. | 
  **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
 
 ### Return type

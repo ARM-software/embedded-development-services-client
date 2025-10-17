@@ -34,12 +34,19 @@ type ApiGetWorkspaceSourceRequest struct {
 	ApiService *WorkspaceSourceAPIService
 	workspaceSourceName string
 	acceptVersion *string
+	tusResumable *string
 	ifNoneMatch *string
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
 func (r ApiGetWorkspaceSourceRequest) AcceptVersion(acceptVersion string) ApiGetWorkspaceSourceRequest {
 	r.acceptVersion = &acceptVersion
+	return r
+}
+
+// Version of the Tus protocol being used.
+func (r ApiGetWorkspaceSourceRequest) TusResumable(tusResumable string) ApiGetWorkspaceSourceRequest {
+	r.tusResumable = &tusResumable
 	return r
 }
 
@@ -111,6 +118,9 @@ func (a *WorkspaceSourceAPIService) GetWorkspaceSourceExecute(r ApiGetWorkspaceS
 	}
 	if r.acceptVersion != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	if r.tusResumable != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
 	}
 	if r.ifNoneMatch != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "simple", "")
