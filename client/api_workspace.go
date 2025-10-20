@@ -2186,6 +2186,7 @@ type ApiGetWorkspaceArchiveContentRequest struct {
 	workspaceName string
 	acceptVersion *string
 	tusResumable *string
+	xHTTPMethodOverride *string
 	ifNoneMatch *string
 }
 
@@ -2198,6 +2199,12 @@ func (r ApiGetWorkspaceArchiveContentRequest) AcceptVersion(acceptVersion string
 // Version of the Tus protocol being used.
 func (r ApiGetWorkspaceArchiveContentRequest) TusResumable(tusResumable string) ApiGetWorkspaceArchiveContentRequest {
 	r.tusResumable = &tusResumable
+	return r
+}
+
+// Verb tunnelling when some methods are not supported.
+func (r ApiGetWorkspaceArchiveContentRequest) XHTTPMethodOverride(xHTTPMethodOverride string) ApiGetWorkspaceArchiveContentRequest {
+	r.xHTTPMethodOverride = &xHTTPMethodOverride
 	return r
 }
 
@@ -2273,6 +2280,9 @@ func (a *WorkspaceAPIService) GetWorkspaceArchiveContentExecute(r ApiGetWorkspac
 	}
 	if r.tusResumable != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
+	}
+	if r.xHTTPMethodOverride != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-HTTP-Method-Override", r.xHTTPMethodOverride, "simple", "")
 	}
 	if r.ifNoneMatch != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "simple", "")
@@ -2674,6 +2684,7 @@ type ApiGetWorkspaceIncrementalChunkRequest struct {
 	workspaceName string
 	acceptVersion *string
 	tusResumable *string
+	xHTTPMethodOverride *string
 	ifNoneMatch *string
 }
 
@@ -2686,6 +2697,12 @@ func (r ApiGetWorkspaceIncrementalChunkRequest) AcceptVersion(acceptVersion stri
 // Version of the Tus protocol being used.
 func (r ApiGetWorkspaceIncrementalChunkRequest) TusResumable(tusResumable string) ApiGetWorkspaceIncrementalChunkRequest {
 	r.tusResumable = &tusResumable
+	return r
+}
+
+// Verb tunnelling when some methods are not supported.
+func (r ApiGetWorkspaceIncrementalChunkRequest) XHTTPMethodOverride(xHTTPMethodOverride string) ApiGetWorkspaceIncrementalChunkRequest {
+	r.xHTTPMethodOverride = &xHTTPMethodOverride
 	return r
 }
 
@@ -2761,6 +2778,9 @@ func (a *WorkspaceAPIService) GetWorkspaceIncrementalChunkExecute(r ApiGetWorksp
 	}
 	if r.tusResumable != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Tus-Resumable", r.tusResumable, "simple", "")
+	}
+	if r.xHTTPMethodOverride != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-HTTP-Method-Override", r.xHTTPMethodOverride, "simple", "")
 	}
 	if r.ifNoneMatch != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "if-none-match", r.ifNoneMatch, "simple", "")
@@ -3747,6 +3767,7 @@ type ApiUploadWorkspaceIncrementalChunkRequest struct {
 	ApiService *WorkspaceAPIService
 	workspaceName string
 	tusResumable *string
+	body *os.File
 	acceptVersion *string
 	uploadChecksum *string
 	uploadOffset *int64
@@ -3755,6 +3776,11 @@ type ApiUploadWorkspaceIncrementalChunkRequest struct {
 // Version of the Tus protocol being used.
 func (r ApiUploadWorkspaceIncrementalChunkRequest) TusResumable(tusResumable string) ApiUploadWorkspaceIncrementalChunkRequest {
 	r.tusResumable = &tusResumable
+	return r
+}
+
+func (r ApiUploadWorkspaceIncrementalChunkRequest) Body(body *os.File) ApiUploadWorkspaceIncrementalChunkRequest {
+	r.body = body
 	return r
 }
 
@@ -3819,9 +3845,12 @@ func (a *WorkspaceAPIService) UploadWorkspaceIncrementalChunkExecute(r ApiUpload
 	if r.tusResumable == nil {
 		return nil, reportError("tusResumable is required and must be specified")
 	}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/offset+octet-stream"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3847,6 +3876,8 @@ func (a *WorkspaceAPIService) UploadWorkspaceIncrementalChunkExecute(r ApiUpload
 	if r.uploadOffset != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Upload-Offset", r.uploadOffset, "simple", "")
 	}
+	// body params
+	localVarPostBody = r.body
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

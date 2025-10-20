@@ -845,7 +845,7 @@ Name | Type | Description  | Notes
 
 ## GetWorkspaceArchiveContent
 
-> ArtefactManagerItem GetWorkspaceArchiveContent(ctx, workspaceName).AcceptVersion(acceptVersion).TusResumable(tusResumable).IfNoneMatch(ifNoneMatch).Execute()
+> ArtefactManagerItem GetWorkspaceArchiveContent(ctx, workspaceName).AcceptVersion(acceptVersion).TusResumable(tusResumable).XHTTPMethodOverride(xHTTPMethodOverride).IfNoneMatch(ifNoneMatch).Execute()
 
 Get the manager of the archive file containing the workspace content.
 
@@ -867,11 +867,12 @@ func main() {
 	workspaceName := "workspaceName_example" // string | Unique ID of the Workspace.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 	tusResumable := "1.0.0" // string | Version of the Tus protocol being used. (optional)
+	xHTTPMethodOverride := "HEAD" // string | Verb tunnelling when some methods are not supported. (optional)
 	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkspaceAPI.GetWorkspaceArchiveContent(context.Background(), workspaceName).AcceptVersion(acceptVersion).TusResumable(tusResumable).IfNoneMatch(ifNoneMatch).Execute()
+	resp, r, err := apiClient.WorkspaceAPI.GetWorkspaceArchiveContent(context.Background(), workspaceName).AcceptVersion(acceptVersion).TusResumable(tusResumable).XHTTPMethodOverride(xHTTPMethodOverride).IfNoneMatch(ifNoneMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceAPI.GetWorkspaceArchiveContent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -899,6 +900,7 @@ Name | Type | Description  | Notes
 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
  **tusResumable** | **string** | Version of the Tus protocol being used. | 
+ **xHTTPMethodOverride** | **string** | Verb tunnelling when some methods are not supported. | 
  **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
 
 ### Return type
@@ -1069,7 +1071,7 @@ Name | Type | Description  | Notes
 
 ## GetWorkspaceIncrementalChunk
 
-> ArtefactManagerItem GetWorkspaceIncrementalChunk(ctx, workspaceName).AcceptVersion(acceptVersion).TusResumable(tusResumable).IfNoneMatch(ifNoneMatch).Execute()
+> ArtefactManagerItem GetWorkspaceIncrementalChunk(ctx, workspaceName).AcceptVersion(acceptVersion).TusResumable(tusResumable).XHTTPMethodOverride(xHTTPMethodOverride).IfNoneMatch(ifNoneMatch).Execute()
 
 Get the manager of the file containing the chunked workspace content.
 
@@ -1091,11 +1093,12 @@ func main() {
 	workspaceName := "workspaceName_example" // string | Unique ID of the Workspace.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 	tusResumable := "1.0.0" // string | Version of the Tus protocol being used. (optional)
+	xHTTPMethodOverride := "HEAD" // string | Verb tunnelling when some methods are not supported. (optional)
 	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkspaceAPI.GetWorkspaceIncrementalChunk(context.Background(), workspaceName).AcceptVersion(acceptVersion).TusResumable(tusResumable).IfNoneMatch(ifNoneMatch).Execute()
+	resp, r, err := apiClient.WorkspaceAPI.GetWorkspaceIncrementalChunk(context.Background(), workspaceName).AcceptVersion(acceptVersion).TusResumable(tusResumable).XHTTPMethodOverride(xHTTPMethodOverride).IfNoneMatch(ifNoneMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceAPI.GetWorkspaceIncrementalChunk``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1123,6 +1126,7 @@ Name | Type | Description  | Notes
 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
  **tusResumable** | **string** | Version of the Tus protocol being used. | 
+ **xHTTPMethodOverride** | **string** | Verb tunnelling when some methods are not supported. | 
  **ifNoneMatch** | **string** | Caching: Optional header to improve performance. The value of this header should be the &#x60;ETag&#x60; of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. | 
 
 ### Return type
@@ -1453,7 +1457,7 @@ Name | Type | Description  | Notes
 
 ## UploadWorkspaceIncrementalChunk
 
-> UploadWorkspaceIncrementalChunk(ctx, workspaceName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadChecksum(uploadChecksum).UploadOffset(uploadOffset).Execute()
+> UploadWorkspaceIncrementalChunk(ctx, workspaceName).TusResumable(tusResumable).Body(body).AcceptVersion(acceptVersion).UploadChecksum(uploadChecksum).UploadOffset(uploadOffset).Execute()
 
 Upload part of a workspace.
 
@@ -1474,13 +1478,14 @@ import (
 func main() {
 	workspaceName := "workspaceName_example" // string | Unique ID of the Workspace.
 	tusResumable := "1.0.0" // string | Version of the Tus protocol being used.
+	body := os.NewFile(1234, "some_file") // *os.File | 
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 	uploadChecksum := "uploadChecksum_example" // string | Information about the checksum of the current body payload. (optional)
 	uploadOffset := int64(789) // int64 | The byte offset within a resource. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.WorkspaceAPI.UploadWorkspaceIncrementalChunk(context.Background(), workspaceName).TusResumable(tusResumable).AcceptVersion(acceptVersion).UploadChecksum(uploadChecksum).UploadOffset(uploadOffset).Execute()
+	r, err := apiClient.WorkspaceAPI.UploadWorkspaceIncrementalChunk(context.Background(), workspaceName).TusResumable(tusResumable).Body(body).AcceptVersion(acceptVersion).UploadChecksum(uploadChecksum).UploadOffset(uploadOffset).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceAPI.UploadWorkspaceIncrementalChunk``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1505,6 +1510,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **tusResumable** | **string** | Version of the Tus protocol being used. | 
+ **body** | ***os.File** |  | 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
  **uploadChecksum** | **string** | Information about the checksum of the current body payload. | 
  **uploadOffset** | **int64** | The byte offset within a resource. | 
@@ -1519,7 +1525,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/offset+octet-stream
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
