@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**CreateFPGAPayload**](FPGAPayloadsAPI.md#CreateFPGAPayload) | **Post** /repositories/{repositoryName}/payloads | Create an FPGA payload.
 [**CreateFPGAPayloadUploadSession**](FPGAPayloadsAPI.md#CreateFPGAPayloadUploadSession) | **Post** /payloads/upload-session | Create upload session for FPGA payload.
 [**DeleteFpgaPayload**](FPGAPayloadsAPI.md#DeleteFpgaPayload) | **Delete** /repositories/{repositoryName}/payloads/{fpgaPayloadName} | Delete an FPGA payload.
+[**GetAlternativeFpgaPayloadUploadProgress**](FPGAPayloadsAPI.md#GetAlternativeFpgaPayloadUploadProgress) | **Get** /payloads/upload-session/{uploadSessionName} | Return FPGA payload upload progress.
 [**GetFpgaPayload**](FPGAPayloadsAPI.md#GetFpgaPayload) | **Get** /repositories/{repositoryName}/payloads/{fpgaPayloadName} | Return details of specific FPGA payload.
 [**GetFpgaPayloadUploadJobMessages**](FPGAPayloadsAPI.md#GetFpgaPayloadUploadJobMessages) | **Get** /upload-jobs/{uploadJobName}/messages | FPGA payload upload job Message Feed.
 [**GetFpgaPayloadUploadOptions**](FPGAPayloadsAPI.md#GetFpgaPayloadUploadOptions) | **Options** /payloads/upload-session | Return service TUS protocol support.
@@ -296,6 +297,78 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAlternativeFpgaPayloadUploadProgress
+
+> GetAlternativeFpgaPayloadUploadProgress(ctx, uploadSessionName).XHTTPMethodOverride(xHTTPMethodOverride).AcceptVersion(acceptVersion).Execute()
+
+Return FPGA payload upload progress.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	uploadSessionName := "uploadSessionName_example" // string | Unique ID of an upload session.
+	xHTTPMethodOverride := "HEAD" // string | Verb tunnelling when some methods are not supported.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.FPGAPayloadsAPI.GetAlternativeFpgaPayloadUploadProgress(context.Background(), uploadSessionName).XHTTPMethodOverride(xHTTPMethodOverride).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAPayloadsAPI.GetAlternativeFpgaPayloadUploadProgress``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**uploadSessionName** | **string** | Unique ID of an upload session. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAlternativeFpgaPayloadUploadProgressRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xHTTPMethodOverride** | **string** | Verb tunnelling when some methods are not supported. | 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
 
 ### Return type

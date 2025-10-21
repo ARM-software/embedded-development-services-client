@@ -852,6 +852,176 @@ func (a *FPGAPayloadsAPIService) DeleteFpgaPayloadExecute(r ApiDeleteFpgaPayload
 	return localVarHTTPResponse, nil
 }
 
+type ApiGetAlternativeFpgaPayloadUploadProgressRequest struct {
+	ctx context.Context
+	ApiService *FPGAPayloadsAPIService
+	uploadSessionName string
+	xHTTPMethodOverride *string
+	acceptVersion *string
+}
+
+// Verb tunnelling when some methods are not supported.
+func (r ApiGetAlternativeFpgaPayloadUploadProgressRequest) XHTTPMethodOverride(xHTTPMethodOverride string) ApiGetAlternativeFpgaPayloadUploadProgressRequest {
+	r.xHTTPMethodOverride = &xHTTPMethodOverride
+	return r
+}
+
+// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
+func (r ApiGetAlternativeFpgaPayloadUploadProgressRequest) AcceptVersion(acceptVersion string) ApiGetAlternativeFpgaPayloadUploadProgressRequest {
+	r.acceptVersion = &acceptVersion
+	return r
+}
+
+func (r ApiGetAlternativeFpgaPayloadUploadProgressRequest) Execute() (*http.Response, error) {
+	return r.ApiService.GetAlternativeFpgaPayloadUploadProgressExecute(r)
+}
+
+/*
+GetAlternativeFpgaPayloadUploadProgress Return FPGA payload upload progress.
+
+Returns headers indicating the progress of an upload for an FPGA payload.
+Equivalent to `getFpgaPayloadUploadProgress` but using a method supported by the API gateway
+https://github.com/luraproject/lura/issues/436
+https://github.com/krakend/krakend-ce/issues/846
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param uploadSessionName Unique ID of an upload session.
+ @return ApiGetAlternativeFpgaPayloadUploadProgressRequest
+*/
+func (a *FPGAPayloadsAPIService) GetAlternativeFpgaPayloadUploadProgress(ctx context.Context, uploadSessionName string) ApiGetAlternativeFpgaPayloadUploadProgressRequest {
+	return ApiGetAlternativeFpgaPayloadUploadProgressRequest{
+		ApiService: a,
+		ctx: ctx,
+		uploadSessionName: uploadSessionName,
+	}
+}
+
+// Execute executes the request
+func (a *FPGAPayloadsAPIService) GetAlternativeFpgaPayloadUploadProgressExecute(r ApiGetAlternativeFpgaPayloadUploadProgressRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FPGAPayloadsAPIService.GetAlternativeFpgaPayloadUploadProgress")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/payloads/upload-session/{uploadSessionName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"uploadSessionName"+"}", parameterValueToString(r.uploadSessionName, "uploadSessionName"), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.xHTTPMethodOverride == nil {
+		return nil, reportError("xHTTPMethodOverride is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptVersion != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "X-HTTP-Method-Override", r.xHTTPMethodOverride, "simple", "")
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiGetFpgaPayloadRequest struct {
 	ctx context.Context
 	ApiService *FPGAPayloadsAPIService
