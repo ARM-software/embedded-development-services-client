@@ -1,5 +1,5 @@
-github.com/ARM-software/golang-utils/utils v1.129.0 h1:dUGro1vQf/T+u95sts3bAHe9oNvk9SNimld29vhnxPM=
-github.com/ARM-software/golang-utils/utils v1.129.0/go.mod h1:VmB1bgsNOJ5gF7qqKddjpEpfZKi+nkHX3LGmFoY7VFc=
+github.com/ARM-software/golang-utils/utils v1.131.0 h1:B8d0wnTAPOxCuFoSWBmbxw2s2LJoRPSOqzxmSSrYOls=
+github.com/ARM-software/golang-utils/utils v1.131.0/go.mod h1:l1W+4uRhZCVEoDzozfomDG6erB6kZz63Q+DCn6xNGM8=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1VwoXQT9A3Wy9MM3WgvqSxFWenqJduM=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/deckarep/golang-set/v2 v2.8.0 h1:swm0rlPCmdWn9mESxKOjWk8hXSqoxOp+ZlfuyaAdFlQ=
