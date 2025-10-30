@@ -650,8 +650,9 @@ func (a *PersonalAccessTokenAPIService) ListPATsExecute(r ApiListPATsRequest) (*
 	if r.embed != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
 	} else {
-		var defaultValue bool = false
-		r.embed = &defaultValue
+        var defaultValue bool = false
+        parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+        r.embed = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

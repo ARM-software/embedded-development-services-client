@@ -1010,14 +1010,16 @@ func (a *BuildJobsAPIService) GetBuildMessagesExecute(r ApiGetBuildMessagesReque
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
-		var defaultValue int32 = 20
-		r.limit = &defaultValue
+        var defaultValue int32 = 20
+        parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+        r.limit = &defaultValue
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	} else {
-		var defaultValue int32 = 0
-		r.offset = &defaultValue
+        var defaultValue int32 = 0
+        parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+        r.offset = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1397,14 +1399,16 @@ func (a *BuildJobsAPIService) ListBuildArtefactsExecute(r ApiListBuildArtefactsR
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
-		var defaultValue int32 = 20
-		r.limit = &defaultValue
+        var defaultValue int32 = 20
+        parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+        r.limit = &defaultValue
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	} else {
-		var defaultValue int32 = 0
-		r.offset = &defaultValue
+        var defaultValue int32 = 0
+        parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+        r.offset = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1603,20 +1607,23 @@ func (a *BuildJobsAPIService) ListBuildJobExecute(r ApiListBuildJobRequest) (*Bu
 	if r.embed != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
 	} else {
-		var defaultValue bool = false
-		r.embed = &defaultValue
+        var defaultValue bool = false
+        parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+        r.embed = &defaultValue
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
-		var defaultValue int32 = 20
-		r.limit = &defaultValue
+        var defaultValue int32 = 20
+        parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+        r.limit = &defaultValue
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	} else {
-		var defaultValue int32 = 0
-		r.offset = &defaultValue
+        var defaultValue int32 = 0
+        parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+        r.offset = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1809,20 +1816,23 @@ func (a *BuildJobsAPIService) ListBuildOutputManagersExecute(r ApiListBuildOutpu
 	if r.embed != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
 	} else {
-		var defaultValue bool = false
-		r.embed = &defaultValue
+        var defaultValue bool = false
+        parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+        r.embed = &defaultValue
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
-		var defaultValue int32 = 20
-		r.limit = &defaultValue
+        var defaultValue int32 = 20
+        parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+        r.limit = &defaultValue
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	} else {
-		var defaultValue int32 = 0
-		r.offset = &defaultValue
+        var defaultValue int32 = 0
+        parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+        r.offset = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
