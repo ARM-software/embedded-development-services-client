@@ -18,55 +18,84 @@ package client
 
 import (
 	"encoding/json"
-	"time"
 	"bytes"
 	"fmt"
 )
 
-// checks if the PATItem type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PATItem{}
+// checks if the ServiceAccessTokenCollection type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServiceAccessTokenCollection{}
 
-// PATItem A Personal Access Token Item.
-type PATItem struct {
-	Links NullableAccessTokenItemLinks `json:"_links"`
-	Metadata NullableCommonMetadata `json:"_metadata"`
-	// UTC date and time when the token was last used.
-	LastUsed time.Time `json:"lastUsed"`
-	// Unique ID of the personal access token.
-	Name string `json:"name"`
-	// Human readable name of the personal access token.
+// ServiceAccessTokenCollection This collection resource follows the common pattern of linking to contained resources. Optionally, rather than linking to other resources, it can embed then into the collection to reduce the number of round trips to the server (at the expense of caching). In file system terms, it is similar to a directory but only contains links to (or embeds) a single type of resource.
+type ServiceAccessTokenCollection struct {
+	Embedded *EmbeddedServiceAccessTokenItem `json:"_embedded,omitempty"`
+	Links NullableHalOnlyEmbeddableCollectionLinks `json:"_links"`
+	Metadata NullableCollectionMetadata `json:"_metadata"`
+	// ID of the Collection.
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	// Human readable title of the collection.
 	Title string `json:"title"`
 }
 
-type _PATItem PATItem
+type _ServiceAccessTokenCollection ServiceAccessTokenCollection
 
-// NewPATItem instantiates a new PATItem object
+// NewServiceAccessTokenCollection instantiates a new ServiceAccessTokenCollection object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPATItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, lastUsed time.Time, name string, title string) *PATItem {
-	this := PATItem{}
+func NewServiceAccessTokenCollection(links NullableHalOnlyEmbeddableCollectionLinks, metadata NullableCollectionMetadata, name string, title string) *ServiceAccessTokenCollection {
+	this := ServiceAccessTokenCollection{}
 	this.Links = links
 	this.Metadata = metadata
-	this.LastUsed = lastUsed
 	this.Name = name
 	this.Title = title
 	return &this
 }
 
-// NewPATItemWithDefaults instantiates a new PATItem object
+// NewServiceAccessTokenCollectionWithDefaults instantiates a new ServiceAccessTokenCollection object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPATItemWithDefaults() *PATItem {
-	this := PATItem{}
+func NewServiceAccessTokenCollectionWithDefaults() *ServiceAccessTokenCollection {
+	this := ServiceAccessTokenCollection{}
 	return &this
 }
 
+// GetEmbedded returns the Embedded field value if set, zero value otherwise.
+func (o *ServiceAccessTokenCollection) GetEmbedded() EmbeddedServiceAccessTokenItem {
+	if o == nil || IsNil(o.Embedded) {
+		var ret EmbeddedServiceAccessTokenItem
+		return ret
+	}
+	return *o.Embedded
+}
+
+// GetEmbeddedOk returns a tuple with the Embedded field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceAccessTokenCollection) GetEmbeddedOk() (*EmbeddedServiceAccessTokenItem, bool) {
+	if o == nil || IsNil(o.Embedded) {
+		return nil, false
+	}
+	return o.Embedded, true
+}
+
+// HasEmbedded returns a boolean if a field has been set.
+func (o *ServiceAccessTokenCollection) HasEmbedded() bool {
+	if o != nil && !IsNil(o.Embedded) {
+		return true
+	}
+
+	return false
+}
+
+// SetEmbedded gets a reference to the given EmbeddedServiceAccessTokenItem and assigns it to the Embedded field.
+func (o *ServiceAccessTokenCollection) SetEmbedded(v EmbeddedServiceAccessTokenItem) {
+	o.Embedded = &v
+}
+
 // GetLinks returns the Links field value
-// If the value is explicit nil, the zero value for AccessTokenItemLinks will be returned
-func (o *PATItem) GetLinks() AccessTokenItemLinks {
+// If the value is explicit nil, the zero value for HalOnlyEmbeddableCollectionLinks will be returned
+func (o *ServiceAccessTokenCollection) GetLinks() HalOnlyEmbeddableCollectionLinks {
 	if o == nil || o.Links.Get() == nil {
-		var ret AccessTokenItemLinks
+		var ret HalOnlyEmbeddableCollectionLinks
 		return ret
 	}
 
@@ -76,7 +105,7 @@ func (o *PATItem) GetLinks() AccessTokenItemLinks {
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PATItem) GetLinksOk() (*AccessTokenItemLinks, bool) {
+func (o *ServiceAccessTokenCollection) GetLinksOk() (*HalOnlyEmbeddableCollectionLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,15 +113,15 @@ func (o *PATItem) GetLinksOk() (*AccessTokenItemLinks, bool) {
 }
 
 // SetLinks sets field value
-func (o *PATItem) SetLinks(v AccessTokenItemLinks) {
+func (o *ServiceAccessTokenCollection) SetLinks(v HalOnlyEmbeddableCollectionLinks) {
 	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
-// If the value is explicit nil, the zero value for CommonMetadata will be returned
-func (o *PATItem) GetMetadata() CommonMetadata {
+// If the value is explicit nil, the zero value for CollectionMetadata will be returned
+func (o *ServiceAccessTokenCollection) GetMetadata() CollectionMetadata {
 	if o == nil || o.Metadata.Get() == nil {
-		var ret CommonMetadata
+		var ret CollectionMetadata
 		return ret
 	}
 
@@ -102,7 +131,7 @@ func (o *PATItem) GetMetadata() CommonMetadata {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PATItem) GetMetadataOk() (*CommonMetadata, bool) {
+func (o *ServiceAccessTokenCollection) GetMetadataOk() (*CollectionMetadata, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -110,36 +139,12 @@ func (o *PATItem) GetMetadataOk() (*CommonMetadata, bool) {
 }
 
 // SetMetadata sets field value
-func (o *PATItem) SetMetadata(v CommonMetadata) {
+func (o *ServiceAccessTokenCollection) SetMetadata(v CollectionMetadata) {
 	o.Metadata.Set(&v)
 }
 
-// GetLastUsed returns the LastUsed field value
-func (o *PATItem) GetLastUsed() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.LastUsed
-}
-
-// GetLastUsedOk returns a tuple with the LastUsed field value
-// and a boolean to check if the value has been set.
-func (o *PATItem) GetLastUsedOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastUsed, true
-}
-
-// SetLastUsed sets field value
-func (o *PATItem) SetLastUsed(v time.Time) {
-	o.LastUsed = v
-}
-
 // GetName returns the Name field value
-func (o *PATItem) GetName() string {
+func (o *ServiceAccessTokenCollection) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -150,7 +155,7 @@ func (o *PATItem) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *PATItem) GetNameOk() (*string, bool) {
+func (o *ServiceAccessTokenCollection) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -158,12 +163,12 @@ func (o *PATItem) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *PATItem) SetName(v string) {
+func (o *ServiceAccessTokenCollection) SetName(v string) {
 	o.Name = v
 }
 
 // GetTitle returns the Title field value
-func (o *PATItem) GetTitle() string {
+func (o *ServiceAccessTokenCollection) GetTitle() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -174,7 +179,7 @@ func (o *PATItem) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
-func (o *PATItem) GetTitleOk() (*string, bool) {
+func (o *ServiceAccessTokenCollection) GetTitleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -182,11 +187,11 @@ func (o *PATItem) GetTitleOk() (*string, bool) {
 }
 
 // SetTitle sets field value
-func (o *PATItem) SetTitle(v string) {
+func (o *ServiceAccessTokenCollection) SetTitle(v string) {
 	o.Title = v
 }
 
-func (o PATItem) MarshalJSON() ([]byte, error) {
+func (o ServiceAccessTokenCollection) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -194,24 +199,25 @@ func (o PATItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PATItem) ToMap() (map[string]interface{}, error) {
+func (o ServiceAccessTokenCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Embedded) {
+		toSerialize["_embedded"] = o.Embedded
+	}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	toSerialize["lastUsed"] = o.LastUsed
 	toSerialize["name"] = o.Name
 	toSerialize["title"] = o.Title
 	return toSerialize, nil
 }
 
-func (o *PATItem) UnmarshalJSON(data []byte) (err error) {
+func (o *ServiceAccessTokenCollection) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_links",
 		"_metadata",
-		"lastUsed",
 		"name",
 		"title",
 	}
@@ -230,53 +236,53 @@ func (o *PATItem) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varPATItem := _PATItem{}
+	varServiceAccessTokenCollection := _ServiceAccessTokenCollection{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPATItem)
+	err = decoder.Decode(&varServiceAccessTokenCollection)
 
 	if err != nil {
 		return err
 	}
 
-	*o = PATItem(varPATItem)
+	*o = ServiceAccessTokenCollection(varServiceAccessTokenCollection)
 
 	return err
 }
 
-type NullablePATItem struct {
-	value *PATItem
+type NullableServiceAccessTokenCollection struct {
+	value *ServiceAccessTokenCollection
 	isSet bool
 }
 
-func (v NullablePATItem) Get() *PATItem {
+func (v NullableServiceAccessTokenCollection) Get() *ServiceAccessTokenCollection {
 	return v.value
 }
 
-func (v *NullablePATItem) Set(val *PATItem) {
+func (v *NullableServiceAccessTokenCollection) Set(val *ServiceAccessTokenCollection) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePATItem) IsSet() bool {
+func (v NullableServiceAccessTokenCollection) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePATItem) Unset() {
+func (v *NullableServiceAccessTokenCollection) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePATItem(val *PATItem) *NullablePATItem {
-	return &NullablePATItem{value: val, isSet: true}
+func NewNullableServiceAccessTokenCollection(val *ServiceAccessTokenCollection) *NullableServiceAccessTokenCollection {
+	return &NullableServiceAccessTokenCollection{value: val, isSet: true}
 }
 
-func (v NullablePATItem) MarshalJSON() ([]byte, error) {
+func (v NullableServiceAccessTokenCollection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePATItem) UnmarshalJSON(src []byte) error {
+func (v *NullableServiceAccessTokenCollection) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

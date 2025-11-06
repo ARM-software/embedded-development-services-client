@@ -229,7 +229,7 @@ func (a *PersonalAccessTokenAPIService) CreatePATExecute(r ApiCreatePATRequest) 
 type ApiDeletePATRequest struct {
 	ctx context.Context
 	ApiService *PersonalAccessTokenAPIService
-	patName string
+	accessTokenName string
 	acceptVersion *string
 }
 
@@ -249,14 +249,14 @@ DeletePAT Delete a personal access token
 Delete a specific personal access token for the user.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param patName Unique ID of the personal access token.
+ @param accessTokenName Unique ID of the access token.
  @return ApiDeletePATRequest
 */
-func (a *PersonalAccessTokenAPIService) DeletePAT(ctx context.Context, patName string) ApiDeletePATRequest {
+func (a *PersonalAccessTokenAPIService) DeletePAT(ctx context.Context, accessTokenName string) ApiDeletePATRequest {
 	return ApiDeletePATRequest{
 		ApiService: a,
 		ctx: ctx,
-		patName: patName,
+		accessTokenName: accessTokenName,
 	}
 }
 
@@ -273,8 +273,8 @@ func (a *PersonalAccessTokenAPIService) DeletePATExecute(r ApiDeletePATRequest) 
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/personal-access-tokens/{patName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"patName"+"}", parameterValueToString(r.patName, "patName"), -1)
+	localVarPath := localBasePath + "/personal-access-tokens/{accessTokenName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"accessTokenName"+"}", parameterValueToString(r.accessTokenName, "accessTokenName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -407,7 +407,7 @@ func (a *PersonalAccessTokenAPIService) DeletePATExecute(r ApiDeletePATRequest) 
 type ApiGetPATRequest struct {
 	ctx context.Context
 	ApiService *PersonalAccessTokenAPIService
-	patName string
+	accessTokenName string
 	acceptVersion *string
 	ifNoneMatch *string
 }
@@ -434,14 +434,14 @@ GetPAT Get a personal access token
 Get a specific personal access token for the user.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param patName Unique ID of the personal access token.
+ @param accessTokenName Unique ID of the access token.
  @return ApiGetPATRequest
 */
-func (a *PersonalAccessTokenAPIService) GetPAT(ctx context.Context, patName string) ApiGetPATRequest {
+func (a *PersonalAccessTokenAPIService) GetPAT(ctx context.Context, accessTokenName string) ApiGetPATRequest {
 	return ApiGetPATRequest{
 		ApiService: a,
 		ctx: ctx,
-		patName: patName,
+		accessTokenName: accessTokenName,
 	}
 }
 
@@ -460,8 +460,8 @@ func (a *PersonalAccessTokenAPIService) GetPATExecute(r ApiGetPATRequest) (*PATI
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/personal-access-tokens/{patName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"patName"+"}", parameterValueToString(r.patName, "patName"), -1)
+	localVarPath := localBasePath + "/personal-access-tokens/{accessTokenName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"accessTokenName"+"}", parameterValueToString(r.accessTokenName, "accessTokenName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

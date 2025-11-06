@@ -29,7 +29,7 @@ var _ MappedNullable = &PATCreationItem{}
 type PATCreationItem struct {
 	// The TTL (time to live in seconds) describing how long the personal access token will be alive for.
 	TTL int64 `json:"TTL"`
-	Links NullablePATItemLinks `json:"_links"`
+	Links NullableAccessTokenItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// Unique ID of the personal access token.
 	Name string `json:"name"`
@@ -45,7 +45,7 @@ type _PATCreationItem PATCreationItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPATCreationItem(tTL int64, links NullablePATItemLinks, metadata NullableCommonMetadata, name string, secret string, title string) *PATCreationItem {
+func NewPATCreationItem(tTL int64, links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, name string, secret string, title string) *PATCreationItem {
 	this := PATCreationItem{}
 	this.TTL = tTL
 	this.Links = links
@@ -89,10 +89,10 @@ func (o *PATCreationItem) SetTTL(v int64) {
 }
 
 // GetLinks returns the Links field value
-// If the value is explicit nil, the zero value for PATItemLinks will be returned
-func (o *PATCreationItem) GetLinks() PATItemLinks {
+// If the value is explicit nil, the zero value for AccessTokenItemLinks will be returned
+func (o *PATCreationItem) GetLinks() AccessTokenItemLinks {
 	if o == nil || o.Links.Get() == nil {
-		var ret PATItemLinks
+		var ret AccessTokenItemLinks
 		return ret
 	}
 
@@ -102,7 +102,7 @@ func (o *PATCreationItem) GetLinks() PATItemLinks {
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PATCreationItem) GetLinksOk() (*PATItemLinks, bool) {
+func (o *PATCreationItem) GetLinksOk() (*AccessTokenItemLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -110,7 +110,7 @@ func (o *PATCreationItem) GetLinksOk() (*PATItemLinks, bool) {
 }
 
 // SetLinks sets field value
-func (o *PATCreationItem) SetLinks(v PATItemLinks) {
+func (o *PATCreationItem) SetLinks(v AccessTokenItemLinks) {
 	o.Links.Set(&v)
 }
 

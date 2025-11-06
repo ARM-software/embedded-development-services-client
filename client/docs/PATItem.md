@@ -8,7 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Links** | [**NullablePATItemLinks**](PATItemLinks.md) |  | 
+**Links** | [**NullableAccessTokenItemLinks**](AccessTokenItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **LastUsed** | **time.Time** | UTC date and time when the token was last used. | [readonly] 
 **Name** | **string** | Unique ID of the personal access token. | [readonly] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewPATItem
 
-`func NewPATItem(links NullablePATItemLinks, metadata NullableCommonMetadata, lastUsed time.Time, name string, title string, ) *PATItem`
+`func NewPATItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, lastUsed time.Time, name string, title string, ) *PATItem`
 
 NewPATItem instantiates a new PATItem object
 This constructor will assign default values to properties that have it defined,
@@ -35,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLinks
 
-`func (o *PATItem) GetLinks() PATItemLinks`
+`func (o *PATItem) GetLinks() AccessTokenItemLinks`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *PATItem) GetLinksOk() (*PATItemLinks, bool)`
+`func (o *PATItem) GetLinksOk() (*AccessTokenItemLinks, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *PATItem) SetLinks(v PATItemLinks)`
+`func (o *PATItem) SetLinks(v AccessTokenItemLinks)`
 
 SetLinks sets Links field to given value.
 

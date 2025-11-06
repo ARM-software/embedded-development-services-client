@@ -9,7 +9,7 @@ SPDX-License-Identifier: Apache-2.0
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TTL** | **int64** | The TTL (time to live in seconds) describing how long the personal access token will be alive for. | 
-**Links** | [**NullablePATItemLinks**](PATItemLinks.md) |  | 
+**Links** | [**NullableAccessTokenItemLinks**](AccessTokenItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Name** | **string** | Unique ID of the personal access token. | [readonly] 
 **Secret** | **string** | The personal access token. | [readonly] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewPATCreationItem
 
-`func NewPATCreationItem(tTL int64, links NullablePATItemLinks, metadata NullableCommonMetadata, name string, secret string, title string, ) *PATCreationItem`
+`func NewPATCreationItem(tTL int64, links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, name string, secret string, title string, ) *PATCreationItem`
 
 NewPATCreationItem instantiates a new PATCreationItem object
 This constructor will assign default values to properties that have it defined,
@@ -56,20 +56,20 @@ SetTTL sets TTL field to given value.
 
 ### GetLinks
 
-`func (o *PATCreationItem) GetLinks() PATItemLinks`
+`func (o *PATCreationItem) GetLinks() AccessTokenItemLinks`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *PATCreationItem) GetLinksOk() (*PATItemLinks, bool)`
+`func (o *PATCreationItem) GetLinksOk() (*AccessTokenItemLinks, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *PATCreationItem) SetLinks(v PATItemLinks)`
+`func (o *PATCreationItem) SetLinks(v AccessTokenItemLinks)`
 
 SetLinks sets Links field to given value.
 

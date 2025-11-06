@@ -1561,6 +1561,97 @@ func NewIntellisenseJobCollectionCollection() IStaticPage {
 }
 
 // ============================================================================================
+// This extends ServiceAccessTokenItem and ServiceAccessTokenCollection definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *ServiceAccessTokenItem) FetchType() string {
+	return "ServiceAccessTokenItem"
+}
+
+// FetchLinks returns the resource links if present
+func (o *ServiceAccessTokenItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *ServiceAccessTokenItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *ServiceAccessTokenItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// NewServiceAccessTokenModel returns a model.
+func NewServiceAccessTokenModel() IModel {
+	return NewServiceAccessTokenItemWithDefaults()
+}
+
+// ServiceAccessTokenIterator defines an iterator over a collection.
+type ServiceAccessTokenIterator struct {
+	elements     []ServiceAccessTokenItem
+	currentIndex int
+}
+
+func (m *ServiceAccessTokenIterator) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *ServiceAccessTokenIterator) GetNext() (item any, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func NewServiceAccessTokenIterator(elements []ServiceAccessTokenItem) (IIterator, error) {
+	return &ServiceAccessTokenIterator{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
+
+// FetchType returns the resource type
+func (o *ServiceAccessTokenCollection) FetchType() string {
+	return "ServiceAccessTokenCollection page"
+}
+
+// FetchLinks returns the resource links if present
+func (o *ServiceAccessTokenCollection) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *ServiceAccessTokenCollection) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *ServiceAccessTokenCollection) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// ============================================================================================
 // This extends ServiceAccountItem and ServiceAccountCollection definitions
 // ============================================================================================
 

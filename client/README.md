@@ -213,14 +213,17 @@ Class | Method | HTTP request | Description
 *IntellisenseJobsAPI* | [**ListIntellisenseOutputManagers**](docs/IntellisenseJobsAPI.md#listintellisenseoutputmanagers) | **Get** /intellisense-jobs/{jobName}/outputs/ | Get the list of artefact managers for the given Intellisense job.
 *IntellisenseJobsAPI* | [**RetainIntellisenseJob**](docs/IntellisenseJobsAPI.md#retainintellisensejob) | **Post** /intellisense-jobs/{jobName}/retain | Update how long an intellisense job will be retained before automatic deletion.
 *PersonalAccessTokenAPI* | [**CreatePAT**](docs/PersonalAccessTokenAPI.md#createpat) | **Post** /personal-access-tokens/ | Create a new personal access token for a user
-*PersonalAccessTokenAPI* | [**DeletePAT**](docs/PersonalAccessTokenAPI.md#deletepat) | **Delete** /personal-access-tokens/{patName} | Delete a personal access token
-*PersonalAccessTokenAPI* | [**GetPAT**](docs/PersonalAccessTokenAPI.md#getpat) | **Get** /personal-access-tokens/{patName} | Get a personal access token
+*PersonalAccessTokenAPI* | [**DeletePAT**](docs/PersonalAccessTokenAPI.md#deletepat) | **Delete** /personal-access-tokens/{accessTokenName} | Delete a personal access token
+*PersonalAccessTokenAPI* | [**GetPAT**](docs/PersonalAccessTokenAPI.md#getpat) | **Get** /personal-access-tokens/{accessTokenName} | Get a personal access token
 *PersonalAccessTokenAPI* | [**ListPATs**](docs/PersonalAccessTokenAPI.md#listpats) | **Get** /personal-access-tokens/ | List all personal access tokens for the user
 *RootResourceAPI* | [**GetRoot**](docs/RootResourceAPI.md#getroot) | **Get** / | Get the Root resource.
+*ServiceAccountAPI* | [**CreateSAT**](docs/ServiceAccountAPI.md#createsat) | **Post** /service-accounts/{serviceAccountName}/tokens | Create a new access token for the service account
 *ServiceAccountAPI* | [**CreateServiceAccount**](docs/ServiceAccountAPI.md#createserviceaccount) | **Post** /service-accounts/ | Create a service account.
+*ServiceAccountAPI* | [**DeleteSAT**](docs/ServiceAccountAPI.md#deletesat) | **Delete** /service-accounts/{serviceAccountName}/tokens/{accessTokenName} | Delete the service access token for the service account
 *ServiceAccountAPI* | [**DeleteServiceAccount**](docs/ServiceAccountAPI.md#deleteserviceaccount) | **Delete** /service-accounts/{serviceAccountName} | Delete a service account
 *ServiceAccountAPI* | [**EditServiceAccount**](docs/ServiceAccountAPI.md#editserviceaccount) | **Put** /service-accounts/{serviceAccountName} | Update a service account
 *ServiceAccountAPI* | [**GetServiceAccount**](docs/ServiceAccountAPI.md#getserviceaccount) | **Get** /service-accounts/{serviceAccountName} | Get a service account
+*ServiceAccountAPI* | [**ListSATs**](docs/ServiceAccountAPI.md#listsats) | **Get** /service-accounts/{serviceAccountName}/tokens | List all access tokens for the service account
 *ServiceAccountAPI* | [**ListServiceAccounts**](docs/ServiceAccountAPI.md#listserviceaccounts) | **Get** /service-accounts/ | List all service accounts
 *VHTRunJobsAPI* | [**CancelVhtRunJob**](docs/VHTRunJobsAPI.md#cancelvhtrunjob) | **Post** /vht-run-jobs/{jobName}/cancel | Cancel a VHT run job.
 *VHTRunJobsAPI* | [**DeleteVhtRunJob**](docs/VHTRunJobsAPI.md#deletevhtrunjob) | **Delete** /vht-run-jobs/{jobName} | Delete an VHT run Job.
@@ -272,6 +275,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AccessTokenItemLinks](docs/AccessTokenItemLinks.md)
  - [AdditionalTool](docs/AdditionalTool.md)
  - [ArtefactManagerCollection](docs/ArtefactManagerCollection.md)
  - [ArtefactManagerItem](docs/ArtefactManagerItem.md)
@@ -304,6 +308,7 @@ Class | Method | HTTP request | Description
  - [EmbeddedGenericWorkerItems](docs/EmbeddedGenericWorkerItems.md)
  - [EmbeddedIntellisenseJobItems](docs/EmbeddedIntellisenseJobItems.md)
  - [EmbeddedPATItem](docs/EmbeddedPATItem.md)
+ - [EmbeddedServiceAccessTokenItem](docs/EmbeddedServiceAccessTokenItem.md)
  - [EmbeddedServiceAccountItem](docs/EmbeddedServiceAccountItem.md)
  - [EmbeddedUserItem](docs/EmbeddedUserItem.md)
  - [EmbeddedVendorItems](docs/EmbeddedVendorItems.md)
@@ -366,12 +371,13 @@ Class | Method | HTTP request | Description
  - [PATCollection](docs/PATCollection.md)
  - [PATCreationItem](docs/PATCreationItem.md)
  - [PATItem](docs/PATItem.md)
- - [PATItemLinks](docs/PATItemLinks.md)
  - [PagingMetadata](docs/PagingMetadata.md)
  - [PermissionItem](docs/PermissionItem.md)
  - [PermissionOperation](docs/PermissionOperation.md)
  - [RetainBuildJobRequest](docs/RetainBuildJobRequest.md)
  - [RetainWorkspaceRequest](docs/RetainWorkspaceRequest.md)
+ - [ServiceAccessTokenCollection](docs/ServiceAccessTokenCollection.md)
+ - [ServiceAccessTokenItem](docs/ServiceAccessTokenItem.md)
  - [ServiceAccountCollection](docs/ServiceAccountCollection.md)
  - [ServiceAccountItem](docs/ServiceAccountItem.md)
  - [ServiceAccountItemLinks](docs/ServiceAccountItemLinks.md)

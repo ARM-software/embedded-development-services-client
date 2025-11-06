@@ -23,48 +23,56 @@ import (
 	"fmt"
 )
 
-// checks if the PATItem type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PATItem{}
+// checks if the ServiceAccessTokenItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServiceAccessTokenItem{}
 
-// PATItem A Personal Access Token Item.
-type PATItem struct {
+// ServiceAccessTokenItem Details of a service access token.
+type ServiceAccessTokenItem struct {
 	Links NullableAccessTokenItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
-	// UTC date and time when the token was last used.
+	// ID of the user who created this access token.
+	CreatedBy string `json:"createdBy" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	// When this token was last used to authenticate a request.
 	LastUsed time.Time `json:"lastUsed"`
-	// Unique ID of the personal access token.
-	Name string `json:"name"`
-	// Human readable name of the personal access token.
-	Title string `json:"title"`
+	// Unique ID of the service access token.
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	// The access token. This field will only be returned by the service upon creation and the secret will not be re-retrievable.
+	Secret *string `json:"secret,omitempty"`
+	// The four character suffix of the access token secret.
+	SecretSuffix string `json:"secretSuffix"`
+	// Human readable name of the service access token.
+	Title string `json:"title" validate:"regexp=^(?!\\\\s)[A-Za-z]+(?:[ '-][A-Za-z]+){0,99}(?<!\\\\s)$"`
 }
 
-type _PATItem PATItem
+type _ServiceAccessTokenItem ServiceAccessTokenItem
 
-// NewPATItem instantiates a new PATItem object
+// NewServiceAccessTokenItem instantiates a new ServiceAccessTokenItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPATItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, lastUsed time.Time, name string, title string) *PATItem {
-	this := PATItem{}
+func NewServiceAccessTokenItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, createdBy string, lastUsed time.Time, name string, secretSuffix string, title string) *ServiceAccessTokenItem {
+	this := ServiceAccessTokenItem{}
 	this.Links = links
 	this.Metadata = metadata
+	this.CreatedBy = createdBy
 	this.LastUsed = lastUsed
 	this.Name = name
+	this.SecretSuffix = secretSuffix
 	this.Title = title
 	return &this
 }
 
-// NewPATItemWithDefaults instantiates a new PATItem object
+// NewServiceAccessTokenItemWithDefaults instantiates a new ServiceAccessTokenItem object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPATItemWithDefaults() *PATItem {
-	this := PATItem{}
+func NewServiceAccessTokenItemWithDefaults() *ServiceAccessTokenItem {
+	this := ServiceAccessTokenItem{}
 	return &this
 }
 
 // GetLinks returns the Links field value
 // If the value is explicit nil, the zero value for AccessTokenItemLinks will be returned
-func (o *PATItem) GetLinks() AccessTokenItemLinks {
+func (o *ServiceAccessTokenItem) GetLinks() AccessTokenItemLinks {
 	if o == nil || o.Links.Get() == nil {
 		var ret AccessTokenItemLinks
 		return ret
@@ -76,7 +84,7 @@ func (o *PATItem) GetLinks() AccessTokenItemLinks {
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PATItem) GetLinksOk() (*AccessTokenItemLinks, bool) {
+func (o *ServiceAccessTokenItem) GetLinksOk() (*AccessTokenItemLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,13 +92,13 @@ func (o *PATItem) GetLinksOk() (*AccessTokenItemLinks, bool) {
 }
 
 // SetLinks sets field value
-func (o *PATItem) SetLinks(v AccessTokenItemLinks) {
+func (o *ServiceAccessTokenItem) SetLinks(v AccessTokenItemLinks) {
 	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
 // If the value is explicit nil, the zero value for CommonMetadata will be returned
-func (o *PATItem) GetMetadata() CommonMetadata {
+func (o *ServiceAccessTokenItem) GetMetadata() CommonMetadata {
 	if o == nil || o.Metadata.Get() == nil {
 		var ret CommonMetadata
 		return ret
@@ -102,7 +110,7 @@ func (o *PATItem) GetMetadata() CommonMetadata {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PATItem) GetMetadataOk() (*CommonMetadata, bool) {
+func (o *ServiceAccessTokenItem) GetMetadataOk() (*CommonMetadata, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -110,12 +118,36 @@ func (o *PATItem) GetMetadataOk() (*CommonMetadata, bool) {
 }
 
 // SetMetadata sets field value
-func (o *PATItem) SetMetadata(v CommonMetadata) {
+func (o *ServiceAccessTokenItem) SetMetadata(v CommonMetadata) {
 	o.Metadata.Set(&v)
 }
 
+// GetCreatedBy returns the CreatedBy field value
+func (o *ServiceAccessTokenItem) GetCreatedBy() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedBy
+}
+
+// GetCreatedByOk returns a tuple with the CreatedBy field value
+// and a boolean to check if the value has been set.
+func (o *ServiceAccessTokenItem) GetCreatedByOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedBy, true
+}
+
+// SetCreatedBy sets field value
+func (o *ServiceAccessTokenItem) SetCreatedBy(v string) {
+	o.CreatedBy = v
+}
+
 // GetLastUsed returns the LastUsed field value
-func (o *PATItem) GetLastUsed() time.Time {
+func (o *ServiceAccessTokenItem) GetLastUsed() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -126,7 +158,7 @@ func (o *PATItem) GetLastUsed() time.Time {
 
 // GetLastUsedOk returns a tuple with the LastUsed field value
 // and a boolean to check if the value has been set.
-func (o *PATItem) GetLastUsedOk() (*time.Time, bool) {
+func (o *ServiceAccessTokenItem) GetLastUsedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -134,12 +166,12 @@ func (o *PATItem) GetLastUsedOk() (*time.Time, bool) {
 }
 
 // SetLastUsed sets field value
-func (o *PATItem) SetLastUsed(v time.Time) {
+func (o *ServiceAccessTokenItem) SetLastUsed(v time.Time) {
 	o.LastUsed = v
 }
 
 // GetName returns the Name field value
-func (o *PATItem) GetName() string {
+func (o *ServiceAccessTokenItem) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -150,7 +182,7 @@ func (o *PATItem) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *PATItem) GetNameOk() (*string, bool) {
+func (o *ServiceAccessTokenItem) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -158,12 +190,68 @@ func (o *PATItem) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *PATItem) SetName(v string) {
+func (o *ServiceAccessTokenItem) SetName(v string) {
 	o.Name = v
 }
 
+// GetSecret returns the Secret field value if set, zero value otherwise.
+func (o *ServiceAccessTokenItem) GetSecret() string {
+	if o == nil || IsNil(o.Secret) {
+		var ret string
+		return ret
+	}
+	return *o.Secret
+}
+
+// GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceAccessTokenItem) GetSecretOk() (*string, bool) {
+	if o == nil || IsNil(o.Secret) {
+		return nil, false
+	}
+	return o.Secret, true
+}
+
+// HasSecret returns a boolean if a field has been set.
+func (o *ServiceAccessTokenItem) HasSecret() bool {
+	if o != nil && !IsNil(o.Secret) {
+		return true
+	}
+
+	return false
+}
+
+// SetSecret gets a reference to the given string and assigns it to the Secret field.
+func (o *ServiceAccessTokenItem) SetSecret(v string) {
+	o.Secret = &v
+}
+
+// GetSecretSuffix returns the SecretSuffix field value
+func (o *ServiceAccessTokenItem) GetSecretSuffix() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SecretSuffix
+}
+
+// GetSecretSuffixOk returns a tuple with the SecretSuffix field value
+// and a boolean to check if the value has been set.
+func (o *ServiceAccessTokenItem) GetSecretSuffixOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SecretSuffix, true
+}
+
+// SetSecretSuffix sets field value
+func (o *ServiceAccessTokenItem) SetSecretSuffix(v string) {
+	o.SecretSuffix = v
+}
+
 // GetTitle returns the Title field value
-func (o *PATItem) GetTitle() string {
+func (o *ServiceAccessTokenItem) GetTitle() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -174,7 +262,7 @@ func (o *PATItem) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
-func (o *PATItem) GetTitleOk() (*string, bool) {
+func (o *ServiceAccessTokenItem) GetTitleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -182,11 +270,11 @@ func (o *PATItem) GetTitleOk() (*string, bool) {
 }
 
 // SetTitle sets field value
-func (o *PATItem) SetTitle(v string) {
+func (o *ServiceAccessTokenItem) SetTitle(v string) {
 	o.Title = v
 }
 
-func (o PATItem) MarshalJSON() ([]byte, error) {
+func (o ServiceAccessTokenItem) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -194,25 +282,32 @@ func (o PATItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PATItem) ToMap() (map[string]interface{}, error) {
+func (o ServiceAccessTokenItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
+	toSerialize["createdBy"] = o.CreatedBy
 	toSerialize["lastUsed"] = o.LastUsed
 	toSerialize["name"] = o.Name
+	if !IsNil(o.Secret) {
+		toSerialize["secret"] = o.Secret
+	}
+	toSerialize["secretSuffix"] = o.SecretSuffix
 	toSerialize["title"] = o.Title
 	return toSerialize, nil
 }
 
-func (o *PATItem) UnmarshalJSON(data []byte) (err error) {
+func (o *ServiceAccessTokenItem) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_links",
 		"_metadata",
+		"createdBy",
 		"lastUsed",
 		"name",
+		"secretSuffix",
 		"title",
 	}
 
@@ -230,53 +325,53 @@ func (o *PATItem) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varPATItem := _PATItem{}
+	varServiceAccessTokenItem := _ServiceAccessTokenItem{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPATItem)
+	err = decoder.Decode(&varServiceAccessTokenItem)
 
 	if err != nil {
 		return err
 	}
 
-	*o = PATItem(varPATItem)
+	*o = ServiceAccessTokenItem(varServiceAccessTokenItem)
 
 	return err
 }
 
-type NullablePATItem struct {
-	value *PATItem
+type NullableServiceAccessTokenItem struct {
+	value *ServiceAccessTokenItem
 	isSet bool
 }
 
-func (v NullablePATItem) Get() *PATItem {
+func (v NullableServiceAccessTokenItem) Get() *ServiceAccessTokenItem {
 	return v.value
 }
 
-func (v *NullablePATItem) Set(val *PATItem) {
+func (v *NullableServiceAccessTokenItem) Set(val *ServiceAccessTokenItem) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePATItem) IsSet() bool {
+func (v NullableServiceAccessTokenItem) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePATItem) Unset() {
+func (v *NullableServiceAccessTokenItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePATItem(val *PATItem) *NullablePATItem {
-	return &NullablePATItem{value: val, isSet: true}
+func NewNullableServiceAccessTokenItem(val *ServiceAccessTokenItem) *NullableServiceAccessTokenItem {
+	return &NullableServiceAccessTokenItem{value: val, isSet: true}
 }
 
-func (v NullablePATItem) MarshalJSON() ([]byte, error) {
+func (v NullableServiceAccessTokenItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePATItem) UnmarshalJSON(src []byte) error {
+func (v *NullableServiceAccessTokenItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -29,6 +29,7 @@ api_workspace.go
 api_workspace_source.go
 client.go
 configuration.go
+docs/AccessTokenItemLinks.md
 docs/AdditionalTool.md
 docs/ArtefactManagerCollection.md
 docs/ArtefactManagerItem.md
@@ -67,6 +68,7 @@ docs/EmbeddedGenericWorkJobItems.md
 docs/EmbeddedGenericWorkerItems.md
 docs/EmbeddedIntellisenseJobItems.md
 docs/EmbeddedPATItem.md
+docs/EmbeddedServiceAccessTokenItem.md
 docs/EmbeddedServiceAccountItem.md
 docs/EmbeddedUserItem.md
 docs/EmbeddedVendorItems.md
@@ -139,7 +141,6 @@ docs/NotificationMessageObject.md
 docs/PATCollection.md
 docs/PATCreationItem.md
 docs/PATItem.md
-docs/PATItemLinks.md
 docs/PagingMetadata.md
 docs/PermissionItem.md
 docs/PermissionOperation.md
@@ -147,6 +148,8 @@ docs/PersonalAccessTokenAPI.md
 docs/RetainBuildJobRequest.md
 docs/RetainWorkspaceRequest.md
 docs/RootResourceAPI.md
+docs/ServiceAccessTokenCollection.md
+docs/ServiceAccessTokenItem.md
 docs/ServiceAccountAPI.md
 docs/ServiceAccountCollection.md
 docs/ServiceAccountItem.md
@@ -190,6 +193,7 @@ docs/WorkspaceSourceItemLinks.md
 git_push.sh
 go.mod
 go.sum
+model_access_token_item_links.go
 model_additional_tool.go
 model_artefact_manager_collection.go
 model_artefact_manager_item.go
@@ -222,6 +226,7 @@ model_embedded_generic_work_job_items.go
 model_embedded_generic_worker_items.go
 model_embedded_intellisense_job_items.go
 model_embedded_pat_item.go
+model_embedded_service_access_token_item.go
 model_embedded_service_account_item.go
 model_embedded_user_item.go
 model_embedded_vendor_items.go
@@ -285,11 +290,12 @@ model_paging_metadata.go
 model_pat_collection.go
 model_pat_creation_item.go
 model_pat_item.go
-model_pat_item_links.go
 model_permission_item.go
 model_permission_operation.go
 model_retain_build_job_request.go
 model_retain_workspace_request.go
+model_service_access_token_collection.go
+model_service_access_token_item.go
 model_service_account_collection.go
 model_service_account_item.go
 model_service_account_item_links.go

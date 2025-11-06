@@ -9,8 +9,8 @@ All URIs are relative to *https://all.api.keil.arm.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreatePAT**](PersonalAccessTokenAPI.md#CreatePAT) | **Post** /personal-access-tokens/ | Create a new personal access token for a user
-[**DeletePAT**](PersonalAccessTokenAPI.md#DeletePAT) | **Delete** /personal-access-tokens/{patName} | Delete a personal access token
-[**GetPAT**](PersonalAccessTokenAPI.md#GetPAT) | **Get** /personal-access-tokens/{patName} | Get a personal access token
+[**DeletePAT**](PersonalAccessTokenAPI.md#DeletePAT) | **Delete** /personal-access-tokens/{accessTokenName} | Delete a personal access token
+[**GetPAT**](PersonalAccessTokenAPI.md#GetPAT) | **Get** /personal-access-tokens/{accessTokenName} | Get a personal access token
 [**ListPATs**](PersonalAccessTokenAPI.md#ListPATs) | **Get** /personal-access-tokens/ | List all personal access tokens for the user
 
 
@@ -85,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## DeletePAT
 
-> DeletePAT(ctx, patName).AcceptVersion(acceptVersion).Execute()
+> DeletePAT(ctx, accessTokenName).AcceptVersion(acceptVersion).Execute()
 
 Delete a personal access token
 
@@ -104,12 +104,12 @@ import (
 )
 
 func main() {
-	patName := "patName_example" // string | Unique ID of the personal access token.
+	accessTokenName := "accessTokenName_example" // string | Unique ID of the access token.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.PersonalAccessTokenAPI.DeletePAT(context.Background(), patName).AcceptVersion(acceptVersion).Execute()
+	r, err := apiClient.PersonalAccessTokenAPI.DeletePAT(context.Background(), accessTokenName).AcceptVersion(acceptVersion).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PersonalAccessTokenAPI.DeletePAT``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,7 +123,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**patName** | **string** | Unique ID of the personal access token. | 
+**accessTokenName** | **string** | Unique ID of the access token. | 
 
 ### Other Parameters
 
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ## GetPAT
 
-> PATItem GetPAT(ctx, patName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+> PATItem GetPAT(ctx, accessTokenName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 
 Get a personal access token
 
@@ -174,13 +174,13 @@ import (
 )
 
 func main() {
-	patName := "patName_example" // string | Unique ID of the personal access token.
+	accessTokenName := "accessTokenName_example" // string | Unique ID of the access token.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 	ifNoneMatch := "ifNoneMatch_example" // string | Caching: Optional header to improve performance. The value of this header should be the `ETag` of the resource when last read. If this is provided and there have been no changes to the resource then a 304 will be returned without content. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PersonalAccessTokenAPI.GetPAT(context.Background(), patName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
+	resp, r, err := apiClient.PersonalAccessTokenAPI.GetPAT(context.Background(), accessTokenName).AcceptVersion(acceptVersion).IfNoneMatch(ifNoneMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PersonalAccessTokenAPI.GetPAT``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -196,7 +196,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**patName** | **string** | Unique ID of the personal access token. | 
+**accessTokenName** | **string** | Unique ID of the access token. | 
 
 ### Other Parameters
 

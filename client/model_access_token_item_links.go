@@ -22,37 +22,37 @@ import (
 	"fmt"
 )
 
-// checks if the PATItemLinks type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PATItemLinks{}
+// checks if the AccessTokenItemLinks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AccessTokenItemLinks{}
 
-// PATItemLinks The links for a Personal Access Token Item.
-type PATItemLinks struct {
+// AccessTokenItemLinks The links for an Access Token Item.
+type AccessTokenItemLinks struct {
 	Delete *HalLinkData `json:"delete,omitempty"`
 	Self HalLinkData `json:"self"`
 }
 
-type _PATItemLinks PATItemLinks
+type _AccessTokenItemLinks AccessTokenItemLinks
 
-// NewPATItemLinks instantiates a new PATItemLinks object
+// NewAccessTokenItemLinks instantiates a new AccessTokenItemLinks object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPATItemLinks(self HalLinkData) *PATItemLinks {
-	this := PATItemLinks{}
+func NewAccessTokenItemLinks(self HalLinkData) *AccessTokenItemLinks {
+	this := AccessTokenItemLinks{}
 	this.Self = self
 	return &this
 }
 
-// NewPATItemLinksWithDefaults instantiates a new PATItemLinks object
+// NewAccessTokenItemLinksWithDefaults instantiates a new AccessTokenItemLinks object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPATItemLinksWithDefaults() *PATItemLinks {
-	this := PATItemLinks{}
+func NewAccessTokenItemLinksWithDefaults() *AccessTokenItemLinks {
+	this := AccessTokenItemLinks{}
 	return &this
 }
 
 // GetDelete returns the Delete field value if set, zero value otherwise.
-func (o *PATItemLinks) GetDelete() HalLinkData {
+func (o *AccessTokenItemLinks) GetDelete() HalLinkData {
 	if o == nil || IsNil(o.Delete) {
 		var ret HalLinkData
 		return ret
@@ -62,7 +62,7 @@ func (o *PATItemLinks) GetDelete() HalLinkData {
 
 // GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PATItemLinks) GetDeleteOk() (*HalLinkData, bool) {
+func (o *AccessTokenItemLinks) GetDeleteOk() (*HalLinkData, bool) {
 	if o == nil || IsNil(o.Delete) {
 		return nil, false
 	}
@@ -70,7 +70,7 @@ func (o *PATItemLinks) GetDeleteOk() (*HalLinkData, bool) {
 }
 
 // HasDelete returns a boolean if a field has been set.
-func (o *PATItemLinks) HasDelete() bool {
+func (o *AccessTokenItemLinks) HasDelete() bool {
 	if o != nil && !IsNil(o.Delete) {
 		return true
 	}
@@ -79,12 +79,12 @@ func (o *PATItemLinks) HasDelete() bool {
 }
 
 // SetDelete gets a reference to the given HalLinkData and assigns it to the Delete field.
-func (o *PATItemLinks) SetDelete(v HalLinkData) {
+func (o *AccessTokenItemLinks) SetDelete(v HalLinkData) {
 	o.Delete = &v
 }
 
 // GetSelf returns the Self field value
-func (o *PATItemLinks) GetSelf() HalLinkData {
+func (o *AccessTokenItemLinks) GetSelf() HalLinkData {
 	if o == nil {
 		var ret HalLinkData
 		return ret
@@ -95,7 +95,7 @@ func (o *PATItemLinks) GetSelf() HalLinkData {
 
 // GetSelfOk returns a tuple with the Self field value
 // and a boolean to check if the value has been set.
-func (o *PATItemLinks) GetSelfOk() (*HalLinkData, bool) {
+func (o *AccessTokenItemLinks) GetSelfOk() (*HalLinkData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -103,11 +103,11 @@ func (o *PATItemLinks) GetSelfOk() (*HalLinkData, bool) {
 }
 
 // SetSelf sets field value
-func (o *PATItemLinks) SetSelf(v HalLinkData) {
+func (o *AccessTokenItemLinks) SetSelf(v HalLinkData) {
 	o.Self = v
 }
 
-func (o PATItemLinks) MarshalJSON() ([]byte, error) {
+func (o AccessTokenItemLinks) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -115,7 +115,7 @@ func (o PATItemLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PATItemLinks) ToMap() (map[string]interface{}, error) {
+func (o AccessTokenItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Delete) {
 		toSerialize["delete"] = o.Delete
@@ -124,7 +124,7 @@ func (o PATItemLinks) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *PATItemLinks) UnmarshalJSON(data []byte) (err error) {
+func (o *AccessTokenItemLinks) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -146,53 +146,53 @@ func (o *PATItemLinks) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varPATItemLinks := _PATItemLinks{}
+	varAccessTokenItemLinks := _AccessTokenItemLinks{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPATItemLinks)
+	err = decoder.Decode(&varAccessTokenItemLinks)
 
 	if err != nil {
 		return err
 	}
 
-	*o = PATItemLinks(varPATItemLinks)
+	*o = AccessTokenItemLinks(varAccessTokenItemLinks)
 
 	return err
 }
 
-type NullablePATItemLinks struct {
-	value *PATItemLinks
+type NullableAccessTokenItemLinks struct {
+	value *AccessTokenItemLinks
 	isSet bool
 }
 
-func (v NullablePATItemLinks) Get() *PATItemLinks {
+func (v NullableAccessTokenItemLinks) Get() *AccessTokenItemLinks {
 	return v.value
 }
 
-func (v *NullablePATItemLinks) Set(val *PATItemLinks) {
+func (v *NullableAccessTokenItemLinks) Set(val *AccessTokenItemLinks) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePATItemLinks) IsSet() bool {
+func (v NullableAccessTokenItemLinks) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePATItemLinks) Unset() {
+func (v *NullableAccessTokenItemLinks) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePATItemLinks(val *PATItemLinks) *NullablePATItemLinks {
-	return &NullablePATItemLinks{value: val, isSet: true}
+func NewNullableAccessTokenItemLinks(val *AccessTokenItemLinks) *NullableAccessTokenItemLinks {
+	return &NullableAccessTokenItemLinks{value: val, isSet: true}
 }
 
-func (v NullablePATItemLinks) MarshalJSON() ([]byte, error) {
+func (v NullableAccessTokenItemLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePATItemLinks) UnmarshalJSON(src []byte) error {
+func (v *NullableAccessTokenItemLinks) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
