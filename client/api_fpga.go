@@ -34,17 +34,11 @@ type ApiSunsetFpgaRequest struct {
 	ApiService *FPGAAPIService
 	fpgaName string
 	acceptVersion *string
-	body *map[string]interface{}
 }
 
 // Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
 func (r ApiSunsetFpgaRequest) AcceptVersion(acceptVersion string) ApiSunsetFpgaRequest {
 	r.acceptVersion = &acceptVersion
-	return r
-}
-
-func (r ApiSunsetFpgaRequest) Body(body map[string]interface{}) ApiSunsetFpgaRequest {
-	r.body = &body
 	return r
 }
 
@@ -92,7 +86,7 @@ func (a *FPGAAPIService) SunsetFpgaExecute(r ApiSunsetFpgaRequest) (*FPGAJobItem
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -111,8 +105,6 @@ func (a *FPGAAPIService) SunsetFpgaExecute(r ApiSunsetFpgaRequest) (*FPGAJobItem
 	if r.acceptVersion != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
 	}
-	// body params
-	localVarPostBody = r.body
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

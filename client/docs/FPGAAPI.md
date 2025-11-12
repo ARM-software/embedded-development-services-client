@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## SunsetFpga
 
-> FPGAJobItem SunsetFpga(ctx, fpgaName).AcceptVersion(acceptVersion).Body(body).Execute()
+> FPGAJobItem SunsetFpga(ctx, fpgaName).AcceptVersion(acceptVersion).Execute()
 
 Initiate the sunsetting of the FPGA as part of a decommission
 
@@ -35,11 +35,10 @@ import (
 func main() {
 	fpgaName := "fpgaName_example" // string | Unique ID of an FPGA.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
-	body := map[string]interface{}{ ... } // map[string]interface{} |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FPGAAPI.SunsetFpga(context.Background(), fpgaName).AcceptVersion(acceptVersion).Body(body).Execute()
+	resp, r, err := apiClient.FPGAAPI.SunsetFpga(context.Background(), fpgaName).AcceptVersion(acceptVersion).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FPGAAPI.SunsetFpga``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -66,7 +65,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
- **body** | **map[string]interface{}** |  | 
 
 ### Return type
 
@@ -78,7 +76,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
