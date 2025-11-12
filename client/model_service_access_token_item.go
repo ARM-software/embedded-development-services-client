@@ -38,8 +38,8 @@ type ServiceAccessTokenItem struct {
 	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// The access token. This field will only be returned by the service upon creation and the secret will not be re-retrievable.
 	Secret *string `json:"secret,omitempty"`
-	// The four character suffix of the access token secret.
-	SecretSuffix string `json:"secretSuffix"`
+	// The four character hint of the access token secret.
+	SecretHint string `json:"secretHint"`
 	// Human readable name of the service access token.
 	Title string `json:"title" validate:"regexp=^(?!\\\\s)[A-Za-z]+(?:[ '-][A-Za-z]+){0,99}(?<!\\\\s)$"`
 }
@@ -50,14 +50,14 @@ type _ServiceAccessTokenItem ServiceAccessTokenItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceAccessTokenItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, createdBy string, lastUsed time.Time, name string, secretSuffix string, title string) *ServiceAccessTokenItem {
+func NewServiceAccessTokenItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, createdBy string, lastUsed time.Time, name string, secretHint string, title string) *ServiceAccessTokenItem {
 	this := ServiceAccessTokenItem{}
 	this.Links = links
 	this.Metadata = metadata
 	this.CreatedBy = createdBy
 	this.LastUsed = lastUsed
 	this.Name = name
-	this.SecretSuffix = secretSuffix
+	this.SecretHint = secretHint
 	this.Title = title
 	return &this
 }
@@ -226,28 +226,28 @@ func (o *ServiceAccessTokenItem) SetSecret(v string) {
 	o.Secret = &v
 }
 
-// GetSecretSuffix returns the SecretSuffix field value
-func (o *ServiceAccessTokenItem) GetSecretSuffix() string {
+// GetSecretHint returns the SecretHint field value
+func (o *ServiceAccessTokenItem) GetSecretHint() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.SecretSuffix
+	return o.SecretHint
 }
 
-// GetSecretSuffixOk returns a tuple with the SecretSuffix field value
+// GetSecretHintOk returns a tuple with the SecretHint field value
 // and a boolean to check if the value has been set.
-func (o *ServiceAccessTokenItem) GetSecretSuffixOk() (*string, bool) {
+func (o *ServiceAccessTokenItem) GetSecretHintOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SecretSuffix, true
+	return &o.SecretHint, true
 }
 
-// SetSecretSuffix sets field value
-func (o *ServiceAccessTokenItem) SetSecretSuffix(v string) {
-	o.SecretSuffix = v
+// SetSecretHint sets field value
+func (o *ServiceAccessTokenItem) SetSecretHint(v string) {
+	o.SecretHint = v
 }
 
 // GetTitle returns the Title field value
@@ -292,7 +292,7 @@ func (o ServiceAccessTokenItem) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Secret) {
 		toSerialize["secret"] = o.Secret
 	}
-	toSerialize["secretSuffix"] = o.SecretSuffix
+	toSerialize["secretHint"] = o.SecretHint
 	toSerialize["title"] = o.Title
 	return toSerialize, nil
 }
@@ -307,7 +307,7 @@ func (o *ServiceAccessTokenItem) UnmarshalJSON(data []byte) (err error) {
 		"createdBy",
 		"lastUsed",
 		"name",
-		"secretSuffix",
+		"secretHint",
 		"title",
 	}
 

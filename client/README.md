@@ -222,6 +222,7 @@ Class | Method | HTTP request | Description
 *ServiceAccountAPI* | [**DeleteSAT**](docs/ServiceAccountAPI.md#deletesat) | **Delete** /service-accounts/{serviceAccountName}/tokens/{accessTokenName} | Delete the service access token for the service account
 *ServiceAccountAPI* | [**DeleteServiceAccount**](docs/ServiceAccountAPI.md#deleteserviceaccount) | **Delete** /service-accounts/{serviceAccountName} | Delete a service account
 *ServiceAccountAPI* | [**EditServiceAccount**](docs/ServiceAccountAPI.md#editserviceaccount) | **Put** /service-accounts/{serviceAccountName} | Update a service account
+*ServiceAccountAPI* | [**GetSAT**](docs/ServiceAccountAPI.md#getsat) | **Get** /service-accounts/{serviceAccountName}/tokens/{accessTokenName} | Get a service access token.
 *ServiceAccountAPI* | [**GetServiceAccount**](docs/ServiceAccountAPI.md#getserviceaccount) | **Get** /service-accounts/{serviceAccountName} | Get a service account
 *ServiceAccountAPI* | [**ListSATs**](docs/ServiceAccountAPI.md#listsats) | **Get** /service-accounts/{serviceAccountName}/tokens | List all access tokens for the service account
 *ServiceAccountAPI* | [**ListServiceAccounts**](docs/ServiceAccountAPI.md#listserviceaccounts) | **Get** /service-accounts/ | List all service accounts

@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**DeleteSAT**](ServiceAccountAPI.md#DeleteSAT) | **Delete** /service-accounts/{serviceAccountName}/tokens/{accessTokenName} | Delete the service access token for the service account
 [**DeleteServiceAccount**](ServiceAccountAPI.md#DeleteServiceAccount) | **Delete** /service-accounts/{serviceAccountName} | Delete a service account
 [**EditServiceAccount**](ServiceAccountAPI.md#EditServiceAccount) | **Put** /service-accounts/{serviceAccountName} | Update a service account
+[**GetSAT**](ServiceAccountAPI.md#GetSAT) | **Get** /service-accounts/{serviceAccountName}/tokens/{accessTokenName} | Get a service access token.
 [**GetServiceAccount**](ServiceAccountAPI.md#GetServiceAccount) | **Get** /service-accounts/{serviceAccountName} | Get a service account
 [**ListSATs**](ServiceAccountAPI.md#ListSATs) | **Get** /service-accounts/{serviceAccountName}/tokens | List all access tokens for the service account
 [**ListServiceAccounts**](ServiceAccountAPI.md#ListServiceAccounts) | **Get** /service-accounts/ | List all service accounts
@@ -42,7 +43,7 @@ import (
 
 func main() {
 	serviceAccountName := "serviceAccountName_example" // string | Unique ID of the service account.
-	serviceAccessTokenItem := *openapiclient.NewServiceAccessTokenItem("TODO", "TODO", "CreatedBy_example", time.Now(), "88a6137e-1d99-4cde-8db8-015312f7d5e6", "SecretSuffix_example", "My token") // ServiceAccessTokenItem | Data required to create a new token.
+	serviceAccessTokenItem := *openapiclient.NewServiceAccessTokenItem("TODO", "TODO", "CreatedBy_example", time.Now(), "88a6137e-1d99-4cde-8db8-015312f7d5e6", "SecretHint_example", "My token") // ServiceAccessTokenItem | Data required to create a new token.
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -374,6 +375,81 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSAT
+
+> ServiceAccessTokenItem GetSAT(ctx, accessTokenName, serviceAccountName).AcceptVersion(acceptVersion).Execute()
+
+Get a service access token.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	accessTokenName := "accessTokenName_example" // string | Unique ID of the access token.
+	serviceAccountName := "serviceAccountName_example" // string | Unique ID of the service account.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServiceAccountAPI.GetSAT(context.Background(), accessTokenName, serviceAccountName).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountAPI.GetSAT``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSAT`: ServiceAccessTokenItem
+	fmt.Fprintf(os.Stdout, "Response from `ServiceAccountAPI.GetSAT`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**accessTokenName** | **string** | Unique ID of the access token. | 
+**serviceAccountName** | **string** | Unique ID of the service account. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSATRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+[**ServiceAccessTokenItem**](ServiceAccessTokenItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

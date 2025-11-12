@@ -14,14 +14,14 @@ Name | Type | Description | Notes
 **LastUsed** | **time.Time** | When this token was last used to authenticate a request. | [readonly] 
 **Name** | **string** | Unique ID of the service access token. | [readonly] 
 **Secret** | Pointer to **string** | The access token. This field will only be returned by the service upon creation and the secret will not be re-retrievable. | [optional] [readonly] 
-**SecretSuffix** | **string** | The four character suffix of the access token secret. | [readonly] 
+**SecretHint** | **string** | The four character hint of the access token secret. | [readonly] 
 **Title** | **string** | Human readable name of the service access token. | 
 
 ## Methods
 
 ### NewServiceAccessTokenItem
 
-`func NewServiceAccessTokenItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, createdBy string, lastUsed time.Time, name string, secretSuffix string, title string, ) *ServiceAccessTokenItem`
+`func NewServiceAccessTokenItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, createdBy string, lastUsed time.Time, name string, secretHint string, title string, ) *ServiceAccessTokenItem`
 
 NewServiceAccessTokenItem instantiates a new ServiceAccessTokenItem object
 This constructor will assign default values to properties that have it defined,
@@ -181,24 +181,24 @@ SetSecret sets Secret field to given value.
 
 HasSecret returns a boolean if a field has been set.
 
-### GetSecretSuffix
+### GetSecretHint
 
-`func (o *ServiceAccessTokenItem) GetSecretSuffix() string`
+`func (o *ServiceAccessTokenItem) GetSecretHint() string`
 
-GetSecretSuffix returns the SecretSuffix field if non-nil, zero value otherwise.
+GetSecretHint returns the SecretHint field if non-nil, zero value otherwise.
 
-### GetSecretSuffixOk
+### GetSecretHintOk
 
-`func (o *ServiceAccessTokenItem) GetSecretSuffixOk() (*string, bool)`
+`func (o *ServiceAccessTokenItem) GetSecretHintOk() (*string, bool)`
 
-GetSecretSuffixOk returns a tuple with the SecretSuffix field if it's non-nil, zero value otherwise
+GetSecretHintOk returns a tuple with the SecretHint field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSecretSuffix
+### SetSecretHint
 
-`func (o *ServiceAccessTokenItem) SetSecretSuffix(v string)`
+`func (o *ServiceAccessTokenItem) SetSecretHint(v string)`
 
-SetSecretSuffix sets SecretSuffix field to given value.
+SetSecretHint sets SecretHint field to given value.
 
 
 ### GetTitle
