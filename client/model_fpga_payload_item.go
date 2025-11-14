@@ -34,7 +34,9 @@ type FPGAPayloadItem struct {
 	Owner FPGAPayloadOwner `json:"owner"`
 	// Status of the payload. A payload is only ready to be used by an FPGA once it has been processed.
 	Status string `json:"status"`
-	// True when the payload supports direct connection.
+	// Whether the payload supports batch processing or not.
+	SupportBatchProcessing bool `json:"supportBatchProcessing"`
+	// True when the payload supports a direct connection (interactive session).
 	SupportConnection bool `json:"supportConnection"`
 	// Human readable name of the FPGA Payload.
 	Title string `json:"title"`
@@ -50,13 +52,14 @@ type _FPGAPayloadItem FPGAPayloadItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, owner FPGAPayloadOwner, status string, supportConnection bool, title string, uploadLocation string) *FPGAPayloadItem {
+func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, owner FPGAPayloadOwner, status string, supportBatchProcessing bool, supportConnection bool, title string, uploadLocation string) *FPGAPayloadItem {
 	this := FPGAPayloadItem{}
 	this.Links = links
 	this.Metadata = metadata
 	this.Name = name
 	this.Owner = owner
 	this.Status = status
+	this.SupportBatchProcessing = supportBatchProcessing
 	this.SupportConnection = supportConnection
 	this.Title = title
 	this.UploadLocation = uploadLocation
@@ -195,6 +198,30 @@ func (o *FPGAPayloadItem) SetStatus(v string) {
 	o.Status = v
 }
 
+// GetSupportBatchProcessing returns the SupportBatchProcessing field value
+func (o *FPGAPayloadItem) GetSupportBatchProcessing() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SupportBatchProcessing
+}
+
+// GetSupportBatchProcessingOk returns a tuple with the SupportBatchProcessing field value
+// and a boolean to check if the value has been set.
+func (o *FPGAPayloadItem) GetSupportBatchProcessingOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SupportBatchProcessing, true
+}
+
+// SetSupportBatchProcessing sets field value
+func (o *FPGAPayloadItem) SetSupportBatchProcessing(v bool) {
+	o.SupportBatchProcessing = v
+}
+
 // GetSupportConnection returns the SupportConnection field value
 func (o *FPGAPayloadItem) GetSupportConnection() bool {
 	if o == nil {
@@ -324,6 +351,7 @@ func (o FPGAPayloadItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["owner"] = o.Owner
 	toSerialize["status"] = o.Status
+	toSerialize["supportBatchProcessing"] = o.SupportBatchProcessing
 	toSerialize["supportConnection"] = o.SupportConnection
 	toSerialize["title"] = o.Title
 	if o.UploadJob.IsSet() {
@@ -343,6 +371,7 @@ func (o *FPGAPayloadItem) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"owner",
 		"status",
+		"supportBatchProcessing",
 		"supportConnection",
 		"title",
 		"uploadLocation",

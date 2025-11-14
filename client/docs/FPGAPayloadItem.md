@@ -13,7 +13,8 @@ Name | Type | Description | Notes
 **Name** | **string** | Unique ID of this FPGA Payload. | [readonly] 
 **Owner** | [**FPGAPayloadOwner**](FPGAPayloadOwner.md) |  | 
 **Status** | **string** | Status of the payload. A payload is only ready to be used by an FPGA once it has been processed. | [readonly] 
-**SupportConnection** | **bool** | True when the payload supports direct connection. | 
+**SupportBatchProcessing** | **bool** | Whether the payload supports batch processing or not. | [readonly] 
+**SupportConnection** | **bool** | True when the payload supports a direct connection (interactive session). | [readonly] 
 **Title** | **string** | Human readable name of the FPGA Payload. | 
 **UploadJob** | Pointer to **NullableString** | The unique ID of the upload job that processed this payload. This will be null if the payload has not been processed yet. | [optional] [readonly] 
 **UploadLocation** | **string** | The upload location to upload the payload files from. This value will be returned from the upload session creation. | 
@@ -22,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewFPGAPayloadItem
 
-`func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, owner FPGAPayloadOwner, status string, supportConnection bool, title string, uploadLocation string, ) *FPGAPayloadItem`
+`func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, owner FPGAPayloadOwner, status string, supportBatchProcessing bool, supportConnection bool, title string, uploadLocation string, ) *FPGAPayloadItem`
 
 NewFPGAPayloadItem instantiates a new FPGAPayloadItem object
 This constructor will assign default values to properties that have it defined,
@@ -155,6 +156,26 @@ and a boolean to check if the value has been set.
 `func (o *FPGAPayloadItem) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
+
+
+### GetSupportBatchProcessing
+
+`func (o *FPGAPayloadItem) GetSupportBatchProcessing() bool`
+
+GetSupportBatchProcessing returns the SupportBatchProcessing field if non-nil, zero value otherwise.
+
+### GetSupportBatchProcessingOk
+
+`func (o *FPGAPayloadItem) GetSupportBatchProcessingOk() (*bool, bool)`
+
+GetSupportBatchProcessingOk returns a tuple with the SupportBatchProcessing field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSupportBatchProcessing
+
+`func (o *FPGAPayloadItem) SetSupportBatchProcessing(v bool)`
+
+SetSupportBatchProcessing sets SupportBatchProcessing field to given value.
 
 
 ### GetSupportConnection
