@@ -4,8 +4,9 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/ARM-software/golang-utils/utils/commonerrors"
 	"github.com/getkin/kin-openapi/openapi3"
+
+	"github.com/ARM-software/golang-utils/utils/commonerrors"
 )
 
 type JobItem struct {

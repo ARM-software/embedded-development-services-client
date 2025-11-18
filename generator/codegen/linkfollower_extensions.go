@@ -9,11 +9,12 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ARM-software/golang-utils/utils/commonerrors"
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/iancoleman/strcase"
 	"golang.org/x/tools/go/packages"
+
+	"github.com/ARM-software/golang-utils/utils/commonerrors"
 )
 
 type APIServiceFollowFunc struct {
@@ -168,7 +169,7 @@ func renderFieldListSrc(fields *ast.FieldList, fset *token.FileSet) (src string,
 		return
 	}
 
-	// Return just one type with no paranthesis or name
+	// Return just one type with no parenthesis or name
 	var buf bytes.Buffer
 	if len(fields.List) == 1 && len(fields.List[0].Names) == 0 {
 		printer.Fprint(&buf, fset, fields.List[0].Type)
@@ -643,7 +644,7 @@ func getLinkFollowers(funcNameMap map[string]string, d *Data) (followers Followe
 						return
 					}
 
-					// Render out parts of the Request.FollowLink funciton
+					// Render out parts of the Request.FollowLink function
 					paramName, paramType, renderErr := getFirstParam(fn.Type.Params, pkg.Fset)
 					if renderErr != nil {
 						err = renderErr
