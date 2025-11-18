@@ -43,31 +43,46 @@ func (a *AuthenticationAPIService) FollowUsersLink(r *ApiListUsersRequest, link 
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -196,24 +211,37 @@ func (a *BuildJobsAPIService) FollowGetBuildMessagesLink(r *ApiGetBuildMessagesR
 
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasLimitParam {
 
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -352,31 +380,46 @@ func (a *BuildJobsAPIService) FollowBuildJobLink(r *ApiListBuildJobRequest, link
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -505,31 +548,46 @@ func (a *BuildJobsAPIService) FollowBuildOutputManagersLink(r *ApiListBuildOutpu
 
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -668,31 +726,46 @@ func (a *CMSISBuildersAPIService) FollowCmsisBuildersLink(r *ApiListCmsisBuilder
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -820,31 +893,46 @@ func (a *CMSISIntellisenseBuildersAPIService) FollowCmsisIntellisenseLink(r *Api
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -972,31 +1060,46 @@ func (a *FPGAConnectionAPIService) FollowFpgaConnectionsLink(r *ApiListFpgaConne
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -1125,24 +1228,37 @@ func (a *FPGAJobsAPIService) FollowGetFpgaJobMessagesLink(r *ApiGetFpgaJobMessag
 
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasLimitParam {
 
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -1283,24 +1399,37 @@ func (a *FPGAJobsAPIService) FollowGetSpecificFpgaJobMessagesLink(r *ApiGetSpeci
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"fpgaName"+"}", parameterValueToString(r.fpgaName, "fpgaName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasLimitParam {
 
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -1440,31 +1569,46 @@ func (a *FPGAJobsAPIService) FollowFpgaJobArtefactManagersLink(r *ApiListFpgaJob
 
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -1605,31 +1749,46 @@ func (a *FPGAJobsAPIService) FollowSpecificFpgaJobArtefactManagersLink(r *ApiLis
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"fpgaName"+"}", parameterValueToString(r.fpgaName, "fpgaName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -1769,24 +1928,37 @@ func (a *FPGAPayloadsAPIService) FollowGetFpgaPayloadUploadJobMessagesLink(r *Ap
 
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"uploadJobName"+"}", parameterValueToString(r.uploadJobName, "uploadJobName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasLimitParam {
 
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -1925,31 +2097,46 @@ func (a *FPGAPayloadsAPIService) FollowPayloadsLink(r *ApiListPayloadsRequest, l
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -2078,24 +2265,37 @@ func (a *GenericWorkJobsAPIService) FollowGetGenericWorkJobMessagesLink(r *ApiGe
 
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasLimitParam {
 
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -2235,31 +2435,46 @@ func (a *GenericWorkJobsAPIService) FollowGenericWorkJobArtefactManagersLink(r *
 
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -2398,31 +2613,46 @@ func (a *GenericWorkJobsAPIService) FollowGenericWorkJobsLink(r *ApiListGenericW
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -2550,31 +2780,46 @@ func (a *GenericWorkersAPIService) FollowGenericWorkersLink(r *ApiListGenericWor
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -2703,24 +2948,37 @@ func (a *IntellisenseJobsAPIService) FollowGetIntellisenseMessagesLink(r *ApiGet
 
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasLimitParam {
 
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -2859,31 +3117,46 @@ func (a *IntellisenseJobsAPIService) FollowIntellisenseJobLink(r *ApiListIntelli
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -3012,31 +3285,46 @@ func (a *IntellisenseJobsAPIService) FollowIntellisenseOutputManagersLink(r *Api
 
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -3175,31 +3463,46 @@ func (a *ServiceAccountAPIService) FollowServiceAccountsLink(r *ApiListServiceAc
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -3328,24 +3631,37 @@ func (a *VHTRunJobsAPIService) FollowGetVhtRunJobMessagesLink(r *ApiGetVhtRunJob
 
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasLimitParam {
 
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -3484,31 +3800,46 @@ func (a *VHTRunJobsAPIService) FollowVhtRunJobsLink(r *ApiListVhtRunJobsRequest,
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -3637,31 +3968,46 @@ func (a *VirtualHardwareTargetAPIService) FollowFilteredVhtInstancesLink(r *ApiL
 
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"vhtName"+"}", parameterValueToString(r.vhtName, "vhtName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -3789,31 +4135,46 @@ func (a *VirtualHardwareTargetAPIService) FollowVhtsLink(r *ApiListVhtsRequest, 
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -3942,24 +4303,37 @@ func (a *VirtualHardwareTargetInstanceAPIService) FollowGetVhtInstanceMessagesLi
 
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterValueToString(r.instanceName, "instanceName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasLimitParam {
 
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -4099,31 +4473,46 @@ func (a *VirtualHardwareTargetInstanceAPIService) FollowVhtInstanceArtefactManag
 
 	localVarPath := localBasePath + link
 	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", parameterValueToString(r.instanceName, "instanceName"), -1)
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -4262,31 +4651,46 @@ func (a *VirtualHardwareTargetInstanceAPIService) FollowVhtInstancesLink(r *ApiL
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -4414,31 +4818,46 @@ func (a *WorkspaceAPIService) FollowWorkspacesLink(r *ApiListWorkspacesRequest, 
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
@@ -4566,31 +4985,46 @@ func (a *WorkspaceSourceAPIService) FollowWorkspaceSourcesLink(r *ApiListWorkspa
 	}
 
 	localVarPath := localBasePath + link
+	linkHasOffsetParam := false
+	linkHasLimitParam := false
+	linkHasEmbedParam := false
+	if parsedLink, err := url.Parse(link); err == nil {
+		linkQuery := parsedLink.Query()
+		linkHasOffsetParam = linkQuery.Has("offset")
+		linkHasLimitParam = linkQuery.Has("limit")
+		linkHasEmbedParam = linkQuery.Has("embed")
+	}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if !linkHasEmbedParam {
 
-	if r.embed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
-		r.embed = &defaultValue
+		if r.embed != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", r.embed, "form", "")
+		} else {
+			var defaultValue bool = false
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed", defaultValue, "form", "")
+			r.embed = &defaultValue
+		}
 	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 20
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
+	if !linkHasLimitParam {
+		if r.limit != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		} else {
+			var defaultValue int32 = 20
+			parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+			r.limit = &defaultValue
+		}
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
-	} else {
-		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
-		r.offset = &defaultValue
+	if !linkHasOffsetParam {
+		if r.offset != nil {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		} else {
+			var defaultValue int32 = 0
+			parameterAddToHeaderOrQuery(localVarQueryParams, "offset", defaultValue, "form", "")
+			r.offset = &defaultValue
+		}
 	}
 
 	localVarHTTPContentTypes := []string{}
