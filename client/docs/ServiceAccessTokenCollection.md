@@ -9,8 +9,8 @@ SPDX-License-Identifier: Apache-2.0
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Embedded** | Pointer to [**EmbeddedServiceAccessTokenItem**](EmbeddedServiceAccessTokenItem.md) |  | [optional] 
-**Links** | [**NullableHalOnlyEmbeddableCollectionLinks**](HalOnlyEmbeddableCollectionLinks.md) |  | 
-**Metadata** | [**NullableCollectionMetadata**](CollectionMetadata.md) |  | 
+**Links** | [**NullableHalCollectionLinks**](HalCollectionLinks.md) |  | 
+**Metadata** | [**NullablePagingMetadata**](PagingMetadata.md) |  | 
 **Name** | **string** | ID of the Collection. | [readonly] 
 **Title** | **string** | Human readable title of the collection. | [readonly] 
 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewServiceAccessTokenCollection
 
-`func NewServiceAccessTokenCollection(links NullableHalOnlyEmbeddableCollectionLinks, metadata NullableCollectionMetadata, name string, title string, ) *ServiceAccessTokenCollection`
+`func NewServiceAccessTokenCollection(links NullableHalCollectionLinks, metadata NullablePagingMetadata, name string, title string, ) *ServiceAccessTokenCollection`
 
 NewServiceAccessTokenCollection instantiates a new ServiceAccessTokenCollection object
 This constructor will assign default values to properties that have it defined,
@@ -60,20 +60,20 @@ HasEmbedded returns a boolean if a field has been set.
 
 ### GetLinks
 
-`func (o *ServiceAccessTokenCollection) GetLinks() HalOnlyEmbeddableCollectionLinks`
+`func (o *ServiceAccessTokenCollection) GetLinks() HalCollectionLinks`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *ServiceAccessTokenCollection) GetLinksOk() (*HalOnlyEmbeddableCollectionLinks, bool)`
+`func (o *ServiceAccessTokenCollection) GetLinksOk() (*HalCollectionLinks, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *ServiceAccessTokenCollection) SetLinks(v HalOnlyEmbeddableCollectionLinks)`
+`func (o *ServiceAccessTokenCollection) SetLinks(v HalCollectionLinks)`
 
 SetLinks sets Links field to given value.
 
@@ -90,20 +90,20 @@ SetLinks sets Links field to given value.
 UnsetLinks ensures that no value is present for Links, not even an explicit nil
 ### GetMetadata
 
-`func (o *ServiceAccessTokenCollection) GetMetadata() CollectionMetadata`
+`func (o *ServiceAccessTokenCollection) GetMetadata() PagingMetadata`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *ServiceAccessTokenCollection) GetMetadataOk() (*CollectionMetadata, bool)`
+`func (o *ServiceAccessTokenCollection) GetMetadataOk() (*PagingMetadata, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *ServiceAccessTokenCollection) SetMetadata(v CollectionMetadata)`
+`func (o *ServiceAccessTokenCollection) SetMetadata(v PagingMetadata)`
 
 SetMetadata sets Metadata field to given value.
 

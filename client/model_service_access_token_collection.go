@@ -28,8 +28,8 @@ var _ MappedNullable = &ServiceAccessTokenCollection{}
 // ServiceAccessTokenCollection This collection resource follows the common pattern of linking to contained resources. Optionally, rather than linking to other resources, it can embed then into the collection to reduce the number of round trips to the server (at the expense of caching). In file system terms, it is similar to a directory but only contains links to (or embeds) a single type of resource.
 type ServiceAccessTokenCollection struct {
 	Embedded *EmbeddedServiceAccessTokenItem `json:"_embedded,omitempty"`
-	Links NullableHalOnlyEmbeddableCollectionLinks `json:"_links"`
-	Metadata NullableCollectionMetadata `json:"_metadata"`
+	Links NullableHalCollectionLinks `json:"_links"`
+	Metadata NullablePagingMetadata `json:"_metadata"`
 	// ID of the Collection.
 	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// Human readable title of the collection.
@@ -42,7 +42,7 @@ type _ServiceAccessTokenCollection ServiceAccessTokenCollection
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceAccessTokenCollection(links NullableHalOnlyEmbeddableCollectionLinks, metadata NullableCollectionMetadata, name string, title string) *ServiceAccessTokenCollection {
+func NewServiceAccessTokenCollection(links NullableHalCollectionLinks, metadata NullablePagingMetadata, name string, title string) *ServiceAccessTokenCollection {
 	this := ServiceAccessTokenCollection{}
 	this.Links = links
 	this.Metadata = metadata
@@ -92,10 +92,10 @@ func (o *ServiceAccessTokenCollection) SetEmbedded(v EmbeddedServiceAccessTokenI
 }
 
 // GetLinks returns the Links field value
-// If the value is explicit nil, the zero value for HalOnlyEmbeddableCollectionLinks will be returned
-func (o *ServiceAccessTokenCollection) GetLinks() HalOnlyEmbeddableCollectionLinks {
+// If the value is explicit nil, the zero value for HalCollectionLinks will be returned
+func (o *ServiceAccessTokenCollection) GetLinks() HalCollectionLinks {
 	if o == nil || o.Links.Get() == nil {
-		var ret HalOnlyEmbeddableCollectionLinks
+		var ret HalCollectionLinks
 		return ret
 	}
 
@@ -105,7 +105,7 @@ func (o *ServiceAccessTokenCollection) GetLinks() HalOnlyEmbeddableCollectionLin
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ServiceAccessTokenCollection) GetLinksOk() (*HalOnlyEmbeddableCollectionLinks, bool) {
+func (o *ServiceAccessTokenCollection) GetLinksOk() (*HalCollectionLinks, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -113,15 +113,15 @@ func (o *ServiceAccessTokenCollection) GetLinksOk() (*HalOnlyEmbeddableCollectio
 }
 
 // SetLinks sets field value
-func (o *ServiceAccessTokenCollection) SetLinks(v HalOnlyEmbeddableCollectionLinks) {
+func (o *ServiceAccessTokenCollection) SetLinks(v HalCollectionLinks) {
 	o.Links.Set(&v)
 }
 
 // GetMetadata returns the Metadata field value
-// If the value is explicit nil, the zero value for CollectionMetadata will be returned
-func (o *ServiceAccessTokenCollection) GetMetadata() CollectionMetadata {
+// If the value is explicit nil, the zero value for PagingMetadata will be returned
+func (o *ServiceAccessTokenCollection) GetMetadata() PagingMetadata {
 	if o == nil || o.Metadata.Get() == nil {
-		var ret CollectionMetadata
+		var ret PagingMetadata
 		return ret
 	}
 
@@ -131,7 +131,7 @@ func (o *ServiceAccessTokenCollection) GetMetadata() CollectionMetadata {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ServiceAccessTokenCollection) GetMetadataOk() (*CollectionMetadata, bool) {
+func (o *ServiceAccessTokenCollection) GetMetadataOk() (*PagingMetadata, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -139,7 +139,7 @@ func (o *ServiceAccessTokenCollection) GetMetadataOk() (*CollectionMetadata, boo
 }
 
 // SetMetadata sets field value
-func (o *ServiceAccessTokenCollection) SetMetadata(v CollectionMetadata) {
+func (o *ServiceAccessTokenCollection) SetMetadata(v PagingMetadata) {
 	o.Metadata.Set(&v)
 }
 

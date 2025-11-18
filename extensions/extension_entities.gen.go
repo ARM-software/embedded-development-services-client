@@ -1651,6 +1651,44 @@ func (o *ServiceAccessTokenCollection) FetchTitle() (string, error) {
 	return o.GetTitle(), nil
 }
 
+func (o *ServiceAccessTokenCollection) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *ServiceAccessTokenCollection) GetItemIterator() (IIterator, error) {
+	if o.HasEmbedded() {
+		embedded := o.GetEmbedded()
+		return NewServiceAccessTokenIterator(embedded.GetItem())
+	}
+	links, err := o.FetchLinks()
+	if err != nil {
+		return nil, err
+	}
+	l, ok := links.(HalCollectionLinks)
+	if !ok {
+		return nil, fmt.Errorf("wrong link type [%T]; expected [HalCollectionLinks]", links)
+	}
+	return NewHalLinkDataIterator(l.GetItem())
+}
+
+func (o *ServiceAccessTokenCollection) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewServiceAccessTokenCollection returns a page.
+func NewServiceAccessTokenCollectionCollection() IStaticPage {
+	return NewServiceAccessTokenCollectionWithDefaults()
+}
+
 // ============================================================================================
 // This extends ServiceAccountItem and ServiceAccountCollection definitions
 // ============================================================================================
