@@ -33,7 +33,7 @@ type FPGAConnectionAPIService service
 type ApiGetFpgaConnectionRequest struct {
 	ctx context.Context
 	ApiService *FPGAConnectionAPIService
-	connectionName string
+	fpgaName string
 	acceptVersion *string
 }
 
@@ -53,14 +53,14 @@ GetFpgaConnection Get connection information
 Return information about a particular connection
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectionName The identifier of the connection
+ @param fpgaName The FPGA to initiate an interactive session with
  @return ApiGetFpgaConnectionRequest
 */
-func (a *FPGAConnectionAPIService) GetFpgaConnection(ctx context.Context, connectionName string) ApiGetFpgaConnectionRequest {
+func (a *FPGAConnectionAPIService) GetFpgaConnection(ctx context.Context, fpgaName string) ApiGetFpgaConnectionRequest {
 	return ApiGetFpgaConnectionRequest{
 		ApiService: a,
 		ctx: ctx,
-		connectionName: connectionName,
+		fpgaName: fpgaName,
 	}
 }
 
@@ -79,8 +79,8 @@ func (a *FPGAConnectionAPIService) GetFpgaConnectionExecute(r ApiGetFpgaConnecti
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/fpga-connections/{connectionName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"connectionName"+"}", parameterValueToString(r.connectionName, "connectionName"), -1)
+	localVarPath := localBasePath + "/fpga-connections/{fpgaName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"fpgaName"+"}", parameterValueToString(r.fpgaName, "fpgaName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -404,22 +404,23 @@ func (a *FPGAConnectionAPIService) ListFpgaConnectionsExecute(r ApiListFpgaConne
 type ApiStartFpgaConnectionRequest struct {
 	ctx context.Context
 	ApiService *FPGAConnectionAPIService
-	connectionName string
-	upgrade *string
 	connection *string
+	fpgaName string
+	jobName string
+	upgrade *string
 	secWebSocketProtocol *string
 	acceptVersion *string
-}
-
-// Header used to upgrade an already-established client/server connection to a different protocol  (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Upgrade). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake)
-func (r ApiStartFpgaConnectionRequest) Upgrade(upgrade string) ApiStartFpgaConnectionRequest {
-	r.upgrade = &upgrade
-	return r
 }
 
 // Header controlling whether the network connection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Connection). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake)
 func (r ApiStartFpgaConnectionRequest) Connection(connection string) ApiStartFpgaConnectionRequest {
 	r.connection = &connection
+	return r
+}
+
+// Header used to upgrade an already-established client/server connection to a different protocol  (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Upgrade). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake)
+func (r ApiStartFpgaConnectionRequest) Upgrade(upgrade string) ApiStartFpgaConnectionRequest {
+	r.upgrade = &upgrade
 	return r
 }
 
@@ -445,14 +446,16 @@ StartFpgaConnection starts a websocket connection
 A websocket handshake response
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectionName The identifier of the connection
+ @param fpgaName The FPGA to initiate an interactive session with
+ @param jobName The interactive job this connection is associated with
  @return ApiStartFpgaConnectionRequest
 */
-func (a *FPGAConnectionAPIService) StartFpgaConnection(ctx context.Context, connectionName string) ApiStartFpgaConnectionRequest {
+func (a *FPGAConnectionAPIService) StartFpgaConnection(ctx context.Context, fpgaName string, jobName string) ApiStartFpgaConnectionRequest {
 	return ApiStartFpgaConnectionRequest{
 		ApiService: a,
 		ctx: ctx,
-		connectionName: connectionName,
+		fpgaName: fpgaName,
+		jobName: jobName,
 	}
 }
 
@@ -471,17 +474,18 @@ func (a *FPGAConnectionAPIService) StartFpgaConnectionExecute(r ApiStartFpgaConn
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/fpga-connections/{connectionName}/connect"
-	localVarPath = strings.Replace(localVarPath, "{"+"connectionName"+"}", parameterValueToString(r.connectionName, "connectionName"), -1)
+	localVarPath := localBasePath + "/fpga-connections/{fpgaName}/job/{jobName}/connect"
+	localVarPath = strings.Replace(localVarPath, "{"+"fpgaName"+"}", parameterValueToString(r.fpgaName, "fpgaName"), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"jobName"+"}", parameterValueToString(r.jobName, "jobName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.upgrade == nil {
-		return localVarReturnValue, nil, reportError("upgrade is required and must be specified")
-	}
 	if r.connection == nil {
 		return localVarReturnValue, nil, reportError("connection is required and must be specified")
+	}
+	if r.upgrade == nil {
+		return localVarReturnValue, nil, reportError("upgrade is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -501,6 +505,7 @@ func (a *FPGAConnectionAPIService) StartFpgaConnectionExecute(r ApiStartFpgaConn
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Connection", r.connection, "simple", "")
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "Upgrade", r.upgrade, "simple", "")
 	if r.secWebSocketProtocol != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Sec-WebSocket-Protocol", r.secWebSocketProtocol, "simple", "")
@@ -508,7 +513,216 @@ func (a *FPGAConnectionAPIService) StartFpgaConnectionExecute(r ApiStartFpgaConn
 	if r.acceptVersion != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 426 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiStartFpgaConnectionRegardlessOfJobRequest struct {
+	ctx context.Context
+	ApiService *FPGAConnectionAPIService
+	connection *string
+	fpgaName string
+	upgrade *string
+	secWebSocketProtocol *string
+	acceptVersion *string
+}
+
+// Header controlling whether the network connection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Connection). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake)
+func (r ApiStartFpgaConnectionRegardlessOfJobRequest) Connection(connection string) ApiStartFpgaConnectionRegardlessOfJobRequest {
+	r.connection = &connection
+	return r
+}
+
+// Header used to upgrade an already-established client/server connection to a different protocol  (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Upgrade). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake)
+func (r ApiStartFpgaConnectionRegardlessOfJobRequest) Upgrade(upgrade string) ApiStartFpgaConnectionRegardlessOfJobRequest {
+	r.upgrade = &upgrade
+	return r
+}
+
+// Header used to define a sub protocol to use in the communication  (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-WebSocket-Protocol). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake)
+func (r ApiStartFpgaConnectionRegardlessOfJobRequest) SecWebSocketProtocol(secWebSocketProtocol string) ApiStartFpgaConnectionRegardlessOfJobRequest {
+	r.secWebSocketProtocol = &secWebSocketProtocol
+	return r
+}
+
+// Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning.
+func (r ApiStartFpgaConnectionRegardlessOfJobRequest) AcceptVersion(acceptVersion string) ApiStartFpgaConnectionRegardlessOfJobRequest {
+	r.acceptVersion = &acceptVersion
+	return r
+}
+
+func (r ApiStartFpgaConnectionRegardlessOfJobRequest) Execute() (*os.File, *http.Response, error) {
+	return r.ApiService.StartFpgaConnectionRegardlessOfJobExecute(r)
+}
+
+/*
+StartFpgaConnectionRegardlessOfJob starts a websocket connection
+
+A websocket handshake response
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fpgaName The FPGA to initiate an interactive session with
+ @return ApiStartFpgaConnectionRegardlessOfJobRequest
+*/
+func (a *FPGAConnectionAPIService) StartFpgaConnectionRegardlessOfJob(ctx context.Context, fpgaName string) ApiStartFpgaConnectionRegardlessOfJobRequest {
+	return ApiStartFpgaConnectionRegardlessOfJobRequest{
+		ApiService: a,
+		ctx: ctx,
+		fpgaName: fpgaName,
+	}
+}
+
+// Execute executes the request
+//  @return *os.File
+func (a *FPGAConnectionAPIService) StartFpgaConnectionRegardlessOfJobExecute(r ApiStartFpgaConnectionRegardlessOfJobRequest) (*os.File, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *os.File
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FPGAConnectionAPIService.StartFpgaConnectionRegardlessOfJob")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/fpga-connections/{fpgaName}/connect"
+	localVarPath = strings.Replace(localVarPath, "{"+"fpgaName"+"}", parameterValueToString(r.fpgaName, "fpgaName"), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.connection == nil {
+		return localVarReturnValue, nil, reportError("connection is required and must be specified")
+	}
+	if r.upgrade == nil {
+		return localVarReturnValue, nil, reportError("upgrade is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "Connection", r.connection, "simple", "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Upgrade", r.upgrade, "simple", "")
+	if r.secWebSocketProtocol != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Sec-WebSocket-Protocol", r.secWebSocketProtocol, "simple", "")
+	}
+	if r.acceptVersion != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Version", r.acceptVersion, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -614,7 +828,7 @@ func (a *FPGAConnectionAPIService) StartFpgaConnectionExecute(r ApiStartFpgaConn
 type ApiTerminateFpgaConnectionRequest struct {
 	ctx context.Context
 	ApiService *FPGAConnectionAPIService
-	connectionName string
+	fpgaName string
 	acceptVersion *string
 }
 
@@ -634,14 +848,14 @@ TerminateFpgaConnection Terminates all websocket connections to the application 
 This will terminate all websocket connections to the application running on the FPGA
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectionName The identifier of the connection
+ @param fpgaName The FPGA to initiate an interactive session with
  @return ApiTerminateFpgaConnectionRequest
 */
-func (a *FPGAConnectionAPIService) TerminateFpgaConnection(ctx context.Context, connectionName string) ApiTerminateFpgaConnectionRequest {
+func (a *FPGAConnectionAPIService) TerminateFpgaConnection(ctx context.Context, fpgaName string) ApiTerminateFpgaConnectionRequest {
 	return ApiTerminateFpgaConnectionRequest{
 		ApiService: a,
 		ctx: ctx,
-		connectionName: connectionName,
+		fpgaName: fpgaName,
 	}
 }
 
@@ -660,8 +874,8 @@ func (a *FPGAConnectionAPIService) TerminateFpgaConnectionExecute(r ApiTerminate
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/fpga-connections/{connectionName}/terminate"
-	localVarPath = strings.Replace(localVarPath, "{"+"connectionName"+"}", parameterValueToString(r.connectionName, "connectionName"), -1)
+	localVarPath := localBasePath + "/fpga-connections/{fpgaName}/terminate"
+	localVarPath = strings.Replace(localVarPath, "{"+"fpgaName"+"}", parameterValueToString(r.fpgaName, "fpgaName"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

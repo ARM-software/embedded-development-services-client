@@ -8,16 +8,17 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetFpgaConnection**](FPGAConnectionAPI.md#GetFpgaConnection) | **Get** /fpga-connections/{connectionName} | Get connection information
+[**GetFpgaConnection**](FPGAConnectionAPI.md#GetFpgaConnection) | **Get** /fpga-connections/{fpgaName} | Get connection information
 [**ListFpgaConnections**](FPGAConnectionAPI.md#ListFpgaConnections) | **Get** /fpga-connections/ | List available FPGA connections.
-[**StartFpgaConnection**](FPGAConnectionAPI.md#StartFpgaConnection) | **Get** /fpga-connections/{connectionName}/connect | starts a websocket connection
-[**TerminateFpgaConnection**](FPGAConnectionAPI.md#TerminateFpgaConnection) | **Post** /fpga-connections/{connectionName}/terminate | Terminates all websocket connections to the application running on the FPGA
+[**StartFpgaConnection**](FPGAConnectionAPI.md#StartFpgaConnection) | **Get** /fpga-connections/{fpgaName}/job/{jobName}/connect | starts a websocket connection
+[**StartFpgaConnectionRegardlessOfJob**](FPGAConnectionAPI.md#StartFpgaConnectionRegardlessOfJob) | **Get** /fpga-connections/{fpgaName}/connect | starts a websocket connection
+[**TerminateFpgaConnection**](FPGAConnectionAPI.md#TerminateFpgaConnection) | **Post** /fpga-connections/{fpgaName}/terminate | Terminates all websocket connections to the application running on the FPGA
 
 
 
 ## GetFpgaConnection
 
-> FPGAConnectionItem GetFpgaConnection(ctx, connectionName).AcceptVersion(acceptVersion).Execute()
+> FPGAConnectionItem GetFpgaConnection(ctx, fpgaName).AcceptVersion(acceptVersion).Execute()
 
 Get connection information
 
@@ -36,12 +37,12 @@ import (
 )
 
 func main() {
-	connectionName := "connectionName_example" // string | The identifier of the connection
+	fpgaName := "8b0c18e3-9330-485d-86fb-090dd9c435cb" // string | The FPGA to initiate an interactive session with
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FPGAConnectionAPI.GetFpgaConnection(context.Background(), connectionName).AcceptVersion(acceptVersion).Execute()
+	resp, r, err := apiClient.FPGAConnectionAPI.GetFpgaConnection(context.Background(), fpgaName).AcceptVersion(acceptVersion).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FPGAConnectionAPI.GetFpgaConnection``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,7 +58,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectionName** | **string** | The identifier of the connection | 
+**fpgaName** | **string** | The FPGA to initiate an interactive session with | 
 
 ### Other Parameters
 
@@ -163,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## StartFpgaConnection
 
-> *os.File StartFpgaConnection(ctx, connectionName).Upgrade(upgrade).Connection(connection).SecWebSocketProtocol(secWebSocketProtocol).AcceptVersion(acceptVersion).Execute()
+> *os.File StartFpgaConnection(ctx, fpgaName, jobName).Connection(connection).Upgrade(upgrade).SecWebSocketProtocol(secWebSocketProtocol).AcceptVersion(acceptVersion).Execute()
 
 starts a websocket connection
 
@@ -182,15 +183,16 @@ import (
 )
 
 func main() {
-	connectionName := "connectionName_example" // string | The identifier of the connection
-	upgrade := "upgrade_example" // string | Header used to upgrade an already-established client/server connection to a different protocol  (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Upgrade). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake) (default to "WebSocket")
 	connection := "connection_example" // string | Header controlling whether the network connection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Connection). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake) (default to "Upgrade")
+	fpgaName := "8b0c18e3-9330-485d-86fb-090dd9c435cb" // string | The FPGA to initiate an interactive session with
+	jobName := "bb4605bb-c9af-4abf-b9c3-c6aac47b4ac8" // string | The interactive job this connection is associated with
+	upgrade := "upgrade_example" // string | Header used to upgrade an already-established client/server connection to a different protocol  (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Upgrade). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake) (default to "WebSocket")
 	secWebSocketProtocol := "secWebSocketProtocol_example" // string | Header used to define a sub protocol to use in the communication  (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-WebSocket-Protocol). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake) (optional)
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FPGAConnectionAPI.StartFpgaConnection(context.Background(), connectionName).Upgrade(upgrade).Connection(connection).SecWebSocketProtocol(secWebSocketProtocol).AcceptVersion(acceptVersion).Execute()
+	resp, r, err := apiClient.FPGAConnectionAPI.StartFpgaConnection(context.Background(), fpgaName, jobName).Connection(connection).Upgrade(upgrade).SecWebSocketProtocol(secWebSocketProtocol).AcceptVersion(acceptVersion).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FPGAConnectionAPI.StartFpgaConnection``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -206,7 +208,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectionName** | **string** | The identifier of the connection | 
+**fpgaName** | **string** | The FPGA to initiate an interactive session with | 
+**jobName** | **string** | The interactive job this connection is associated with | 
 
 ### Other Parameters
 
@@ -215,9 +218,88 @@ Other parameters are passed through a pointer to a apiStartFpgaConnectionRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **connection** | **string** | Header controlling whether the network connection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Connection). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake) | [default to &quot;Upgrade&quot;]
+
 
  **upgrade** | **string** | Header used to upgrade an already-established client/server connection to a different protocol  (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Upgrade). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake) | [default to &quot;WebSocket&quot;]
+ **secWebSocketProtocol** | **string** | Header used to define a sub protocol to use in the communication  (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-WebSocket-Protocol). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake) | 
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+[***os.File**](*os.File.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## StartFpgaConnectionRegardlessOfJob
+
+> *os.File StartFpgaConnectionRegardlessOfJob(ctx, fpgaName).Connection(connection).Upgrade(upgrade).SecWebSocketProtocol(secWebSocketProtocol).AcceptVersion(acceptVersion).Execute()
+
+starts a websocket connection
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	connection := "connection_example" // string | Header controlling whether the network connection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Connection). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake) (default to "Upgrade")
+	fpgaName := "8b0c18e3-9330-485d-86fb-090dd9c435cb" // string | The FPGA to initiate an interactive session with
+	upgrade := "upgrade_example" // string | Header used to upgrade an already-established client/server connection to a different protocol  (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Upgrade). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake) (default to "WebSocket")
+	secWebSocketProtocol := "secWebSocketProtocol_example" // string | Header used to define a sub protocol to use in the communication  (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-WebSocket-Protocol). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake) (optional)
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FPGAConnectionAPI.StartFpgaConnectionRegardlessOfJob(context.Background(), fpgaName).Connection(connection).Upgrade(upgrade).SecWebSocketProtocol(secWebSocketProtocol).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAConnectionAPI.StartFpgaConnectionRegardlessOfJob``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `StartFpgaConnectionRegardlessOfJob`: *os.File
+	fmt.Fprintf(os.Stdout, "Response from `FPGAConnectionAPI.StartFpgaConnectionRegardlessOfJob`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fpgaName** | **string** | The FPGA to initiate an interactive session with | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStartFpgaConnectionRegardlessOfJobRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
  **connection** | **string** | Header controlling whether the network connection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Connection). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake) | [default to &quot;Upgrade&quot;]
+
+ **upgrade** | **string** | Header used to upgrade an already-established client/server connection to a different protocol  (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Upgrade). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake) | [default to &quot;WebSocket&quot;]
  **secWebSocketProtocol** | **string** | Header used to define a sub protocol to use in the communication  (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-WebSocket-Protocol). It is for instance used when establishing a Websocket connection (https://en.wikipedia.org/wiki/WebSocket#Opening_handshake) | 
  **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
 
@@ -241,7 +323,7 @@ Name | Type | Description  | Notes
 
 ## TerminateFpgaConnection
 
-> FPGAConnectionItem TerminateFpgaConnection(ctx, connectionName).AcceptVersion(acceptVersion).Execute()
+> FPGAConnectionItem TerminateFpgaConnection(ctx, fpgaName).AcceptVersion(acceptVersion).Execute()
 
 Terminates all websocket connections to the application running on the FPGA
 
@@ -260,12 +342,12 @@ import (
 )
 
 func main() {
-	connectionName := "connectionName_example" // string | The identifier of the connection
+	fpgaName := "8b0c18e3-9330-485d-86fb-090dd9c435cb" // string | The FPGA to initiate an interactive session with
 	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FPGAConnectionAPI.TerminateFpgaConnection(context.Background(), connectionName).AcceptVersion(acceptVersion).Execute()
+	resp, r, err := apiClient.FPGAConnectionAPI.TerminateFpgaConnection(context.Background(), fpgaName).AcceptVersion(acceptVersion).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FPGAConnectionAPI.TerminateFpgaConnection``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -281,7 +363,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectionName** | **string** | The identifier of the connection | 
+**fpgaName** | **string** | The FPGA to initiate an interactive session with | 
 
 ### Other Parameters
 

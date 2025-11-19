@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 **Target** | [**FPGATargetID**](FPGATargetID.md) |  | 
 **Timeout** | Pointer to **int64** | The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started. | [optional] [default to 300]
 **Title** | Pointer to **NullableString** | Optional human-readable name of the FPGA job. | [optional] 
-**Type** | Pointer to **NullableString** | type of the FPGA job. | [optional] [readonly] 
+**Type** | Pointer to **NullableString** | type of the FPGA job. | [optional] [default to "non-interactive"]
 **Workload** | [**FPGAWorkload**](FPGAWorkload.md) |  | 
 
 ## Methods

@@ -29,14 +29,10 @@ var _ MappedNullable = &FPGAConnectionItem{}
 type FPGAConnectionItem struct {
 	Links NullableFPGAConnectionItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
-	// Number of current connections using this channel.
+	// Number of current connections from this API instance using this channel.
 	Count *int32 `json:"count,omitempty"`
-	// The identifier of the connection.
+	// The identifier of the FPGA connection.
 	Name string `json:"name"`
-	// Whether the connection is ready to use.
-	Ready *bool `json:"ready,omitempty"`
-	// Status of the connection
-	Status *string `json:"status,omitempty"`
 	// Human readable description of the connection
 	Title *string `json:"title,omitempty"`
 }
@@ -171,70 +167,6 @@ func (o *FPGAConnectionItem) SetName(v string) {
 	o.Name = v
 }
 
-// GetReady returns the Ready field value if set, zero value otherwise.
-func (o *FPGAConnectionItem) GetReady() bool {
-	if o == nil || IsNil(o.Ready) {
-		var ret bool
-		return ret
-	}
-	return *o.Ready
-}
-
-// GetReadyOk returns a tuple with the Ready field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FPGAConnectionItem) GetReadyOk() (*bool, bool) {
-	if o == nil || IsNil(o.Ready) {
-		return nil, false
-	}
-	return o.Ready, true
-}
-
-// HasReady returns a boolean if a field has been set.
-func (o *FPGAConnectionItem) HasReady() bool {
-	if o != nil && !IsNil(o.Ready) {
-		return true
-	}
-
-	return false
-}
-
-// SetReady gets a reference to the given bool and assigns it to the Ready field.
-func (o *FPGAConnectionItem) SetReady(v bool) {
-	o.Ready = &v
-}
-
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *FPGAConnectionItem) GetStatus() string {
-	if o == nil || IsNil(o.Status) {
-		var ret string
-		return ret
-	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FPGAConnectionItem) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *FPGAConnectionItem) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *FPGAConnectionItem) SetStatus(v string) {
-	o.Status = &v
-}
-
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *FPGAConnectionItem) GetTitle() string {
 	if o == nil || IsNil(o.Title) {
@@ -283,12 +215,6 @@ func (o FPGAConnectionItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["count"] = o.Count
 	}
 	toSerialize["name"] = o.Name
-	if !IsNil(o.Ready) {
-		toSerialize["ready"] = o.Ready
-	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
 	if !IsNil(o.Title) {
 		toSerialize["title"] = o.Title
 	}

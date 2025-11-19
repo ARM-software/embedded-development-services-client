@@ -10,10 +10,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Links** | [**NullableFPGAConnectionItemLinks**](FPGAConnectionItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**Count** | Pointer to **int32** | Number of current connections using this channel. | [optional] 
-**Name** | **string** | The identifier of the connection. | 
-**Ready** | Pointer to **bool** | Whether the connection is ready to use. | [optional] 
-**Status** | Pointer to **string** | Status of the connection | [optional] 
+**Count** | Pointer to **int32** | Number of current connections from this API instance using this channel. | [optional] 
+**Name** | **string** | The identifier of the FPGA connection. | 
 **Title** | Pointer to **string** | Human readable description of the connection | [optional] 
 
 ## Methods
@@ -139,56 +137,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
-### GetReady
-
-`func (o *FPGAConnectionItem) GetReady() bool`
-
-GetReady returns the Ready field if non-nil, zero value otherwise.
-
-### GetReadyOk
-
-`func (o *FPGAConnectionItem) GetReadyOk() (*bool, bool)`
-
-GetReadyOk returns a tuple with the Ready field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReady
-
-`func (o *FPGAConnectionItem) SetReady(v bool)`
-
-SetReady sets Ready field to given value.
-
-### HasReady
-
-`func (o *FPGAConnectionItem) HasReady() bool`
-
-HasReady returns a boolean if a field has been set.
-
-### GetStatus
-
-`func (o *FPGAConnectionItem) GetStatus() string`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *FPGAConnectionItem) GetStatusOk() (*string, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *FPGAConnectionItem) SetStatus(v string)`
-
-SetStatus sets Status field to given value.
-
-### HasStatus
-
-`func (o *FPGAConnectionItem) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 ### GetTitle
 
