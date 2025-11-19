@@ -93,6 +93,8 @@ func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetad
 	this.Target = target
 	var timeout int64 = 300
 	this.Timeout = &timeout
+	var type_ TYPE = "non-interactive"
+	this.Type = *NewNullableString(&type_)
 	this.Workload = workload
 	return &this
 }
@@ -104,6 +106,8 @@ func NewFPGAJobItemWithDefaults() *FPGAJobItem {
 	this := FPGAJobItem{}
 	var timeout int64 = 300
 	this.Timeout = &timeout
+	var type_ TYPE = "non-interactive"
+	this.Type = *NewNullableString(&type_)
 	return &this
 }
 
