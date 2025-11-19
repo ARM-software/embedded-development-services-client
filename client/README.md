@@ -141,10 +141,11 @@ Class | Method | HTTP request | Description
 *FPGAAdminAPI* | [**AddFPGAAdmin**](docs/FPGAAdminAPI.md#addfpgaadmin) | **Post** /fpga-admins | Add a user to the FPGA admin group
 *FPGAAdminAPI* | [**ListFPGAAdmins**](docs/FPGAAdminAPI.md#listfpgaadmins) | **Get** /fpga-admins | List all the members of the FPGA admin group
 *FPGAAdminAPI* | [**RemoveFPGAAdmin**](docs/FPGAAdminAPI.md#removefpgaadmin) | **Delete** /fpga-admins/{fpgaAdminName} | Remove a user from the FPGA admin group
-*FPGAConnectionAPI* | [**GetFpgaConnection**](docs/FPGAConnectionAPI.md#getfpgaconnection) | **Get** /fpga-connections/{connectionName} | Get connection information
+*FPGAConnectionAPI* | [**GetFpgaConnection**](docs/FPGAConnectionAPI.md#getfpgaconnection) | **Get** /fpga-connections/{fpgaName} | Get connection information
 *FPGAConnectionAPI* | [**ListFpgaConnections**](docs/FPGAConnectionAPI.md#listfpgaconnections) | **Get** /fpga-connections/ | List available FPGA connections.
-*FPGAConnectionAPI* | [**StartFpgaConnection**](docs/FPGAConnectionAPI.md#startfpgaconnection) | **Get** /fpga-connections/{connectionName}/connect | starts a websocket connection
-*FPGAConnectionAPI* | [**TerminateFpgaConnection**](docs/FPGAConnectionAPI.md#terminatefpgaconnection) | **Post** /fpga-connections/{connectionName}/terminate | Terminates all websocket connections to the application running on the FPGA
+*FPGAConnectionAPI* | [**StartFpgaConnection**](docs/FPGAConnectionAPI.md#startfpgaconnection) | **Get** /fpga-connections/{fpgaName}/job/{jobName}/connect | starts a websocket connection
+*FPGAConnectionAPI* | [**StartFpgaConnectionRegardlessOfJob**](docs/FPGAConnectionAPI.md#startfpgaconnectionregardlessofjob) | **Get** /fpga-connections/{fpgaName}/connect | starts a websocket connection
+*FPGAConnectionAPI* | [**TerminateFpgaConnection**](docs/FPGAConnectionAPI.md#terminatefpgaconnection) | **Post** /fpga-connections/{fpgaName}/terminate | Terminates all websocket connections to the application running on the FPGA
 *FPGAEntitlementsAPI* | [**GetFPGAEntitlement**](docs/FPGAEntitlementsAPI.md#getfpgaentitlement) | **Get** /fpga-entitlements/{fpgaEntitlementName} | Return details of specific FPGA entitlement.
 *FPGAEntitlementsAPI* | [**ListFPGAEntitlements**](docs/FPGAEntitlementsAPI.md#listfpgaentitlements) | **Get** /fpga-entitlements | List all the entitlements that are managable by the FPGA admin group.
 *FPGAEntitlementsAPI* | [**RemoveFPGAEntitlement**](docs/FPGAEntitlementsAPI.md#removefpgaentitlement) | **Delete** /fpga-entitlements/{fpgaEntitlementName} | Remove all the permissions associated with an FPGA entitlement
