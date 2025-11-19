@@ -1,0 +1,9 @@
+{{ .OffsetFlag }} := false
+{{ .LimitFlag }} := false
+{{ .EmbedFlag }} := false
+if parsedLink, err := url.Parse({{ .LinkVar }}); err == nil {
+	linkQuery := parsedLink.Query()
+	{{ .OffsetFlag }} = linkQuery.Has("{{ .OffsetField }}")
+	{{ .LimitFlag }} = linkQuery.Has("{{ .LimitField }}")
+	{{ .EmbedFlag }} = linkQuery.Has("{{ .EmbedField }}")
+}

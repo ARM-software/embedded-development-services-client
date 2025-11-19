@@ -38,17 +38,28 @@ type FollowersParams = struct {
 }
 
 const (
-	resourcePath          = "link"
-	pagingLimitField      = "limit"
-	pagingLimitExistFlag  = "linkHasLimitParam"
-	pagingOffsetField     = "offset"
-	pagingOffsetExistFlag = "linkHasOffsetParam"
-	pagingEmbedField      = "embed"
-	pagingEmbedExistFlag  = "linkHasEmbedParam"
+	resourcePath           = "link"
+	pagingLimitField       = "limit"
+	pagingLimitExistFlag   = "linkHasLimitParam"
+	pagingOffsetField      = "offset"
+	pagingOffsetExistFlag  = "linkHasOffsetParam"
+	pagingEmbedField       = "embed"
+	pagingEmbedExistFlag   = "linkHasEmbedParam"
+	pagingInitTemplatePath = "snippets/pagingInitBlock.go.tmpl"
 )
 
+type pagingInitTemplateValues struct {
+	OffsetFlag  string
+	LimitFlag   string
+	EmbedFlag   string
+	OffsetField string
+	LimitField  string
+	EmbedField  string
+	LinkVar     string
+}
+
 func AddLinkFollowersToParams(d *Data) error {
-	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return getLinkFollowersParams(swagger, d) }, "linkfollowers.go")
+	return AddValuesToParams(d, func(swagger *openapi3.T) (any, error) { return getLinkFollowersParams(swagger, d) }, "linkfollowers.go")
 }
 
 func getLinkFollowersParams(swagger *openapi3.T, d *Data) (params FollowersParams, err error) {
@@ -345,15 +356,7 @@ func modifyLocalVarPath(fn *ast.FuncDecl) (err error) {
 	return
 }
 
-func addLinkQueryParamGuards(fn *ast.FuncDecl) (err error) {
-	// Adds the following code before 'localVarHeaderParams' definition
-	// 	linkHasOffsetParam := false
-	//  linkHasLimitParam := false
-	//  if parsedLink, err := url.Parse(link); err == nil {
-	//    linkQuery := parsedLink.Query()
-	//    linkHasOffsetParam = linkQuery.Has("offset")
-	//    linkHasLimitParam = linkQuery.Has("limit")
-	//  }
+func addLinkQueryParamGuards(fn *ast.FuncDecl, fset *token.FileSet) (err error) {
 	insertIdx := -1
 	for i, stmt := range fn.Body.List {
 		assign, ok := stmt.(*ast.AssignStmt)
@@ -371,116 +374,30 @@ func addLinkQueryParamGuards(fn *ast.FuncDecl) (err error) {
 		return
 	}
 
-	newStmts := []ast.Stmt{
-		newBoolAssignment(pagingOffsetExistFlag),
-		newBoolAssignment(pagingLimitExistFlag),
-		newBoolAssignment(pagingEmbedExistFlag),
-		newParsedLinkIfStmt(),
+	snippetSrc, err := renderTemplate(pagingInitTemplatePath, &pagingInitTemplateValues{
+		OffsetFlag:  pagingOffsetExistFlag,
+		LimitFlag:   pagingLimitExistFlag,
+		EmbedFlag:   pagingEmbedExistFlag,
+		OffsetField: pagingOffsetField,
+		LimitField:  pagingLimitField,
+		EmbedField:  pagingEmbedField,
+		LinkVar:     resourcePath,
+	})
+	if err != nil {
+		return err
 	}
 
-	body := make([]ast.Stmt, 0, len(fn.Body.List)+len(newStmts))
+	pagingInitStmts, err := ParseStatements(snippetSrc, fset)
+	if err != nil {
+		return err
+	}
+
+	body := make([]ast.Stmt, 0, len(fn.Body.List)+len(pagingInitStmts))
 	body = append(body, fn.Body.List[:insertIdx]...)
-	body = append(body, newStmts...)
+	body = append(body, pagingInitStmts...)
 	body = append(body, fn.Body.List[insertIdx:]...)
 	fn.Body.List = body
 	return
-}
-
-func newBoolAssignment(name string) ast.Stmt {
-	return &ast.AssignStmt{
-		Lhs: []ast.Expr{ast.NewIdent(name)},
-		Tok: token.DEFINE,
-		Rhs: []ast.Expr{ast.NewIdent("false")},
-	}
-}
-
-func newParsedLinkIfStmt() ast.Stmt {
-	initStmt := &ast.AssignStmt{
-		Lhs: []ast.Expr{ast.NewIdent("parsedLink"), ast.NewIdent("err")},
-		Tok: token.DEFINE,
-		Rhs: []ast.Expr{
-			&ast.CallExpr{
-				Fun: &ast.SelectorExpr{
-					X:   ast.NewIdent("url"),
-					Sel: ast.NewIdent("Parse"),
-				},
-				Args: []ast.Expr{ast.NewIdent("link")},
-			},
-		},
-	}
-
-	cond := &ast.BinaryExpr{
-		X:  ast.NewIdent("err"),
-		Op: token.EQL,
-		Y:  ast.NewIdent("nil"),
-	}
-
-	assignLinkQuery := &ast.AssignStmt{
-		Lhs: []ast.Expr{ast.NewIdent("linkQuery")},
-		Tok: token.DEFINE,
-		Rhs: []ast.Expr{
-			&ast.CallExpr{
-				Fun: &ast.SelectorExpr{
-					X:   ast.NewIdent("parsedLink"),
-					Sel: ast.NewIdent("Query"),
-				},
-			},
-		},
-	}
-
-	setOffset := &ast.AssignStmt{
-		Lhs: []ast.Expr{ast.NewIdent(pagingOffsetExistFlag)},
-		Tok: token.ASSIGN,
-		Rhs: []ast.Expr{
-			&ast.CallExpr{
-				Fun: &ast.SelectorExpr{
-					X:   ast.NewIdent("linkQuery"),
-					Sel: ast.NewIdent("Has"),
-				},
-				Args: []ast.Expr{&ast.BasicLit{Kind: token.STRING, Value: `"offset"`}},
-			},
-		},
-	}
-
-	setLimit := &ast.AssignStmt{
-		Lhs: []ast.Expr{ast.NewIdent(pagingLimitExistFlag)},
-		Tok: token.ASSIGN,
-		Rhs: []ast.Expr{
-			&ast.CallExpr{
-				Fun: &ast.SelectorExpr{
-					X:   ast.NewIdent("linkQuery"),
-					Sel: ast.NewIdent("Has"),
-				},
-				Args: []ast.Expr{&ast.BasicLit{Kind: token.STRING, Value: `"limit"`}},
-			},
-		},
-	}
-
-	setEmbed := &ast.AssignStmt{
-		Lhs: []ast.Expr{ast.NewIdent(pagingEmbedExistFlag)},
-		Tok: token.ASSIGN,
-		Rhs: []ast.Expr{
-			&ast.CallExpr{
-				Fun: &ast.SelectorExpr{
-					X:   ast.NewIdent("linkQuery"),
-					Sel: ast.NewIdent("Has"),
-				},
-				Args: []ast.Expr{&ast.BasicLit{Kind: token.STRING, Value: `"embed"`}},
-			},
-		},
-	}
-	return &ast.IfStmt{
-		Init: initStmt,
-		Cond: cond,
-		Body: &ast.BlockStmt{
-			List: []ast.Stmt{
-				assignLinkQuery,
-				setOffset,
-				setLimit,
-				setEmbed,
-			},
-		},
-	}
 }
 
 func wrapPagingParamBlocks(fn *ast.FuncDecl) {
@@ -627,7 +544,7 @@ func getLinkFollowers(funcNameMap map[string]string, d *Data) (followers Followe
 						err = modifyLineErr
 						return
 					}
-					guardsErr := addLinkQueryParamGuards(fn)
+					guardsErr := addLinkQueryParamGuards(fn, pkg.Fset)
 					if guardsErr != nil {
 						err = guardsErr
 						return
