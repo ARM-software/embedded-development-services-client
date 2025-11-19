@@ -1,6 +1,7 @@
 package codegen
 
 import (
+	"fmt"
 	"go/ast"
 	"go/parser"
 	"go/token"
@@ -11,8 +12,8 @@ func ParseFile(src string) (*ast.File, error) {
 	return parser.ParseFile(fset, "", src, 0)
 }
 
-func ParseDeclerations(src string) ([]ast.Decl, error) {
-	wrapped := "package p\nfunc _(){\n" + src + "\n}\n"
+func ParseDeclarations(src string) ([]ast.Decl, error) {
+	wrapped := fmt.Sprintf("package p\nfunc _(){\n%s\n}\n", src)
 	fset := token.NewFileSet()
 	file, err := parser.ParseFile(fset, "", wrapped, 0)
 	if err != nil {
@@ -29,12 +30,4 @@ func ParseStatements(src string, fset *token.FileSet) ([]ast.Stmt, error) {
 	}
 	fn := file.Decls[0].(*ast.FuncDecl)
 	return fn.Body.List, nil
-}
-
-func ParseTemplateStatements(templatePath string, values any, fset *token.FileSet) ([]ast.Stmt, error) {
-	rendered, err := renderTemplate(templatePath, values)
-	if err != nil {
-		return nil, err
-	}
-	return ParseStatements(rendered, fset)
 }

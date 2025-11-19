@@ -47,6 +47,9 @@ func (a *BuildJobsAPIService) FollowGetBuildMessagesLink(r *ApiGetBuildMessagesR
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -216,6 +219,9 @@ func (a *BuildJobsAPIService) FollowBuildJobLink(r *ApiListBuildJobRequest, link
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -384,6 +390,9 @@ func (a *BuildJobsAPIService) FollowBuildOutputManagersLink(r *ApiListBuildOutpu
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -562,6 +571,9 @@ func (a *CMSISBuildersAPIService) FollowCmsisBuildersLink(r *ApiListCmsisBuilder
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -729,6 +741,9 @@ func (a *CMSISIntellisenseBuildersAPIService) FollowCmsisIntellisenseLink(r *Api
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -896,6 +911,9 @@ func (a *FPGAConnectionAPIService) FollowFpgaConnectionsLink(r *ApiListFpgaConne
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -1064,6 +1082,9 @@ func (a *FPGAJobsAPIService) FollowGetFpgaJobMessagesLink(r *ApiGetFpgaJobMessag
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -1234,6 +1255,9 @@ func (a *FPGAJobsAPIService) FollowFpgaJobArtefactManagersLink(r *ApiListFpgaJob
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -1412,6 +1436,9 @@ func (a *FPGAPayloadsAPIService) FollowPayloadsLink(r *ApiListPayloadsRequest, l
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -1580,6 +1607,9 @@ func (a *GenericWorkJobsAPIService) FollowGetGenericWorkJobMessagesLink(r *ApiGe
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -1750,6 +1780,9 @@ func (a *GenericWorkJobsAPIService) FollowGenericWorkJobArtefactManagersLink(r *
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -1928,6 +1961,9 @@ func (a *GenericWorkJobsAPIService) FollowGenericWorkJobsLink(r *ApiListGenericW
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -2095,6 +2131,9 @@ func (a *GenericWorkersAPIService) FollowGenericWorkersLink(r *ApiListGenericWor
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -2263,6 +2302,9 @@ func (a *IntellisenseJobsAPIService) FollowGetIntellisenseMessagesLink(r *ApiGet
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -2432,6 +2474,9 @@ func (a *IntellisenseJobsAPIService) FollowIntellisenseJobLink(r *ApiListIntelli
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -2600,6 +2645,9 @@ func (a *IntellisenseJobsAPIService) FollowIntellisenseOutputManagersLink(r *Api
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -2779,6 +2827,9 @@ func (a *VHTRunJobsAPIService) FollowGetVhtRunJobMessagesLink(r *ApiGetVhtRunJob
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -2948,6 +2999,9 @@ func (a *VHTRunJobsAPIService) FollowVhtRunJobsLink(r *ApiListVhtRunJobsRequest,
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -3116,6 +3170,9 @@ func (a *VirtualHardwareTargetAPIService) FollowFilteredVhtInstancesLink(r *ApiL
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -3283,6 +3340,9 @@ func (a *VirtualHardwareTargetAPIService) FollowVhtsLink(r *ApiListVhtsRequest, 
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -3451,6 +3511,9 @@ func (a *VirtualHardwareTargetInstanceAPIService) FollowGetVhtInstanceMessagesLi
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -3621,6 +3684,9 @@ func (a *VirtualHardwareTargetInstanceAPIService) FollowVhtInstanceArtefactManag
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -3799,6 +3865,9 @@ func (a *VirtualHardwareTargetInstanceAPIService) FollowVhtInstancesLink(r *ApiL
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -3966,6 +4035,9 @@ func (a *WorkspaceAPIService) FollowWorkspacesLink(r *ApiListWorkspacesRequest, 
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
@@ -4133,6 +4205,9 @@ func (a *WorkspaceSourceAPIService) FollowWorkspaceSourcesLink(r *ApiListWorkspa
 	linkHasOffsetParam := false
 	linkHasLimitParam := false
 	linkHasEmbedParam := false
+	_ = linkHasOffsetParam
+	_ = linkHasLimitParam
+	_ = linkHasEmbedParam
 	if parsedLink, err := url.Parse(link); err == nil {
 		linkQuery := parsedLink.Query()
 		linkHasOffsetParam = linkQuery.Has("offset")
