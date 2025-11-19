@@ -31,8 +31,6 @@ type FPGAJobItem struct {
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// Configuration map for jobs that require it. These could be environment variables. This is job implementation dependent and job documentation should describe it.
 	Configuration map[string]string `json:"configuration,omitempty"`
-	// True when there is an active connection to the application running on the FPGA. If the job does not support connection, this flag will never be true.
-	Connected bool `json:"connected"`
 	// True when the job has completed (this does not necessarily indicate success).
 	Done bool `json:"done"`
 	// True if there was an error in the service while attempting the job.
@@ -43,8 +41,6 @@ type FPGAJobItem struct {
 	Name string `json:"name"`
 	// True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended.
 	Queued bool `json:"queued"`
-	// True when the application running on the FPGA is ready to handle connections. If the job does not support connection, this flag will never be true.
-	ReadyForConnection bool `json:"readyForConnection"`
 	// A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead.
 	Status string `json:"status"`
 	// The number of steps that have been completed so far. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started.
@@ -73,17 +69,15 @@ type _FPGAJobItem FPGAJobItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, connected bool, done bool, error_ bool, failure bool, name string, queued bool, readyForConnection bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, suspended bool, target FPGATargetID, workload FPGAWorkload) *FPGAJobItem {
+func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, done bool, error_ bool, failure bool, name string, queued bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, suspended bool, target FPGATargetID, workload FPGAWorkload) *FPGAJobItem {
 	this := FPGAJobItem{}
 	this.Links = links
 	this.Metadata = metadata
-	this.Connected = connected
 	this.Done = done
 	this.Error = error_
 	this.Failure = failure
 	this.Name = name
 	this.Queued = queued
-	this.ReadyForConnection = readyForConnection
 	this.Status = status
 	this.StepsCompleted = stepsCompleted
 	this.StepsTotal = stepsTotal
@@ -194,30 +188,6 @@ func (o *FPGAJobItem) HasConfiguration() bool {
 // SetConfiguration gets a reference to the given map[string]string and assigns it to the Configuration field.
 func (o *FPGAJobItem) SetConfiguration(v map[string]string) {
 	o.Configuration = v
-}
-
-// GetConnected returns the Connected field value
-func (o *FPGAJobItem) GetConnected() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Connected
-}
-
-// GetConnectedOk returns a tuple with the Connected field value
-// and a boolean to check if the value has been set.
-func (o *FPGAJobItem) GetConnectedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Connected, true
-}
-
-// SetConnected sets field value
-func (o *FPGAJobItem) SetConnected(v bool) {
-	o.Connected = v
 }
 
 // GetDone returns the Done field value
@@ -338,30 +308,6 @@ func (o *FPGAJobItem) GetQueuedOk() (*bool, bool) {
 // SetQueued sets field value
 func (o *FPGAJobItem) SetQueued(v bool) {
 	o.Queued = v
-}
-
-// GetReadyForConnection returns the ReadyForConnection field value
-func (o *FPGAJobItem) GetReadyForConnection() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.ReadyForConnection
-}
-
-// GetReadyForConnectionOk returns a tuple with the ReadyForConnection field value
-// and a boolean to check if the value has been set.
-func (o *FPGAJobItem) GetReadyForConnectionOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ReadyForConnection, true
-}
-
-// SetReadyForConnection sets field value
-func (o *FPGAJobItem) SetReadyForConnection(v bool) {
-	o.ReadyForConnection = v
 }
 
 // GetStatus returns the Status field value
@@ -691,13 +637,11 @@ func (o FPGAJobItem) ToMap() (map[string]interface{}, error) {
 	if o.Configuration != nil {
 		toSerialize["configuration"] = o.Configuration
 	}
-	toSerialize["connected"] = o.Connected
 	toSerialize["done"] = o.Done
 	toSerialize["error"] = o.Error
 	toSerialize["failure"] = o.Failure
 	toSerialize["name"] = o.Name
 	toSerialize["queued"] = o.Queued
-	toSerialize["readyForConnection"] = o.ReadyForConnection
 	toSerialize["status"] = o.Status
 	toSerialize["stepsCompleted"] = o.StepsCompleted.Get()
 	toSerialize["stepsTotal"] = o.StepsTotal.Get()
@@ -725,13 +669,11 @@ func (o *FPGAJobItem) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"_links",
 		"_metadata",
-		"connected",
 		"done",
 		"error",
 		"failure",
 		"name",
 		"queued",
-		"readyForConnection",
 		"status",
 		"stepsCompleted",
 		"stepsTotal",
