@@ -11,13 +11,12 @@ Name | Type | Description | Notes
 **Links** | [**NullableFPGAJobItemLinks**](FPGAJobItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **Configuration** | Pointer to **map[string]string** | Configuration map for jobs that require it. These could be environment variables. This is job implementation dependent and job documentation should describe it. | [optional] 
-**Connected** | **bool** | True when there is an active connection to the application running on the FPGA. If the job does not support connection, this flag will never be true. | [readonly] 
 **Done** | **bool** | True when the job has completed (this does not necessarily indicate success). | [readonly] 
 **Error** | **bool** | True if there was an error in the service while attempting the job. | [readonly] 
 **Failure** | **bool** | True if the job failed (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
+**JobType** | Pointer to **NullableString** | type of the FPGA job. | [optional] [default to "non-interactive"]
 **Name** | **string** | Unique ID of the FPGA job. | [readonly] 
 **Queued** | **bool** | True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended. | [readonly] 
-**ReadyForConnection** | **bool** | True when the application running on the FPGA is ready to handle connections. If the job does not support connection, this flag will never be true. | [readonly] 
 **Status** | **string** | A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead. | [readonly] 
 **StepsCompleted** | **NullableInt32** | The number of steps that have been completed so far. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started. | [readonly] 
 **StepsTotal** | **NullableInt32** | The total number of steps that will need to be performed to complete the job. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started. | [readonly] 
@@ -27,14 +26,13 @@ Name | Type | Description | Notes
 **Target** | [**FPGATargetID**](FPGATargetID.md) |  | 
 **Timeout** | Pointer to **int64** | The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started. | [optional] [default to 300]
 **Title** | Pointer to **NullableString** | Optional human-readable name of the FPGA job. | [optional] 
-**Type** | Pointer to **NullableString** | type of the FPGA job. | [optional] [default to "non-interactive"]
 **Workload** | [**FPGAWorkload**](FPGAWorkload.md) |  | 
 
 ## Methods
 
 ### NewFPGAJobItem
 
-`func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, connected bool, done bool, error_ bool, failure bool, name string, queued bool, readyForConnection bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, suspended bool, target FPGATargetID, workload FPGAWorkload, ) *FPGAJobItem`
+`func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, done bool, error_ bool, failure bool, name string, queued bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, suspended bool, target FPGATargetID, workload FPGAWorkload, ) *FPGAJobItem`
 
 NewFPGAJobItem instantiates a new FPGAJobItem object
 This constructor will assign default values to properties that have it defined,
@@ -144,26 +142,6 @@ HasConfiguration returns a boolean if a field has been set.
 `func (o *FPGAJobItem) UnsetConfiguration()`
 
 UnsetConfiguration ensures that no value is present for Configuration, not even an explicit nil
-### GetConnected
-
-`func (o *FPGAJobItem) GetConnected() bool`
-
-GetConnected returns the Connected field if non-nil, zero value otherwise.
-
-### GetConnectedOk
-
-`func (o *FPGAJobItem) GetConnectedOk() (*bool, bool)`
-
-GetConnectedOk returns a tuple with the Connected field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetConnected
-
-`func (o *FPGAJobItem) SetConnected(v bool)`
-
-SetConnected sets Connected field to given value.
-
-
 ### GetDone
 
 `func (o *FPGAJobItem) GetDone() bool`
@@ -224,6 +202,41 @@ and a boolean to check if the value has been set.
 SetFailure sets Failure field to given value.
 
 
+### GetJobType
+
+`func (o *FPGAJobItem) GetJobType() string`
+
+GetJobType returns the JobType field if non-nil, zero value otherwise.
+
+### GetJobTypeOk
+
+`func (o *FPGAJobItem) GetJobTypeOk() (*string, bool)`
+
+GetJobTypeOk returns a tuple with the JobType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetJobType
+
+`func (o *FPGAJobItem) SetJobType(v string)`
+
+SetJobType sets JobType field to given value.
+
+### HasJobType
+
+`func (o *FPGAJobItem) HasJobType() bool`
+
+HasJobType returns a boolean if a field has been set.
+
+### SetJobTypeNil
+
+`func (o *FPGAJobItem) SetJobTypeNil(b bool)`
+
+ SetJobTypeNil sets the value for JobType to be an explicit nil
+
+### UnsetJobType
+`func (o *FPGAJobItem) UnsetJobType()`
+
+UnsetJobType ensures that no value is present for JobType, not even an explicit nil
 ### GetName
 
 `func (o *FPGAJobItem) GetName() string`
@@ -262,26 +275,6 @@ and a boolean to check if the value has been set.
 `func (o *FPGAJobItem) SetQueued(v bool)`
 
 SetQueued sets Queued field to given value.
-
-
-### GetReadyForConnection
-
-`func (o *FPGAJobItem) GetReadyForConnection() bool`
-
-GetReadyForConnection returns the ReadyForConnection field if non-nil, zero value otherwise.
-
-### GetReadyForConnectionOk
-
-`func (o *FPGAJobItem) GetReadyForConnectionOk() (*bool, bool)`
-
-GetReadyForConnectionOk returns a tuple with the ReadyForConnection field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReadyForConnection
-
-`func (o *FPGAJobItem) SetReadyForConnection(v bool)`
-
-SetReadyForConnection sets ReadyForConnection field to given value.
 
 
 ### GetStatus
@@ -504,41 +497,6 @@ HasTitle returns a boolean if a field has been set.
 `func (o *FPGAJobItem) UnsetTitle()`
 
 UnsetTitle ensures that no value is present for Title, not even an explicit nil
-### GetType
-
-`func (o *FPGAJobItem) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *FPGAJobItem) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *FPGAJobItem) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *FPGAJobItem) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
-### SetTypeNil
-
-`func (o *FPGAJobItem) SetTypeNil(b bool)`
-
- SetTypeNil sets the value for Type to be an explicit nil
-
-### UnsetType
-`func (o *FPGAJobItem) UnsetType()`
-
-UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetWorkload
 
 `func (o *FPGAJobItem) GetWorkload() FPGAWorkload`

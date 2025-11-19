@@ -31,20 +31,18 @@ type FPGAJobItem struct {
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// Configuration map for jobs that require it. These could be environment variables. This is job implementation dependent and job documentation should describe it.
 	Configuration map[string]string `json:"configuration,omitempty"`
-	// True when there is an active connection to the application running on the FPGA. If the job does not support connection, this flag will never be true.
-	Connected bool `json:"connected"`
 	// True when the job has completed (this does not necessarily indicate success).
 	Done bool `json:"done"`
 	// True if there was an error in the service while attempting the job.
 	Error bool `json:"error"`
 	// True if the job failed (this should be used in conjunction with the `done` property).
 	Failure bool `json:"failure"`
+	// type of the FPGA job.
+	JobType NullableString `json:"jobType,omitempty"`
 	// Unique ID of the FPGA job.
 	Name string `json:"name"`
 	// True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended.
 	Queued bool `json:"queued"`
-	// True when the application running on the FPGA is ready to handle connections. If the job does not support connection, this flag will never be true.
-	ReadyForConnection bool `json:"readyForConnection"`
 	// A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead.
 	Status string `json:"status"`
 	// The number of steps that have been completed so far. Please note: - This value also includes additional service orchestration steps, that are outside the core process,   so may differ from the job progress indicated within job messages. - This value will only be available after the job has been started.
@@ -62,8 +60,6 @@ type FPGAJobItem struct {
 	Timeout *int64 `json:"timeout,omitempty"`
 	// Optional human-readable name of the FPGA job.
 	Title NullableString `json:"title,omitempty"`
-	// type of the FPGA job.
-	Type NullableString `json:"type,omitempty"`
 	Workload FPGAWorkload `json:"workload"`
 }
 
@@ -73,17 +69,17 @@ type _FPGAJobItem FPGAJobItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, connected bool, done bool, error_ bool, failure bool, name string, queued bool, readyForConnection bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, suspended bool, target FPGATargetID, workload FPGAWorkload) *FPGAJobItem {
+func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetadata, done bool, error_ bool, failure bool, name string, queued bool, status string, stepsCompleted NullableInt32, stepsTotal NullableInt32, success bool, supportConnection bool, suspended bool, target FPGATargetID, workload FPGAWorkload) *FPGAJobItem {
 	this := FPGAJobItem{}
 	this.Links = links
 	this.Metadata = metadata
-	this.Connected = connected
 	this.Done = done
 	this.Error = error_
 	this.Failure = failure
+	var jobType JOB_TYPE = "non-interactive"
+	this.JobType = *NewNullableString(&jobType)
 	this.Name = name
 	this.Queued = queued
-	this.ReadyForConnection = readyForConnection
 	this.Status = status
 	this.StepsCompleted = stepsCompleted
 	this.StepsTotal = stepsTotal
@@ -93,8 +89,6 @@ func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetad
 	this.Target = target
 	var timeout int64 = 300
 	this.Timeout = &timeout
-	var type_ TYPE = "non-interactive"
-	this.Type = *NewNullableString(&type_)
 	this.Workload = workload
 	return &this
 }
@@ -104,10 +98,10 @@ func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetad
 // but it doesn't guarantee that properties required by API are set
 func NewFPGAJobItemWithDefaults() *FPGAJobItem {
 	this := FPGAJobItem{}
+	var jobType JOB_TYPE = "non-interactive"
+	this.JobType = *NewNullableString(&jobType)
 	var timeout int64 = 300
 	this.Timeout = &timeout
-	var type_ TYPE = "non-interactive"
-	this.Type = *NewNullableString(&type_)
 	return &this
 }
 
@@ -196,30 +190,6 @@ func (o *FPGAJobItem) SetConfiguration(v map[string]string) {
 	o.Configuration = v
 }
 
-// GetConnected returns the Connected field value
-func (o *FPGAJobItem) GetConnected() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Connected
-}
-
-// GetConnectedOk returns a tuple with the Connected field value
-// and a boolean to check if the value has been set.
-func (o *FPGAJobItem) GetConnectedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Connected, true
-}
-
-// SetConnected sets field value
-func (o *FPGAJobItem) SetConnected(v bool) {
-	o.Connected = v
-}
-
 // GetDone returns the Done field value
 func (o *FPGAJobItem) GetDone() bool {
 	if o == nil {
@@ -292,6 +262,48 @@ func (o *FPGAJobItem) SetFailure(v bool) {
 	o.Failure = v
 }
 
+// GetJobType returns the JobType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FPGAJobItem) GetJobType() string {
+	if o == nil || IsNil(o.JobType.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.JobType.Get()
+}
+
+// GetJobTypeOk returns a tuple with the JobType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FPGAJobItem) GetJobTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.JobType.Get(), o.JobType.IsSet()
+}
+
+// HasJobType returns a boolean if a field has been set.
+func (o *FPGAJobItem) HasJobType() bool {
+	if o != nil && o.JobType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetJobType gets a reference to the given NullableString and assigns it to the JobType field.
+func (o *FPGAJobItem) SetJobType(v string) {
+	o.JobType.Set(&v)
+}
+// SetJobTypeNil sets the value for JobType to be an explicit nil
+func (o *FPGAJobItem) SetJobTypeNil() {
+	o.JobType.Set(nil)
+}
+
+// UnsetJobType ensures that no value is present for JobType, not even an explicit nil
+func (o *FPGAJobItem) UnsetJobType() {
+	o.JobType.Unset()
+}
+
 // GetName returns the Name field value
 func (o *FPGAJobItem) GetName() string {
 	if o == nil {
@@ -338,30 +350,6 @@ func (o *FPGAJobItem) GetQueuedOk() (*bool, bool) {
 // SetQueued sets field value
 func (o *FPGAJobItem) SetQueued(v bool) {
 	o.Queued = v
-}
-
-// GetReadyForConnection returns the ReadyForConnection field value
-func (o *FPGAJobItem) GetReadyForConnection() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.ReadyForConnection
-}
-
-// GetReadyForConnectionOk returns a tuple with the ReadyForConnection field value
-// and a boolean to check if the value has been set.
-func (o *FPGAJobItem) GetReadyForConnectionOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ReadyForConnection, true
-}
-
-// SetReadyForConnection sets field value
-func (o *FPGAJobItem) SetReadyForConnection(v bool) {
-	o.ReadyForConnection = v
 }
 
 // GetStatus returns the Status field value
@@ -610,48 +598,6 @@ func (o *FPGAJobItem) UnsetTitle() {
 	o.Title.Unset()
 }
 
-// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FPGAJobItem) GetType() string {
-	if o == nil || IsNil(o.Type.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Type.Get()
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FPGAJobItem) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type.Get(), o.Type.IsSet()
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *FPGAJobItem) HasType() bool {
-	if o != nil && o.Type.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given NullableString and assigns it to the Type field.
-func (o *FPGAJobItem) SetType(v string) {
-	o.Type.Set(&v)
-}
-// SetTypeNil sets the value for Type to be an explicit nil
-func (o *FPGAJobItem) SetTypeNil() {
-	o.Type.Set(nil)
-}
-
-// UnsetType ensures that no value is present for Type, not even an explicit nil
-func (o *FPGAJobItem) UnsetType() {
-	o.Type.Unset()
-}
-
 // GetWorkload returns the Workload field value
 func (o *FPGAJobItem) GetWorkload() FPGAWorkload {
 	if o == nil {
@@ -691,13 +637,14 @@ func (o FPGAJobItem) ToMap() (map[string]interface{}, error) {
 	if o.Configuration != nil {
 		toSerialize["configuration"] = o.Configuration
 	}
-	toSerialize["connected"] = o.Connected
 	toSerialize["done"] = o.Done
 	toSerialize["error"] = o.Error
 	toSerialize["failure"] = o.Failure
+	if o.JobType.IsSet() {
+		toSerialize["jobType"] = o.JobType.Get()
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["queued"] = o.Queued
-	toSerialize["readyForConnection"] = o.ReadyForConnection
 	toSerialize["status"] = o.Status
 	toSerialize["stepsCompleted"] = o.StepsCompleted.Get()
 	toSerialize["stepsTotal"] = o.StepsTotal.Get()
@@ -711,9 +658,6 @@ func (o FPGAJobItem) ToMap() (map[string]interface{}, error) {
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
-	if o.Type.IsSet() {
-		toSerialize["type"] = o.Type.Get()
-	}
 	toSerialize["workload"] = o.Workload
 	return toSerialize, nil
 }
@@ -725,13 +669,11 @@ func (o *FPGAJobItem) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"_links",
 		"_metadata",
-		"connected",
 		"done",
 		"error",
 		"failure",
 		"name",
 		"queued",
-		"readyForConnection",
 		"status",
 		"stepsCompleted",
 		"stepsTotal",
