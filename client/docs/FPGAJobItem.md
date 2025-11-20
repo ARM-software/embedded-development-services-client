@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Done** | **bool** | True when the job has completed (this does not necessarily indicate success). | [readonly] 
 **Error** | **bool** | True if there was an error in the service while attempting the job. | [readonly] 
 **Failure** | **bool** | True if the job failed (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
-**JobType** | Pointer to **NullableString** | type of the FPGA job. | [optional] [default to "non-interactive"]
+**JobType** | Pointer to [**NullableFPGAJobType**](FPGAJobType.md) |  | [optional] [default to NON_INTERACTIVE]
 **Name** | **string** | Unique ID of the FPGA job. | [readonly] 
 **Queued** | **bool** | True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended. | [readonly] 
 **Status** | **string** | A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead. | [readonly] 
@@ -204,20 +204,20 @@ SetFailure sets Failure field to given value.
 
 ### GetJobType
 
-`func (o *FPGAJobItem) GetJobType() string`
+`func (o *FPGAJobItem) GetJobType() FPGAJobType`
 
 GetJobType returns the JobType field if non-nil, zero value otherwise.
 
 ### GetJobTypeOk
 
-`func (o *FPGAJobItem) GetJobTypeOk() (*string, bool)`
+`func (o *FPGAJobItem) GetJobTypeOk() (*FPGAJobType, bool)`
 
 GetJobTypeOk returns a tuple with the JobType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetJobType
 
-`func (o *FPGAJobItem) SetJobType(v string)`
+`func (o *FPGAJobItem) SetJobType(v FPGAJobType)`
 
 SetJobType sets JobType field to given value.
 
