@@ -79,7 +79,7 @@ jobs:
       with:
         ref: ${{ inputs.branch || github.head_ref || github.ref }}
     - name: Download all-service-flat artefact
-      uses: actions/download-artifact@v5.0.0
+      uses: actions/download-artifact@v6.0.0
       with:
         name: all-service-flat
         path: all-service-definition
