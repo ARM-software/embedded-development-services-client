@@ -5,9 +5,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ARM-software/golang-utils/utils/filesystem"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	"github.com/ARM-software/golang-utils/utils/filesystem"
 )
 
 func TestJobItemsExtensions(t *testing.T) {

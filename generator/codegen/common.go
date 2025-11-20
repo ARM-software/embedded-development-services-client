@@ -13,17 +13,17 @@ import (
 	"text/template"
 
 	"github.com/getkin/kin-openapi/openapi3"
+	validation "github.com/go-ozzo/ozzo-validation"
 	"golang.org/x/tools/imports"
 
 	"github.com/ARM-software/golang-utils/utils/commonerrors"
 	configUtils "github.com/ARM-software/golang-utils/utils/config"
 	"github.com/ARM-software/golang-utils/utils/filesystem"
 	"github.com/ARM-software/golang-utils/utils/parallelisation"
-	validation "github.com/go-ozzo/ozzo-validation"
 )
 
 var (
-	//go:embed templates/*
+	//go:embed templates/* snippets/*
 	templates embed.FS
 	//go:embed static/*
 	static embed.FS
@@ -147,9 +147,7 @@ func GenerateStaticFileConfigStruct(cfg ExtensionsConfig) (d *StaticFileConfig, 
 }
 
 func GenerateTemplateFile(ctx context.Context, d *Data) (err error) {
-	t, err := template.
-		New(filepath.Base(d.TemplatePath)).
-		ParseFS(templates, d.TemplatePath)
+	t, err := parseTemplate(templates, d.TemplatePath)
 	if err != nil {
 		return
 	}
@@ -207,13 +205,18 @@ func generateSourceCode(ctx context.Context, data *Data, template *template.Temp
 	if err != nil {
 		return
 	}
-	defer func() { _ = file.Close() }()
+
+	defer func() {
+		closeErr := file.Close()
+		if err == nil {
+			err = closeErr
+		}
+	}()
+
 	_, err = file.Write(content)
 	if err != nil {
 		return
 	}
-
-	err = file.Close()
 	return
 }
 
@@ -224,7 +227,7 @@ func loadAPIDefinition(specPath string) (swagger *openapi3.T, err error) {
 	return
 }
 
-func AddValuesToParams(d *Data, getValues func(*openapi3.T) (interface{}, error), generationType string) (err error) {
+func AddValuesToParams(d *Data, getValues func(*openapi3.T) (any, error), generationType string) (err error) {
 	if d == nil {
 		err = fmt.Errorf("%w input variable", commonerrors.ErrUndefined)
 		return
@@ -277,9 +280,7 @@ func CopyStaticFiles(ctx context.Context, staticFileConfig *StaticFileConfig) (e
 			continue
 		}
 
-		t, tmplErr := template.
-			New(filesystem.FilePathBase(efs, f)).
-			ParseFS(static, f)
+		t, tmplErr := parseTemplate(static, f)
 		if tmplErr != nil {
 			return tmplErr
 		}
@@ -299,4 +300,22 @@ func CopyStaticFiles(ctx context.Context, staticFileConfig *StaticFileConfig) (e
 	}
 
 	return
+}
+
+func renderTemplate(templatePath string, data any) (string, error) {
+	t, err := parseTemplate(templates, templatePath)
+	if err != nil {
+		return "", err
+	}
+
+	var buf bytes.Buffer
+	if err := t.Execute(&buf, data); err != nil {
+		return "", err
+	}
+
+	return buf.String(), nil
+}
+
+func parseTemplate(source embed.FS, templatePath string) (*template.Template, error) {
+	return template.New(filepath.Base(templatePath)).ParseFS(source, templatePath)
 }

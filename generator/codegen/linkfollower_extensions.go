@@ -9,11 +9,12 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ARM-software/golang-utils/utils/commonerrors"
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/iancoleman/strcase"
 	"golang.org/x/tools/go/packages"
+
+	"github.com/ARM-software/golang-utils/utils/commonerrors"
 )
 
 type APIServiceFollowFunc struct {
@@ -36,10 +37,29 @@ type FollowersParams = struct {
 	Followers
 }
 
-const resourcePath = "link"
+const (
+	resourcePath           = "link"
+	pagingLimitField       = "limit"
+	pagingLimitExistFlag   = "linkHasLimitParam"
+	pagingOffsetField      = "offset"
+	pagingOffsetExistFlag  = "linkHasOffsetParam"
+	pagingEmbedField       = "embed"
+	pagingEmbedExistFlag   = "linkHasEmbedParam"
+	pagingInitTemplatePath = "snippets/pagingInitBlock.go.tmpl"
+)
+
+type pagingInitTemplateValues struct {
+	OffsetFlag  string
+	LimitFlag   string
+	EmbedFlag   string
+	OffsetField string
+	LimitField  string
+	EmbedField  string
+	LinkVar     string
+}
 
 func AddLinkFollowersToParams(d *Data) error {
-	return AddValuesToParams(d, func(swagger *openapi3.T) (interface{}, error) { return getLinkFollowersParams(swagger, d) }, "linkfollowers.go")
+	return AddValuesToParams(d, func(swagger *openapi3.T) (any, error) { return getLinkFollowersParams(swagger, d) }, "linkfollowers.go")
 }
 
 func getLinkFollowersParams(swagger *openapi3.T, d *Data) (params FollowersParams, err error) {
@@ -160,7 +180,7 @@ func renderFieldListSrc(fields *ast.FieldList, fset *token.FileSet) (src string,
 		return
 	}
 
-	// Return just one type with no paranthesis or name
+	// Return just one type with no parenthesis or name
 	var buf bytes.Buffer
 	if len(fields.List) == 1 && len(fields.List[0].Names) == 0 {
 		printer.Fprint(&buf, fset, fields.List[0].Type)
@@ -336,6 +356,103 @@ func modifyLocalVarPath(fn *ast.FuncDecl) (err error) {
 	return
 }
 
+func addLinkQueryParamGuards(fn *ast.FuncDecl, fset *token.FileSet) (err error) {
+	insertIdx := -1
+	for i, stmt := range fn.Body.List {
+		assign, ok := stmt.(*ast.AssignStmt)
+		if !ok || assign.Tok != token.DEFINE || len(assign.Lhs) == 0 {
+			continue
+		}
+		if ident, ok := assign.Lhs[0].(*ast.Ident); ok && ident.Name == "localVarHeaderParams" {
+			insertIdx = i
+			break
+		}
+	}
+
+	if insertIdx == -1 {
+		err = commonerrors.Newf(commonerrors.ErrUnexpected, "could not locate `localVarHeaderParams` definition")
+		return
+	}
+
+	snippetSrc, err := renderTemplate(pagingInitTemplatePath, &pagingInitTemplateValues{
+		OffsetFlag:  pagingOffsetExistFlag,
+		LimitFlag:   pagingLimitExistFlag,
+		EmbedFlag:   pagingEmbedExistFlag,
+		OffsetField: pagingOffsetField,
+		LimitField:  pagingLimitField,
+		EmbedField:  pagingEmbedField,
+		LinkVar:     resourcePath,
+	})
+	if err != nil {
+		return err
+	}
+
+	pagingInitStmts, err := ParseStatements(snippetSrc, fset)
+	if err != nil {
+		return err
+	}
+
+	body := make([]ast.Stmt, 0, len(fn.Body.List)+len(pagingInitStmts))
+	body = append(body, fn.Body.List[:insertIdx]...)
+	body = append(body, pagingInitStmts...)
+	body = append(body, fn.Body.List[insertIdx:]...)
+	fn.Body.List = body
+	return
+}
+
+func wrapPagingParamBlocks(fn *ast.FuncDecl) {
+	// Searches for if 'r.limit != nil' or 'r.offset != nil' blocks and wraps
+	// these blocks in an if condition checking if the field already exists in the link
+	for i, stmt := range fn.Body.List {
+		if ifBlock, ok := stmt.(*ast.IfStmt); ok {
+			switch {
+			case isFieldNotNilCheck(ifBlock.Cond, "r", pagingLimitField):
+				fn.Body.List[i] = wrapIfNotWithFlag(pagingLimitExistFlag, ifBlock)
+			case isFieldNotNilCheck(ifBlock.Cond, "r", pagingOffsetField):
+				fn.Body.List[i] = wrapIfNotWithFlag(pagingOffsetExistFlag, ifBlock)
+			case isFieldNotNilCheck(ifBlock.Cond, "r", pagingEmbedField):
+				fn.Body.List[i] = wrapIfNotWithFlag(pagingEmbedExistFlag, ifBlock)
+			}
+		}
+	}
+}
+
+func isFieldNotNilCheck(expr ast.Expr, objectName, fieldName string) bool {
+	binExpr, ok := expr.(*ast.BinaryExpr)
+	if !ok || binExpr.Op != token.NEQ {
+		return false
+	}
+
+	left, ok := binExpr.X.(*ast.SelectorExpr)
+	if !ok {
+		return false
+	}
+
+	ident, ok := left.X.(*ast.Ident)
+	if !ok || ident.Name != objectName {
+		return false
+	}
+
+	if left.Sel == nil || left.Sel.Name != fieldName {
+		return false
+	}
+
+	right, ok := binExpr.Y.(*ast.Ident)
+	return ok && right.Name == "nil"
+}
+
+func wrapIfNotWithFlag(flagName string, stmt ast.Stmt) ast.Stmt {
+	return &ast.IfStmt{
+		Cond: &ast.UnaryExpr{
+			Op: token.NOT,
+			X:  ast.NewIdent(flagName),
+		},
+		Body: &ast.BlockStmt{
+			List: []ast.Stmt{stmt},
+		},
+	}
+}
+
 func addFuncDocs(fn *ast.FuncDecl) {
 	fn.Doc = &ast.CommentGroup{
 		List: []*ast.Comment{
@@ -427,6 +544,12 @@ func getLinkFollowers(funcNameMap map[string]string, d *Data) (followers Followe
 						err = modifyLineErr
 						return
 					}
+					guardsErr := addLinkQueryParamGuards(fn, pkg.Fset)
+					if guardsErr != nil {
+						err = guardsErr
+						return
+					}
+					wrapPagingParamBlocks(fn)
 					APIServiceFollowFuncSrc, renderErr := renderSrc(fn, pkg.Fset)
 					if renderErr != nil {
 						err = renderErr
@@ -438,7 +561,7 @@ func getLinkFollowers(funcNameMap map[string]string, d *Data) (followers Followe
 						return
 					}
 
-					// Render out parts of the Request.FollowLink funciton
+					// Render out parts of the Request.FollowLink function
 					paramName, paramType, renderErr := getFirstParam(fn.Type.Params, pkg.Fset)
 					if renderErr != nil {
 						err = renderErr
