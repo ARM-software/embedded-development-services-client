@@ -2,6 +2,19 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.94.1" (2025-11-20)
+=====================
+
+Bugfixes
+--------
+
+- Dependency upgrade: codeql-action-4.31.4 (#20251120090717)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.94.0" (2025-11-20)
 =====================
 
