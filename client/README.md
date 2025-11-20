@@ -340,6 +340,7 @@ Class | Method | HTTP request | Description
  - [FPGAJobCollection](docs/FPGAJobCollection.md)
  - [FPGAJobItem](docs/FPGAJobItem.md)
  - [FPGAJobItemLinks](docs/FPGAJobItemLinks.md)
+ - [FPGAJobType](docs/FPGAJobType.md)
  - [FPGAPayloadCollection](docs/FPGAPayloadCollection.md)
  - [FPGAPayloadItem](docs/FPGAPayloadItem.md)
  - [FPGAPayloadItemLinks](docs/FPGAPayloadItemLinks.md)

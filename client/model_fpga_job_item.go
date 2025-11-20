@@ -37,8 +37,7 @@ type FPGAJobItem struct {
 	Error bool `json:"error"`
 	// True if the job failed (this should be used in conjunction with the `done` property).
 	Failure bool `json:"failure"`
-	// type of the FPGA job.
-	JobType NullableString `json:"jobType,omitempty"`
+	JobType NullableFPGAJobType `json:"jobType,omitempty"`
 	// Unique ID of the FPGA job.
 	Name string `json:"name"`
 	// True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended.
@@ -76,8 +75,8 @@ func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetad
 	this.Done = done
 	this.Error = error_
 	this.Failure = failure
-	var jobType JOB_TYPE = "non-interactive"
-	this.JobType = *NewNullableString(&jobType)
+	var jobType FPGAJobType = NON_INTERACTIVE
+	this.JobType = *NewNullableFPGAJobType(&jobType)
 	this.Name = name
 	this.Queued = queued
 	this.Status = status
@@ -98,8 +97,8 @@ func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetad
 // but it doesn't guarantee that properties required by API are set
 func NewFPGAJobItemWithDefaults() *FPGAJobItem {
 	this := FPGAJobItem{}
-	var jobType JOB_TYPE = "non-interactive"
-	this.JobType = *NewNullableString(&jobType)
+	var jobType FPGAJobType = NON_INTERACTIVE
+	this.JobType = *NewNullableFPGAJobType(&jobType)
 	var timeout int64 = 300
 	this.Timeout = &timeout
 	return &this
@@ -263,9 +262,9 @@ func (o *FPGAJobItem) SetFailure(v bool) {
 }
 
 // GetJobType returns the JobType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FPGAJobItem) GetJobType() string {
+func (o *FPGAJobItem) GetJobType() FPGAJobType {
 	if o == nil || IsNil(o.JobType.Get()) {
-		var ret string
+		var ret FPGAJobType
 		return ret
 	}
 	return *o.JobType.Get()
@@ -274,7 +273,7 @@ func (o *FPGAJobItem) GetJobType() string {
 // GetJobTypeOk returns a tuple with the JobType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FPGAJobItem) GetJobTypeOk() (*string, bool) {
+func (o *FPGAJobItem) GetJobTypeOk() (*FPGAJobType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -290,8 +289,8 @@ func (o *FPGAJobItem) HasJobType() bool {
 	return false
 }
 
-// SetJobType gets a reference to the given NullableString and assigns it to the JobType field.
-func (o *FPGAJobItem) SetJobType(v string) {
+// SetJobType gets a reference to the given NullableFPGAJobType and assigns it to the JobType field.
+func (o *FPGAJobItem) SetJobType(v FPGAJobType) {
 	o.JobType.Set(&v)
 }
 // SetJobTypeNil sets the value for JobType to be an explicit nil
