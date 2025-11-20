@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Done** | **bool** | True when the job has completed (this does not necessarily indicate success). | [readonly] 
 **Error** | **bool** | True if there was an error in the service while attempting the job. | [readonly] 
 **Failure** | **bool** | True if the job failed (this should be used in conjunction with the &#x60;done&#x60; property). | [readonly] 
+**JobType** | Pointer to **NullableString** | type of the FPGA job. | [optional] [default to "non-interactive"]
 **Name** | **string** | Unique ID of the FPGA job. | [readonly] 
 **Queued** | **bool** | True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended. | [readonly] 
 **Status** | **string** | A summary status of the job. Note: this value should not be relied upon to determine whether a job has completed, succeeded or failed as this list may change as state machine evolves. Use resource appropriate flags instead. | [readonly] 
@@ -25,7 +26,6 @@ Name | Type | Description | Notes
 **Target** | [**FPGATargetID**](FPGATargetID.md) |  | 
 **Timeout** | Pointer to **int64** | The maximum time (in seconds) that the job will be allowed to run. After the timeout has expired the job will be aborted and reported as a failure. The timeout does not include any time the request spent being queued, waiting for the job to be started. | [optional] [default to 300]
 **Title** | Pointer to **NullableString** | Optional human-readable name of the FPGA job. | [optional] 
-**Type** | Pointer to **NullableString** | type of the FPGA job. | [optional] [default to "non-interactive"]
 **Workload** | [**FPGAWorkload**](FPGAWorkload.md) |  | 
 
 ## Methods
@@ -202,6 +202,41 @@ and a boolean to check if the value has been set.
 SetFailure sets Failure field to given value.
 
 
+### GetJobType
+
+`func (o *FPGAJobItem) GetJobType() string`
+
+GetJobType returns the JobType field if non-nil, zero value otherwise.
+
+### GetJobTypeOk
+
+`func (o *FPGAJobItem) GetJobTypeOk() (*string, bool)`
+
+GetJobTypeOk returns a tuple with the JobType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetJobType
+
+`func (o *FPGAJobItem) SetJobType(v string)`
+
+SetJobType sets JobType field to given value.
+
+### HasJobType
+
+`func (o *FPGAJobItem) HasJobType() bool`
+
+HasJobType returns a boolean if a field has been set.
+
+### SetJobTypeNil
+
+`func (o *FPGAJobItem) SetJobTypeNil(b bool)`
+
+ SetJobTypeNil sets the value for JobType to be an explicit nil
+
+### UnsetJobType
+`func (o *FPGAJobItem) UnsetJobType()`
+
+UnsetJobType ensures that no value is present for JobType, not even an explicit nil
 ### GetName
 
 `func (o *FPGAJobItem) GetName() string`
@@ -462,41 +497,6 @@ HasTitle returns a boolean if a field has been set.
 `func (o *FPGAJobItem) UnsetTitle()`
 
 UnsetTitle ensures that no value is present for Title, not even an explicit nil
-### GetType
-
-`func (o *FPGAJobItem) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *FPGAJobItem) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *FPGAJobItem) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *FPGAJobItem) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
-### SetTypeNil
-
-`func (o *FPGAJobItem) SetTypeNil(b bool)`
-
- SetTypeNil sets the value for Type to be an explicit nil
-
-### UnsetType
-`func (o *FPGAJobItem) UnsetType()`
-
-UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetWorkload
 
 `func (o *FPGAJobItem) GetWorkload() FPGAWorkload`

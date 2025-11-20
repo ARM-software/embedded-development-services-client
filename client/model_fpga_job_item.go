@@ -37,6 +37,8 @@ type FPGAJobItem struct {
 	Error bool `json:"error"`
 	// True if the job failed (this should be used in conjunction with the `done` property).
 	Failure bool `json:"failure"`
+	// type of the FPGA job.
+	JobType NullableString `json:"jobType,omitempty"`
 	// Unique ID of the FPGA job.
 	Name string `json:"name"`
 	// True if job is currently queued and waiting to be processed. Otherwise, the job is either currently being processed or ended.
@@ -58,8 +60,6 @@ type FPGAJobItem struct {
 	Timeout *int64 `json:"timeout,omitempty"`
 	// Optional human-readable name of the FPGA job.
 	Title NullableString `json:"title,omitempty"`
-	// type of the FPGA job.
-	Type NullableString `json:"type,omitempty"`
 	Workload FPGAWorkload `json:"workload"`
 }
 
@@ -76,6 +76,8 @@ func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetad
 	this.Done = done
 	this.Error = error_
 	this.Failure = failure
+	var jobType JOB_TYPE = "non-interactive"
+	this.JobType = *NewNullableString(&jobType)
 	this.Name = name
 	this.Queued = queued
 	this.Status = status
@@ -87,8 +89,6 @@ func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetad
 	this.Target = target
 	var timeout int64 = 300
 	this.Timeout = &timeout
-	var type_ TYPE = "non-interactive"
-	this.Type = *NewNullableString(&type_)
 	this.Workload = workload
 	return &this
 }
@@ -98,10 +98,10 @@ func NewFPGAJobItem(links NullableFPGAJobItemLinks, metadata NullableCommonMetad
 // but it doesn't guarantee that properties required by API are set
 func NewFPGAJobItemWithDefaults() *FPGAJobItem {
 	this := FPGAJobItem{}
+	var jobType JOB_TYPE = "non-interactive"
+	this.JobType = *NewNullableString(&jobType)
 	var timeout int64 = 300
 	this.Timeout = &timeout
-	var type_ TYPE = "non-interactive"
-	this.Type = *NewNullableString(&type_)
 	return &this
 }
 
@@ -260,6 +260,48 @@ func (o *FPGAJobItem) GetFailureOk() (*bool, bool) {
 // SetFailure sets field value
 func (o *FPGAJobItem) SetFailure(v bool) {
 	o.Failure = v
+}
+
+// GetJobType returns the JobType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FPGAJobItem) GetJobType() string {
+	if o == nil || IsNil(o.JobType.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.JobType.Get()
+}
+
+// GetJobTypeOk returns a tuple with the JobType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FPGAJobItem) GetJobTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.JobType.Get(), o.JobType.IsSet()
+}
+
+// HasJobType returns a boolean if a field has been set.
+func (o *FPGAJobItem) HasJobType() bool {
+	if o != nil && o.JobType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetJobType gets a reference to the given NullableString and assigns it to the JobType field.
+func (o *FPGAJobItem) SetJobType(v string) {
+	o.JobType.Set(&v)
+}
+// SetJobTypeNil sets the value for JobType to be an explicit nil
+func (o *FPGAJobItem) SetJobTypeNil() {
+	o.JobType.Set(nil)
+}
+
+// UnsetJobType ensures that no value is present for JobType, not even an explicit nil
+func (o *FPGAJobItem) UnsetJobType() {
+	o.JobType.Unset()
 }
 
 // GetName returns the Name field value
@@ -556,48 +598,6 @@ func (o *FPGAJobItem) UnsetTitle() {
 	o.Title.Unset()
 }
 
-// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FPGAJobItem) GetType() string {
-	if o == nil || IsNil(o.Type.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Type.Get()
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FPGAJobItem) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type.Get(), o.Type.IsSet()
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *FPGAJobItem) HasType() bool {
-	if o != nil && o.Type.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given NullableString and assigns it to the Type field.
-func (o *FPGAJobItem) SetType(v string) {
-	o.Type.Set(&v)
-}
-// SetTypeNil sets the value for Type to be an explicit nil
-func (o *FPGAJobItem) SetTypeNil() {
-	o.Type.Set(nil)
-}
-
-// UnsetType ensures that no value is present for Type, not even an explicit nil
-func (o *FPGAJobItem) UnsetType() {
-	o.Type.Unset()
-}
-
 // GetWorkload returns the Workload field value
 func (o *FPGAJobItem) GetWorkload() FPGAWorkload {
 	if o == nil {
@@ -640,6 +640,9 @@ func (o FPGAJobItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["done"] = o.Done
 	toSerialize["error"] = o.Error
 	toSerialize["failure"] = o.Failure
+	if o.JobType.IsSet() {
+		toSerialize["jobType"] = o.JobType.Get()
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["queued"] = o.Queued
 	toSerialize["status"] = o.Status
@@ -654,9 +657,6 @@ func (o FPGAJobItem) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
-	}
-	if o.Type.IsSet() {
-		toSerialize["type"] = o.Type.Get()
 	}
 	toSerialize["workload"] = o.Workload
 	return toSerialize, nil
