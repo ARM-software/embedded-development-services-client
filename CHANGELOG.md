@@ -2,6 +2,28 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.93.0" (2025-11-20)
+=====================
+
+Features
+--------
+
+- Updated client due to schema changes (#20251120090601)
+
+
+Bugfixes
+--------
+
+- Dependency upgrade: codeql-action-4.30.9 (#20251020081716)
+- Dependency upgrade: upload-artifact-5.0.0 (#20251027092410)
+- Dependency upgrade: download-artifact-6.0.0 (#20251027094654)
+- Dependency upgrade: golangci-lint-action-9 (#20251110091256)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.92.0" (2025-11-20)
 =====================
 
