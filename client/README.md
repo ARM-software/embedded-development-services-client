@@ -111,6 +111,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AuthenticationAPI* | [**DeleteUser**](docs/AuthenticationAPI.md#deleteuser) | **Delete** /users/{userName} | Delete a user.
 *AuthenticationAPI* | [**GetMe**](docs/AuthenticationAPI.md#getme) | **Get** /users/me | Get my user information
+*AuthenticationAPI* | [**GetMyAccountSummary**](docs/AuthenticationAPI.md#getmyaccountsummary) | **Get** /accounts/me | Get the account summary for the current authenticated caller
 *AuthenticationAPI* | [**GetUser**](docs/AuthenticationAPI.md#getuser) | **Get** /users/{userName} | Get user information
 *AuthenticationAPI* | [**InviteUser**](docs/AuthenticationAPI.md#inviteuser) | **Post** /users/invite | Invite a user.
 *AuthenticationAPI* | [**ListUsers**](docs/AuthenticationAPI.md#listusers) | **Get** /users/ | List all users
@@ -278,6 +279,9 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [AccessTokenItemLinks](docs/AccessTokenItemLinks.md)
+ - [AccountSummaryItem](docs/AccountSummaryItem.md)
+ - [AccountSummaryLinks](docs/AccountSummaryLinks.md)
+ - [AccountType](docs/AccountType.md)
  - [AdditionalTool](docs/AdditionalTool.md)
  - [ArtefactManagerCollection](docs/ArtefactManagerCollection.md)
  - [ArtefactManagerItem](docs/ArtefactManagerItem.md)

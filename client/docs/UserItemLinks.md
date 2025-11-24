@@ -9,6 +9,7 @@ SPDX-License-Identifier: Apache-2.0
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Delete** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
+**Describes** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Edit** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Me** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Self** | [**HalLinkData**](HalLinkData.md) |  | 
@@ -56,6 +57,31 @@ SetDelete sets Delete field to given value.
 `func (o *UserItemLinks) HasDelete() bool`
 
 HasDelete returns a boolean if a field has been set.
+
+### GetDescribes
+
+`func (o *UserItemLinks) GetDescribes() HalLinkData`
+
+GetDescribes returns the Describes field if non-nil, zero value otherwise.
+
+### GetDescribesOk
+
+`func (o *UserItemLinks) GetDescribesOk() (*HalLinkData, bool)`
+
+GetDescribesOk returns a tuple with the Describes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescribes
+
+`func (o *UserItemLinks) SetDescribes(v HalLinkData)`
+
+SetDescribes sets Describes field to given value.
+
+### HasDescribes
+
+`func (o *UserItemLinks) HasDescribes() bool`
+
+HasDescribes returns a boolean if a field has been set.
 
 ### GetEdit
 

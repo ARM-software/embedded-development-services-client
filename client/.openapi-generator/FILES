@@ -30,6 +30,9 @@ api_workspace_source.go
 client.go
 configuration.go
 docs/AccessTokenItemLinks.md
+docs/AccountSummaryItem.md
+docs/AccountSummaryLinks.md
+docs/AccountType.md
 docs/AdditionalTool.md
 docs/ArtefactManagerCollection.md
 docs/ArtefactManagerItem.md
@@ -195,6 +198,9 @@ git_push.sh
 go.mod
 go.sum
 model_access_token_item_links.go
+model_account_summary_item.go
+model_account_summary_links.go
+model_account_type.go
 model_additional_tool.go
 model_artefact_manager_collection.go
 model_artefact_manager_item.go

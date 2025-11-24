@@ -25,9 +25,10 @@ import (
 // checks if the UserItemLinks type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UserItemLinks{}
 
-// UserItemLinks The links for a User Item.
+// UserItemLinks The links for a User Item. `describes` links to the account summary for the authenticated user.
 type UserItemLinks struct {
 	Delete *HalLinkData `json:"delete,omitempty"`
+	Describes *HalLinkData `json:"describes,omitempty"`
 	Edit *HalLinkData `json:"edit,omitempty"`
 	Me *HalLinkData `json:"me,omitempty"`
 	Self HalLinkData `json:"self"`
@@ -83,6 +84,38 @@ func (o *UserItemLinks) HasDelete() bool {
 // SetDelete gets a reference to the given HalLinkData and assigns it to the Delete field.
 func (o *UserItemLinks) SetDelete(v HalLinkData) {
 	o.Delete = &v
+}
+
+// GetDescribes returns the Describes field value if set, zero value otherwise.
+func (o *UserItemLinks) GetDescribes() HalLinkData {
+	if o == nil || IsNil(o.Describes) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Describes
+}
+
+// GetDescribesOk returns a tuple with the Describes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserItemLinks) GetDescribesOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Describes) {
+		return nil, false
+	}
+	return o.Describes, true
+}
+
+// HasDescribes returns a boolean if a field has been set.
+func (o *UserItemLinks) HasDescribes() bool {
+	if o != nil && !IsNil(o.Describes) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescribes gets a reference to the given HalLinkData and assigns it to the Describes field.
+func (o *UserItemLinks) SetDescribes(v HalLinkData) {
+	o.Describes = &v
 }
 
 // GetEdit returns the Edit field value if set, zero value otherwise.
@@ -185,6 +218,9 @@ func (o UserItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Delete) {
 		toSerialize["delete"] = o.Delete
+	}
+	if !IsNil(o.Describes) {
+		toSerialize["describes"] = o.Describes
 	}
 	if !IsNil(o.Edit) {
 		toSerialize["edit"] = o.Edit

@@ -25,11 +25,12 @@ import (
 // checks if the ServiceAccountItemLinks type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ServiceAccountItemLinks{}
 
-// ServiceAccountItemLinks The links for a Service Account Item. The `author` links to the user's account who created this service account.
+// ServiceAccountItemLinks The links for a Service Account Item. The `author` links to the user's account who created this service account. The `describes` field links to the account summary for the authenticated service account.
 type ServiceAccountItemLinks struct {
 	Author *HalLinkData `json:"author,omitempty"`
 	Collection *HalLinkData `json:"collection,omitempty"`
 	Delete *HalLinkData `json:"delete,omitempty"`
+	Describes *HalLinkData `json:"describes,omitempty"`
 	Edit *HalLinkData `json:"edit,omitempty"`
 	Self HalLinkData `json:"self"`
 }
@@ -150,6 +151,38 @@ func (o *ServiceAccountItemLinks) SetDelete(v HalLinkData) {
 	o.Delete = &v
 }
 
+// GetDescribes returns the Describes field value if set, zero value otherwise.
+func (o *ServiceAccountItemLinks) GetDescribes() HalLinkData {
+	if o == nil || IsNil(o.Describes) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Describes
+}
+
+// GetDescribesOk returns a tuple with the Describes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceAccountItemLinks) GetDescribesOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Describes) {
+		return nil, false
+	}
+	return o.Describes, true
+}
+
+// HasDescribes returns a boolean if a field has been set.
+func (o *ServiceAccountItemLinks) HasDescribes() bool {
+	if o != nil && !IsNil(o.Describes) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescribes gets a reference to the given HalLinkData and assigns it to the Describes field.
+func (o *ServiceAccountItemLinks) SetDescribes(v HalLinkData) {
+	o.Describes = &v
+}
+
 // GetEdit returns the Edit field value if set, zero value otherwise.
 func (o *ServiceAccountItemLinks) GetEdit() HalLinkData {
 	if o == nil || IsNil(o.Edit) {
@@ -224,6 +257,9 @@ func (o ServiceAccountItemLinks) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Delete) {
 		toSerialize["delete"] = o.Delete
+	}
+	if !IsNil(o.Describes) {
+		toSerialize["describes"] = o.Describes
 	}
 	if !IsNil(o.Edit) {
 		toSerialize["edit"] = o.Edit

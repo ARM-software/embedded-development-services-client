@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Author** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Collection** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Delete** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
+**Describes** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Edit** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Self** | [**HalLinkData**](HalLinkData.md) |  | 
 
@@ -107,6 +108,31 @@ SetDelete sets Delete field to given value.
 `func (o *ServiceAccountItemLinks) HasDelete() bool`
 
 HasDelete returns a boolean if a field has been set.
+
+### GetDescribes
+
+`func (o *ServiceAccountItemLinks) GetDescribes() HalLinkData`
+
+GetDescribes returns the Describes field if non-nil, zero value otherwise.
+
+### GetDescribesOk
+
+`func (o *ServiceAccountItemLinks) GetDescribesOk() (*HalLinkData, bool)`
+
+GetDescribesOk returns a tuple with the Describes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescribes
+
+`func (o *ServiceAccountItemLinks) SetDescribes(v HalLinkData)`
+
+SetDescribes sets Describes field to given value.
+
+### HasDescribes
+
+`func (o *ServiceAccountItemLinks) HasDescribes() bool`
+
+HasDescribes returns a boolean if a field has been set.
 
 ### GetEdit
 

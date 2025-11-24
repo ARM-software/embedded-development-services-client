@@ -10,6 +10,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteUser**](AuthenticationAPI.md#DeleteUser) | **Delete** /users/{userName} | Delete a user.
 [**GetMe**](AuthenticationAPI.md#GetMe) | **Get** /users/me | Get my user information
+[**GetMyAccountSummary**](AuthenticationAPI.md#GetMyAccountSummary) | **Get** /accounts/me | Get the account summary for the current authenticated caller
 [**GetUser**](AuthenticationAPI.md#GetUser) | **Get** /users/{userName} | Get user information
 [**InviteUser**](AuthenticationAPI.md#InviteUser) | **Post** /users/invite | Invite a user.
 [**ListUsers**](AuthenticationAPI.md#ListUsers) | **Get** /users/ | List all users
@@ -139,6 +140,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserItem**](UserItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetMyAccountSummary
+
+> AccountSummaryItem GetMyAccountSummary(ctx).AcceptVersion(acceptVersion).Execute()
+
+Get the account summary for the current authenticated caller
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.GetMyAccountSummary(context.Background()).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.GetMyAccountSummary``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetMyAccountSummary`: AccountSummaryItem
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.GetMyAccountSummary`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetMyAccountSummaryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+[**AccountSummaryItem**](AccountSummaryItem.md)
 
 ### Authorization
 
