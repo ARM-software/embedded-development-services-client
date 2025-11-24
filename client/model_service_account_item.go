@@ -29,12 +29,12 @@ var _ MappedNullable = &ServiceAccountItem{}
 type ServiceAccountItem struct {
 	Links NullableServiceAccountItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
-	// ID of the user who created this service account.
-	CreatedBy string `json:"createdBy" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	// Full name of the user who created this service account.
+	CreatedBy string `json:"createdBy" validate:"regexp=^(?!\\\\s)[A-Za-z]+(?:[ '-][A-Za-z]+){0,99}(?<!\\\\s)$"`
 	// Unique ID of the service account.
 	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// Human readable name of the service account.
-	Title *string `json:"title,omitempty" validate:"regexp=^(?!\\\\s)[A-Za-z]+(?:[ '-][A-Za-z]+){0,99}(?<!\\\\s)$"`
+	Title string `json:"title" validate:"regexp=^(?!\\\\s)[A-Za-z]+(?:[ '-][A-Za-z]+){0,99}(?<!\\\\s)$"`
 }
 
 type _ServiceAccountItem ServiceAccountItem
@@ -43,12 +43,13 @@ type _ServiceAccountItem ServiceAccountItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceAccountItem(links NullableServiceAccountItemLinks, metadata NullableCommonMetadata, createdBy string, name string) *ServiceAccountItem {
+func NewServiceAccountItem(links NullableServiceAccountItemLinks, metadata NullableCommonMetadata, createdBy string, name string, title string) *ServiceAccountItem {
 	this := ServiceAccountItem{}
 	this.Links = links
 	this.Metadata = metadata
 	this.CreatedBy = createdBy
 	this.Name = name
+	this.Title = title
 	return &this
 }
 
@@ -160,36 +161,28 @@ func (o *ServiceAccountItem) SetName(v string) {
 	o.Name = v
 }
 
-// GetTitle returns the Title field value if set, zero value otherwise.
+// GetTitle returns the Title field value
 func (o *ServiceAccountItem) GetTitle() string {
-	if o == nil || IsNil(o.Title) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Title
+
+	return o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
+// GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
 func (o *ServiceAccountItem) GetTitleOk() (*string, bool) {
-	if o == nil || IsNil(o.Title) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Title, true
+	return &o.Title, true
 }
 
-// HasTitle returns a boolean if a field has been set.
-func (o *ServiceAccountItem) HasTitle() bool {
-	if o != nil && !IsNil(o.Title) {
-		return true
-	}
-
-	return false
-}
-
-// SetTitle gets a reference to the given string and assigns it to the Title field.
+// SetTitle sets field value
 func (o *ServiceAccountItem) SetTitle(v string) {
-	o.Title = &v
+	o.Title = v
 }
 
 func (o ServiceAccountItem) MarshalJSON() ([]byte, error) {
@@ -206,9 +199,7 @@ func (o ServiceAccountItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["createdBy"] = o.CreatedBy
 	toSerialize["name"] = o.Name
-	if !IsNil(o.Title) {
-		toSerialize["title"] = o.Title
-	}
+	toSerialize["title"] = o.Title
 	return toSerialize, nil
 }
 
@@ -221,6 +212,7 @@ func (o *ServiceAccountItem) UnmarshalJSON(data []byte) (err error) {
 		"_metadata",
 		"createdBy",
 		"name",
+		"title",
 	}
 
 	allProperties := make(map[string]interface{})

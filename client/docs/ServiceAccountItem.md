@@ -10,15 +10,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Links** | [**NullableServiceAccountItemLinks**](ServiceAccountItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**CreatedBy** | **string** | ID of the user who created this service account. | [readonly] 
+**CreatedBy** | **string** | Full name of the user who created this service account. | [readonly] 
 **Name** | **string** | Unique ID of the service account. | [readonly] 
-**Title** | Pointer to **string** | Human readable name of the service account. | [optional] 
+**Title** | **string** | Human readable name of the service account. | 
 
 ## Methods
 
 ### NewServiceAccountItem
 
-`func NewServiceAccountItem(links NullableServiceAccountItemLinks, metadata NullableCommonMetadata, createdBy string, name string, ) *ServiceAccountItem`
+`func NewServiceAccountItem(links NullableServiceAccountItemLinks, metadata NullableCommonMetadata, createdBy string, name string, title string, ) *ServiceAccountItem`
 
 NewServiceAccountItem instantiates a new ServiceAccountItem object
 This constructor will assign default values to properties that have it defined,
@@ -152,11 +152,6 @@ and a boolean to check if the value has been set.
 
 SetTitle sets Title field to given value.
 
-### HasTitle
-
-`func (o *ServiceAccountItem) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

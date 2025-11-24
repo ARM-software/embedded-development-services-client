@@ -8,6 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Author** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Collection** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Delete** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Edit** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
@@ -31,6 +32,31 @@ will change when the set of required properties is changed
 NewServiceAccountItemLinksWithDefaults instantiates a new ServiceAccountItemLinks object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAuthor
+
+`func (o *ServiceAccountItemLinks) GetAuthor() HalLinkData`
+
+GetAuthor returns the Author field if non-nil, zero value otherwise.
+
+### GetAuthorOk
+
+`func (o *ServiceAccountItemLinks) GetAuthorOk() (*HalLinkData, bool)`
+
+GetAuthorOk returns a tuple with the Author field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthor
+
+`func (o *ServiceAccountItemLinks) SetAuthor(v HalLinkData)`
+
+SetAuthor sets Author field to given value.
+
+### HasAuthor
+
+`func (o *ServiceAccountItemLinks) HasAuthor() bool`
+
+HasAuthor returns a boolean if a field has been set.
 
 ### GetCollection
 

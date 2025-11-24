@@ -25,8 +25,9 @@ import (
 // checks if the ServiceAccountItemLinks type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ServiceAccountItemLinks{}
 
-// ServiceAccountItemLinks The links for a Service Account Item.
+// ServiceAccountItemLinks The links for a Service Account Item. The `author` links to the user's account who created this service account.
 type ServiceAccountItemLinks struct {
+	Author *HalLinkData `json:"author,omitempty"`
 	Collection *HalLinkData `json:"collection,omitempty"`
 	Delete *HalLinkData `json:"delete,omitempty"`
 	Edit *HalLinkData `json:"edit,omitempty"`
@@ -51,6 +52,38 @@ func NewServiceAccountItemLinks(self HalLinkData) *ServiceAccountItemLinks {
 func NewServiceAccountItemLinksWithDefaults() *ServiceAccountItemLinks {
 	this := ServiceAccountItemLinks{}
 	return &this
+}
+
+// GetAuthor returns the Author field value if set, zero value otherwise.
+func (o *ServiceAccountItemLinks) GetAuthor() HalLinkData {
+	if o == nil || IsNil(o.Author) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Author
+}
+
+// GetAuthorOk returns a tuple with the Author field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceAccountItemLinks) GetAuthorOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Author) {
+		return nil, false
+	}
+	return o.Author, true
+}
+
+// HasAuthor returns a boolean if a field has been set.
+func (o *ServiceAccountItemLinks) HasAuthor() bool {
+	if o != nil && !IsNil(o.Author) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthor gets a reference to the given HalLinkData and assigns it to the Author field.
+func (o *ServiceAccountItemLinks) SetAuthor(v HalLinkData) {
+	o.Author = &v
 }
 
 // GetCollection returns the Collection field value if set, zero value otherwise.
@@ -183,6 +216,9 @@ func (o ServiceAccountItemLinks) MarshalJSON() ([]byte, error) {
 
 func (o ServiceAccountItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Author) {
+		toSerialize["author"] = o.Author
+	}
 	if !IsNil(o.Collection) {
 		toSerialize["collection"] = o.Collection
 	}
