@@ -29,6 +29,8 @@ var _ MappedNullable = &FPGAPayloadItem{}
 type FPGAPayloadItem struct {
 	Links NullableFPGAPayloadItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
+	// Whether the payload is valid for use in AFaaS.
+	IsValid bool `json:"isValid"`
 	// Unique ID of this FPGA Payload.
 	Name string `json:"name"`
 	Owner FPGAPayloadOwner `json:"owner"`
@@ -52,10 +54,11 @@ type _FPGAPayloadItem FPGAPayloadItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, owner FPGAPayloadOwner, status string, supportBatchProcessing bool, supportConnection bool, title string, uploadLocation string) *FPGAPayloadItem {
+func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, isValid bool, name string, owner FPGAPayloadOwner, status string, supportBatchProcessing bool, supportConnection bool, title string, uploadLocation string) *FPGAPayloadItem {
 	this := FPGAPayloadItem{}
 	this.Links = links
 	this.Metadata = metadata
+	this.IsValid = isValid
 	this.Name = name
 	this.Owner = owner
 	this.Status = status
@@ -124,6 +127,30 @@ func (o *FPGAPayloadItem) GetMetadataOk() (*CommonMetadata, bool) {
 // SetMetadata sets field value
 func (o *FPGAPayloadItem) SetMetadata(v CommonMetadata) {
 	o.Metadata.Set(&v)
+}
+
+// GetIsValid returns the IsValid field value
+func (o *FPGAPayloadItem) GetIsValid() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsValid
+}
+
+// GetIsValidOk returns a tuple with the IsValid field value
+// and a boolean to check if the value has been set.
+func (o *FPGAPayloadItem) GetIsValidOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsValid, true
+}
+
+// SetIsValid sets field value
+func (o *FPGAPayloadItem) SetIsValid(v bool) {
+	o.IsValid = v
 }
 
 // GetName returns the Name field value
@@ -348,6 +375,7 @@ func (o FPGAPayloadItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
+	toSerialize["isValid"] = o.IsValid
 	toSerialize["name"] = o.Name
 	toSerialize["owner"] = o.Owner
 	toSerialize["status"] = o.Status
@@ -368,6 +396,7 @@ func (o *FPGAPayloadItem) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"_links",
 		"_metadata",
+		"isValid",
 		"name",
 		"owner",
 		"status",

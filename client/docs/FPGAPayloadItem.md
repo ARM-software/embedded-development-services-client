@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Links** | [**NullableFPGAPayloadItemLinks**](FPGAPayloadItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
+**IsValid** | **bool** | Whether the payload is valid for use in AFaaS. | [readonly] 
 **Name** | **string** | Unique ID of this FPGA Payload. | [readonly] 
 **Owner** | [**FPGAPayloadOwner**](FPGAPayloadOwner.md) |  | 
 **Status** | **string** | Status of the payload. A payload is only ready to be used by an FPGA once it has been processed. | [readonly] 
@@ -23,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewFPGAPayloadItem
 
-`func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, name string, owner FPGAPayloadOwner, status string, supportBatchProcessing bool, supportConnection bool, title string, uploadLocation string, ) *FPGAPayloadItem`
+`func NewFPGAPayloadItem(links NullableFPGAPayloadItemLinks, metadata NullableCommonMetadata, isValid bool, name string, owner FPGAPayloadOwner, status string, supportBatchProcessing bool, supportConnection bool, title string, uploadLocation string, ) *FPGAPayloadItem`
 
 NewFPGAPayloadItem instantiates a new FPGAPayloadItem object
 This constructor will assign default values to properties that have it defined,
@@ -98,6 +99,26 @@ SetMetadata sets Metadata field to given value.
 `func (o *FPGAPayloadItem) UnsetMetadata()`
 
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
+### GetIsValid
+
+`func (o *FPGAPayloadItem) GetIsValid() bool`
+
+GetIsValid returns the IsValid field if non-nil, zero value otherwise.
+
+### GetIsValidOk
+
+`func (o *FPGAPayloadItem) GetIsValidOk() (*bool, bool)`
+
+GetIsValidOk returns a tuple with the IsValid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsValid
+
+`func (o *FPGAPayloadItem) SetIsValid(v bool)`
+
+SetIsValid sets IsValid field to given value.
+
+
 ### GetName
 
 `func (o *FPGAPayloadItem) GetName() string`
