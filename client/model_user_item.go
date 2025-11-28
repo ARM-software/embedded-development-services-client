@@ -40,7 +40,7 @@ type UserItem struct {
 	// The system identifier of the user.
 	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// Human readable description of the user
-	Title *string `json:"title,omitempty" validate:"regexp=^(?!\\\\s)[A-Za-z]+(?:[ '-][A-Za-z]+){0,99}(?<!\\\\s)$"`
+	Title *string `json:"title,omitempty" validate:"regexp=^[\\\\s\\\\w'-]*$"`
 	// Username of the user, which is the identifier provided by Arm account.
 	Username NullableString `json:"username,omitempty"`
 }

@@ -41,7 +41,7 @@ type ServiceAccessTokenItem struct {
 	// The four character hint of the access token secret.
 	SecretHint string `json:"secretHint"`
 	// Human readable name of the service access token.
-	Title string `json:"title" validate:"regexp=^(?!\\\\s)[A-Za-z]+(?:[ '-][A-Za-z]+){0,99}(?<!\\\\s)$"`
+	Title string `json:"title" validate:"regexp=^[\\\\s\\\\w'-]*$"`
 }
 
 type _ServiceAccessTokenItem ServiceAccessTokenItem

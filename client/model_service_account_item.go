@@ -30,11 +30,11 @@ type ServiceAccountItem struct {
 	Links NullableServiceAccountItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	// Full name of the user who created this service account.
-	CreatedBy string `json:"createdBy" validate:"regexp=^(?!\\\\s)[A-Za-z]+(?:[ '-][A-Za-z]+){0,99}(?<!\\\\s)$"`
+	CreatedBy string `json:"createdBy" validate:"regexp=^[\\\\s\\\\w'-]*$"`
 	// Unique ID of the service account.
 	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// Human readable name of the service account.
-	Title string `json:"title" validate:"regexp=^(?!\\\\s)[A-Za-z]+(?:[ '-][A-Za-z]+){0,99}(?<!\\\\s)$"`
+	Title string `json:"title" validate:"regexp=^[\\\\s\\\\w'-]*$"`
 }
 
 type _ServiceAccountItem ServiceAccountItem

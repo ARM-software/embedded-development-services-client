@@ -33,7 +33,7 @@ type AccountSummaryItem struct {
 	// The systems unique identifier for the account.
 	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// Human readable name for the account.
-	Title *string `json:"title,omitempty" validate:"regexp=^(?!\\\\s)[A-Za-z]+(?:[ '-][A-Za-z]+){0,99}(?<!\\\\s)$"`
+	Title *string `json:"title,omitempty" validate:"regexp=^[\\\\s\\\\w'-]*$"`
 }
 
 type _AccountSummaryItem AccountSummaryItem
