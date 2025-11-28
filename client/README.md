@@ -153,6 +153,7 @@ Class | Method | HTTP request | Description
 *FPGAEntitlementsAPI* | [**UpdateFPGAEntitlement**](docs/FPGAEntitlementsAPI.md#updatefpgaentitlement) | **Put** /fpga-entitlements | Update an FPGA entitlement that defines which users are permitted to interact with an FPGA.
 *FPGAJobsAPI* | [**CancelFpgaJob**](docs/FPGAJobsAPI.md#cancelfpgajob) | **Post** /fpga-jobs/{jobName}/cancel | Cancel an FPGA job.
 *FPGAJobsAPI* | [**ClearFpgaJobArtefact**](docs/FPGAJobsAPI.md#clearfpgajobartefact) | **Delete** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Clear the job artefact.
+*FPGAJobsAPI* | [**CompleteFpgaJob**](docs/FPGAJobsAPI.md#completefpgajob) | **Post** /fpga-jobs/{jobName}/complete | Gracefully ends the job.
 *FPGAJobsAPI* | [**CreateFpgaJobArtefactManager**](docs/FPGAJobsAPI.md#createfpgajobartefactmanager) | **Post** /fpga-jobs/{jobName}/artefacts/ | Create a job artefact manager.
 *FPGAJobsAPI* | [**DeleteFpgaJob**](docs/FPGAJobsAPI.md#deletefpgajob) | **Delete** /fpga-jobs/{jobName} | Delete an FPGA job.
 *FPGAJobsAPI* | [**DownloadFpgaJobArtefact**](docs/FPGAJobsAPI.md#downloadfpgajobartefact) | **Get** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Download the artefact for the corresponding FPGA job.

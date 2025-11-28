@@ -10,6 +10,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CancelFpgaJob**](FPGAJobsAPI.md#CancelFpgaJob) | **Post** /fpga-jobs/{jobName}/cancel | Cancel an FPGA job.
 [**ClearFpgaJobArtefact**](FPGAJobsAPI.md#ClearFpgaJobArtefact) | **Delete** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Clear the job artefact.
+[**CompleteFpgaJob**](FPGAJobsAPI.md#CompleteFpgaJob) | **Post** /fpga-jobs/{jobName}/complete | Gracefully ends the job.
 [**CreateFpgaJobArtefactManager**](FPGAJobsAPI.md#CreateFpgaJobArtefactManager) | **Post** /fpga-jobs/{jobName}/artefacts/ | Create a job artefact manager.
 [**DeleteFpgaJob**](FPGAJobsAPI.md#DeleteFpgaJob) | **Delete** /fpga-jobs/{jobName} | Delete an FPGA job.
 [**DownloadFpgaJobArtefact**](FPGAJobsAPI.md#DownloadFpgaJobArtefact) | **Get** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Download the artefact for the corresponding FPGA job.
@@ -164,6 +165,78 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CompleteFpgaJob
+
+> FPGAJobItem CompleteFpgaJob(ctx, jobName).AcceptVersion(acceptVersion).Execute()
+
+Gracefully ends the job.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	jobName := "jobName_example" // string | Unique ID of the FPGA job.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FPGAJobsAPI.CompleteFpgaJob(context.Background(), jobName).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FPGAJobsAPI.CompleteFpgaJob``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CompleteFpgaJob`: FPGAJobItem
+	fmt.Fprintf(os.Stdout, "Response from `FPGAJobsAPI.CompleteFpgaJob`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**jobName** | **string** | Unique ID of the FPGA job. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompleteFpgaJobRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+[**FPGAJobItem**](FPGAJobItem.md)
 
 ### Authorization
 

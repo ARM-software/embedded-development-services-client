@@ -13,17 +13,18 @@ Name | Type | Description | Notes
 **Collection** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Connect** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Delete** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
-**Describedby** | [**HalLinkData**](HalLinkData.md) |  | 
+**Describedby** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Details** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Related** | [**HalLinkData**](HalLinkData.md) |  | 
 **Retain** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Self** | [**HalLinkData**](HalLinkData.md) |  | 
+**Sunset** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 
 ## Methods
 
 ### NewFPGAJobItemLinks
 
-`func NewFPGAJobItemLinks(describedby HalLinkData, related HalLinkData, self HalLinkData, ) *FPGAJobItemLinks`
+`func NewFPGAJobItemLinks(related HalLinkData, self HalLinkData, ) *FPGAJobItemLinks`
 
 NewFPGAJobItemLinks instantiates a new FPGAJobItemLinks object
 This constructor will assign default values to properties that have it defined,
@@ -182,6 +183,11 @@ and a boolean to check if the value has been set.
 
 SetDescribedby sets Describedby field to given value.
 
+### HasDescribedby
+
+`func (o *FPGAJobItemLinks) HasDescribedby() bool`
+
+HasDescribedby returns a boolean if a field has been set.
 
 ### GetDetails
 
@@ -272,6 +278,31 @@ and a boolean to check if the value has been set.
 
 SetSelf sets Self field to given value.
 
+
+### GetSunset
+
+`func (o *FPGAJobItemLinks) GetSunset() HalLinkData`
+
+GetSunset returns the Sunset field if non-nil, zero value otherwise.
+
+### GetSunsetOk
+
+`func (o *FPGAJobItemLinks) GetSunsetOk() (*HalLinkData, bool)`
+
+GetSunsetOk returns a tuple with the Sunset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSunset
+
+`func (o *FPGAJobItemLinks) SetSunset(v HalLinkData)`
+
+SetSunset sets Sunset field to given value.
+
+### HasSunset
+
+`func (o *FPGAJobItemLinks) HasSunset() bool`
+
+HasSunset returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

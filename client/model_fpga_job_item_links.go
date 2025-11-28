@@ -25,18 +25,19 @@ import (
 // checks if the FPGAJobItemLinks type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &FPGAJobItemLinks{}
 
-// FPGAJobItemLinks The `related` link indicates the FPGA the job is running on. The `details` links to a resource that provides details of progress (messages). The `artefacts` links to a collection which will contain downloadable artefacts (if any). The `retain` link enables to extend the TTL of a job and anything related to it. The `connect` links to way to connect directly to an application running on the FPGA as part of this job. The `describedby` links to a resource which describes the payload being used.
+// FPGAJobItemLinks The `related` link indicates the FPGA the job is running on. The `details` links to a resource that provides details of progress (messages). The `artefacts` links to a collection which will contain downloadable artefacts (if any). The `retain` link enables to extend the TTL of a job and anything related to it. The `connect` links to way to connect directly to an application running on the FPGA as part of this job. The `describedby` links to a resource which describes the payload being used. The `sunset` link enables the graceful termination of job as opposed to the `cancel` which would abort it straight away.
 type FPGAJobItemLinks struct {
 	Artefacts *HalLinkData `json:"artefacts,omitempty"`
 	Cancel *HalLinkData `json:"cancel,omitempty"`
 	Collection *HalLinkData `json:"collection,omitempty"`
 	Connect *HalLinkData `json:"connect,omitempty"`
 	Delete *HalLinkData `json:"delete,omitempty"`
-	Describedby HalLinkData `json:"describedby"`
+	Describedby *HalLinkData `json:"describedby,omitempty"`
 	Details *HalLinkData `json:"details,omitempty"`
 	Related HalLinkData `json:"related"`
 	Retain *HalLinkData `json:"retain,omitempty"`
 	Self HalLinkData `json:"self"`
+	Sunset *HalLinkData `json:"sunset,omitempty"`
 }
 
 type _FPGAJobItemLinks FPGAJobItemLinks
@@ -45,9 +46,8 @@ type _FPGAJobItemLinks FPGAJobItemLinks
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFPGAJobItemLinks(describedby HalLinkData, related HalLinkData, self HalLinkData) *FPGAJobItemLinks {
+func NewFPGAJobItemLinks(related HalLinkData, self HalLinkData) *FPGAJobItemLinks {
 	this := FPGAJobItemLinks{}
-	this.Describedby = describedby
 	this.Related = related
 	this.Self = self
 	return &this
@@ -221,28 +221,36 @@ func (o *FPGAJobItemLinks) SetDelete(v HalLinkData) {
 	o.Delete = &v
 }
 
-// GetDescribedby returns the Describedby field value
+// GetDescribedby returns the Describedby field value if set, zero value otherwise.
 func (o *FPGAJobItemLinks) GetDescribedby() HalLinkData {
-	if o == nil {
+	if o == nil || IsNil(o.Describedby) {
 		var ret HalLinkData
 		return ret
 	}
-
-	return o.Describedby
+	return *o.Describedby
 }
 
-// GetDescribedbyOk returns a tuple with the Describedby field value
+// GetDescribedbyOk returns a tuple with the Describedby field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FPGAJobItemLinks) GetDescribedbyOk() (*HalLinkData, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Describedby) {
 		return nil, false
 	}
-	return &o.Describedby, true
+	return o.Describedby, true
 }
 
-// SetDescribedby sets field value
+// HasDescribedby returns a boolean if a field has been set.
+func (o *FPGAJobItemLinks) HasDescribedby() bool {
+	if o != nil && !IsNil(o.Describedby) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescribedby gets a reference to the given HalLinkData and assigns it to the Describedby field.
 func (o *FPGAJobItemLinks) SetDescribedby(v HalLinkData) {
-	o.Describedby = v
+	o.Describedby = &v
 }
 
 // GetDetails returns the Details field value if set, zero value otherwise.
@@ -357,6 +365,38 @@ func (o *FPGAJobItemLinks) SetSelf(v HalLinkData) {
 	o.Self = v
 }
 
+// GetSunset returns the Sunset field value if set, zero value otherwise.
+func (o *FPGAJobItemLinks) GetSunset() HalLinkData {
+	if o == nil || IsNil(o.Sunset) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Sunset
+}
+
+// GetSunsetOk returns a tuple with the Sunset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FPGAJobItemLinks) GetSunsetOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Sunset) {
+		return nil, false
+	}
+	return o.Sunset, true
+}
+
+// HasSunset returns a boolean if a field has been set.
+func (o *FPGAJobItemLinks) HasSunset() bool {
+	if o != nil && !IsNil(o.Sunset) {
+		return true
+	}
+
+	return false
+}
+
+// SetSunset gets a reference to the given HalLinkData and assigns it to the Sunset field.
+func (o *FPGAJobItemLinks) SetSunset(v HalLinkData) {
+	o.Sunset = &v
+}
+
 func (o FPGAJobItemLinks) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -382,7 +422,9 @@ func (o FPGAJobItemLinks) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Delete) {
 		toSerialize["delete"] = o.Delete
 	}
-	toSerialize["describedby"] = o.Describedby
+	if !IsNil(o.Describedby) {
+		toSerialize["describedby"] = o.Describedby
+	}
 	if !IsNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
@@ -391,6 +433,9 @@ func (o FPGAJobItemLinks) ToMap() (map[string]interface{}, error) {
 		toSerialize["retain"] = o.Retain
 	}
 	toSerialize["self"] = o.Self
+	if !IsNil(o.Sunset) {
+		toSerialize["sunset"] = o.Sunset
+	}
 	return toSerialize, nil
 }
 
@@ -399,7 +444,6 @@ func (o *FPGAJobItemLinks) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"describedby",
 		"related",
 		"self",
 	}
