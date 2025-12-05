@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Links** | [**NullableAccessTokenItemLinks**](AccessTokenItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**CreatedBy** | **string** | ID of the user who created this access token. | [readonly] 
+**CreatedBy** | **NullableString** | Human readable title of the user who created this resource. | [readonly] 
 **LastUsed** | **time.Time** | When this token was last used to authenticate a request. | [readonly] 
 **Name** | **string** | Unique ID of the service access token. | [readonly] 
 **Secret** | Pointer to **string** | The access token. This field will only be returned by the service upon creation and the secret will not be re-retrievable. | [optional] [readonly] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewServiceAccessTokenItem
 
-`func NewServiceAccessTokenItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, createdBy string, lastUsed time.Time, name string, secretHint string, title string, ) *ServiceAccessTokenItem`
+`func NewServiceAccessTokenItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, createdBy NullableString, lastUsed time.Time, name string, secretHint string, title string, ) *ServiceAccessTokenItem`
 
 NewServiceAccessTokenItem instantiates a new ServiceAccessTokenItem object
 This constructor will assign default values to properties that have it defined,
@@ -116,6 +116,16 @@ and a boolean to check if the value has been set.
 SetCreatedBy sets CreatedBy field to given value.
 
 
+### SetCreatedByNil
+
+`func (o *ServiceAccessTokenItem) SetCreatedByNil(b bool)`
+
+ SetCreatedByNil sets the value for CreatedBy to be an explicit nil
+
+### UnsetCreatedBy
+`func (o *ServiceAccessTokenItem) UnsetCreatedBy()`
+
+UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetLastUsed
 
 `func (o *ServiceAccessTokenItem) GetLastUsed() time.Time`

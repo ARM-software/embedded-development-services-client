@@ -25,8 +25,9 @@ import (
 // checks if the AccessTokenItemLinks type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AccessTokenItemLinks{}
 
-// AccessTokenItemLinks The links for an Access Token Item.
+// AccessTokenItemLinks The links for an Access Token Item. The `author` links to the user's account who created this token.
 type AccessTokenItemLinks struct {
+	Author *HalLinkData `json:"author,omitempty"`
 	Delete *HalLinkData `json:"delete,omitempty"`
 	Self HalLinkData `json:"self"`
 }
@@ -49,6 +50,38 @@ func NewAccessTokenItemLinks(self HalLinkData) *AccessTokenItemLinks {
 func NewAccessTokenItemLinksWithDefaults() *AccessTokenItemLinks {
 	this := AccessTokenItemLinks{}
 	return &this
+}
+
+// GetAuthor returns the Author field value if set, zero value otherwise.
+func (o *AccessTokenItemLinks) GetAuthor() HalLinkData {
+	if o == nil || IsNil(o.Author) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Author
+}
+
+// GetAuthorOk returns a tuple with the Author field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccessTokenItemLinks) GetAuthorOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Author) {
+		return nil, false
+	}
+	return o.Author, true
+}
+
+// HasAuthor returns a boolean if a field has been set.
+func (o *AccessTokenItemLinks) HasAuthor() bool {
+	if o != nil && !IsNil(o.Author) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthor gets a reference to the given HalLinkData and assigns it to the Author field.
+func (o *AccessTokenItemLinks) SetAuthor(v HalLinkData) {
+	o.Author = &v
 }
 
 // GetDelete returns the Delete field value if set, zero value otherwise.
@@ -117,6 +150,9 @@ func (o AccessTokenItemLinks) MarshalJSON() ([]byte, error) {
 
 func (o AccessTokenItemLinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Author) {
+		toSerialize["author"] = o.Author
+	}
 	if !IsNil(o.Delete) {
 		toSerialize["delete"] = o.Delete
 	}
