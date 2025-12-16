@@ -193,6 +193,7 @@ Class | Method | HTTP request | Description
 *FPGAsAPI* | [**ListFPGAWorkers**](docs/FPGAsAPI.md#listfpgaworkers) | **Get** /fpgas/ | List available FPGAs.
 *FPGAsAPI* | [**UpdateFpga**](docs/FPGAsAPI.md#updatefpga) | **Put** /fpgas/{fpgaName} | Update the status of the FPGA.
 *GenericWorkJobsAPI* | [**CancelGenericWorkJob**](docs/GenericWorkJobsAPI.md#cancelgenericworkjob) | **Post** /generic-work-jobs/{jobName}/cancel | Cancel a generic job.
+*GenericWorkJobsAPI* | [**CompleteGenericWorkJob**](docs/GenericWorkJobsAPI.md#completegenericworkjob) | **Post** /generic-work-jobs/{jobName}/complete | Stop a generic job gracefully.
 *GenericWorkJobsAPI* | [**DeleteGenericWorkJob**](docs/GenericWorkJobsAPI.md#deletegenericworkjob) | **Delete** /generic-work-jobs/{jobName} | Delete a generic job.
 *GenericWorkJobsAPI* | [**GetGenericWorkJob**](docs/GenericWorkJobsAPI.md#getgenericworkjob) | **Get** /generic-work-jobs/{jobName} | Return the status of a Generic Work Job.
 *GenericWorkJobsAPI* | [**GetGenericWorkJobArtefactManager**](docs/GenericWorkJobsAPI.md#getgenericworkjobartefactmanager) | **Get** /generic-work-jobs/{jobName}/artefacts/{artefactName} | Get the job&#39;s artefact manager for the artefact named &#x60;artefactName&#x60;.

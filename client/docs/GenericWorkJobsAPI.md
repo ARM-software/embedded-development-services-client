@@ -9,6 +9,7 @@ All URIs are relative to *https://all.api.keil.arm.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CancelGenericWorkJob**](GenericWorkJobsAPI.md#CancelGenericWorkJob) | **Post** /generic-work-jobs/{jobName}/cancel | Cancel a generic job.
+[**CompleteGenericWorkJob**](GenericWorkJobsAPI.md#CompleteGenericWorkJob) | **Post** /generic-work-jobs/{jobName}/complete | Stop a generic job gracefully.
 [**DeleteGenericWorkJob**](GenericWorkJobsAPI.md#DeleteGenericWorkJob) | **Delete** /generic-work-jobs/{jobName} | Delete a generic job.
 [**GetGenericWorkJob**](GenericWorkJobsAPI.md#GetGenericWorkJob) | **Get** /generic-work-jobs/{jobName} | Return the status of a Generic Work Job.
 [**GetGenericWorkJobArtefactManager**](GenericWorkJobsAPI.md#GetGenericWorkJobArtefactManager) | **Get** /generic-work-jobs/{jobName}/artefacts/{artefactName} | Get the job&#39;s artefact manager for the artefact named &#x60;artefactName&#x60;.
@@ -67,6 +68,78 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiCancelGenericWorkJobRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptVersion** | **string** | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. | 
+
+### Return type
+
+[**GenericWorkJobItem**](GenericWorkJobItem.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CompleteGenericWorkJob
+
+> GenericWorkJobItem CompleteGenericWorkJob(ctx, jobName).AcceptVersion(acceptVersion).Execute()
+
+Stop a generic job gracefully.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ARM-software/embedded-development-services-client/client"
+)
+
+func main() {
+	jobName := "jobName_example" // string | Unique ID of the generic work Job.
+	acceptVersion := "1.0.0" // string | Versioning: Optional header to request a specific version of the API. While it is possible to specify a particular major, minor or patch version it is not recommended for production use cases. Only the major version number should be specified as minor and patch versions can be updated without warning. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GenericWorkJobsAPI.CompleteGenericWorkJob(context.Background(), jobName).AcceptVersion(acceptVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GenericWorkJobsAPI.CompleteGenericWorkJob``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CompleteGenericWorkJob`: GenericWorkJobItem
+	fmt.Fprintf(os.Stdout, "Response from `GenericWorkJobsAPI.CompleteGenericWorkJob`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**jobName** | **string** | Unique ID of the generic work Job. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompleteGenericWorkJobRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -29,6 +29,8 @@ var _ MappedNullable = &GenericWorkJobItem{}
 type GenericWorkJobItem struct {
 	Links NullableGenericWorkJobItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
+	// The maximum time (in seconds) to use in the event that a graceful shutdown is requested. A graceful shutdown consists of a SIGINT being sent to the process, waiting the specified duration, and then finally sending a SIGKILL to the process. This should be chosen such that any cleanup actions have time to occur. 
+	CompleteGracePeriod *int32 `json:"completeGracePeriod,omitempty"`
 	// Configuration map for jobs that require it. These could be environment variables. This is job implementation dependent and job documentation should describe it.
 	Configuration map[string]string `json:"configuration,omitempty"`
 	// True when the job has completed (this does not necessarily indicate success).
@@ -73,6 +75,8 @@ func NewGenericWorkJobItem(links NullableGenericWorkJobItemLinks, metadata Nulla
 	this := GenericWorkJobItem{}
 	this.Links = links
 	this.Metadata = metadata
+	var completeGracePeriod int32 = 30
+	this.CompleteGracePeriod = &completeGracePeriod
 	this.Done = done
 	this.Error = error_
 	this.Failure = failure
@@ -95,6 +99,8 @@ func NewGenericWorkJobItem(links NullableGenericWorkJobItemLinks, metadata Nulla
 // but it doesn't guarantee that properties required by API are set
 func NewGenericWorkJobItemWithDefaults() *GenericWorkJobItem {
 	this := GenericWorkJobItem{}
+	var completeGracePeriod int32 = 30
+	this.CompleteGracePeriod = &completeGracePeriod
 	var jobTimeout int32 = 300
 	this.JobTimeout = &jobTimeout
 	var priority string = "NORMAL"
@@ -152,6 +158,38 @@ func (o *GenericWorkJobItem) GetMetadataOk() (*CommonMetadata, bool) {
 // SetMetadata sets field value
 func (o *GenericWorkJobItem) SetMetadata(v CommonMetadata) {
 	o.Metadata.Set(&v)
+}
+
+// GetCompleteGracePeriod returns the CompleteGracePeriod field value if set, zero value otherwise.
+func (o *GenericWorkJobItem) GetCompleteGracePeriod() int32 {
+	if o == nil || IsNil(o.CompleteGracePeriod) {
+		var ret int32
+		return ret
+	}
+	return *o.CompleteGracePeriod
+}
+
+// GetCompleteGracePeriodOk returns a tuple with the CompleteGracePeriod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GenericWorkJobItem) GetCompleteGracePeriodOk() (*int32, bool) {
+	if o == nil || IsNil(o.CompleteGracePeriod) {
+		return nil, false
+	}
+	return o.CompleteGracePeriod, true
+}
+
+// HasCompleteGracePeriod returns a boolean if a field has been set.
+func (o *GenericWorkJobItem) HasCompleteGracePeriod() bool {
+	if o != nil && !IsNil(o.CompleteGracePeriod) {
+		return true
+	}
+
+	return false
+}
+
+// SetCompleteGracePeriod gets a reference to the given int32 and assigns it to the CompleteGracePeriod field.
+func (o *GenericWorkJobItem) SetCompleteGracePeriod(v int32) {
+	o.CompleteGracePeriod = &v
 }
 
 // GetConfiguration returns the Configuration field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -623,6 +661,9 @@ func (o GenericWorkJobItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
+	if !IsNil(o.CompleteGracePeriod) {
+		toSerialize["completeGracePeriod"] = o.CompleteGracePeriod
+	}
 	if o.Configuration != nil {
 		toSerialize["configuration"] = o.Configuration
 	}
