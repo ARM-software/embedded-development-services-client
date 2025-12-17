@@ -25,7 +25,7 @@ import (
 // checks if the GenericWorkJobItemLinks type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GenericWorkJobItemLinks{}
 
-// GenericWorkJobItemLinks The `related` link indicates the generic worker being used for the job. The `details` links to a resource that provides details of progress (messages). The `artefacts` links to a collection which will contain downloadable products (if any).
+// GenericWorkJobItemLinks The `related` link indicates the generic worker being used for the job. The `details` links to a resource that provides details of progress (messages). The `artefacts` links to a collection which will contain downloadable products (if any). The `sunset` link points to where to stop the job gracefully.
 type GenericWorkJobItemLinks struct {
 	Artefacts *HalLinkData `json:"artefacts,omitempty"`
 	Cancel *HalLinkData `json:"cancel,omitempty"`
@@ -35,6 +35,7 @@ type GenericWorkJobItemLinks struct {
 	Related HalLinkData `json:"related"`
 	Retain *HalLinkData `json:"retain,omitempty"`
 	Self HalLinkData `json:"self"`
+	Sunset *HalLinkData `json:"sunset,omitempty"`
 }
 
 type _GenericWorkJobItemLinks GenericWorkJobItemLinks
@@ -298,6 +299,38 @@ func (o *GenericWorkJobItemLinks) SetSelf(v HalLinkData) {
 	o.Self = v
 }
 
+// GetSunset returns the Sunset field value if set, zero value otherwise.
+func (o *GenericWorkJobItemLinks) GetSunset() HalLinkData {
+	if o == nil || IsNil(o.Sunset) {
+		var ret HalLinkData
+		return ret
+	}
+	return *o.Sunset
+}
+
+// GetSunsetOk returns a tuple with the Sunset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GenericWorkJobItemLinks) GetSunsetOk() (*HalLinkData, bool) {
+	if o == nil || IsNil(o.Sunset) {
+		return nil, false
+	}
+	return o.Sunset, true
+}
+
+// HasSunset returns a boolean if a field has been set.
+func (o *GenericWorkJobItemLinks) HasSunset() bool {
+	if o != nil && !IsNil(o.Sunset) {
+		return true
+	}
+
+	return false
+}
+
+// SetSunset gets a reference to the given HalLinkData and assigns it to the Sunset field.
+func (o *GenericWorkJobItemLinks) SetSunset(v HalLinkData) {
+	o.Sunset = &v
+}
+
 func (o GenericWorkJobItemLinks) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -328,6 +361,9 @@ func (o GenericWorkJobItemLinks) ToMap() (map[string]interface{}, error) {
 		toSerialize["retain"] = o.Retain
 	}
 	toSerialize["self"] = o.Self
+	if !IsNil(o.Sunset) {
+		toSerialize["sunset"] = o.Sunset
+	}
 	return toSerialize, nil
 }
 

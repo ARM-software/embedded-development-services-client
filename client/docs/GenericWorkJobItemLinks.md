@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **Related** | [**HalLinkData**](HalLinkData.md) |  | 
 **Retain** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Self** | [**HalLinkData**](HalLinkData.md) |  | 
+**Sunset** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 
 ## Methods
 
@@ -225,6 +226,31 @@ and a boolean to check if the value has been set.
 
 SetSelf sets Self field to given value.
 
+
+### GetSunset
+
+`func (o *GenericWorkJobItemLinks) GetSunset() HalLinkData`
+
+GetSunset returns the Sunset field if non-nil, zero value otherwise.
+
+### GetSunsetOk
+
+`func (o *GenericWorkJobItemLinks) GetSunsetOk() (*HalLinkData, bool)`
+
+GetSunsetOk returns a tuple with the Sunset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSunset
+
+`func (o *GenericWorkJobItemLinks) SetSunset(v HalLinkData)`
+
+SetSunset sets Sunset field to given value.
+
+### HasSunset
+
+`func (o *GenericWorkJobItemLinks) HasSunset() bool`
+
+HasSunset returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
