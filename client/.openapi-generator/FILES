@@ -120,6 +120,7 @@ docs/FPGAWorkload.md
 docs/FPGAsAPI.md
 docs/FieldObject.md
 docs/GenericWorkJobCollection.md
+docs/GenericWorkJobControlCommandItem.md
 docs/GenericWorkJobItem.md
 docs/GenericWorkJobItemLinks.md
 docs/GenericWorkJobsAPI.md
@@ -275,6 +276,7 @@ model_fpga_target_id.go
 model_fpga_workload.go
 model_fpgauart_connection.go
 model_generic_work_job_collection.go
+model_generic_work_job_control_command_item.go
 model_generic_work_job_item.go
 model_generic_work_job_item_links.go
 model_generic_worker_collection.go

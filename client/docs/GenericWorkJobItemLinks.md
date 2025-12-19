@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Artefacts** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Cancel** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Collection** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
+**Control** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Delete** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Details** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Related** | [**HalLinkData**](HalLinkData.md) |  | 
@@ -111,6 +112,31 @@ SetCollection sets Collection field to given value.
 `func (o *GenericWorkJobItemLinks) HasCollection() bool`
 
 HasCollection returns a boolean if a field has been set.
+
+### GetControl
+
+`func (o *GenericWorkJobItemLinks) GetControl() HalLinkData`
+
+GetControl returns the Control field if non-nil, zero value otherwise.
+
+### GetControlOk
+
+`func (o *GenericWorkJobItemLinks) GetControlOk() (*HalLinkData, bool)`
+
+GetControlOk returns a tuple with the Control field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetControl
+
+`func (o *GenericWorkJobItemLinks) SetControl(v HalLinkData)`
+
+SetControl sets Control field to given value.
+
+### HasControl
+
+`func (o *GenericWorkJobItemLinks) HasControl() bool`
+
+HasControl returns a boolean if a field has been set.
 
 ### GetDelete
 
