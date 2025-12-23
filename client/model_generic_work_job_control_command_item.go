@@ -22,125 +22,122 @@ import (
 	"fmt"
 )
 
-// checks if the AccessTokenItemLinks type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &AccessTokenItemLinks{}
+// checks if the GenericWorkJobControlCommandItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GenericWorkJobControlCommandItem{}
 
-// AccessTokenItemLinks The links for an Access Token Item. The `author` links to the user's account who created this token.
-type AccessTokenItemLinks struct {
-	Author *HalLinkData `json:"author,omitempty"`
-	Delete *HalLinkData `json:"delete,omitempty"`
-	Self HalLinkData `json:"self"`
+// GenericWorkJobControlCommandItem This resource allows a custom control command to be sent to a running job. The control command is composed of a namespace, name, and optional arguments.
+type GenericWorkJobControlCommandItem struct {
+	// Optional arguments supplied with a job control command.
+	Args map[string]string `json:"args,omitempty"`
+	// Name of a control command within a namespace.
+	Name string `json:"name"`
+	// The logical scope of a control command.
+	Namespace string `json:"namespace"`
 }
 
-type _AccessTokenItemLinks AccessTokenItemLinks
+type _GenericWorkJobControlCommandItem GenericWorkJobControlCommandItem
 
-// NewAccessTokenItemLinks instantiates a new AccessTokenItemLinks object
+// NewGenericWorkJobControlCommandItem instantiates a new GenericWorkJobControlCommandItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccessTokenItemLinks(self HalLinkData) *AccessTokenItemLinks {
-	this := AccessTokenItemLinks{}
-	this.Self = self
+func NewGenericWorkJobControlCommandItem(name string, namespace string) *GenericWorkJobControlCommandItem {
+	this := GenericWorkJobControlCommandItem{}
+	this.Name = name
+	this.Namespace = namespace
 	return &this
 }
 
-// NewAccessTokenItemLinksWithDefaults instantiates a new AccessTokenItemLinks object
+// NewGenericWorkJobControlCommandItemWithDefaults instantiates a new GenericWorkJobControlCommandItem object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAccessTokenItemLinksWithDefaults() *AccessTokenItemLinks {
-	this := AccessTokenItemLinks{}
+func NewGenericWorkJobControlCommandItemWithDefaults() *GenericWorkJobControlCommandItem {
+	this := GenericWorkJobControlCommandItem{}
 	return &this
 }
 
-// GetAuthor returns the Author field value if set, zero value otherwise.
-func (o *AccessTokenItemLinks) GetAuthor() HalLinkData {
-	if o == nil || IsNil(o.Author) {
-		var ret HalLinkData
+// GetArgs returns the Args field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GenericWorkJobControlCommandItem) GetArgs() map[string]string {
+	if o == nil {
+		var ret map[string]string
 		return ret
 	}
-	return *o.Author
+	return o.Args
 }
 
-// GetAuthorOk returns a tuple with the Author field value if set, nil otherwise
+// GetArgsOk returns a tuple with the Args field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccessTokenItemLinks) GetAuthorOk() (*HalLinkData, bool) {
-	if o == nil || IsNil(o.Author) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GenericWorkJobControlCommandItem) GetArgsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Args) {
 		return nil, false
 	}
-	return o.Author, true
+	return &o.Args, true
 }
 
-// HasAuthor returns a boolean if a field has been set.
-func (o *AccessTokenItemLinks) HasAuthor() bool {
-	if o != nil && !IsNil(o.Author) {
+// HasArgs returns a boolean if a field has been set.
+func (o *GenericWorkJobControlCommandItem) HasArgs() bool {
+	if o != nil && !IsNil(o.Args) {
 		return true
 	}
 
 	return false
 }
 
-// SetAuthor gets a reference to the given HalLinkData and assigns it to the Author field.
-func (o *AccessTokenItemLinks) SetAuthor(v HalLinkData) {
-	o.Author = &v
+// SetArgs gets a reference to the given map[string]string and assigns it to the Args field.
+func (o *GenericWorkJobControlCommandItem) SetArgs(v map[string]string) {
+	o.Args = v
 }
 
-// GetDelete returns the Delete field value if set, zero value otherwise.
-func (o *AccessTokenItemLinks) GetDelete() HalLinkData {
-	if o == nil || IsNil(o.Delete) {
-		var ret HalLinkData
-		return ret
-	}
-	return *o.Delete
-}
-
-// GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AccessTokenItemLinks) GetDeleteOk() (*HalLinkData, bool) {
-	if o == nil || IsNil(o.Delete) {
-		return nil, false
-	}
-	return o.Delete, true
-}
-
-// HasDelete returns a boolean if a field has been set.
-func (o *AccessTokenItemLinks) HasDelete() bool {
-	if o != nil && !IsNil(o.Delete) {
-		return true
-	}
-
-	return false
-}
-
-// SetDelete gets a reference to the given HalLinkData and assigns it to the Delete field.
-func (o *AccessTokenItemLinks) SetDelete(v HalLinkData) {
-	o.Delete = &v
-}
-
-// GetSelf returns the Self field value
-func (o *AccessTokenItemLinks) GetSelf() HalLinkData {
+// GetName returns the Name field value
+func (o *GenericWorkJobControlCommandItem) GetName() string {
 	if o == nil {
-		var ret HalLinkData
+		var ret string
 		return ret
 	}
 
-	return o.Self
+	return o.Name
 }
 
-// GetSelfOk returns a tuple with the Self field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *AccessTokenItemLinks) GetSelfOk() (*HalLinkData, bool) {
+func (o *GenericWorkJobControlCommandItem) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Self, true
+	return &o.Name, true
 }
 
-// SetSelf sets field value
-func (o *AccessTokenItemLinks) SetSelf(v HalLinkData) {
-	o.Self = v
+// SetName sets field value
+func (o *GenericWorkJobControlCommandItem) SetName(v string) {
+	o.Name = v
 }
 
-func (o AccessTokenItemLinks) MarshalJSON() ([]byte, error) {
+// GetNamespace returns the Namespace field value
+func (o *GenericWorkJobControlCommandItem) GetNamespace() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Namespace
+}
+
+// GetNamespaceOk returns a tuple with the Namespace field value
+// and a boolean to check if the value has been set.
+func (o *GenericWorkJobControlCommandItem) GetNamespaceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Namespace, true
+}
+
+// SetNamespace sets field value
+func (o *GenericWorkJobControlCommandItem) SetNamespace(v string) {
+	o.Namespace = v
+}
+
+func (o GenericWorkJobControlCommandItem) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -148,24 +145,23 @@ func (o AccessTokenItemLinks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o AccessTokenItemLinks) ToMap() (map[string]interface{}, error) {
+func (o GenericWorkJobControlCommandItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Author) {
-		toSerialize["author"] = o.Author
+	if o.Args != nil {
+		toSerialize["args"] = o.Args
 	}
-	if !IsNil(o.Delete) {
-		toSerialize["delete"] = o.Delete
-	}
-	toSerialize["self"] = o.Self
+	toSerialize["name"] = o.Name
+	toSerialize["namespace"] = o.Namespace
 	return toSerialize, nil
 }
 
-func (o *AccessTokenItemLinks) UnmarshalJSON(data []byte) (err error) {
+func (o *GenericWorkJobControlCommandItem) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"self",
+		"name",
+		"namespace",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -182,53 +178,53 @@ func (o *AccessTokenItemLinks) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varAccessTokenItemLinks := _AccessTokenItemLinks{}
+	varGenericWorkJobControlCommandItem := _GenericWorkJobControlCommandItem{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAccessTokenItemLinks)
+	err = decoder.Decode(&varGenericWorkJobControlCommandItem)
 
 	if err != nil {
 		return err
 	}
 
-	*o = AccessTokenItemLinks(varAccessTokenItemLinks)
+	*o = GenericWorkJobControlCommandItem(varGenericWorkJobControlCommandItem)
 
 	return err
 }
 
-type NullableAccessTokenItemLinks struct {
-	value *AccessTokenItemLinks
+type NullableGenericWorkJobControlCommandItem struct {
+	value *GenericWorkJobControlCommandItem
 	isSet bool
 }
 
-func (v NullableAccessTokenItemLinks) Get() *AccessTokenItemLinks {
+func (v NullableGenericWorkJobControlCommandItem) Get() *GenericWorkJobControlCommandItem {
 	return v.value
 }
 
-func (v *NullableAccessTokenItemLinks) Set(val *AccessTokenItemLinks) {
+func (v *NullableGenericWorkJobControlCommandItem) Set(val *GenericWorkJobControlCommandItem) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAccessTokenItemLinks) IsSet() bool {
+func (v NullableGenericWorkJobControlCommandItem) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAccessTokenItemLinks) Unset() {
+func (v *NullableGenericWorkJobControlCommandItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAccessTokenItemLinks(val *AccessTokenItemLinks) *NullableAccessTokenItemLinks {
-	return &NullableAccessTokenItemLinks{value: val, isSet: true}
+func NewNullableGenericWorkJobControlCommandItem(val *GenericWorkJobControlCommandItem) *NullableGenericWorkJobControlCommandItem {
+	return &NullableGenericWorkJobControlCommandItem{value: val, isSet: true}
 }
 
-func (v NullableAccessTokenItemLinks) MarshalJSON() ([]byte, error) {
+func (v NullableGenericWorkJobControlCommandItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAccessTokenItemLinks) UnmarshalJSON(src []byte) error {
+func (v *NullableGenericWorkJobControlCommandItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

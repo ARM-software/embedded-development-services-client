@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Links** | [**NullableServiceAccountItemLinks**](ServiceAccountItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**CreatedBy** | **string** | Full name of the user who created this service account. | [readonly] 
+**CreatedBy** | **NullableString** | Human readable title of the user who created this resource. | [readonly] 
 **Name** | **string** | Unique ID of the service account. | [readonly] 
 **Title** | **string** | Human readable name of the service account. | 
 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewServiceAccountItem
 
-`func NewServiceAccountItem(links NullableServiceAccountItemLinks, metadata NullableCommonMetadata, createdBy string, name string, title string, ) *ServiceAccountItem`
+`func NewServiceAccountItem(links NullableServiceAccountItemLinks, metadata NullableCommonMetadata, createdBy NullableString, name string, title string, ) *ServiceAccountItem`
 
 NewServiceAccountItem instantiates a new ServiceAccountItem object
 This constructor will assign default values to properties that have it defined,
@@ -113,6 +113,16 @@ and a boolean to check if the value has been set.
 SetCreatedBy sets CreatedBy field to given value.
 
 
+### SetCreatedByNil
+
+`func (o *ServiceAccountItem) SetCreatedByNil(b bool)`
+
+ SetCreatedByNil sets the value for CreatedBy to be an explicit nil
+
+### UnsetCreatedBy
+`func (o *ServiceAccountItem) UnsetCreatedBy()`
+
+UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetName
 
 `func (o *ServiceAccountItem) GetName() string`

@@ -11,11 +11,13 @@ Name | Type | Description | Notes
 **Artefacts** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Cancel** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Collection** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
+**Control** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Delete** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Details** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Related** | [**HalLinkData**](HalLinkData.md) |  | 
 **Retain** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 **Self** | [**HalLinkData**](HalLinkData.md) |  | 
+**Sunset** | Pointer to [**HalLinkData**](HalLinkData.md) |  | [optional] 
 
 ## Methods
 
@@ -110,6 +112,31 @@ SetCollection sets Collection field to given value.
 `func (o *GenericWorkJobItemLinks) HasCollection() bool`
 
 HasCollection returns a boolean if a field has been set.
+
+### GetControl
+
+`func (o *GenericWorkJobItemLinks) GetControl() HalLinkData`
+
+GetControl returns the Control field if non-nil, zero value otherwise.
+
+### GetControlOk
+
+`func (o *GenericWorkJobItemLinks) GetControlOk() (*HalLinkData, bool)`
+
+GetControlOk returns a tuple with the Control field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetControl
+
+`func (o *GenericWorkJobItemLinks) SetControl(v HalLinkData)`
+
+SetControl sets Control field to given value.
+
+### HasControl
+
+`func (o *GenericWorkJobItemLinks) HasControl() bool`
+
+HasControl returns a boolean if a field has been set.
 
 ### GetDelete
 
@@ -225,6 +252,31 @@ and a boolean to check if the value has been set.
 
 SetSelf sets Self field to given value.
 
+
+### GetSunset
+
+`func (o *GenericWorkJobItemLinks) GetSunset() HalLinkData`
+
+GetSunset returns the Sunset field if non-nil, zero value otherwise.
+
+### GetSunsetOk
+
+`func (o *GenericWorkJobItemLinks) GetSunsetOk() (*HalLinkData, bool)`
+
+GetSunsetOk returns a tuple with the Sunset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSunset
+
+`func (o *GenericWorkJobItemLinks) SetSunset(v HalLinkData)`
+
+SetSunset sets Sunset field to given value.
+
+### HasSunset
+
+`func (o *GenericWorkJobItemLinks) HasSunset() bool`
+
+HasSunset returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

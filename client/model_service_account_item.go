@@ -29,8 +29,8 @@ var _ MappedNullable = &ServiceAccountItem{}
 type ServiceAccountItem struct {
 	Links NullableServiceAccountItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
-	// Full name of the user who created this service account.
-	CreatedBy string `json:"createdBy" validate:"regexp=^[\\\\s\\\\w'-]*$"`
+	// Human readable title of the user who created this resource.
+	CreatedBy NullableString `json:"createdBy"`
 	// Unique ID of the service account.
 	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// Human readable name of the service account.
@@ -43,7 +43,7 @@ type _ServiceAccountItem ServiceAccountItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceAccountItem(links NullableServiceAccountItemLinks, metadata NullableCommonMetadata, createdBy string, name string, title string) *ServiceAccountItem {
+func NewServiceAccountItem(links NullableServiceAccountItemLinks, metadata NullableCommonMetadata, createdBy NullableString, name string, title string) *ServiceAccountItem {
 	this := ServiceAccountItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -114,27 +114,29 @@ func (o *ServiceAccountItem) SetMetadata(v CommonMetadata) {
 }
 
 // GetCreatedBy returns the CreatedBy field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *ServiceAccountItem) GetCreatedBy() string {
-	if o == nil {
+	if o == nil || o.CreatedBy.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.CreatedBy
+	return *o.CreatedBy.Get()
 }
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ServiceAccountItem) GetCreatedByOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.CreatedBy, true
+	return o.CreatedBy.Get(), o.CreatedBy.IsSet()
 }
 
 // SetCreatedBy sets field value
 func (o *ServiceAccountItem) SetCreatedBy(v string) {
-	o.CreatedBy = v
+	o.CreatedBy.Set(&v)
 }
 
 // GetName returns the Name field value
@@ -197,7 +199,7 @@ func (o ServiceAccountItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	toSerialize["createdBy"] = o.CreatedBy
+	toSerialize["createdBy"] = o.CreatedBy.Get()
 	toSerialize["name"] = o.Name
 	toSerialize["title"] = o.Title
 	return toSerialize, nil

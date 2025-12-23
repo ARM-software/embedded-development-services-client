@@ -30,8 +30,8 @@ var _ MappedNullable = &ServiceAccessTokenItem{}
 type ServiceAccessTokenItem struct {
 	Links NullableAccessTokenItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
-	// ID of the user who created this access token.
-	CreatedBy string `json:"createdBy" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	// Human readable title of the user who created this resource.
+	CreatedBy NullableString `json:"createdBy"`
 	// When this token was last used to authenticate a request.
 	LastUsed time.Time `json:"lastUsed"`
 	// Unique ID of the service access token.
@@ -50,7 +50,7 @@ type _ServiceAccessTokenItem ServiceAccessTokenItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceAccessTokenItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, createdBy string, lastUsed time.Time, name string, secretHint string, title string) *ServiceAccessTokenItem {
+func NewServiceAccessTokenItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, createdBy NullableString, lastUsed time.Time, name string, secretHint string, title string) *ServiceAccessTokenItem {
 	this := ServiceAccessTokenItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -123,27 +123,29 @@ func (o *ServiceAccessTokenItem) SetMetadata(v CommonMetadata) {
 }
 
 // GetCreatedBy returns the CreatedBy field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *ServiceAccessTokenItem) GetCreatedBy() string {
-	if o == nil {
+	if o == nil || o.CreatedBy.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.CreatedBy
+	return *o.CreatedBy.Get()
 }
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ServiceAccessTokenItem) GetCreatedByOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.CreatedBy, true
+	return o.CreatedBy.Get(), o.CreatedBy.IsSet()
 }
 
 // SetCreatedBy sets field value
 func (o *ServiceAccessTokenItem) SetCreatedBy(v string) {
-	o.CreatedBy = v
+	o.CreatedBy.Set(&v)
 }
 
 // GetLastUsed returns the LastUsed field value
@@ -286,7 +288,7 @@ func (o ServiceAccessTokenItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
-	toSerialize["createdBy"] = o.CreatedBy
+	toSerialize["createdBy"] = o.CreatedBy.Get()
 	toSerialize["lastUsed"] = o.LastUsed
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Secret) {

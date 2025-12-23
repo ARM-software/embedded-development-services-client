@@ -25,7 +25,7 @@ import (
 // checks if the FPGAJobItemLinks type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &FPGAJobItemLinks{}
 
-// FPGAJobItemLinks The `related` link indicates the FPGA the job is running on. The `details` links to a resource that provides details of progress (messages). The `artefacts` links to a collection which will contain downloadable artefacts (if any). The `retain` link enables to extend the TTL of a job and anything related to it. The `connect` links to way to connect directly to an application running on the FPGA as part of this job. The `describedby` links to a resource which describes the payload being used. The `sunset` link enables the graceful termination of job as opposed to the `cancel` which would abort it straight away.
+// FPGAJobItemLinks The `related` link indicates the FPGA the job is running on. The `details` links to a resource that provides details of progress (messages). The `artefacts` links to a collection which will contain downloadable artefacts (if any). The `retain` link enables to extend the TTL of a job and anything related to it. The `connect` links to way to connect directly to an application running on the FPGA as part of this job. The `describedby` links to a resource which describes the payload being used. The `sunset` link enables the graceful termination of job as opposed to the `cancel` link which can be used to abort it straight away.
 type FPGAJobItemLinks struct {
 	Artefacts *HalLinkData `json:"artefacts,omitempty"`
 	Cancel *HalLinkData `json:"cancel,omitempty"`
