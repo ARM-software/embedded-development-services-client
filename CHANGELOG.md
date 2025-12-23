@@ -2,6 +2,25 @@
 Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+"1.104.0" (2025-12-23)
+======================
+
+Features
+--------
+
+- Updated client due to schema changes (#20251223162716)
+
+
+Bugfixes
+--------
+
+- Dependency upgrade: upload-artifact-6.0.0 (#20251215090622)
+
+
+<!--
+Copyright (C) 2020-2025 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.103.1" (2025-12-23)
 ======================
 
