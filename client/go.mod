@@ -3,7 +3,7 @@ module github.com/ARM-software/embedded-development-services-client/client
 go 1.25
 
 require (
-	github.com/ARM-software/golang-utils/utils v1.145.1
+	github.com/ARM-software/golang-utils/utils v1.146.0
 	github.com/stretchr/testify v1.11.1
 )
 
