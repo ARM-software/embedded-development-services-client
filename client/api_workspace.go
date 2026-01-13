@@ -247,7 +247,6 @@ func (r ApiClearWorkspaceIncrementalChunkRequest) Execute() (*http.Response, err
 ClearWorkspaceIncrementalChunk Clear the content of this chunked workspace.
 
 Clears the content of the chunked workspace.
-
 The content of the workspace is removed from the platform and will not be retrievable anymore.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
