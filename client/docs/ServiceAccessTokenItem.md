@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Links** | [**NullableAccessTokenItemLinks**](AccessTokenItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
 **CreatedBy** | **NullableString** | Human readable title of the user who created this resource. | [readonly] 
-**LastUsed** | **time.Time** | When this token was last used to authenticate a request. | [readonly] 
+**LastUsed** | **NullableTime** | When this token was last used to authenticate a request. | [readonly] 
 **Name** | **string** | Unique ID of the service access token. | [readonly] 
 **Secret** | Pointer to **string** | The access token. This field will only be returned by the service upon creation and the secret will not be re-retrievable. | [optional] [readonly] 
 **SecretHint** | **string** | The four character hint of the access token secret. | [readonly] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewServiceAccessTokenItem
 
-`func NewServiceAccessTokenItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, createdBy NullableString, lastUsed time.Time, name string, secretHint string, title string, ) *ServiceAccessTokenItem`
+`func NewServiceAccessTokenItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, createdBy NullableString, lastUsed NullableTime, name string, secretHint string, title string, ) *ServiceAccessTokenItem`
 
 NewServiceAccessTokenItem instantiates a new ServiceAccessTokenItem object
 This constructor will assign default values to properties that have it defined,
@@ -146,6 +146,16 @@ and a boolean to check if the value has been set.
 SetLastUsed sets LastUsed field to given value.
 
 
+### SetLastUsedNil
+
+`func (o *ServiceAccessTokenItem) SetLastUsedNil(b bool)`
+
+ SetLastUsedNil sets the value for LastUsed to be an explicit nil
+
+### UnsetLastUsed
+`func (o *ServiceAccessTokenItem) UnsetLastUsed()`
+
+UnsetLastUsed ensures that no value is present for LastUsed, not even an explicit nil
 ### GetName
 
 `func (o *ServiceAccessTokenItem) GetName() string`

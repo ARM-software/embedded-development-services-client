@@ -33,7 +33,7 @@ type ServiceAccessTokenItem struct {
 	// Human readable title of the user who created this resource.
 	CreatedBy NullableString `json:"createdBy"`
 	// When this token was last used to authenticate a request.
-	LastUsed time.Time `json:"lastUsed"`
+	LastUsed NullableTime `json:"lastUsed"`
 	// Unique ID of the service access token.
 	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
 	// The access token. This field will only be returned by the service upon creation and the secret will not be re-retrievable.
@@ -50,7 +50,7 @@ type _ServiceAccessTokenItem ServiceAccessTokenItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceAccessTokenItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, createdBy NullableString, lastUsed time.Time, name string, secretHint string, title string) *ServiceAccessTokenItem {
+func NewServiceAccessTokenItem(links NullableAccessTokenItemLinks, metadata NullableCommonMetadata, createdBy NullableString, lastUsed NullableTime, name string, secretHint string, title string) *ServiceAccessTokenItem {
 	this := ServiceAccessTokenItem{}
 	this.Links = links
 	this.Metadata = metadata
@@ -149,27 +149,29 @@ func (o *ServiceAccessTokenItem) SetCreatedBy(v string) {
 }
 
 // GetLastUsed returns the LastUsed field value
+// If the value is explicit nil, the zero value for time.Time will be returned
 func (o *ServiceAccessTokenItem) GetLastUsed() time.Time {
-	if o == nil {
+	if o == nil || o.LastUsed.Get() == nil {
 		var ret time.Time
 		return ret
 	}
 
-	return o.LastUsed
+	return *o.LastUsed.Get()
 }
 
 // GetLastUsedOk returns a tuple with the LastUsed field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ServiceAccessTokenItem) GetLastUsedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LastUsed, true
+	return o.LastUsed.Get(), o.LastUsed.IsSet()
 }
 
 // SetLastUsed sets field value
 func (o *ServiceAccessTokenItem) SetLastUsed(v time.Time) {
-	o.LastUsed = v
+	o.LastUsed.Set(&v)
 }
 
 // GetName returns the Name field value
@@ -289,7 +291,7 @@ func (o ServiceAccessTokenItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["_links"] = o.Links.Get()
 	toSerialize["_metadata"] = o.Metadata.Get()
 	toSerialize["createdBy"] = o.CreatedBy.Get()
-	toSerialize["lastUsed"] = o.LastUsed
+	toSerialize["lastUsed"] = o.LastUsed.Get()
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Secret) {
 		toSerialize["secret"] = o.Secret
