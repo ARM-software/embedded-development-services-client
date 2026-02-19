@@ -29,7 +29,7 @@ var _ MappedNullable = &GenericWorkJobItem{}
 type GenericWorkJobItem struct {
 	Links NullableGenericWorkJobItemLinks `json:"_links"`
 	Metadata NullableCommonMetadata `json:"_metadata"`
-	// The maximum time (in seconds) to use in the event that a graceful shutdown is requested. A graceful shutdown consists of a SIGINT being sent to the process, waiting the specified duration, and then finally sending a SIGKILL to the process. This should be chosen such that any cleanup actions have time to occur. 
+	// The maximum time (in seconds) to use in the event that a graceful shutdown is requested. A graceful shutdown consists of a SIGINT being sent to the process, waiting the specified duration, and then finally sending a SIGKILL to the process. This should be chosen such that any cleanup actions have time to occur.
 	CompleteGracePeriod *int32 `json:"completeGracePeriod,omitempty"`
 	// Configuration map for jobs that require it. These could be environment variables. This is job implementation dependent and job documentation should describe it.
 	Configuration map[string]string `json:"configuration,omitempty"`

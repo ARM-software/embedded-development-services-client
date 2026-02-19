@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Links** | [**NullableGenericWorkJobItemLinks**](GenericWorkJobItemLinks.md) |  | 
 **Metadata** | [**NullableCommonMetadata**](CommonMetadata.md) |  | 
-**CompleteGracePeriod** | Pointer to **int32** | The maximum time (in seconds) to use in the event that a graceful shutdown is requested. A graceful shutdown consists of a SIGINT being sent to the process, waiting the specified duration, and then finally sending a SIGKILL to the process. This should be chosen such that any cleanup actions have time to occur.  | [optional] [default to 30]
+**CompleteGracePeriod** | Pointer to **int32** | The maximum time (in seconds) to use in the event that a graceful shutdown is requested. A graceful shutdown consists of a SIGINT being sent to the process, waiting the specified duration, and then finally sending a SIGKILL to the process. This should be chosen such that any cleanup actions have time to occur. | [optional] [default to 30]
 **Configuration** | Pointer to **map[string]string** | Configuration map for jobs that require it. These could be environment variables. This is job implementation dependent and job documentation should describe it. | [optional] 
 **Done** | **bool** | True when the job has completed (this does not necessarily indicate success). | [readonly] 
 **Error** | **bool** | True if there was an error in the service while attempting the job. | [readonly] 
