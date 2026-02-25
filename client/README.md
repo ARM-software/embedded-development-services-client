@@ -109,6 +109,8 @@ All URIs are relative to *https://all.api.keil.arm.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AnalyserAPI* | [**GetAnalyser**](docs/AnalyserAPI.md#getanalyser) | **Get** /analysers/{analyserName} | Get analyser description
+*AnalyserAPI* | [**ListAnalysers**](docs/AnalyserAPI.md#listanalysers) | **Get** /analysers/ | List analysers currently available in Perf-AI
 *AuthenticationAPI* | [**DeleteUser**](docs/AuthenticationAPI.md#deleteuser) | **Delete** /users/{userName} | Delete a user.
 *AuthenticationAPI* | [**GetMe**](docs/AuthenticationAPI.md#getme) | **Get** /users/me | Get my user information
 *AuthenticationAPI* | [**GetMyAccountSummary**](docs/AuthenticationAPI.md#getmyaccountsummary) | **Get** /accounts/me | Get the account summary for the current authenticated caller
@@ -286,6 +288,10 @@ Class | Method | HTTP request | Description
  - [AccountSummaryLinks](docs/AccountSummaryLinks.md)
  - [AccountType](docs/AccountType.md)
  - [AdditionalTool](docs/AdditionalTool.md)
+ - [AnalyserCollection](docs/AnalyserCollection.md)
+ - [AnalyserIP](docs/AnalyserIP.md)
+ - [AnalyserItem](docs/AnalyserItem.md)
+ - [AnalyserItemLinks](docs/AnalyserItemLinks.md)
  - [ArtefactManagerCollection](docs/ArtefactManagerCollection.md)
  - [ArtefactManagerItem](docs/ArtefactManagerItem.md)
  - [ArtefactManagerLinks](docs/ArtefactManagerLinks.md)
@@ -294,6 +300,7 @@ Class | Method | HTTP request | Description
  - [BuildJobItemLinks](docs/BuildJobItemLinks.md)
  - [BuildMessageItem](docs/BuildMessageItem.md)
  - [BuildToolTypes](docs/BuildToolTypes.md)
+ - [ClockInfo](docs/ClockInfo.md)
  - [CmsisBuilderCollection](docs/CmsisBuilderCollection.md)
  - [CmsisBuilderItem](docs/CmsisBuilderItem.md)
  - [CmsisBuilderItemLinks](docs/CmsisBuilderItemLinks.md)
@@ -303,6 +310,7 @@ Class | Method | HTTP request | Description
  - [CollectionMetadata](docs/CollectionMetadata.md)
  - [CommonMetadata](docs/CommonMetadata.md)
  - [DeprecationInfo](docs/DeprecationInfo.md)
+ - [EmbeddedAnalyserItems](docs/EmbeddedAnalyserItems.md)
  - [EmbeddedArtefactManagerItems](docs/EmbeddedArtefactManagerItems.md)
  - [EmbeddedBuildJobItems](docs/EmbeddedBuildJobItems.md)
  - [EmbeddedCmsisBuilderItems](docs/EmbeddedCmsisBuilderItems.md)
@@ -329,6 +337,8 @@ Class | Method | HTTP request | Description
  - [EndpointDeprecationNotice](docs/EndpointDeprecationNotice.md)
  - [EndpointDeprecationNoticeCollection](docs/EndpointDeprecationNoticeCollection.md)
  - [EndpointDeprecationNoticeLinks](docs/EndpointDeprecationNoticeLinks.md)
+ - [Engine](docs/Engine.md)
+ - [EngineType](docs/EngineType.md)
  - [EntitlementsListFeedItem](docs/EntitlementsListFeedItem.md)
  - [EntitlementsListRequest](docs/EntitlementsListRequest.md)
  - [ErrorResponse](docs/ErrorResponse.md)
@@ -370,6 +380,7 @@ Class | Method | HTTP request | Description
  - [HalLinkData](docs/HalLinkData.md)
  - [HalOnlyEmbeddableCollectionLinks](docs/HalOnlyEmbeddableCollectionLinks.md)
  - [HalSimpleCollectionLinks](docs/HalSimpleCollectionLinks.md)
+ - [HardwareTarget](docs/HardwareTarget.md)
  - [InstancePermissionItem](docs/InstancePermissionItem.md)
  - [IntellisenseJobCollection](docs/IntellisenseJobCollection.md)
  - [IntellisenseJobItem](docs/IntellisenseJobItem.md)
@@ -377,14 +388,17 @@ Class | Method | HTTP request | Description
  - [IntellisenseMessageItem](docs/IntellisenseMessageItem.md)
  - [ListVendorsCollection](docs/ListVendorsCollection.md)
  - [MessageObject](docs/MessageObject.md)
+ - [ModelFormat](docs/ModelFormat.md)
  - [NotificationFeed](docs/NotificationFeed.md)
  - [NotificationMessageObject](docs/NotificationMessageObject.md)
  - [PATCollection](docs/PATCollection.md)
  - [PATCreationItem](docs/PATCreationItem.md)
  - [PATItem](docs/PATItem.md)
  - [PagingMetadata](docs/PagingMetadata.md)
+ - [PartnerSpecific](docs/PartnerSpecific.md)
  - [PermissionItem](docs/PermissionItem.md)
  - [PermissionOperation](docs/PermissionOperation.md)
+ - [Profile](docs/Profile.md)
  - [RetainBuildJobRequest](docs/RetainBuildJobRequest.md)
  - [RetainWorkspaceRequest](docs/RetainWorkspaceRequest.md)
  - [ServiceAccessTokenCollection](docs/ServiceAccessTokenCollection.md)
@@ -395,6 +409,7 @@ Class | Method | HTTP request | Description
  - [SimpleCollection](docs/SimpleCollection.md)
  - [TokenIntrospectionRequestItem](docs/TokenIntrospectionRequestItem.md)
  - [TokenIntrospectionResponseItem](docs/TokenIntrospectionResponseItem.md)
+ - [Tool](docs/Tool.md)
  - [ToolchainTypes](docs/ToolchainTypes.md)
  - [UserCollection](docs/UserCollection.md)
  - [UserInviteItem](docs/UserInviteItem.md)

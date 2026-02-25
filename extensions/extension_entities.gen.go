@@ -13,6 +13,135 @@ import (
 )
 
 // ============================================================================================
+// This extends AnalyserItem and AnalyserCollection definitions
+// ============================================================================================
+
+// FetchType returns the resource type
+func (o *AnalyserItem) FetchType() string {
+	return "AnalyserItem"
+}
+
+// FetchLinks returns the resource links if present
+func (o *AnalyserItem) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *AnalyserItem) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *AnalyserItem) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+// NewAnalyserModel returns a model.
+func NewAnalyserModel() IModel {
+	return NewAnalyserItemWithDefaults()
+}
+
+// AnalyserIterator defines an iterator over a collection.
+type AnalyserIterator struct {
+	elements     []AnalyserItem
+	currentIndex int
+}
+
+func (m *AnalyserIterator) HasNext() bool {
+	return m.currentIndex < len(m.elements)
+}
+
+func (m *AnalyserIterator) GetNext() (item any, err error) {
+	if m.currentIndex < 0 {
+		err = errors.New("incorrect element index")
+		return
+	}
+	if !m.HasNext() {
+		err = errors.New("no more items")
+		return
+	}
+	element := m.elements[m.currentIndex]
+	item = &element
+	m.currentIndex++
+	return
+}
+
+func NewAnalyserIterator(elements []AnalyserItem) (IIterator, error) {
+	return &AnalyserIterator{
+		elements:     elements,
+		currentIndex: 0,
+	}, nil
+}
+
+// FetchType returns the resource type
+func (o *AnalyserCollection) FetchType() string {
+	return "AnalyserCollection page"
+}
+
+// FetchLinks returns the resource links if present
+func (o *AnalyserCollection) FetchLinks() (links any, err error) {
+	if !o.Links.IsSet() {
+		err = errors.New("missing links")
+		return
+	}
+	links = o.GetLinks()
+	return
+}
+
+// FetchName returns the resource name if present, or else an error
+func (o *AnalyserCollection) FetchName() (string, error) {
+	return o.GetName(), nil
+}
+
+// FetchTitle returns the resource title if present, or else an error
+func (o *AnalyserCollection) FetchTitle() (string, error) {
+	return o.GetTitle(), nil
+}
+
+func (o *AnalyserCollection) HasNext() bool {
+	if links, has := o.GetLinksOk(); has {
+		return links.HasNext()
+	}
+	return false
+}
+
+func (o *AnalyserCollection) GetItemIterator() (IIterator, error) {
+	if o.HasEmbedded() {
+		embedded := o.GetEmbedded()
+		return NewAnalyserIterator(embedded.GetItem())
+	}
+	links, err := o.FetchLinks()
+	if err != nil {
+		return nil, err
+	}
+	l, ok := links.(HalCollectionLinks)
+	if !ok {
+		return nil, fmt.Errorf("wrong link type [%T]; expected [HalCollectionLinks]", links)
+	}
+	return NewHalLinkDataIterator(l.GetItem())
+}
+
+func (o *AnalyserCollection) GetItemCount() (count int64, err error) {
+	m, ok := o.GetMetadataOk()
+	if !ok {
+		err = fmt.Errorf("missing metadata: %v", o)
+		return
+	}
+	count = int64(m.GetCount())
+	return
+}
+
+// NewAnalyserCollection returns a page.
+func NewAnalyserCollectionCollection() IStaticPage {
+	return NewAnalyserCollectionWithDefaults()
+}
+
+// ============================================================================================
 // This extends ArtefactManagerItem and ArtefactManagerCollection definitions
 // ============================================================================================
 

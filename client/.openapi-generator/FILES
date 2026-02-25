@@ -2,6 +2,7 @@
 .travis.yml
 README.md
 api/openapi.yaml
+api_analyser.go
 api_authentication.go
 api_authorization.go
 api_build_jobs.go
@@ -34,6 +35,11 @@ docs/AccountSummaryItem.md
 docs/AccountSummaryLinks.md
 docs/AccountType.md
 docs/AdditionalTool.md
+docs/AnalyserAPI.md
+docs/AnalyserCollection.md
+docs/AnalyserIP.md
+docs/AnalyserItem.md
+docs/AnalyserItemLinks.md
 docs/ArtefactManagerCollection.md
 docs/ArtefactManagerItem.md
 docs/ArtefactManagerLinks.md
@@ -47,6 +53,7 @@ docs/BuildMessageItem.md
 docs/BuildToolTypes.md
 docs/CMSISBuildersAPI.md
 docs/CMSISIntellisenseBuildersAPI.md
+docs/ClockInfo.md
 docs/CmsisBuilderCollection.md
 docs/CmsisBuilderItem.md
 docs/CmsisBuilderItemLinks.md
@@ -57,6 +64,7 @@ docs/CollectionMetadata.md
 docs/CommonMetadata.md
 docs/DeprecationInfo.md
 docs/DeprecationNoticeAPI.md
+docs/EmbeddedAnalyserItems.md
 docs/EmbeddedArtefactManagerItems.md
 docs/EmbeddedBuildJobItems.md
 docs/EmbeddedCmsisBuilderItems.md
@@ -83,6 +91,8 @@ docs/EmbeddedWorkspaceSourceItems.md
 docs/EndpointDeprecationNotice.md
 docs/EndpointDeprecationNoticeCollection.md
 docs/EndpointDeprecationNoticeLinks.md
+docs/Engine.md
+docs/EngineType.md
 docs/EntitlementsListFeedItem.md
 docs/EntitlementsListRequest.md
 docs/ErrorResponse.md
@@ -133,6 +143,7 @@ docs/HalFeedLinks.md
 docs/HalLinkData.md
 docs/HalOnlyEmbeddableCollectionLinks.md
 docs/HalSimpleCollectionLinks.md
+docs/HardwareTarget.md
 docs/InstancePermissionItem.md
 docs/IntellisenseJobCollection.md
 docs/IntellisenseJobItem.md
@@ -141,15 +152,18 @@ docs/IntellisenseJobsAPI.md
 docs/IntellisenseMessageItem.md
 docs/ListVendorsCollection.md
 docs/MessageObject.md
+docs/ModelFormat.md
 docs/NotificationFeed.md
 docs/NotificationMessageObject.md
 docs/PATCollection.md
 docs/PATCreationItem.md
 docs/PATItem.md
 docs/PagingMetadata.md
+docs/PartnerSpecific.md
 docs/PermissionItem.md
 docs/PermissionOperation.md
 docs/PersonalAccessTokenAPI.md
+docs/Profile.md
 docs/RetainBuildJobRequest.md
 docs/RetainWorkspaceRequest.md
 docs/RootResourceAPI.md
@@ -162,6 +176,7 @@ docs/ServiceAccountItemLinks.md
 docs/SimpleCollection.md
 docs/TokenIntrospectionRequestItem.md
 docs/TokenIntrospectionResponseItem.md
+docs/Tool.md
 docs/ToolchainTypes.md
 docs/UserCollection.md
 docs/UserInviteItem.md
@@ -203,6 +218,10 @@ model_account_summary_item.go
 model_account_summary_links.go
 model_account_type.go
 model_additional_tool.go
+model_analyser_collection.go
+model_analyser_ip.go
+model_analyser_item.go
+model_analyser_item_links.go
 model_artefact_manager_collection.go
 model_artefact_manager_item.go
 model_artefact_manager_links.go
@@ -211,6 +230,7 @@ model_build_job_item.go
 model_build_job_item_links.go
 model_build_message_item.go
 model_build_tool_types.go
+model_clock_info.go
 model_cmsis_builder_collection.go
 model_cmsis_builder_item.go
 model_cmsis_builder_item_links.go
@@ -220,6 +240,7 @@ model_cmsis_intellisense_item_links.go
 model_collection_metadata.go
 model_common_metadata.go
 model_deprecation_info.go
+model_embedded_analyser_items.go
 model_embedded_artefact_manager_items.go
 model_embedded_build_job_items.go
 model_embedded_cmsis_builder_items.go
@@ -246,6 +267,8 @@ model_embedded_workspace_source_items.go
 model_endpoint_deprecation_notice.go
 model_endpoint_deprecation_notice_collection.go
 model_endpoint_deprecation_notice_links.go
+model_engine.go
+model_engine_type.go
 model_entitlements_list_feed_item.go
 model_entitlements_list_request.go
 model_error_response.go
@@ -287,6 +310,7 @@ model_hal_feed_links.go
 model_hal_link_data.go
 model_hal_only_embeddable_collection_links.go
 model_hal_simple_collection_links.go
+model_hardware_target.go
 model_instance_permission_item.go
 model_intellisense_job_collection.go
 model_intellisense_job_item.go
@@ -294,14 +318,17 @@ model_intellisense_job_item_links.go
 model_intellisense_message_item.go
 model_list_vendors_collection.go
 model_message_object.go
+model_model_format.go
 model_notification_feed.go
 model_notification_message_object.go
 model_paging_metadata.go
+model_partner_specific.go
 model_pat_collection.go
 model_pat_creation_item.go
 model_pat_item.go
 model_permission_item.go
 model_permission_operation.go
+model_profile.go
 model_retain_build_job_request.go
 model_retain_workspace_request.go
 model_service_access_token_collection.go
@@ -312,6 +339,7 @@ model_service_account_item_links.go
 model_simple_collection.go
 model_token_introspection_request_item.go
 model_token_introspection_response_item.go
+model_tool.go
 model_toolchain_types.go
 model_user_collection.go
 model_user_invite_item.go
@@ -340,6 +368,7 @@ model_workspace_source_collection.go
 model_workspace_source_item.go
 model_workspace_source_item_links.go
 response.go
+test/api_analyser_test.go
 test/api_authentication_test.go
 test/api_authorization_test.go
 test/api_build_jobs_test.go
