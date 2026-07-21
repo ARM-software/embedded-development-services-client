@@ -30,7 +30,7 @@ type InstancePermissionItem struct {
 	// The list of allowed CRUDL operations.
 	Operations []PermissionOperation `json:"operations"`
 	// The unique identifier of the resource instance.
-	ResourceInstance string `json:"resourceInstance" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	ResourceInstance string `json:"resourceInstance" validate:"regexp=[a-zA-Z0-9\\-\"._~%!$&\\'(){}\\[£<>|\\]*+\\,;=:@]+"`
 }
 
 type _InstancePermissionItem InstancePermissionItem

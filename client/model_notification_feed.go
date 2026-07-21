@@ -32,7 +32,7 @@ type NotificationFeed struct {
 	// A list of messages.
 	Messages []NotificationMessageObject `json:"messages"`
 	// ID of the notification item.
-	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\-\"._~%!$&\\'(){}\\[£<>|\\]*+\\,;=:@]+"`
 	// Human readable name of the notification item.
 	Title *string `json:"title,omitempty"`
 }

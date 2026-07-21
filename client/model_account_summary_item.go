@@ -31,9 +31,9 @@ type AccountSummaryItem struct {
 	Metadata NullableCommonMetadata `json:"_metadata"`
 	AccountType AccountType `json:"accountType"`
 	// The systems unique identifier for the account.
-	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\-\"._~%!$&\\'(){}\\[£<>|\\]*+\\,;=:@]+"`
 	// Human readable name for the account.
-	Title *string `json:"title,omitempty" validate:"regexp=^[\\\\s\\\\w'-]*$"`
+	Title *string `json:"title,omitempty" validate:"regexp=^[\\s\\w'-]*$"`
 }
 
 type _AccountSummaryItem AccountSummaryItem

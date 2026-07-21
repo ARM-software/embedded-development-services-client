@@ -31,7 +31,7 @@ type ServiceAccountCollection struct {
 	Links NullableHalOnlyEmbeddableCollectionLinks `json:"_links"`
 	Metadata NullableCollectionMetadata `json:"_metadata"`
 	// ID of the Collection.
-	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\-\"._~%!$&\\'(){}\\[£<>|\\]*+\\,;=:@]+"`
 	// Human readable title of the collection.
 	Title string `json:"title"`
 }

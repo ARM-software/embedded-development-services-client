@@ -32,9 +32,9 @@ type ServiceAccountItem struct {
 	// Human readable title of the user who created this resource.
 	CreatedBy NullableString `json:"createdBy"`
 	// Unique ID of the service account.
-	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\-\"._~%!$&\\'(){}\\[£<>|\\]*+\\,;=:@]+"`
 	// Human readable name of the service account.
-	Title string `json:"title" validate:"regexp=^[\\\\s\\\\w'-]*$"`
+	Title string `json:"title" validate:"regexp=^[\\s\\w'-]*$"`
 }
 
 type _ServiceAccountItem ServiceAccountItem

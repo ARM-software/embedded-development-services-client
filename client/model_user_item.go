@@ -34,13 +34,13 @@ type UserItem struct {
 	// Email address of the user.
 	Email *string `json:"email,omitempty"`
 	// First name of the user.
-	FirstName *string `json:"firstName,omitempty" validate:"regexp=^[A-Za-z][A-Za-z' -]{1,48}$"`
+	FirstName *string `json:"firstName,omitempty" validate:"regexp=^[A-Za-z][A-Za-z' -]{1\\,48}$"`
 	// Last name of the user.
-	LastName *string `json:"lastName,omitempty" validate:"regexp=^[A-Za-z][A-Za-z' -]{1,48}$"`
+	LastName *string `json:"lastName,omitempty" validate:"regexp=^[A-Za-z][A-Za-z' -]{1\\,48}$"`
 	// The system identifier of the user.
-	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\-\"._~%!$&\\'(){}\\[£<>|\\]*+\\,;=:@]+"`
 	// Human readable description of the user
-	Title *string `json:"title,omitempty" validate:"regexp=^[\\\\s\\\\w'-]*$"`
+	Title *string `json:"title,omitempty" validate:"regexp=^[\\s\\w'-]*$"`
 	// Username of the user, which is the identifier provided by Arm account.
 	Username NullableString `json:"username,omitempty"`
 }

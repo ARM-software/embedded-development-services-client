@@ -39,7 +39,7 @@ type AnalyserItem struct {
 	HardwareTargets []HardwareTarget `json:"hardwareTargets"`
 	Ip *AnalyserIP `json:"ip,omitempty"`
 	// Unique system identifier.
-	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\-\"._~%!$&\\'(){}\\[£<>|\\]*+\\,;=:@]+"`
 	PartnerSpecific *PartnerSpecific `json:"partnerSpecific,omitempty"`
 	Profile Profile `json:"profile"`
 	// List of model formats supported by this analyser.
@@ -48,7 +48,7 @@ type AnalyserItem struct {
 	Title string `json:"title"`
 	Tool Tool `json:"tool"`
 	// Semantic version of the analyser.
-	Version string `json:"version" validate:"regexp=^(0|[1-9]\\\\d*)\\\\.(0|[1-9]\\\\d*)\\\\.(0|[1-9]\\\\d*)(?:-(?:0|[1-9]\\\\d*|\\\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\\\.(?:0|[1-9]\\\\d*|\\\\d*[a-zA-Z-][0-9a-zA-Z-]*))*)?(?:\\\\+[0-9a-zA-Z-]+(?:\\\\.[0-9a-zA-Z-]+)*)?$"`
+	Version string `json:"version" validate:"regexp=^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*)?(?:\\+[0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*)?$"`
 }
 
 type _AnalyserItem AnalyserItem

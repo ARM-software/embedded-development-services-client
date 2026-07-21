@@ -35,13 +35,13 @@ type ServiceAccessTokenItem struct {
 	// When this token was last used to authenticate a request.
 	LastUsed NullableTime `json:"lastUsed"`
 	// Unique ID of the service access token.
-	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	Name string `json:"name" validate:"regexp=[a-zA-Z0-9\\-\"._~%!$&\\'(){}\\[£<>|\\]*+\\,;=:@]+"`
 	// The access token. This field will only be returned by the service upon creation and the secret will not be re-retrievable.
 	Secret *string `json:"secret,omitempty"`
 	// The four character hint of the access token secret.
 	SecretHint string `json:"secretHint"`
 	// Human readable name of the service access token.
-	Title string `json:"title" validate:"regexp=^[\\\\s\\\\w'-]*$"`
+	Title string `json:"title" validate:"regexp=^[\\s\\w'-]*$"`
 }
 
 type _ServiceAccessTokenItem ServiceAccessTokenItem

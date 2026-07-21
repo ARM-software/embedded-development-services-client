@@ -31,7 +31,7 @@ type TokenIntrospectionResponseItem struct {
 	// Boolean indicator of whether or not the presented token is currently active.
 	Active bool `json:"active"`
 	// Name of the policy.
-	PolicyName *string `json:"policyName,omitempty" validate:"regexp=^[A-Za-z][A-Za-z -]{1,63}$"`
+	PolicyName *string `json:"policyName,omitempty" validate:"regexp=^[A-Za-z][A-Za-z -]{1\\,63}$"`
 }
 
 type _TokenIntrospectionResponseItem TokenIntrospectionResponseItem

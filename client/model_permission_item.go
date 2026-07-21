@@ -33,7 +33,7 @@ type PermissionItem struct {
 	// The list of allowed CRUDL operations for a resource owner. A resource owner is usually the user who created the resource, or someone who has been given ownership responsibilities—such as managing the the lifecycle of a resource.
 	OwnerOperations []PermissionOperation `json:"ownerOperations,omitempty"`
 	// The unique identifier of the resource instance.
-	ResourceInstance *string `json:"resourceInstance,omitempty" validate:"regexp=[a-zA-Z0-9\\\\-\\"._~%!$&\\\\'(){}\\\\[£<>|\\\\]*+,;=:@]+"`
+	ResourceInstance *string `json:"resourceInstance,omitempty" validate:"regexp=[a-zA-Z0-9\\-\"._~%!$&\\'(){}\\[£<>|\\]*+\\,;=:@]+"`
 	// The type of resource for which permission is being checked. This should only refer to items and not collections.
 	ResourceType string `json:"resourceType"`
 	// The API token of the user requesting access. This can be a JWT or an internal access token.
