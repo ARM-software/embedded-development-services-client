@@ -133,60 +133,13 @@ Class | Method | HTTP request | Description
 *CMSISIntellisenseBuildersAPI* | [**StartCmsisIntellisense**](docs/CMSISIntellisenseBuildersAPI.md#startcmsisintellisense) | **Post** /cmsis-intellisense/{builderName} | Initiate a compilation database generation using the specified CMSIS Intellisense Builder.
 *DeprecationNoticeAPI* | [**GetDeprecationNotice**](docs/DeprecationNoticeAPI.md#getdeprecationnotice) | **Get** /deprecations/{operationName} | Return details of specific endpoint deprecation notice.
 *DeprecationNoticeAPI* | [**ListDeprecatedEndpoints**](docs/DeprecationNoticeAPI.md#listdeprecatedendpoints) | **Get** /deprecations/ | Get the endpoints that have been deprecated with some notice.
-*FPGAAPI* | [**SunsetFpga**](docs/FPGAAPI.md#sunsetfpga) | **Post** /fpgas/{fpgaName}/sunset | Initiate the sunsetting of the FPGA as part of a decommission
 *FPGAAdminAPI* | [**AddFPGAAdmin**](docs/FPGAAdminAPI.md#addfpgaadmin) | **Post** /fpga-admins | Add a user to the FPGA admin group
 *FPGAAdminAPI* | [**ListFPGAAdmins**](docs/FPGAAdminAPI.md#listfpgaadmins) | **Get** /fpga-admins | List all the members of the FPGA admin group
 *FPGAAdminAPI* | [**RemoveFPGAAdmin**](docs/FPGAAdminAPI.md#removefpgaadmin) | **Delete** /fpga-admins/{fpgaAdminName} | Remove a user from the FPGA admin group
-*FPGAConnectionAPI* | [**GetFpgaConnection**](docs/FPGAConnectionAPI.md#getfpgaconnection) | **Get** /fpga-connections/{fpgaName} | Get connection information
-*FPGAConnectionAPI* | [**ListFpgaConnections**](docs/FPGAConnectionAPI.md#listfpgaconnections) | **Get** /fpga-connections/ | List available FPGA connections.
-*FPGAConnectionAPI* | [**StartFpgaConnection**](docs/FPGAConnectionAPI.md#startfpgaconnection) | **Get** /fpga-connections/{fpgaName}/job/{jobName}/connect | starts a websocket connection
-*FPGAConnectionAPI* | [**StartFpgaConnectionRegardlessOfJob**](docs/FPGAConnectionAPI.md#startfpgaconnectionregardlessofjob) | **Get** /fpga-connections/{fpgaName}/connect | starts a websocket connection
-*FPGAConnectionAPI* | [**TerminateFpgaConnection**](docs/FPGAConnectionAPI.md#terminatefpgaconnection) | **Post** /fpga-connections/{fpgaName}/terminate | Terminates all websocket connections to the application running on the FPGA
 *FPGAEntitlementsAPI* | [**GetFPGAEntitlement**](docs/FPGAEntitlementsAPI.md#getfpgaentitlement) | **Get** /fpga-entitlements/{fpgaEntitlementName} | Return details of specific FPGA entitlement.
 *FPGAEntitlementsAPI* | [**ListFPGAEntitlements**](docs/FPGAEntitlementsAPI.md#listfpgaentitlements) | **Get** /fpga-entitlements | List all the entitlements that are managable by the FPGA admin group.
 *FPGAEntitlementsAPI* | [**RemoveFPGAEntitlement**](docs/FPGAEntitlementsAPI.md#removefpgaentitlement) | **Delete** /fpga-entitlements/{fpgaEntitlementName} | Remove all the permissions associated with an FPGA entitlement
 *FPGAEntitlementsAPI* | [**UpdateFPGAEntitlement**](docs/FPGAEntitlementsAPI.md#updatefpgaentitlement) | **Put** /fpga-entitlements | Update an FPGA entitlement that defines which users are permitted to interact with an FPGA.
-*FPGAJobsAPI* | [**CancelFpgaJob**](docs/FPGAJobsAPI.md#cancelfpgajob) | **Post** /fpga-jobs/{jobName}/cancel | Cancel an FPGA job.
-*FPGAJobsAPI* | [**ClearFpgaJobArtefact**](docs/FPGAJobsAPI.md#clearfpgajobartefact) | **Delete** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Clear the job artefact.
-*FPGAJobsAPI* | [**CompleteFpgaJob**](docs/FPGAJobsAPI.md#completefpgajob) | **Post** /fpga-jobs/{jobName}/complete | Gracefully ends the job.
-*FPGAJobsAPI* | [**CreateFpgaJobArtefactManager**](docs/FPGAJobsAPI.md#createfpgajobartefactmanager) | **Post** /fpga-jobs/{jobName}/artefacts/ | Create a job artefact manager.
-*FPGAJobsAPI* | [**DeleteFpgaJob**](docs/FPGAJobsAPI.md#deletefpgajob) | **Delete** /fpga-jobs/{jobName} | Delete an FPGA job.
-*FPGAJobsAPI* | [**DownloadFpgaJobArtefact**](docs/FPGAJobsAPI.md#downloadfpgajobartefact) | **Get** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Download the artefact for the corresponding FPGA job.
-*FPGAJobsAPI* | [**DownloadSpecificFpgaJobArtefact**](docs/FPGAJobsAPI.md#downloadspecificfpgajobartefact) | **Get** /fpgas/{fpgaName}/jobs/{jobName}/artefacts/{artefactName}/artefact | Download the artefact for the corresponding FPGA job.
-*FPGAJobsAPI* | [**GetCurrentFpgaJob**](docs/FPGAJobsAPI.md#getcurrentfpgajob) | **Get** /fpgas/{fpgaName}/current-job | Return the job currently handled by the FPGA.
-*FPGAJobsAPI* | [**GetFpgaJob**](docs/FPGAJobsAPI.md#getfpgajob) | **Get** /fpga-jobs/{jobName} | Return the status of a FPGA job.
-*FPGAJobsAPI* | [**GetFpgaJobArtefactManager**](docs/FPGAJobsAPI.md#getfpgajobartefactmanager) | **Get** /fpga-jobs/{jobName}/artefacts/{artefactName} | Get the job&#39;s artefact manager for the artefact named &#x60;artefactName&#x60;.
-*FPGAJobsAPI* | [**GetFpgaJobMessages**](docs/FPGAJobsAPI.md#getfpgajobmessages) | **Get** /fpga-jobs/{jobName}/messages | FPGA job Message Feed.
-*FPGAJobsAPI* | [**GetSpecificFpgaJob**](docs/FPGAJobsAPI.md#getspecificfpgajob) | **Get** /fpgas/{fpgaName}/jobs/{jobName} | Return a job handled by the FPGA.
-*FPGAJobsAPI* | [**GetSpecificFpgaJobArtefactManager**](docs/FPGAJobsAPI.md#getspecificfpgajobartefactmanager) | **Get** /fpgas/{fpgaName}/jobs/{jobName}/artefacts/{artefactName} | Get the FPGA job&#39;s artefact manager for the artefact named &#x60;artefactName&#x60;.
-*FPGAJobsAPI* | [**GetSpecificFpgaJobMessages**](docs/FPGAJobsAPI.md#getspecificfpgajobmessages) | **Get** /fpgas/{fpgaName}/jobs/{jobName}/messages | FPGA job Message Feed.
-*FPGAJobsAPI* | [**ListFPGAJobs**](docs/FPGAJobsAPI.md#listfpgajobs) | **Get** /fpgas/{fpgaName}/jobs/ | List all jobs associated with this FPGA.
-*FPGAJobsAPI* | [**ListFPGAPastJobs**](docs/FPGAJobsAPI.md#listfpgapastjobs) | **Get** /fpgas/{fpgaName}/past-jobs/ | List all past jobs associated with this FPGA.
-*FPGAJobsAPI* | [**ListFPGAQueuedJobs**](docs/FPGAJobsAPI.md#listfpgaqueuedjobs) | **Get** /fpgas/{fpgaName}/queued-jobs/ | List all jobs associated with this FPGA and currently queued up.
-*FPGAJobsAPI* | [**ListFPGAsJobs**](docs/FPGAJobsAPI.md#listfpgasjobs) | **Get** /fpga-jobs/ | List all jobs performed by FPGAs.
-*FPGAJobsAPI* | [**ListFpgaJobArtefactManagers**](docs/FPGAJobsAPI.md#listfpgajobartefactmanagers) | **Get** /fpga-jobs/{jobName}/artefacts/ | Get the list of artefact managers for the given job.
-*FPGAJobsAPI* | [**ListSpecificFpgaJobArtefactManagers**](docs/FPGAJobsAPI.md#listspecificfpgajobartefactmanagers) | **Get** /fpgas/{fpgaName}/jobs/{jobName}/artefacts/ | Get the list of artefact managers for the given FPGA job.
-*FPGAJobsAPI* | [**LogJobMessage**](docs/FPGAJobsAPI.md#logjobmessage) | **Post** /fpga-jobs/{jobName}/messages | Create a job message.
-*FPGAJobsAPI* | [**RetainFpgaJob**](docs/FPGAJobsAPI.md#retainfpgajob) | **Post** /fpga-jobs/{jobName}/retain | Update how long an FPGA job will be retained before automatic deletion.
-*FPGAJobsAPI* | [**StartFpgaJob**](docs/FPGAJobsAPI.md#startfpgajob) | **Post** /fpgas/{fpgaName} | Initiate a job on an FPGA.
-*FPGAJobsAPI* | [**UploadFpgaJobArtefact**](docs/FPGAJobsAPI.md#uploadfpgajobartefact) | **Put** /fpga-jobs/{jobName}/artefacts/{artefactName}/artefact | Upload and replace the named artefact.
-*FPGAPayloadsAPI* | [**CheckFPGAPayloadStatus**](docs/FPGAPayloadsAPI.md#checkfpgapayloadstatus) | **Post** /repositories/{repositoryName}/payloads/{fpgaPayloadName}/check | Check and update the payload status.
-*FPGAPayloadsAPI* | [**CreateFPGAPayload**](docs/FPGAPayloadsAPI.md#createfpgapayload) | **Post** /repositories/{repositoryName}/payloads | Create an FPGA payload.
-*FPGAPayloadsAPI* | [**CreateFPGAPayloadUploadSession**](docs/FPGAPayloadsAPI.md#createfpgapayloaduploadsession) | **Post** /payloads/upload-session | Create upload session for FPGA payload.
-*FPGAPayloadsAPI* | [**DeleteFpgaPayload**](docs/FPGAPayloadsAPI.md#deletefpgapayload) | **Delete** /repositories/{repositoryName}/payloads/{fpgaPayloadName} | Delete an FPGA payload.
-*FPGAPayloadsAPI* | [**GetAlternativeFpgaPayloadUploadProgress**](docs/FPGAPayloadsAPI.md#getalternativefpgapayloaduploadprogress) | **Get** /payloads/upload-session/{uploadSessionName} | Return FPGA payload upload progress.
-*FPGAPayloadsAPI* | [**GetFpgaPayload**](docs/FPGAPayloadsAPI.md#getfpgapayload) | **Get** /repositories/{repositoryName}/payloads/{fpgaPayloadName} | Return details of specific FPGA payload.
-*FPGAPayloadsAPI* | [**GetFpgaPayloadUploadJobMessages**](docs/FPGAPayloadsAPI.md#getfpgapayloaduploadjobmessages) | **Get** /upload-jobs/{uploadJobName}/messages | FPGA payload upload job Message Feed.
-*FPGAPayloadsAPI* | [**GetFpgaPayloadUploadOptions**](docs/FPGAPayloadsAPI.md#getfpgapayloaduploadoptions) | **Options** /payloads/upload-session | Return service TUS protocol support.
-*FPGAPayloadsAPI* | [**GetFpgaPayloadUploadProgress**](docs/FPGAPayloadsAPI.md#getfpgapayloaduploadprogress) | **Head** /payloads/upload-session/{uploadSessionName} | Return FPGA payload upload progress.
-*FPGAPayloadsAPI* | [**ListFPGAPayloads**](docs/FPGAPayloadsAPI.md#listfpgapayloads) | **Get** /repositories/{repositoryName}/payloads | List payloads in a repository.
-*FPGAPayloadsAPI* | [**ListPayloads**](docs/FPGAPayloadsAPI.md#listpayloads) | **Get** /payloads | List payloads.
-*FPGAPayloadsAPI* | [**UploadPayload**](docs/FPGAPayloadsAPI.md#uploadpayload) | **Patch** /payloads/upload-session/{uploadSessionName} | Upload part of a payload.
-*FPGAsAPI* | [**CommissionFpga**](docs/FPGAsAPI.md#commissionfpga) | **Post** /fpgas/ | Commission a new FPGA.
-*FPGAsAPI* | [**DecommissionFpga**](docs/FPGAsAPI.md#decommissionfpga) | **Delete** /fpgas/{fpgaName} | Decommission an FPGA.
-*FPGAsAPI* | [**GetFpga**](docs/FPGAsAPI.md#getfpga) | **Get** /fpgas/{fpgaName} | Return details of specific FPGA.
-*FPGAsAPI* | [**ListFPGAWorkers**](docs/FPGAsAPI.md#listfpgaworkers) | **Get** /fpgas/ | List available FPGAs.
-*FPGAsAPI* | [**UpdateFpga**](docs/FPGAsAPI.md#updatefpga) | **Put** /fpgas/{fpgaName} | Update the status of the FPGA.
 *GenericWorkJobsAPI* | [**CancelGenericWorkJob**](docs/GenericWorkJobsAPI.md#cancelgenericworkjob) | **Post** /generic-work-jobs/{jobName}/cancel | Cancel a generic job.
 *GenericWorkJobsAPI* | [**CompleteGenericWorkJob**](docs/GenericWorkJobsAPI.md#completegenericworkjob) | **Post** /generic-work-jobs/{jobName}/complete | Stop a generic job gracefully.
 *GenericWorkJobsAPI* | [**ControlGenericWorkJob**](docs/GenericWorkJobsAPI.md#controlgenericworkjob) | **Post** /generic-work-jobs/{jobName}/control | Send a control command for a generic job.
@@ -226,29 +179,9 @@ Class | Method | HTTP request | Description
 *ServiceAccountAPI* | [**GetServiceAccount**](docs/ServiceAccountAPI.md#getserviceaccount) | **Get** /service-accounts/{serviceAccountName} | Get a service account
 *ServiceAccountAPI* | [**ListSATs**](docs/ServiceAccountAPI.md#listsats) | **Get** /service-accounts/{serviceAccountName}/tokens | List all access tokens for the service account
 *ServiceAccountAPI* | [**ListServiceAccounts**](docs/ServiceAccountAPI.md#listserviceaccounts) | **Get** /service-accounts/ | List all service accounts
-*VHTRunJobsAPI* | [**CancelVhtRunJob**](docs/VHTRunJobsAPI.md#cancelvhtrunjob) | **Post** /vht-run-jobs/{jobName}/cancel | Cancel a VHT run job.
-*VHTRunJobsAPI* | [**DeleteVhtRunJob**](docs/VHTRunJobsAPI.md#deletevhtrunjob) | **Delete** /vht-run-jobs/{jobName} | Delete an VHT run Job.
-*VHTRunJobsAPI* | [**GetVhtRunJob**](docs/VHTRunJobsAPI.md#getvhtrunjob) | **Get** /vht-run-jobs/{jobName} | Return status of an VHT run Job.
-*VHTRunJobsAPI* | [**GetVhtRunJobMessages**](docs/VHTRunJobsAPI.md#getvhtrunjobmessages) | **Get** /vht-run-jobs/{jobName}/messages | VHT Run Job Message Feed.
-*VHTRunJobsAPI* | [**ListVhtRunJobs**](docs/VHTRunJobsAPI.md#listvhtrunjobs) | **Get** /vht-run-jobs/ | List all run jobs on VHTs.
 *VendorsAPI* | [**CreateVendor**](docs/VendorsAPI.md#createvendor) | **Post** /vendors/ | Create a new Vendor
 *VendorsAPI* | [**GetVendor**](docs/VendorsAPI.md#getvendor) | **Get** /vendors/{vendorSlugOrId}/ | Get a Vendor Item
 *VendorsAPI* | [**ListVendors**](docs/VendorsAPI.md#listvendors) | **Get** /vendors/ | List all the Vendors.
-*VirtualHardwareTargetAPI* | [**GetVht**](docs/VirtualHardwareTargetAPI.md#getvht) | **Get** /vhts/{vhtName} | Return details of the specific VHT.
-*VirtualHardwareTargetAPI* | [**ListFilteredVhtInstances**](docs/VirtualHardwareTargetAPI.md#listfilteredvhtinstances) | **Get** /vhts/{vhtName}/vht-instances/ | List all VHT instances related to this specific VHT.
-*VirtualHardwareTargetAPI* | [**ListVhts**](docs/VirtualHardwareTargetAPI.md#listvhts) | **Get** /vhts/ | List available VHTs.
-*VirtualHardwareTargetAPI* | [**StartVhtInstance**](docs/VirtualHardwareTargetAPI.md#startvhtinstance) | **Post** /vhts/{vhtName} | Spawns a VHT instance matching this VHT specification.
-*VirtualHardwareTargetInstanceAPI* | [**ClearVhtInstanceArtefact**](docs/VirtualHardwareTargetInstanceAPI.md#clearvhtinstanceartefact) | **Delete** /vht-instances/{instanceName}/artefacts/{artefactName}/artefact | Clear the VHT artefact from the VHT instance.
-*VirtualHardwareTargetInstanceAPI* | [**DeleteVhtInstance**](docs/VirtualHardwareTargetInstanceAPI.md#deletevhtinstance) | **Delete** /vht-instances/{instanceName} | Delete a VHT instance
-*VirtualHardwareTargetInstanceAPI* | [**DownloadVhtInstanceArtefact**](docs/VirtualHardwareTargetInstanceAPI.md#downloadvhtinstanceartefact) | **Get** /vht-instances/{instanceName}/artefacts/{artefactName}/artefact | Download the artefact named &#x60;artefactName&#x60; present on this VHT instance.
-*VirtualHardwareTargetInstanceAPI* | [**GetVhtInstance**](docs/VirtualHardwareTargetInstanceAPI.md#getvhtinstance) | **Get** /vht-instances/{instanceName} | Return status of a VHT instance.
-*VirtualHardwareTargetInstanceAPI* | [**GetVhtInstanceArtefactManager**](docs/VirtualHardwareTargetInstanceAPI.md#getvhtinstanceartefactmanager) | **Get** /vht-instances/{instanceName}/artefacts/{artefactName} | Get the VHT artefact manager for the artefact named &#x60;artefactName&#x60; present of this VHT instance.
-*VirtualHardwareTargetInstanceAPI* | [**GetVhtInstanceMessages**](docs/VirtualHardwareTargetInstanceAPI.md#getvhtinstancemessages) | **Get** /vht-instances/{instanceName}/messages | Instance Message Feed.
-*VirtualHardwareTargetInstanceAPI* | [**ListVhtInstanceArtefactManagers**](docs/VirtualHardwareTargetInstanceAPI.md#listvhtinstanceartefactmanagers) | **Get** /vht-instances/{instanceName}/artefacts/ | List all the managers of the artefacts (e.g. binary, test input) available on a specific VHT instance.
-*VirtualHardwareTargetInstanceAPI* | [**ListVhtInstances**](docs/VirtualHardwareTargetInstanceAPI.md#listvhtinstances) | **Get** /vht-instances/ | List all VHT instances requested.
-*VirtualHardwareTargetInstanceAPI* | [**StartVhtRunJob**](docs/VirtualHardwareTargetInstanceAPI.md#startvhtrunjob) | **Post** /vht-instances/{instanceName} | Starts a VHT Run job.
-*VirtualHardwareTargetInstanceAPI* | [**StopVhtInstance**](docs/VirtualHardwareTargetInstanceAPI.md#stopvhtinstance) | **Post** /vht-instances/{instanceName}/cancel | Stop this VHT instance.
-*VirtualHardwareTargetInstanceAPI* | [**UploadVhtInstanceArtefact**](docs/VirtualHardwareTargetInstanceAPI.md#uploadvhtinstanceartefact) | **Put** /vht-instances/{instanceName}/artefacts/{artefactName}/artefact | Upload and replace the named VHT artefact on the given VHT instance.
 *WorkspaceAPI* | [**ClearWorkspaceArchiveContent**](docs/WorkspaceAPI.md#clearworkspacearchivecontent) | **Delete** /workspaces/{workspaceName}/archive-content | Clear the content of this workspace.
 *WorkspaceAPI* | [**ClearWorkspaceIncrementalChunk**](docs/WorkspaceAPI.md#clearworkspaceincrementalchunk) | **Delete** /workspaces/{workspaceName}/chunk | Clear the content of this chunked workspace.
 *WorkspaceAPI* | [**ClearWorkspaceRepositoryContentManager**](docs/WorkspaceAPI.md#clearworkspacerepositorycontentmanager) | **Delete** /workspaces/{workspaceName}/repository-content | Clear the content of this workspace.
@@ -280,7 +213,6 @@ Class | Method | HTTP request | Description
  - [AccountSummaryItem](docs/AccountSummaryItem.md)
  - [AccountSummaryLinks](docs/AccountSummaryLinks.md)
  - [AccountType](docs/AccountType.md)
- - [AdditionalTool](docs/AdditionalTool.md)
  - [AnalyserCollection](docs/AnalyserCollection.md)
  - [AnalyserIP](docs/AnalyserIP.md)
  - [AnalyserItem](docs/AnalyserItem.md)
@@ -310,10 +242,6 @@ Class | Method | HTTP request | Description
  - [EmbeddedCmsisIntellisenseItems](docs/EmbeddedCmsisIntellisenseItems.md)
  - [EmbeddedEndpointDeprecationNoticeItems](docs/EmbeddedEndpointDeprecationNoticeItems.md)
  - [EmbeddedFPGAAdminItem](docs/EmbeddedFPGAAdminItem.md)
- - [EmbeddedFPGAConnectionItems](docs/EmbeddedFPGAConnectionItems.md)
- - [EmbeddedFPGAItems](docs/EmbeddedFPGAItems.md)
- - [EmbeddedFPGAJobItems](docs/EmbeddedFPGAJobItems.md)
- - [EmbeddedFPGAPayloadItems](docs/EmbeddedFPGAPayloadItems.md)
  - [EmbeddedGenericWorkJobItems](docs/EmbeddedGenericWorkJobItems.md)
  - [EmbeddedGenericWorkerItems](docs/EmbeddedGenericWorkerItems.md)
  - [EmbeddedIntellisenseJobItems](docs/EmbeddedIntellisenseJobItems.md)
@@ -322,9 +250,6 @@ Class | Method | HTTP request | Description
  - [EmbeddedServiceAccountItem](docs/EmbeddedServiceAccountItem.md)
  - [EmbeddedUserItem](docs/EmbeddedUserItem.md)
  - [EmbeddedVendorItems](docs/EmbeddedVendorItems.md)
- - [EmbeddedVhtInstanceItems](docs/EmbeddedVhtInstanceItems.md)
- - [EmbeddedVhtItems](docs/EmbeddedVhtItems.md)
- - [EmbeddedVhtRunJobItems](docs/EmbeddedVhtRunJobItems.md)
  - [EmbeddedWorkspaceItems](docs/EmbeddedWorkspaceItems.md)
  - [EmbeddedWorkspaceSourceItems](docs/EmbeddedWorkspaceSourceItems.md)
  - [EndpointDeprecationNotice](docs/EndpointDeprecationNotice.md)
@@ -338,28 +263,8 @@ Class | Method | HTTP request | Description
  - [FPGAAdminCollection](docs/FPGAAdminCollection.md)
  - [FPGAAdminItem](docs/FPGAAdminItem.md)
  - [FPGAAdminItemLinks](docs/FPGAAdminItemLinks.md)
- - [FPGACollection](docs/FPGACollection.md)
- - [FPGACollectionLinks](docs/FPGACollectionLinks.md)
- - [FPGAConnectionCollection](docs/FPGAConnectionCollection.md)
- - [FPGAConnectionItem](docs/FPGAConnectionItem.md)
- - [FPGAConnectionItemLinks](docs/FPGAConnectionItemLinks.md)
  - [FPGAEntitlementItem](docs/FPGAEntitlementItem.md)
  - [FPGAEntitlementItemLinks](docs/FPGAEntitlementItemLinks.md)
- - [FPGAItem](docs/FPGAItem.md)
- - [FPGAItemLinks](docs/FPGAItemLinks.md)
- - [FPGAJobCollection](docs/FPGAJobCollection.md)
- - [FPGAJobItem](docs/FPGAJobItem.md)
- - [FPGAJobItemLinks](docs/FPGAJobItemLinks.md)
- - [FPGAJobType](docs/FPGAJobType.md)
- - [FPGAPayloadCollection](docs/FPGAPayloadCollection.md)
- - [FPGAPayloadItem](docs/FPGAPayloadItem.md)
- - [FPGAPayloadItemLinks](docs/FPGAPayloadItemLinks.md)
- - [FPGAPayloadOwner](docs/FPGAPayloadOwner.md)
- - [FPGAPayloadRepositories](docs/FPGAPayloadRepositories.md)
- - [FPGATarget](docs/FPGATarget.md)
- - [FPGATargetID](docs/FPGATargetID.md)
- - [FPGAUARTConnection](docs/FPGAUARTConnection.md)
- - [FPGAWorkload](docs/FPGAWorkload.md)
  - [FieldObject](docs/FieldObject.md)
  - [GenericWorkJobCollection](docs/GenericWorkJobCollection.md)
  - [GenericWorkJobControlCommandItem](docs/GenericWorkJobControlCommandItem.md)
@@ -410,16 +315,6 @@ Class | Method | HTTP request | Description
  - [UserItemLinks](docs/UserItemLinks.md)
  - [VendorItem](docs/VendorItem.md)
  - [VendorItemLinks](docs/VendorItemLinks.md)
- - [VhtCollection](docs/VhtCollection.md)
- - [VhtInstanceCollection](docs/VhtInstanceCollection.md)
- - [VhtInstanceItem](docs/VhtInstanceItem.md)
- - [VhtInstanceItemLinks](docs/VhtInstanceItemLinks.md)
- - [VhtItem](docs/VhtItem.md)
- - [VhtItemLinks](docs/VhtItemLinks.md)
- - [VhtRunJobCollection](docs/VhtRunJobCollection.md)
- - [VhtRunJobItem](docs/VhtRunJobItem.md)
- - [VhtRunJobItemLinks](docs/VhtRunJobItemLinks.md)
- - [VirtualInterface](docs/VirtualInterface.md)
  - [WorkspaceCollection](docs/WorkspaceCollection.md)
  - [WorkspaceDetailsItem](docs/WorkspaceDetailsItem.md)
  - [WorkspaceDetailsItemLinks](docs/WorkspaceDetailsItemLinks.md)

@@ -31,29 +31,6 @@ func (o *BuildJobItem) HasArtefacts() (available bool) {
 }
 
 // ============================================================================================
-// This extends FPGAJobItem definitions
-// ============================================================================================
-// HasMessages specifies whether messages are available for this job.
-func (o *FPGAJobItem) HasMessages() (available bool) {
-	if o == nil {
-		return
-	}
-	links := o.GetLinks()
-	_, available = links.GetDetailsOk()
-	return
-}
-
-// HasArtefacts specifies whether artefacts are available for this job.
-func (o *FPGAJobItem) HasArtefacts() (available bool) {
-	if o == nil {
-		return
-	}
-	links := o.GetLinks()
-	_, available = links.GetArtefactsOk()
-	return
-}
-
-// ============================================================================================
 // This extends GenericWorkJobItem definitions
 // ============================================================================================
 // HasMessages specifies whether messages are available for this job.
@@ -91,29 +68,6 @@ func (o *IntellisenseJobItem) HasMessages() (available bool) {
 
 // HasArtefacts specifies whether artefacts are available for this job.
 func (o *IntellisenseJobItem) HasArtefacts() (available bool) {
-	if o == nil {
-		return
-	}
-	links := o.GetLinks()
-	_, available = links.GetArtefactsOk()
-	return
-}
-
-// ============================================================================================
-// This extends VhtRunJobItem definitions
-// ============================================================================================
-// HasMessages specifies whether messages are available for this job.
-func (o *VhtRunJobItem) HasMessages() (available bool) {
-	if o == nil {
-		return
-	}
-	links := o.GetLinks()
-	_, available = links.GetDetailsOk()
-	return
-}
-
-// HasArtefacts specifies whether artefacts are available for this job.
-func (o *VhtRunJobItem) HasArtefacts() (available bool) {
 	if o == nil {
 		return
 	}

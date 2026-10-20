@@ -69,19 +69,9 @@ type APIClient struct {
 
 	DeprecationNoticeAPI *DeprecationNoticeAPIService
 
-	FPGAAPI *FPGAAPIService
-
 	FPGAAdminAPI *FPGAAdminAPIService
 
-	FPGAConnectionAPI *FPGAConnectionAPIService
-
 	FPGAEntitlementsAPI *FPGAEntitlementsAPIService
-
-	FPGAJobsAPI *FPGAJobsAPIService
-
-	FPGAPayloadsAPI *FPGAPayloadsAPIService
-
-	FPGAsAPI *FPGAsAPIService
 
 	GenericWorkJobsAPI *GenericWorkJobsAPIService
 
@@ -95,13 +85,7 @@ type APIClient struct {
 
 	ServiceAccountAPI *ServiceAccountAPIService
 
-	VHTRunJobsAPI *VHTRunJobsAPIService
-
 	VendorsAPI *VendorsAPIService
-
-	VirtualHardwareTargetAPI *VirtualHardwareTargetAPIService
-
-	VirtualHardwareTargetInstanceAPI *VirtualHardwareTargetInstanceAPIService
 
 	WorkspaceAPI *WorkspaceAPIService
 
@@ -131,23 +115,15 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CMSISBuildersAPI = (*CMSISBuildersAPIService)(&c.common)
 	c.CMSISIntellisenseBuildersAPI = (*CMSISIntellisenseBuildersAPIService)(&c.common)
 	c.DeprecationNoticeAPI = (*DeprecationNoticeAPIService)(&c.common)
-	c.FPGAAPI = (*FPGAAPIService)(&c.common)
 	c.FPGAAdminAPI = (*FPGAAdminAPIService)(&c.common)
-	c.FPGAConnectionAPI = (*FPGAConnectionAPIService)(&c.common)
 	c.FPGAEntitlementsAPI = (*FPGAEntitlementsAPIService)(&c.common)
-	c.FPGAJobsAPI = (*FPGAJobsAPIService)(&c.common)
-	c.FPGAPayloadsAPI = (*FPGAPayloadsAPIService)(&c.common)
-	c.FPGAsAPI = (*FPGAsAPIService)(&c.common)
 	c.GenericWorkJobsAPI = (*GenericWorkJobsAPIService)(&c.common)
 	c.GenericWorkersAPI = (*GenericWorkersAPIService)(&c.common)
 	c.IntellisenseJobsAPI = (*IntellisenseJobsAPIService)(&c.common)
 	c.PersonalAccessTokenAPI = (*PersonalAccessTokenAPIService)(&c.common)
 	c.RootResourceAPI = (*RootResourceAPIService)(&c.common)
 	c.ServiceAccountAPI = (*ServiceAccountAPIService)(&c.common)
-	c.VHTRunJobsAPI = (*VHTRunJobsAPIService)(&c.common)
 	c.VendorsAPI = (*VendorsAPIService)(&c.common)
-	c.VirtualHardwareTargetAPI = (*VirtualHardwareTargetAPIService)(&c.common)
-	c.VirtualHardwareTargetInstanceAPI = (*VirtualHardwareTargetInstanceAPIService)(&c.common)
 	c.WorkspaceAPI = (*WorkspaceAPIService)(&c.common)
 	c.WorkspaceSourceAPI = (*WorkspaceSourceAPIService)(&c.common)
 
