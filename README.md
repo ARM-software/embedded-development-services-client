@@ -1,3 +1,7 @@
+<!--
+Copyright (C) 2020-2026 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 # Embedded development services HTTP client
 
 [![Go Badge](https://img.shields.io/badge/go-v1.26.0-blue)](https://golang.org/)
