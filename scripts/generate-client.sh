@@ -1,9 +1,8 @@
 #!/bin/bash
-# Copyright (C) 2020 Arm Ltd. All rights reserved.
-#
-# The aim of this script is to generate an client from an OpenAPi definition
-# Requires:
-# - https://github.com/OpenAPITools/openapi-generator
+##
+## Copyright (C) 2020-2026 Arm Limited or its affiliates and Contributors. All rights reserved.
+## SPDX-License-Identifier: Apache-2.0
+##
 
 set -e
 

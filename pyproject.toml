@@ -1,6 +1,6 @@
 #
-# Copyright (C) 2020-2022 Arm Limited or its affiliates and Contributors. All rights reserved.
-# SPDX-License-Identifier: Proprietary
+# Copyright (C) 2020-2026 Arm Limited or its affiliates and Contributors. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
 #
 [ProjectConfig]
 # Only path variables can and must contain 'DIR', 'PATH' or 'ROOT' in their name as
@@ -20,6 +20,8 @@ CHANGELOG_FILE_PATH = "CHANGELOG.md"
 AWS_BUCKET=""
 PROGRAMMING_LANGUAGE = "Golang"
 MASTER_BRANCH = "main"
+GENERATE_LICENSING_SUMMARY_ON_RELEASE = true
+FAIL_ON_INCOMPLETE_LICENCE_AUDIT = true
 
 [AutoVersionConfig]
 CONFIG_NAME = "JAVA"
@@ -44,7 +46,7 @@ patch = "changes/*.bugfix"
 directory = "changes"
 filename = "CHANGELOG.md"
 package = "embedded-development-services-client"
-title_format = "{version} ({project_date})"
+title_format = "# {version} ({project_date})"
 start_string = """
 [//]: # (begin_release_notes)
 """
