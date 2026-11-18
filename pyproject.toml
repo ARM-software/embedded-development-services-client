@@ -25,6 +25,7 @@ FAIL_ON_INCOMPLETE_LICENCE_AUDIT = true
 
 [ProjectConfig.PACKAGES_WITH_CHECKED_LICENCE]
 "github.com/invopop/yaml" = "MIT AND BSD-3-Clause"
+"github.com/stretchr/testify/internal/spew" = "ISC accepted for this project as a transitive test dependency."
 
 [AutoVersionConfig]
 CONFIG_NAME = "JAVA"
