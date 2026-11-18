@@ -23,6 +23,9 @@ MASTER_BRANCH = "main"
 GENERATE_LICENSING_SUMMARY_ON_RELEASE = true
 FAIL_ON_INCOMPLETE_LICENCE_AUDIT = true
 
+[ProjectConfig.PACKAGES_WITH_CHECKED_LICENCE]
+"github.com/invopop/yaml" = "MIT AND BSD-3-Clause"
+
 [AutoVersionConfig]
 CONFIG_NAME = "JAVA"
 PRERELEASE_TOKEN = "beta"

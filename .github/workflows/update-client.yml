@@ -29,7 +29,7 @@ jobs:
     - name: Checkout API-Uniform-Contract repo
       uses: actions/checkout@v7.0.1
       with:
-        token: ${{ secrets.ARM_SOFTWARE_TOKEN }}
+        token: ${{ secrets.ARM_SOFTWARE_TOKEN || github.token }}
         repository: Arm-Debug/API-Uniform-Contract
         path: API-Uniform-Contract
         ref: main
@@ -47,14 +47,14 @@ jobs:
     - uses: actions/checkout@v7.0.1
       with:
         # So that we have correct GIT_TOKEN to push back to branch as we need workflow permissions
-        token: ${{ secrets.ARM_SOFTWARE_TOKEN }}
+        token: ${{ github.token }}
         ref: ${{ inputs.branch || github.head_ref || github.ref }}
     - name: Checkout Update Go action
       uses: actions/checkout@v7.0.1
       with:
         repository: Arm-Debug/update-go-action
         ref: refs/tags/latest
-        token: ${{ secrets.ARM_SOFTWARE_TOKEN }}
+        token: ${{ secrets.ARM_SOFTWARE_TOKEN || github.token }}
         persist-credentials: false
         path: ./.github/workflows/update-go-action
     - name: Update Go
