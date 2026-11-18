@@ -1,1 +1,0 @@
-:camel: Upgrade `golang` in `Dockerfile.client` and workflow tooling from 1.25.5 to 1.26.0.
