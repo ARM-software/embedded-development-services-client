@@ -9,7 +9,7 @@ require (
 	github.com/ARM-software/golang-utils/utils/logs/logrimp v1.172.0
 	github.com/ARM-software/golang-utils/utils/parallelisation v1.172.0
 	github.com/deckarep/golang-set/v2 v2.9.0
-	github.com/getkin/kin-openapi v0.112.0
+	github.com/getkin/kin-openapi v0.149.0
 	github.com/go-ozzo/ozzo-validation v3.6.0+incompatible
 	github.com/iancoleman/strcase v0.3.0
 	github.com/spf13/cobra v1.7.0
@@ -70,17 +70,18 @@ require (
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/iamacarpet/go-win64api v0.0.0-20240507095429-873e84e85847 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/invopop/yaml v0.1.0 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
-	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
+	github.com/oasdiff/yaml v0.1.1 // indirect
+	github.com/oasdiff/yaml3 v0.0.14 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.4 // indirect
 	github.com/petermattis/goid v0.0.0-20250813065127-a731cc31b4fe // indirect
 	github.com/power-devops/perfstat v0.0.0-20260805114148-88456608a4f6 // indirect
 	github.com/sagikazarmark/locafero v0.11.0 // indirect
+	github.com/santhosh-tekuri/jsonschema/v6 v6.0.3 // indirect
 	github.com/sasha-s/go-deadlock v0.3.9 // indirect
 	github.com/scjalliance/comshim v0.0.0-20190308082608-cf06d2532c4e // indirect
 	github.com/shirou/gopsutil/v4 v4.26.10 // indirect
@@ -107,5 +108,4 @@ require (
 	golang.org/x/sync v0.24.0 // indirect
 	golang.org/x/sys v0.49.0 // indirect
 	golang.org/x/text v0.43.0 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
