@@ -1,1 +1,0 @@
-:gear: Update Dependabot-related workflows to use the built-in GitHub token for repository writes, fall back to `ARM_SOFTWARE_TOKEN` only where external access may still be required, and document checked dependency licences for the audit.

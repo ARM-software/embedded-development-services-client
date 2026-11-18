@@ -2,6 +2,38 @@
 Copyright (C) 2020-2026 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+# 1.109.0 (2026-11-18)
+
+## Features
+
+- Updated client due to schema changes (#20260217013705, #20260219174157, #20260225120327, #20260325013710, #20260429013859, #20260609014027, #20260721013705, #20260825013156, #20261007013301, #20261020150017, #20261103010732)
+
+## Bugfixes
+
+- Dependency upgrade: fetch-metadata-2.5.0 (#20260106090936)
+- Dependency upgrade: codeql-action-4.31.10 (#20260113091202)
+- Dependency upgrade: checkout-6.0.2 (#20260123090445)
+- :camel: Upgrade `github.com/stretchr/testify` in `client` from 1.10.0 to 1.12.1. (#20261117191001)
+- :camel: Upgrade the `generator` module dependency graph, including `golang.org/x/crypto` from 0.37.0 to 0.58.0. (#20261117191003)
+- :camel: Upgrade `golang` in `Dockerfile.client` and workflow tooling from 1.25.5 to 1.26.0. (#20261117191004)
+- :camel: Upgrade `actions/download-artifact` from 7.0.0 to 8.0.1. (#20261117191005)
+- :camel: Upgrade `actions/cache` from 5 to 6 in GitHub workflows. (#20261117191006)
+- :camel: Upgrade `ossf/scorecard-action` from 2.4.3 to 2.4.4. (#20261117191007)
+- :camel: Upgrade `actions/checkout` from 6.0.2 to 7.0.1 in GitHub workflows. (#20261117191008)
+- :camel: Upgrade `actions/upload-artifact` from 6.0.0 to 7.0.1 in GitHub workflows. (#20261117191009)
+- :camel: Upgrade `actions/setup-python` from 6 to 7 in GitHub workflows. (#20261117191010)
+- :camel: Upgrade `github/codeql-action/upload-sarif` to v4.37.7. (#20261117191011)
+- :camel: Upgrade `actions/setup-go` from 6 to 7 in GitHub workflows. (#20261117191012)
+
+## Misc
+
+- #20261117230500, #20261117233000, #20261117221524923864260
+
+
+<!--
+Copyright (C) 2020-2026 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 "1.108.0" (2026-01-20)
 ======================
 
