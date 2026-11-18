@@ -2,6 +2,19 @@
 Copyright (C) 2020-2026 Arm Limited or its affiliates and Contributors. All rights reserved.
 SPDX-License-Identifier: Apache-2.0
 -->
+# 1.109.1 (2026-11-18)
+
+## Bugfixes
+
+- Dependency upgrade: scorecard-action-2.5.0 (#20261118101035528523681)
+- Dependency upgrade: fetch-metadata-3.1.0 (#20261118101046030905062)
+- Dependency upgrade: download-artifact-8.0.2 (#20261118101053281006992)
+
+
+<!--
+Copyright (C) 2020-2026 Arm Limited or its affiliates and Contributors. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
 # 1.109.0 (2026-11-18)
 
 ## Features

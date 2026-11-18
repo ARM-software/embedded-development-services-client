@@ -1,0 +1,7 @@
+# Arm embedded development services HTTP client
+
+> Documentation for Arm embedded development services HTTP client.
+
+## Documentation
+
+- [Overview](https://ARM-software.github.io/embedded-development-services-client/)
