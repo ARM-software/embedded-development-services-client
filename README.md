@@ -4,9 +4,12 @@ SPDX-License-Identifier: Apache-2.0
 -->
 # Embedded development services HTTP client
 
-[![Go Badge](https://img.shields.io/badge/go-v1.26.0-blue)](https://golang.org/)
+[![Go Badge](https://img.shields.io/badge/go-v1.26-blue)](https://golang.org/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![CI](https://github.com/ARM-software/embedded-development-services-client/actions/workflows/ci.yml/badge.svg)](https://github.com/ARM-software/embedded-development-services-client/actions/workflows/ci.yml)
 [![Go Reference](https://pkg.go.dev/badge/github.com/ARM-software/embedded-development-services-client/client.svg)](https://pkg.go.dev/github.com/ARM-software/embedded-development-services-client/client)
+[![Documentation](https://badgen.net/badge/Documentation/docs/blue?icon=github)](docs/index.html)
+[![Compliance](https://badgen.net/badge/License%20Report/compliant/green?icon=libraries)](docs/third_party_IP_report.html)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ARM-software/embedded-development-services-client)](https://goreportcard.com/report/github.com/ARM-software/embedded-development-services-client)
 [![Scorecard Report](https://img.shields.io/ossf-scorecard/github.com/ARM-software/embedded-development-services-client?label=openssf%20scorecard&style=flat)](https://github.com/ossf/scorecard-action)
 
