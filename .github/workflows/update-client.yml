@@ -47,7 +47,7 @@ jobs:
     - uses: actions/checkout@v7.0.1
       with:
         # So that we have correct GIT_TOKEN to push back to branch as we need workflow permissions
-        token: ${{ github.token }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         ref: ${{ inputs.branch || github.head_ref || github.ref }}
     - name: Checkout Update Go action
       uses: actions/checkout@v7.0.1
