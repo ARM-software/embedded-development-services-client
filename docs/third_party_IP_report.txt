@@ -1,6 +1,6 @@
                                 3rd party IP report for Arm embedded development services HTTP client
 
-                                         2026-11-18 11:12:55.095337
+                                         2026-11-27 01:11:52.148417
 
 # Summary:
     Licence compliance: Compliant
@@ -46,12 +46,12 @@
 - github.com/ARM-software/golang-utils/utils/collection:
     [X] Compliant?
     [X] Dependency?
-    URL: https://github.com/ARM-software/golang-utils/blob/utils/collection/v1.172.0/utils/collection/LICENSE
+    URL: https://github.com/ARM-software/golang-utils/blob/utils/collection/v1.173.0/utils/collection/LICENSE
     Licence: Apache-2.0
     Licence source: tool
     Declared licence: Apache-2.0
     Licence classifiers: None
-    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/collection/v1.172.0/utils/collection/LICENSE
+    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/collection/v1.173.0/utils/collection/LICENSE
     Licence compliance: Automatic licence assessment meets the configured policy.
     Licence assessment: ALLOW (automatic: ALLOW) — A permissive dependency generally permits redistribution; retain its notices and conditions.
 
@@ -64,12 +64,12 @@
 - github.com/ARM-software/golang-utils/utils/commonerrors:
     [X] Compliant?
     [X] Dependency?
-    URL: https://github.com/ARM-software/golang-utils/blob/utils/commonerrors/v1.172.0/utils/commonerrors/LICENSE
+    URL: https://github.com/ARM-software/golang-utils/blob/utils/commonerrors/v1.173.0/utils/commonerrors/LICENSE
     Licence: Apache-2.0
     Licence source: tool
     Declared licence: Apache-2.0
     Licence classifiers: None
-    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/commonerrors/v1.172.0/utils/commonerrors/LICENSE
+    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/commonerrors/v1.173.0/utils/commonerrors/LICENSE
     Licence compliance: Automatic licence assessment meets the configured policy.
     Licence assessment: ALLOW (automatic: ALLOW) — A permissive dependency generally permits redistribution; retain its notices and conditions.
 
@@ -118,12 +118,12 @@
 - github.com/ARM-software/golang-utils/utils/field:
     [X] Compliant?
     [X] Dependency?
-    URL: https://github.com/ARM-software/golang-utils/blob/utils/field/v1.172.0/utils/field/LICENSE
+    URL: https://github.com/ARM-software/golang-utils/blob/utils/field/v1.173.0/utils/field/LICENSE
     Licence: Apache-2.0
     Licence source: tool
     Declared licence: Apache-2.0
     Licence classifiers: None
-    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/field/v1.172.0/utils/field/LICENSE
+    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/field/v1.173.0/utils/field/LICENSE
     Licence compliance: Automatic licence assessment meets the configured policy.
     Licence assessment: ALLOW (automatic: ALLOW) — A permissive dependency generally permits redistribution; retain its notices and conditions.
 
@@ -226,12 +226,12 @@
 - github.com/ARM-software/golang-utils/utils/parallelisation:
     [X] Compliant?
     [X] Dependency?
-    URL: https://github.com/ARM-software/golang-utils/blob/utils/parallelisation/v1.172.0/utils/parallelisation/LICENSE
+    URL: https://github.com/ARM-software/golang-utils/blob/utils/parallelisation/v1.173.0/utils/parallelisation/LICENSE
     Licence: Apache-2.0
     Licence source: tool
     Declared licence: Apache-2.0
     Licence classifiers: None
-    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/parallelisation/v1.172.0/utils/parallelisation/LICENSE
+    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/parallelisation/v1.173.0/utils/parallelisation/LICENSE
     Licence compliance: Automatic licence assessment meets the configured policy.
     Licence assessment: ALLOW (automatic: ALLOW) — A permissive dependency generally permits redistribution; retain its notices and conditions.
 
@@ -280,12 +280,12 @@
 - github.com/ARM-software/golang-utils/utils/ptr:
     [X] Compliant?
     [X] Dependency?
-    URL: https://github.com/ARM-software/golang-utils/blob/utils/ptr/v1.172.0/utils/ptr/LICENSE
+    URL: https://github.com/ARM-software/golang-utils/blob/utils/ptr/v1.173.0/utils/ptr/LICENSE
     Licence: Apache-2.0
     Licence source: tool
     Declared licence: Apache-2.0
     Licence classifiers: None
-    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/ptr/v1.172.0/utils/ptr/LICENSE
+    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/ptr/v1.173.0/utils/ptr/LICENSE
     Licence compliance: Automatic licence assessment meets the configured policy.
     Licence assessment: ALLOW (automatic: ALLOW) — A permissive dependency generally permits redistribution; retain its notices and conditions.
 
@@ -298,12 +298,12 @@
 - github.com/ARM-software/golang-utils/utils/reflection:
     [X] Compliant?
     [X] Dependency?
-    URL: https://github.com/ARM-software/golang-utils/blob/utils/reflection/v1.172.0/utils/reflection/LICENSE
+    URL: https://github.com/ARM-software/golang-utils/blob/utils/reflection/v1.173.0/utils/reflection/LICENSE
     Licence: Apache-2.0
     Licence source: tool
     Declared licence: Apache-2.0
     Licence classifiers: None
-    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/reflection/v1.172.0/utils/reflection/LICENSE
+    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/reflection/v1.173.0/utils/reflection/LICENSE
     Licence compliance: Automatic licence assessment meets the configured policy.
     Licence assessment: ALLOW (automatic: ALLOW) — A permissive dependency generally permits redistribution; retain its notices and conditions.
 
@@ -334,12 +334,12 @@
 - github.com/ARM-software/golang-utils/utils/safecast:
     [X] Compliant?
     [X] Dependency?
-    URL: https://github.com/ARM-software/golang-utils/blob/utils/safecast/v1.172.0/utils/safecast/LICENSE
+    URL: https://github.com/ARM-software/golang-utils/blob/utils/safecast/v1.173.0/utils/safecast/LICENSE
     Licence: Apache-2.0
     Licence source: tool
     Declared licence: Apache-2.0
     Licence classifiers: None
-    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/safecast/v1.172.0/utils/safecast/LICENSE
+    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/safecast/v1.173.0/utils/safecast/LICENSE
     Licence compliance: Automatic licence assessment meets the configured policy.
     Licence assessment: ALLOW (automatic: ALLOW) — A permissive dependency generally permits redistribution; retain its notices and conditions.
 
@@ -496,12 +496,12 @@
 - github.com/ARM-software/golang-utils/utils/value:
     [X] Compliant?
     [X] Dependency?
-    URL: https://github.com/ARM-software/golang-utils/blob/utils/value/v1.172.0/utils/value/LICENSE
+    URL: https://github.com/ARM-software/golang-utils/blob/utils/value/v1.173.0/utils/value/LICENSE
     Licence: Apache-2.0
     Licence source: tool
     Declared licence: Apache-2.0
     Licence classifiers: None
-    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/value/v1.172.0/utils/value/LICENSE
+    Evidence: licence: https://github.com/ARM-software/golang-utils/blob/utils/value/v1.173.0/utils/value/LICENSE
     Licence compliance: Automatic licence assessment meets the configured policy.
     Licence assessment: ALLOW (automatic: ALLOW) — A permissive dependency generally permits redistribution; retain its notices and conditions.
 
@@ -1577,12 +1577,12 @@
 - golang.org/x/mod:
     [X] Compliant?
     [X] Dependency?
-    URL: https://cs.opensource.google/go/x/mod/+/v0.42.0:LICENSE
+    URL: https://cs.opensource.google/go/x/mod/+/v0.43.0:LICENSE
     Licence: BSD-3-Clause
     Licence source: tool
     Declared licence: BSD-3-Clause
     Licence classifiers: None
-    Evidence: licence: https://cs.opensource.google/go/x/mod/+/v0.42.0:LICENSE
+    Evidence: licence: https://cs.opensource.google/go/x/mod/+/v0.43.0:LICENSE
     Licence compliance: Automatic licence assessment meets the configured policy.
     Licence assessment: ALLOW (automatic: ALLOW) — A permissive dependency generally permits redistribution; retain its notices and conditions.
 
@@ -1613,12 +1613,12 @@
 - golang.org/x/sync/errgroup:
     [X] Compliant?
     [X] Dependency?
-    URL: https://cs.opensource.google/go/x/sync/+/v0.24.0:LICENSE
+    URL: https://cs.opensource.google/go/x/sync/+/v0.25.0:LICENSE
     Licence: BSD-3-Clause
     Licence source: tool
     Declared licence: BSD-3-Clause
     Licence classifiers: None
-    Evidence: licence: https://cs.opensource.google/go/x/sync/+/v0.24.0:LICENSE
+    Evidence: licence: https://cs.opensource.google/go/x/sync/+/v0.25.0:LICENSE
     Licence compliance: Automatic licence assessment meets the configured policy.
     Licence assessment: ALLOW (automatic: ALLOW) — A permissive dependency generally permits redistribution; retain its notices and conditions.
 
@@ -1649,12 +1649,12 @@
 - golang.org/x/text:
     [X] Compliant?
     [X] Dependency?
-    URL: https://cs.opensource.google/go/x/text/+/v0.43.0:LICENSE
+    URL: https://cs.opensource.google/go/x/text/+/v0.44.0:LICENSE
     Licence: BSD-3-Clause
     Licence source: tool
     Declared licence: BSD-3-Clause
     Licence classifiers: None
-    Evidence: licence: https://cs.opensource.google/go/x/text/+/v0.43.0:LICENSE
+    Evidence: licence: https://cs.opensource.google/go/x/text/+/v0.44.0:LICENSE
     Licence compliance: Automatic licence assessment meets the configured policy.
     Licence assessment: ALLOW (automatic: ALLOW) — A permissive dependency generally permits redistribution; retain its notices and conditions.
 
@@ -1667,12 +1667,12 @@
 - golang.org/x/tools:
     [X] Compliant?
     [X] Dependency?
-    URL: https://cs.opensource.google/go/x/tools/+/v0.51.0:LICENSE
+    URL: https://cs.opensource.google/go/x/tools/+/v0.52.0:LICENSE
     Licence: BSD-3-Clause
     Licence source: tool
     Declared licence: BSD-3-Clause
     Licence classifiers: None
-    Evidence: licence: https://cs.opensource.google/go/x/tools/+/v0.51.0:LICENSE
+    Evidence: licence: https://cs.opensource.google/go/x/tools/+/v0.52.0:LICENSE
     Licence compliance: Automatic licence assessment meets the configured policy.
     Licence assessment: ALLOW (automatic: ALLOW) — A permissive dependency generally permits redistribution; retain its notices and conditions.
 

@@ -100,7 +100,7 @@
       "licence_evidence": [
         {
           "kind": "licence",
-          "path": "https://github.com/ARM-software/golang-utils/blob/utils/collection/v1.172.0/utils/collection/LICENSE",
+          "path": "https://github.com/ARM-software/golang-utils/blob/utils/collection/v1.173.0/utils/collection/LICENSE",
           "text": ""
         }
       ],
@@ -111,8 +111,8 @@
       },
       "mark_as_problematic": false,
       "name": "github.com/ARM-software/golang-utils/utils/collection",
-      "url": "https://github.com/ARM-software/golang-utils/blob/utils/collection/v1.172.0/utils/collection/LICENSE",
-      "version": "v1.172.0"
+      "url": "https://github.com/ARM-software/golang-utils/blob/utils/collection/v1.173.0/utils/collection/LICENSE",
+      "version": "v1.173.0"
     },
     "github.com/ARM-software/golang-utils/utils/commonerrors": {
       "anchor": "package-9de7c4a8-6029-e422-b43d-8ecd595d7e72",
@@ -143,7 +143,7 @@
       "licence_evidence": [
         {
           "kind": "licence",
-          "path": "https://github.com/ARM-software/golang-utils/blob/utils/commonerrors/v1.172.0/utils/commonerrors/LICENSE",
+          "path": "https://github.com/ARM-software/golang-utils/blob/utils/commonerrors/v1.173.0/utils/commonerrors/LICENSE",
           "text": ""
         }
       ],
@@ -154,8 +154,8 @@
       },
       "mark_as_problematic": false,
       "name": "github.com/ARM-software/golang-utils/utils/commonerrors",
-      "url": "https://github.com/ARM-software/golang-utils/blob/utils/commonerrors/v1.172.0/utils/commonerrors/LICENSE",
-      "version": "v1.172.0"
+      "url": "https://github.com/ARM-software/golang-utils/blob/utils/commonerrors/v1.173.0/utils/commonerrors/LICENSE",
+      "version": "v1.173.0"
     },
     "github.com/ARM-software/golang-utils/utils/config": {
       "anchor": "package-8cdfaaf9-e467-c220-5937-4f323bbe7370",
@@ -272,7 +272,7 @@
       "licence_evidence": [
         {
           "kind": "licence",
-          "path": "https://github.com/ARM-software/golang-utils/blob/utils/field/v1.172.0/utils/field/LICENSE",
+          "path": "https://github.com/ARM-software/golang-utils/blob/utils/field/v1.173.0/utils/field/LICENSE",
           "text": ""
         }
       ],
@@ -283,8 +283,8 @@
       },
       "mark_as_problematic": false,
       "name": "github.com/ARM-software/golang-utils/utils/field",
-      "url": "https://github.com/ARM-software/golang-utils/blob/utils/field/v1.172.0/utils/field/LICENSE",
-      "version": "v1.172.0"
+      "url": "https://github.com/ARM-software/golang-utils/blob/utils/field/v1.173.0/utils/field/LICENSE",
+      "version": "v1.173.0"
     },
     "github.com/ARM-software/golang-utils/utils/filesystem": {
       "anchor": "package-c83d8d78-cb0b-f572-c944-9c3db3ea683f",
@@ -530,7 +530,7 @@
       "licence_evidence": [
         {
           "kind": "licence",
-          "path": "https://github.com/ARM-software/golang-utils/blob/utils/parallelisation/v1.172.0/utils/parallelisation/LICENSE",
+          "path": "https://github.com/ARM-software/golang-utils/blob/utils/parallelisation/v1.173.0/utils/parallelisation/LICENSE",
           "text": ""
         }
       ],
@@ -541,8 +541,8 @@
       },
       "mark_as_problematic": false,
       "name": "github.com/ARM-software/golang-utils/utils/parallelisation",
-      "url": "https://github.com/ARM-software/golang-utils/blob/utils/parallelisation/v1.172.0/utils/parallelisation/LICENSE",
-      "version": "v1.172.0"
+      "url": "https://github.com/ARM-software/golang-utils/blob/utils/parallelisation/v1.173.0/utils/parallelisation/LICENSE",
+      "version": "v1.173.0"
     },
     "github.com/ARM-software/golang-utils/utils/platform": {
       "anchor": "package-934fc225-4633-92e1-5b0e-c9566f50d955",
@@ -659,7 +659,7 @@
       "licence_evidence": [
         {
           "kind": "licence",
-          "path": "https://github.com/ARM-software/golang-utils/blob/utils/ptr/v1.172.0/utils/ptr/LICENSE",
+          "path": "https://github.com/ARM-software/golang-utils/blob/utils/ptr/v1.173.0/utils/ptr/LICENSE",
           "text": ""
         }
       ],
@@ -670,8 +670,8 @@
       },
       "mark_as_problematic": false,
       "name": "github.com/ARM-software/golang-utils/utils/ptr",
-      "url": "https://github.com/ARM-software/golang-utils/blob/utils/ptr/v1.172.0/utils/ptr/LICENSE",
-      "version": "v1.172.0"
+      "url": "https://github.com/ARM-software/golang-utils/blob/utils/ptr/v1.173.0/utils/ptr/LICENSE",
+      "version": "v1.173.0"
     },
     "github.com/ARM-software/golang-utils/utils/reflection": {
       "anchor": "package-f3c130ad-e97b-e0db-8e60-81d67eea0d10",
@@ -702,7 +702,7 @@
       "licence_evidence": [
         {
           "kind": "licence",
-          "path": "https://github.com/ARM-software/golang-utils/blob/utils/reflection/v1.172.0/utils/reflection/LICENSE",
+          "path": "https://github.com/ARM-software/golang-utils/blob/utils/reflection/v1.173.0/utils/reflection/LICENSE",
           "text": ""
         }
       ],
@@ -713,8 +713,8 @@
       },
       "mark_as_problematic": false,
       "name": "github.com/ARM-software/golang-utils/utils/reflection",
-      "url": "https://github.com/ARM-software/golang-utils/blob/utils/reflection/v1.172.0/utils/reflection/LICENSE",
-      "version": "v1.172.0"
+      "url": "https://github.com/ARM-software/golang-utils/blob/utils/reflection/v1.173.0/utils/reflection/LICENSE",
+      "version": "v1.173.0"
     },
     "github.com/ARM-software/golang-utils/utils/resource": {
       "anchor": "package-4327757e-a014-494c-89ac-b793f0e2f909",
@@ -788,7 +788,7 @@
       "licence_evidence": [
         {
           "kind": "licence",
-          "path": "https://github.com/ARM-software/golang-utils/blob/utils/safecast/v1.172.0/utils/safecast/LICENSE",
+          "path": "https://github.com/ARM-software/golang-utils/blob/utils/safecast/v1.173.0/utils/safecast/LICENSE",
           "text": ""
         }
       ],
@@ -799,8 +799,8 @@
       },
       "mark_as_problematic": false,
       "name": "github.com/ARM-software/golang-utils/utils/safecast",
-      "url": "https://github.com/ARM-software/golang-utils/blob/utils/safecast/v1.172.0/utils/safecast/LICENSE",
-      "version": "v1.172.0"
+      "url": "https://github.com/ARM-software/golang-utils/blob/utils/safecast/v1.173.0/utils/safecast/LICENSE",
+      "version": "v1.173.0"
     },
     "github.com/ARM-software/golang-utils/utils/safeio": {
       "anchor": "package-a72b1716-9837-a3b3-e338-3aaa0c0a1527",
@@ -1175,7 +1175,7 @@
       "licence_evidence": [
         {
           "kind": "licence",
-          "path": "https://github.com/ARM-software/golang-utils/blob/utils/value/v1.172.0/utils/value/LICENSE",
+          "path": "https://github.com/ARM-software/golang-utils/blob/utils/value/v1.173.0/utils/value/LICENSE",
           "text": ""
         }
       ],
@@ -1186,8 +1186,8 @@
       },
       "mark_as_problematic": false,
       "name": "github.com/ARM-software/golang-utils/utils/value",
-      "url": "https://github.com/ARM-software/golang-utils/blob/utils/value/v1.172.0/utils/value/LICENSE",
-      "version": "v1.172.0"
+      "url": "https://github.com/ARM-software/golang-utils/blob/utils/value/v1.173.0/utils/value/LICENSE",
+      "version": "v1.173.0"
     },
     "github.com/OneOfOne/xxhash": {
       "anchor": "package-4e884669-bc70-1c58-2c06-4559af34c15c",
@@ -3763,7 +3763,7 @@
       "licence_evidence": [
         {
           "kind": "licence",
-          "path": "https://cs.opensource.google/go/x/mod/+/v0.42.0:LICENSE",
+          "path": "https://cs.opensource.google/go/x/mod/+/v0.43.0:LICENSE",
           "text": ""
         }
       ],
@@ -3774,8 +3774,8 @@
       },
       "mark_as_problematic": false,
       "name": "golang.org/x/mod",
-      "url": "https://cs.opensource.google/go/x/mod/+/v0.42.0:LICENSE",
-      "version": "v0.42.0"
+      "url": "https://cs.opensource.google/go/x/mod/+/v0.43.0:LICENSE",
+      "version": "v0.43.0"
     },
     "golang.org/x/net/idna": {
       "anchor": "package-2aead2ef-7de2-8d0b-50d8-19fea4eae228",
@@ -3849,7 +3849,7 @@
       "licence_evidence": [
         {
           "kind": "licence",
-          "path": "https://cs.opensource.google/go/x/sync/+/v0.24.0:LICENSE",
+          "path": "https://cs.opensource.google/go/x/sync/+/v0.25.0:LICENSE",
           "text": ""
         }
       ],
@@ -3860,8 +3860,8 @@
       },
       "mark_as_problematic": false,
       "name": "golang.org/x/sync/errgroup",
-      "url": "https://cs.opensource.google/go/x/sync/+/v0.24.0:LICENSE",
-      "version": "v0.24.0"
+      "url": "https://cs.opensource.google/go/x/sync/+/v0.25.0:LICENSE",
+      "version": "v0.25.0"
     },
     "golang.org/x/sys": {
       "anchor": "package-af39534f-be6f-71bf-ee2f-937b8c05225b",
@@ -3935,7 +3935,7 @@
       "licence_evidence": [
         {
           "kind": "licence",
-          "path": "https://cs.opensource.google/go/x/text/+/v0.43.0:LICENSE",
+          "path": "https://cs.opensource.google/go/x/text/+/v0.44.0:LICENSE",
           "text": ""
         }
       ],
@@ -3946,8 +3946,8 @@
       },
       "mark_as_problematic": false,
       "name": "golang.org/x/text",
-      "url": "https://cs.opensource.google/go/x/text/+/v0.43.0:LICENSE",
-      "version": "v0.43.0"
+      "url": "https://cs.opensource.google/go/x/text/+/v0.44.0:LICENSE",
+      "version": "v0.44.0"
     },
     "golang.org/x/tools": {
       "anchor": "package-812182ae-679d-806a-9b88-61a4ef10def8",
@@ -3978,7 +3978,7 @@
       "licence_evidence": [
         {
           "kind": "licence",
-          "path": "https://cs.opensource.google/go/x/tools/+/v0.51.0:LICENSE",
+          "path": "https://cs.opensource.google/go/x/tools/+/v0.52.0:LICENSE",
           "text": ""
         }
       ],
@@ -3989,8 +3989,8 @@
       },
       "mark_as_problematic": false,
       "name": "golang.org/x/tools",
-      "url": "https://cs.opensource.google/go/x/tools/+/v0.51.0:LICENSE",
-      "version": "v0.51.0"
+      "url": "https://cs.opensource.google/go/x/tools/+/v0.52.0:LICENSE",
+      "version": "v0.52.0"
     },
     "gopkg.in/yaml.v3": {
       "anchor": "package-7f8140c8-eb7f-e036-8509-d3cc7fba9d47",
@@ -4057,7 +4057,7 @@
     "licence_href": "https://github.com/ARM-software/embedded-development-services-client/blob/main/LICENSE",
     "name": "Arm embedded development services HTTP client"
   },
-  "render_time": "2026-11-18T11:12:55.095337",
+  "render_time": "2026-11-27T01:11:52.148417",
   "undocumented_exemptions": [],
   "unknown_licences": [
     "github.com/invopop/yaml"

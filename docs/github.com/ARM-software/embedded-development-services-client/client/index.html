@@ -6298,6 +6298,13 @@ In most cases there should be only one, shared, APIClient.
   <pre class="chroma"><span class="kd">func</span><span class="w"> </span><span class="nf">NewAPIClient</span><span class="p">(</span><span class="nx">cfg</span><span class="w"> </span><span class="o">*</span><a href="#Configuration"><span class="nx">Configuration</span></a><span class="p">)</span><span class="w"> </span><span class="o">*</span><a href="#APIClient"><span class="nx">APIClient</span></a></pre>
   <p>NewAPIClient creates a new API client. Requires a userAgent string describing your application.
 optionally a custom http.Client to allow for advanced features such as caching.
+<p>When no http.Client is supplied, the client follows redirects like
+http.DefaultClient does, but a redirect that leaves the origin (scheme, host
+and port) of the original request is followed without the client&apos;s
+credentials: the API keys of this API, Authorization, Cookie and the
+configured DefaultHeader values are removed from the redirected request,
+as is the Referer naming the previous URL.
+Supply an http.Client with its own CheckRedirect to use another policy.
 <h5 id="APIClient.CallAPI">func (*APIClient) CallAPI</h5>
   
   <pre class="chroma"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="o">*</span><a href="#APIClient"><span class="nx">APIClient</span></a><span class="p">)</span><span class="w"> </span><span class="nf">CallAPI</span><span class="p">(</span><span class="nx">request</span><span class="w"> </span><span class="o">*</span><a href="https://pkg.go.dev/net/http"><span class="nx">http</span></a><span class="p">.</span><a href="https://pkg.go.dev/net/http#Request"><span class="nx">Request</span></a><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><a href="https://pkg.go.dev/net/http"><span class="nx">http</span></a><span class="p">.</span><a href="https://pkg.go.dev/net/http#Response"><span class="nx">Response</span></a><span class="p">,</span><span class="w"> </span><a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span></pre>
@@ -16790,7 +16797,7 @@ and a boolean to check if the value has been set.
   <pre class="chroma"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">o</span><span class="w"> </span><span class="o">*</span><a href="#HardwareTarget"><span class="nx">HardwareTarget</span></a><span class="p">)</span><span class="w"> </span><span class="nf">UnmarshalJSON</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">[]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span></pre>
   <h4 id="IIterator">type IIterator</h4>
     
-    <pre class="chroma"><span class="kd">type</span><span class="w"> </span><span class="nx">IIterator</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><a href="https://pkg.go.dev/github.com/ARM-software/golang-utils/utils/collection@v1.172.0/pagination"><span class="nx">pagination</span></a><span class="p">.</span><a href="https://pkg.go.dev/github.com/ARM-software/golang-utils/utils/collection@v1.172.0/pagination#IIterator"><span class="nx">IIterator</span></a></pre>
+    <pre class="chroma"><span class="kd">type</span><span class="w"> </span><span class="nx">IIterator</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><a href="https://pkg.go.dev/github.com/ARM-software/golang-utils/utils/collection@v1.173.0/pagination"><span class="nx">pagination</span></a><span class="p">.</span><a href="https://pkg.go.dev/github.com/ARM-software/golang-utils/utils/collection@v1.173.0/pagination#IIterator"><span class="nx">IIterator</span></a></pre>
     <h5 id="NewAnalyserIterator">func NewAnalyserIterator</h5>
   
   <pre class="chroma"><span class="kd">func</span><span class="w"> </span><span class="nf">NewAnalyserIterator</span><span class="p">(</span><span class="nx">elements</span><span class="w"> </span><span class="p">[]</span><a href="#AnalyserItem"><span class="nx">AnalyserItem</span></a><span class="p">)</span><span class="w"> </span><span class="p">(</span><a href="#IIterator"><span class="nx">IIterator</span></a><span class="p">,</span><span class="w"> </span><a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span></pre>
@@ -16932,7 +16939,7 @@ and a boolean to check if the value has been set.
   <p>NewWorkspaceSourceModel returns a model.
 <h4 id="IStaticPage">type IStaticPage</h4>
     
-    <pre class="chroma"><span class="kd">type</span><span class="w"> </span><span class="nx">IStaticPage</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><a href="https://pkg.go.dev/github.com/ARM-software/golang-utils/utils/collection@v1.172.0/pagination"><span class="nx">pagination</span></a><span class="p">.</span><a href="https://pkg.go.dev/github.com/ARM-software/golang-utils/utils/collection@v1.172.0/pagination#IStaticPage"><span class="nx">IStaticPage</span></a></pre>
+    <pre class="chroma"><span class="kd">type</span><span class="w"> </span><span class="nx">IStaticPage</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><a href="https://pkg.go.dev/github.com/ARM-software/golang-utils/utils/collection@v1.173.0/pagination"><span class="nx">pagination</span></a><span class="p">.</span><a href="https://pkg.go.dev/github.com/ARM-software/golang-utils/utils/collection@v1.173.0/pagination#IStaticPage"><span class="nx">IStaticPage</span></a></pre>
     <h5 id="NewAnalyserCollectionCollection">func NewAnalyserCollectionCollection</h5>
   
   <pre class="chroma"><span class="kd">func</span><span class="w"> </span><span class="nf">NewAnalyserCollectionCollection</span><span class="p">()</span><span class="w"> </span><a href="#IStaticPage"><span class="nx">IStaticPage</span></a></pre>
